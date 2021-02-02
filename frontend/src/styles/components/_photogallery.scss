@@ -1,0 +1,47 @@
+$photogallery-breakpoint-twoPhotosToFull: 30em;
+$photogallery-breakpoint-twoPhotos-until: "max-width: " + $photogallery-breakpoint-twoPhotosToFull;
+$photogallery-breakpoint-full-from: "min-width: " + ($photogallery-breakpoint-twoPhotosToFull + 0.001);
+
+.photogallery {
+	display: flex;
+	flex-wrap: wrap;
+	justify-items: center;
+	justify-content: center;
+	align-items: flex-start;
+	list-style-type: none;
+
+	@media ($photogallery-breakpoint-twoPhotos-until) {
+		flex-direction: column;
+	}
+
+	&__item {
+		margin-bottom: vr-unit(0.25);
+
+		@media ($photogallery-breakpoint-twoPhotos-until) {
+			&:not(:nth-child(1)):not(:nth-child(2)) {
+				max-height: 0;
+				max-width: 0;
+				overflow: hidden;
+				position: absolute;
+			}
+		}
+		@media ($photogallery-breakpoint-full-from) {
+			flex-basis: 31%;
+			margin-right: vr-unit(0.25);
+		}
+	}
+
+	&__link {
+		display: block;
+	}
+
+	&__image {
+		border-radius: 20px;
+
+		@media ($photogallery-breakpoint-full-from) {
+			object-fit: cover;
+			height: 9.6em;
+			width: 100%;
+		}
+	}
+}

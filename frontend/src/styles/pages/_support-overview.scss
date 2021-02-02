@@ -1,0 +1,106 @@
+.support-overview {
+	margin-bottom: vr-unit(3);
+
+	@media ($typography-breakpoint-large-from) {
+		margin-bottom: vr-unit(4);
+	}
+
+	&-how {
+		margin-bottom: vr-unit(2);
+
+		@media ($typography-breakpoint-large-from) {
+			margin-bottom: vr-unit(3);
+		}
+
+		&-paragraph {
+			@include block-text();
+			margin-bottom: vr-unit(1);
+		}
+
+		&-options {
+			display: grid;
+			grid-template-columns: 1fr;
+			grid-gap: vr-unit(1);
+			max-width: 47.5rem;
+			margin-left: auto;
+			margin-right: auto;
+			list-style-type: none;
+
+			@media ($typography-breakpoint-large-from) {
+				grid-template-columns: 1fr 1fr;
+			}
+
+			&-item {
+				display: contents;
+
+				&-link {
+					position: relative;
+
+					&-heading {
+						@media ($typography-breakpoint-large-from) {
+							max-width: 20ch;
+							margin-left: auto;
+							margin-right: auto;
+						}
+					}
+
+					&-button {
+						position: absolute;
+						max-width: 15rem;
+						width: 100%;
+						bottom: vr-unit(1);
+						left: 50%; transform: translateX(-50%); // center absolutely positioned element
+						white-space: nowrap; // avoid line breaks (when `left: 50%` hits right border of an element, it causes line break)
+					}
+				}
+			}
+		}
+	}
+
+	&-why {
+		margin-bottom: vr-unit(2);
+
+		@media ($typography-breakpoint-large-from) {
+			margin-bottom: vr-unit(3);
+		}
+
+		&-list {
+			max-width: 38rem;
+			margin-left: auto;
+			margin-right: auto;
+
+			&-item {
+				margin-bottom: vr-unit(1);
+
+				&-name {
+					font-weight: bold;
+				}
+
+				&-occupation {
+					margin-top: -0.2em;
+					font-size: 0.85em;
+				}
+
+				&-quotation {
+					font-size: 0.85em;
+				}
+			}
+		}
+	}
+
+	&-adoptionLink {
+		display: block;
+		max-width: 15rem;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: vr-unit(0.5);
+	}
+
+	&-presentsLink {
+		display: block;
+		max-width: 10rem;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+}

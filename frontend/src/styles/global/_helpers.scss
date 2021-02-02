@@ -1,0 +1,19 @@
+/*
+ * This function is inspired with vertical rhytm unit.
+ * For more information see: https://zellwk.com/blog/responsive-vertical-rhythm/
+ */
+@function vr-unit($number) {
+	@return #{$number * $typography-baseLineHeight}rem;
+}
+
+// Copied from https://www.vzhurudolu.cz/
+@mixin screenreaders-only () {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0,0,0,0);
+	border: 0;
+}

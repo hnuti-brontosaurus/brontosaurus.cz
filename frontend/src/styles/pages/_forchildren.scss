@@ -1,0 +1,26 @@
+.forchildren {
+	&-heading {
+		text-align: center;
+	}
+
+	$map-size-icon: 1.7em;
+	&-map-wrapper {
+		text-align: center;
+		margin-bottom: vr-unit(1);
+	}
+	&-map {
+		background-image: url("../images/icon-map.svg");
+		background-position: left 0.1em;
+		background-size: $map-size-icon auto;
+		display: inline-block;
+		padding-left: calc(#{$map-size-icon} + 0.5em);
+	}
+
+	&-events {
+		margin-bottom: vr-unit(2);
+	}
+
+	&-description {
+		margin-bottom: vr-unit(2);
+	}
+}

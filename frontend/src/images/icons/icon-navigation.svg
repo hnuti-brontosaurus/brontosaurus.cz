@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78 50">
+	<polyline fill="#000000" points="0,0 78,0, 78,8, 0,8" />
+	<polyline fill="#000000" points="0,21 78,21, 78,29, 0,29" />
+	<polyline fill="#000000" points="0,42 78,42, 78,50, 0,50" />
+</svg>

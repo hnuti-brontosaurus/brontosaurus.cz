@@ -1,0 +1,198 @@
+$related-breakpoint-oneColumnToTwoColumns: $header-breakpoint-navigationHiddenToVisible;
+$related-breakpoint-oneColumn-until: "max-width: " + $related-breakpoint-oneColumnToTwoColumns;
+$related-breakpoint-twoColumns-from: "min-width: " + ($related-breakpoint-oneColumnToTwoColumns + 0.001);
+
+$related-breakpoint-roundedPhoto: 53em;
+$related-breakpoint-roundedPhoto-untilHidden: "max-width: " + $related-breakpoint-roundedPhoto;
+$related-breakpoint-roundedPhoto-whenVisible: "min-width: " + ($related-breakpoint-roundedPhoto + 0.001);
+
+aside .related {
+	max-width: 40rem;
+	margin-left: auto;
+	margin-right: auto;
+
+	&-heading {
+		margin-bottom: vr-unit(1);
+	}
+
+	&-list {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-gap: vr-unit(1);
+		justify-content: center;
+
+		@media ($related-breakpoint-twoColumns-from) {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		&-item {
+			border-radius: 2em;
+			overflow: hidden;
+			display: block;
+			padding: vr-unit(1) vr-unit(1) vr-unit(2);
+			position: relative;
+			text-decoration: none;
+			z-index: 0;
+
+			@media ($related-breakpoint-twoColumns-from) {
+				display: grid;
+				grid-template-areas:
+					"heading"
+					"list"
+					"link";
+				grid-template-columns: 1fr;
+				align-items: center;
+				grid-row-gap: vr-unit(1);
+				grid-column-gap: vr-unit(0.5);
+				padding: vr-unit(1);
+			}
+			@media ($related-breakpoint-roundedPhoto-whenVisible) {
+				grid-template-areas:
+					"heading heading"
+					"list photo"
+					"link link";
+				grid-template-columns: 2fr 1fr;
+			}
+
+			&:hover {
+				color: inherit;
+			}
+
+			&::before {
+				content: "";
+				background-color: transparentize($colors-tinge, 0.1);
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				display: block;
+				z-index: -1;
+			}
+
+			&-heading {
+				@media ($related-breakpoint-oneColumn-until) {
+					margin-bottom: vr-unit(1);
+				}
+				@media ($related-breakpoint-twoColumns-from) {
+					grid-area: heading;
+					margin-bottom: 0;
+				}
+			}
+
+			&-list {
+				list-style: none;
+
+				@media ($related-breakpoint-oneColumn-until) {
+					margin-bottom: vr-unit(2);
+				}
+				@media ($related-breakpoint-twoColumns-from) {
+					grid-area: list;
+				}
+
+				li:nth-child(3) {
+					@media (max-width: 30em) {
+						max-width: 8em;
+					}
+				}
+			}
+
+			&-roundedPhoto {
+				background-size: 250%;
+				border-radius: 50%; // fallback for Edge for `clip-path`
+				clip-path: circle(50%);
+				height: 5em;
+				width: 5em;
+
+				@media ($related-breakpoint-roundedPhoto-untilHidden) {
+					display: none;
+				}
+				@media ($related-breakpoint-oneColumn-until) {
+					top: vr-unit(3);
+					position: absolute;
+					right: vr-unit(0.5);
+					z-index: 1;
+				}
+				@media ($related-breakpoint-twoColumns-from) {
+					grid-area: photo;
+					justify-self: end;
+				}
+			}
+
+			&-moreLink {
+				z-index: -1;
+
+				&::after {
+					background-color: $colors-tinge;
+				}
+
+				@media ($related-breakpoint-twoColumns-from) {
+					grid-area: link;
+					justify-self: center;
+					position: relative;
+					left: unset;
+					bottom: unset;
+					transform: unset;
+					white-space: unset;
+				}
+			}
+
+			&--courses {
+				background-image: url("../images/hlavicka-kurzy-a-prednasky.jpg");
+				background-position: right top;
+				background-size: 30em;
+
+				&-roundedPhoto {
+					background-image: url("../images/hlavicka-kurzy-a-prednasky.jpg");
+					background-position-x: 50%;
+					background-position-y: 28%;
+				}
+			}
+
+			&--meetups {
+				background-image: url("../images/hlavicka-setkavani-a-kluby.jpg");
+				background-size: 25em;
+
+				&-roundedPhoto {
+					background-image: url("../images/hlavicka-setkavani-a-kluby.jpg");
+					background-position-x: 97%;
+					background-position-y: 17%;
+				}
+			}
+
+			&--donation {
+				background-image: url("../images/hlavicka-moznost-podpory.jpg");
+				background-size: 22em;
+
+				&-roundedPhoto {
+					background-image: url("../images/hlavicka-moznost-podpory.jpg");
+					background-position-x: 13%;
+					background-position-y: 81%;
+				}
+			}
+
+			&--children {
+				background-image: url("../images/hlavicka-proDeti.jpg");
+				background-position: right center;
+				background-size: 36em;
+
+				&-roundedPhoto {
+					background-image: url("../images/hlavicka-proDeti.jpg");
+					background-position: 94% 59%;
+					background-size: 21rem;
+				}
+			}
+
+			&--voluntary {
+				background-image: url("../images/hlavicka-dobrovolnickeAkce.jpg");
+				background-position: calc(100% + 8em) -7em;
+				background-size: 45em;
+
+				&-roundedPhoto {
+					background-image: url("../images/hlavicka-dobrovolnickeAkce.jpg");
+					background-position: -5.5em -0.6em;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,193 @@
+.contacts {
+	&-introduction {
+		@include block-text();
+		margin-bottom: vr-unit(2);
+	}
+
+	&-details {
+		margin-bottom: vr-unit(2);
+
+		&-blockContainer {
+			max-width: 35rem;
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom: vr-unit(1);
+			display: grid;
+			grid-template-areas:
+				"map"
+				"contacts"
+				"openingHours";
+			grid-template-columns: 100%;
+			grid-template-rows: 30vh auto auto;
+			border-radius: 2em;
+			overflow: hidden;
+
+			@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
+				grid-template-areas:
+					"map contacts"
+					"map openingHours";
+				grid-template-columns: 50% 50%;
+				grid-template-rows: 50% 50%;
+			}
+		}
+
+		&-map {
+			grid-area: map;
+			width: 100%;
+			height: 100%;
+		}
+
+		&-contacts {
+			grid-area: contacts;
+			font-style: normal;
+			background-color: $colors-tinge;
+			padding: vr-unit(2);
+			font-size: 0.9em;
+
+			&-item {
+				margin-bottom: 0.4em; // need atypical margin
+
+				&::before {
+					content: "";
+					display: block;
+					position: absolute;
+					margin-left: calc(-#{vr-unit(0.5)} - 20px);
+					width: 2em;
+					margin-top: 0.05em;
+					background-size: auto 100%;
+				}
+
+				&--address {
+					&::before {
+						background-image: url("../images/icon-place-green.svg");
+						background-position-x: 3px;
+						height: 23px;
+					}
+				}
+				&--phone {
+					&::before {
+						background-image: url("../images/icon-phone.svg");
+						height: 24px;
+					}
+
+					&-number {
+						display: block;
+					}
+				}
+				&--email {
+					&::before {
+						background-image: url("../images/icon-letter.svg");
+						background-position-x: 1px;
+						height: 20px;
+					}
+				}
+
+				&-subheading {
+					@include screenreaders-only();
+				}
+			}
+		}
+
+		&-openingHours {
+			grid-area: openingHours;
+			background-color: $colors-tinge;
+			padding: 0 vr-unit(2) vr-unit(2);
+
+			&-list {
+				list-style-type: none;
+				font-size: 0.9em;
+			}
+		}
+	}
+
+	&-invoicing,
+	&-accounts {
+		@include block-text();
+		font-size: 0.85em;
+	}
+
+	&-people {
+		max-width: 40rem;
+		margin: 0 auto vr-unit(2.5);
+
+		@media ($typography-breakpoint-small-until) {
+			clear: right;
+		}
+		@media ($typography-breakpoint-large-from) {
+			display: flex;
+			justify-content: space-between;
+			flex-direction: row;
+		}
+
+		&-imageWrapper {
+			@media ($typography-breakpoint-small-until) {
+				float: right;
+				max-width: 33vw;
+				margin-left: vr-unit(0.5);
+
+				@media (min-width: 40.001em) {
+					max-width: 25vw;
+				}
+			}
+			@media ($typography-breakpoint-large-from) {
+				flex-basis: 47%;
+			}
+		}
+		&:nth-child(odd) {
+			.contacts-people-imageWrapper {
+				@media ($typography-breakpoint-large-from) {
+					order: 1;
+				}
+			}
+		}
+		&-image {
+			border-radius: 23% / 25%;
+			margin-bottom: vr-unit(0.5);
+			max-width: 100%;
+
+			@media ($typography-breakpoint-large-from) {
+				margin-bottom: 0;
+			}
+		}
+
+		&-description {
+			@media ($typography-breakpoint-large-from) {
+				flex-basis: 47%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			}
+
+			&-name {
+				margin-bottom: vr-unit(0.5);
+
+				&-bold {
+					font-weight: bold;
+				}
+			}
+
+			&-about {
+				margin-bottom: vr-unit(0.5);
+
+				@media ($typography-breakpoint-large-from) {
+					max-width: 15em;
+				}
+			}
+
+			&-contact {
+				padding-left: vr-unit(1);
+
+				&::before {
+					display: block;
+					content: "";
+					width: 23px;
+					height: 25px;
+					background-image: url("../images/icon-letter.svg");
+					position: absolute;
+					margin-left: -#{vr-unit(1)};
+					margin-top: 0.1em;
+				}
+			}
+		}
+	}
+}

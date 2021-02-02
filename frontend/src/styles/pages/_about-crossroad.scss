@@ -1,0 +1,64 @@
+article .about-crossroad {
+	&-screenreaderHeading {
+		@include screenreaders-only();
+	}
+
+	&-heading {
+		@include heading-first-level();
+	}
+
+	&-philosophy {
+		@include block-text();
+		margin-bottom: vr-unit(1);
+	}
+
+	&-highlightsLink {
+		margin-bottom: vr-unit(1);
+	}
+
+	&-crossroad {
+		display: flex;
+		flex-direction: column;
+		max-width: 40rem;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: vr-unit(4);
+		list-style-type: none;
+
+		@media ($typography-breakpoint-large-from) {
+			flex-direction: row;
+			justify-content: center;
+		}
+
+		&-field {
+			flex-basis: 50%;
+
+			&:not(:last-child) {
+				@media ($typography-breakpoint-small-until) {
+					margin-bottom: vr-unit(1);
+				}
+				@media ($typography-breakpoint-large-from) {
+					margin-right: vr-unit(1);
+				}
+			}
+
+			&-link { // intentionally did not use .hero component as it would modify almost every rule of that component
+				display: block;
+				height: 18em;
+				border-radius: 2em;
+
+				&--structure {
+					background-image: url("../images/hlavicka-struktura-organizace.jpg");
+					background-size: 41em;
+					background-position: 80% top;
+				}
+
+				&--successes {
+					background-image: url("../images/aboutSuccesses-lukov.jpg");
+					background-size: 40em;
+					background-position: -4em -2em;
+				}
+			}
+		}
+	}
+}

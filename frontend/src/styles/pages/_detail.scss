@@ -1,0 +1,368 @@
+$detail-breakpoint-mediumToLarge: $registration-breakpoint-form-oneColumnToTwoColumns;
+$detail-breakpoint-medium-until: "max-width: " + $detail-breakpoint-mediumToLarge;
+$detail-breakpoint-large-from: "min-width: " + ($detail-breakpoint-mediumToLarge + 0.001);
+
+.detail {
+	@media ($photogallery-breakpoint-full-from) {
+		max-width: 25em;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	@media ($detail-breakpoint-large-from) {
+		max-width: 40em;
+	}
+
+
+	&__noResults {
+		margin-bottom: vr-unit(4);
+	}
+
+
+	&__heading {
+		margin-bottom: vr-unit(1) !important; // overwrite `.content h1` rule
+		font-variant-caps: small-caps;
+		text-align: center;
+	}
+
+
+	// BASIC INFORMATION
+
+	&__top {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: vr-unit(2);
+		border-radius: 2em;
+		background-color: $colors-tinge;
+
+		@media ($detail-breakpoint-large-from) {
+			flex-direction: row;
+			align-items: center;
+			min-height: 18em;
+		}
+	}
+
+	// cover image and tag list
+
+	&__tagList-wrapper {
+		position: relative;
+
+		@media ($detail-breakpoint-medium-until) {
+			border-bottom: 2px solid $colors-emphasizing;
+		}
+		@media ($detail-breakpoint-large-from) {
+			align-self: stretch;
+			flex-basis: 40%;
+			border-right: 2px solid $colors-emphasizing;
+		}
+	}
+
+	&__coverImage-wrapper {
+		display: contents;
+		height: 100%; // in case of browser does not understand `display: contents`
+	}
+	&__coverImage {
+		--detail-coverImage-height: 15em;
+		width: 100%;
+		object-fit: cover;
+
+		@media ($detail-breakpoint-medium-until) {
+			max-height: var(--detail-coverImage-height);
+			border-top-left-radius: 2em;
+			border-top-right-radius: 2em;
+		}
+		@media ($detail-breakpoint-large-from) {
+			max-height: 18em;
+			min-height: 100%;
+			border-top-left-radius: 2em;
+			border-bottom-left-radius: 2em;
+		}
+
+		&--none {
+			height: var(--detail-coverImage-height);
+			background-color: $colors-tinge;
+			background-image: url("../images/logo-hb-brontosaurus.svg");
+			background-position: center center;
+			background-repeat: no-repeat;
+
+			@media ($detail-breakpoint-large-from) {
+				height: 100%;
+			}
+		}
+	}
+
+	&__tagList {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		justify-content: flex-end !important; // overwrite `.eventTagList` rule
+		padding: 0 vr-unit(0.5) vr-unit(0.5);
+		text-align: center;
+	}
+
+	&__basicInformation-wrapper {
+		flex-basis: 60%;
+	}
+
+	&__basicInformation {
+		display: table;
+		margin: vr-unit(1) auto;
+	}
+	&__basicInformation-item {
+		display: table-row;
+	}
+	&__basicInformation-label,
+	&__basicInformation-value {
+		display: table-cell;
+		vertical-align: top;
+	}
+	&__basicInformation-label {
+		padding-left: vr-unit(1);
+		padding-right: vr-unit(1);
+		padding-bottom: vr-unit(0.25);
+		font-weight: bold;
+		text-align: right;
+	}
+	&__basicInformation-value {
+		padding-right: vr-unit(1);
+	}
+	&__basicInformation-mapLink {
+		background-image: url("/templates/brontosaurus/dist/images/icon-link-external-alt.svg");
+		background-position: right 0.2em;
+		background-size: auto 13px;
+		padding-right: calc(13px + #{vr-unit(0.25)});
+	}
+
+	&__basicInformation-priceNoFee {
+		font-style: italic;
+	}
+
+
+	&__firstTimeAttendeesInformation {
+		padding: vr-unit(1) vr-unit(1) calc(#{vr-unit(1)} - 0.15rem);
+		text-align: center;
+
+		@media ($detail-breakpoint-medium-until) {
+			border-bottom-right-radius: 2em;
+			border-bottom-left-radius: 2em;
+			background-color: $colors-tinge;
+		}
+		@media ($detail-breakpoint-large-from) {
+			margin-bottom: vr-unit(0.5);
+			padding-top: vr-unit(0.5);
+			font-weight: bold;
+		}
+	}
+
+	&__registrationLink {
+		margin-bottom: vr-unit(2);
+	}
+
+
+	// EXPANDED INFORMATION
+
+	&-program,
+	&-information,
+	&-work,
+	&-example-text,
+	&-team,
+	&-contact,
+	&-promo {
+		max-width: 55ch;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	&-program,
+	&-information,
+	&-work,
+	&-team,
+	&-promo {
+		&-paragraph {
+			&:not(:last-child) {
+				margin-bottom: vr-unit(0.5);
+			}
+		}
+	}
+
+	&-program,
+	&-information,
+	&-work,
+	&-team {
+		margin-bottom: vr-unit(1);
+	}
+
+	&-information {
+		&-paragraph {
+			&-link {
+				color: $colors-emphasizing;
+			}
+		}
+
+		&-list {
+			list-style-type: none;
+		}
+	}
+
+	&-example {
+		margin-bottom: vr-unit(1);
+
+		&-text {
+			margin-bottom: vr-unit(0.5);
+		}
+	}
+
+	&-contact {
+		margin-bottom: vr-unit(2);
+
+		&-wrapperButton {
+			text-align: center;
+			margin-bottom: vr-unit(0.5);
+		}
+		&-button {
+			margin-bottom: 0;
+		}
+
+		&-data {
+			margin-bottom: vr-unit(0.75);
+
+			&-website {
+				background-image: url("/templates/brontosaurus/dist/images/icon-link-external-alt.svg");
+				background-position: right 0.2em;
+				background-size: auto 10px;
+				padding-right: calc(10px + #{vr-unit(0.25)});
+			}
+		}
+	}
+
+	&-registrationLink-wrapper {
+		margin-bottom: vr-unit(3);
+	}
+
+	&-promo {
+		&-moreLink {
+			margin-top: vr-unit(1);
+		}
+	}
+}
+
+.detail-promo {
+	max-width: 60ch;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+$flashMessage-animation-name: (flashMessage-bounce, flashMessage-pulse, flashMessage-hide);
+$flashMessage-animation-delay: (0.8s, 3s, 0s);
+$flashMessage-animation-duration: (0.5s, 1.7s, 800ms);
+$flashMessage-animation-fill-mode: (both, forwards, forwards);
+$flashMessage-animation-iteration-count: (1, infinite, 1);
+$flashMessage-breakpoint-forceCentered: $header-breakpoint-navigationHiddenToVisible;
+$flashMessage-breakpoint-forceCentered-until: "max-width: " + $flashMessage-breakpoint-forceCentered;
+$flashMessage-breakpoint-forceCentered-from: "min-width: " + ($flashMessage-breakpoint-forceCentered + 0.001);
+
+.detail__flashMessage {
+	display: flex;
+	position: fixed;
+	max-width: 60ch;
+	text-align: center;
+	margin-top: -1.3rem;
+	background-color: $colors-emphasizing;
+	color: #fff;
+	border-radius: 10em;
+	padding: 1.3em;
+	z-index: 1;
+
+	@media ($flashMessage-breakpoint-forceCentered-until) {
+		left: vr-unit(0.5);
+		right: vr-unit(0.5);
+	}
+	@media ($flashMessage-breakpoint-forceCentered-from) {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	// animations
+
+	--flashMessage-xTranslation: 0%;
+
+	@media ($flashMessage-breakpoint-forceCentered-from) {
+		--flashMessage-xTranslation: -50%;
+	}
+
+	animation-name: nth($flashMessage-animation-name, 1), nth($flashMessage-animation-name, 2);
+	animation-delay: nth($flashMessage-animation-delay, 1), nth($flashMessage-animation-delay, 2);
+	animation-duration: nth($flashMessage-animation-duration, 1), nth($flashMessage-animation-duration, 2);
+	animation-fill-mode: nth($flashMessage-animation-fill-mode, 1), nth($flashMessage-animation-fill-mode, 2);
+	animation-iteration-count: nth($flashMessage-animation-iteration-count, 1), nth($flashMessage-animation-iteration-count, 2);
+
+	&--hidden {
+		pointer-events: none;
+		animation-name: nth($flashMessage-animation-name, 1), nth($flashMessage-animation-name, 2), nth($flashMessage-animation-name, 3);
+		animation-delay: nth($flashMessage-animation-delay, 1), nth($flashMessage-animation-delay, 2), nth($flashMessage-animation-delay, 3);
+		animation-duration: nth($flashMessage-animation-duration, 1), nth($flashMessage-animation-duration, 2), nth($flashMessage-animation-duration, 3);
+		animation-fill-mode: nth($flashMessage-animation-fill-mode, 1), nth($flashMessage-animation-fill-mode, 2), nth($flashMessage-animation-fill-mode, 3);
+		animation-iteration-count: nth($flashMessage-animation-iteration-count, 1), nth($flashMessage-animation-iteration-count, 2), nth($flashMessage-animation-iteration-count, 3);
+	}
+}
+
+
+@keyframes flashMessage-bounce{
+	0%{
+		opacity: 0;
+		transform: translateX(var(--flashMessage-xTranslation)) scale(0.3);
+	}
+	50%{
+		opacity: 0.9;
+		transform: translateX(var(--flashMessage-xTranslation)) scale(1.1);
+	}
+	80%{
+		opacity: 1;
+		transform: translateX(var(--flashMessage-xTranslation)) scale(0.89);
+	}
+	100%{
+		opacity: 1;
+		transform: translateX(var(--flashMessage-xTranslation)) scale(1);
+	}
+}
+@keyframes flashMessage-pulse {
+	from {
+		transform: translateX(var(--flashMessage-xTranslation)) scale(1);
+		transform-origin: center center;
+		animation-timing-function: ease-out;
+	}
+	10% {
+		transform: translateX(var(--flashMessage-xTranslation)) scale(0.97);
+		animation-timing-function: ease-in;
+	}
+	17% {
+		transform: translateX(var(--flashMessage-xTranslation)) scale(0.99);
+		animation-timing-function: ease-out;
+	}
+	33% {
+		transform: translateX(var(--flashMessage-xTranslation)) scale(0.97);
+		animation-timing-function: ease-in;
+	}
+	45% {
+		transform: translateX(var(--flashMessage-xTranslation)) scale(1);
+		animation-timing-function: ease-out;
+	}
+}
+@keyframes flashMessage-hide {
+	from { opacity: 1; }
+	to { opacity: 0; }
+}
+
+
+
+.detail__flashMessage-closeButton {
+	background-image: url("../images/icon-close.svg");
+	width: calc(1em + #{vr-unit(1)});
+	height: calc(1em + #{vr-unit(1)});
+	background-color: transparent;
+	border: none;
+	background-size: auto 1em;
+	background-position: center center;
+	cursor: pointer;
+	margin-top: -#{vr-unit(0.5)};
+}

@@ -1,0 +1,129 @@
+.optionBox {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	overflow: hidden; // prevent child image overflow given border radius
+	background-color: $colors-tinge;
+	border-radius: 2em;
+	text-decoration: none;
+
+	&:hover {
+		color: inherit !important;
+	}
+
+	&__text {
+		padding: vr-unit(1);
+
+		@media ($description-breakpoint-twoColumns-from) {
+			padding: vr-unit(1.5) vr-unit(2);
+		}
+	}
+
+	&__heading {
+		font-weight: bold;
+
+		@media ($typography-breakpoint-large-from) {
+			text-align: center;
+		}
+	}
+
+	&__image {
+		background-position: center top;
+		background-size: cover;
+		border-radius: 0 0 2em 2em;
+		display: flex;
+		flex-direction: column;
+		height: 13em;
+		justify-content: flex-end;
+		overflow: hidden;
+		position: relative;
+
+
+		// voluntary modifiers
+
+		&--voluntary-firstTime {
+			background-image: url("/templates/brontosaurus/dist/images/voluntary-firstTime.jpg");
+			background-position-y: 36%;
+		}
+
+		&--voluntary-weekendEvents {
+			background-image: url("/templates/brontosaurus/dist/images/voluntary-weekendEvents.jpg");
+			background-position-y: 62%;
+		}
+
+		&--voluntary-oneDayEvents {
+			background-image: url("/templates/brontosaurus/dist/images/voluntary-oneDayEvents.jpg");
+			background-position-y: 58%;
+		}
+
+		&--voluntary-holidayEvents {
+			background-image: url("/templates/brontosaurus/dist/images/voluntary-holidayEvents.jpg");
+		}
+
+		&--voluntary-nature {
+			background-image: url("/templates/brontosaurus/dist/images/voluntary-nature.jpg");
+		}
+
+		&--voluntary-sights {
+			background-image: url("/templates/brontosaurus/dist/images/voluntary-sights.jpg");
+		}
+
+
+		// courses modifiers
+
+		&--courses-organizing {
+			background-image: url("/templates/brontosaurus/dist/images/courses-organizing.jpg");
+			background-position-y: 41%;
+		}
+
+		&--courses-thematic {
+			background-image: url("/templates/brontosaurus/dist/images/courses-thematic.jpg");
+			background-position-y: 96%;
+			background-size: 144%;
+		}
+
+
+		// meetups modifiers
+
+		&--meetups {
+			background-image: url("/templates/brontosaurus/dist/images/meetups.jpg");
+			background-position-y: 20%;
+		}
+
+
+		// for children modifiers
+
+		&--forChildren-camps {
+			background-image: url("/templates/brontosaurus/dist/images/forChildren-camps.jpg");
+		}
+
+		&--forChildren-units {
+			background-image: url("/templates/brontosaurus/dist/images/forChildren-units.jpg");
+			background-position-y: 85%;
+		}
+
+		&--forChildren-events {
+			background-image: url("/templates/brontosaurus/dist/images/forChildren-events.jpg");
+			background-position-y: 100%;
+		}
+
+		&--forChildren-eventsWithParents {
+			background-image: url("/templates/brontosaurus/dist/images/forChildren-eventsWithParents.jpg");
+			background-position-y: 22%;
+		}
+
+
+		// support overview modifiers
+
+		&--supportOverview-presents {
+			background-image: url("/templates/brontosaurus/dist/images/supportOverview-presents.jpg");
+			background-size: cover;
+		}
+
+		&--supportOverview-adoption {
+			background-image: url("/templates/brontosaurus/dist/images/supportOverview-adoption.jpg");
+			background-size: cover;
+			background-position: center center;
+		}
+	}
+}

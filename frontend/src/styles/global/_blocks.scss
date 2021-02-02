@@ -1,0 +1,48 @@
+@mixin heading-first-level () {
+	font-size: 1.7em;
+	font-weight: $fonts-delm-weight-bold;
+	margin-bottom: vr-unit(0.5);
+
+	@media ($typography-breakpoint-large-from) {
+		font-size: 2.5em;
+		text-align: center;
+		margin-bottom: vr-unit(1);
+	}
+}
+
+@mixin block-text () {
+	max-width: 28rem; // rem unit so that max-width of element of any font-size has the same size
+
+	@media ($typography-breakpoint-large-from) {
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+@mixin block-subheading () {
+	display: flex;
+	align-items: center;
+	color: $colors-emphasizing;
+	max-width: 12rem;
+	margin-bottom: vr-unit(1);
+	margin-left: auto;
+	margin-right: auto;
+
+	&::before,
+	&::after {
+		content:"";
+		display: block;
+		margin-top: -3px;
+		width: 3rem;
+		height: 1px;
+		background-color: $colors-emphasizing;
+	}
+
+	&::before {
+		margin-right: vr-unit(0.5);
+	}
+
+	&::after {
+		margin-left: vr-unit(0.5);
+	}
+}

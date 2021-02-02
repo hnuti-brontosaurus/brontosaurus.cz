@@ -1,0 +1,388 @@
+$presentationBox-breakpoint-textPosition: 50em;
+$presentationBox-breakpoint-textOnBottom-until: "max-width: " + $presentationBox-breakpoint-textPosition;
+$presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-breakpoint-textPosition + 0.001);
+
+.presentationBox {
+	position: relative;
+	min-height: 18rem;
+	padding: vr-unit(8) vr-unit(1) vr-unit(1);
+	margin-left: -#{vr-unit(1)};
+	margin-right: -#{vr-unit(1)};
+	background-color: $colors-tinge;
+	overflow: hidden; // prevent background-image to go out of set border-radius
+
+	@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
+		margin-left: -#{vr-unit(2)};
+		margin-right: -#{vr-unit(2)};
+	}
+	@media ($presentationBox-breakpoint-textOnSide-from) {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding: vr-unit(2);
+		margin-left: auto;
+		margin-right: auto;
+		border-radius: 2em;
+		background-color: transparent;
+	}
+
+	&::before {
+		content: "";
+		display: block;
+		width: 100%;
+		height: vr-unit(7); // we need it in line height unit as we use padding-top on the text below
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		@media ($presentationBox-breakpoint-textOnSide-from) {
+			height: 100%;
+			z-index: -1;
+		}
+	}
+
+	&::after {
+		left: 0;
+
+		@media ($presentationBox-breakpoint-textOnSide-from) {
+			content: "";
+			display: block;
+			width: 50%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			z-index: -1;
+			background-color: transparentize($colors-tinge, 0.1);
+		}
+	}
+	&--thirdsLayout {
+		&::after {
+			@media ($presentationBox-breakpoint-textOnSide-from) {
+				width: 60%;
+			}
+		}
+	}
+	&--textOnRight {
+		&::after {
+			left: initial;
+			right: 0;
+		}
+	}
+
+	&__text {
+		margin: 0;
+
+		&:not(:last-child) {
+			margin-bottom: vr-unit(0.5);
+		}
+
+
+		@media ($presentationBox-breakpoint-textOnSide-from) {
+			max-width: calc(50% - #{vr-unit(2)});
+		}
+	}
+	&--thirdsLayout &__text {
+		@media ($presentationBox-breakpoint-textOnSide-from) {
+			max-width: calc(60% - #{vr-unit(2)});
+		}
+	}
+	&--textOnRight &__text {
+		@media ($presentationBox-breakpoint-textOnSide-from) {
+			margin-left: calc(50% + #{vr-unit(2)});
+		}
+	}
+	&--thirdsLayout.presentationBox--textOnRight &__text {
+		@media ($presentationBox-breakpoint-textOnSide-from) {
+			margin-left: calc(40% + #{vr-unit(2)} - 0.5rem); // constant 0.5rem so it has vr offset from left
+		}
+	}
+
+	&__quotation {
+		font-style: italic;
+		margin-bottom: vr-unit(1);
+		position: relative;
+
+		&::before {
+			content: "„";
+
+			// hanging punctuation
+			position: absolute;
+			left: -0.4em;
+		}
+		&::after {
+			content: "“";
+		}
+	}
+
+
+	// about crossroad modifiers
+
+	&--aboutCrossroad-pavlicek {
+		&::before {
+			background-image: url("../images/aboutCrossroad-references-jaroslav-pavlicek.jpg");
+			background-size: 39em;
+			background-position: center -9em;
+
+			@media ($presentationBox-breakpoint-textOnSide-from) {
+				background-size: 43em;
+				background-position: -3em -7em;
+			}
+		}
+	}
+
+	&--aboutCrossroad-binka {
+		&::before {
+			background-image: url("../images/aboutCrossroad-references-bohuslav-binka.jpg");
+			background-size: 39em;
+			background-position: 80% -7em;
+
+			@media ($presentationBox-breakpoint-textOnSide-from) {
+				background-size: 40em;
+				background-position: left -4em;
+			}
+		}
+	}
+
+	&--aboutCrossroad-dalajlama {
+		&::before {
+			background-image: url("../images/aboutCrossroad-references-dalajlama.jpg");
+			background-size: 39em;
+			background-position: center -2.8em;
+
+			@media ($presentationBox-breakpoint-textOnSide-from) {
+				background-size: 40em;
+				background-position: left -0.1em;
+			}
+		}
+	}
+
+	&--aboutCrossroad-tesar {
+		&::before {
+			background-image: url("../images/aboutCrossroad-references-ladislav-tesar.jpg");
+			background-size: 39em;
+			background-position: center -5em;
+
+			@media ($presentationBox-breakpoint-textOnSide-from) {
+				background-size: 50em;
+				background-position: left -5em;
+			}
+		}
+	}
+
+
+	// about structure modifiers
+
+	&--aboutStructure-baseUnits {
+		&::before {
+			background-image: url("../images/baseUnit.jpg");
+			background-position: center -7em;
+			background-size: 40em;
+
+			@media ($presentationBox-breakpoint-textOnSide-from) {
+				background-position: -4em -8.5em;
+				background-size: 50em;
+			}
+		}
+	}
+
+
+	// about successes modifiers
+
+	&--aboutSuccesses-lukov {
+		&::before {
+			background-image: url("../images/aboutSuccesses-lukov.jpg");
+			background-size: cover;
+
+			@media ($presentationBox-breakpoint-textOnBottom-until) {
+				background-size: 39em;
+				background-position-y: -2em;
+			}
+		}
+	}
+
+	&--aboutSuccesses-ucebna {
+		&::before {
+			background-image: url("../images/aboutSuccesses-ucebna.jpg");
+			background-size: 45em;
+			background-position-y: -11em;
+
+			@media ($presentationBox-breakpoint-textOnSide-from) {
+				background-size: 63em;
+				background-position: center -15em;
+			}
+		}
+	}
+
+	&--aboutSuccesses-himalaje {
+		&::before {
+			background-image: url("../images/aboutSuccesses-himalaje.jpg");
+			background-size: cover;
+
+			@media ($presentationBox-breakpoint-textOnBottom-until) {
+				background-size: 39em;
+				background-position: center -1em;
+			}
+		}
+	}
+
+	&--aboutSuccesses-koreny {
+		&::before {
+			background-image: url("../images/aboutSuccesses-koreny.jpg");
+			background-size: 39em;
+			background-position: calc(100% + 3em) -6.4em;
+
+			@media ($presentationBox-breakpoint-textOnSide-from) {
+				background-size: 54em;
+				background-position-x: calc(100% + 6em);
+			}
+		}
+	}
+
+	&--aboutSuccesses-ukrajina {
+		&::before {
+			background-image: url("../images/aboutSuccesses-ukrajina.jpg");
+			background-size: 39em;
+			background-position-y: -2em;
+
+			@media ($presentationBox-breakpoint-textOnSide-from) {
+				background-size: 48em;
+				background-position-y: -1em;
+			}
+		}
+	}
+
+
+	// highschool modifiers
+
+	&--highschool-outdoor {
+		&::before {
+			background-image: url("../images/highschools-outdoor.jpg");
+			background-position: center -1em;
+			background-size: 35em;
+
+			@media ($presentationBox-breakpoint-textOnSide-from) {
+				background-position-x: -9em;
+				background-size: 50em;
+			}
+		}
+	}
+	&--highschool-in {
+		&::before {
+			background-image: url("../images/highschools-in.jpg");
+			background-position: right center;
+			background-size: cover;
+			transform: rotateY(180deg);
+		}
+	}
+	&--highschool-biodiversity {
+		&::before {
+			background-image: url("../images/highschools-biodiversity.jpg");
+			background-position: left calc(100% + 2em);
+			background-size: 27em;
+
+			@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
+				background-position-y: calc(100% + 3em);
+				background-size: 35em;
+			}
+			@media ($presentationBox-breakpoint-textOnSide-from) {
+				background-size: 42em;
+			}
+		}
+	}
+	&--highschool-planting {
+		&::before {
+			background-image: url("../images/highschools-planting.jpg");
+			background-position: center -7em;
+			background-size: 28em;
+
+			@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
+				background-position-y: -11em;
+				background-size: 35em;
+			}
+			@media ($presentationBox-breakpoint-textOnSide-from) {
+				background-position: left -18em;
+				background-size: 58em;
+			}
+		}
+	}
+
+
+	// support overview modifiers
+
+	&--supportOverview-frelich {
+		&::before {
+			background-image: url("../images/supportOverview-supporters-frelich.jpg");
+			background-size: 38em;
+			background-position: left -4.5em;
+
+			@media ($presentationBox-breakpoint-textOnSide-from) {
+				background-position-y: -3em;
+			}
+		}
+	}
+
+	&--supportOverview-brzobohata {
+		&::before {
+			background-image: url("../images/supportOverview-supporters-brzobohata.jpg");
+			background-size: 11em;
+			background-position: center -3em;
+
+			@media ($presentationBox-breakpoint-textOnSide-from) {
+				background-size: 19em;
+				background-position: right -3em;
+			}
+
+		}
+	}
+
+	&--supportOverview-perlik {
+		&::before {
+			background-image: url("../images/supportOverview-supporters-perlik.jpg");
+			background-size: 39em;
+			background-position: left -4em;
+
+			@media ($presentationBox-breakpoint-textOnSide-from) {
+				background-size: 41em;
+				background-position: -3em top;
+			}
+		}
+	}
+
+	&--supportOverview-hladky {
+		&::before {
+			background-image: url("../images/supportOverview-supporters-hladky.jpg");
+			background-size: 45em;
+			background-position: left -5.5em;
+
+			@media ($presentationBox-breakpoint-textOnSide-from) {
+				background-size: 47em;
+				background-position-y: -2.5em;
+			}
+		}
+	}
+
+	&--supportOverview-vansa {
+		&::before {
+			background-image: url("../images/supportOverview-supporters-vansa.jpg");
+			background-size: 39em;
+			background-position: left -8em;
+
+			@media ($presentationBox-breakpoint-textOnSide-from) {
+				background-size: 43em;
+				background-position: -5em -2.5em;
+			}
+		}
+	}
+
+	&--supportOverview-zemanek {
+		&::before {
+			background-image: url("../images/supportOverview-supporters-zemanek.jpg");
+			background-size: 39em;
+			background-position: right -7em;
+
+			@media ($presentationBox-breakpoint-textOnSide-from) {
+				background-position-y: -4em;
+			}
+		}
+	}
+}

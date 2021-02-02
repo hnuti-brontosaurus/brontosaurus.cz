@@ -1,0 +1,126 @@
+.searchForm {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	z-index: 1;
+	background-color: $colors-default-background;
+
+	&--hidden {
+		max-height: 0;
+		overflow: hidden;
+		pointer-events: none;
+	}
+
+	&__innerWrapper {
+		display: flex;
+		width: 80vw; // take 80 % of viewport (to have some space for close button)
+		max-width: 28rem; // but respect an upper limit
+		margin-left: auto;
+		margin-right: auto;
+		position: relative; // because of absolutely positioned close button element
+	}
+
+	&__gcseRoot {
+		flex-grow: 1; // take full width of parent
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		> div {
+			flex-basis: 30rem !important;
+		}
+
+		.gsc-input-box {
+			height: 3em !important;
+			border-radius: 2em !important;
+		}
+
+		.gsib_a {
+			padding-left: 15px !important;
+			padding-bottom: 0 !important;
+		}
+
+		.gsst_b {
+			padding-top: 4px !important;
+		}
+
+		.gsst_a {
+			padding-right: 10px !important;
+		}
+
+		table.gsc-input {
+			height: 100% !important;
+		}
+
+		.gsc-search-box {
+			> tbody > tr {
+				display: flex !important;
+				align-items: center !important;
+
+				> td.gsc-input {
+					flex-grow: 1 !important;
+				}
+
+				> td.gsc-search-button {
+					flex-basis: 9em !important; // fallback
+					flex-basis: max-content !important; // better but not so supported
+				}
+			}
+		}
+
+		input.gsc-input {
+			background: none !important;
+			font-size: 1.6em !important;
+			text-indent: initial !important;
+
+			&::placeholder {
+				font-size: 0.9em !important;
+			}
+
+			&:focus {
+				box-shadow: none !important;
+			}
+		}
+
+		button.gsc-search-button {
+			@extend .button;
+			@extend .button--primary;
+			border-radius: 2em !important;
+			padding: vr-unit(0.5) vr-unit(1) calc(#{vr-unit(0.5)} - 0.35em) !important;
+			font-size: 1.6em !important;
+			height: 100% !important;
+
+			> svg {
+				width: 16px !important;
+				height: 16px !important;
+			}
+
+			&::after {
+				display: none !important;
+			}
+		}
+	}
+
+	&__closeButton {
+		position: absolute;
+		right: -#{vr-unit(2)};
+		top: 50%;
+		transform: translateY(-50%);
+		padding: vr-unit(1);
+		cursor: pointer;
+		border: none;
+		background-color: transparent;
+		background-image: url("../images/icon-close-black.svg");
+		background-position: center;
+		background-size: 0.7em;
+
+		@media (max-width: 30em) {
+			right: -2em; // closer to form on small resolutions
+		}
+
+		&::after {
+			display: none;
+		}
+	}
+}
