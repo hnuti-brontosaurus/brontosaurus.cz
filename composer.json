@@ -1,0 +1,18 @@
+{
+    "require": {
+        "latte/latte": "^2.10",
+        "nette/utils": "^3.2",
+        "tracy/tracy": "^2.8"
+    },
+	"autoload": {
+		"psr-4": {
+			"HnutiBrontosaurus\\Theme\\": "."
+		}
+	},
+	"config": {
+		"platform": {
+			"php": "8.0.0"
+		},
+		"sort-packages": true
+	}
+}
