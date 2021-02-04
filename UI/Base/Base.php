@@ -25,22 +25,28 @@ final class Base
 			'isOnEnglishPage' => false,
 			'homePageLink' => '',
 			'englishPageLink' => '',
-			'headerNavigationMenuItems' => [
-				// todo to some DC
-				(object) [
-					'label' => '',
-					'link' => '',
-					'isActive' => false, // todo count with subpages as well
-					'isExternalLink' => false,
-				],
-			],
+			'headerNavigationMenuItems' => self::getMenuItemsFor('header'),
 			'isOnFutureEventsPage' => false,
 			'futureEventsPageLink' => '',
 			'pageClassSelector' => $pageClassSelector,
 			'isOnPartnersPage' => false,
 			'partnersPageLink' => '',
-			'footerNavigationMenuItems' => [],
+			'footerNavigationMenuItems' => self::getMenuItemsFor('footer'),
 		];
+	}
+
+	/**
+	 * @param string $themeLocation
+	 * @return MenuItemDC[]
+	 */
+	private static function getMenuItemsFor(string $themeLocation): array
+	{
+		$theme_locations = get_nav_menu_locations();
+		$menu = get_term($theme_locations[$themeLocation], 'nav_menu');
+		return \array_map(
+			fn(\WP_Post $post): MenuItemDC => MenuItemDC::fromPost($post),
+			wp_get_nav_menu_items($menu)
+		);
 	}
 
 }
