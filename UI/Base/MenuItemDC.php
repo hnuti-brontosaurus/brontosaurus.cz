@@ -16,12 +16,19 @@ final class MenuItemDC
 		private bool $isExternalLink,
 	) {}
 
-	public static function fromPost(\WP_Post $post): static
+	public static function fromPost(
+		\WP_Post $menuItemPost,
+		\WP_Post $currentPost,
+	): static
 	{
+		// for some reason $menuItemPost->post_name does not return slug but ID todo fix it
+//		dump($currentPost->post_name . ',' . $menuItemPost->post_name);
+//		dump($menuItemPost);
+//		dump(get_page_template_slug($menuItemPost));
 		return new static(
-			$post->title,
-			$post->url,
-			false, // todo; count with subpages as well
+			$menuItemPost->title,
+			$menuItemPost->url,
+			$menuItemPost->post_name === $currentPost->post_name, // todo count with subpages as well
 			false, // todo
 		);
 	}

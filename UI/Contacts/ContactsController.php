@@ -17,7 +17,7 @@ final class ContactsController implements Controller
 	public function render(): void
 	{
 		$params = [
-			'aboutStructurePageLink' => '', // todo
+			'aboutStructurePageLink' => $this->base->getLinkFor('o-brontosaurovi'), // todo subpage
 			'imagesPath' => get_template_directory_uri() . '/UI/Contacts/assets/dist/images',
 		];
 

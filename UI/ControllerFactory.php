@@ -2,7 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme\UI;
 
-use HnutiBrontosaurus\Theme\UI\Base\Base;
+use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
 use HnutiBrontosaurus\Theme\UI\Contacts\ContactsController;
 use HnutiBrontosaurus\Theme\UI\Error\ErrorController;
 use Latte\Engine;
@@ -11,7 +11,7 @@ use Latte\Engine;
 final class ControllerFactory
 {
 	public function __construct(
-		private Base $base,
+		private BaseFactory $baseFactory,
 		private Engine $latte,
 	) {}
 
@@ -20,13 +20,15 @@ final class ControllerFactory
 	 */
 	public function create(\WP_Post $post): Controller
 	{
+		$base = $this->baseFactory->create($post);
+
 		if ($post->post_type !== 'page') {
-			return new ErrorController($this->base, $this->latte);
+			return new ErrorController($base, $this->latte);
 		}
 
 		return match ($post->post_name) {
-			'kontakty' => new ContactsController($this->base, $this->latte),
-			default => new ErrorController($this->base, $this->latte),
+			'kontakty' => new ContactsController($base, $this->latte),
+			default => new ErrorController($base, $this->latte),
 		};
 	}
 

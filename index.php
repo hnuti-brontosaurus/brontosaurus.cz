@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-use HnutiBrontosaurus\Theme\UI\Base\Base;
+use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
 use HnutiBrontosaurus\Theme\UI\ControllerFactory;
 use Latte\Bridges\Tracy\BlueScreenPanel;
 use Latte\Bridges\Tracy\LattePanel;
@@ -26,7 +26,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 	// app
 	$controllerFactory = new ControllerFactory(
-		new Base(),
+		new BaseFactory(),
 		$latte,
 	);
 	$controller = $controllerFactory->create($post); // routing is contained inside
