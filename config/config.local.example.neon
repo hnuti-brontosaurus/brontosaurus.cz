@@ -1,0 +1,23 @@
+parameters:
+    bis:
+        url: # string
+        username: # string
+        password: # string
+
+    mailer:
+        # mailcatcher settings
+        smtp: true
+        host: 127.0.0.1
+        port: 1025
+        from:
+            address: "web@brontosaurus.cz"
+            name: "Web Hnutí Brontosaurus"
+
+    recaptcha:
+        secretKey: # string
+        siteKey: # string
+
+    sentry:
+        dsn:
+
+    enableTracking: false
