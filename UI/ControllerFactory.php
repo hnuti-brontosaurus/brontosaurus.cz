@@ -2,6 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme\UI;
 
+use HnutiBrontosaurus\Theme\UI\AboutCrossroad\AboutCrossroadController;
 use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
 use HnutiBrontosaurus\Theme\UI\Contacts\ContactsController;
 use HnutiBrontosaurus\Theme\UI\Error\ErrorController;
@@ -30,6 +31,7 @@ final class ControllerFactory
 		return match ($post->post_name) {
 			'kontakty' => new ContactsController($base, $this->latte),
 			'pronajmy' => new RentalsController($base, $this->latte),
+			'o-brontosaurovi' => new AboutCrossroadController($base, $this->latte),
 			default => new ErrorController($base, $this->latte),
 		};
 	}
