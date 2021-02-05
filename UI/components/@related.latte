@@ -1,0 +1,156 @@
+<section class="related">
+	<h1 class="related-heading">
+		{ifset $headingText}
+			{$headingText|noescape}
+		{else}
+			Ještě by&nbsp;tě mohlo zajímat
+		{/ifset}
+	</h1>
+
+	<div class="related-subheading" n:ifset="$subheadingText">
+		{$subheadingText|noescape}
+	</div>
+
+	<div class="related-list">
+
+		{ifset $excludeCourses}{else}
+		<a class="related-list-item related-list-item--courses button--secondary-wrapper" href="{$coursesPageLink}">
+			<h2 class="related-list-item-heading">
+				Kurzy a&nbsp;přednášky
+			</h2>
+
+			<ul class="related-list-item-list">
+				<li class="related-list-item-list-item">
+					Kurzy a&nbsp;workshopy
+				</li>
+
+				<li class="related-list-item-list-item">
+					Přednášky a&nbsp;diskuze
+				</li>
+
+				<li class="related-list-item-list-item">
+					Výukové programy pro&nbsp;školy
+				</li>
+			</ul>
+
+			<div class="related-list-item-roundedPhoto related-list-item--courses-roundedPhoto"></div>
+			<div class="related-list-item-moreLink related-list-item--courses-moreLink button button--secondary">{block |trim}{* because of whitespace in text underline *}
+				Chci více info{/block}
+				<div class="related-list-item-moreLink-background related-list-item--courses-moreLink-background"></div>
+			</div>
+		</a>
+		{/ifset}
+
+		{ifset $excludeVoluntary}{else}
+		<a class="related-list-item related-list-item--voluntary button--secondary-wrapper" href="{$voluntaryPageLink}">
+			<h2 class="related-list-item-heading">
+				Zážitkové a&nbsp;dobrovolnické akce
+			</h2>
+
+			<ul class="related-list-item-list">
+				<li>
+					Jednodenní
+				</li>
+
+				<li>
+					Víkendovky
+				</li>
+
+				<li>
+					Prázdninové
+				</li>
+			</ul>
+
+			<div class="related-list-item-roundedPhoto related-list-item--voluntary-roundedPhoto"></div>
+			<div class="related-list-item-moreLink related-list-item--voluntary-moreLink button button--secondary">{block |trim}{* because of whitespace in text underline *}
+				Chci více info{/block}
+				<div class="related-list-item-moreLink-background related-list-item--voluntary-moreLink-background"></div>
+			</div>
+		</a>
+		{/ifset}
+
+		{ifset $excludeMeetups}{else}
+		<a class="related-list-item related-list-item--meetups button--secondary-wrapper" href="{$meetupsPageLink}">
+			<h2 class="related-list-item-heading">
+				Setkávání a&nbsp;kluby
+			</h2>
+
+			<ul class="related-list-item-list">
+				<li>
+					Klubová setkání
+				</li>
+
+				<li>
+					Sportovní aktivity
+				</li>
+
+				<li>
+					Herní večery
+				</li>
+			</ul>
+
+			<div class="related-list-item-roundedPhoto related-list-item--meetups-roundedPhoto"></div>
+			<div class="related-list-item-moreLink related-list-item--meetups-moreLink button button--secondary">{block |trim}{* because of whitespace in text underline *}
+				Chci více info{/block}
+				<div class="related-list-item-moreLink-background related-list-item--meetups-moreLink-background"></div>
+			</div>
+		</a>
+		{/ifset}
+
+		{ifset $excludeSupport}{else}
+		<a class="related-list-item related-list-item--donation button--secondary-wrapper" href="{$supportOverviewPageLink}">
+			<h2 class="related-list-item-heading">
+				Podpoř nás
+			</h2>
+
+			<ul class="related-list-item-list">
+				<li>
+					Podpora našich projektů
+				</li>
+
+				<li>
+					Adopce Brontosaura
+				</li>
+
+				<li>
+					E-shop s&nbsp;dárky přírodě
+				</li>
+			</ul>
+
+			<div class="related-list-item-roundedPhoto related-list-item--donation-roundedPhoto"></div>
+			<div class="related-list-item-moreLink related-list-item--donation-moreLink button button--secondary">{block |trim}{* because of whitespace in text underline *}
+				Chci více info{/block}
+				<div class="related-list-item-moreLink-background related-list-item--donation-moreLink-background"></div>
+			</div>
+		</a>
+		{/ifset}
+
+		{ifset $excludeForChildren}{else}
+		<a class="related-list-item related-list-item--children button--secondary-wrapper" href="{$forChildrenPageLink}">
+			<h2 class="related-list-item-heading">
+				Pro&nbsp;děti i&nbsp;rodiče
+			</h2>
+
+			<ul class="related-list-item-list">
+				<li>
+					Tábory pro&nbsp;děti
+				</li>
+
+				<li>
+					Dětské oddíly
+				</li>
+
+				<li>
+					Akce pro&nbsp;rodiče s&nbsp;dětmi
+				</li>
+			</ul>
+
+			<div class="related-list-item-roundedPhoto related-list-item--children-roundedPhoto"></div>
+			<div class="related-list-item-moreLink related-list-item--children-moreLink button button--secondary">{block |trim}{* because of whitespace in text underline *}
+				Chci více info{/block}
+				<div class="related-list-item-moreLink-background related-list-item--children-moreLink-background"></div>
+			</div>
+		</a>
+		{/ifset}
+	</div>
+</section>

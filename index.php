@@ -1,5 +1,8 @@
 <?php declare(strict_types = 1);
 
+use GuzzleHttp\Client as HttpClient;
+use HnutiBrontosaurus\BisApiClient\Client;
+use HnutiBrontosaurus\Theme\Configuration;
 use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
 use HnutiBrontosaurus\Theme\UI\ControllerFactory;
 use Latte\Bridges\Tracy\BlueScreenPanel;
@@ -24,8 +27,22 @@ require_once __DIR__ . '/vendor/autoload.php';
 	BlueScreenPanel::initialize();
 	LattePanel::initialize($latte);
 
+	// config
+	$configuration = new Configuration([
+		__DIR__ . '/config/config.neon',
+		__DIR__ . '/config/config.local.neon',
+	]);
+
 	// app
 	$controllerFactory = new ControllerFactory(
+		$configuration->get('dateFormat:human'),
+		$configuration->get('dateFormat:robot'),
+		new Client(
+			$configuration->get('bis:url'),
+			$configuration->get('bis:username'),
+			$configuration->get('bis:password'),
+			new HttpClient(),
+		),
 		new BaseFactory(),
 		$latte,
 	);

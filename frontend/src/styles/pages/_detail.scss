@@ -126,7 +126,7 @@ $detail-breakpoint-large-from: "min-width: " + ($detail-breakpoint-mediumToLarge
 		padding-right: vr-unit(1);
 	}
 	&__basicInformation-mapLink {
-		background-image: url("/templates/brontosaurus/dist/images/icon-link-external-alt.svg");
+		background-image: url("../images/icon-link-external-alt.svg");
 		background-position: right 0.2em;
 		background-size: auto 13px;
 		padding-right: calc(13px + #{vr-unit(0.25)});
@@ -226,7 +226,7 @@ $detail-breakpoint-large-from: "min-width: " + ($detail-breakpoint-mediumToLarge
 			margin-bottom: vr-unit(0.75);
 
 			&-website {
-				background-image: url("/templates/brontosaurus/dist/images/icon-link-external-alt.svg");
+				background-image: url("../images/icon-link-external-alt.svg");
 				background-position: right 0.2em;
 				background-size: auto 10px;
 				padding-right: calc(10px + #{vr-unit(0.25)});

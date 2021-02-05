@@ -33,6 +33,12 @@ final class Base
 			'isOnPartnersPage' => $this->currentPost->post_name === 'nasi-partneri',
 			'partnersPageLink' => $this->getLinkFor('nasi-partneri'),
 			'footerNavigationMenuItems' => $this->getMenuItemsFor('footer'),
+
+			'coursesPageLink' => $this->getLinkFor('kurzy-a-prednasky'),
+			'voluntaryPageLink' => $this->getLinkFor('dobrovolnicke-akce'),
+			'meetupsPageLink' => $this->getLinkFor('setkavani-a-kluby'),
+			'supportOverviewPageLink' => $this->getLinkFor('podpor-nas'),
+			'forChildrenPageLink' => $this->getLinkFor('pro-deti'),
 		];
 	}
 

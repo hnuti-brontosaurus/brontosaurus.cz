@@ -27,7 +27,7 @@ $registration-breakpoint-form-twoColumns-from: "min-width: " + ($registration-br
 				top: calc(50% - 8px);
 				width: 10px;
 				height: 16px;
-				mask-image: url("/templates/brontosaurus/dist/images/icon-arrow.svg");
+				mask-image: url("../images/icon-arrow.svg");
 				mask-repeat: no-repeat;
 				mask-size: auto 100%;
 				background-color: $colors-default-background;
@@ -64,7 +64,7 @@ $registration-breakpoint-form-twoColumns-from: "min-width: " + ($registration-br
 				top: calc(50% - 9px);
 				width: 16px;
 				height: 16px;
-				mask-image: url("/templates/brontosaurus/dist/images/icon-letter.svg");
+				mask-image: url("../images/icon-letter.svg");
 				mask-repeat: no-repeat;
 				mask-size: auto 100%;
 				background-color: $colors-default-background;
@@ -80,7 +80,7 @@ $registration-breakpoint-form-twoColumns-from: "min-width: " + ($registration-br
 				top: calc(50% - 9px);
 				width: 18px;
 				height: 16px;
-				mask-image: url("/templates/brontosaurus/dist/images/icon-link-external.svg");
+				mask-image: url("../images/icon-link-external.svg");
 				mask-repeat: no-repeat;
 				mask-size: auto 100%;
 				background-color: $colors-default-background;

@@ -2,20 +2,28 @@
 
 namespace HnutiBrontosaurus\Theme\UI;
 
+use HnutiBrontosaurus\BisApiClient\Client;
 use HnutiBrontosaurus\Theme\UI\AboutCrossroad\AboutCrossroadController;
 use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
 use HnutiBrontosaurus\Theme\UI\Contacts\ContactsController;
 use HnutiBrontosaurus\Theme\UI\Error\ErrorController;
 use HnutiBrontosaurus\Theme\UI\Rentals\RentalsController;
+use HnutiBrontosaurus\Theme\UI\Voluntary\VoluntaryController;
 use Latte\Engine;
 
 
 final class ControllerFactory
 {
 	public function __construct(
+		private string $dateFormatHuman,
+		private string $dateFormatRobot,
+		private Client $bisApiClient,
 		private BaseFactory $baseFactory,
 		private Engine $latte,
-	) {}
+	) {
+		Utils::registerFormatPhoneNumberLatteFilter($this->latte);
+		Utils::registerTypeByDayCountLatteFilter($this->latte);
+	}
 
 	/*
 	 * This is basically router.
@@ -32,6 +40,7 @@ final class ControllerFactory
 			'kontakty' => new ContactsController($base, $this->latte),
 			'pronajmy' => new RentalsController($base, $this->latte),
 			'o-brontosaurovi' => new AboutCrossroadController($base, $this->latte),
+			'dobrovolnicke-akce' => new VoluntaryController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte),
 			default => new ErrorController($base, $this->latte),
 		};
 	}
