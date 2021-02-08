@@ -11,6 +11,7 @@ use HnutiBrontosaurus\Theme\UI\Error\ErrorController;
 use HnutiBrontosaurus\Theme\UI\ForChildren\ForChildrenController;
 use HnutiBrontosaurus\Theme\UI\Meetups\MeetupsController;
 use HnutiBrontosaurus\Theme\UI\Rentals\RentalsController;
+use HnutiBrontosaurus\Theme\UI\SupportOverview\SupportOverviewController;
 use HnutiBrontosaurus\Theme\UI\Voluntary\VoluntaryController;
 use Latte\Engine;
 
@@ -47,6 +48,7 @@ final class ControllerFactory
 			'kurzy-a-prednasky' => new CoursesController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte),
 			'setkavani-a-kluby' => new MeetupsController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte),
 			'pro-deti' => new ForChildrenController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte),
+			'podpor-nas' => new SupportOverviewController($base, $this->latte),
 			default => new ErrorController($base, $this->latte),
 		};
 	}
