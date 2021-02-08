@@ -6,6 +6,7 @@ use HnutiBrontosaurus\BisApiClient\Client;
 use HnutiBrontosaurus\Theme\UI\AboutCrossroad\AboutCrossroadController;
 use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
 use HnutiBrontosaurus\Theme\UI\Contacts\ContactsController;
+use HnutiBrontosaurus\Theme\UI\Courses\CoursesController;
 use HnutiBrontosaurus\Theme\UI\Error\ErrorController;
 use HnutiBrontosaurus\Theme\UI\Rentals\RentalsController;
 use HnutiBrontosaurus\Theme\UI\Voluntary\VoluntaryController;
@@ -41,6 +42,7 @@ final class ControllerFactory
 			'pronajmy' => new RentalsController($base, $this->latte),
 			'o-brontosaurovi' => new AboutCrossroadController($base, $this->latte),
 			'dobrovolnicke-akce' => new VoluntaryController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte),
+			'kurzy-a-prednasky' => new CoursesController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte),
 			default => new ErrorController($base, $this->latte),
 		};
 	}

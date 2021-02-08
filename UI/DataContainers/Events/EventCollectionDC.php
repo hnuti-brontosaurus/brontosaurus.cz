@@ -30,7 +30,7 @@ final class EventCollectionDC implements \IteratorAggregate
 
 
 	/**
-	 * @param EventDC[] $events
+	 * @param Event[] $events
 	 */
 	public function __construct(array $events = NULL, string $dateFormatHuman, string $dateFormatRobot)
 	{
