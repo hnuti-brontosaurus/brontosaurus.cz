@@ -6,7 +6,7 @@ namespace HnutiBrontosaurus\Theme\UI\Base;
 final class Base
 {
 	public function __construct(
-		private \WP_Post $currentPost,
+		private ?\WP_Post $currentPost,
 	) {}
 
 	public function getLayoutPath(): string
@@ -21,16 +21,16 @@ final class Base
 			'languageCode' => get_language_attributes(),
 			'themePath' => get_template_directory_uri(),
 			'enableTracking' => false, // todo
-			'isOnSearchResultsPage' => $this->currentPost->post_name === 'vysledky-vyhledavani',
+			'isOnSearchResultsPage' => $this->currentPost?->post_name === 'vysledky-vyhledavani',
 			'searchResultsPageLink' => $this->getLinkFor('vysledky-vyhledavani'),
-			'isOnEnglishPage' => $this->currentPost->post_name === 'english',
+			'isOnEnglishPage' => $this->currentPost?->post_name === 'english',
 			'homePageLink' => get_home_url(),
 			'englishPageLink' => $this->getLinkFor('english'),
 			'headerNavigationMenuItems' => $this->getMenuItemsFor('header'),
-			'isOnFutureEventsPage' => $this->currentPost->post_name === 'co-se-chysta',
+			'isOnFutureEventsPage' => $this->currentPost?->post_name === 'co-se-chysta',
 			'futureEventsPageLink' => $this->getLinkFor('co-se-chysta'),
 			'pageClassSelector' => $pageClassSelector,
-			'isOnPartnersPage' => $this->currentPost->post_name === 'nasi-partneri',
+			'isOnPartnersPage' => $this->currentPost?->post_name === 'nasi-partneri',
 			'partnersPageLink' => $this->getLinkFor('nasi-partneri'),
 			'footerNavigationMenuItems' => $this->getMenuItemsFor('footer'),
 

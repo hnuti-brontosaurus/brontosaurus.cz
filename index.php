@@ -16,7 +16,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 // DI & bootstrap in one
 
-(function (\WP_Post $post) {
+(function (?\WP_Post $post) {
 	// latte
 	$latte = (new Engine())->setTempDirectory(__DIR__ . '/temp');
 

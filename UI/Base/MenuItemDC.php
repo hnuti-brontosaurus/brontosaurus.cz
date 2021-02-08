@@ -18,7 +18,7 @@ final class MenuItemDC
 
 	public static function fromPost(
 		\WP_Post $menuItemPost,
-		\WP_Post $currentPost,
+		?\WP_Post $currentPost,
 	): static
 	{
 		// for some reason $menuItemPost->post_name does not return slug but ID todo fix it
@@ -28,7 +28,7 @@ final class MenuItemDC
 		return new static(
 			$menuItemPost->title,
 			$menuItemPost->url,
-			$menuItemPost->post_name === $currentPost->post_name, // todo count with subpages as well
+			$menuItemPost->post_name === $currentPost?->post_name, // todo count with subpages as well
 			false, // todo
 		);
 	}

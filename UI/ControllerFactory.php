@@ -35,11 +35,11 @@ final class ControllerFactory
 	/*
 	 * This is basically router.
 	 */
-	public function create(\WP_Post $post): Controller
+	public function create(?\WP_Post $post): Controller
 	{
 		$base = $this->baseFactory->create($post);
 
-		if ($post->post_type !== 'page') {
+		if ($post === null || $post->post_type !== 'page') {
 			return new ErrorController($base, $this->latte);
 		}
 
