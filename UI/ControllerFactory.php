@@ -16,6 +16,7 @@ use HnutiBrontosaurus\Theme\UI\ForChildren\ForChildrenController;
 use HnutiBrontosaurus\Theme\UI\HighSchools\HighSchoolsController;
 use HnutiBrontosaurus\Theme\UI\Homepage\HomepageController;
 use HnutiBrontosaurus\Theme\UI\Meetups\MeetupsController;
+use HnutiBrontosaurus\Theme\UI\Partners\PartnersController;
 use HnutiBrontosaurus\Theme\UI\Rentals\RentalsController;
 use HnutiBrontosaurus\Theme\UI\SupportOverview\SupportOverviewController;
 use HnutiBrontosaurus\Theme\UI\Voluntary\VoluntaryController;
@@ -61,6 +62,7 @@ final class ControllerFactory
 			'hlavni-stranka' => new HomepageController($base, $this->latte),
 			'jedu-poprve' => new FirstTimeController($base, $this->latte),
 			'programy-pro-stredni-skoly' => new HighSchoolsController($base, $this->latte),
+			'nasi-partneri' => new PartnersController($base, $this->latte),
 			default => new ErrorController($base, $this->latte),
 		};
 	}
