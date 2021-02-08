@@ -5,6 +5,7 @@ namespace HnutiBrontosaurus\Theme\UI;
 use HnutiBrontosaurus\BisApiClient\Client;
 use HnutiBrontosaurus\Theme\UI\AboutCrossroad\AboutCrossroadController;
 use HnutiBrontosaurus\Theme\UI\AboutHighlights\AboutHighlightsController;
+use HnutiBrontosaurus\Theme\UI\AboutSuccesses\AboutSuccessesController;
 use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
 use HnutiBrontosaurus\Theme\UI\Contacts\ContactsController;
 use HnutiBrontosaurus\Theme\UI\Courses\CoursesController;
@@ -51,6 +52,7 @@ final class ControllerFactory
 			'pro-deti' => new ForChildrenController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte),
 			'podpor-nas' => new SupportOverviewController($base, $this->latte),
 			'jak-to-u-nas-funguje' => new AboutHighlightsController($base, $this->latte),
+			'nase-uspechy' => new AboutSuccessesController($base, $this->latte),
 			default => new ErrorController($base, $this->latte),
 		};
 	}
