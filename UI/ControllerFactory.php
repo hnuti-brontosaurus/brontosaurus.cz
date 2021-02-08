@@ -9,6 +9,7 @@ use HnutiBrontosaurus\Theme\UI\AboutSuccesses\AboutSuccessesController;
 use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
 use HnutiBrontosaurus\Theme\UI\Contacts\ContactsController;
 use HnutiBrontosaurus\Theme\UI\Courses\CoursesController;
+use HnutiBrontosaurus\Theme\UI\English\EnglishController;
 use HnutiBrontosaurus\Theme\UI\Error\ErrorController;
 use HnutiBrontosaurus\Theme\UI\ForChildren\ForChildrenController;
 use HnutiBrontosaurus\Theme\UI\Meetups\MeetupsController;
@@ -53,6 +54,7 @@ final class ControllerFactory
 			'podpor-nas' => new SupportOverviewController($base, $this->latte),
 			'jak-to-u-nas-funguje' => new AboutHighlightsController($base, $this->latte),
 			'nase-uspechy' => new AboutSuccessesController($base, $this->latte),
+			'english' => new EnglishController($base, $this->latte),
 			default => new ErrorController($base, $this->latte),
 		};
 	}
