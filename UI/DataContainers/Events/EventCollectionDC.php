@@ -32,12 +32,12 @@ final class EventCollectionDC implements \IteratorAggregate
 	/**
 	 * @param Event[] $events
 	 */
-	public function __construct(array $events = NULL, string $dateFormatHuman, string $dateFormatRobot)
+	public function __construct(?array $events, string $dateFormatHuman, string $dateFormatRobot)
 	{
 		$this->dateFormatHuman = $dateFormatHuman;
 		$this->dateFormatRobot = $dateFormatRobot;
 
-		if (\count($events) > 0) {
+		if ($events !== null && \count($events) > 0) {
 			$this->events = \array_map(function (Event $event) {
 				return new EventDC($event, $this->dateFormatHuman, $this->dateFormatRobot);
 			}, $events);

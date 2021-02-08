@@ -13,6 +13,7 @@ use HnutiBrontosaurus\Theme\UI\English\EnglishController;
 use HnutiBrontosaurus\Theme\UI\Error\ErrorController;
 use HnutiBrontosaurus\Theme\UI\FirstTime\FirstTimeController;
 use HnutiBrontosaurus\Theme\UI\ForChildren\ForChildrenController;
+use HnutiBrontosaurus\Theme\UI\Future\FutureController;
 use HnutiBrontosaurus\Theme\UI\HighSchools\HighSchoolsController;
 use HnutiBrontosaurus\Theme\UI\Homepage\HomepageController;
 use HnutiBrontosaurus\Theme\UI\Meetups\MeetupsController;
@@ -65,6 +66,7 @@ final class ControllerFactory
 			'programy-pro-stredni-skoly' => new HighSchoolsController($base, $this->latte),
 			'nasi-partneri' => new PartnersController($base, $this->latte),
 //			'adopce-brontosaura' => new SupportAdoptionController($base, $this->latte), // disabled for now
+			'co-se-chysta' => new FutureController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte),
 			default => new ErrorController($base, $this->latte),
 		};
 	}
