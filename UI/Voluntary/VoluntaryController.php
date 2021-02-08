@@ -23,7 +23,7 @@ final class VoluntaryController implements Controller
 		private Engine $latte,
 	) {}
 
-	private const FILTER_KEY = 'jen';
+	public const FILTER_KEY = 'jen';
 
 	public function render(): void
 	{

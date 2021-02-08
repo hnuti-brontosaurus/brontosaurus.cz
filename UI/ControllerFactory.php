@@ -11,6 +11,7 @@ use HnutiBrontosaurus\Theme\UI\Contacts\ContactsController;
 use HnutiBrontosaurus\Theme\UI\Courses\CoursesController;
 use HnutiBrontosaurus\Theme\UI\English\EnglishController;
 use HnutiBrontosaurus\Theme\UI\Error\ErrorController;
+use HnutiBrontosaurus\Theme\UI\FirstTime\FirstTimeController;
 use HnutiBrontosaurus\Theme\UI\ForChildren\ForChildrenController;
 use HnutiBrontosaurus\Theme\UI\Homepage\HomepageController;
 use HnutiBrontosaurus\Theme\UI\Meetups\MeetupsController;
@@ -57,6 +58,7 @@ final class ControllerFactory
 			'nase-uspechy' => new AboutSuccessesController($base, $this->latte),
 			'english' => new EnglishController($base, $this->latte),
 			'hlavni-stranka' => new HomepageController($base, $this->latte),
+			'jedu-poprve' => new FirstTimeController($base, $this->latte),
 			default => new ErrorController($base, $this->latte),
 		};
 	}
