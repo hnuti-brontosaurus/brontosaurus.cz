@@ -18,6 +18,7 @@ use HnutiBrontosaurus\Theme\UI\Homepage\HomepageController;
 use HnutiBrontosaurus\Theme\UI\Meetups\MeetupsController;
 use HnutiBrontosaurus\Theme\UI\Partners\PartnersController;
 use HnutiBrontosaurus\Theme\UI\Rentals\RentalsController;
+use HnutiBrontosaurus\Theme\UI\SupportAdoption\SupportAdoptionController;
 use HnutiBrontosaurus\Theme\UI\SupportOverview\SupportOverviewController;
 use HnutiBrontosaurus\Theme\UI\Voluntary\VoluntaryController;
 use Latte\Engine;
@@ -63,6 +64,7 @@ final class ControllerFactory
 			'jedu-poprve' => new FirstTimeController($base, $this->latte),
 			'programy-pro-stredni-skoly' => new HighSchoolsController($base, $this->latte),
 			'nasi-partneri' => new PartnersController($base, $this->latte),
+//			'adopce-brontosaura' => new SupportAdoptionController($base, $this->latte), // disabled for now
 			default => new ErrorController($base, $this->latte),
 		};
 	}
