@@ -5,6 +5,8 @@ namespace HnutiBrontosaurus\Theme\UI;
 use HnutiBrontosaurus\BisApiClient\Client;
 use HnutiBrontosaurus\Theme\UI\AboutCrossroad\AboutCrossroadController;
 use HnutiBrontosaurus\Theme\UI\AboutHighlights\AboutHighlightsController;
+use HnutiBrontosaurus\Theme\UI\AboutStructure\AboutStructureController;
+use HnutiBrontosaurus\Theme\UI\AboutStructure\GeocodingClientFacade;
 use HnutiBrontosaurus\Theme\UI\AboutSuccesses\AboutSuccessesController;
 use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
 use HnutiBrontosaurus\Theme\UI\Contacts\ContactsController;
@@ -33,6 +35,7 @@ final class ControllerFactory
 		private Client $bisApiClient,
 		private BaseFactory $baseFactory,
 		private Engine $latte,
+		private GeocodingClientFacade $geocodingClientFacade,
 	) {
 		Utils::registerFormatPhoneNumberLatteFilter($this->latte);
 		Utils::registerTypeByDayCountLatteFilter($this->latte);
@@ -67,6 +70,7 @@ final class ControllerFactory
 			'nasi-partneri' => new PartnersController($base, $this->latte),
 //			'adopce-brontosaura' => new SupportAdoptionController($base, $this->latte), // disabled for now
 			'co-se-chysta' => new FutureController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte),
+			'struktura-organizace' => new AboutStructureController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte, $this->geocodingClientFacade),
 			default => new ErrorController($base, $this->latte),
 		};
 	}

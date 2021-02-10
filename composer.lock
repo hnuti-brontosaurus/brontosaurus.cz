@@ -64,22 +64,22 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/grifart/geocoding-client.git",
-                "reference": "5d25102c32e26cbaf1ec205d6fa61abacbeb1cdb"
+                "reference": "58c57100a0e1747b7a4c2ec49e17805af15078b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/grifart/geocoding-client/zipball/5d25102c32e26cbaf1ec205d6fa61abacbeb1cdb",
-                "reference": "5d25102c32e26cbaf1ec205d6fa61abacbeb1cdb",
+                "url": "https://api.github.com/repos/grifart/geocoding-client/zipball/58c57100a0e1747b7a4c2ec49e17805af15078b8",
+                "reference": "58c57100a0e1747b7a4c2ec49e17805af15078b8",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-simplexml": "*",
-                "php": ">=5.6"
+                "php": ">=8.0"
             },
             "require-dev": {
-                "nette/tester": "^2.1",
-                "tracy/tracy": "^2.5"
+                "nette/tester": "^2.3",
+                "tracy/tracy": "^2.8"
             },
             "type": "library",
             "autoload": {
@@ -104,7 +104,7 @@
                 "source": "https://github.com/grifart/geocoding-client/tree/0.1.0",
                 "issues": "https://github.com/grifart/geocoding-client/issues"
             },
-            "time": "2018-12-07T13:44:16+00:00"
+            "time": "2021-02-08T19:14:29+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

@@ -1,8 +1,14 @@
 <?php declare(strict_types = 1);
 
+use Grifart\GeocodingClient\Caching\CachedGeocodingService;
+use Grifart\GeocodingClient\Caching\CacheManager;
+use Grifart\GeocodingClient\MapyCz\Communicator;
+use Grifart\GeocodingClient\MapyCz\Mapping\Mapper;
+use Grifart\GeocodingClient\MapyCz\MapyCzGeocodingService;
 use GuzzleHttp\Client as HttpClient;
 use HnutiBrontosaurus\BisApiClient\Client;
 use HnutiBrontosaurus\Theme\Configuration;
+use HnutiBrontosaurus\Theme\UI\AboutStructure\GeocodingClientFacade;
 use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
 use HnutiBrontosaurus\Theme\UI\ControllerFactory;
 use Latte\Bridges\Tracy\BlueScreenPanel;
@@ -18,7 +24,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 (function (?\WP_Post $post) {
 	// latte
-	$latte = (new Engine())->setTempDirectory(__DIR__ . '/temp');
+	$latte = (new Engine())->setTempDirectory(__DIR__ . '/temp/cache/latte');
 
 	// tracy
 	Debugger::$logDirectory = __DIR__ . '/log';
@@ -45,6 +51,15 @@ require_once __DIR__ . '/vendor/autoload.php';
 		),
 		new BaseFactory(),
 		$latte,
+		new GeocodingClientFacade(
+			new CachedGeocodingService(
+				new CacheManager(__DIR__ . '/temp/cache/geocoding'),
+				new MapyCzGeocodingService(
+					new Communicator(),
+					new Mapper(),
+				),
+			),
+		),
 	);
 	$controller = $controllerFactory->create($post); // routing is contained inside
 	$controller->render();
