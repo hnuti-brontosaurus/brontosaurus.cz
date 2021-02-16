@@ -1,0 +1,104 @@
+image: grifart/php8.0-with-all-modules-and-various-tools
+
+
+# STAGES
+
+stages:
+    - build
+    - test
+    - pack
+
+
+
+# BUILDS
+
+# composer
+
+build.composer:
+    stage: build
+
+    artifacts:
+        expire_in: 1 day
+        name: "${CI_BUILD_REF_NAME}_${CI_BUILD_NAME}"
+        paths:
+            - vendor
+
+    script:
+        - 'composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader --ansi'
+
+
+# gulp
+
+build.frontend:
+    stage: build
+
+    artifacts:
+        name: "${CI_BUILD_REF_NAME}_${CI_BUILD_NAME}"
+        paths:
+            - UI/AboutStructure/assets/dist
+            - UI/Contacts/assets/dist
+            - UI/EventDetail/assets/dist
+            - UI/Rentals/assets/dist
+            - frontend/dist
+        expire_in: 1 day
+
+    before_script:
+        - 'yarn install'
+
+    script:
+        - 'export NODE_ENV=production'
+        - 'yarn build'
+
+
+
+
+# PACKAGE
+
+pack:
+    stage: pack
+
+    before_script: ['echo "Packing artifacts together..."']
+
+    artifacts:
+        paths:
+            - brontosaurus-theme.zip
+        #            - config
+        #            - frontend
+        #            - log
+        #            - temp
+        #            - UI
+        #            - vendor
+        #            - composer.json
+        #            - composer.lock
+        #            - Configuration.php
+        #            - functions.php
+        #            - index.php
+        #            - screenshot.png
+        #            - SentryLogger.php
+        #            - style.css
+        expire_in: 1 day
+
+    script:
+        - 'zip -r brontosaurus-theme.zip .
+            -i "config/*"
+            -i "frontend/*"
+            -x "frontend/src/*"
+            -i "log/*"
+            -i "UI/*"
+            -x "UI/AboutStructure/assets/src/*"
+            -x "UI/Contacts/assets/src/*"
+            -x "UI/EventDetail/assets/src/*"
+            -x "UI/Rentals/assets/src/*"
+            -i "vendor/*"
+            -i "composer.json"
+            -i "composer.lock"
+            -i "Configuration.php"
+            -i "functions.php"
+            -i "index.php"
+            -i "screenshot.png"
+            -i "SentryLogger.php"
+            -i "style.css"'
+
+    dependencies:
+        - build.composer
+        - build.frontend
