@@ -1,0 +1,124 @@
+{**
+ * @var EventDC $event
+ * @var string $categoryLink
+ * @var bool $displayForm
+ * @var string[]|null $errors
+ * @var [string => string][]|null $formData
+ *}
+
+<div class="registration">
+	<p class="registration__text" n:if="$event->registrationType->isOfTypeNone">
+		Na tuto akci není třeba se hlásit, stačí přijít. 😉
+	</p>
+
+	<p class="registration__text" n:if="$event->registrationType->isOfTypeDisabled">
+		Na tuto akci se už bohužel nedá přihlásit, ale můžeš <a href="{$categoryLink}">zkusit jinou</a>.
+	</p>
+
+	<a
+		n:class="'registration__actionButton', $event->registrationType->isOfTypeEmail ? 'registration__actionButton--email', $event->registrationType->isOfTypeCustomWebpage ? 'registration__actionButton--customWebpage', 'button', 'button--primary'"
+		href="{$event->registrationType->getLinkTarget($event->title)}"
+		{if $event->registrationType->isOfTypeCustomWebpage}target="_blank"{/if}
+		n:if="$event->registrationType->isOfTypeEmail || $event->registrationType->isOfTypeCustomWebpage"
+	>
+		Chci jet
+	</a>
+
+	<button n:class="'registration__actionButton', 'registration__actionButton--brontoweb', ($displayForm || $errors !== null) ? 'registration__actionButton--activated', 'button', 'button--primary'" n:if="$event->registrationType->isOfTypeBrontoWeb">
+		Chci jet
+	</button>
+
+	<form action="" n:class="'registration__form', (( ! $displayForm) && $errors === null) ? 'registration__form--hidden'" method="post" n:if="$event->registrationType->isOfTypeBrontoWeb">
+		<input type="hidden" name="sent" value="1">
+
+		<ul class="registration__formError" n:if="$errors !== null">
+			<li n:foreach="$errors as $error">
+				{$error}
+			</li>
+		</ul>
+
+		<div class="registration__formRow">
+			<label class="registration__inputLabel" for="firstName">
+				Jméno
+			</label>
+
+			<input class="registration__inputField" id="firstName" name="firstName" required type="text"{if $formData !== null} value="{$formData['firstName']}"{/if}>
+		</div>
+
+		<div class="registration__formRow">
+			<label class="registration__inputLabel" for="lastName">
+				Příjmení
+			</label>
+
+			<input class="registration__inputField" id="lastName" name="lastName" required type="text"{if $formData !== null} value="{$formData['lastName']}"{/if}>
+		</div>
+
+		<div class="registration__formRow">
+			<label class="registration__inputLabel" for="birthDate">
+				Datum narození
+			</label>
+
+			<input class="registration__inputField registration__inputField--birthDate" id="birthDate" name="birthDate" required type="text"{if $formData !== null} value="{$formData['birthDate']}"{/if}>
+			<span class="registration__inputNote">např. 12. 3. {\date('Y') - 16}{* keep the birth date example in target group's age *}</span>
+		</div>
+
+		<div class="registration__formRow">
+			<label class="registration__inputLabel" for="phoneNumber">
+				Telefon
+			</label>
+
+			<input class="registration__inputField registration__inputField--phoneNumber" id="phoneNumber" name="phoneNumber" type="tel"{if $formData !== null} value="{$formData['phoneNumber']}"{/if}>
+			<span class="registration__inputNote">např. 774 976 407</span>
+		</div>
+
+		<div class="registration__formRow">
+			<label class="registration__inputLabel" for="emailAddress">
+				E-mail
+			</label>
+
+			<input class="registration__inputField registration__inputField--email" id="emailAddress" name="emailAddress" required type="email"{if $formData !== null} value="{$formData['emailAddress']}"{/if}>
+		</div>
+
+		<div class="registration__formRow" n:foreach="$event->registrationType->questions as $i => $question">
+			<label class="registration__inputLabel" for="question_{$i}">
+				{$question}
+			</label>
+
+			<input class="registration__inputField" id="question_{$i}" name="question_{$i}" type="text"{if $formData !== null} value="{$formData['question_' . $i]}"{/if}>
+		</div>
+
+		<div class="registration__formRow">
+			<label class="registration__inputLabel registration__inputLabel--note" for="note">
+				Poznámka
+
+				<span class="registration__inputLabelNote">
+					stravovací omezení apod.
+				</span>
+			</label>
+
+			<textarea class="registration__inputField registration__inputField--note" id="note" name="note">{if $formData !== null}{$formData['note']}{/if}</textarea>
+		</div>
+
+		<div class="registration__formRow registration__formRow--biggerBottomOffset">
+			<label class="registration__inputLabel">
+				Zaškrtni
+
+				<span class="registration__inputLabelNote">
+					spamová kontrola
+				</span>
+			</label>
+
+			<div class="g-recaptcha" data-sitekey="{$recaptchaSiteKey}"></div>
+		</div>
+
+		<div class="registration__formRow registration__formRow--consent">
+			Odesláním této&nbsp;přihlášky souhlasím se&nbsp;<a href="https://brontosaurus.cz/osobni-udaje" rel="noopener noreferrer" target="_blank">zpracováním osobních údajů</a>.
+		</div>
+
+		<div class="registration__formRow">
+			<button class="registration__formSubmitButton revision" type="submit">
+				Odeslat přihlášku
+			</button>
+		</div>
+	</form>
+</div>

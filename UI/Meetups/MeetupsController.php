@@ -15,6 +15,9 @@ use Latte\Engine;
 
 final class MeetupsController implements Controller
 {
+	public const PAGE_SLUG = 'setkavani-a-kluby';
+	private const FILTER_KEY = 'jen';
+
 	public function __construct(
 		private string $dateFormatHuman,
 		private string $dateFormatRobot,
@@ -22,8 +25,6 @@ final class MeetupsController implements Controller
 		private Base $base,
 		private Engine $latte,
 	) {}
-
-	private const FILTER_KEY = 'jen';
 
 	public function render(): void
 	{

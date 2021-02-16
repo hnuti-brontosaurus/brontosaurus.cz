@@ -13,6 +13,8 @@ use Latte\Engine;
 
 final class CoursesController implements Controller
 {
+	public const PAGE_SLUG = 'kurzy-a-prednasky';
+	private const FILTER_KEY = 'jen';
 
 	public function __construct(
 		private string $dateFormatHuman,
@@ -21,8 +23,6 @@ final class CoursesController implements Controller
 		private Base $base,
 		private Engine $latte,
 	) {}
-
-	private const FILTER_KEY = 'jen';
 
 	public function render(): void
 	{

@@ -13,6 +13,8 @@ use Latte\Engine;
 
 final class FutureController implements Controller
 {
+	public const PAGE_SLUG = 'co-se-chysta';
+
 	public function __construct(
 		private string $dateFormatHuman,
 		private string $dateFormatRobot,

@@ -8,12 +8,18 @@ use Grifart\GeocodingClient\MapyCz\MapyCzGeocodingService;
 use GuzzleHttp\Client as HttpClient;
 use HnutiBrontosaurus\BisApiClient\Client;
 use HnutiBrontosaurus\Theme\Configuration;
+use HnutiBrontosaurus\Theme\SentryLogger;
 use HnutiBrontosaurus\Theme\UI\AboutStructure\GeocodingClientFacade;
 use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
 use HnutiBrontosaurus\Theme\UI\ControllerFactory;
+use HnutiBrontosaurus\Theme\UI\EventDetail\ApplicationFormFacade;
+use HnutiBrontosaurus\Theme\UI\EventDetail\EmailSettings;
 use Latte\Bridges\Tracy\BlueScreenPanel;
 use Latte\Bridges\Tracy\LattePanel;
 use Latte\Engine;
+use Nette\Http\RequestFactory;
+use Nette\Mail\SendmailMailer;
+use Nette\Mail\SmtpMailer;
 use Tracy\Debugger;
 
 
@@ -40,15 +46,57 @@ require_once __DIR__ . '/vendor/autoload.php';
 	]);
 
 	// app
+
+	$bisApiClient = new Client(
+		$configuration->get('bis:url'),
+		$configuration->get('bis:username'),
+		$configuration->get('bis:password'),
+		new HttpClient(),
+	);
+
+	if ($configuration->get('mailer:smtp')) {
+		// only no-authentication access is supported right now as we do not have authenticated SMTP servers now
+		$options = [];
+		$options['host'] = $configuration->get('mailer:host');
+
+		try {
+			$port = $configuration->get('mailer:port');
+			$options['port'] = $port;
+
+		} catch (Exception) {}
+
+		$mailer = new SmtpMailer($options);
+	} else {
+		$mailer = new SendmailMailer();
+	}
+
+	try {
+		$dsn = $configuration->get('sentry:dsn');
+
+		if ($dsn === '') {
+			$dsn = null;
+		}
+
+	} catch (\Exception) {
+		$dsn = null;
+	}
+	$sentryLogger = SentryLogger::initialize($dsn);
+
 	$controllerFactory = new ControllerFactory(
 		$configuration->get('dateFormat:human'),
 		$configuration->get('dateFormat:robot'),
-		new Client(
-			$configuration->get('bis:url'),
-			$configuration->get('bis:username'),
-			$configuration->get('bis:password'),
-			new HttpClient(),
+		$configuration->get('recaptcha:siteKey'),
+		$configuration->get('recaptcha:secretKey'),
+		new ApplicationFormFacade(
+			$bisApiClient,
+			$mailer,
+			EmailSettings::from(
+				$configuration->get('mailer:from:address'),
+				$configuration->get('mailer:from:name'),
+			),
+			$sentryLogger,
 		),
+		$bisApiClient,
 		new BaseFactory(),
 		$latte,
 		new GeocodingClientFacade(
@@ -60,6 +108,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 				),
 			),
 		),
+		(new RequestFactory())->fromGlobals(),
+		$sentryLogger,
 	);
 	$controller = $controllerFactory->create($post); // routing is contained inside
 	$controller->render();

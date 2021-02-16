@@ -252,11 +252,11 @@ $detail-breakpoint-large-from: "min-width: " + ($detail-breakpoint-mediumToLarge
 }
 
 
-$flashMessage-animation-name: (flashMessage-bounce, flashMessage-pulse, flashMessage-hide);
-$flashMessage-animation-delay: (0.8s, 3s, 0s);
-$flashMessage-animation-duration: (0.5s, 1.7s, 800ms);
-$flashMessage-animation-fill-mode: (both, forwards, forwards);
-$flashMessage-animation-iteration-count: (1, infinite, 1);
+$flashMessage-animation-name: (flashMessage-bounce, flashMessage-hide);
+$flashMessage-animation-delay: (0.8s, 0s);
+$flashMessage-animation-duration: (0.5s, 800ms);
+$flashMessage-animation-fill-mode: (both, forwards);
+$flashMessage-animation-iteration-count: (1, 1);
 $flashMessage-breakpoint-forceCentered: $header-breakpoint-navigationHiddenToVisible;
 $flashMessage-breakpoint-forceCentered-until: "max-width: " + $flashMessage-breakpoint-forceCentered;
 $flashMessage-breakpoint-forceCentered-from: "min-width: " + ($flashMessage-breakpoint-forceCentered + 0.001);
@@ -290,19 +290,19 @@ $flashMessage-breakpoint-forceCentered-from: "min-width: " + ($flashMessage-brea
 		--flashMessage-xTranslation: -50%;
 	}
 
-	animation-name: nth($flashMessage-animation-name, 1), nth($flashMessage-animation-name, 2);
-	animation-delay: nth($flashMessage-animation-delay, 1), nth($flashMessage-animation-delay, 2);
-	animation-duration: nth($flashMessage-animation-duration, 1), nth($flashMessage-animation-duration, 2);
-	animation-fill-mode: nth($flashMessage-animation-fill-mode, 1), nth($flashMessage-animation-fill-mode, 2);
-	animation-iteration-count: nth($flashMessage-animation-iteration-count, 1), nth($flashMessage-animation-iteration-count, 2);
+	animation-name: nth($flashMessage-animation-name, 1);
+	animation-delay: nth($flashMessage-animation-delay, 1);
+	animation-duration: nth($flashMessage-animation-duration, 1);
+	animation-fill-mode: nth($flashMessage-animation-fill-mode, 1);
+	animation-iteration-count: nth($flashMessage-animation-iteration-count, 1);
 
 	&--hidden {
 		pointer-events: none;
-		animation-name: nth($flashMessage-animation-name, 1), nth($flashMessage-animation-name, 2), nth($flashMessage-animation-name, 3);
-		animation-delay: nth($flashMessage-animation-delay, 1), nth($flashMessage-animation-delay, 2), nth($flashMessage-animation-delay, 3);
-		animation-duration: nth($flashMessage-animation-duration, 1), nth($flashMessage-animation-duration, 2), nth($flashMessage-animation-duration, 3);
-		animation-fill-mode: nth($flashMessage-animation-fill-mode, 1), nth($flashMessage-animation-fill-mode, 2), nth($flashMessage-animation-fill-mode, 3);
-		animation-iteration-count: nth($flashMessage-animation-iteration-count, 1), nth($flashMessage-animation-iteration-count, 2), nth($flashMessage-animation-iteration-count, 3);
+		animation-name: nth($flashMessage-animation-name, 1), nth($flashMessage-animation-name, 2);
+		animation-delay: nth($flashMessage-animation-delay, 1), nth($flashMessage-animation-delay, 2);
+		animation-duration: nth($flashMessage-animation-duration, 1), nth($flashMessage-animation-duration, 2);
+		animation-fill-mode: nth($flashMessage-animation-fill-mode, 1), nth($flashMessage-animation-fill-mode, 2);
+		animation-iteration-count: nth($flashMessage-animation-iteration-count, 1), nth($flashMessage-animation-iteration-count, 2);
 	}
 }
 
@@ -323,29 +323,6 @@ $flashMessage-breakpoint-forceCentered-from: "min-width: " + ($flashMessage-brea
 	100%{
 		opacity: 1;
 		transform: translateX(var(--flashMessage-xTranslation)) scale(1);
-	}
-}
-@keyframes flashMessage-pulse {
-	from {
-		transform: translateX(var(--flashMessage-xTranslation)) scale(1);
-		transform-origin: center center;
-		animation-timing-function: ease-out;
-	}
-	10% {
-		transform: translateX(var(--flashMessage-xTranslation)) scale(0.97);
-		animation-timing-function: ease-in;
-	}
-	17% {
-		transform: translateX(var(--flashMessage-xTranslation)) scale(0.99);
-		animation-timing-function: ease-out;
-	}
-	33% {
-		transform: translateX(var(--flashMessage-xTranslation)) scale(0.97);
-		animation-timing-function: ease-in;
-	}
-	45% {
-		transform: translateX(var(--flashMessage-xTranslation)) scale(1);
-		animation-timing-function: ease-out;
 	}
 }
 @keyframes flashMessage-hide {

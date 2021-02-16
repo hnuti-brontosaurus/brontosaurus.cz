@@ -3,7 +3,7 @@ export const ENV_PRODUCTION = 'production';
 const locations = {
 	global: 'frontend',
 	structure: 'UI/AboutStructure/assets',
-	detail: 'UI/Detail/assets',
+	detail: 'UI/EventDetail/assets',
 	contacts: 'UI/Contacts/assets',
 	rentals: 'UI/Rentals/assets',
 };

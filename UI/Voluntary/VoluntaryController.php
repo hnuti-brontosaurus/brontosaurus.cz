@@ -15,6 +15,9 @@ use Latte\Engine;
 
 final class VoluntaryController implements Controller
 {
+	public const PAGE_SLUG = 'dobrovolnicke-akce';
+	public const FILTER_KEY = 'jen';
+
 	public function __construct(
 		private string $dateFormatHuman,
 		private string $dateFormatRobot,
@@ -22,8 +25,6 @@ final class VoluntaryController implements Controller
 		private Base $base,
 		private Engine $latte,
 	) {}
-
-	public const FILTER_KEY = 'jen';
 
 	public function render(): void
 	{
