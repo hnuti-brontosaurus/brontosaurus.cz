@@ -9,6 +9,7 @@ use Latte\Engine;
 
 final class AboutHighlightsController implements Controller
 {
+	public const PAGE_SLUG = 'jak-to-u-nas-funguje';
 
 	public function __construct(
 		private Base $base,

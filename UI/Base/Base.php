@@ -60,7 +60,13 @@ final class Base
 	// todo: extract rather to LinkEvaluator service
 	public function getLinkFor(string $slug): string
 	{
-		return get_permalink(get_page_by_path($slug)->ID);
+		$posts = get_posts(['name' => $slug, 'post_type' => 'page', 'posts_per_page' => 1]);
+		$post = \reset($posts);
+		if ($post === false) {
+			throw new \RuntimeException("$slug does not exist");
+		}
+
+		return get_permalink($post->ID);
 	}
 
 }

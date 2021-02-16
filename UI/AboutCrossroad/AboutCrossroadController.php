@@ -9,6 +9,8 @@ use Latte\Engine;
 
 final class AboutCrossroadController implements Controller
 {
+	public const PAGE_SLUG = 'o-brontosaurovi';
+
 	public function __construct(
 		private Base $base,
 		private Engine $latte,

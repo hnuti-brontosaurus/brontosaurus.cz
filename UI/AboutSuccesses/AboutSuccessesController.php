@@ -9,6 +9,7 @@ use Latte\Engine;
 
 final class AboutSuccessesController implements Controller
 {
+	public const PAGE_SLUG = 'nase-uspechy';
 
 	public function __construct(
 		private Base $base,

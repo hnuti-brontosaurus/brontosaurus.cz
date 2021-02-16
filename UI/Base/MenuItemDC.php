@@ -2,6 +2,10 @@
 
 namespace HnutiBrontosaurus\Theme\UI\Base;
 
+use HnutiBrontosaurus\Theme\UI\AboutCrossroad\AboutCrossroadController;
+use HnutiBrontosaurus\Theme\UI\AboutHighlights\AboutHighlightsController;
+use HnutiBrontosaurus\Theme\UI\AboutStructure\AboutStructureController;
+use HnutiBrontosaurus\Theme\UI\AboutSuccesses\AboutSuccessesController;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 
 
@@ -21,15 +25,17 @@ final class MenuItemDC
 		?\WP_Post $currentPost,
 	): static
 	{
-		// for some reason $menuItemPost->post_name does not return slug but ID todo fix it
-//		dump($currentPost->post_name . ',' . $menuItemPost->post_name);
-//		dump($menuItemPost);
-//		dump(get_page_template_slug($menuItemPost));
+		$menuItemSlug = \basename($menuItemPost->url); // source: https://wordpress.stackexchange.com/questions/249069/how-can-i-get-the-page-url-slug-when-post-name-returns-an-id
 		return new static(
 			$menuItemPost->title,
 			$menuItemPost->url,
-			$menuItemPost->post_name === $currentPost?->post_name, // todo count with subpages as well
-			false, // todo
+			$menuItemSlug === $currentPost?->post_name
+			// about brontosaurus subpages hack
+			|| (
+				\in_array($currentPost->post_name, [AboutHighlightsController::PAGE_SLUG, AboutStructureController::PAGE_SLUG, AboutSuccessesController::PAGE_SLUG])
+				&& $menuItemSlug === AboutCrossroadController::PAGE_SLUG
+			),
+			$menuItemPost->type === 'custom',
 		);
 	}
 }

@@ -13,6 +13,8 @@ use Latte\Engine;
 
 final class AboutStructureController implements Controller
 {
+	public const PAGE_SLUG = 'struktura-organizace';
+
 	public function __construct(
 		private string $dateFormatHuman,
 		private string $dateFormatRobot,
