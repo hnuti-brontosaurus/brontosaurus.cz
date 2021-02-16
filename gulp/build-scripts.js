@@ -33,7 +33,7 @@ export default (cb, files) => {
 		bundler.plugin('tsify');
 		bundler.transform(babelify, {
 			extensions: ['.ts'],
-			presets: ['env'],
+			presets: ['@babel/preset-env'],
 			sourceMaps: true
 		});
 
