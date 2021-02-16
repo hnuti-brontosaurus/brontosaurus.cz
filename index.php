@@ -112,9 +112,9 @@ require_once __DIR__ . '/vendor/autoload.php';
 		(new RequestFactory())->fromGlobals(),
 		$sentryLogger,
 	);
-	$controller = $controllerFactory->create($post); // routing is contained inside
 
 	try {
+		$controller = $controllerFactory->create($post); // routing is contained inside
 		$controller->render();
 
 	} catch (NotFound) {
