@@ -71,7 +71,12 @@ final class EventDetailController implements Controller
 
 			$this->processApplicationForm();
 
-			// todo set correct title ($this->event->getName())
+			// add event name to title tag (source https://stackoverflow.com/a/62410632/3668474)
+			add_filter('document_title_parts', function (array $title) {
+				return \array_merge($title, [
+					'title' => $this->event->getName(),
+				]);
+			});
 
 		} catch (NotFoundException) {
 			throw new NotFound();

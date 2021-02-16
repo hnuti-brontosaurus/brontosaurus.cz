@@ -60,9 +60,17 @@ final class NewsController implements Controller
 	private function processSingle(\WP_Post $post): void
 	{
 
+		$news = NewsDC::fromPost($post);
 		$params = [
-			'article' => NewsDC::fromPost($post),
+			'article' => $news,
 		];
+
+		// add news title to title tag (source https://stackoverflow.com/a/62410632/3668474)
+		add_filter('document_title_parts', function (array $title) use ($news) {
+			return \array_merge($title, [
+				'title' => $news->title,
+			]);
+		});
 
 		$this->latte->render(
 			__DIR__ . '/NewsController.single.latte',
