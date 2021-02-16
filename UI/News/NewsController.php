@@ -5,6 +5,7 @@ namespace HnutiBrontosaurus\Theme\UI\News;
 use DateTimeImmutable;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
+use HnutiBrontosaurus\Theme\UI\NotFound;
 use Latte\Engine;
 
 
@@ -31,8 +32,7 @@ final class NewsController implements Controller
 		if ($newsId !== '') {
 			$post = \get_post($newsId);
 			if ($post === null) {
-				// todo 404 if not found
-				return;
+				throw new NotFound();
 			}
 
 			$this->processSingle($post);

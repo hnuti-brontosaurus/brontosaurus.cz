@@ -26,7 +26,6 @@ use HnutiBrontosaurus\Theme\UI\News\NewsController;
 use HnutiBrontosaurus\Theme\UI\Partners\PartnersController;
 use HnutiBrontosaurus\Theme\UI\Rentals\RentalsController;
 use HnutiBrontosaurus\Theme\UI\SearchResults\SearchResultsController;
-use HnutiBrontosaurus\Theme\UI\SupportAdoption\SupportAdoptionController;
 use HnutiBrontosaurus\Theme\UI\SupportOverview\SupportOverviewController;
 use HnutiBrontosaurus\Theme\UI\Voluntary\VoluntaryController;
 use Latte\Engine;
@@ -60,7 +59,7 @@ final class ControllerFactory
 		$base = $this->baseFactory->create($post);
 
 		if ($post === null || $post->post_type !== 'page') {
-			return new ErrorController($base, $this->latte);
+			throw new NotFound();
 		}
 
 		return match ($post->post_name) {
@@ -87,6 +86,12 @@ final class ControllerFactory
 			'vysledky-vyhledavani' => new SearchResultsController($base, $this->latte),
 			default => new ErrorController($base, $this->latte),
 		};
+	}
+
+	public function render404(): void
+	{
+		$base = $this->baseFactory->create(null);
+		(new ErrorController($base, $this->latte))->render();
 	}
 
 }

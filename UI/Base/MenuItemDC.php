@@ -29,12 +29,14 @@ final class MenuItemDC
 		return new static(
 			$menuItemPost->title,
 			$menuItemPost->url,
-			$menuItemSlug === $currentPost?->post_name
-			// about brontosaurus subpages hack
-			|| (
-				\in_array($currentPost->post_name, [AboutHighlightsController::PAGE_SLUG, AboutStructureController::PAGE_SLUG, AboutSuccessesController::PAGE_SLUG])
-				&& $menuItemSlug === AboutCrossroadController::PAGE_SLUG
-			),
+			$currentPost === null
+				? false
+				: $menuItemSlug === $currentPost?->post_name
+					// about brontosaurus subpages hack
+					|| (
+						\in_array($currentPost->post_name, [AboutHighlightsController::PAGE_SLUG, AboutStructureController::PAGE_SLUG, AboutSuccessesController::PAGE_SLUG])
+						&& $menuItemSlug === AboutCrossroadController::PAGE_SLUG
+					),
 			$menuItemPost->type === 'custom',
 		);
 	}

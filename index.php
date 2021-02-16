@@ -14,6 +14,7 @@ use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
 use HnutiBrontosaurus\Theme\UI\ControllerFactory;
 use HnutiBrontosaurus\Theme\UI\EventDetail\ApplicationFormFacade;
 use HnutiBrontosaurus\Theme\UI\EventDetail\EmailSettings;
+use HnutiBrontosaurus\Theme\UI\NotFound;
 use Latte\Bridges\Tracy\BlueScreenPanel;
 use Latte\Bridges\Tracy\LattePanel;
 use Latte\Engine;
@@ -112,5 +113,11 @@ require_once __DIR__ . '/vendor/autoload.php';
 		$sentryLogger,
 	);
 	$controller = $controllerFactory->create($post); // routing is contained inside
-	$controller->render();
+
+	try {
+		$controller->render();
+
+	} catch (NotFound) {
+		$controllerFactory->render404();
+	}
 })(get_post());

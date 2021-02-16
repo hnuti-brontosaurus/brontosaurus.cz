@@ -11,6 +11,7 @@ use HnutiBrontosaurus\Theme\SentryLogger;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventDC;
+use HnutiBrontosaurus\Theme\UI\NotFound;
 use HnutiBrontosaurus\Theme\UI\EventDetail\DTO\ApplicationForm;
 use Latte\Engine;
 use Nette\Http\Request;
@@ -73,8 +74,7 @@ final class EventDetailController implements Controller
 			// todo set correct title ($this->event->getName())
 
 		} catch (NotFoundException) {
-			// todo render 404
-			return;
+			throw new NotFound();
 
 		} catch (BisApiClientRuntimeException) {
 			$hasBeenUnableToLoad = true;
