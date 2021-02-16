@@ -1,0 +1,26 @@
+{layout $layoutPath}
+
+{block content}
+<main role="main">
+	<article class="news news--single">
+		<h1 class="news__item-heading">
+			{$article->title}
+		</h1>
+
+		<time class="news__item-date">
+			{$article->date|forHumans}
+		</time>
+
+		<div class="news__item-content">
+			<div class="news__item-coverImage" n:if="$article->hasCoverImage">
+				<img alt="" src="{$article->coverImage}">
+			</div>
+
+			<p class="news__item-perex">
+				{$article->content|noescape}
+			</p>
+		</div>
+
+		<div class="news__clear"></div>
+	</article>
+</main>
