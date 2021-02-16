@@ -1,0 +1,76 @@
+$default-breakpoint-oneColumnToTwoColumns: 45em;
+$default-breakpoint-oneColumn-until: "max-width: " + $default-breakpoint-oneColumnToTwoColumns;
+
+.homepage {
+	&-heading {
+		text-align: center;
+	}
+
+	&-subheading {
+		@include block-subheading();
+	}
+
+	&-text {
+		@include block-text();
+		margin-bottom: vr-unit(1);
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+
+	&-voluntary {
+		position: relative;
+		display: block;
+		margin-bottom: vr-unit(1);
+		background-image: url("../images/hlavicka-dobrovolnickeAkce.jpg");
+		background-position: calc(100% + 8em) -1em;
+		background-size: 45em;
+
+		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
+			background-position-x: center;
+		}
+
+		&-link {
+			position: absolute;
+			max-width: 15rem;
+			width: 100%;
+			bottom: vr-unit(1.5);
+			left: 50%; transform: translateX(-50%); // center absolutely positioned element
+			white-space: nowrap; // avoid line breaks (when `left: 50%` hits right border of an element, it causes line break)
+		}
+		&:hover {
+			.button--primary {
+				@include buttons-primary-hoverEffect();
+			}
+		}
+	}
+
+	&-voluntaryMoreLink {
+		margin-bottom: vr-unit(2);
+	}
+
+	&-related {
+		margin-bottom: vr-unit(2);
+
+		.related {
+			&-heading {
+				margin-bottom: vr-unit(0.5);
+				text-align: center;
+			}
+
+			&-subheading {
+				@include block-subheading();
+			}
+		}
+	}
+
+	&-references {
+		&-heading {
+			margin-bottom: vr-unit(0.5) !important; // overwrite `.content h1`
+		}
+
+		&-carousel {
+			margin-bottom: vr-unit(1);
+		}
+	}
+}

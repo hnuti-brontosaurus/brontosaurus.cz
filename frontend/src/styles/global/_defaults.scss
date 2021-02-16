@@ -1,0 +1,64 @@
+:root {
+	color: $colors-text;
+	font-family: $fonts-delm, sans-serif;
+	font-size: $typography-baseFontSize-small;
+	font-weight: $fonts-delm-weight-regular;
+	line-height: $typography-baseLineHeight;
+
+	@media ($typography-breakpoint-large-from) {
+		font-size: $typography-baseFontSize-large;
+	}
+}
+
+html {
+	cursor: initial; // overwrite sanitize.css `cursor: default` setting
+}
+
+
+// FORMS
+
+input,
+button {
+	font-family: inherit;
+}
+
+
+// MARGINS & PADDINGS RESET
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+
+// MISCELLANEOUS
+
+img,
+svg {
+	max-width: 100%;
+}
+
+a {
+	color: $colors-text;
+
+	@media (prefers-reduced-motion: no-preference) {
+		transition: color 200ms ease;
+	}
+
+	&:hover {
+		color: $colors-emphasizing;
+	}
+}
+
+b,
+strong {
+	font-weight: bold;
+}

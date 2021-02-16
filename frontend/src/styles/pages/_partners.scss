@@ -1,0 +1,143 @@
+$partners-breakpoint-oneColumnToTwoColumns: $header-breakpoint-navigationHiddenToVisible;
+$partners-breakpoint-oneColumn-until: "max-width: " + $partners-breakpoint-oneColumnToTwoColumns;
+$partners-breakpoint-twoColumns-from: "min-width: " + ($partners-breakpoint-oneColumnToTwoColumns + 0.001);
+
+$partners-breakpoint-twoColumnsToThreeColumn: 50em;
+$partners-breakpoint-threeColumns-from: "min-width: " + ($partners-breakpoint-twoColumnsToThreeColumn + 0.001);
+
+$partners-breakpoint-threeColumnToFourColumn: 73em;
+$partners-breakpoint-fourColumns-from: "min-width: " + ($partners-breakpoint-threeColumnToFourColumn + 0.001);
+
+
+.partners .partners {
+	&-heading,
+	&-subheading {
+		margin-bottom: vr-unit(1);
+		text-align: center;
+
+		@media ($partners-breakpoint-twoColumns-from) {
+			margin-bottom: vr-unit(2);
+		}
+	}
+
+	&-subheading {
+		font-size: 1.7em;
+	}
+
+	&-list {
+		margin-bottom: vr-unit(3);
+		list-style-type: none;
+
+		@media ($partners-breakpoint-twoColumns-from) {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-rows: auto;
+			grid-gap: vr-unit(2);
+			align-items: center;
+			justify-items: center;
+			margin-bottom: vr-unit(4);
+		}
+
+		@media ($partners-breakpoint-threeColumns-from) {
+			grid-template-columns: repeat(3, 1fr);
+			max-width: 40rem;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		&-item {
+			max-width: 10em;
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+
+			&:not(:last-child) {
+				@media ($partners-breakpoint-oneColumn-until) {
+					margin-bottom: vr-unit(2);
+				}
+			}
+
+			&--mzp {
+				max-width: 8.2em;
+			}
+			&--msmt {
+				max-width: 6.3em;
+			}
+			&--mv {
+				max-width: 7.9em;
+			}
+			&--mzv {
+				max-width: 9.2em;
+			}
+			&--jmk {
+				max-width: 8.7em;
+			}
+			&--brno {
+				max-width: 5.5em;
+			}
+			&--praha {
+				max-width: 3.1em;
+			}
+			&--partnerstvi {
+				max-width: 6.8em;
+			}
+			&--stromy {
+				max-width: 3.9em;
+			}
+			&--brnoSever {
+				max-width: 8em;
+			}
+			&--esc {
+				max-width: 8em;
+			}
+			&--veronica {
+				max-width: 6em;
+			}
+			&--grifart {
+				max-width: 7em;
+			}
+			&--smartlook {
+				max-width: 8em;
+			}
+
+			&--dobrovolnik {
+				max-width: 7.7em;
+			}
+			&--m {
+				max-width: 2.1em;
+			}
+			&--prostredoskolaky {
+				max-width: 7.4em;
+			}
+			&--signaly {
+				max-width: 4.1em;
+			}
+
+			&--nasePriroda {
+				max-width: 6em;
+			}
+			&--propamatky {
+				max-width: 7.3em;
+			}
+			&--mindless {
+				max-width: 4.5em;
+			}
+
+			&--yee {
+				max-width: 3.9em;
+			}
+			&--zelenykruh {
+				max-width: 8.7em;
+			}
+			&--crdm {
+				max-width: 3.3em;
+			}
+			&--zasnadnedarcovstvi {
+				max-width: 6.4em;
+			}
+			&--kppo {
+				max-width: 5.8em;
+			}
+		}
+	}
+}

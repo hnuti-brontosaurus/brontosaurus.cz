@@ -1,0 +1,17 @@
+.noResults {
+	max-width: calc(28rem + #{vr-unit(8)});
+	margin-left: -#{vr-unit(1)};
+	margin-right: -#{vr-unit(1)};
+	padding: vr-unit(1);
+	font-style: italic;
+	background-color: #ddd;
+
+	@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
+		margin-left: auto;
+		margin-right: auto;
+	}
+	@media ($typography-breakpoint-large-from) {
+		padding-left: vr-unit(4);
+		padding-right: vr-unit(4);
+	}
+}

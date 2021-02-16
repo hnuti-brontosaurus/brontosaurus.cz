@@ -1,0 +1,48 @@
+{layout $layoutPath}
+
+{block content}
+<main role="main">
+	<article class="about-crossroad">
+		<h1 class="about-crossroad-screenreaderHeading">
+			O Hnutí Brontosaurus
+		</h1>
+
+		<h2 class="about-crossroad-heading">
+			Co že je to ten Brontosaurus?
+		</h2>
+
+		<p class="about-crossroad-philosophy">
+			Chceme svět, ve&nbsp;kterém lidé nejsou lhostejní ke&nbsp;svému okolí,
+			respektují a&nbsp;ctí přírodu a&nbsp;kulturní bohatství a&nbsp;společně o&nbsp;ně&nbsp;pečují.
+
+			<br><br>
+			Hnutí Brontosaurus propojuje smysluplnou dobrovolnickou práci se&nbsp;zážitky a&nbsp;zkušenostmi na&nbsp;celý život.
+			Máme více&nbsp;než čtyřicetiletou tradici, viditelné úspěchy, jasné cíle a&nbsp;více&nbsp;než 1&nbsp;000 hrdých členů, kteří za&nbsp;ním stojí.
+			Každoročně vyrážíme s&nbsp;dobrovolníky kosit orchidejové louky, sázet stromy, opravovat hrady nebo třeba stavět školu v&nbsp;Himálajích.
+		</p>
+
+		<a class="about-crossroad-highlightsLink action action--ulterior" href="{$aboutHighlightsPageLink}">
+			Jak&nbsp;to u&nbsp;nás funguje?
+		</a>
+
+		<ul class="about-crossroad-crossroad">
+			<li class="about-crossroad-crossroad-field">
+				<a class="about-crossroad-crossroad-field-link about-crossroad-crossroad-field-link--structure button--secondary-wrapper" href="{$aboutStructurePageLink}">
+					<div class="button button--secondary">
+						Více o&nbsp;nás
+					</div>
+				</a>
+			</li>
+
+			<li class="about-crossroad-crossroad-field">
+				<a class="about-crossroad-crossroad-field-link about-crossroad-crossroad-field-link--successes button--secondary-wrapper" href="{$aboutSuccessesPageLink}">
+					<div class="button button--secondary">
+						Naše úspěchy
+					</div>
+				</a>
+			</li>
+		</ul>
+
+		{include '../components/@references.latte'}
+	</article>
+</main>

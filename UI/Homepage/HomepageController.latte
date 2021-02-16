@@ -1,0 +1,50 @@
+{layout $layoutPath}
+
+{block content}
+<main class="homepage" role="main">
+	<h1 class="homepage-heading">
+		Zážitkové a dobrovolnické akce
+	</h1>
+
+	<div class="homepage-subheading">
+		15–26&nbsp;let
+	</div>
+
+	<p class="homepage-text">
+		Pojeď na víkendovou nebo prázdninovou akci vstříc novým zážitkům a přátelstvím.
+		Vyraz s námi pomáhat přírodě a památkám u nás i v zahraničí.
+	</p>
+
+	<a class="homepage-voluntary hero" href="{$voluntaryPageLink}">
+		<div class="homepage-voluntary-link button button--primary">Najdi své&nbsp;dobrodružství</div>
+	</a>
+
+	<a class="homepage-voluntaryMoreLink action action--ulterior" href="{$voluntaryPageLink}#co-zazijes-na-dobrovolnicke-akci">
+		více informací
+	</a>
+</main>
+
+<aside>
+	<div class="homepage-related">
+		{include '../components/@related.latte', excludeVoluntary => TRUE, headingText => 'A&nbsp;to není všechno&hellip;', subheadingText => '0–99&nbsp;let'}
+	</div>
+
+	<section class="homepage-references">
+		<h1 class="homepage-references-heading">
+			Seznamte&nbsp;se s&nbsp;Brontosaurem
+		</h1>
+
+		<div class="homepage-subheading">
+			*&nbsp;1974
+		</div>
+
+		<div class="homepage-references-carousel">
+			{include '../components/@references.latte', link => $aboutCrossroadPageLink}
+		</div>
+
+		<a class="action action--ulterior" href="{$aboutCrossroadPageLink}">
+			více o&nbsp;Hnutí Brontosaurus
+		</a>
+	</section>
+</aside>
+

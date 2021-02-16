@@ -1,0 +1,227 @@
+{layout $layoutPath}
+
+{block content}
+<main role="main" id="obsah">
+	<h1 class="voluntary-heading">
+		Zážitkové a&nbsp;dobrovolnické akce
+	</h1>
+
+	<div class="voluntary-events events">
+		<h2 class="events-heading sr-only">
+			Seznam akcí
+		</h2>
+
+		<div class="events-filters" id="events-filters"{if $filters->isAnySelected} data-collapse-openedOnLoad="1"{/if}>
+			<button class="events-filters-toggler button button--customization" id="events-filters-toggler" type="button" aria-hidden="true">
+				Zobrazit pouze
+			</button>
+
+			<ul class="events-filters-list" id="events-filters-list">
+				<li class="events-filters-list-item">
+					<a n:class="'events-filters-list-item-link', ! $filters->isAnySelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$voluntaryPageLink}#obsah">
+						vše
+					</a>
+				</li>
+
+				<li class="events-filters-list-item">
+					<a n:class="'events-filters-list-item-link', $filters->isFirstTimeAttendeesSelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$voluntaryPageLink}?{$filters->key}=jedu-poprve#obsah">
+						jedu poprvé
+					</a>
+				</li>
+
+				<li class="events-filters-list-item">
+					<a n:class="'events-filters-list-item-link', $filters->isWeekendEventsSelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$voluntaryPageLink}?{$filters->key}=vikendovky#obsah">
+						víkendovky
+					</a>
+				</li>
+
+				<li class="events-filters-list-item">
+					<a n:class="'events-filters-list-item-link', $filters->isOneDayEventsSelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$voluntaryPageLink}?{$filters->key}=jednodenni#obsah">
+						jednodenní
+					</a>
+				</li>
+
+				<li class="events-filters-list-item">
+					<a n:class="'events-filters-list-item-link', $filters->isHolidayEventsSelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$voluntaryPageLink}?{$filters->key}=prazdninove#obsah">
+						prázdninové
+					</a>
+				</li>
+
+				<li class="events-filters-list-item">
+					<a n:class="'events-filters-list-item-link', $filters->isNatureSelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$voluntaryPageLink}?{$filters->key}=priroda#obsah">
+						příroda
+					</a>
+				</li>
+
+				<li class="events-filters-list-item">
+					<a n:class="'events-filters-list-item-link', $filters->isSightsSelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$voluntaryPageLink}?{$filters->key}=pamatky#obsah">
+						památky
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		{include '../components/@eventList.latte', eventCollection => $eventCollection}
+	</div>
+</main>
+
+
+<aside>
+	<section class="voluntary-description description">
+		<h1 id="co-zazijes-na-dobrovolnicke-akci">
+			Co&nbsp;zažiješ na&nbsp;dobrovolnické akci
+		</h1>
+
+		<p class="description-text">
+			Na&nbsp;každé brontosauří dobrovolnické akci tě mimo samotné pomoci přírodě nebo památkám
+			čeká i&nbsp;zážitkový program. Jsou&nbsp;to různé hry nebo&nbsp;workshopy, které připravujeme tak, že&nbsp;se
+			na&nbsp;naší akci něco&nbsp;naučíš, získáš příležitost k&nbsp;seberozvoji a&nbsp;k&nbsp;poznání nových kamarádů.
+			Dobrovolnictví a&nbsp;zážitky jsou pro&nbsp;nás cestou k&nbsp;osobnímu růstu a&nbsp;objevování nového světa
+			kolem&nbsp;nás.
+
+		</p>
+
+		<div class="description-list">
+			<a class="description-list-item description-list-item--fullWidth optionBox button--secondary-wrapper" href="{$voluntaryPageLink}?{$filters->key}=jedu-poprve#obsah">
+				<div class="description-list-item-text optionBox__text">
+					<h2 class="optionBox__heading">
+						Jedu poprvé
+					</h2>
+
+					<p class="optionBox__description">
+						Podívej&nbsp;se na&nbsp;nabídku akcí zvláště vhodných pro&nbsp;ty, co&nbsp;s&nbsp;námi chtějí jet poprvé. Akce se&nbsp;konají
+						v&nbsp;přírodních lokalitách nebo na&nbsp;hradech a&nbsp;zámcích. Bývají na&nbsp;nich převážně mladí lidé ve&nbsp;věku 15&ndash;22&nbsp;let.
+						Na&nbsp;akci je zajištěn program, součástí je vždy dobrovolnická pomoc dané lokalitě. Zabezpečeno je po&nbsp;celou dobu také
+						kvalitní jídlo a&nbsp;ubytování ve&nbsp;spacácích.
+					</p>
+				</div>
+
+				<div class="optionBox__image optionBox__image--voluntary-firstTime">
+					<div class="button button--secondary">{block |trim}{* because of whitespace in text underline *}
+							Najít akci{/block}
+					</div>
+				</div>
+			</a>
+
+			<a class="voluntary-description-firstTimeLink description-list-item--fullWidth action action--ulterior" href="{$firstTimePageLink}">
+				Co čekat, když jedu poprvé?
+			</a>
+
+			<a class="description-list-item optionBox button--secondary-wrapper" href="{$voluntaryPageLink}?{$filters->key}=vikendovky#obsah">
+				<div class="description-list-item-text optionBox__text">
+					<h2 class="optionBox__heading">
+						Víkendovky
+					</h2>
+
+					<p class="optionBox__description">
+						Víkendové akce typicky probíhají na&nbsp;jaře a&nbsp;na&nbsp;podzim. Ať&nbsp;jde o&nbsp;kosení orchidejových luk, věšení
+						a&nbsp;údržba ptačích budek nebo&nbsp;opravu hradní zdi,
+						čeká&nbsp;tě spousta zábavy, nových přátelství a&nbsp;zážitků
+						na&nbsp;celý život.
+					</p>
+				</div>
+
+				<div class="optionBox__image optionBox__image--voluntary-weekendEvents">
+					<div class="button button--secondary">{block |trim}{* because of whitespace in text underline *}
+							Najít akci{/block}
+					</div>
+				</div>
+			</a>
+
+			<a class="description-list-item optionBox button--secondary-wrapper" href="{$voluntaryPageLink}?{$filters->key}=jednodenni#obsah">
+				<div class="description-list-item-text optionBox__text">
+					<h2 class="optionBox__heading">
+						Jednodenní akce
+					</h2>
+
+					<p class="optionBox__description">
+						Ne&nbsp;všechny brontosauří akce trvají více dní.
+						Občas pořádáme jednodenní akce, při&nbsp;kterých
+						třeba věšíme ptačí budky, potkáváme se po&nbsp;úspěšné
+						sezóně, máme různé workshopy nebo&nbsp;kluby
+						a&nbsp;kurzy. Podívej&nbsp;se, co&nbsp;všechno s&nbsp;námi
+						můžeš během jednoho dne zažít!
+					</p>
+				</div>
+
+				<div class="optionBox__image optionBox__image--voluntary-oneDayEvents">
+					<div class="button button--secondary">{block |trim}{* because of whitespace in text underline *}
+							Najít akci{/block}
+					</div>
+				</div>
+			</a>
+
+			<a class="description-list-item description-list-item--fullWidth optionBox button--secondary-wrapper" href="{$voluntaryPageLink}?{$filters->key}=prazdninove#obsah">
+				<div class="description-list-item-text optionBox__text">
+					<h2 class="optionBox__heading">
+						Prázdninové akce
+					</h2>
+
+					<p class="optionBox__description">
+						Prázdninové akce se&nbsp;nejčastěji konají během
+						letních prázdnin a&nbsp;jsou&nbsp;to vlastně takové tábory
+						pro&nbsp;mladé dospěláky spojené s&nbsp;dobrovolnickou
+						pomocí. Většinou mají ucelený příběh, který
+						rámuje zážitkový program a&nbsp;většina dní
+						obsahuje i&nbsp;dobrovolnickou pomoc.
+					</p>
+				</div>
+
+				<div class="optionBox__image optionBox__image--voluntary-holidayEvents">
+					<div class="button button--secondary">{block |trim}{* because of whitespace in text underline *}
+							Najít akci{/block}
+					</div>
+				</div>
+			</a>
+
+			<a class="description-list-item optionBox button--secondary-wrapper" href="{$voluntaryPageLink}?{$filters->key}=priroda#obsah">
+				<div class="description-list-item-text optionBox__text">
+					<h2 class="optionBox__heading">
+						Příroda
+					</h2>
+
+					<p class="optionBox__description">
+						Pojď s&nbsp;námi pomáhat vzácným rostlinám i&nbsp;živočichům,
+						podívat&nbsp;se na&nbsp;nádherná místa po&nbsp;celé
+						republice, pohladit&nbsp;si lišku na&nbsp;záchranné stanici,
+						rozpomenout&nbsp;se, jak&nbsp;voní suchá tráva, obdivovat
+						krásu orchidejí a&nbsp;poslouchat zpěv ptáků, kterým
+						jsme zrovna vyvěsili ptačí budky.
+					</p>
+				</div>
+
+				<div class="optionBox__image optionBox__image--voluntary-nature">
+					<div class="button button--secondary">{block |trim}{* because of whitespace in text underline *}
+							Akce pomáhající přírodě{/block}
+					</div>
+				</div>
+			</a>
+
+			<a class="description-list-item optionBox button--secondary-wrapper" href="{$voluntaryPageLink}?{$filters->key}=pamatky#obsah">
+				<div class="description-list-item-text optionBox__text">
+					<h2 class="optionBox__heading">
+						Památky
+					</h2>
+
+					<p class="optionBox__description">
+						Cítíš&nbsp;se doma na&nbsp;starobylých hradech nebo v&nbsp;pokoji
+						vily z&nbsp;první republiky? Podívej&nbsp;se na&nbsp;místa,
+						která jsou normálním návštěvníkům zapovězena a&nbsp;vyzkoušej&nbsp;si,
+						jak se&nbsp;staví hradby, udržují jedinečné
+						zahrady nebo jak se&nbsp;tancuje na&nbsp;místech, kde se&nbsp;dříve odehrávaly středověké
+						plesy.
+					</p>
+				</div>
+
+				<div class="optionBox__image optionBox__image--voluntary-sights">
+					<div class="button button--secondary">{block |trim}{* because of whitespace in text underline *}
+							Akce pomáhající památkám{/block}
+					</div>
+				</div>
+			</a>
+		</div>
+	</section>
+
+
+	{include '../components/@related.latte', excludeVoluntary => TRUE}
+</aside>

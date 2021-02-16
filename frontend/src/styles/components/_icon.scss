@@ -1,0 +1,9 @@
+.icon {
+	fill: $colors-emphasizing;
+	fill-opacity: 1;
+	transition: fill 100ms linear;
+
+	&:hover {
+		fill: darken($colors-emphasizing, 10);
+	}
+}

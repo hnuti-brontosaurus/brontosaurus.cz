@@ -1,0 +1,159 @@
+{layout $layoutPath}
+
+{block content}
+<main role="main" id="obsah">
+	<h1 class="courses-heading">
+		Vzdělávací kurzy a&nbsp;přednášky
+	</h1>
+
+	<div class="courses-events events">
+		<h2 class="events-heading sr-only">
+			Seznam akcí
+		</h2>
+
+		<div class="events-filters" id="events-filters"{if $filters->isAnySelected} data-collapse-openedOnLoad="1"{/if}>
+			<button class="events-filters-toggler button button--customization" id="events-filters-toggler" type="button" aria-hidden="true">
+				Zobrazit pouze
+			</button>
+
+			<ul class="events-filters-list" id="events-filters-list">
+				<li class="events-filters-list-item">
+					<a n:class="'events-filters-list-item-link', ! $filters->isAnySelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$coursesPageLink}#obsah">
+						vše
+					</a>
+				</li>
+
+				<li class="events-filters-list-item">
+					<a n:class="'events-filters-list-item-link', $filters->isMeetupsSelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$coursesPageLink}?{$filters->key}=prednasky#obsah">
+						přednášky
+					</a>
+				</li>
+
+				<li class="events-filters-list-item">
+					<a n:class="'events-filters-list-item-link', $filters->isOrganizingSelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$coursesPageLink}?{$filters->key}=organizatorske-kurzy#obsah">
+						organizátorské kurzy
+					</a>
+				</li>
+
+				<li class="events-filters-list-item">
+					<a n:class="'events-filters-list-item-link', $filters->isThematicSelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$coursesPageLink}?{$filters->key}=tematicke-kurzy#obsah">
+						tématické kurzy
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		{include '../components/@eventList.latte', eventCollection => $eventCollection}
+	</div>
+</main>
+
+
+<aside>
+	<section class="courses-description description">
+		<h1>
+			Kurzy a&nbsp;přednášky
+		</h1>
+
+		<p class="description-text">
+			Člověk&nbsp;se neustále učí a&nbsp;Hnutí Brontosaurus se&nbsp;stará o&nbsp;to, aby&nbsp;měl každý dostatek prostoru pro&nbsp;svůj
+			rozvoj. Sekce vzdělávání mimo organizátorských kurzů, kde je&nbsp;možné dostat certifikát
+			organizátora brontosauřích akcí nebo si&nbsp;udělat kurs pro&nbsp;hlavní vedoucí dětských táborů,
+			pořádá množství vzdělávacích akcí zaměřených na&nbsp;vše od&nbsp;time managementu, bylinkářství,
+			grafiky, zpětné vazby a&nbsp;dalších. Brontosauří vzdělávání probíhá v&nbsp;přátelském otevřeném
+			prostředí s&nbsp;důrazem na&nbsp;metody neformálního vzdělávání a&nbsp;praxi.
+		</p>
+
+		<div class="description-list">
+			<a class="description-list-item optionBox button--secondary-wrapper" href="{$coursesPageLink}?{$filters->key}=prednasky#obsah">
+				<div class="description-list-item-text optionBox__text">
+					<h2 class="optionBox__heading">
+						Přednášky
+					</h2>
+
+					<p class="optionBox__description">
+						Pravidelně zveme odborníky, cestovatele, lektory i&nbsp;další zajímavé osobnosti.
+						Přednáší u&nbsp;nás na&nbsp;témata životní prostředí, dobrovolnictví, cestování, kultura či&nbsp;osobnostní rozvoj.
+						Přijďte si&nbsp;poslechnout a&nbsp;debatovat.
+					</p>
+				</div>
+
+				<div class="optionBox__image optionBox__image--meetups">
+					<div class="button button--secondary">{block |trim}{* because of whitespace in text underline *}
+							Najít přednášky{/block}
+					</div>
+				</div>
+			</a>
+
+			<a class="description-list-item optionBox button--secondary-wrapper" href="{$coursesPageLink}?{$filters->key}=organizatorske-kurzy#obsah">
+				<div class="description-list-item-text optionBox__text">
+					<h2 class="optionBox__heading">
+						Organizátorské kurzy
+					</h2>
+
+					<p class="optionBox__description">
+						Ne&nbsp;každému stačí se&nbsp;akcí jenom zúčastnit. Pokud
+						máš chuť uspořádat brontosauří akci nebo se&nbsp;naučit
+						mnoho užitečných dovedností pro&nbsp;pořádání svých
+						vlastních akcí, podívej&nbsp;se na&nbsp;info.
+					</p>
+				</div>
+
+				<div class="optionBox__image optionBox__image--courses-organizing">
+					<div class="button button--secondary">{block |trim}{* because of whitespace in text underline *}
+							Najít organizátorský kurz{/block}
+					</div>
+				</div>
+			</a>
+
+			<a class="description-list-item optionBox button--secondary-wrapper" href="{$coursesPageLink}?{$filters->key}=tematicke-kurzy#obsah">
+				<div class="description-list-item-text optionBox__text">
+					<h2 class="optionBox__heading">
+						Tématické kurzy
+					</h2>
+
+					<p class="optionBox__description">
+						Na&nbsp;brontosauřím ústředí a&nbsp;někdy i&nbsp;na&nbsp;zajímavých
+						místech po&nbsp;celé republice se&nbsp;můžeš zúčastnit
+						mnoha kurzů. Někdy se&nbsp;lze i&nbsp;něco přiučit na&nbsp;klubech v&nbsp;Praze i&nbsp;v&nbsp;Brně!
+					</p>
+				</div>
+
+				<div class="optionBox__image optionBox__image--courses-thematic">
+					<div class="button button--secondary">{block |trim}{* because of whitespace in text underline *}
+							Najít tématický kurz{/block}
+					</div>
+				</div>
+			</a>
+		</div>
+	</section>
+
+
+	<section class="courses-description description">
+		<h1>
+			Programy pro&nbsp;střední školy
+		</h1>
+
+		<p class="description-text">
+			Brontosaurus nezapomíná ani na&nbsp;středoškoláky, kteří na&nbsp;brontosauří akce nejezdí. Naši lektoři
+			objíždějí střední školy po&nbsp;celé republice a&nbsp;baví&nbsp;se s&nbsp;žáky o&nbsp;dobrovolnictví, různých
+			ekosystémech a&nbsp;o&nbsp;přírodě obecně.
+		</p>
+
+		<p class="description-text">
+			Dvouhodinové programy probíhají v&nbsp;češtině nebo&nbsp;v&nbsp;angličtině. Celodenní programy se&nbsp;odehrávají
+			v&nbsp;terénu, kde&nbsp;mimo různých aktivit čeká studenty i&nbsp;samotná dobrovolnická pomoc
+			přírodě. Metodika programů je připravena tak, aby&nbsp;programy rozvíjely klíčové kompetence
+			žáků a&nbsp;naši vyškolení lektoři používají prvky neformálního vzdělávání, díky kterým probouzí
+			zájem žáků o&nbsp;svět kolem&nbsp;nás.
+		</p>
+
+		<a class="courses-description-highSchoolProgramsLink hero button--secondary-wrapper" href="{$highSchoolPageLink}">
+			<div class="button button--secondary">{block |trim}{* because of whitespace in text underline *}
+					Nabídka programů pro&nbsp;školy{/block}
+			</div>
+		</a>
+	</section>
+
+
+	{include '../components/@related.latte', excludeCourses => TRUE}
+</aside>

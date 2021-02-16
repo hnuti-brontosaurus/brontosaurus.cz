@@ -1,0 +1,53 @@
+{**
+ * @param \HB\DataContainers\Events\EventDC $event
+ *}
+<a class="events-event" href="detail/{$event->id}">{* todo: using rather WP routing somehow *}
+	<div class="events-event-image-wrapper">
+		<img alt="" n:class="events-event-image, ! $event->hasCoverPhoto ? 'events-event-image--noThumbnail'" data-src="{if $event->hasCoverPhoto}{$event->coverPhotoPath}{else}{$distPath}/images/logo-hb-brontosaurus.svg{/if}">
+		<noscript>{* for search engines *}
+			<img alt="" n:class="events-event-image, ! $event->hasCoverPhoto ? 'events-event-image--noThumbnail'" src="{if $event->hasCoverPhoto}{$event->coverPhotoPath}{else}{$distPath}/images/logo-hb-brontosaurus.svg{/if}">
+		</noscript>
+
+		<div class="events-event-meta eventTagList">
+			<div
+				n:class="'eventTagList__item', 'eventTagList__item--type', $event->program->isOfTypeNature ? 'eventTagList__item--nature', $event->program->isOfTypeSights ? 'eventTagList__item--sights'"
+				n:if="$event->program->isOfTypeNature || $event->program->isOfTypeSights"
+			>
+				akce
+				{if $event->program->isOfTypeNature}
+					příroda
+				{elseif $event->program->isOfTypeSights}
+					památky
+				{/if}
+			</div>
+
+			<div class="eventTagList__item" n:if="$event->program->isOfTypePsb">
+				prázdninové
+			</div>
+
+			<div class="eventTagList__item" n:if="! ($event->program->isOfTypePsb && $event->isLongTime)">
+				{$event->duration|typeByDayCount}
+			</div>
+		</div>
+	</div>
+
+	<header class="events-event-header">
+		<h4 class="events-event-header-heading">
+			{$event->title}
+		</h4>
+
+		<div class="events-event-header-meta">
+			<time class="events-event-header-meta-datetime" datetime="{$event->dateStartForRobots}">
+				{$event->dateSpan}
+			</time>
+
+			<span class="events-event-header-meta-place" title="Místo konání">
+				{$event->place->name}
+			</span>
+		</div>
+	</header>
+
+	<p class="events-event-excerpt">
+		{$event->invitation->introduction|striptags|truncate:200|breaklines|noescape}{* @todo *}
+	</p>
+</a>

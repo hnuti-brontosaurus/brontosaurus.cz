@@ -1,0 +1,86 @@
+.searchResults {
+	&__form-wrapper {
+		margin-bottom: vr-unit(0.5);
+		margin-left: -#{vr-unit(2)};
+		margin-right: -#{vr-unit(2)};
+		padding: vr-unit(1) vr-unit(2);
+		background-color: $colors-tinge;
+	}
+
+	&__form,
+	&__results {
+		max-width: 28rem;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+
+	// Google Custom Search Engine style hacking
+
+	.gsc-above-wrapper-area {
+		display: none !important;
+	}
+
+	.gsc-control-cse {
+		padding: 0 !important;
+	}
+
+	.gs-webResult.gs-result {
+		padding: vr-unit(1) !important;
+		border: 1px solid $colors-tinge !important;
+		border-radius: 2em !important;
+		box-shadow: 1px 4px 5px $colors-tinge !important;
+
+		a.gs-title,
+		.gs-snippet {
+			padding-left: 0 !important;
+			padding-right: 0 !important;
+			font-family: $fonts-delm !important;
+			font-weight: $fonts-delm-weight-regular !important;
+		}
+
+		.gs-title {
+			&,
+			& * {
+				text-decoration: none !important; // remove text-decoration on div and all child elements
+				color: $colors-text !important; // set site's link style
+
+				@media (prefers-reduced-motion: no-preference) {
+					transition: color 200ms ease !important;
+				}
+			}
+			&:hover {
+				&,
+				& * {
+					color: $colors-emphasizing !important; // set site's link hover style
+				}
+			}
+
+			:not(a) {
+				font-size: unset !important; // remove font enlarging on anchors' children
+			}
+		}
+		a.gs-title {
+			font-size: 1.3rem !important;
+			font-variant-caps: small-caps !important;
+
+			// text truncation
+			display: block !important;
+			overflow-x: hidden !important;
+			text-overflow: ellipsis !important;
+			white-space: nowrap !important;
+		}
+
+		.gs-snippet {
+			font-size: 0.9rem !important;
+		}
+		&.gs-no-results-result .gs-snippet {
+			border: none !important;
+			background-color: transparent !important;
+		}
+
+		.gs-visibleUrl { // hide result's URL address
+			display: none !important;
+		}
+	}
+}

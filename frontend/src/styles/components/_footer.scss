@@ -1,0 +1,268 @@
+$footer-breakpoint-smallToMedium: 28em;
+$footer-breakpoint-smallToMedium-until: "max-width: " + $footer-breakpoint-smallToMedium;
+$footer-breakpoint-smallToMedium-from: "min-width: " + ($footer-breakpoint-smallToMedium + 0.001);
+
+$footer-breakpoint-mediumToLarge: 50em;
+$footer-breakpoint-mediumToLarge-until: "max-width: " + $footer-breakpoint-mediumToLarge;
+$footer-breakpoint-mediumToLarge-from: "min-width: " + ($footer-breakpoint-mediumToLarge + 0.001);
+
+
+.footer-wrapper {
+	background-color: $colors-tinge;
+	position: relative;
+}
+.footer {
+	display: grid;
+	grid-template-areas:
+		"navigation navigation"
+		"language language"
+		"facebook instagram"
+		"logo-full logo-full"
+		"search search";
+	justify-items: center;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: $navigation-maxWidth;
+	padding-top: vr-unit(2);
+	padding-bottom: vr-unit(2);
+
+	@media ($footer-breakpoint-smallToMedium-until) {
+		grid-column-gap: vr-unit(0.5);
+	}
+	@media ($footer-breakpoint-smallToMedium-from) {
+		grid-template-areas:
+			"navigation navigation"
+			"socials language"
+			"logo-full logo-full"
+			"search search";
+		grid-template-columns: 1fr 1fr;
+	}
+	@media ($footer-breakpoint-mediumToLarge-from) {
+		grid-template-areas:
+			"navigation facebook instagram language"
+			"navigation logo-full logo-full logo-full"
+			". search search search";
+		grid-template-columns: auto max-content max-content max-content;
+		grid-template-rows: auto auto auto auto;
+		padding-left: vr-unit(1);
+		padding-right: vr-unit(1);
+	}
+
+	&-navigation {
+		display: contents;
+
+		&-languageLink {
+			grid-area: language;
+
+			@media ($footer-breakpoint-smallToMedium-until) {
+				margin-bottom: vr-unit(0.5);
+			}
+			@media ($footer-breakpoint-smallToMedium-from) {
+				align-self: center;
+				justify-self: self-start;
+				text-transform: lowercase;
+
+				@media ($footer-breakpoint-mediumToLarge-until) {
+					margin-bottom: vr-unit(2);
+				}
+			}
+
+			&--active {
+				@media ($footer-breakpoint-mediumToLarge-from) {
+					justify-self: center;
+				}
+			}
+
+			&-icon {
+				max-height: 2em;
+				max-width: 1.7em;
+
+				&-label {
+					fill: $colors-default-background;
+					font-size: 1em;
+					pointer-events: none; // otherwise hover state does not trigger on background circle
+				}
+			}
+		}
+
+		&-main {
+			grid-area: navigation;
+
+			@media ($footer-breakpoint-smallToMedium-from) {
+				columns: 2;
+				column-rule: 2px solid $colors-framing;
+				column-gap: vr-unit(2);
+				text-align: left;
+				margin-bottom: vr-unit(1);
+			}
+
+			&-item {
+				@media ($footer-breakpoint-smallToMedium-until) {
+					text-align: center;
+				}
+
+				&-link {
+					display: inline-block;
+				}
+			}
+		}
+
+		&-languageLink,
+		&-main-item-link {
+			padding: 0.3em vr-unit(0.5) 0.15em;
+			border-radius: 2em;
+			color: $colors-text;
+			text-decoration: none;
+			transition:
+				background-color 200ms linear,
+				color 200ms linear;
+
+			&:hover {
+				color: $colors-emphasizing;
+			}
+
+			&--active {
+				background-color: $colors-emphasizing;
+				color: $colors-default-background !important; // overwrite default hover behaviour
+
+				&:hover {
+					background-color: darken($colors-emphasizing, 10);
+				}
+			}
+		}
+	}
+
+	&-facebookLink {
+		grid-area: facebook;
+		position: relative;
+		padding: 1em;
+		border-radius: 2em;
+		text-decoration: none;
+		background-color: darken($colors-tinge, 10);
+		transition: background-color 200ms linear;
+
+		@media ($footer-breakpoint-smallToMedium-until) {
+			margin-bottom: vr-unit(1);
+		}
+		@media ($footer-breakpoint-smallToMedium-from) {
+			align-self: center;
+
+			@media ($footer-breakpoint-mediumToLarge-until) {
+				grid-area: socials;
+				margin-right: calc(#{vr-unit(2)} + #{vr-unit(0.5)});
+				margin-bottom: vr-unit(2);
+			}
+		}
+		@media ($footer-breakpoint-mediumToLarge-until) {
+			justify-self: self-end;
+		}
+
+		&::before {
+			content: "f";
+			position: absolute;
+			top: 26%;
+			left: 41%;
+			transition: color 200ms linear;
+		}
+
+		&:hover {
+			background-color: $colors-emphasizing;
+
+			&::before {
+				color: $colors-default-background;
+			}
+		}
+
+		&-icon {
+			max-height: 2em;
+			max-width: 1.7em;
+
+			&-label {
+				fill: $colors-default-background;
+				font-size: 1.2em;
+				font-weight: $fonts-delm-weight-bold;
+				pointer-events: none; // otherwise hover state does not trigger on background circle
+			}
+		}
+	}
+
+	&-instagramLink {
+		grid-area: instagram;
+		position: relative;
+		padding: 1em;
+		border-radius: 2em;
+		text-decoration: none;
+		background-color: darken($colors-tinge, 10);
+		transition: background-color 200ms linear;
+
+		@media ($footer-breakpoint-smallToMedium-until) {
+			margin-bottom: vr-unit(1);
+			justify-self: start;
+		}
+		@media ($footer-breakpoint-smallToMedium-from) {
+			align-self: center;
+
+			@media ($footer-breakpoint-mediumToLarge-until) {
+				grid-area: socials;
+				margin-right: vr-unit(0.5);
+				margin-bottom: vr-unit(2);
+				justify-self: self-end;
+			}
+		}
+
+		&::before {
+			content: "";
+			mask-image: url("../images/icon-instagram.svg");
+			transition: background-color 200ms linear;
+			background-color: $colors-text;
+			padding: 1em;
+			position: absolute;
+			left: 0;
+			top: 0;
+			mask-size: 0.9em;
+			mask-repeat: no-repeat;
+			mask-position: center;
+		}
+
+		&:hover {
+			background-color: $colors-emphasizing;
+
+			&::before {
+				background-color: $colors-default-background;
+			}
+		}
+
+		&-icon {
+			max-height: 2em;
+			max-width: 1.7em;
+
+			&-label {
+				fill: $colors-default-background;
+				font-size: 1.2em;
+				font-weight: $fonts-delm-weight-bold;
+				pointer-events: none; // otherwise hover state does not trigger on background circle
+			}
+		}
+	}
+
+	&-logoLink {
+		grid-area: logo-full;
+		align-self: self-end;
+		display: block;
+		width: 10rem;
+		height: 3rem;
+		background-size: 10rem;
+		background-image: url("../images/logo-hb-full.svg");
+	}
+
+
+	&-searchForm {
+		grid-area: search;
+		max-width: 13em;
+		justify-self: center;
+
+		@media ($footer-breakpoint-mediumToLarge-until) {
+			width: calc(100% - #{vr-unit(1)});
+		}
+	}
+}

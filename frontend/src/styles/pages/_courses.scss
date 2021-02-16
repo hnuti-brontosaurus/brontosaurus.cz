@@ -1,0 +1,18 @@
+.courses {
+	&-heading {
+		text-align: center;
+	}
+
+	&-events {
+		margin-bottom: vr-unit(2);
+	}
+
+	&-description {
+		margin-bottom: vr-unit(3);
+
+		&-highSchoolProgramsLink {
+			background-image: url("../images/highSchoolPrograms.jpg");
+			background-position-y: 36%;
+		}
+	}
+}

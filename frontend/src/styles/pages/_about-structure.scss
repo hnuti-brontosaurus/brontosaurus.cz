@@ -1,0 +1,162 @@
+.about-structure {
+	&__overview {
+		display: flex;
+		align-items: center;
+		margin-bottom: vr-unit(2);
+
+		@media ($typography-breakpoint-large-from) {
+			justify-content: center; // when there is no brontoimage
+			max-width: 40rem;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+
+	&-text {
+		@include block-text();
+
+		&:not(:last-child) {
+			margin-bottom: vr-unit(1);
+		}
+	}
+
+	&-image {
+		flex-basis: 17em;
+		flex-shrink: 0;
+
+		// hide on small screens and touch devices
+		@media (max-width: 50em), (pointer: none), (pointer: coarse) {
+			display: none;
+		}
+
+		&-part {
+			&-shape {
+				fill: $colors-emphasizing;
+				cursor: pointer;
+				transition: fill 200ms linear;
+
+				&:hover {
+					fill: darken($colors-emphasizing, 10);
+				}
+			}
+
+			&-label {
+				fill: $colors-text;
+				font-size: 1.2em;
+				opacity: 0;
+				pointer-events: none;
+				transition: opacity 200ms 100ms linear;
+			}
+
+			&-shape:hover + &-label {
+				opacity: 1;
+				pointer-events: auto;
+			}
+		}
+	}
+
+	&-map {
+		max-width: 40rem;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: vr-unit(2);
+
+		&-filters {
+			display: flex;
+			flex-wrap: wrap;
+			font-size: 0.9em;
+			list-style-type: none;
+
+			@media ($typography-breakpoint-large-from) {
+				margin-bottom: vr-unit(0.5);
+			}
+
+			&-item {
+				margin-bottom: 0.3em;
+
+				&:not(:last-child) {
+					margin-right: 0.3em;
+				}
+
+				&-link {
+					&--icon {
+						background-size: 0.7em;
+						background-position: vr-unit(0.5) center;
+						padding-left: calc(#{vr-unit(1)} + 0.5em);
+					}
+
+					&--office {
+						background-image: url("../../../UI/AboutStructure/assets/dist/images/icon-marker-office.svg");
+					}
+					&--regional {
+						background-image: url("../../../UI/AboutStructure/assets/dist/images/icon-marker-regional.svg");
+					}
+					&--base {
+						background-image: url("../../../UI/AboutStructure/assets/dist/images/icon-marker-base.svg");
+					}
+					&--club {
+						background-image: url("../../../UI/AboutStructure/assets/dist/images/icon-marker-club.svg");
+					}
+					&--children {
+						background-image: url("../../../UI/AboutStructure/assets/dist/images/icon-marker-children.svg");
+					}
+				}
+
+				&--active &-link {
+					background-color: $colors-emphasizing;
+					color: $colors-default-background !important;
+				}
+			}
+		}
+
+		&-map {
+			height: 20em;
+			max-height: 100vh;
+			margin-left: -#{vr-unit(1)};
+			margin-right: -#{vr-unit(1)};
+
+			img {
+				max-width: initial;
+			}
+		}
+	}
+
+	&-unit {
+		margin-bottom: vr-unit(1);
+
+		@media ($typography-breakpoint-large-from) {
+			margin-bottom: vr-unit(2);
+		}
+
+		&-subheading {
+			font-weight: $fonts-delm-weight-bold !important;
+
+			@media ($typography-breakpoint-large-from) {
+				text-align: center;
+			}
+		}
+
+		&-description {
+			@include block-text();
+
+			&:not(:last-child) {
+				margin-bottom: vr-unit(0.5);
+			}
+		}
+
+		&-block {
+			max-width: 40rem;
+			margin-top: vr-unit(1);
+			margin-bottom: vr-unit(1);
+
+			@media ($presentationBox-breakpoint-textOnSide-from) {
+				min-height: vr-unit(15);
+				display: flex;
+				justify-content: center;
+				flex-direction: column;
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
+	}
+}

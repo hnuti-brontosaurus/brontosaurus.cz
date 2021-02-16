@@ -1,0 +1,280 @@
+{layout $layoutPath}
+
+{block content}
+<main class="support-adoption" role="main">
+	<h1 class="support-adoption-heading">
+		Adopce Brontosaura&nbsp;&ndash; pravidelná pomoc
+	</h1>
+
+	<p class="support-adoption-paragraph">
+		Adopce Brontosaura je tu pro všechny, kteří by rádi přispívali na dobré maličkosti
+		pravidelně. Jakou částkou měsíčně budeš přispívat, je jen na tobě. Navíc jako poděkování
+		máme pro každého <a href="#vyhody-pro-nase-podporovatele">několik výhod</a>.
+	</p>
+
+	<form action="" class="support-adoption-form">
+		<fieldset class="support-adoption-form-donation">
+			<legend class="support-adoption-form-donation-legend">
+				Chci podpořit práci Hnutí Brontosaurus částkou
+			</legend>
+
+			<div class="support-adoption-form-donation-item">
+				<input class="support-adoption-form-donation-item-checkbox" type="radio" id="monthly100" name="donation">
+
+				<label class="support-adoption-form-donation-item-label" for="monthly100">
+					100&nbsp;Kč měsíčně: jídlo a&nbsp;ubytování pro 1&nbsp;dobrovolníka na&nbsp;akci
+				</label>
+			</div>
+
+			<div class="support-adoption-form-donation-item">
+				<input class="support-adoption-form-donation-item-checkbox" type="radio" id="monthly300" name="donation">
+
+				<label class="support-adoption-form-donation-item-label" for="monthly300">
+					300&nbsp;Kč měsíčně: vyvěšení &nbsp;či obnova 10&nbsp;hnízdních budek
+				</label>
+			</div>
+
+			<div class="support-adoption-form-donation-item">
+				<input class="support-adoption-form-donation-item-checkbox" type="radio" id="monthly500" name="donation">
+
+				<label class="support-adoption-form-donation-item-label" for="monthly500">
+					500&nbsp;Kč a&nbsp;více měsíčně: spousta další užitečné práce
+				</label>
+			</div>
+
+			<div class="support-adoption-form-donation-item">
+				<input class="support-adoption-form-donation-item-checkbox" type="radio" id="other" name="donation">
+
+				<label class="support-adoption-form-donation-item-label" for="other">
+					Jinou částkou:<input class="support-adoption-form-donation-item-checkbox-custom" type="text"><span class="support-adoption-form-donation-item-label-currency">Kč/měsíčně</span>
+					{*@todo potom doladit pomocí JS - zaškrknu radio -> focus na input text*}
+				</label>
+			</div>
+		</fieldset>
+
+		<fieldset class="support-adoption-form-personalData">
+			<legend class="support-adoption-form-personalData-legend">
+				Mé osobní údaje
+			</legend>
+
+			<div class="support-adoption-form-personalData-gridWrapper">
+				<div class="support-adoption-form-personalData-item support-adoption-form-personalData-item--name">
+					<input type="text" class="support-adoption-form-personalData-item-input" id="firstName">
+
+					<label for="firstName" class="support-adoption-form-personalData-item-label">
+						Jméno
+					</label>
+				</div>
+
+				<div class="support-adoption-form-personalData-item support-adoption-form-personalData-item--lastName">
+					<input type="text" class="support-adoption-form-personalData-item-input" id="lastName">
+
+					<label for="lastName" class="support-adoption-form-personalData-item-label">
+						Příjmení
+					</label>
+				</div>
+
+				<div class="support-adoption-form-personalData-item support-adoption-form-personalData-item--street">
+					<input type="text" class="support-adoption-form-personalData-item-input" id="street">
+
+					<label for="street" class="support-adoption-form-personalData-item-label">
+						Ulice
+					</label>
+				</div>
+
+				<div class="support-adoption-form-personalData-item support-adoption-form-personalData-item--number">
+					<input type="text" class="support-adoption-form-personalData-item-input" id="number">
+
+					<label for="number" class="support-adoption-form-personalData-item-label">
+						Číslo
+					</label>
+				</div>
+
+				<div class="support-adoption-form-personalData-item support-adoption-form-personalData-item--psc">
+					<input type="text" class="support-adoption-form-personalData-item-input" id="psc">
+
+					<label for="psc" class="support-adoption-form-personalData-item-label">
+						PSČ
+					</label>
+				</div>
+
+				<div class="support-adoption-form-personalData-item support-adoption-form-personalData-item--email">
+					<input type="text" class="support-adoption-form-personalData-item-input" id="email">
+
+					<label for="email" class="support-adoption-form-personalData-item-label">
+						E-mail
+					</label>
+				</div>
+			</div>
+		</fieldset>
+
+		<div class="support-adoption-form-donationPlace">
+			<label class="support-adoption-form-donationPlace-label" for="regionalCenter">
+				Část daru chci věnovat konkrétnímu regionálnímu centru
+			</label>
+
+			<select class="support-adoption-form-donationPlace-select" id="regionalCenter">
+				<option value="withoutPreference">
+					Nemám preferenci
+				</option>
+
+				<option value="Morava">
+					Morava
+				</option>
+
+				<option value="Cechy">
+					Čechy
+				</option>
+				{* @todo půjde z databáze??*}
+			</select>
+		</div>
+
+		<div class="support-adoption-form-donationPlace">
+			<label class="support-adoption-form-donationPlace-label" for="baseElement">
+				Část daru chci věnovat konkrétnímu základnímu článku
+			</label>
+
+			<select class="support-adoption-form-donationPlace-select" id="baseElement">
+				<option value="withoutPreference">
+					Nemám preferenci
+				</option>
+
+				<option value="Morava">
+					Morava
+				</option>
+
+				<option value="Cechy">
+					Čechy
+				</option>
+				{* @todo půjde z databáze??*}
+			</select>
+		</div>
+
+		<div class="support-adoption-form-processingPersonalData">
+			<input class="support-adoption-form-processingPersonalData-checkbox" type="checkbox" id="donorList">
+
+			<label class="support-adoption-form-processingPersonalData-label" for="donorList">
+				Nechci být uveden na&nbsp;webu v&nbsp;seznamu dárců
+			</label>
+		</div>
+
+		<div class="support-adoption-form-processingPersonalData">
+			<input class="support-adoption-form-processingPersonalData-checkbox" type="checkbox" id="personalData">
+
+			<label class="support-adoption-form-processingPersonalData-label" for="personalData">
+				Potvrzuji pravdivost poskytnutých osobních údajů
+				a souhlasím, aby s nimi mohlo Hnutí Brontosaurus nakládat
+				dle zákona o ochraně osobních údajů.
+				Souhlasy...
+
+				{* @todo chybi souhlasy*}
+			</label>
+		</div>
+
+		<div class="support-adoption-form-buttonWrapper">
+			<button class="support-adoption-form-button" type="submit">
+				Odeslat údaje
+			</button>
+		</div>
+	</form>
+
+	<p class="support-adoption-paragraph">
+		Finanční dary nad 1&nbsp;000&nbsp;Kč u&nbsp;fyzických osob a&nbsp;nad 2&nbsp;000&nbsp;Kč u&nbsp;právnických osob lze odečíst ze
+		základu daně. Chcete se na něco zeptat? Kontaktujte nás: Ivo Brzobohatý,
+		adopce@brontosaurus.cz
+	</p>
+</main>
+
+<aside>
+	<section>
+		<h1 class="support-adoption-subheading">
+			Transparentní účet
+		</h1>
+
+		<p class="support-adoption-paragraph">
+			Máme transparentní účet&nbsp;&ndash; 2600217667/2010. Na něm můžete zkontrolovat, zda částka,
+			kterou jste brontosaury podpořili, dorazila v&nbsp;pořádku. Než však pošlete dar, počkejte prosím
+			na&nbsp;kontaktní e-mail, který obratem dorazí. Najdete v&nbsp;něm informace k&nbsp;platbě a&nbsp;především
+			unikátní variabilní symbol. Ten nám umožní platby bezpečně identifikovat. Děkujeme.
+		</p>
+	</section>
+
+	<section>
+		<h1 class="support-adoption-subheading" id="vyhody-pro-nase-podporovatele">
+			Výhody pro naše podporovatele
+		</h1>
+
+		<p class="support-adoption-paragraph">
+			Podpory dárců si&nbsp;velmi vážíme. Záleží nám na&nbsp;tom, aby o&nbsp;naší práci věděli. Všichni členové
+			Klubu příznivců, kteří se rozhodli podpořit aktivitu mladých lidí v&nbsp;péči o&nbsp;životní prostředí, od
+			nás proto pravidelně dostávají:
+		</p>
+
+		<ul class="list">
+			<li class="list__item">
+				Výroční zprávu
+			</li>
+
+			<li class="list__item">
+				Potvrzení o&nbsp;daru pro snížení základu daně
+			</li>
+
+			<li class="list__item">
+				Pozvánky na&nbsp;naše akce za&nbsp;zvýhodněné vstupné či&nbsp;zdarma
+			</li>
+
+			<li class="list__item">
+				Možnost využít slev a&nbsp;výhod, které mají členové Hnutí Brontosaurus
+			</li>
+
+			<li class="list__item">
+				Evropská karta mládeže EYCA (100&nbsp;000 slev v&nbsp;Evropě, 1&nbsp;200 slev v&nbsp;Česku)
+			</li>
+
+			<li class="list__item">
+				Pojištění na&nbsp;akcích a&nbsp;cestovní pojištění EYCA (eyca.cz) za&nbsp;190&nbsp;Kč ročně
+			</li>
+
+			<li class="list__item">
+				Díky kartám EYCA (<a href="https://www.eyca.cz/" target="_blank">eyca.cz</a>) sleva až&nbsp;10&nbsp;% na&nbsp;jízdenky Českých drah
+			</li>
+
+			<li class="list__item">
+				Možnost vyjet na mezinárodní výměny (zdarma či za část cestovného)
+			</li>
+
+			<li class="list__item">
+				Možnost připojit se&nbsp;k&nbsp;výhodné brontosauří telefonní síti (v&nbsp;jejím rámci volání zdarma)
+			</li>
+
+			<li class="list__item">
+				Slevy zboží v&nbsp;e-shopu
+			</li>
+
+			<li class="list__item">
+				Slevy a&nbsp;přednostní výběr na akce&nbsp;&ndash; tábory, kurzy (např. Cestičky), zážitkové akce, semináře,
+				brontosauří festivaly a&nbsp;další
+			</li>
+
+			<li class="list__item">
+				Slevy na&nbsp;ubytování v&nbsp;našich chatách a&nbsp;základnách
+			</li>
+
+			<li class="list__item">
+				Možnost využívat tábornické a&nbsp;sportovní vybavení
+			</li>
+
+			<li class="list__item">
+				Příležitost organizovat vlastní akce, založit si&nbsp;vlastní klub
+			</li>
+
+			<li class="list__item">
+				Nové kontakty a&nbsp;nabídka pomoci při&nbsp;tvých aktivitách ze&nbsp;strany <a href="{$contactsPageLink}">brontosauřího ústředí</a>
+			</li>
+
+			<li class="list__item">
+				Dobrý pocit, že&nbsp;podporuješ sdružení, jehož práce má smysl
+			</li>
+		</ul>
+	</section>
+</aside>

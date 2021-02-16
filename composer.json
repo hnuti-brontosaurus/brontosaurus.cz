@@ -1,0 +1,35 @@
+{
+    "require": {
+        "google/recaptcha": "^1.2",
+        "grifart/geocoding-client": "^0.1.0",
+        "hnuti-brontosaurus/php-bis-api-client": "^2.0",
+        "latte/latte": "^2.10",
+        "nette/http": "^3.1",
+        "nette/mail": "^3.1",
+        "nette/neon": "^3.2",
+        "nette/utils": "^3.2",
+        "sentry/sdk": "^3.1",
+        "tracy/tracy": "^2.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "HnutiBrontosaurus\\Theme\\": "."
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "8.0.0"
+        },
+        "sort-packages": true
+    },
+    "repositories": [
+        {
+            "url": "https://github.com/grifart/geocoding-client.git",
+            "type": "vcs"
+        },
+        {
+            "url": "https://github.com/hnuti-brontosaurus/php-bis-api-client.git",
+            "type": "vcs"
+        }
+    ]
+}

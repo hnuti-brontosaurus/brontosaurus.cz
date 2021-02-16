@@ -1,0 +1,164 @@
+{layout $layoutPath}
+
+{block content}
+<main role="main" id="obsah">
+	<h1 class="forchildren-heading">
+		Akce pro&nbsp;děti i&nbsp;rodiče
+	</h1>
+
+	<div class="forchildren-map-wrapper map-wrapper">
+		<a class="forchildren-map" href="{$aboutStructurePageLink}#mapa-detske-oddily">
+			dětské oddíly
+		</a>
+	</div>
+
+
+	<div class="forchildren-events events">
+		<h2 class="forchildren-heading sr-only">
+			Akce pro&nbsp;děti a&nbsp;rodiče s&nbsp;dětmi
+		</h2>
+
+		<div class="events-filters" id="events-filters"{if $filters->isAnySelected} data-collapse-openedOnLoad="1"{/if}>
+			<button class="events-filters-toggler button button--customization" id="events-filters-toggler" type="button" aria-hidden="true">
+				Zobrazit pouze
+			</button>
+
+			<ul class="events-filters-list" id="events-filters-list">
+				<li class="events-filters-list-item">
+					<a n:class="'events-filters-list-item-link', ! $filters->isAnySelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$forChildrenPageLink}#obsah">
+						vše
+					</a>
+				</li>
+
+				<li class="events-filters-list-item">
+					<a n:class="'events-filters-list-item-link', $filters->isCampsSelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$forChildrenPageLink}?{$filters->key}=detske-tabory#obsah">
+						dětské tábory
+					</a>
+				</li>
+
+				<li class="events-filters-list-item">
+					<a n:class="'events-filters-list-item-link', $filters->isUnitsSelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$forChildrenPageLink}?{$filters->key}=detske-oddily#obsah">
+						dětské oddíly
+					</a>
+				</li>
+
+				<li class="events-filters-list-item">
+					<a n:class="'events-filters-list-item-link', $filters->isEventsSelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$forChildrenPageLink}?{$filters->key}=akce-pro-deti#obsah">
+						akce pro&nbsp;děti
+					</a>
+				</li>
+
+				<li class="events-filters-list-item">
+					<a n:class="'events-filters-list-item-link', $filters->isEventsWithParentsSelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$forChildrenPageLink}?{$filters->key}=akce-pro-rodice-s-detmi#obsah">
+						akce pro&nbsp;rodiče s&nbsp;dětmi
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		{include '../components/@eventList.latte', eventCollection => $eventCollection}
+	</div>
+</main>
+
+<aside>
+	<section class="forchildren-description description">
+		<h1>
+			Programy pro&nbsp;děti
+		</h1>
+
+		<p class="description-text">
+			Brontosaurus nezapomíná ani na&nbsp;naše nejmenší. Brontosauří dětské oddíly BRĎO jsou pravidelně se&nbsp;setkávající kluby,
+			které pořádají i&nbsp;dětské tábory a&nbsp;další akce. Díky BRĎU mohou i&nbsp;nejmenší brontosauři pomoci přírodě a&nbsp;zároveň se&nbsp;naučit zajímat o&nbsp;svět kolem&nbsp;sebe.
+			Oddíly Brďo vedou zkušení organizátoři proškolení naším interním kurzem organizátora BRĎO.
+		</p>
+
+		<p class="description-text">
+			Hnutí Brontosaurus je jednou ze&nbsp;17&nbsp;organizací, které se&nbsp;mohou pyšnit titulem Organizace uznaná pro&nbsp;práci
+			s&nbsp;dětmi a&nbsp;mládeží, který uděluje Ministerstvo školství, mládeže a&nbsp;tělovýchovy ČR.
+		</p>
+
+		<div class="description-list">
+			<a class="description-list-item optionBox button--secondary-wrapper" href="{$forChildrenPageLink}?{$filters->key}=detske-tabory#obsah">
+				<div class="description-list-item-text optionBox__text">
+					<h2 class="optionBox__heading">
+						Tábory pro&nbsp;děti
+					</h2>
+
+					<p class="optionBox__description">
+						Brontosauří tábory pro&nbsp;děti se&nbsp;vyznačují silným příběhem,
+						rozmanitostí aktivit a&nbsp;výchovou dětí k&nbsp;přírodě a&nbsp;pečování o&nbsp;ni.
+					</p>
+				</div>
+
+				<div class="optionBox__image optionBox__image--forChildren-camps">
+					<div class="button button--secondary">{block |trim}{* because of whitespace in text underline *}
+							Najít tábor{/block}
+					</div>
+				</div>
+			</a>
+
+			<a class="description-list-item optionBox button--secondary-wrapper" href="{$forChildrenPageLink}?{$filters->key}=detske-oddily#obsah">
+				<div class="description-list-item-text optionBox__text">
+					<h2 class="optionBox__heading">
+						Dětské oddíly
+					</h2>
+
+					<p class="optionBox__description">
+						Brontosauří dětské oddíly se&nbsp;pravidelně scházejí v&nbsp;klubovně
+						i&nbsp;na&nbsp;výletech do&nbsp;přírody. Oddíly vedou proškolení organizátoři.
+					</p>
+				</div>
+
+				<div class="optionBox__image optionBox__image--forChildren-units">
+					<div class="button button--secondary">{block |trim}{* because of whitespace in text underline *}
+							Seznam dětských oddílů{/block}
+					</div>
+				</div>
+			</a>
+
+			<a class="description-list-item optionBox button--secondary-wrapper" href="{$forChildrenPageLink}?{$filters->key}=akce-pro-deti#obsah">
+				<div class="description-list-item-text optionBox__text">
+					<h2 class="optionBox__heading">
+						Akce pro&nbsp;děti
+					</h2>
+
+					<p class="optionBox__description">
+						Hnutí Brontosaurus nezapomíná ani na&nbsp;ty nejmenší, a&nbsp;proto pořádáme dobrodružné výpravy a&nbsp;pobyty v&nbsp;přírodě,
+						nejrůznější akce pro&nbsp;veřejnost a&nbsp;samozřejmě také letní tábory.
+						Díky spojení zážitků s&nbsp;ekologickou výchovou se&nbsp;nám
+						daří probouzet v&nbsp;dětech zájem o&nbsp;přírodu a&nbsp;její ochranu.
+					</p>
+				</div>
+
+				<div class="optionBox__image optionBox__image--forChildren-events">
+					<div class="button button--secondary">{block |trim}{* because of whitespace in text underline *}
+							Najít akci pro&nbsp;děti{/block}
+					</div>
+				</div>
+			</a>
+
+			<a class="description-list-item optionBox button--secondary-wrapper" href="{$forChildrenPageLink}?{$filters->key}=akce-pro-rodice-s-detmi#obsah">
+				<div class="description-list-item-text optionBox__text">
+					<h2 class="optionBox__heading">
+						Akce pro&nbsp;rodiče s&nbsp;dětmi
+					</h2>
+
+					<p class="optionBox__description">
+						Pro&nbsp;aktivní rodiče, kteří nechtějí strávit dovolenou
+						s&nbsp;dětmi vyvalováním&nbsp;se u&nbsp;moře, pořádá Brontosaurus tábory
+						pro&nbsp;rodiče s&nbsp;dětmi, kde&nbsp;se zážitkový program a&nbsp;pohoda střídá s&nbsp;dobrovolnickou pomocí.
+					</p>
+				</div>
+
+				<div class="optionBox__image optionBox__image--forChildren-eventsWithParents">
+					<div class="button button--secondary">{block |trim}{* because of whitespace in text underline *}
+							Najít akci pro&nbsp;rodiče s&nbsp;dětmi{/block}
+					</div>
+				</div>
+			</a>
+		</div>
+	</section>
+
+
+	{include '../components/@related.latte', excludeForChildren => TRUE}
+</aside>

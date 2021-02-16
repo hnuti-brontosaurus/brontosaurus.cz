@@ -1,0 +1,222 @@
+$registration-breakpoint-form-oneColumnToTwoColumns: 50em;
+$registration-breakpoint-form-oneColumn-until: "max-width: " + $registration-breakpoint-form-oneColumnToTwoColumns;
+$registration-breakpoint-form-twoColumns-from: "min-width: " + ($registration-breakpoint-form-oneColumnToTwoColumns + 0.001);
+
+.registration {
+	max-width: 32rem;
+	margin-left: auto;
+	margin-right: auto;
+
+	&__text {
+		text-align: center;
+	}
+
+	&__actionButton {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 9em; // fallback
+		max-width: max-content;
+
+		&--brontoweb {
+			margin-bottom: vr-unit(0.5);
+			border: 2px solid transparent;
+			cursor: pointer;
+
+			&::after {
+				top: calc(50% - 8px);
+				width: 10px;
+				height: 16px;
+				mask-image: url("../images/icon-arrow.svg");
+				mask-repeat: no-repeat;
+				mask-size: auto 100%;
+				background-color: $colors-default-background;
+				background-image: none;
+				transition:
+					background-color 200ms ease-in-out,
+					transform 200ms ease-in-out;
+			}
+		}
+
+		&--brontoweb.registration__actionButton--activated {
+			background-color: $colors-default-background;
+			border-color: $colors-emphasizing;
+			color: $colors-emphasizing !important;
+
+			&:hover {
+				background-color: $colors-emphasizing;
+				color: $colors-default-background !important;
+			}
+
+			&::after {
+				transform: rotate(100grad);
+				background-color: $colors-emphasizing;
+			}
+			&:hover {
+				&::after {
+					background-color: $colors-default-background;
+				}
+			}
+		}
+
+		&--email {
+			&::after {
+				top: calc(50% - 9px);
+				width: 16px;
+				height: 16px;
+				mask-image: url("../images/icon-letter.svg");
+				mask-repeat: no-repeat;
+				mask-size: auto 100%;
+				background-color: $colors-default-background;
+				background-image: none;
+				transition:
+					background-color 200ms ease-in-out,
+					transform 200ms ease-in-out;
+			}
+		}
+
+		&--customWebpage {
+			&::after {
+				top: calc(50% - 9px);
+				width: 18px;
+				height: 16px;
+				mask-image: url("../images/icon-link-external.svg");
+				mask-repeat: no-repeat;
+				mask-size: auto 100%;
+				background-color: $colors-default-background;
+				background-image: none;
+				transition:
+					background-color 200ms ease-in-out,
+					transform 200ms ease-in-out;
+			}
+		}
+	}
+
+	&__form {
+		--formHeight: none; // is set on DOMContentLoaded to a set number via javascript
+		position: relative;
+		padding: vr-unit(2) vr-unit(1);
+		overflow: hidden;
+		max-height: var(--formHeight);
+		border-radius: 2em;
+		background-color: $colors-tinge;
+
+		@media ($registration-breakpoint-form-twoColumns-from) {
+			padding: vr-unit(2);
+		}
+
+		/*&::before { // @todo: does not work as it is hidden behind overflow
+			content: "";
+			position: absolute;
+			height: 0;
+			width: 0;
+			border: 15px solid transparent;
+			border-bottom-color: $colors-tinge;
+			top: -30px;
+		}*/
+
+		&--hidden {
+			max-height: 0;
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+
+		&--animateStateChanges {
+			transition:
+				max-height 200ms ease-in-out,
+				padding 200ms 50ms ease-in-out;
+		}
+	}
+
+	&__formError {
+		list-style-type: none;
+		margin: 0 -1.3rem 0.65rem;
+		background-color: $colors-error;
+		color: $colors-default-background;
+		padding: 0.65rem 1.3rem 0.4rem;
+	}
+
+	&__formRow {
+		display: flex;
+		margin-bottom: vr-unit(0.25);
+
+		@media ($registration-breakpoint-form-oneColumn-until) {
+			flex-direction: column;
+		}
+		@media ($registration-breakpoint-form-twoColumns-from) {
+			align-items: center;
+		}
+
+		&--biggerBottomOffset {
+			margin-bottom: vr-unit(2);
+		}
+
+		&--consent {
+			display: block;
+			margin-bottom: vr-unit(0.5);
+			font-size: 0.8em;
+			text-align: center;
+		}
+	}
+
+	--labelWidth: #{vr-unit(7)};
+	&__inputLabel {
+		@media ($registration-breakpoint-form-twoColumns-from) {
+			flex-basis: var(--labelWidth);
+			padding-right: vr-unit(0.25);
+		}
+
+		&--note {
+			align-self: flex-start;
+			padding-top: vr-unit(0.25);
+		}
+	}
+
+	&__inputLabelNote {
+		display: block;
+		margin-bottom: 0.25rem;
+		line-height: 0.8;
+		font-size: 0.8em;
+		color: $colors-framing;
+	}
+
+	&__inputField {
+		padding-top: 13px !important; // @todo: change to label inside of inputs
+		padding-bottom: 4px !important; // like in support adoption view
+		background-color: $colors-default-background;
+
+		&--birthDate {
+			max-width: 6em;
+		}
+
+		&--phoneNumber {
+			max-width: 8em;
+		}
+
+		&--email,
+		&--note {
+			@media ($registration-breakpoint-form-twoColumns-from) {
+				width: calc(100% - var(--labelWidth));
+			}
+		}
+
+		&--note {
+			min-height: 6em;
+		}
+	}
+
+	&__inputNote {
+		color: $colors-framing;
+		font-size: 0.85em;
+
+		@media ($registration-breakpoint-form-twoColumns-from) {
+			margin-left: vr-unit(0.5);
+		}
+	}
+
+	&__formSubmitButton {
+		@media ($registration-breakpoint-form-twoColumns-from) {
+			margin-left: 8em;
+		}
+	}
+}

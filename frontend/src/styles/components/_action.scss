@@ -1,0 +1,23 @@
+.action {
+	// Primary action, so called "CTA".
+	&--primary {} // @todo: will be moved from .button--primary
+
+	// When there are more possibilities to interact with.
+	&--possible {} // @todo: will be moved from .button--secondary
+
+	// An additional action when you want to allow user to see more information about primary action's content.
+	&--ulterior {
+		display: block;
+		max-width: max-content;
+		margin-left: auto;
+		margin-right: auto;
+
+		--iconSize: 0.8em;
+		background-image: url("../images/icon-smallPaw.svg");
+		padding-left: calc(var(--iconSize) + #{vr-unit(0.25)});
+		background-size: auto var(--iconSize);
+		background-position: left 0.15em;
+
+		text-decoration: underline;
+	}
+}

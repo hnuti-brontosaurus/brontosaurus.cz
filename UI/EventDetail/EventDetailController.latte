@@ -1,0 +1,314 @@
+{layout $layoutPath}
+
+{block content}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<div class="detail__flashMessage" n:if="$applicationFormSuccess">
+	Přihlášku jsme přijali, brzy Ti napíšeme! Na Tvůj mail jsme zatím poslali její kopii.
+
+	<button class="detail__flashMessage-closeButton" type="button"></button>
+</div>
+
+<main role="main">
+	<article class="detail">
+		{if $hasBeenUnableToLoad}
+			<div class="detail__noResults noResults">
+				Promiňte, zrovna&nbsp;nám vypadl systém, kde&nbsp;máme uloženy všechny informace o&nbsp;plánovaných akcích.
+				Zkuste&nbsp;to prosím za&nbsp;chvilku znovu.
+			</div>
+		{else}
+			<h1 class="detail__heading">
+				{$event->title}
+			</h1>
+
+			<div class="detail__top">
+				<div class="detail__tagList-wrapper">
+					{if $event->hasCoverPhoto}
+						<a class="detail__coverImage-wrapper" href="{$event->coverPhotoPath}">
+							<img class="detail__coverImage" src="{if $event->hasCoverPhoto}{$event->coverPhotoPath}{else}{$distPath}/images/logo-hb-brontosaurus.svg{/if}" alt="">
+						</a>
+					{else}
+						<div class="detail__coverImage detail__coverImage--none"></div>
+					{/if}
+
+					<div class="detail__tagList eventTagList">
+						<span
+							n:class="'eventTagList__item', 'eventTagList__item--type', $event->program->isOfTypeNature ? 'eventTagList__item--nature', $event->program->isOfTypeSights ? 'eventTagList__item--sights'"
+							n:if="$event->program->isOfTypeNature || $event->program->isOfTypeSights"
+						>
+							akce
+							{if $event->program->isOfTypeNature}
+								příroda
+							{elseif $event->program->isOfTypeSights}
+								památky
+							{/if}
+						</span>
+
+						<div class="eventTagList__item" n:if="$event->program->isOfTypePsb">
+							prázdninové
+						</div>
+
+						<div class="eventTagList__item" n:if="! ($event->program->isOfTypePsb && $event->isLongTime)">
+							{$event->duration|typeByDayCount}
+						</div>
+					</div>
+				</div>
+
+				<div class="detail__basicInformation-wrapper">
+					<table class="detail__basicInformation">
+						<tr class="detail__basicInformation-item">
+							<th class="detail__basicInformation-label">
+								Datum
+							</th>
+
+							<td class="detail__basicInformation-value">
+								<time datetime="{$event->dateStartForRobots}">
+									{$event->dateSpan}
+								</time>
+							</td>
+						</tr>
+
+						<tr class="detail__basicInformation-item">
+							<th class="detail__basicInformation-label">
+								Místo
+							</th>
+
+							<td class="detail__basicInformation-value">
+								<a class="detail__basicInformation-mapLink" href="https://mapy.cz/zakladni?q={$event->place->coordinates}" rel="noopener noreferrer" target="_blank" n:tag-if="$event->place->areCoordinatesListed">
+									{$event->place->name}
+								</a>
+							</td>
+						</tr>
+
+						<tr class="detail__basicInformation-item" n:if="$event->age->isListed">
+							<th class="detail__basicInformation-label">
+								Věk
+							</th>
+
+							<td class="detail__basicInformation-value">
+								{if $event->age->isInterval}
+								{$event->age->from}&ndash;{$event->age->until} let
+								{elseif $event->age->isFromListed}
+									od {$event->age->from}
+									{if $event->age->from === 1}roku{else}let{/if}
+								{elseif $event->age->isUntilListed}
+									do {$event->age->until} let
+								{/if}
+							</td>
+						</tr>
+
+						<tr class="detail__basicInformation-item" n:if="$event->hasTimeStart">
+							<th class="detail__basicInformation-label">
+								Začátek akce
+							</th>
+
+							<td class="detail__basicInformation-value">
+								<time>
+									{$event->timeStart}
+								</time>
+							</td>
+						</tr>
+
+						<tr class="detail__basicInformation-item">
+							<th class="detail__basicInformation-label">
+								Cena
+							</th>
+
+							<td class="detail__basicInformation-value">
+								{if $event->isPaid}
+									{$event->price} Kč
+								{else}
+									<span class="detail__basicInformation-priceNoFee">
+									bez poplatku
+								</span>
+								{/if}
+							</td>
+						</tr>
+
+						<tr class="detail__basicInformation-item">
+							<th class="detail__basicInformation-label">
+								Kontaktní osoba
+							</th>
+
+							<td class="detail__basicInformation-value">
+								{$event->contact->person}<br>
+								<a class="detail__basicInformation-contact" href="tel:{$event->contact->phone}" rel="noopener noreferrer" target="_blank">{$event->contact->phone|formatPhoneNumber}</a><br>
+								<a class="detail__basicInformation-contact" href="mailto:{$event->contact->email}" rel="noopener noreferrer" target="_blank">{$event->contact->email}</a>
+							</td>
+						</tr>
+
+						<tr class="detail__basicInformation-item" n:if="$event->hasRelatedWebsite">
+							<th class="detail__basicInformation-label">
+								Web akce:
+							</th>
+
+							<td class="detail__basicInformation-value">
+								<a class="detail-contact-data-website" href="{$event->relatedWebsite}" rel="noopener noreferrer" target="_blank">
+									{$event->relatedWebsite|renderWebsiteUserFriendly}
+								</a>
+							</td>
+						</tr>
+					</table>
+
+					<div class="detail__firstTimeAttendeesInformation" n:if="$event->isForFirstTimeAttendees">
+						Akce je&nbsp;vhodná i&nbsp;pro&nbsp;ty, co&nbsp;s&nbsp;námi
+						<a href="{$firstTimePageLink}">jedou poprvé</a>.
+					</div>
+				</div>
+			</div>
+
+			<div class="detail__registrationLink">
+				{include '@registration.latte',
+					event => $event,
+					categoryLink => $categoryLink,
+					displayForm => FALSE,
+					errors => $applicationFormErrors,
+					formData => $applicationFormData,
+					recaptchaSiteKey => $recaptchaSiteKey,
+				}
+			</div>
+
+			<!--section 2-->
+			<div class="detail-program" n:if="$event->invitation->introduction">{*@todo: remove if *}
+				<h2>
+					Co na nás čeká
+				</h2>
+
+				<p class="detail-program-paragraph">
+					{$event->invitation->introduction|noescape}{* @todo: set escaping filter *}
+				</p>
+			</div>
+
+			<!--section 3-->
+			<div class="detail-information" n:if="$event->invitation->organizationalInformation">{*@todo: remove if *}
+				<h2>
+					Co, kde a jak
+				</h2>
+
+				<p class="detail-information-paragraph">
+					{$event->invitation->organizationalInformation|noescape}{* @todo: set escaping filter *}
+				</p>
+
+				<ul class="detail-information-list" n:if="$event->invitation->isAccommodationListed || $event->invitation->isFoodListed">
+					<li n:if="$event->invitation->isAccommodationListed">
+						Ubytování: {$event->invitation->accommodation}
+					</li>
+
+					<li n:if="$event->invitation->isFoodListed">
+						Strava:
+						{switch TRUE}
+							{case $event->invitation->isFoodOfTypeChooseable}
+							můžete si vybrat
+							{case $event->invitation->isFoodOfTypeVegetarian}
+							vegetariánská
+							{case $event->invitation->isFoodOfTypeNonVegetarian}
+							ne-vegetariánská
+						{/switch}
+					</li>
+				</ul>
+			</div>
+
+			<!--section 4-->
+			<div class="detail-work" n:if="$event->invitation->workDescription">{*@todo: remove if *}
+				<h2>
+					Dobrovolnická pomoc
+				</h2>
+
+				<p class="detail-work-paragraph">
+					{$event->invitation->workDescription|noescape}{* @todo: set escaping filter *}
+				</p>
+
+				<div n:if="$event->invitation->areWorkHoursPerDayListed">
+					Na&nbsp;akci budeme pracovat přibližně {$event->invitation->workHoursPerDay} hodin denně.
+				</div>
+			</div>
+
+			<!--section 5-->
+			<div class="detail-example" n:if="$event->invitation->hasPresentation">
+				<div class="detail-example-text">
+					<h2>
+						Malá ochutnávka
+					</h2>
+
+					<p class="detail-example-paragraph" n:if="$event->invitation->presentation->hasText">
+						{$event->invitation->presentation->text|noescape}{* @todo: set escaping filter *}
+					</p>
+				</div>
+
+				<ul class="photogallery" n:if="$event->invitation->presentation->hasAnyPhotos">
+					<li class="photogallery__item" n:foreach="$event->invitation->presentation->photos as $photo">
+						<a class="photogallery__link" href="{$photo}">
+							<img src="{$photo}" alt="" class="photogallery__image">
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<!--section 5-->
+			<div class="detail-team" n:if="$event->areOrganizersListed">
+				<h2>
+					Organizační tým
+				</h2>
+
+				<p class="detail-team-paragraph">
+					Těší se na tebe {$event->organizers}.
+				</p>
+			</div>
+
+			<!--section 6-->
+			<div class="detail-contact">
+				<h2>
+					Kontakt
+				</h2>
+
+				<div class="detail-contact-data">
+					Kontaktní osoba: {$event->contact->person}<br>
+				E-mail: <a href="mailto:{$event->contact->email}" rel="noopener noreferrer" target="_blank">{$event->contact->email}</a><br>
+				Telefon: <a href="tel:{$event->contact->phone}" rel="noopener noreferrer" target="_blank">{$event->contact->phone|formatPhoneNumber}</a>
+
+					{if $event->hasRelatedWebsite}
+						<br>
+						Webová stránka: <a class="detail-contact-data-website" href="{$event->relatedWebsite}" rel="noopener noreferrer" target="_blank">odkaz</a>
+					{/if}
+				</div>
+			</div>
+
+			<div class="detail-registrationLink-wrapper">
+				<div class="detail-registrationLink">
+					{include '@registration.latte',
+						event => $event,
+						categoryLink => $categoryLink,
+						displayForm => TRUE,
+						errors => $applicationFormErrors,
+						formData => $applicationFormData,
+						recaptchaSiteKey => $recaptchaSiteKey,
+					}
+				</div>
+			</div>
+		{/if}
+	</article>
+</main>
+
+<aside>
+	<section class="detail-promo">
+		<h1>
+			Proč jet s Brontosaurem
+		</h1>
+
+		<p class="detail-promo-paragraph">
+			Za více než 45 let své existence se brontosaurus naučil propojovat dobrovolnictví, zážitky a neformální vzdělávání
+			tak, aby vznikaly akce, které pomohou nejen přírodní lokalitě nebo památkám, ale i jejich účastníkům.
+			Potkej se s partou lidí, kteří se zajímají o svět kolem sebe a kteří, stejně jako ty, hledají možnost se rozvíjet
+			a poznat nové přátele.
+		</p>
+
+		<p class="detail-promo-paragraph">
+			Dobrovolnictví je pro brontosaura cestou k novým zážitkům, přátelům a dovednostem. Díky našim akcím se
+			podařilo nejen opravit množství památek, ochraňovat jedinečné živočišné i rostlinné druhy nebo navázat
+			na české kořeny na Balkáně, ale i naučit spoustu lidí spoustu věcí, získat přátelství na celý život a ukázat
+			každému úplně nový svět.
+		</p>
+
+		<a class="detail-promo-moreLink action action--ulterior" href="{$aboutCrossroadPageLink}">více o&nbsp;Brontosaurovi</a>
+	</section>
+</aside>
