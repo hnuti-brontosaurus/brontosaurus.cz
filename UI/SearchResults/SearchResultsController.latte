@@ -1,0 +1,17 @@
+{layout $layoutPath}
+
+{block content}
+
+{* docs: https://developers.google.com/custom-search/docs/element *}
+<main class="searchResults" role="main">
+	<div class="searchResults__form-wrapper">
+		<div class="searchResults__form searchForm__gcseRoot">
+			<gcse:searchbox />
+		</div>
+	</div>
+
+	<div class="searchResults__results">
+		<gcse:searchresults enableOrderBy="false" linkTarget="_self" />
+	</div>
+</main>
+

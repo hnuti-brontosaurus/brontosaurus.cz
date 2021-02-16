@@ -25,6 +25,7 @@ use HnutiBrontosaurus\Theme\UI\Meetups\MeetupsController;
 use HnutiBrontosaurus\Theme\UI\News\NewsController;
 use HnutiBrontosaurus\Theme\UI\Partners\PartnersController;
 use HnutiBrontosaurus\Theme\UI\Rentals\RentalsController;
+use HnutiBrontosaurus\Theme\UI\SearchResults\SearchResultsController;
 use HnutiBrontosaurus\Theme\UI\SupportAdoption\SupportAdoptionController;
 use HnutiBrontosaurus\Theme\UI\SupportOverview\SupportOverviewController;
 use HnutiBrontosaurus\Theme\UI\Voluntary\VoluntaryController;
@@ -83,6 +84,7 @@ final class ControllerFactory
 			AboutStructureController::PAGE_SLUG => new AboutStructureController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte, $this->geocodingClientFacade),
 			EventDetailController::PAGE_SLUG => new EventDetailController($this->dateFormatHuman, $this->dateFormatRobot, $this->recaptchaSiteKey, $this->recaptchaSecretKey, $this->applicationFormFacade, $this->bisApiClient, $base, $this->latte, $this->httpRequest, $this->logger),
 			'co-je-noveho' => new NewsController($this->dateFormatHuman, $this->dateFormatRobot, $base, $this->latte),
+			'vysledky-vyhledavani' => new SearchResultsController($base, $this->latte),
 			default => new ErrorController($base, $this->latte),
 		};
 	}
