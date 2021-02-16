@@ -97,7 +97,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 			$sentryLogger,
 		),
 		$bisApiClient,
-		new BaseFactory(),
+		new BaseFactory($configuration->get('enableTracking')),
 		$latte,
 		new GeocodingClientFacade(
 			new CachedGeocodingService(

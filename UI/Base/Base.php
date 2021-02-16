@@ -6,6 +6,7 @@ namespace HnutiBrontosaurus\Theme\UI\Base;
 final class Base
 {
 	public function __construct(
+		private bool $enableTracking,
 		private ?\WP_Post $currentPost,
 	) {}
 
@@ -20,7 +21,7 @@ final class Base
 			'layoutPath' => $this->getLayoutPath(),
 			'languageCode' => get_language_attributes(),
 			'themePath' => get_template_directory_uri(),
-			'enableTracking' => false, // todo
+			'enableTracking' => $this->enableTracking,
 			'isOnSearchResultsPage' => $this->currentPost?->post_name === 'vysledky-vyhledavani',
 			'searchResultsPageLink' => $this->getLinkFor('vysledky-vyhledavani'),
 			'isOnEnglishPage' => $this->currentPost?->post_name === 'english',

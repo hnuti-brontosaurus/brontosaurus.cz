@@ -5,10 +5,13 @@ namespace HnutiBrontosaurus\Theme\UI\Base;
 
 final class BaseFactory
 {
+	public function __construct(
+		private bool $enableTracking,
+	) {}
 
 	public function create(?\WP_Post $currentPost): Base
 	{
-		return new Base($currentPost);
+		return new Base($this->enableTracking, $currentPost);
 	}
 
 }
