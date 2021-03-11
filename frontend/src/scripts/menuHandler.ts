@@ -56,8 +56,8 @@ const handleMenuVisibilityWhenScrolling = () => {
 	const headroom = new Headroom(menuElement, {
 		tolerance: {
 			up: 50,
+			down: 0,
 		},
 	});
 	headroom.init();
-	headroom.update();
 };
