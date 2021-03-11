@@ -20,7 +20,7 @@ final class ApplicationForm
 
 
 	/**
-	 * @param ApplicationFormAdditionalQuestion[]|null $additionalQuestions
+	 * @param ApplicationFormAdditionalQuestion[] $additionalQuestions
 	 */
 	private function __construct(
 		private string $firstName,
@@ -28,24 +28,22 @@ final class ApplicationForm
 		private string $birthDate,
 		private ?string $phoneNumber,
 		private string $emailAddress,
-		private ?array $additionalQuestions,
+		private array $additionalQuestions,
 		private ?string $note,
 	) {}
 
 
 	/**
-	 * @param RegistrationQuestion[]|null $questions
+	 * @param RegistrationQuestion[] $questions
 	 */
-	public static function fromRequest(Request $httpRequest, ?array $questions): self
+	public static function fromRequest(Request $httpRequest, array $questions): self
 	{
 		$questionsAndAnswers = [];
 
-		if ($questions !== null) {
-			$i = 0;
-			foreach ($questions as $question) {
-				$questionsAndAnswers[] = ApplicationFormAdditionalQuestion::from($question->toString(), $httpRequest->getPost(self::FIELD_QUESTION_PREFIX . $i));
-				$i++;
-			}
+		$i = 0;
+		foreach ($questions as $question) {
+			$questionsAndAnswers[] = ApplicationFormAdditionalQuestion::from($question->toString(), $httpRequest->getPost(self::FIELD_QUESTION_PREFIX . $i));
+			$i++;
 		}
 
 		return new self(
@@ -54,7 +52,7 @@ final class ApplicationForm
 			$httpRequest->getPost(self::FIELD_BIRTH_DATE),
 			$httpRequest->getPost(self::FIELD_PHONE_NUMBER),
 			$httpRequest->getPost(self::FIELD_EMAIL_ADDRESS),
-			\count($questionsAndAnswers) > 0 ? $questionsAndAnswers : null,
+			$questionsAndAnswers,
 			$httpRequest->getPost(self::FIELD_NOTE)
 		);
 	}
@@ -92,13 +90,13 @@ final class ApplicationForm
 
 	public function hasAdditionalQuestions(): bool
 	{
-		return $this->additionalQuestions !== null;
+		return \count($this->additionalQuestions) > 0;
 	}
 
 	/**
-	 * @return ApplicationFormAdditionalQuestion[]|null
+	 * @return ApplicationFormAdditionalQuestion[]
 	 */
-	public function getAdditionalQuestions(): ?array
+	public function getAdditionalQuestions(): array
 	{
 		return $this->additionalQuestions;
 	}

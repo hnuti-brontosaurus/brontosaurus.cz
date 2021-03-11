@@ -70,9 +70,7 @@ final class ApplicationFormFacade
 			$applicationForm->getPhoneNumber(),
 			$applicationForm->getEmailAddress(),
 			$applicationForm->hasNote() ? $applicationForm->getNote() : null,
-			$applicationForm->hasAdditionalQuestions()
-				? \array_map(fn(ApplicationFormAdditionalQuestion $additionalQuestion) => $additionalQuestion->getAnswer(), $applicationForm->getAdditionalQuestions())
-				: null,
+			\array_map(fn(ApplicationFormAdditionalQuestion $additionalQuestion) => $additionalQuestion->getAnswer(), $applicationForm->getAdditionalQuestions()),
 		));
 	}
 

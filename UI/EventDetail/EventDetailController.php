@@ -175,7 +175,7 @@ final class EventDetailController implements Controller
 		}
 
 		$questions = $this->event->getRegistrationType()->getQuestions();
-		$applicationForm = ApplicationForm::fromRequest($this->httpRequest, \count($questions) > 0 ? $questions : null);
+		$applicationForm = ApplicationForm::fromRequest($this->httpRequest, $questions);
 
 		if ($this->applicationFormErrors !== null && \count($this->applicationFormErrors) > 0) { // if any error, do not continue
 			$this->applicationFormData = $applicationForm->toArray();
