@@ -225,6 +225,12 @@ $header-breakpoint-logo-whenVisible: "min-width: " + ($header-breakpoint-logo + 
 				padding-top: vr-unit(0.5);
 			}
 
+			&-list-item {
+				&::before {
+					position: absolute; // fixes sanitize.css bug https://github.com/csstools/sanitize.css/issues/203
+				}
+			}
+
 			&-list-item-link {
 				padding-left: vr-unit(0.5);
 				padding-right: vr-unit(0.5);
