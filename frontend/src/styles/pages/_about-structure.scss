@@ -82,6 +82,7 @@
 					&--icon {
 						background-size: 0.7em;
 						background-position: vr-unit(0.5) center;
+						background-repeat: no-repeat;
 						padding-left: calc(#{vr-unit(1)} + 0.5em);
 					}
 

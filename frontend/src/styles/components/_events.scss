@@ -193,6 +193,7 @@ $events-breakpoint-threeColumns-from: "min-width: " + ($events-breakpoint-TwoToT
 					background-image: url("../images/icon-datetime.svg");
 					background-position: left top;
 					background-size: auto 14px; // px so that the icon is not rendered blurry...
+					background-repeat: no-repeat;
 
 					@media ($typography-breakpoint-large-from) {
 						background-size: auto 16px; // ...but the we have to set new size when font becomes larger
@@ -205,6 +206,7 @@ $events-breakpoint-threeColumns-from: "min-width: " + ($events-breakpoint-TwoToT
 					background-image: url("../images/icon-place.svg");
 					background-position: left top;
 					background-size: auto 15px; // px so that the icon is not rendered blurry...
+					background-repeat: no-repeat;
 
 					@media ($typography-breakpoint-large-from) {
 						background-size: auto 17px; // ...but the we have to set new size when font becomes larger

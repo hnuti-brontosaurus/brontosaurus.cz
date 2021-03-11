@@ -12,6 +12,7 @@
 		background-image: url("../images/icon-map.svg");
 		background-position: left 0.1em;
 		background-size: $map-size-icon auto;
+		background-repeat: no-repeat;
 		display: inline-block;
 		padding-left: calc(#{$map-size-icon} + 0.5em);
 	}
