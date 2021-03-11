@@ -17,6 +17,7 @@
 		padding-left: calc(var(--iconSize) + #{vr-unit(0.25)});
 		background-size: auto var(--iconSize);
 		background-position: left 0.15em;
+		background-repeat: no-repeat;
 
 		text-decoration: underline;
 	}

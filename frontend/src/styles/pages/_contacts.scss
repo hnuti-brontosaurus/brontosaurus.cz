@@ -55,6 +55,7 @@
 					width: 2em;
 					margin-top: 0.05em;
 					background-size: auto 100%;
+					background-repeat: no-repeat;
 				}
 
 				&--address {
@@ -183,6 +184,7 @@
 					width: 23px;
 					height: 25px;
 					background-image: url("../images/icon-letter.svg");
+					background-repeat: no-repeat;
 					position: absolute;
 					margin-left: -#{vr-unit(1)};
 					margin-top: 0.1em;

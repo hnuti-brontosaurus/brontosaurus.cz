@@ -129,6 +129,7 @@ $detail-breakpoint-large-from: "min-width: " + ($detail-breakpoint-mediumToLarge
 		background-image: url("../images/icon-link-external-alt.svg");
 		background-position: right 0.2em;
 		background-size: auto 13px;
+		background-repeat: no-repeat;
 		padding-right: calc(13px + #{vr-unit(0.25)});
 	}
 
@@ -229,6 +230,7 @@ $detail-breakpoint-large-from: "min-width: " + ($detail-breakpoint-mediumToLarge
 				background-image: url("../images/icon-link-external-alt.svg");
 				background-position: right 0.2em;
 				background-size: auto 10px;
+				background-repeat: no-repeat;
 				padding-right: calc(10px + #{vr-unit(0.25)});
 			}
 		}
@@ -340,6 +342,7 @@ $flashMessage-breakpoint-forceCentered-from: "min-width: " + ($flashMessage-brea
 	border: none;
 	background-size: auto 1em;
 	background-position: center center;
+	background-repeat: no-repeat;
 	cursor: pointer;
 	margin-top: -#{vr-unit(0.5)};
 }

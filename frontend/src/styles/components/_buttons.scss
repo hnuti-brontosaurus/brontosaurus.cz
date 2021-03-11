@@ -93,6 +93,7 @@ $buttons-secondary-breakpoint-centeredButton-from: "min-width: " + ($buttons-sec
 			background-image: url("../images/icon-smallPaw.svg");
 			background-position: left top;
 			background-size: 100% auto;
+			background-repeat: no-repeat;
 			content: "";
 			display: inline-block;
 			height: 22px;

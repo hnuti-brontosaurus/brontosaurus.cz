@@ -97,6 +97,7 @@ $header-breakpoint-logo-whenVisible: "min-width: " + ($header-breakpoint-logo + 
 		background-image: url("../images/icon-search-black.svg");
 		background-position: center center;
 		background-size: auto 17px;
+		background-repeat: no-repeat;
 
 		@media (prefers-reduced-motion: no-preference) {
 			transition: background-color 200ms ease-in-out;
@@ -301,6 +302,7 @@ $header-breakpoint-logo-whenVisible: "min-width: " + ($header-breakpoint-logo + 
 			background-image: url("../images/icon-datetime-black.svg");
 			background-position: center center;
 			background-size: auto 18.4px; // in pixels so that the image is not blurry sometimes
+			background-repeat: no-repeat;
 			border-radius: 50%;
 
 			@media (prefers-reduced-motion: no-preference) {

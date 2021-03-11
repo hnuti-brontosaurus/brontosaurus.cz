@@ -9,6 +9,7 @@
 		margin-top: vr-unit(0.25);
 		padding: vr-unit(0.25) vr-unit(0.5) calc(#{vr-unit(0.25)} - 0.15em);
 		background-color: transparentize($colors-default-background, 0.1);
+		background-repeat: no-repeat;
 		border-radius: 2em;
 
 		&:not(:last-child) {

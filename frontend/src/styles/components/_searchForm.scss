@@ -113,7 +113,8 @@
 		background-color: transparent;
 		background-image: url("../images/icon-close-black.svg");
 		background-position: center;
-		background-size: 0.7em;
+		background-size: 0.71em;
+		background-repeat: no-repeat;
 
 		@media (max-width: 30em) {
 			right: -2em; // closer to form on small resolutions
