@@ -36,6 +36,8 @@ final class NewsDC
 	public static function fromPost(\WP_Post $post): self
 	{
 		$thumbnail = get_the_post_thumbnail_url($post);
+		$thumbnail = $thumbnail === false ? null : $thumbnail; // convert false to null which makes more sense
+
 		return new self(
 			$post->ID,
 			Utils::handleNonBreakingSpaces($post->post_title),
@@ -43,8 +45,8 @@ final class NewsDC
 			DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $post->post_date),
 			Utils::handleNonBreakingSpaces($post->post_excerpt),
 			Utils::handleNonBreakingSpaces($post->post_content),
-			$thumbnail !== '',
-			$thumbnail !== '' ? $thumbnail : null,
+			$thumbnail !== null,
+			$thumbnail,
 		);
 	}
 
