@@ -31,7 +31,13 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 (function (?\WP_Post $post) {
 	// latte
-	$latte = (new Engine())->setTempDirectory(__DIR__ . '/temp/cache/latte');
+	$cachePath = __DIR__ . '/temp/cache/latte';
+	if ( ! \is_dir($cachePath)) {
+		if ( ! @mkdir($cachePath, recursive: true)) {
+			throw new \RuntimeException('Can not create cache path.');
+		}
+	}
+	$latte = (new Engine())->setTempDirectory($cachePath);
 
 	// tracy
 	Debugger::$logDirectory = __DIR__ . '/log';
