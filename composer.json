@@ -1,4 +1,6 @@
 {
+    "name": "hnuti-brontosaurus/wp-theme",
+    "description": "WP theme for Hnutí Brontosaurus",
     "require": {
         "google/recaptcha": "^1.2",
         "grifart/geocoding-client": "^0.1.0",
