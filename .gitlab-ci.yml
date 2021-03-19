@@ -174,5 +174,5 @@ deploy.production:
         url: https://brontosaurus.cz
 
     script:
-        - "bash deploy/deploy.sh $PRODUCTION_REMOTE_USER_AND_HOST:$PRODUCTION_REMOTE_PROJECT_DIR/www/wp-content/themes/brontosaurus-theme"
-        - "ssh $PRODUCTION_REMOTE_USER_AND_HOST \"rm -rf $PRODUCTION_REMOTE_PROJECT_DIR/www/wp-content/themes/brontosaurus-theme/temp/cache\""
+        - "bash deploy/deploy.sh $PRODUCTION_REMOTE_USER_AND_HOST:$PRODUCTION_REMOTE_PROJECT_DIR/wp-content/themes/brontosaurus-theme"
+        - "ssh $PRODUCTION_REMOTE_USER_AND_HOST \"rm -rf $PRODUCTION_REMOTE_PROJECT_DIR/wp-content/themes/brontosaurus-theme/temp/cache\""
