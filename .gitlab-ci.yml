@@ -160,7 +160,7 @@ deploy.staging:
 
     script:
         - "bash deploy/deploy.sh $STAGING_REMOTE_USER_AND_HOST:$STAGING_REMOTE_PROJECT_DIR/wp-content/themes/brontosaurus-theme"
-        - "ssh $STAGING_REMOTE_USER_AND_HOST \"rm -r $STAGING_REMOTE_PROJECT_DIR/wp-content/themes/brontosaurus-theme/temp/cache\""
+        - "ssh $STAGING_REMOTE_USER_AND_HOST \"rm -rf $STAGING_REMOTE_PROJECT_DIR/wp-content/themes/brontosaurus-theme/temp/cache\""
 
 deploy.production:
     <<: *deploy-template
@@ -175,4 +175,4 @@ deploy.production:
 
     script:
         - "bash deploy/deploy.sh $PRODUCTION_REMOTE_USER_AND_HOST:$PRODUCTION_REMOTE_PROJECT_DIR/www/wp-content/themes/brontosaurus-theme"
-        - "ssh $PRODUCTION_REMOTE_USER_AND_HOST \"rm -r $PRODUCTION_REMOTE_PROJECT_DIR/www/wp-content/themes/brontosaurus-theme/temp/cache\""
+        - "ssh $PRODUCTION_REMOTE_USER_AND_HOST \"rm -rf $PRODUCTION_REMOTE_PROJECT_DIR/www/wp-content/themes/brontosaurus-theme/temp/cache\""

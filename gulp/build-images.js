@@ -30,7 +30,7 @@ import {ENV_PRODUCTION} from './constants';
  * @returns boolean
  */
 const isAssetOfView = (file, viewName) => {
-	const regex = new RegExp('views[\\\\\/]' + viewName + '[\\\\\/]assets'); // `\\\\` is escaped double backslash on Windows, `\/` is escaped single slash on UNIX
+	const regex = new RegExp('UI[\\\\\/]' + viewName + '[\\\\\/]assets'); // `\\\\` is escaped double backslash on Windows, `\/` is escaped single slash on UNIX
 	return file.base.match(regex)
 };
 
@@ -53,7 +53,7 @@ export default (cb, dirs) => {
 					quality: 75
 				}),
 				imagemin_pngquant({
-					quality: 50
+					quality: [0.49, 0.51] // we want express 0.5, but it needs a range
 				}),
 				imagemin.svgo()
 			], {
@@ -73,12 +73,12 @@ export default (cb, dirs) => {
 				upscale: false,
 				imageMagick: true,
 			}))))
-			.pipe(gulpIf(isProduction, gulpIf((file) => isAssetOfView(file, 'contacts'), imageResize({
+			.pipe(gulpIf(isProduction, gulpIf((file) => isAssetOfView(file, 'Contacts'), imageResize({
 				width: 850,
 				upscale: false,
 				imageMagick: true,
 			}))))
-			.pipe(gulpIf(isProduction, gulpIf((file) => isAssetOfView(file, 'rentals'), imageResize({
+			.pipe(gulpIf(isProduction, gulpIf((file) => isAssetOfView(file, 'Rentals'), imageResize({
 				width: 1024, // it would be better to have multiple files with different dimensions, but build infrastructure is not ready for that yet so this is quick fix (assuming that even opening the file itself in browser would not need more than 1024px wide photo)
 				upscale: false,
 				imageMagick: true,

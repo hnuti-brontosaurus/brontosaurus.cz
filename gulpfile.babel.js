@@ -100,9 +100,9 @@ gulp.task('watch:webfonts', gulp.series(buildWebfontsTask, () => {
 const buildImagesTask = (cb) => {
 	return buildImages(cb, [
 		paths.images.global,
-		paths.images.structure,
-		paths.images.contacts,
-		paths.images.rentals,
+		// paths.images.structure,
+		// paths.images.contacts,
+		// paths.images.rentals,
 	]);
 };
 
