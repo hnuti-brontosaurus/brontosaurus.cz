@@ -102,7 +102,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 		$latte,
 		new GeocodingClientFacade(
 			new CachedGeocodingService(
-				new CacheManager(__DIR__ . '/temp/cache/geocoding'),
+				new CacheManager(__DIR__ . '/temp/geocoding-cache'),
 				new MapyCzGeocodingService(
 					new Communicator(),
 					new Mapper(),
