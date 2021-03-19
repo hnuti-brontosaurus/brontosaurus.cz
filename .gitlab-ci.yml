@@ -7,6 +7,25 @@ stages:
     - build
     - test
     - pack
+    - deploy
+
+
+# GLOBAL TEMPLATES
+
+.only-staging: &only-staging
+    except:
+        refs:
+            - tags
+
+.only-production: &only-production
+    # tags that ends with --production
+    # valid deploy tags are:
+    # - 2028-01-03--23-59--production
+    only:
+        refs:
+            - tags
+        variables:
+            - $CI_COMMIT_TAG =~ /--production$/
 
 
 
@@ -34,7 +53,8 @@ build.frontend:
 
     artifacts:
         name: "${CI_BUILD_REF_NAME}_${CI_BUILD_NAME}"
-        paths:
+
+        paths: # note that you have to add a path also to the pack stage of this CI configuration
             - UI/AboutStructure/assets/dist
             - UI/Contacts/assets/dist
             - UI/EventDetail/assets/dist
@@ -54,29 +74,14 @@ build.frontend:
 
 # PACKAGE
 
-pack:
+.pack-template: &pack-template
     stage: pack
 
     before_script: ['echo "Packing artifacts together..."']
 
-    artifacts:
+    artifacts: &pack-template-artifacts
         paths:
             - brontosaurus-theme.zip
-        #            - config
-        #            - frontend
-        #            - log
-        #            - temp
-        #            - UI
-        #            - vendor
-        #            - composer.json
-        #            - composer.lock
-        #            - Configuration.php
-        #            - functions.php
-        #            - index.php
-        #            - screenshot.png
-        #            - SentryLogger.php
-        #            - style.css
-        expire_in: 1 day
 
     script:
         - 'zip -r brontosaurus-theme.zip .
@@ -102,3 +107,72 @@ pack:
     dependencies:
         - build.composer
         - build.frontend
+
+pack.staging:
+    <<: *pack-template
+    <<: *only-staging
+
+    artifacts:
+        <<: *pack-template-artifacts
+        expire_in: 1 week
+
+pack.production:
+    <<: *pack-template
+    <<: *only-production
+
+
+
+# DEPLOY
+
+.deploy-template: &deploy-template
+    stage: deploy
+    interruptible: false
+
+    artifacts:
+        expire_in: 2 weeks
+        paths:
+            - log/
+        when: on_failure
+
+    before_script:
+        # add server to `.ssh/known_hosts`
+        - mkdir -p /root/.ssh
+        - touch /root/.ssh/known_hosts
+        - echo "$SERVER_KEYSCAN" >> /root/.ssh/known_hosts
+
+        # add private & public key pair for authorization against server
+        - echo "$KEY_PRIVATE" > /root/.ssh/id_rsa
+        - echo "$KEY_PUBLIC" > /root/.ssh/id_rsa.pub
+
+        - unzip brontosaurus-theme.zip -d deploy/files
+
+
+deploy.staging:
+    <<: *deploy-template
+    <<: *only-staging
+
+    dependencies:
+        - pack.staging
+
+    environment:
+        name: staging
+        url: https://dev.brontosaurus.cz
+
+    script:
+        - "bash deploy/deploy.sh $STAGING_REMOTE_USER_AND_HOST:$STAGING_REMOTE_PROJECT_DIR/wp-content/themes/brontosaurus-theme"
+        - "ssh $STAGING_REMOTE_USER_AND_HOST \"rm -r $STAGING_REMOTE_PROJECT_DIR/wp-content/themes/brontosaurus-theme/temp/cache\""
+
+deploy.production:
+    <<: *deploy-template
+    <<: *only-production
+
+    dependencies:
+        - pack.production
+
+    environment:
+        name: production
+        url: https://brontosaurus.cz
+
+    script:
+        - "bash deploy/deploy.sh $PRODUCTION_REMOTE_USER_AND_HOST:$PRODUCTION_REMOTE_PROJECT_DIR/www/wp-content/themes/brontosaurus-theme"
+        - "ssh $PRODUCTION_REMOTE_USER_AND_HOST \"rm -r $PRODUCTION_REMOTE_PROJECT_DIR/www/wp-content/themes/brontosaurus-theme/temp/cache\""
