@@ -78,6 +78,15 @@ $news-breakpoint-coverImageFloating-from: "min-width: " + ($news-breakpoint-cove
 
 	&__item-perex {
 		margin-bottom: vr-unit(0.5);
+
+		p,
+		ul {
+			margin-bottom: 2em;
+		}
+
+		figure {
+			margin-bottom: 3em;
+		}
 	}
 
 	&__item-moreLink {
