@@ -70,7 +70,7 @@ add_action('init', function () {
 		'labels' => [
 			'name' => 'Novinky',
 			'singular_name' => 'Novinka',
-			'add_new' => 'Přidat',
+			'add_new' => 'Přidat novinku',
 			'add_new_item' => 'Přidat novinku',
 		],
 		'menu_icon' => 'dashicons-megaphone',
@@ -81,6 +81,60 @@ add_action('init', function () {
 		'supports' => ['title', 'editor', 'excerpt', 'thumbnail'],
 		'hierarchical' => false,
 	]);
+
+	register_post_type('contacts', [
+		'labels' => [
+			'name' => 'Kontakty',
+			'singular_name' => 'Kontakt',
+			'add_new' => 'Přidat kontakt',
+			'add_new_item' => 'Přidat kontakt',
+		],
+		'menu_icon' => 'dashicons-phone',
+		'has_archive' => true,
+		'public' => true,
+		'show_ui' => true,
+		'show_in_rest' => false, // disables gutenberg (it is not ready for various styles)
+		'supports' => ['title', 'thumbnail'],
+		'hierarchical' => false,
+	]);
+	add_action('add_meta_boxes', function () {
+		add_meta_box(
+			'contacts_role',
+			'Kontakt',
+			function (\WP_Post $post) {
+				?>
+				<div style="margin-bottom: 1em;">
+					<label for="contacts_role" class="required">Funkce</label><br>
+					<textarea name="contacts_role" cols=60" rows="3" id="contacts_role"><?php echo \esc_attr(\get_post_meta($post->ID, 'contacts_role', true)); ?></textarea>
+				</div>
+
+				<div style="margin-bottom: 1em;">
+					<label for="contacts_about" class="required">Povídání</label><br>
+					<textarea name="contacts_about" cols="60" rows="5" id="contacts_about"><?php echo \esc_attr(\get_post_meta($post->ID, 'contacts_about', true)); ?></textarea>
+				</div>
+
+				<div style="margin-bottom: 1em;">
+					<label for="contacts_email" class="required">E-mail</label><br>
+					<textarea name="contacts_email" cols=60" rows="3" id="contacts_email"><?php echo \esc_attr(\get_post_meta($post->ID, 'contacts_email', true)); ?></textarea>
+					<br>
+					(jeden nebo více adres oddělených novým řádkem)
+				</div>
+				<?php
+			},
+			'contacts',
+		);
+	});
+	add_action('save_post', function ($postId) {
+		foreach (['contacts_role', 'contacts_about', 'contacts_email'] as $field) {
+			if (array_key_exists($field, $_POST)) {
+				\update_post_meta(
+					$postId,
+					$field,
+					$_POST[$field],
+				);
+			}
+		}
+	});
 });
 
 
