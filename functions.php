@@ -67,7 +67,7 @@ add_action('after_setup_theme', function () {
 });
 add_action('init', function () {
 	register_post_type('news', [
-		'label' => [
+		'labels' => [
 			'name' => 'Novinky',
 			'singular_name' => 'Novinka',
 			'add_new' => 'Přidat',
