@@ -1,0 +1,16 @@
+.preview {
+	@media ($typography-breakpoint-large-from) {
+		max-width: 40rem;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	p,
+	ul {
+		margin-bottom: 2em;
+	}
+
+	figure {
+		margin-bottom: 3em;
+	}
+}

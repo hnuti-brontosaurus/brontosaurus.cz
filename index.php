@@ -120,7 +120,10 @@ require_once __DIR__ . '/vendor/autoload.php';
 	);
 
 	try {
-		$controller = $controllerFactory->create($post); // routing is contained inside
+		$controller = $controllerFactory->create( // routing is contained inside
+			$post,
+			isset($_GET['preview']) && $_GET['preview'] === 'true',
+		);
 		$controller->render();
 
 	} catch (NotFound) {

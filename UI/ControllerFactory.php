@@ -24,6 +24,7 @@ use HnutiBrontosaurus\Theme\UI\Homepage\HomepageController;
 use HnutiBrontosaurus\Theme\UI\Meetups\MeetupsController;
 use HnutiBrontosaurus\Theme\UI\News\NewsController;
 use HnutiBrontosaurus\Theme\UI\Partners\PartnersController;
+use HnutiBrontosaurus\Theme\UI\Preview\PreviewController;
 use HnutiBrontosaurus\Theme\UI\Rentals\RentalsController;
 use HnutiBrontosaurus\Theme\UI\SearchResults\SearchResultsController;
 use HnutiBrontosaurus\Theme\UI\SupportOverview\SupportOverviewController;
@@ -54,9 +55,13 @@ final class ControllerFactory
 	/*
 	 * This is basically router.
 	 */
-	public function create(?\WP_Post $post): Controller
+	public function create(?\WP_Post $post, bool $isPreview): Controller
 	{
 		$base = $this->baseFactory->create($post);
+
+		if ($isPreview) {
+			return new PreviewController($base, $this->latte, $post);
+		}
 
 		if ($post === null || $post->post_type !== 'page') {
 			throw new NotFound();
