@@ -67,12 +67,16 @@ add_action('after_setup_theme', function () {
 });
 add_action('init', function () {
 	register_post_type('news', [
-		'label' => 'Novinky',
+		'label' => [
+			'name' => 'Novinky',
+			'singular_name' => 'Novinka',
+			'add_new' => 'Přidat',
+			'add_new_item' => 'Přidat novinku',
+		],
 		'menu_icon' => 'dashicons-megaphone',
 		'has_archive' => true,
 		'public' => true,
 		'show_ui' => true,
-		'show_in_rest' => false, // disables gutenberg (it is not ready for various styles)
 		'supports' => ['title', 'editor', 'excerpt', 'thumbnail'],
 		'hierarchical' => false,
 	]);
