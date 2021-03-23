@@ -6,6 +6,7 @@ use Grifart\GeocodingClient\MapyCz\NoResultException;
 use HnutiBrontosaurus\BisApiClient\BisApiClientRuntimeException;
 use HnutiBrontosaurus\BisApiClient\Client;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
+use HnutiBrontosaurus\Theme\UI\BaseUnitsAndClubsList\BaseUnitsAndClubsListController;
 use HnutiBrontosaurus\Theme\UI\Controller;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\OrganizationalUnitDC;
 use Latte\Engine;
@@ -56,6 +57,7 @@ final class AboutStructureController implements Controller
 			'viewAssetsPath' => get_template_directory_uri() . '/UI/AboutStructure/assets',
 			'organizationalUnitsInJson' => self::getOrganizationalUnitsInJson($organizationalUnits),
 			'hasBeenUnableToLoad' => $hasBeenUnableToLoad,
+			'baseUnitsAndClubsLink' => $this->base->getLinkFor(BaseUnitsAndClubsListController::PAGE_SLUG),
 			'contactsPageLink' => $this->base->getLinkFor('kontakty'),
 		];
 
