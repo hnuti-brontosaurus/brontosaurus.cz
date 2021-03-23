@@ -21,7 +21,9 @@ final class AboutSuccessesController implements Controller
 	{
 		$this->latte->render(
 			__DIR__ . '/AboutSuccessesController.latte',
-			\array_merge($this->base->getLayoutVariables('aboutsuccesses')),
+			\array_merge($this->base->getLayoutVariables('aboutsuccesses'), [
+				'supportOverviewLink' => $this->base->getLinkFor('podpor-nas'),
+			]),
 		);
 	}
 
