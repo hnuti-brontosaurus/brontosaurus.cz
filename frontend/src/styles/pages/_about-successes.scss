@@ -129,4 +129,17 @@ article .about-successes {
 			margin-top: -#{vr-unit(1)};
 		}
 	}
+
+	&__support {
+		@media ($typography-breakpoint-large-from) {
+			max-width: 25em;
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+		}
+
+		p {
+			margin-bottom: vr-unit(0.5);
+		}
+	}
 }
