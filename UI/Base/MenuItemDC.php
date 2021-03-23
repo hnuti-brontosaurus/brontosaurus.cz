@@ -6,6 +6,7 @@ use HnutiBrontosaurus\Theme\UI\AboutCrossroad\AboutCrossroadController;
 use HnutiBrontosaurus\Theme\UI\AboutHighlights\AboutHighlightsController;
 use HnutiBrontosaurus\Theme\UI\AboutStructure\AboutStructureController;
 use HnutiBrontosaurus\Theme\UI\AboutSuccesses\AboutSuccessesController;
+use HnutiBrontosaurus\Theme\UI\BaseUnitsAndClubsList\BaseUnitsAndClubsListController;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 
 
@@ -34,7 +35,7 @@ final class MenuItemDC
 				: $menuItemSlug === $currentPost?->post_name
 					// about brontosaurus subpages hack
 					|| (
-						\in_array($currentPost->post_name, [AboutHighlightsController::PAGE_SLUG, AboutStructureController::PAGE_SLUG, AboutSuccessesController::PAGE_SLUG])
+						\in_array($currentPost->post_name, [AboutHighlightsController::PAGE_SLUG, AboutStructureController::PAGE_SLUG, AboutSuccessesController::PAGE_SLUG, BaseUnitsAndClubsListController::PAGE_SLUG])
 						&& $menuItemSlug === AboutCrossroadController::PAGE_SLUG
 					),
 			$menuItemPost->type === 'custom',

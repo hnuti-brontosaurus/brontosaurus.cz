@@ -1,0 +1,52 @@
+.baseUnits {
+	max-width: 40rem;
+	margin-left: auto;
+	margin-right: auto;
+
+	&__list {
+		list-style-type: none;
+	}
+
+	&__unit {
+		&:not(:last-child) {
+			margin-bottom: vr-unit(2);
+		}
+	}
+
+	&__unitName {
+		text-align: left !important;
+	}
+
+	&__contact {
+		margin-left: -0.2rem;
+	}
+
+	&__address,
+	&__website,
+	&__emailAddress {
+		padding-left: vr-unit(1);
+		position: relative;
+
+		&::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			width: 0.9em;
+			height: 0.8em;
+			background-color: $colors-emphasizing;
+			mask-size: auto 100%;
+			mask-position: center center;
+			mask-repeat: no-repeat;
+			transform: translateY(0.2em);
+		}
+	}
+	&__address::before {
+		mask-image: url("../images/icon-place-green.svg");
+	}
+	&__website::before {
+		mask-image: url("../images/icon-globe.svg");
+	}
+	&__emailAddress::before {
+		mask-image: url("../images/icon-letter.svg");
+	}
+}
