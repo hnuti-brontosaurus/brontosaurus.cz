@@ -11,9 +11,12 @@ use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\OrganizationalUnitDC;
 use Latte\Engine;
 
 
+/*
+ * Controller is left with old name (about structure) as we need to save time.
+ */
 final class AboutStructureController implements Controller
 {
-	public const PAGE_SLUG = 'struktura-organizace';
+	public const PAGE_SLUG = 'hnuti-brontosaurus';
 
 	public function __construct(
 		private string $dateFormatHuman,

@@ -6,6 +6,7 @@ use HnutiBrontosaurus\BisApiClient\BisApiClientRuntimeException;
 use HnutiBrontosaurus\BisApiClient\Client;
 use HnutiBrontosaurus\BisApiClient\Request\EventParameters;
 use HnutiBrontosaurus\BisApiClient\Response\Event\Event;
+use HnutiBrontosaurus\Theme\UI\AboutStructure\AboutStructureController;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventCollectionDC;
@@ -49,7 +50,7 @@ final class ForChildrenController implements Controller
 		$params = [
 			'filters' => $filters,
 			'eventCollection' => $eventCollection,
-			'aboutStructurePageLink' => $this->base->getLinkFor('struktura-organizace'),
+			'aboutStructurePageLink' => $this->base->getLinkFor(AboutStructureController::PAGE_SLUG),
 		];
 
 		add_action('wp_enqueue_scripts', function () {

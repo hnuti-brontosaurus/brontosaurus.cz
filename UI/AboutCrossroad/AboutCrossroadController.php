@@ -2,6 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme\UI\AboutCrossroad;
 
+use HnutiBrontosaurus\Theme\UI\AboutStructure\AboutStructureController;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
 use Latte\Engine;
@@ -20,7 +21,7 @@ final class AboutCrossroadController implements Controller
 	{
 		$params = [
 			'aboutHighlightsPageLink' => $this->base->getLinkFor('jak-to-u-nas-funguje'),
-			'aboutStructurePageLink' => $this->base->getLinkFor('struktura-organizace'),
+			'aboutStructurePageLink' => $this->base->getLinkFor(AboutStructureController::PAGE_SLUG),
 			'aboutSuccessesPageLink' => $this->base->getLinkFor('nase-uspechy'),
 		];
 
