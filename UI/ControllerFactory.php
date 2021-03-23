@@ -10,6 +10,7 @@ use HnutiBrontosaurus\Theme\UI\AboutStructure\AboutStructureController;
 use HnutiBrontosaurus\Theme\UI\AboutStructure\GeocodingClientFacade;
 use HnutiBrontosaurus\Theme\UI\AboutSuccesses\AboutSuccessesController;
 use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
+use HnutiBrontosaurus\Theme\UI\BaseUnitsAndClubsList\BaseUnitsAndClubsListController;
 use HnutiBrontosaurus\Theme\UI\Contacts\ContactsController;
 use HnutiBrontosaurus\Theme\UI\Courses\CoursesController;
 use HnutiBrontosaurus\Theme\UI\English\EnglishController;
@@ -89,6 +90,7 @@ final class ControllerFactory
 			EventDetailController::PAGE_SLUG => new EventDetailController($this->dateFormatHuman, $this->dateFormatRobot, $this->recaptchaSiteKey, $this->recaptchaSecretKey, $this->applicationFormFacade, $this->bisApiClient, $base, $this->latte, $this->httpRequest, $this->logger),
 			'co-je-noveho' => new NewsController($this->dateFormatHuman, $this->dateFormatRobot, $base, $this->latte),
 			'vysledky-vyhledavani' => new SearchResultsController($base, $this->latte),
+			BaseUnitsAndClubsListController::PAGE_SLUG => new BaseUnitsAndClubsListController($this->bisApiClient, $base, $this->latte),
 			default => new ErrorController($base, $this->latte),
 		};
 	}
