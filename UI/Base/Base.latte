@@ -3,6 +3,7 @@
 <head>
 	<meta charset="{bloginfo( 'charset' )}" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{block meta /}{* we need to overwrite SEO plugin social meta tags with custom in event detail *}
 	{wp_head()}
 
 	{if $enableTracking}
