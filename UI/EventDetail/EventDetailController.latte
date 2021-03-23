@@ -1,5 +1,19 @@
 {layout $layoutPath}
 
+{block meta}
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{$event->title} – Hnutí Brontosaurus">
+<meta property="og:description" content="{$event->invitation->introduction|noescape|truncate:150}">{* @todo: set escaping filter *}
+<meta property="og:url" content="{$selfLink}">
+<meta property="og:site_name" content="Hnutí Brontosaurus">
+<meta property="og:image" content="{$event->coverPhotoPath}" n:if="$event->hasCoverPhoto">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{$event->title} – Hnutí Brontosaurus">
+<meta name="twitter:description" content="{$event->invitation->introduction|noescape|truncate:150}">{* @todo: set escaping filter *}
+<meta name="twitter:image" content="{$event->coverPhotoPath}" n:if="$event->hasCoverPhoto">
+{/block}
+
 {block content}
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 

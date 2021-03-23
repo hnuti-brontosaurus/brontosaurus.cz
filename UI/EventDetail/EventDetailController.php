@@ -96,6 +96,7 @@ final class EventDetailController implements Controller
 			'applicationFormErrors' => $this->applicationFormErrors,
 			'applicationFormData' => $this->applicationFormData,
 			'recaptchaSiteKey' => $this->recaptchaSiteKey,
+			'selfLink' => $this->base->getLinkFor($parentPageSlug) . 'detail/' . $eventId . '/',
 			'firstTimePageLink' => $this->base->getLinkFor('jedu-poprve'),
 			'aboutCrossroadPageLink' => $this->base->getLinkFor('o-brontosaurovi'),
 		];
