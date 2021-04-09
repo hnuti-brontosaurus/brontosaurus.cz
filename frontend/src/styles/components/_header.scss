@@ -2,10 +2,6 @@ $header-breakpoint-navigationHiddenToVisible: 39em;
 $header-breakpoint-navigationHiddenToVisible-hidden-until: "max-width: " + $header-breakpoint-navigationHiddenToVisible;
 $header-breakpoint-navigationHiddenToVisible-visible-from: "min-width: " + ($header-breakpoint-navigationHiddenToVisible + 0.001);
 
-$header-breakpoint-logo: 50em;
-$header-breakpoint-logo-untilHidden: "max-width: " + $header-breakpoint-logo;
-$header-breakpoint-logo-whenVisible: "min-width: " + ($header-breakpoint-logo + 0.001);
-
 
 .page { // ideally would be in separate place and header should be modified through page's element (in BEM terminology), but this is enough for now
 	@media ($header-breakpoint-navigationHiddenToVisible-hidden-until) {
@@ -54,11 +50,11 @@ $header-breakpoint-logo-whenVisible: "min-width: " + ($header-breakpoint-logo + 
 	align-items: center;
 	display: grid;
 	grid-template-areas:
-		"organizationName . searchBarToggler toggleNavigationLink"
+		"logo . searchBarToggler toggleNavigationLink"
 		"mainNavigation mainNavigation mainNavigation mainNavigation"
 		"futureEventsLink futureEventsLink futureEventsLink futureEventsLink"
 		"languageLink languageLink languageLink languageLink";
-	grid-template-columns: min-content auto 2.58em 2.58em;
+	grid-template-columns: auto auto 2.58em 2.58em;
 	margin-left: auto;
 	margin-right: auto;
 	max-width: $navigation-maxWidth;
@@ -67,25 +63,13 @@ $header-breakpoint-logo-whenVisible: "min-width: " + ($header-breakpoint-logo + 
 	&-logo {
 		grid-area: logo;
 		align-self: self-start;
-		margin-top: 0.3em;
-
-		@media ($header-breakpoint-logo-untilHidden) {
-			display: none;
-		}
 
 		&-image {
-			max-height: 3em;
-			max-width: 2.1em;
-			transform: scaleX(-1);
-		}
-	}
+			max-width: 8.6em;
 
-	&-organizationName {
-		grid-area: organizationName;
-
-		&-image {
-			max-width: 7.3em;
-			max-height: 2em;
+			@media ($typography-breakpoint-large-from) {
+				max-width: 9em;
+			}
 		}
 	}
 
@@ -201,9 +185,9 @@ $header-breakpoint-logo-whenVisible: "min-width: " + ($header-breakpoint-logo + 
 
 	@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
 		grid-template-areas:
-			"organizationName . searchBarToggler futureEventsLink languageLink"
+			"logo . searchBarToggler futureEventsLink languageLink"
 			"mainNavigation mainNavigation mainNavigation mainNavigation mainNavigation";
-		grid-template-columns: min-content auto min-content min-content min-content;
+		grid-template-columns: auto auto min-content min-content min-content;
 		padding-right: vr-unit(0.5);
 
 		&-toggleNavigationLink {
@@ -344,15 +328,10 @@ $header-breakpoint-logo-whenVisible: "min-width: " + ($header-breakpoint-logo + 
 	}
 
 
-	@media ($header-breakpoint-logo-whenVisible) {
-		grid-template-areas:
-			"logo organizationName . searchBarToggler futureEventsLink languageLink"
-			"mainNavigation mainNavigation mainNavigation mainNavigation mainNavigation mainNavigation";
-		grid-template-columns: 2.3em min-content auto min-content min-content min-content;
-
+	@media ($typography-breakpoint-large-from) {
 		&-mainNavigation {
 			&-list {
-				padding-left: 4px; // we need it to be pixel-perfect
+				padding-left: 5px; // so that main navigation start with logo nicely
 			}
 		}
 	}
