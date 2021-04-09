@@ -157,6 +157,12 @@ $header-breakpoint-navigationHiddenToVisible-visible-from: "min-width: " + ($hea
 				border-top: 2px solid $colors-emphasizing;
 				margin-right: vr-unit(0.5);
 			}
+
+			&-item {
+				&::before {
+					position: absolute; // fixes sanitize.css bug https://github.com/csstools/sanitize.css/issues/203
+				}
+			}
 		}
 	}
 	@media ($header-breakpoint-navigationHiddenToVisible-hidden-until) {
@@ -207,12 +213,6 @@ $header-breakpoint-navigationHiddenToVisible-visible-from: "min-width: " + ($hea
 				align-items: center;
 				margin-left: -#{vr-unit(0.5)};
 				padding-top: vr-unit(0.5);
-			}
-
-			&-list-item {
-				&::before {
-					position: absolute; // fixes sanitize.css bug https://github.com/csstools/sanitize.css/issues/203
-				}
 			}
 
 			&-list-item-link {
