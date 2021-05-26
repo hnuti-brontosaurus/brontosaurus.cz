@@ -1,0 +1,10 @@
+# note that phpstan is not part of pipeline yet
+
+includes:
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+
+parameters:
+    level: 0 # incrementaly increase up to the highest (currently 8)
+    paths:
+        - index.php
+        - UI/
