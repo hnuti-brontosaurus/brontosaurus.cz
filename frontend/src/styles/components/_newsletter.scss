@@ -1,0 +1,76 @@
+.newsletter {
+	background-color: lighten($colors-tinge, 3);
+	padding: vr-unit(2) vr-unit(1);
+	text-align: center;
+
+	&__heading {
+		margin-bottom: vr-unit(1);
+	}
+
+	// note that selectors below highly depend on code generated on Ecomail side
+	// which is not under our control – so it can get broken easily
+	// better way would be to make our own form and get use of their API
+
+	.ec-v-form-holder-basic {
+		width: auto !important;
+		max-width: 30rem;
+		overflow: initial !important;
+	}
+	form {
+		min-height: auto !important;
+		overflow: initial !important;
+	}
+
+	.ec-v-form-step:not(.ec-v-form-step-send) {
+		height: auto !important;
+
+		.ec-v-form-column {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			gap: vr-unit(0.5);
+			flex-wrap: wrap;
+		}
+		.ec-v-form-input {
+			flex-grow: 1;
+		}
+		.ec-v-forms-label {
+			display: none;
+		}
+
+		input[type=email],
+		input[type=submit],
+		button[type=submit] {
+			border-radius: 2em !important;
+			font-size: 1.6em !important;
+			font-family: $fonts-delm !important;
+			font-weight: $fonts-delm-weight-regular !important;
+			padding: vr-unit(0.5) vr-unit(1) calc(#{vr-unit(0.5)} - 7px) !important;
+		}
+		input[type=email] {
+			text-align: left;
+		}
+		input[type=submit],
+		button[type=submit] {
+			text-transform: uppercase !important;
+			padding-right: vr-unit(2) !important;
+
+			svg circle {
+				stroke: white;
+			}
+		}
+	}
+
+	.ec-v-form-text p, // if there is no span from ecomail
+	.ec-v-form-text span // if there is span from ecomail
+	{
+		font-family: $fonts-delm !important;
+		font-size: 1rem !important;
+	}
+
+	.ec-v-form-error {
+		position: absolute;
+		width: 100%;
+	}
+}
