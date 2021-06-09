@@ -3,6 +3,7 @@
 namespace HnutiBrontosaurus\Theme\UI;
 
 use HnutiBrontosaurus\BisApiClient\Client;
+use HnutiBrontosaurus\Theme\EcomailClient;
 use HnutiBrontosaurus\Theme\SentryLogger;
 use HnutiBrontosaurus\Theme\UI\AboutCrossroad\AboutCrossroadController;
 use HnutiBrontosaurus\Theme\UI\AboutHighlights\AboutHighlightsController;
@@ -24,6 +25,7 @@ use HnutiBrontosaurus\Theme\UI\HighSchools\HighSchoolsController;
 use HnutiBrontosaurus\Theme\UI\Homepage\HomepageController;
 use HnutiBrontosaurus\Theme\UI\Meetups\MeetupsController;
 use HnutiBrontosaurus\Theme\UI\News\NewsController;
+use HnutiBrontosaurus\Theme\UI\NewsletterSubscriber\NewsletterSubscriberController;
 use HnutiBrontosaurus\Theme\UI\Partners\PartnersController;
 use HnutiBrontosaurus\Theme\UI\Preview\PreviewController;
 use HnutiBrontosaurus\Theme\UI\Rentals\RentalsController;
@@ -44,6 +46,7 @@ final class ControllerFactory
 		private ApplicationFormFacade $applicationFormFacade,
 		private Client $bisApiClient,
 		private BaseFactory $baseFactory,
+		private EcomailClient $ecomailClient,
 		private Engine $latte,
 		private GeocodingClientFacade $geocodingClientFacade,
 		private Request $httpRequest,
@@ -91,6 +94,7 @@ final class ControllerFactory
 			'co-je-noveho' => new NewsController($this->dateFormatHuman, $this->dateFormatRobot, $base, $this->latte),
 			'vysledky-vyhledavani' => new SearchResultsController($base, $this->latte),
 			BaseUnitsAndClubsListController::PAGE_SLUG => new BaseUnitsAndClubsListController($this->bisApiClient, $base, $this->latte),
+			NewsletterSubscriberController::PAGE_SLUG => new NewsletterSubscriberController($this->ecomailClient, $this->httpRequest),
 			default => new ErrorController($base, $this->latte),
 		};
 	}

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "19b7c03f326ab181c3bc5f626ca07cb6",
+    "content-hash": "580f8639c00181f5a6b6003d1c639b9d",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -71,6 +71,61 @@
                 }
             ],
             "time": "2020-10-02T12:38:20+00:00"
+        },
+        {
+            "name": "ecomailcz/ecomail",
+            "version": "v1.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Ecomailcz/ecomail-php.git",
+                "reference": "7ea5d679cf47edfea1971dd16a8a8b42bf617407"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Ecomailcz/ecomail-php/zipball/7ea5d679cf47edfea1971dd16a8a8b42bf617407",
+                "reference": "7ea5d679cf47edfea1971dd16a8a8b42bf617407",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12.9"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GNU GPL 3"
+            ],
+            "authors": [
+                {
+                    "name": "Filip Šedivý",
+                    "email": "mail@filipsedivy.cz",
+                    "homepage": "https://filipsedivy.cz",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Ecomail.cz API Wrapper",
+            "keywords": [
+                "Ecomail",
+                "api",
+                "email",
+                "marketing",
+                "newsletter",
+                "wrapper"
+            ],
+            "support": {
+                "issues": "https://github.com/Ecomailcz/ecomail-php/issues",
+                "source": "https://github.com/Ecomailcz/ecomail-php/tree/v1.2.4"
+            },
+            "time": "2021-05-07T10:44:16+00:00"
         },
         {
             "name": "google/recaptcha",
@@ -2897,5 +2952,5 @@
     "platform-overrides": {
         "php": "8.0.0"
     },
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }

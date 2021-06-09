@@ -4,6 +4,10 @@ parameters:
         username: # string
         password: # string
 
+    ecomail:
+        apiKey: # string
+        brontowebContactsListId: # int
+
     mailer:
         # mailcatcher settings
         smtp: true

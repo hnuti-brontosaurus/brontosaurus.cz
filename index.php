@@ -8,6 +8,7 @@ use Grifart\GeocodingClient\MapyCz\MapyCzGeocodingService;
 use GuzzleHttp\Client as HttpClient;
 use HnutiBrontosaurus\BisApiClient\Client;
 use HnutiBrontosaurus\Theme\Configuration;
+use HnutiBrontosaurus\Theme\EcomailClient;
 use HnutiBrontosaurus\Theme\SentryLogger;
 use HnutiBrontosaurus\Theme\UI\AboutStructure\GeocodingClientFacade;
 use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
@@ -105,6 +106,10 @@ require_once __DIR__ . '/vendor/autoload.php';
 		),
 		$bisApiClient,
 		new BaseFactory($configuration->get('enableTracking')),
+		new EcomailClient(
+			$configuration->get('ecomail:brontowebContactsListId'),
+			new Ecomail($configuration->get('ecomail:apiKey')),
+		),
 		$latte,
 		new GeocodingClientFacade(
 			new CachedGeocodingService(
