@@ -125,6 +125,55 @@
             "time": "2020-03-31T17:50:54+00:00"
         },
         {
+            "name": "grifart/enum",
+            "version": "0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/grifart/enum.git",
+                "reference": "f4e6c3fc1d172ac959e135a39fa63323c4e377b1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/grifart/enum/zipball/f4e6c3fc1d172ac959e135a39fa63323c4e377b1",
+                "reference": "f4e6c3fc1d172ac959e135a39fa63323c4e377b1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "grifart/phpstan-oneline": "^0.2.0",
+                "nette/tester": "^2.1.0",
+                "phpstan/phpstan": "^0.10.7",
+                "phpstan/phpstan-strict-rules": "^0.10.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Grifart\\Enum\\": "src"
+                },
+                "classmap": [
+                    "src/exceptions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jan Kuchař",
+                    "email": "honza.kuchar@grifart.cz"
+                }
+            ],
+            "description": "Provides bullet proof enums with behaviours.",
+            "support": {
+                "issues": "https://github.com/grifart/enum/issues",
+                "source": "https://github.com/grifart/enum/tree/0.2.1"
+            },
+            "time": "2019-12-10T15:36:35+00:00"
+        },
+        {
             "name": "grifart/geocoding-client",
             "version": "0.1.0",
             "source": {
@@ -375,24 +424,26 @@
         },
         {
             "name": "hnuti-brontosaurus/php-bis-api-client",
-            "version": "2.0.4",
+            "version": "2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnuti-brontosaurus/php-bis-api-client.git",
-                "reference": "24f618a1f72df1f81ca0334d8b2b29a9a816dcc9"
+                "reference": "8bcf16bf4fe40f6acbba4d5b385347fd4e6d8bb2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnuti-brontosaurus/php-bis-api-client/zipball/24f618a1f72df1f81ca0334d8b2b29a9a816dcc9",
-                "reference": "24f618a1f72df1f81ca0334d8b2b29a9a816dcc9",
+                "url": "https://api.github.com/repos/hnuti-brontosaurus/php-bis-api-client/zipball/8bcf16bf4fe40f6acbba4d5b385347fd4e6d8bb2",
+                "reference": "8bcf16bf4fe40f6acbba4d5b385347fd4e6d8bb2",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
+                "grifart/enum": "^0.2.1",
                 "guzzlehttp/guzzle": "^6.3",
                 "php": ">=8.0"
             },
             "require-dev": {
+                "phpstan/phpstan": "^0.12.88",
                 "tracy/tracy": "^2.5"
             },
             "type": "library",
@@ -414,10 +465,10 @@
             ],
             "description": "API client for Hnutí Brontosaurus IS written in PHP.",
             "support": {
-                "source": "https://github.com/hnuti-brontosaurus/php-bis-api-client/tree/2.0.4",
+                "source": "https://github.com/hnuti-brontosaurus/php-bis-api-client/tree/2.0.5",
                 "issues": "https://github.com/hnuti-brontosaurus/php-bis-api-client/issues"
             },
-            "time": "2021-03-11T10:08:05+00:00"
+            "time": "2021-06-21T09:25:41+00:00"
         },
         {
             "name": "http-interop/http-factory-guzzle",
@@ -2897,5 +2948,5 @@
     "platform-overrides": {
         "php": "8.0.0"
     },
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
