@@ -86,10 +86,10 @@ final class InvitationDC
 			$this->accommodation = Utils::handleNonBreakingSpaces($accommodation);
 		}
 
-		$this->isFoodListed = $food->isListed();
-		$this->isFoodOfTypeChooseable = $food->isOfTypeChooseable();
-		$this->isFoodOfTypeVegetarian = $food->isOfTypeVegetarian();
-		$this->isFoodOfTypeNonVegetarian = $food->isOfTypeNonVegetarian();
+		$this->isFoodListed = ! $food->equals(Food::NOT_LISTED());
+		$this->isFoodOfTypeChooseable = $food->equals(Food::CHOOSEABLE());
+		$this->isFoodOfTypeVegetarian = $food->equals(Food::VEGETARIAN());
+		$this->isFoodOfTypeNonVegetarian = $food->equals(Food::NON_VEGETARIAN());
 
 		$this->workDescription = Utils::handleNonBreakingSpaces($workDescription);
 
