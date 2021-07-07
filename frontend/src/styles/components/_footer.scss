@@ -16,7 +16,6 @@ $footer-breakpoint-mediumToLarge-from: "min-width: " + ($footer-breakpoint-mediu
 	grid-template-areas:
 		"navigation navigation"
 		"language language"
-		"facebook instagram"
 		"logo-full logo-full"
 		"search search";
 	justify-items: center;
@@ -32,14 +31,14 @@ $footer-breakpoint-mediumToLarge-from: "min-width: " + ($footer-breakpoint-mediu
 	@media ($footer-breakpoint-smallToMedium-from) {
 		grid-template-areas:
 			"navigation navigation"
-			"socials language"
+			"language language"
 			"logo-full logo-full"
 			"search search";
 		grid-template-columns: 1fr 1fr;
 	}
 	@media ($footer-breakpoint-mediumToLarge-from) {
 		grid-template-areas:
-			"navigation facebook instagram language"
+			"navigation . language ."
 			"navigation logo-full logo-full logo-full"
 			". search search search";
 		grid-template-columns: auto max-content max-content max-content;
@@ -59,7 +58,7 @@ $footer-breakpoint-mediumToLarge-from: "min-width: " + ($footer-breakpoint-mediu
 			}
 			@media ($footer-breakpoint-smallToMedium-from) {
 				align-self: center;
-				justify-self: self-start;
+				justify-self: center;
 				text-transform: lowercase;
 
 				@media ($footer-breakpoint-mediumToLarge-until) {
@@ -128,119 +127,6 @@ $footer-breakpoint-mediumToLarge-from: "min-width: " + ($footer-breakpoint-mediu
 				&:hover {
 					background-color: darken($colors-emphasizing, 10);
 				}
-			}
-		}
-	}
-
-	&-facebookLink {
-		grid-area: facebook;
-		position: relative;
-		padding: 1em;
-		border-radius: 2em;
-		text-decoration: none;
-		background-color: darken($colors-tinge, 10);
-		transition: background-color 200ms linear;
-
-		@media ($footer-breakpoint-smallToMedium-until) {
-			margin-bottom: vr-unit(1);
-		}
-		@media ($footer-breakpoint-smallToMedium-from) {
-			align-self: center;
-
-			@media ($footer-breakpoint-mediumToLarge-until) {
-				grid-area: socials;
-				margin-right: calc(#{vr-unit(2)} + #{vr-unit(0.5)});
-				margin-bottom: vr-unit(2);
-			}
-		}
-		@media ($footer-breakpoint-mediumToLarge-until) {
-			justify-self: self-end;
-		}
-
-		&::before {
-			content: "f";
-			position: absolute;
-			top: 26%;
-			left: 41%;
-			transition: color 200ms linear;
-		}
-
-		&:hover {
-			background-color: $colors-emphasizing;
-
-			&::before {
-				color: $colors-default-background;
-			}
-		}
-
-		&-icon {
-			max-height: 2em;
-			max-width: 1.7em;
-
-			&-label {
-				fill: $colors-default-background;
-				font-size: 1.2em;
-				font-weight: $fonts-delm-weight-bold;
-				pointer-events: none; // otherwise hover state does not trigger on background circle
-			}
-		}
-	}
-
-	&-instagramLink {
-		grid-area: instagram;
-		position: relative;
-		padding: 1em;
-		border-radius: 2em;
-		text-decoration: none;
-		background-color: darken($colors-tinge, 10);
-		transition: background-color 200ms linear;
-
-		@media ($footer-breakpoint-smallToMedium-until) {
-			margin-bottom: vr-unit(1);
-			justify-self: start;
-		}
-		@media ($footer-breakpoint-smallToMedium-from) {
-			align-self: center;
-
-			@media ($footer-breakpoint-mediumToLarge-until) {
-				grid-area: socials;
-				margin-right: vr-unit(0.5);
-				margin-bottom: vr-unit(2);
-				justify-self: self-end;
-			}
-		}
-
-		&::before {
-			content: "";
-			mask-image: url("../images/icon-instagram.svg");
-			transition: background-color 200ms linear;
-			background-color: $colors-text;
-			padding: 1em;
-			position: absolute;
-			left: 0;
-			top: 0;
-			mask-size: 0.9em;
-			mask-repeat: no-repeat;
-			mask-position: center;
-		}
-
-		&:hover {
-			background-color: $colors-emphasizing;
-
-			&::before {
-				background-color: $colors-default-background;
-			}
-		}
-
-		&-icon {
-			max-height: 2em;
-			max-width: 1.7em;
-
-			&-label {
-				fill: $colors-default-background;
-				font-size: 1.2em;
-				font-weight: $fonts-delm-weight-bold;
-				pointer-events: none; // otherwise hover state does not trigger on background circle
 			}
 		}
 	}
