@@ -207,15 +207,6 @@
 	<div class="footer-wrapper" id="navigace">
 		<footer class="footer">
 			<nav class="footer-navigation" role="navigation">
-				{if $isOnEnglishPage}
-					<a class="footer-navigation-languageLink footer-navigation-languageLink--active" href="{$homePageLink}" title="Česky">
-						Česky
-					</a>
-				{else}
-					<a class="footer-navigation-languageLink" href="{$englishPageLink}" title="English">
-						English
-					</a>
-				{/if}
 
 				<ul class="footer-navigation-main">
 					<li class="footer-navigation-main-item" n:foreach="$footerNavigationMenuItems as $menuItem">
@@ -224,6 +215,21 @@
 							{$menuItem->label}
 						</a>
 					</li>
+
+          {if $isOnEnglishPage}
+            <li class="footer-navigation-main-item">
+              <a class="footer-navigation-main-item-link" href="{$homePageLink}" title="Česky">
+                Česky
+              </a>
+            </li>
+          {else}
+            <li class="footer-navigation-main-item">
+              <a class="footer-navigation-main-item-link" href="{$englishPageLink}" title="English">
+                English
+              </a>
+            </li>
+          {/if}
+
 				</ul>
 			</nav>
 

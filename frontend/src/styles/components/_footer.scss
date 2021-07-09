@@ -15,7 +15,6 @@ $footer-breakpoint-mediumToLarge-from: "min-width: " + ($footer-breakpoint-mediu
 	display: grid;
 	grid-template-areas:
 		"navigation navigation"
-		"language language"
 		"logo-full logo-full"
 		"search search";
 	justify-items: center;
@@ -29,16 +28,11 @@ $footer-breakpoint-mediumToLarge-from: "min-width: " + ($footer-breakpoint-mediu
 		grid-column-gap: vr-unit(0.5);
 	}
 	@media ($footer-breakpoint-smallToMedium-from) {
-		grid-template-areas:
-			"navigation navigation"
-			"language language"
-			"logo-full logo-full"
-			"search search";
 		grid-template-columns: 1fr 1fr;
 	}
 	@media ($footer-breakpoint-mediumToLarge-from) {
 		grid-template-areas:
-			"navigation . language ."
+			"navigation . . ."
 			"navigation logo-full logo-full logo-full"
 			". search search search";
 		grid-template-columns: auto max-content max-content max-content;
@@ -49,40 +43,6 @@ $footer-breakpoint-mediumToLarge-from: "min-width: " + ($footer-breakpoint-mediu
 
 	&-navigation {
 		display: contents;
-
-		&-languageLink {
-			grid-area: language;
-
-			@media ($footer-breakpoint-smallToMedium-until) {
-				margin-bottom: vr-unit(0.5);
-			}
-			@media ($footer-breakpoint-smallToMedium-from) {
-				align-self: center;
-				justify-self: center;
-				text-transform: lowercase;
-
-				@media ($footer-breakpoint-mediumToLarge-until) {
-					margin-bottom: vr-unit(2);
-				}
-			}
-
-			&--active {
-				@media ($footer-breakpoint-mediumToLarge-from) {
-					justify-self: center;
-				}
-			}
-
-			&-icon {
-				max-height: 2em;
-				max-width: 1.7em;
-
-				&-label {
-					fill: $colors-default-background;
-					font-size: 1em;
-					pointer-events: none; // otherwise hover state does not trigger on background circle
-				}
-			}
-		}
 
 		&-main {
 			grid-area: navigation;
@@ -106,7 +66,6 @@ $footer-breakpoint-mediumToLarge-from: "min-width: " + ($footer-breakpoint-mediu
 			}
 		}
 
-		&-languageLink,
 		&-main-item-link {
 			padding: 0.3em vr-unit(0.5) 0.15em;
 			border-radius: 2em;
