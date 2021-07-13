@@ -107,10 +107,10 @@
 					color: $colors-default-background;
 				}
 			}
-    }
+		}
 
 		&-instagramLink,
-    &-youtubeLink {
+		&-youtubeLink {
 			position: relative;
 			display: inline-block;
 			width: 2rem;
@@ -147,13 +147,13 @@
 		&-instagramLink {
 			&::before {
 				mask-image: url("../images/icon-instagram.svg");
-      }
-    }
+			}
+		}
 
 		&-youtubeLink {
 			&::before {
 				mask-image: url("../images/icon-youtube.svg");
-      }
-    }
-  }
+			}
+		}
+	}
 }

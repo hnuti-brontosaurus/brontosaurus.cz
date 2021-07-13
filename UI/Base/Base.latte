@@ -216,19 +216,19 @@
 						</a>
 					</li>
 
-          {if $isOnEnglishPage}
-            <li class="footer-navigation-main-item">
-              <a class="footer-navigation-main-item-link" href="{$homePageLink}" title="Česky">
-                Česky
-              </a>
-            </li>
-          {else}
-            <li class="footer-navigation-main-item">
-              <a class="footer-navigation-main-item-link" href="{$englishPageLink}" title="English">
-                English
-              </a>
-            </li>
-          {/if}
+					{if $isOnEnglishPage}
+						<li class="footer-navigation-main-item">
+							<a class="footer-navigation-main-item-link" href="{$homePageLink}" title="Česky">
+								Česky
+							</a>
+						</li>
+					{else}
+						<li class="footer-navigation-main-item">
+							<a class="footer-navigation-main-item-link" href="{$englishPageLink}" title="English">
+								English
+							</a>
+						</li>
+					{/if}
 
 				</ul>
 			</nav>
