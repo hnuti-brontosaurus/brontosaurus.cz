@@ -62,9 +62,10 @@
 		}
 		button[type=submit] {
 			transition: background-color 200ms ease-in-out;
-		}
-		button[type=submit]:hover {
-			background-color: #007338 !important;
+
+			&:hover {
+				background-color: #007338 !important;
+			}
 		}
 	}
 
