@@ -60,6 +60,13 @@
 				stroke: white;
 			}
 		}
+		button[type=submit] {
+			transition: background-color 200ms ease-in-out;
+
+			&:hover {
+				background-color: #007338 !important;
+			}
+		}
 	}
 
 	.ec-v-form-text p, // if there is no span from ecomail
@@ -72,5 +79,81 @@
 	.ec-v-form-error {
 		position: absolute;
 		width: 100%;
+	}
+
+	&__socials {
+		padding-top: vr-unit(1);
+	}
+
+	&__facebookLink {
+		position: relative;
+		display: inline-block;
+		margin: 0 0.2rem;
+		padding: 1em;
+		border-radius: 2em;
+		text-decoration: none;
+		background-color: darken($colors-tinge, 10);
+		transition: background-color 200ms linear;
+
+		&::before {
+			content: "f";
+			position: absolute;
+			top: 26%;
+			left: 41%;
+			transition: color 200ms linear;
+		}
+
+		&:hover {
+			background-color: $colors-emphasizing;
+
+			&::before {
+				color: $colors-default-background;
+			}
+		}
+	}
+
+	&__instagramLink,
+	&__youtubeLink {
+		position: relative;
+		display: inline-block;
+		margin: 0 0.2rem;
+		padding: 1em;
+		border-radius: 2em;
+		text-decoration: none;
+		background-color: darken($colors-tinge, 10);
+		transition: background-color 200ms linear;
+
+		&::before {
+			content: "";
+			transition: background-color 200ms linear;
+			background-color: $colors-text;
+			padding: 1em;
+			position: absolute;
+			left: 0;
+			top: 0;
+			mask-size: 0.9em;
+			mask-repeat: no-repeat;
+			mask-position: center;
+		}
+
+		&:hover {
+			background-color: $colors-emphasizing;
+
+			&::before {
+				background-color: $colors-default-background;
+			}
+		}
+	}
+
+	&__instagramLink {
+		&::before {
+			mask-image: url("../images/icon-instagram.svg");
+		}
+	}
+
+	&__youtubeLink {
+		&::before {
+			mask-image: url("../images/icon-youtube.svg");
+		}
 	}
 }

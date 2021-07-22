@@ -195,20 +195,18 @@
 			</script>
 			<div id="f-1-43c2cd496486bcc27217c3e790fb4088"></div>
 		</div>
+
+		<div class="newsletter__socials">
+			<a class="newsletter__instagramLink" href="https://www.instagram.com/hnutibrontosaurus" rel="noopener noreferrer" target="_blank" aria-label="Instagram Hnutí Brontosaurus"></a>
+			<a class="newsletter__facebookLink" href="https://www.facebook.com/hnutibrontosaurus" rel="noopener noreferrer" target="_blank" aria-label="Facebook Hnutí Brontosaurus"></a>
+			<a class="newsletter__youtubeLink" href="https://www.youtube.com/channel/UCiytQ5b-4GzZbYWDVMwNJ7A" rel="noopener noreferrer" target="_blank" aria-label="Youtube Hnutí Brontosaurus"></a>
+		</div>
+
 	</div>
 
 	<div class="footer-wrapper" id="navigace">
 		<footer class="footer">
 			<nav class="footer-navigation" role="navigation">
-				{if $isOnEnglishPage}
-					<a class="footer-navigation-languageLink footer-navigation-languageLink--active" href="{$homePageLink}" title="Česky">
-						Česky
-					</a>
-				{else}
-					<a class="footer-navigation-languageLink" href="{$englishPageLink}" title="English">
-						English
-					</a>
-				{/if}
 
 				<ul class="footer-navigation-main">
 					<li class="footer-navigation-main-item" n:foreach="$footerNavigationMenuItems as $menuItem">
@@ -217,12 +215,23 @@
 							{$menuItem->label}
 						</a>
 					</li>
+
+					{if $isOnEnglishPage}
+						<li class="footer-navigation-main-item">
+							<a class="footer-navigation-main-item-link" href="{$homePageLink}" title="Česky">
+								Česky
+							</a>
+						</li>
+					{else}
+						<li class="footer-navigation-main-item">
+							<a class="footer-navigation-main-item-link" href="{$englishPageLink}" title="English">
+								English
+							</a>
+						</li>
+					{/if}
+
 				</ul>
 			</nav>
-
-			<a class="footer-instagramLink" href="https://www.instagram.com/hnutibrontosaurus" rel="noopener noreferrer" target="_blank" aria-label="Instagram Hnutí Brontosaurus"></a>
-
-			<a class="footer-facebookLink" href="https://www.facebook.com/hnutibrontosaurus" rel="noopener noreferrer" target="_blank" aria-label="Facebook Hnutí Brontosaurus"></a>
 
 			<a class="footer-logoLink" href="" aria-label="Hnutí Brontosaurus"></a>
 
