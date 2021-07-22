@@ -60,6 +60,9 @@
 				stroke: white;
 			}
 		}
+		button[type=submit] {
+			transition: background-color 200ms ease-in-out;
+		}
 		button[type=submit]:hover {
 			background-color: #007338 !important;
 		}
@@ -77,83 +80,79 @@
 		width: 100%;
 	}
 
-	&-socials {
-		padding-top: 35px;
+	&__socials {
+		padding-top: 1.5rem;
+	}
 
-		&-facebookLink {
-			position: relative;
-			display: inline-block;
-			width: 2rem;
-			height: 2rem;
-			margin: 0 0.2rem;
-			padding: 1em;
-			border-radius: 2em;
-			text-decoration: none;
-			background-color: darken($colors-tinge, 10);
+	&__facebookLink {
+		position: relative;
+		display: inline-block;
+		margin: 0 0.2rem;
+		padding: 1em;
+		border-radius: 2em;
+		text-decoration: none;
+		background-color: darken($colors-tinge, 10);
+		transition: background-color 200ms linear;
+
+		&::before {
+			content: "f";
+			position: absolute;
+			top: 26%;
+			left: 41%;
+			transition: color 200ms linear;
+		}
+
+		&:hover {
+			background-color: $colors-emphasizing;
+
+			&::before {
+				color: $colors-default-background;
+			}
+		}
+	}
+
+	&__instagramLink,
+	&__youtubeLink {
+		position: relative;
+		display: inline-block;
+		margin: 0 0.2rem;
+		padding: 1em;
+		border-radius: 2em;
+		text-decoration: none;
+		background-color: darken($colors-tinge, 10);
+		transition: background-color 200ms linear;
+
+		&::before {
+			content: "";
 			transition: background-color 200ms linear;
-
-			&::before {
-				content: "f";
-				position: absolute;
-				top: 26%;
-				left: 41%;
-				transition: color 200ms linear;
-			}
-
-			&:hover {
-				background-color: $colors-emphasizing;
-
-				&::before {
-					color: $colors-default-background;
-				}
-			}
-		}
-
-		&-instagramLink,
-		&-youtubeLink {
-			position: relative;
-			display: inline-block;
-			width: 2rem;
-			height: 2rem;
-			margin: 0 0.2rem;
+			background-color: $colors-text;
 			padding: 1em;
-			border-radius: 2em;
-			text-decoration: none;
-			background-color: darken($colors-tinge, 10);
-			transition: background-color 200ms linear;
-
-			&::before {
-				content: "";
-				transition: background-color 200ms linear;
-				background-color: $colors-text;
-				padding: 1em;
-				position: absolute;
-				left: 0;
-				top: 0;
-				mask-size: 0.9em;
-				mask-repeat: no-repeat;
-				mask-position: center;
-			}
-
-			&:hover {
-				background-color: $colors-emphasizing;
-
-				&::before {
-					background-color: $colors-default-background;
-				}
-			}
+			position: absolute;
+			left: 0;
+			top: 0;
+			mask-size: 0.9em;
+			mask-repeat: no-repeat;
+			mask-position: center;
 		}
 
-		&-instagramLink {
+		&:hover {
+			background-color: $colors-emphasizing;
+
 			&::before {
-				mask-image: url("../images/icon-instagram.svg");
+				background-color: $colors-default-background;
 			}
 		}
+	}
 
-		&-youtubeLink {
-			&::before {
-				mask-image: url("../images/icon-youtube.svg");
-			}
+	&__instagramLink {
+		&::before {
+			mask-image: url("../images/icon-instagram.svg");
+		}
+	}
+
+	&__youtubeLink {
+		&::before {
+			mask-image: url("../images/icon-youtube.svg");
 		}
 	}
 }

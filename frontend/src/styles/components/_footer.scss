@@ -14,9 +14,9 @@ $footer-breakpoint-mediumToLarge-from: "min-width: " + ($footer-breakpoint-mediu
 .footer {
 	display: grid;
 	grid-template-areas:
-		"navigation navigation"
-		"logo-full logo-full"
-		"search search";
+		"navigation"
+		"logo-full"
+		"search";
 	justify-items: center;
 	margin-left: auto;
 	margin-right: auto;
@@ -27,16 +27,13 @@ $footer-breakpoint-mediumToLarge-from: "min-width: " + ($footer-breakpoint-mediu
 	@media ($footer-breakpoint-smallToMedium-until) {
 		grid-column-gap: vr-unit(0.5);
 	}
-	@media ($footer-breakpoint-smallToMedium-from) {
-		grid-template-columns: 1fr 1fr;
-	}
 	@media ($footer-breakpoint-mediumToLarge-from) {
 		grid-template-areas:
-			"navigation . . ."
-			"navigation logo-full logo-full logo-full"
-			". search search search";
-		grid-template-columns: auto max-content max-content max-content;
-		grid-template-rows: auto auto auto auto;
+			"navigation ."
+			"navigation logo-full"
+			". search";
+		grid-template-columns: auto max-content;
+		grid-template-rows: auto auto auto;
 		padding-left: vr-unit(1);
 		padding-right: vr-unit(1);
 	}
@@ -62,29 +59,26 @@ $footer-breakpoint-mediumToLarge-from: "min-width: " + ($footer-breakpoint-mediu
 
 				&-link {
 					display: inline-block;
-				}
-			}
-		}
-
-		&-main-item-link {
-			padding: 0.3em vr-unit(0.5) 0.15em;
-			border-radius: 2em;
-			color: $colors-text;
-			text-decoration: none;
-			transition:
-				background-color 200ms linear,
-				color 200ms linear;
-
-			&:hover {
-				color: $colors-emphasizing;
-			}
-
-			&--active {
-				background-color: $colors-emphasizing;
-				color: $colors-default-background !important; // overwrite default hover behaviour
-
-				&:hover {
-					background-color: darken($colors-emphasizing, 10);
+					padding: 0.3em vr-unit(0.5) 0.15em;
+					border-radius: 2em;
+					color: $colors-text;
+					text-decoration: none;
+					transition:
+						background-color 200ms linear,
+						color 200ms linear;
+		
+					&:hover {
+						color: $colors-emphasizing;
+					}
+		
+					&--active {
+						background-color: $colors-emphasizing;
+						color: $colors-default-background !important; // overwrite default hover behaviour
+		
+						&:hover {
+							background-color: darken($colors-emphasizing, 10);
+						}
+					}		
 				}
 			}
 		}
