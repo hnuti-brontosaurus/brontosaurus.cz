@@ -33,7 +33,7 @@ $footer-breakpoint-mediumToLarge-from: "min-width: " + ($footer-breakpoint-mediu
 			"navigation logo-full"
 			". search";
 		grid-template-columns: auto max-content;
-		grid-template-rows: auto auto auto;
+		grid-template-rows: auto auto;
 		padding-left: vr-unit(1);
 		padding-right: vr-unit(1);
 	}
