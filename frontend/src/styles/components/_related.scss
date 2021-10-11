@@ -193,6 +193,50 @@ aside .related {
 					background-position: -5.5em -0.6em;
 				}
 			}
+
+			&--calendar {
+				background-image: url("../images/guidepost-calendar.jpg");
+				background-position: calc(100% + 8em) -7em;
+				background-size: 45em;
+
+				&-roundedPhoto {
+					background-image: url("../images/guidepost-calendar.jpg");
+					background-position: -5.5em -0.6em;
+				}
+			}
+
+			&--brain {
+				background-image: url("../images/guidepost-brainForOrganisers.jpg");
+				background-position: calc(100% + 8em) -7em;
+				background-size: 45em;
+
+				&-roundedPhoto {
+					background-image: url("../images/guidepost-brainForOrganisers.jpg");
+					background-position: -5.5em -0.6em;
+				}
+			}
+
+			&--support {
+				background-image: url("../images/guidepost-supportUs.jpg");
+				background-position: calc(100% + 8em) -7em;
+				background-size: 45em;
+
+				&-roundedPhoto {
+					background-image: url("../images/guidepost-supportUs.jpg");
+					background-position: -5.5em -0.6em;
+				}
+			}
+
+			&--eshop {
+				background-image: url("../images/guidepost-eshop.jpg");
+				background-position: calc(100% + 8em) -7em;
+				background-size: 38em;
+
+				&-roundedPhoto {
+					background-image: url("../images/guidepost-eshop.jpg");
+					background-position: -3.5em -1.8em;
+				}
+			}
 		}
 	}
 }

@@ -126,5 +126,31 @@
 			background-size: cover;
 			background-position: center center;
 		}
+
+		// guidepost
+
+		&--guidepost-join {
+			background-image: url("../images/guidepost-join.jpg");
+			background-size: cover;
+			background-position: center center;
+		}
+
+		&--guidepost-organiseEvent {
+			background-image: url("../images/guidepost-organiseEvent.jpg");
+			background-size: cover;
+			background-position: center center;
+		}
+
+		&--guidepost-becomeMember {
+			background-image: url("../images/guidepost-becomeMember.jpg");
+			background-size: cover;
+			background-position: center center;
+		}
+
+		&--guidepost-foundNewUnit {
+			background-image: url("../images/guidepost-foundNewUnit.jpg");
+			background-size: cover;
+			background-position: center center;
+		}
 	}
 }

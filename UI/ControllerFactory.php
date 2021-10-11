@@ -20,6 +20,7 @@ use HnutiBrontosaurus\Theme\UI\EventDetail\EventDetailController;
 use HnutiBrontosaurus\Theme\UI\FirstTime\FirstTimeController;
 use HnutiBrontosaurus\Theme\UI\ForChildren\ForChildrenController;
 use HnutiBrontosaurus\Theme\UI\Future\FutureController;
+use HnutiBrontosaurus\Theme\UI\Guidepost\GuidepostController;
 use HnutiBrontosaurus\Theme\UI\HighSchools\HighSchoolsController;
 use HnutiBrontosaurus\Theme\UI\Homepage\HomepageController;
 use HnutiBrontosaurus\Theme\UI\Meetups\MeetupsController;
@@ -90,6 +91,7 @@ final class ControllerFactory
 			EventDetailController::PAGE_SLUG => new EventDetailController($this->dateFormatHuman, $this->dateFormatRobot, $this->recaptchaSiteKey, $this->recaptchaSecretKey, $this->applicationFormFacade, $this->bisApiClient, $base, $this->latte, $this->httpRequest, $this->logger),
 			'co-je-noveho' => new NewsController($this->dateFormatHuman, $this->dateFormatRobot, $base, $this->latte),
 			'vysledky-vyhledavani' => new SearchResultsController($base, $this->latte),
+			'rozcestnik' => new GuidepostController($base, $this->latte),
 			BaseUnitsAndClubsListController::PAGE_SLUG => new BaseUnitsAndClubsListController($this->bisApiClient, $base, $this->latte),
 			default => new ErrorController($base, $this->latte),
 		};

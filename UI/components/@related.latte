@@ -152,5 +152,112 @@
 			</div>
 		</a>
 		{/ifset}
+
+		{ifset $includeGuidepost}
+		<a class="related-list-item related-list-item--calendar button--secondary-wrapper" href="{$coursesPageLink}">
+			<h2 class="related-list-item-heading">
+				Kalendář akcí
+			</h2>
+
+			<ul class="related-list-item-list">
+				<li class="related-list-item-list-item">
+					Dobrovolnické akce
+				</li>
+
+				<li class="related-list-item-list-item">
+					Kurzy a přednášky
+				</li>
+
+				<li class="related-list-item-list-item">
+					Setkávání a kluby
+				</li>
+			</ul>
+
+			<div class="related-list-item-roundedPhoto related-list-item--calendar-roundedPhoto"></div>
+			<div class="related-list-item-moreLink related-list-item--courses-moreLink button button--secondary">{block |trim}{* because of whitespace in text underline *}
+				Chci více info{/block}
+				<div class="related-list-item-moreLink-background related-list-item--courses-moreLink-background"></div>
+			</div>
+		</a>
+
+		<a class="related-list-item related-list-item--brain button--secondary-wrapper" href="{$voluntaryPageLink}">
+			<h2 class="related-list-item-heading">
+				Mozek pro organizátory
+			</h2>
+
+			<ul class="related-list-item-list">
+				<li>
+					Podpora organizování akcí
+				</li>
+
+				<li>
+					Dokumenty, manuály a šablony
+				</li>
+
+				<li>
+					Kontakty a odkazy
+				</li>
+			</ul>
+
+			<div class="related-list-item-roundedPhoto related-list-item--brain-roundedPhoto"></div>
+			<div class="related-list-item-moreLink related-list-item--voluntary-moreLink button button--secondary">{block |trim}{* because of whitespace in text underline *}
+				Chci více info{/block}
+				<div class="related-list-item-moreLink-background related-list-item--voluntary-moreLink-background"></div>
+			</div>
+		</a>
+
+		<a class="related-list-item related-list-item--support button--secondary-wrapper" href="{$meetupsPageLink}">
+			<h2 class="related-list-item-heading">
+				Podpoř nás
+			</h2>
+
+			<ul class="related-list-item-list">
+				<li>
+					Podpora našich projektů
+				</li>
+
+				<li>
+					Adopce Brontosaura
+				</li>
+
+				<li>
+					Dárky přírodě
+				</li>
+			</ul>
+
+			<div class="related-list-item-roundedPhoto related-list-item--support-roundedPhoto"></div>
+			<div class="related-list-item-moreLink related-list-item--meetups-moreLink button button--secondary">{block |trim}{* because of whitespace in text underline *}
+				Chci více info{/block}
+				<div class="related-list-item-moreLink-background related-list-item--meetups-moreLink-background"></div>
+			</div>
+		</a>
+
+		<a class="related-list-item related-list-item--eshop button--secondary-wrapper" href="{$supportOverviewPageLink}">
+			<h2 class="related-list-item-heading">
+				E-shop
+			</h2>
+
+			<ul class="related-list-item-list">
+				<li>
+					Benefiční předměty
+				</li>
+
+				<li>
+					Brontosauří trička a tašky
+				</li>
+
+				<li>
+					Publikace a metodiky
+				</li>
+			</ul>
+
+			<div class="related-list-item-roundedPhoto related-list-item--eshop-roundedPhoto"></div>
+			<div class="related-list-item-moreLink related-list-item--donation-moreLink button button--secondary">{block |trim}{* because of whitespace in text underline *}
+				Chci více info{/block}
+				<div class="related-list-item-moreLink-background related-list-item--donation-moreLink-background"></div>
+			</div>
+		</a>
+		{/ifset}
+
 	</div>
 </section>

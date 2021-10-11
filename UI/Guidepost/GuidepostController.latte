@@ -1,0 +1,134 @@
+{layout $layoutPath}
+
+{block content}
+<main class="guidepost" role="main">
+
+	<section class="guidepost__opportunities">
+
+		<h1>
+			Aktuální příležitosti
+		</h1>
+
+		<ul class="about-structure-map-filters" id="about-structure-map-filters">
+			<li class="about-structure-map-filters-item" id="mapa-vse">
+				<a class="about-structure-map-filters-item-link button button--customization" href="#mapa-vse">
+					organizování akcí
+				</a>
+			</li>
+
+			<li class="about-structure-map-filters-item" id="mapa-ustredi" data-slug="office">
+				<a class="about-structure-map-filters-item-link about-structure-map-filters-item-link--icon about-structure-map-filters-item-link--office button button--customization" href="#mapa-ustredi">
+					spolupráce
+				</a>
+			</li>
+
+			<li class="about-structure-map-filters-item" id="mapa-regionalni-centra" data-slug="regional">
+				<a class="about-structure-map-filters-item-link about-structure-map-filters-item-link--icon about-structure-map-filters-item-link--regional button button--customization" href="#mapa-regionalni-centra">
+					pomoc lokalitě
+				</a>
+			</li>
+		</ul>
+
+
+	</section>
+
+	<section class="guidepost-map">
+		<h1>
+			Chceš se zapojit? Ozvi se nám!
+		</h1>
+
+		<img class="" src="{$viewAssetsPath}/dist/images/mapa_lokality.png">
+
+		<a class="about-crossroad-highlightsLink action action--ulterior" href="https://r-dev.brontosaurus.cz/o-brontosaurovi/jak-to-u-nas-funguje/">
+			Kontakty na lokální koordinátory
+		</a>
+	</section>
+
+		<ul class="support-overview-how-options">
+			<li class="support-overview-how-options-item">
+				<a class="support-overview-how-options-item-link optionBox" href="http://darkyprirode.cz" target="_blank">
+					<div class="optionBox__text">
+						<h2 class="support-overview-how-options-item-link-heading optionBox__heading">
+							Chci se zapojit
+						</h2>
+
+						<p class="optionBox__description">
+							Zapoj se do organizování našich akcí dle svých možností třeba jako kuchař, zdravotník či fotograf. Spolupracovat s&nbsp;námi můžeš také jako lektor, grafik nebo třeba tvůrce webů. 
+						</p>
+					</div>
+
+					<div class="optionBox__image optionBox__image--guidepost-join">
+						<div class="support-overview-how-options-item-link-button button button--primary">
+							Více info
+						</div>
+					</div>
+				</a>
+			</li>
+
+			<li class="support-overview-how-options-item">
+				<a class="support-overview-how-options-item-link optionBox" href="{*@todo $supportAdoptionPageLink*}https://www.darujme.cz/projekt/525" rel="noopener noreferrer" target="_blank">
+					<div class="optionBox__text">
+						<h2 class="support-overview-how-options-item-link-heading optionBox__heading">
+							Chci organizovat akci
+						</h2>
+
+						<p class="optionBox__description">
+							Nauč se pořádat vlastní dobrovolnické akce na našich organizátorských kurzech a získej podporu v podobě mentoringu, propagace, financí, online nástrojů či výběru správné lokality.
+						</p>
+					</div>
+
+					<div class="optionBox__image optionBox__image--guidepost-organiseEvent">
+						<div class="support-overview-how-options-item-link-button button button--primary">
+							Více info
+						</div>
+					</div>
+				</a>
+			</li>
+
+			<li class="support-overview-how-options-item">
+				<a class="support-overview-how-options-item-link optionBox" href="{*@todo $supportAdoptionPageLink*}https://www.darujme.cz/projekt/525" rel="noopener noreferrer" target="_blank">
+					<div class="optionBox__text">
+						<h2 class="support-overview-how-options-item-link-heading optionBox__heading">
+							Chci se stát členem
+						</h2>
+
+						<p class="optionBox__description">
+							Členství v Hnutí Brontosaurus ti přinese spoustu skvělých výhod a zároveň podpoříš naši činnost a péči o přírodu a památky.
+						</p>
+					</div>
+
+					<div class="optionBox__image optionBox__image--guidepost-becomeMember">
+						<div class="support-overview-how-options-item-link-button button button--primary">
+							Více info
+						</div>
+					</div>
+				</a>
+			</li>
+
+			<li class="support-overview-how-options-item">
+				<a class="support-overview-how-options-item-link optionBox" href="{*@todo $supportAdoptionPageLink*}https://www.darujme.cz/projekt/525" rel="noopener noreferrer" target="_blank">
+					<div class="optionBox__text">
+						<h2 class="support-overview-how-options-item-link-heading optionBox__heading">
+							Chci založit článek, klub či oddíl
+						</h2>
+
+						<p class="optionBox__description">
+							Našim základním článkům, klubům a dětským oddílům zajišťujeme finanční a marketingovou podporu, pojištění, slevy a mnoho dalších výhod.
+						</p>
+					</div>
+
+					<div class="optionBox__image optionBox__image--guidepost-foundNewUnit">
+						<div class="support-overview-how-options-item-link-button button button--primary">
+							Více info
+						</div>
+					</div>
+				</a>
+			</li>						
+		</ul>
+
+</main>
+
+
+<aside>
+	{include '../components/@related.latte',  excludeCourses => TRUE, excludeVoluntary => TRUE, excludeMeetups => TRUE, excludeSupport => TRUE, excludeForChildren => TRUE, includeGuidepost => TRUE }
+</aside>
