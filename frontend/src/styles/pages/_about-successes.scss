@@ -18,6 +18,38 @@ article .about-successes {
 		}
 	}
 
+	&__callForStories {
+		background-color: $colors-tinge;
+		border-radius: 1em;
+		padding: vr-unit(1);
+		max-width: 25rem;
+		margin-inline: auto;
+		font-size: 0.9em;
+		margin-bottom: vr-unit(1);
+
+		@media ($typography-breakpoint-large-from) {
+			margin-bottom: vr-unit(2);
+		}
+
+		&::before {
+			content: "";
+			display: block;
+			--about-successes-bronto-size: 4rem;
+			width: var(--about-successes-bronto-size);
+			height: var(--about-successes-bronto-size);
+			background-image: url("../images/logo-hb-brontosaurus.svg");
+			background-size: auto 100%;
+			background-position: center center;
+			background-repeat: no-repeat;
+			float: right;
+			margin: -2.1rem -1.9rem #{vr-unit(1)} #{vr-unit(1)};
+		}
+
+		p:not(:last-child) {
+			margin-bottom: vr-unit(0.5);
+		}
+	}
+
 	&-item {
 		&:not(:last-child) {
 			margin-bottom: vr-unit(2);
