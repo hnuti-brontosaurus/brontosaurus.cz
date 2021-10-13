@@ -4,7 +4,7 @@ import gulp from 'gulp';
 import autoprefixer from 'gulp-autoprefixer';
 import plumber from 'gulp-plumber';
 import rename from 'gulp-rename';
-import sass from 'gulp-sass';
+const sass = require('gulp-sass')(require('sass'));
 import sourcemaps from 'gulp-sourcemaps';
 
 import {ENV_PRODUCTION} from './constants';
