@@ -15,15 +15,21 @@ article .about-successes {
 	}
 
 	&__callForStories {
-		margin-bottom: vr-unit(1);
+		margin-bottom: vr-unit(2);
 
 		@media ($typography-breakpoint-large-from) {
-			margin-bottom: vr-unit(2);
+			margin-bottom: vr-unit(3);
 		}
 
 		p {
 			@include block-text();
 			margin-bottom: vr-unit(1);
+		}
+
+		a {
+			display: block;
+			width: max-content;
+			margin-inline: auto;
 		}
 	}
 
