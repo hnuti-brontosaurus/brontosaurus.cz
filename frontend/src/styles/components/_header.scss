@@ -95,6 +95,7 @@ $header-breakpoint-navigationHiddenToVisible-visible-from: "min-width: " + ($hea
 	}
 
 	&-mainNavigation-languageLink,
+	&-mainNavigation .menu > .menu-item > a,
 	&-mainNavigation-list-item-link,
 	&-futureEventsLink {
 		display: block;
@@ -106,10 +107,18 @@ $header-breakpoint-navigationHiddenToVisible-visible-from: "min-width: " + ($hea
 		}
 
 		&--active {
+			// duplicated below temporarily
 			@media ($header-breakpoint-navigationHiddenToVisible-hidden-until) {
 				color: $colors-emphasizing;
 				font-weight: bold;
 			}
+		}
+	}
+	&-mainNavigation .menu > .menu-item.active > a {
+		// duplicated from above temporarily
+		@media ($header-breakpoint-navigationHiddenToVisible-hidden-until) {
+			color: $colors-emphasizing;
+			font-weight: bold;
 		}
 	}
 
@@ -138,6 +147,7 @@ $header-breakpoint-navigationHiddenToVisible-visible-from: "min-width: " + ($hea
 			}
 		}
 
+		.menu,
 		&-list {
 			grid-area: mainNavigation;
 			list-style-type: none;
@@ -160,6 +170,7 @@ $header-breakpoint-navigationHiddenToVisible-visible-from: "min-width: " + ($hea
 	@media ($header-breakpoint-navigationHiddenToVisible-hidden-until) {
 		&--isOpened {
 			.header-mainNavigation-languageLink,
+			.header-mainNavigation .menu,
 			.header-mainNavigation-list {
 				display: block;
 			}
@@ -198,6 +209,7 @@ $header-breakpoint-navigationHiddenToVisible-visible-from: "min-width: " + ($hea
 		}
 
 		&-mainNavigation {
+			.menu,
 			&-list {
 				display: flex;
 				flex-direction: row;
@@ -207,6 +219,7 @@ $header-breakpoint-navigationHiddenToVisible-visible-from: "min-width: " + ($hea
 				padding-top: vr-unit(0.5);
 			}
 
+			.menu > .menu-item > a,
 			&-list-item-link {
 				padding-left: vr-unit(0.5);
 				padding-right: vr-unit(0.5);
@@ -322,6 +335,7 @@ $header-breakpoint-navigationHiddenToVisible-visible-from: "min-width: " + ($hea
 
 	@media ($typography-breakpoint-large-from) {
 		&-mainNavigation {
+			.menu,
 			&-list {
 				padding-left: 5px; // so that main navigation start with logo nicely
 			}

@@ -41,6 +41,7 @@ $footer-breakpoint-mediumToLarge-from: "min-width: " + ($footer-breakpoint-mediu
 	&-navigation {
 		display: contents;
 
+		.menu,
 		&-main {
 			grid-area: navigation;
 
@@ -52,11 +53,13 @@ $footer-breakpoint-mediumToLarge-from: "min-width: " + ($footer-breakpoint-mediu
 				margin-bottom: vr-unit(1);
 			}
 
+			& > .menu-item,
 			&-item {
 				@media ($footer-breakpoint-smallToMedium-until) {
 					text-align: center;
 				}
 
+				& > a,
 				&-link {
 					display: inline-block;
 					padding: 0.3em vr-unit(0.5) 0.15em;
@@ -66,19 +69,19 @@ $footer-breakpoint-mediumToLarge-from: "min-width: " + ($footer-breakpoint-mediu
 					transition:
 						background-color 200ms linear,
 						color 200ms linear;
-		
+
 					&:hover {
 						color: $colors-emphasizing;
 					}
-		
-					&--active {
-						background-color: $colors-emphasizing;
-						color: $colors-default-background !important; // overwrite default hover behaviour
-		
-						&:hover {
-							background-color: darken($colors-emphasizing, 10);
-						}
-					}		
+				}
+				&.active > a,
+				&-link--active {
+					background-color: $colors-emphasizing;
+					color: $colors-default-background !important; // overwrite default hover behaviour
+
+					&:hover {
+						background-color: darken($colors-emphasizing, 10);
+					}
 				}
 			}
 		}

@@ -138,6 +138,18 @@ add_action('init', function () {
 });
 
 
+function getLinkFor(string $slug): string
+{
+	$posts = get_posts(['name' => $slug, 'post_type' => 'page', 'posts_per_page' => 1]);
+	$post = \reset($posts);
+	if ($post === false) {
+		throw new \RuntimeException("$slug does not exist");
+	}
+
+	return get_permalink($post->ID);
+}
+
+
 // frontend stuff
 
 (function (\WP_Theme $theme) {

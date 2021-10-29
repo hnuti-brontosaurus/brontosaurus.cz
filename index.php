@@ -89,6 +89,24 @@ require_once __DIR__ . '/vendor/autoload.php';
 	}
 	$sentryLogger = SentryLogger::initialize($dsn);
 
+
+	// use template part if available
+	if ($post !== null) {
+		ob_start();
+		set_query_var('hb_enableTracking', $configuration->get('enableTracking')); // temporary pass setting to template (better solution is to use WP database to store these things)
+		$result = get_template_part('template-parts/content/content', $post->post_name);
+		$content = ob_get_contents();
+		ob_end_clean();
+		$success = $result !== false; // get_template_part() doesn't return true in case of success
+		if ($success) {
+			get_header();
+			echo $content;
+			get_footer();
+			return;
+		}
+	}
+
+
 	$controllerFactory = new ControllerFactory(
 		$configuration->get('dateFormat:human'),
 		$configuration->get('dateFormat:robot'),
