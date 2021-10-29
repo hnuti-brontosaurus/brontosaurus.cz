@@ -19,6 +19,7 @@
 @import "components/hero"; // must be below header
 @import "components/coverPhoto"; // must be below header
 @import "components/buttons";
+@import "components/filters"; // must be below header and button
 @import "components/content";
 @import "components/events";
 @import "components/eventTagList";

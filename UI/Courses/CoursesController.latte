@@ -11,32 +11,32 @@
 			Seznam akcí
 		</h2>
 
-		<div class="events-filters" id="events-filters"{if $filters->isAnySelected} data-collapse-openedOnLoad="1"{/if}>
-			<button class="events-filters-toggler button button--customization" id="events-filters-toggler" type="button" aria-hidden="true">
+		<div class="events-filters filters" id="events-filters"{if $filters->isAnySelected} data-collapse-openedOnLoad="1"{/if}>
+			<button class="filters__toggler button button--customization" id="events-filters-toggler" type="button" aria-hidden="true">
 				Zobrazit pouze
 			</button>
 
-			<ul class="events-filters-list" id="events-filters-list">
-				<li class="events-filters-list-item">
-					<a n:class="'events-filters-list-item-link', ! $filters->isAnySelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$coursesPageLink}#obsah">
+			<ul class="filters__list" id="events-filters-list">
+				<li class="filters__item">
+					<a n:class="'filters__link', ! $filters->isAnySelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$coursesPageLink}#obsah">
 						vše
 					</a>
 				</li>
 
-				<li class="events-filters-list-item">
-					<a n:class="'events-filters-list-item-link', $filters->isMeetupsSelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$coursesPageLink}?{$filters->key}=prednasky#obsah">
+				<li class="filters__item">
+					<a n:class="'filters__link', $filters->isMeetupsSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$coursesPageLink}?{$filters->key}=prednasky#obsah">
 						přednášky
 					</a>
 				</li>
 
-				<li class="events-filters-list-item">
-					<a n:class="'events-filters-list-item-link', $filters->isOrganizingSelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$coursesPageLink}?{$filters->key}=organizatorske-kurzy#obsah">
+				<li class="filters__item">
+					<a n:class="'filters__link', $filters->isOrganizingSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$coursesPageLink}?{$filters->key}=organizatorske-kurzy#obsah">
 						organizátorské kurzy
 					</a>
 				</li>
 
-				<li class="events-filters-list-item">
-					<a n:class="'events-filters-list-item-link', $filters->isThematicSelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$coursesPageLink}?{$filters->key}=tematicke-kurzy#obsah">
+				<li class="filters__item">
+					<a n:class="'filters__link', $filters->isThematicSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$coursesPageLink}?{$filters->key}=tematicke-kurzy#obsah">
 						tématické kurzy
 					</a>
 				</li>

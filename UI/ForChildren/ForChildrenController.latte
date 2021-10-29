@@ -18,38 +18,38 @@
 			Akce pro&nbsp;děti a&nbsp;rodiče s&nbsp;dětmi
 		</h2>
 
-		<div class="events-filters" id="events-filters"{if $filters->isAnySelected} data-collapse-openedOnLoad="1"{/if}>
-			<button class="events-filters-toggler button button--customization" id="events-filters-toggler" type="button" aria-hidden="true">
+		<div class="events-filters filters" id="events-filters"{if $filters->isAnySelected} data-collapse-openedOnLoad="1"{/if}>
+			<button class="filters__toggler button button--customization" id="events-filters-toggler" type="button" aria-hidden="true">
 				Zobrazit pouze
 			</button>
 
-			<ul class="events-filters-list" id="events-filters-list">
-				<li class="events-filters-list-item">
-					<a n:class="'events-filters-list-item-link', ! $filters->isAnySelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$forChildrenPageLink}#obsah">
+			<ul class="filters__list" id="events-filters-list">
+				<li class="filters__item">
+					<a n:class="'filters__link', ! $filters->isAnySelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$forChildrenPageLink}#obsah">
 						vše
 					</a>
 				</li>
 
-				<li class="events-filters-list-item">
-					<a n:class="'events-filters-list-item-link', $filters->isCampsSelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$forChildrenPageLink}?{$filters->key}=detske-tabory#obsah">
+				<li class="filters__item">
+					<a n:class="'filters__link', $filters->isCampsSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$forChildrenPageLink}?{$filters->key}=detske-tabory#obsah">
 						dětské tábory
 					</a>
 				</li>
 
-				<li class="events-filters-list-item">
-					<a n:class="'events-filters-list-item-link', $filters->isUnitsSelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$forChildrenPageLink}?{$filters->key}=detske-oddily#obsah">
+				<li class="filters__item">
+					<a n:class="'filters__link', $filters->isUnitsSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$forChildrenPageLink}?{$filters->key}=detske-oddily#obsah">
 						dětské oddíly
 					</a>
 				</li>
 
-				<li class="events-filters-list-item">
-					<a n:class="'events-filters-list-item-link', $filters->isEventsSelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$forChildrenPageLink}?{$filters->key}=akce-pro-deti#obsah">
+				<li class="filters__item">
+					<a n:class="'filters__link', $filters->isEventsSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$forChildrenPageLink}?{$filters->key}=akce-pro-deti#obsah">
 						akce pro&nbsp;děti
 					</a>
 				</li>
 
-				<li class="events-filters-list-item">
-					<a n:class="'events-filters-list-item-link', $filters->isEventsWithParentsSelected ? 'events-filters-list-item-link--selected', 'button', 'button--customization'" href="{$forChildrenPageLink}?{$filters->key}=akce-pro-rodice-s-detmi#obsah">
+				<li class="filters__item">
+					<a n:class="'filters__link', $filters->isEventsWithParentsSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$forChildrenPageLink}?{$filters->key}=akce-pro-rodice-s-detmi#obsah">
 						akce pro&nbsp;rodiče s&nbsp;dětmi
 					</a>
 				</li>

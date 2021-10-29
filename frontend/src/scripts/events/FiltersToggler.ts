@@ -9,7 +9,7 @@ export default class {
 			stateElement,
 			animatedElement,
 			{
-				opened: 'events-filters--opened',
+				opened: 'filters--opened',
 			},
 		);
 	}
