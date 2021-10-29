@@ -94,7 +94,14 @@ require_once __DIR__ . '/vendor/autoload.php';
 	if ($post !== null) {
 		ob_start();
 		set_query_var('hb_enableTracking', $configuration->get('enableTracking')); // temporary pass setting to template (better solution is to use WP database to store these things)
-		$result = get_template_part('template-parts/content/content', $post->post_name);
+		if ($post->post_content !== '') {
+			// todo use the_post() instead, but it did not work in current flow (with the controller things probably)
+			echo '<h1>'.$post->post_title.'</h1>';
+			echo $post->post_content;
+			$result = null;
+		} else {
+			$result = get_template_part('template-parts/content/content', $post->post_name);
+		}
 		$content = ob_get_contents();
 		ob_end_clean();
 		$success = $result !== false; // get_template_part() doesn't return true in case of success
