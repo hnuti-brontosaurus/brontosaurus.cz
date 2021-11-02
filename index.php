@@ -29,15 +29,55 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 // DI & bootstrap in one
 
-(function (?\WP_Post $post) {
-	// latte
+function hb_getLatte(): Engine
+{
 	$cachePath = __DIR__ . '/temp/cache/latte';
 	if ( ! \is_dir($cachePath)) {
 		if ( ! @mkdir($cachePath, recursive: true)) {
 			throw new \RuntimeException('Can not create cache path.');
 		}
 	}
-	$latte = (new Engine())->setTempDirectory($cachePath);
+
+	$latte = new Engine();
+	$latte->setTempDirectory($cachePath);
+
+	return $latte;
+}
+
+function hb_getGeocodingClient(): GeocodingClientFacade
+{
+	return new GeocodingClientFacade(
+		new CachedGeocodingService(
+			new CacheManager(__DIR__ . '/temp/geocoding-cache'),
+			new MapyCzGeocodingService(
+				new Communicator(),
+				new Mapper(),
+			),
+		),
+	);
+}
+
+function hb_getConfiguration(): Configuration
+{
+	return new Configuration([
+		__DIR__ . '/config/config.neon',
+		__DIR__ . '/config/config.local.neon',
+	]);
+}
+
+function hb_getBisApiClient(Configuration $configuration): Client
+{
+	return new Client(
+		$configuration->get('bis:url'),
+		$configuration->get('bis:username'),
+		$configuration->get('bis:password'),
+		new HttpClient(),
+	);
+}
+
+(function (?\WP_Post $post) {
+	// latte
+	$latte = hb_getLatte();
 
 	// tracy
 	Debugger::$logDirectory = __DIR__ . '/log';
@@ -47,19 +87,11 @@ require_once __DIR__ . '/vendor/autoload.php';
 	LattePanel::initialize($latte);
 
 	// config
-	$configuration = new Configuration([
-		__DIR__ . '/config/config.neon',
-		__DIR__ . '/config/config.local.neon',
-	]);
+	$configuration = hb_getConfiguration();
 
 	// app
 
-	$bisApiClient = new Client(
-		$configuration->get('bis:url'),
-		$configuration->get('bis:username'),
-		$configuration->get('bis:password'),
-		new HttpClient(),
-	);
+	$bisApiClient = hb_getBisApiClient($configuration);
 
 	if ($configuration->get('mailer:smtp')) {
 		// only no-authentication access is supported right now as we do not have authenticated SMTP servers now
@@ -131,15 +163,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 		$bisApiClient,
 		new BaseFactory($configuration->get('enableTracking')),
 		$latte,
-		new GeocodingClientFacade(
-			new CachedGeocodingService(
-				new CacheManager(__DIR__ . '/temp/geocoding-cache'),
-				new MapyCzGeocodingService(
-					new Communicator(),
-					new Mapper(),
-				),
-			),
-		),
+		hb_getGeocodingClient(),
 		(new RequestFactory())->fromGlobals(),
 		$sentryLogger,
 	);
