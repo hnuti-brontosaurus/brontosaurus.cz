@@ -1,5 +1,45 @@
 <?php declare(strict_types = 1);
 
+use Grifart\GeocodingClient\MapyCz\NoResultException;
+use HnutiBrontosaurus\BisApiClient\BisApiClientRuntimeException;
+use HnutiBrontosaurus\Theme\UI\AboutStructure\AboutStructureController;
+use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\OrganizationalUnitDC;
+
+
+$configuration = hb_getConfiguration();
+$bisApiClient = hb_getBisApiClient($configuration);
+$latte = hb_getLatte();
+$geocodingClient = hb_getGeocodingClient();
+
+$hasBeenUnableToLoad = false;
+
+try {
+	foreach ($bisApiClient->getOrganizationalUnits() as $organizationalUnit) {
+		try {
+			$location = $geocodingClient->getCoordinatesFor(
+				$organizationalUnit->getStreet(),
+				$organizationalUnit->getCity(),
+				$organizationalUnit->getPostCode()
+			);
+			$organizationalUnits[] = OrganizationalUnitDC::fromDTO($organizationalUnit, $location);
+
+		} catch (NoResultException) {
+			continue; // in case of non-existing address just silently continue and ignore this unit
+		}
+	}
+
+} catch (BisApiClientRuntimeException) {
+	$hasBeenUnableToLoad = true;
+}
+
+$viewAssetsPath = get_template_directory_uri() . '/UI/AboutStructure/assets';
+
+$params = [
+	'viewAssetsPath' => $viewAssetsPath,
+	'organizationalUnitsInJson' => AboutStructureController::getOrganizationalUnitsInJson($organizationalUnits),
+	'hasBeenUnableToLoad' => $hasBeenUnableToLoad,
+];
+
 ?>
 
 <main class="zapoj-se" role="main" id="obsah">
@@ -9,6 +49,8 @@
 
 	<section>
 		<h1>Chceš se zapojit? Ozvi se nám!</h1>
+
+		<?php $latte->render(__DIR__ . '/../../UI/AboutStructure/unitMap.latte', $params); ?>
 	</section>
 </main>
 
