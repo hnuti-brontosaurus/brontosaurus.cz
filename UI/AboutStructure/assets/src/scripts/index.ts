@@ -35,7 +35,7 @@ function initMap(): void {
 	window.addEventListener('load', () => { // finally once the page is loaded, check if a layer filter should be activated
 		const hash = window.location.hash.substr(1);
 
-		const selectedFilterLinkElement = document.getElementById(hash);
+		const selectedFilterLinkElement = document.querySelector<HTMLElement>(`.about-structure-map-filters #${hash}`);
 		if (selectedFilterLinkElement !== null) { // no filtering element with given hash found => do not filter
 			filters.displayLayer(selectedFilterLinkElement);
 		}
