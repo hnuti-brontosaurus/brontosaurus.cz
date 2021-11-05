@@ -1,0 +1,7 @@
+.hb-block-text {
+	@include block-text();
+
+	&:not(:last-child) {
+		margin-bottom: vr-unit(2);
+	}
+}
