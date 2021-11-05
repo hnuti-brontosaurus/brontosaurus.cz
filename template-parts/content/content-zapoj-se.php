@@ -52,6 +52,30 @@ $params = [
 
 		<?php $latte->render(__DIR__ . '/../../UI/AboutStructure/unitMap.latte', $params); ?>
 
+		<div class="hb-block-text">
+			<h2>Kontakty na lokální koordinátory</h2>
+
+			<ul class="hb--centered" style="list-style-type: none">
+				<li><strong>Praha:</strong>
+					Daniela Syrovátková,
+					<a href="tel:+420777907125" rel="noopener noreferrer" target="_blank">777 907 125</a>,
+					<a href="mailto:praha@brontosaurus.cz" rel="noopener noreferrer" target="_blank">praha@brontosaurus.cz</a>
+				</li>
+
+				<li><strong>Brno:</strong>
+					Tereza Opravilová,
+					<a href="tel:+420736720568" rel="noopener noreferrer" target="_blank">736 720 568</a>,
+					<a href="mailto:akce-priroda@brontosaurus.cz" rel="noopener noreferrer" target="_blank">akce-priroda@brontosaurus.cz</a>
+				</li>
+
+				<li><strong>Podluží:</strong>
+					Dalimil Toman,
+					<a href="tel:+420605763112" rel="noopener noreferrer" target="_blank">605 763 112</a>,
+					<a href="mailto:podluzi@brontosaurus.cz" rel="noopener noreferrer" target="_blank">podluzi@brontosaurus.cz</a>
+				</li>
+			</ul>
+		</div>
+
 		<div class="description">
 			<div class="description-list">
 				<a class="description-list-item optionBox button--secondary-wrapper" href="<?php echo \HnutiBrontosaurus\Theme\getLinkFor('chci-se-zapojit'); ?>">
