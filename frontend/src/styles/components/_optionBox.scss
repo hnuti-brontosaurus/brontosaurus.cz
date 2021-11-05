@@ -126,5 +126,22 @@
 			background-size: cover;
 			background-position: center center;
 		}
+
+
+		// zapoj se
+
+		&--chci-se-zapojit {
+			background-image: url("../images/zapoj-se-chci-se-zapojit.jpg");
+			background-position-y: bottom;
+		}
+		&--chci-organizovat-akci {
+			background-image: url("../images/zapoj-se-chci-organizovat-akci.jpg");
+		}
+		&--chci-se-stat-clenem {
+			background-image: url("../images/zapoj-se-chci-se-stat-clenem.jpg");
+		}
+		&--chci-zalozit-clanek {
+			background-image: url("../images/zapoj-se-chci-zalozit-clanek.jpg");
+		}
 	}
 }

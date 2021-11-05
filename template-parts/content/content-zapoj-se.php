@@ -51,6 +51,76 @@ $params = [
 		<h1>Chceš se zapojit? Ozvi se nám!</h1>
 
 		<?php $latte->render(__DIR__ . '/../../UI/AboutStructure/unitMap.latte', $params); ?>
+
+		<div class="description">
+			<div class="description-list">
+				<a class="description-list-item optionBox button--secondary-wrapper" href="<?php echo \HnutiBrontosaurus\Theme\getLinkFor('chci-se-zapojit'); ?>">
+					<div class="description-list-item-text optionBox__text">
+						<h2 class="optionBox__heading">
+							Chci se zapojit
+						</h2>
+
+						<p class="optionBox__description">
+							Zapoj se do organizování našich akcí dle svých možností třeba jako kuchař, zdravotník či fotograf.
+							Spolupracovat s námi můžeš také jako lektor, grafik nebo třeba tvůrce webů.
+						</p>
+					</div>
+
+					<div class="optionBox__image optionBox__image--chci-se-zapojit">
+						<div class="button button--secondary">Více informací</div>
+					</div>
+				</a>
+
+				<a class="description-list-item optionBox button--secondary-wrapper" href="https://mozek.brontosaurus.cz/index.php/cely-mozek/organizovani-akci/jak-se-stat-organizatorem" rel="noopener" target="_blank">
+					<div class="description-list-item-text optionBox__text">
+						<h2 class="optionBox__heading">
+							Chci organizovat akci
+						</h2>
+
+						<p class="optionBox__description">
+							Nauč se pořádat vlastní dobrovolnické akce na našich organizátorských kurzech a získej podporu
+							v podobě mentoringu, propagace, financí, online nástrojů či výběru správné lokality.
+						</p>
+					</div>
+
+					<div class="optionBox__image optionBox__image--chci-organizovat-akci">
+						<div class="button button--secondary">Více informací</div>
+					</div>
+				</a>
+
+				<a class="description-list-item optionBox button--secondary-wrapper" href="<?php echo \HnutiBrontosaurus\Theme\getLinkFor('chci-se-stat-clenem'); ?>">
+					<div class="description-list-item-text optionBox__text">
+						<h2 class="optionBox__heading">
+							Chci se stát členem
+						</h2>
+
+						<p class="optionBox__description">
+							Členství v Hnutí Brontosaurus ti přinese spoustu skvělých výhod a zároveň podpoříš naši činnost a péči o přírodu a památky.
+						</p>
+					</div>
+
+					<div class="optionBox__image optionBox__image--chci-se-stat-clenem">
+						<div class="button button--secondary">Více informací</div>
+					</div>
+				</a>
+
+				<a class="description-list-item optionBox button--secondary-wrapper" href="https://mozek.brontosaurus.cz/index.php/cely-mozek/provoz-clanku-klubu-rc/zakladame-zc-rc-klub" rel="noopener" target="_blank">
+					<div class="description-list-item-text optionBox__text">
+						<h2 class="optionBox__heading">
+							Chci založit článek, klub či oddíl
+						</h2>
+
+						<p class="optionBox__description">
+							Našim základním článkům, klubům a dětským oddílům zajišťujeme finanční a marketingovou podporu, pojištění, slevy a mnoho dalších výhod.
+						</p>
+					</div>
+
+					<div class="optionBox__image optionBox__image--chci-zalozit-clanek">
+						<div class="button button--secondary">Více informací</div>
+					</div>
+				</a>
+			</div>
+		</div>
 	</section>
 </main>
 
