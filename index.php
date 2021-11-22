@@ -129,7 +129,7 @@ function hb_getBisApiClient(Configuration $configuration): Client
 		if ($post->post_content !== '') {
 			// todo use the_post() instead, but it did not work in current flow (with the controller things probably)
 			echo '<h1>'.$post->post_title.'</h1>';
-			echo $post->post_content;
+			echo apply_filters('the_content', $post->post_content);
 			$result = null;
 		} else {
 			$result = get_template_part('template-parts/content/content', $post->post_name);
