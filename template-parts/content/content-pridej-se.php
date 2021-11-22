@@ -42,11 +42,7 @@ $params = [
 
 ?>
 
-<main class="zapoj-se" role="main" id="obsah">
-	<section>
-		<h1>Aktuální příležitosti</h1>
-	</section>
-
+<main class="pridej-se" role="main" id="obsah">
 	<section>
 		<h1>Chceš se zapojit? Ozvi se nám!</h1>
 
