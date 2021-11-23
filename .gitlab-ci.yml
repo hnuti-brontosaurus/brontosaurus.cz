@@ -89,6 +89,7 @@ build.frontend:
             -i "frontend/*"
             -x "frontend/src/*"
             -i "log/*"
+            -i "template-parts/*"
             -i "UI/*"
             -x "UI/AboutStructure/assets/src/*"
             -x "UI/Contacts/assets/src/*"
