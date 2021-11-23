@@ -7,6 +7,11 @@
 @import "global/blocks";
 @import "global/defaults";
 @import "global/globals";
+@import "utils";
+
+
+// blocks
+@import "blocks/text";
 
 
 // components
@@ -64,3 +69,4 @@
 @import "pages/support-overview";
 @import "pages/support-adoption";
 @import "pages/newVersionAnnouncement";
+@import "pages/pridej-se";

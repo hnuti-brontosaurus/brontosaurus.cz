@@ -71,8 +71,9 @@ final class AboutStructureController implements Controller
 	/**
 	 * Creates structure for Google Maps API.
 	 * @param OrganizationalUnitDC[] $organizationalUnits
+	 * public because of use in zapoj-se
 	 */
-	private static function getOrganizationalUnitsInJson(array $organizationalUnits): string
+	public static function getOrganizationalUnitsInJson(array $organizationalUnits): string
 	{
 		$organizationalUnits = \array_map(
 			static fn(OrganizationalUnitDC $organizationalUnit): array => [

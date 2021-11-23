@@ -193,6 +193,50 @@ aside .related {
 					background-position: -5.5em -0.6em;
 				}
 			}
+
+			&--events {
+				background-image: url("../images/related-events.jpg");
+				background-position: calc(100% + 8em) -7em;
+				background-size: 45em;
+
+				&-roundedPhoto {
+					background-image: url("../images/related-events.jpg");
+					background-position: -5.5em -0.6em;
+				}
+			}
+
+			&--mozek {
+				background-image: url("../images/related-mozek.jpg");
+				background-position: calc(100% + 8em) -7em;
+				background-size: 45em;
+
+				&-roundedPhoto {
+					background-image: url("../images/related-mozek.jpg");
+					background-position: -5.5em -0.6em;
+				}
+			}
+
+			&--podpor-nas {
+				background-image: url("../images/related-podpor-nas.jpg");
+				background-position: calc(100% + 8em) -7em;
+				background-size: 45em;
+
+				&-roundedPhoto {
+					background-image: url("../images/related-podpor-nas.jpg");
+					background-position: -3.4em -1.1e;
+				}
+			}
+
+			&--eshop {
+				background-image: url("../images/related-eshop.jpg");
+				background-position: calc(100% + 8em) -7em;
+				background-size: 45em;
+
+				&-roundedPhoto {
+					background-image: url("../images/related-eshop.jpg");
+					background-position: -3.3em -1.7em;
+				}
+			}
 		}
 	}
 }
