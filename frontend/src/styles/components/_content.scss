@@ -39,4 +39,14 @@
 		font-weight: $fonts-delm-weight-regular; // @todo or bold?
 		margin-bottom: vr-unit(0.5);
 	}
+
+	&__dynamic {
+		p {
+			@include block-text();
+		}
+
+		p + p {
+			margin-block-start: vr-unit(1);
+		}
+	}
 }
