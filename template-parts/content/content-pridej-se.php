@@ -87,7 +87,7 @@ $params = [
 					</div>
 
 					<div class="optionBox__image optionBox__image--chci-se-zapojit">
-						<div class="button button--secondary">Více informací</div>
+						<div class="button button--secondary">Více info</div>
 					</div>
 				</a>
 
@@ -104,7 +104,7 @@ $params = [
 					</div>
 
 					<div class="optionBox__image optionBox__image--chci-organizovat-akci">
-						<div class="button button--secondary">Více informací</div>
+						<div class="button button--secondary">Více info</div>
 					</div>
 				</a>
 
@@ -120,7 +120,7 @@ $params = [
 					</div>
 
 					<div class="optionBox__image optionBox__image--chci-se-stat-clenem">
-						<div class="button button--secondary">Více informací</div>
+						<div class="button button--secondary">Více info</div>
 					</div>
 				</a>
 
@@ -136,7 +136,7 @@ $params = [
 					</div>
 
 					<div class="optionBox__image optionBox__image--chci-zalozit-clanek">
-						<div class="button button--secondary">Více informací</div>
+						<div class="button button--secondary">Více info</div>
 					</div>
 				</a>
 			</div>
