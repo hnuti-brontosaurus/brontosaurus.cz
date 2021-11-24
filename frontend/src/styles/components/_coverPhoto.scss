@@ -1,4 +1,5 @@
 .coverPhoto {
+	display: none; // hide by default, enable in particular case
 	min-height: var(--coverPhoto-height);
 	max-width: 75em;
 	margin-left: auto;
@@ -20,27 +21,12 @@
 	}
 
 
-	// hide completely on some pages
-
-	&--detail,
-	&--future,
-	&--newversionannouncement,
-	&--news,
-	&--preview,
-	&--rentals,
-	&--searchresults,
-	&--baseunits,
-	&--pridej-se,
-	&--error404 {
-		display: none;
-	}
-
-
 	// first list these cover photos with no text over
 
 	&--aboutcrossroad,
 	&--abouthighlights,
 	&--aboutsuccesses {
+		display: block;
 		background-image: url("../images/hlavicka-o-brontosauru.jpg");
 		background-position: 54% -17em;
 		background-size: 42em;
@@ -56,6 +42,7 @@
 	}
 
 	&--english {
+		display: block;
 		background-image: url("../images/hlavicka-anglicka.jpg");
 		background-position: 25% -5em;
 		background-size: 35em;
@@ -71,6 +58,7 @@
 	}
 
 	&--contacts {
+		display: block;
 		background-image: url("../images/hlavicka-kontakty.jpg");
 		background-position: left top;
 		background-size: 41em;
@@ -85,6 +73,7 @@
 	}
 
 	&--highschool {
+		display: block;
 		background-image: url("../images/hlavicka-stredni-skoly.jpg");
 		background-position: center -3em;
 		background-size: 50em;
@@ -99,6 +88,7 @@
 	}
 
 	&--partners {
+		display: block;
 		background-image: url("../images/hlavicka-nasi-partneri.jpg");
 		background-position: left -4.2em;
 		background-size: 30em;
@@ -114,6 +104,7 @@
 	}
 
 	&--aboutstructure {
+		display: block;
 		background-image: url("../images/hlavicka-struktura-organizace.jpg");
 		background-position: right -2em;
 		background-size: 30em;
@@ -139,6 +130,7 @@
 	&--home,
 	&--supportoverview,
 	&--supportadoption {
+		display: block;
 		position: relative;
 
 		&::before {
