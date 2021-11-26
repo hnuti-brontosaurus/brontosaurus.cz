@@ -91,7 +91,7 @@ $params = [
 					</div>
 				</a>
 
-				<a class="description-list-item optionBox button--secondary-wrapper" href="https://mozek.brontosaurus.cz/index.php/cely-mozek/organizovani-akci/jak-se-stat-organizatorem" rel="noopener" target="_blank">
+				<a class="description-list-item optionBox button--secondary-wrapper" href="<?php echo \HnutiBrontosaurus\Theme\getLinkFor('chci-organizovat'); ?>" rel="noopener" target="_blank">
 					<div class="description-list-item-text optionBox__text">
 						<h2 class="optionBox__heading">
 							Chci organizovat akci
@@ -108,7 +108,7 @@ $params = [
 					</div>
 				</a>
 
-				<a class="description-list-item optionBox button--secondary-wrapper" href="<?php echo \HnutiBrontosaurus\Theme\getLinkFor('chci-se-stat-clenem'); ?>">
+				<a class="description-list-item optionBox button--secondary-wrapper" href="<?php echo \HnutiBrontosaurus\Theme\getLinkFor('clenstvi'); ?>">
 					<div class="description-list-item-text optionBox__text">
 						<h2 class="optionBox__heading">
 							Chci se stát členem
