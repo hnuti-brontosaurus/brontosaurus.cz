@@ -114,7 +114,7 @@ $header-breakpoint-navigationHiddenToVisible-visible-from: "min-width: " + ($hea
 			}
 		}
 	}
-	&-mainNavigation .menu > .menu-item.active > a {
+	&-mainNavigation .menu > .menu-item:is(.active, .current_page_item, .current-page-ancestor) > a {
 		// duplicated from above temporarily
 		@media ($header-breakpoint-navigationHiddenToVisible-hidden-until) {
 			color: $colors-emphasizing;
@@ -231,6 +231,7 @@ $header-breakpoint-navigationHiddenToVisible-visible-from: "min-width: " + ($hea
 						color 200ms linear;
 				}
 
+				// duplicated below temporarily
 				&--active {
 					padding-top: vr-unit(0.5);
 					padding-bottom: 0.4em;
@@ -241,6 +242,18 @@ $header-breakpoint-navigationHiddenToVisible-visible-from: "min-width: " + ($hea
 					&:hover {
 						background-color: darken($colors-emphasizing, 10);
 					}
+				}
+			}
+			// duplicated from above temporarily
+			.menu > .menu-item:is(.active, .current_page_item, .current-page-ancestor) > a {
+				padding-top: vr-unit(0.5);
+				padding-bottom: 0.4em;
+				margin-top: -0.1em;
+				background-color: $colors-emphasizing;
+				color: $colors-default-background !important;
+
+				&:hover {
+					background-color: darken($colors-emphasizing, 10);
 				}
 			}
 
