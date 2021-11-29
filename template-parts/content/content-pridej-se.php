@@ -53,8 +53,8 @@ $params = [
 
 			<ul class="hb--centered" style="list-style-type: none">
 				<li><strong>Praha:</strong>
-					Daniela Syrovátková,
-					<a href="tel:+420777907125" rel="noopener noreferrer" target="_blank">777 907 125</a>,
+					Rostislav Konůpka,
+					<a href="tel:+420722561150" rel="noopener noreferrer" target="_blank">722 561 150</a>,
 					<a href="mailto:praha@brontosaurus.cz" rel="noopener noreferrer" target="_blank">praha@brontosaurus.cz</a>
 				</li>
 
