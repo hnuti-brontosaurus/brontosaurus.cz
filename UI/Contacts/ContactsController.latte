@@ -104,7 +104,7 @@
 
 			<div class="contacts-people" n:foreach="$contacts as $contact">
 				<div class="contacts-people-imageWrapper">
-					<img class="contacts-people-image" src="{if $contact->hasPhoto}{$contact->photo}{else}{$imagesPath}/bez-fotky.jpg{/if}" alt="">
+					<img class="contacts-people-image" src="{$contact->photo}" alt="" n:if="$contact->hasPhoto">
 				</div>
 
 				<div class="contacts-people-description">
