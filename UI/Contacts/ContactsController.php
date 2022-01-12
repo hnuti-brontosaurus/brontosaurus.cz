@@ -17,7 +17,7 @@ final class ContactsController implements Controller
 
 	public function render(): void
 	{
-		$posts = \get_posts(['post_type' => 'contacts']);
+		$posts = \get_posts(['post_type' => 'contacts', 'numberposts' => -1]);
 
 		$params = [
 			'aboutStructurePageLink' => $this->base->getLinkFor(AboutStructureController::PAGE_SLUG),
