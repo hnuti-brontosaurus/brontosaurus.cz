@@ -254,6 +254,19 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 
 	// highschool modifiers
 
+	&--highschool-climateChange {
+		&::before {
+			background-image: url("../images/highschools-climateChange.jpg");
+			background-position: center -8em;
+			background-size: 38em;
+
+			@media ($presentationBox-breakpoint-textOnSide-from) {
+				background-position-x: 0;
+				background-size: 70em;
+				background-position-y: -13em;
+			}
+		}
+	}
 	&--highschool-outdoor {
 		&::before {
 			background-image: url("../images/highschools-outdoor.jpg");
