@@ -33,27 +33,34 @@ $buttons-secondary-breakpoint-centeredButton-from: "min-width: " + ($buttons-sec
 		background-color: $colors-emphasizing;
 		border: none; // ?
 		color: $colors-default-background !important; // overwrite global link style
-		padding-left: vr-unit(2);
-		padding-right: calc(#{vr-unit(2)} + 5px);
+		padding-left: vr-unit(1);
+		padding-right: calc(#{vr-unit(1)} + 5px);
 		position: relative;
 		text-transform: uppercase;
 		//box-shadow: 4px 2px 8px 0 $colors-default-background; // or 0 0 10px 3px
+
+		@media (min-width: 23.001em) {
+			padding-left: vr-unit(2);
+			padding-right: calc(#{vr-unit(2)} + 5px);
+		}
 
 		&:hover {
 			@include buttons-primary-hoverEffect();
 		}
 
-		&::after {
-			content: "";
-			display: inline-block;
-			position: absolute;
-			right: 25px;
-			top: calc(50% - 9px);
-			width: 10px;
-			height: 17px;
-			background-image: url("../images/icon-arrow.svg");
-			background-repeat: no-repeat;
-			background-size: auto 100%;
+		@media (min-width: 20.001em) {
+			&::after {
+				content: "";
+				display: inline-block;
+				position: absolute;
+				right: 25px;
+				top: calc(50% - 9px);
+				width: 10px;
+				height: 17px;
+				background-image: url("../images/icon-arrow.svg");
+				background-repeat: no-repeat;
+				background-size: auto 100%;
+			}
 		}
 	}
 
