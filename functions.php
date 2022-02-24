@@ -7,7 +7,6 @@ use HnutiBrontosaurus\Theme\UI\EventDetail\EventDetailController;
 use HnutiBrontosaurus\Theme\UI\ForChildren\ForChildrenController;
 use HnutiBrontosaurus\Theme\UI\Future\FutureController;
 use HnutiBrontosaurus\Theme\UI\Meetups\MeetupsController;
-use HnutiBrontosaurus\Theme\UI\News\NewsController;
 use HnutiBrontosaurus\Theme\UI\Voluntary\VoluntaryController;
 
 
@@ -39,11 +38,13 @@ function registerEventDetail(): void
 function registerNews(): void
 {
 	add_rewrite_rule(
-		\sprintf('^%s/([\d]+)', NewsController::PAGE_SLUG),
-		\sprintf('index.php?pagename=%s&%s=$matches[1]',
-			NewsController::PAGE_SLUG,
-			NewsController::PARAM_NEWS_ID,
-		),
+		\sprintf('^%s(/page/([\d]+))?/?$', 'co-je-noveho'), // todo this slug should a CPT slug actually
+		\sprintf('index.php?post_type=news&paged=$matches[2]'),
+		'top',
+	);
+	add_rewrite_rule(
+		\sprintf('^%s/([\d]+)/?$', 'co-je-noveho'), // todo this slug should a CPT slug actually
+		\sprintf('index.php?post_type=news&p=$matches[1]'),
 		'top',
 	);
 }
@@ -53,7 +54,6 @@ add_action('init', function () {
 });
 add_filter('query_vars', function($vars) {
 	array_push($vars, EventDetailController::PARAM_EVENT_ID);
-	array_push($vars, NewsController::PARAM_NEWS_ID);
 	return $vars;
 });
 add_action('after_switch_theme', function () {

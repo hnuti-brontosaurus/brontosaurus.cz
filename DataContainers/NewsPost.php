@@ -1,10 +1,11 @@
 <?php declare(strict_types = 1);
 
-namespace HnutiBrontosaurus\Theme\UI\News;
+namespace HnutiBrontosaurus\Theme\DataContainers;
 
 use DateTimeImmutable;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 use HnutiBrontosaurus\Theme\UI\Utils;
+use function get_the_post_thumbnail_url;
 
 
 /**
@@ -17,7 +18,7 @@ use HnutiBrontosaurus\Theme\UI\Utils;
  * @property-read bool $hasCoverImage
  * @property-read string|null $coverImage
  */
-final class NewsDC
+final class NewsPost
 {
 	use PropertyHandler;
 
@@ -33,7 +34,7 @@ final class NewsDC
 	) {}
 
 
-	public static function fromPost(\WP_Post $post): self
+	public static function from(\WP_Post $post): self
 	{
 		$thumbnail = get_the_post_thumbnail_url($post);
 		$thumbnail = $thumbnail === false ? null : $thumbnail; // convert false to null which makes more sense

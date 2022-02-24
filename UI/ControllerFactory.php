@@ -23,7 +23,6 @@ use HnutiBrontosaurus\Theme\UI\Future\FutureController;
 use HnutiBrontosaurus\Theme\UI\HighSchools\HighSchoolsController;
 use HnutiBrontosaurus\Theme\UI\Homepage\HomepageController;
 use HnutiBrontosaurus\Theme\UI\Meetups\MeetupsController;
-use HnutiBrontosaurus\Theme\UI\News\NewsController;
 use HnutiBrontosaurus\Theme\UI\Partners\PartnersController;
 use HnutiBrontosaurus\Theme\UI\Preview\PreviewController;
 use HnutiBrontosaurus\Theme\UI\Rentals\RentalsController;
@@ -88,7 +87,6 @@ final class ControllerFactory
 			FutureController::PAGE_SLUG => new FutureController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte),
 			AboutStructureController::PAGE_SLUG => new AboutStructureController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte, $this->geocodingClientFacade),
 			EventDetailController::PAGE_SLUG => new EventDetailController($this->dateFormatHuman, $this->dateFormatRobot, $this->recaptchaSiteKey, $this->recaptchaSecretKey, $this->applicationFormFacade, $this->bisApiClient, $base, $this->latte, $this->httpRequest, $this->logger),
-			'co-je-noveho' => new NewsController($this->dateFormatHuman, $this->dateFormatRobot, $base, $this->latte),
 			'vysledky-vyhledavani' => new SearchResultsController($base, $this->latte),
 			BaseUnitsAndClubsListController::PAGE_SLUG => new BaseUnitsAndClubsListController($this->bisApiClient, $base, $this->latte),
 			default => new ErrorController($base, $this->latte),
