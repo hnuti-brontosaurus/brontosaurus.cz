@@ -58,6 +58,15 @@ $dateForHumans = $configuration->get('dateFormat:human');
 				<?php endwhile; ?>
 			</ul>
 
+			<?php
+				the_posts_pagination([
+					'before_page_number' => '',
+					'mid_size'           => 5,
+					'prev_text'          => '‹ <span class="nav-prev-text">předchozí</span>',
+					'next_text'          => '<span class="nav-next-text">další</span> ›',
+				]);
+			?>
+
 			<div class="news__clear"></div>
 		<?php else: ?>
 			<div class="news__list news__list--empty">
