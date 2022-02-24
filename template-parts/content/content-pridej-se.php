@@ -91,7 +91,7 @@ $params = [
 					</div>
 				</a>
 
-				<a class="description-list-item optionBox button--secondary-wrapper" href="<?php echo \HnutiBrontosaurus\Theme\getLinkFor('chci-organizovat'); ?>" rel="noopener" target="_blank">
+				<a class="description-list-item optionBox button--secondary-wrapper" href="<?php echo \HnutiBrontosaurus\Theme\getLinkFor('chci-organizovat'); ?>">
 					<div class="description-list-item-text optionBox__text">
 						<h2 class="optionBox__heading">
 							Chci organizovat akci
