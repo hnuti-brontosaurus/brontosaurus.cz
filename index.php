@@ -24,7 +24,7 @@ use Nette\Mail\SmtpMailer;
 use Tracy\Debugger;
 
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/bootstrap.php';
 
 
 // DI & bootstrap in one
@@ -55,14 +55,6 @@ function hb_getGeocodingClient(): GeocodingClientFacade
 			),
 		),
 	);
-}
-
-function hb_getConfiguration(): Configuration
-{
-	return new Configuration([
-		__DIR__ . '/config/config.neon',
-		__DIR__ . '/config/config.local.neon',
-	]);
 }
 
 function hb_getBisApiClient(Configuration $configuration): Client
