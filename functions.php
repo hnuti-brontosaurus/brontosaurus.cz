@@ -35,22 +35,8 @@ function registerEventDetail(): void
 		'top',
 	);
 }
-function registerNews(): void
-{
-	add_rewrite_rule(
-		\sprintf('^%s(/page/([\d]+))?/?$', 'co-je-noveho'), // todo this slug should a CPT slug actually
-		\sprintf('index.php?post_type=news&paged=$matches[2]'),
-		'top',
-	);
-	add_rewrite_rule(
-		\sprintf('^%s/([\d]+)/?$', 'co-je-noveho'), // todo this slug should a CPT slug actually
-		\sprintf('index.php?post_type=news&p=$matches[1]'),
-		'top',
-	);
-}
 add_action('init', function () {
 	registerEventDetail();
-	registerNews();
 });
 add_filter('query_vars', function($vars) {
 	array_push($vars, EventDetailController::PARAM_EVENT_ID);
@@ -58,7 +44,6 @@ add_filter('query_vars', function($vars) {
 });
 add_action('after_switch_theme', function () {
 	registerEventDetail();
-	registerNews();
 	flush_rewrite_rules();
 });
 add_action('after_setup_theme', function () {
@@ -66,7 +51,7 @@ add_action('after_setup_theme', function () {
 	add_theme_support('title-tag');
 });
 add_action('init', function () {
-	register_post_type('news', [
+	register_post_type('novinky', [
 		'labels' => [
 			'name' => 'Novinky',
 			'singular_name' => 'Novinka',

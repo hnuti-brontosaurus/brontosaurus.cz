@@ -29,7 +29,7 @@ $dateForHumans = $configuration->get('dateFormat:human');
 						$article = NewsPost::from($post);
 					?>
 					<li class="news__item">
-						<a class="news__link" href="/co-je-noveho/<?php echo $article->id // someday get_permalink($article->id) ?>">
+						<a class="news__link" href="<?php echo get_permalink($article->id) ?>">
 							<h2 class="news__item-heading">
 								<?php echo $article->title ?>
 							</h2>

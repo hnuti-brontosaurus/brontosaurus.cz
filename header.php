@@ -6,7 +6,7 @@ namespace HnutiBrontosaurus\Theme;
 //$hb_enableTracking = set_query_var('enableTracking', );
 $hb_currentPost = get_post();
 $hb_isOnSearchResultsPage = $hb_currentPost?->post_name === 'vysledky-vyhledavani';
-$hb_pageClassSelector = $hb_currentPost->post_name;
+$hb_pageClassSelector = $hb_currentPost !== null ? $hb_currentPost->post_name : '';
 
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
