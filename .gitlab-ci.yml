@@ -86,6 +86,7 @@ build.frontend:
     script:
         - 'zip -r brontosaurus-theme.zip .
             -i "config/*"
+            -i "DataContainers/*"
             -i "frontend/*"
             -x "frontend/src/*"
             -i "log/*"
