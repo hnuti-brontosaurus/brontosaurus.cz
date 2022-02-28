@@ -97,7 +97,7 @@ build.frontend:
             -x "UI/EventDetail/assets/src/*"
             -x "UI/Rentals/assets/src/*"
             -i "vendor/*"
-            -i "archive-news.php"
+            -i "archive-novinky.php"
             -i "bootstrap.php"
             -i "composer.json"
             -i "composer.lock"
@@ -108,7 +108,7 @@ build.frontend:
             -i "index.php"
             -i "screenshot.png"
             -i "SentryLogger.php"
-            -i "single-news.php"
+            -i "single-novinky.php"
             -i "style.css"'
 
     dependencies:
