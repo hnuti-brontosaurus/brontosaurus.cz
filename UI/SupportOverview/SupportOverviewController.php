@@ -18,6 +18,12 @@ final class SupportOverviewController implements Controller
 
 	public function render(): void
 	{
+		add_action('wp_enqueue_scripts', function () {
+			$theme = wp_get_theme();
+			$themeVersion = $theme->get('Version');
+			wp_enqueue_script('brontosaurus-supportOverview-references', $theme->get_template_directory_uri() . '/frontend/dist/js/references.js', [], $themeVersion);
+		});
+
 		$this->latte->render(
 			__DIR__ . '/SupportOverviewController.latte',
 			\array_merge($this->base->getLayoutVariables('supportoverview')),
