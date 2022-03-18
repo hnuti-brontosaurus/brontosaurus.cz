@@ -325,11 +325,11 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 	&--supportOverview-frelich {
 		&::before {
 			background-image: url("../images/supportOverview-supporters-frelich.jpg");
-			background-size: 38em;
-			background-position: left -4.5em;
+			background-size: 40em;
+			background-position: -4em -4.5em;
 
 			@media ($presentationBox-breakpoint-textOnSide-from) {
-				background-position-y: -3em;
+				background-position: left -3em;
 			}
 		}
 	}
@@ -337,12 +337,14 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 	&--supportOverview-brzobohata {
 		&::before {
 			background-image: url("../images/supportOverview-supporters-brzobohata.jpg");
-			background-size: 11em;
-			background-position: center -3em;
+			background-size: 17em;
+			background-position: center -8em;
+			background-repeat: no-repeat;
+			background-color: #125EA2;
 
 			@media ($presentationBox-breakpoint-textOnSide-from) {
-				background-size: 19em;
-				background-position: right -3em;
+				background-size: 20em;
+				background-position: right -4em;
 			}
 
 		}
@@ -355,7 +357,7 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 			background-position: left -4em;
 
 			@media ($presentationBox-breakpoint-textOnSide-from) {
-				background-size: 41em;
+				background-size: 43em;
 				background-position: -3em top;
 			}
 		}
@@ -365,7 +367,7 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 		&::before {
 			background-image: url("../images/supportOverview-supporters-hladky.jpg");
 			background-size: 45em;
-			background-position: left -5.5em;
+			background-position: calc(100% + 14em) -4.5em;
 
 			@media ($presentationBox-breakpoint-textOnSide-from) {
 				background-size: 47em;
@@ -394,6 +396,7 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 			background-position: right -7em;
 
 			@media ($presentationBox-breakpoint-textOnSide-from) {
+				background-size: 40em;
 				background-position-y: -4em;
 			}
 		}
