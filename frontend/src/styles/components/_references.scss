@@ -93,4 +93,17 @@
 		margin-left: initial;
 		margin-right: initial;
 	}
+
+	&__name {
+		font-weight: bold;
+	}
+
+	&__role {
+		margin-top: -0.2em;
+		font-size: 0.85em;
+	}
+
+	&__quotation {
+		font-size: 0.85em;
+	}
 }

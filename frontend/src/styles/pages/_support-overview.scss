@@ -63,23 +63,6 @@
 		@media ($typography-breakpoint-large-from) {
 			margin-bottom: vr-unit(3);
 		}
-
-		&-list {
-			&-item {
-				&-name {
-					font-weight: bold;
-				}
-
-				&-occupation {
-					margin-top: -0.2em;
-					font-size: 0.85em;
-				}
-
-				&-quotation {
-					font-size: 0.85em;
-				}
-			}
-		}
 	}
 
 	&-adoptionLink {
