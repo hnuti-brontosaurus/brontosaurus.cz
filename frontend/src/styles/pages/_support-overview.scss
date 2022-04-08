@@ -1,83 +1,139 @@
-.support-overview {
+.supportOverview {
 	margin-bottom: vr-unit(3);
 
 	@media ($typography-breakpoint-large-from) {
 		margin-bottom: vr-unit(4);
 	}
 
-	&-how {
+	&__section {
 		margin-bottom: vr-unit(2);
 
 		@media ($typography-breakpoint-large-from) {
 			margin-bottom: vr-unit(3);
 		}
+	}
 
-		&-paragraph {
-			@include block-text();
-			margin-bottom: vr-unit(1);
+	&__paragraph {
+		@include block-text();
+		margin-bottom: vr-unit(1);
+	}
+
+	&__widget {
+		max-inline-size: calc(28rem + #{vr-unit(4)});
+		position: relative;
+
+		&,
+		&Root {
+			margin-inline: auto;
 		}
 
-		&-options {
-			display: grid;
-			grid-template-columns: 1fr;
-			grid-gap: vr-unit(1);
-			max-width: 47.5rem;
-			margin-left: auto;
-			margin-right: auto;
+		&Root {
+			/*
+			 * used style in darujme.cz widget:
+
+				.widget {
+				  background-color: revert;
+				}
+				.widget-head {
+				  background-color: revert;
+				  border-bottom: revert;
+				  padding: revert;
+				}
+				.widget-title {
+				  font-size: 16px;
+				  text-align: left;
+				}
+				.widget-body {
+				  padding: revert;
+				}
+				.widget-periodic-button, .widget-entries-button {
+				  background-color: #fff;
+				}
+			 */
+		}
+	}
+	&__darujmeLogo {
+		--supportOverview-darujme-logoSize-butterfly: 1.3rem;
+		--supportOverview-darujme-logoSize-label: 4rem;
+		display: flex;
+		align-items: center;
+		position: absolute;
+		top: vr-unit(0.5);
+		right: vr-unit(2);
+		gap: vr-unit(0.25);
+		width: calc(var(--supportOverview-darujme-logoSize-butterfly) + #{vr-unit(0.25)} + var(--supportOverview-darujme-logoSize-label));
+
+		.darujme-butterfly {
+			max-inline-size: var(--supportOverview-darujme-logoSize-butterfly);
+		}
+		.darujme-label {
+			max-inline-size: var(--supportOverview-darujme-logoSize-label);
+		}
+	}
+
+	&__thanks {
+		max-inline-size: 62em;
+		margin-inline: auto;
+
+		ul {
 			list-style-type: none;
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+			justify-content: center;
+			justify-items: center;
+			gap: vr-unit(2) vr-unit(1);
+			margin-block-end: vr-unit(1);
 
-			@media ($typography-breakpoint-large-from) {
-				grid-template-columns: 1fr 1fr;
-			}
+			li {
+				--supportOverview-icon-size: #{vr-unit(4)};
+				background-position: center top;
+				background-size: var(--supportOverview-icon-size) auto;
+				background-repeat: no-repeat;
+				padding-top: calc(var(--supportOverview-icon-size) + #{vr-unit(1)});
+				text-align: center;
+				max-inline-size: vr-unit(10);
 
-			&-item {
-				display: contents;
-
-				&-link {
-					position: relative;
-
-					&-heading {
-						@media ($typography-breakpoint-large-from) {
-							max-width: 20ch;
-							margin-left: auto;
-							margin-right: auto;
-						}
-					}
-
-					&-button {
-						position: absolute;
-						max-width: 15rem;
-						width: 100%;
-						bottom: vr-unit(1);
-						left: 50%; transform: translateX(-50%); // center absolutely positioned element
-						white-space: nowrap; // avoid line breaks (when `left: 50%` hits right border of an element, it causes line break)
-					}
+				&.icon-tree {
+					background-image: url("../images/icon-tree.svg");
+				}
+				&.icon-people {
+					background-image: url("../images/icon-people.svg");
+				}
+				&.icon-earth {
+					background-image: url("../images/icon-earth.svg");
+				}
+				&.icon-hand {
+					background-image: url("../images/icon-hand.svg");
 				}
 			}
 		}
 	}
 
-	&-why {
-		margin-bottom: vr-unit(2);
+	&__adoptionLink {
+		display: block;
+		max-width: max-content;
+		margin-inline: auto;
+	}
+
+	&__video {
+		max-inline-size: 40rem;
+		margin-inline: auto;
+		margin-block-end: vr-unit(3);
 
 		@media ($typography-breakpoint-large-from) {
-			margin-bottom: vr-unit(3);
+			margin-block-end: vr-unit(4);
+		}
+
+		iframe {
+			display: block;
+			inline-size: 100%;
+			aspect-ratio: 16/9;
+			border-radius: 2em;
+			margin-block-end: vr-unit(1);
 		}
 	}
 
-	&-adoptionLink {
-		display: block;
-		max-width: 15rem;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: vr-unit(0.5);
-	}
-
-	&-presentsLink {
-		display: block;
-		max-width: 10rem;
-		margin-left: auto;
-		margin-right: auto;
-		text-align: center;
+	&__successesLink {
+		margin-block-end: vr-unit(2);
 	}
 }
