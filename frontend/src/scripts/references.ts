@@ -12,13 +12,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	const slidesCount = $dataStorage.children.length;
 	let position = parseInt(window.getComputedStyle($dataStorage).getPropertyValue(CSS_PROPERTY_NAME)); // default carousel position
+	const allowInfinite = typeof $dataStorage.dataset.carouselInfinite !== 'undefined';
 
 	$previousButton.addEventListener('click', () => {
 		if (isAtFirstPosition()) {
 			return;
 		}
 
-		position--;
+		if (position === 0) {
+			position = slidesCount - 1;
+		} else {
+			position--;
+		}
+
 		$dataStorage.style.setProperty(CSS_PROPERTY_NAME, position.toString());
 
 		updateButtonVisibility();
@@ -29,7 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			return;
 		}
 
-		position++;
+		if (position === (slidesCount - 1)) {
+			position = 0;
+		} else {
+			position++;
+		}
+
 		$dataStorage.style.setProperty(CSS_PROPERTY_NAME, position.toString());
 
 		updateButtonVisibility();
@@ -37,10 +48,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 	const isAtFirstPosition = () => {
+		if (allowInfinite) {
+			return false;
+		}
+
 		return position === 0;
 	};
 
 	const isAtLastPosition = () => {
+		if (allowInfinite) {
+			return false;
+		}
+
 		return position >= (slidesCount - 1);
 	};
 
