@@ -80,18 +80,30 @@
 			display: grid;
 			grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
 			justify-content: center;
-			justify-items: center;
 			gap: vr-unit(2) vr-unit(1);
 			margin-block-end: vr-unit(1);
 
+			@media ($typography-breakpoint-large-from) {
+				justify-items: center;
+			}
+
 			li {
-				--supportOverview-icon-size: #{vr-unit(4)};
-				background-position: center top;
+				--supportOverview-icon-size: #{vr-unit(2)};
+				background-position: left top;
 				background-size: var(--supportOverview-icon-size) auto;
 				background-repeat: no-repeat;
-				padding-top: calc(var(--supportOverview-icon-size) + #{vr-unit(1)});
-				text-align: center;
-				max-inline-size: vr-unit(10);
+				max-inline-size: vr-unit(15);
+
+				@media ($typography-breakpoint-small-until) {
+					padding-left: calc(var(--supportOverview-icon-size) + #{vr-unit(1)});
+				}
+				@media ($typography-breakpoint-large-from) {
+					--supportOverview-icon-size: #{vr-unit(4)};
+					padding-top: calc(var(--supportOverview-icon-size) + #{vr-unit(1)});
+					max-inline-size: vr-unit(10);
+					text-align: center;
+					background-position-x: center;
+				}
 
 				&.icon-tree {
 					background-image: url("../images/icon-tree.svg");
