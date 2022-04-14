@@ -105,7 +105,7 @@ $hb_currentPost = get_post();
 <!--			</ul>-->
 		</nav>
 
-		<a class="footer-logoLink" href="" aria-label="Hnutí Brontosaurus"></a>
+		<a class="footer-logoLink" href="<?php echo get_home_url(); ?>" aria-label="Hnutí Brontosaurus"></a>
 
 		<div class="footer-searchForm searchForm__gcseRoot">
 			<gcse:searchbox-only
