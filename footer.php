@@ -105,20 +105,22 @@ $hb_currentPost = get_post();
 <!--			</ul>-->
 		</nav>
 
-		<a class="footer-logoLink" href="<?php echo get_home_url(); ?>" aria-label="Hnutí Brontosaurus"></a>
+		<div class="footer__bottom">
+			<a class="footer__logo" href="<?php echo get_home_url(); ?>" aria-label="Hnutí Brontosaurus"></a>
 
-		<div class="footer-searchForm searchForm__gcseRoot">
-			<gcse:searchbox-only
-				resultsUrl="{$searchResultsPageLink}"
-				queryParameterName="q"
-			/>
+			<div class="footer__searchForm searchForm__gcseRoot">
+				<gcse:searchbox-only
+					resultsUrl="{$searchResultsPageLink}"
+					queryParameterName="q"
+				/>
 
-			<script type="text/javascript">
-				window.addEventListener('load', function () {
-					document.getElementById('gsc-i-id2').placeholder = 'Prohledat web';
-					document.getElementById('___gcse_1').querySelector('button.gsc-search-button').innerHTML = 'Hledat';
-				});
-			</script>
+				<script type="text/javascript">
+					window.addEventListener('load', function () {
+						document.getElementById('gsc-i-id2').placeholder = 'Prohledat web';
+						document.getElementById('___gcse_1').querySelector('button.gsc-search-button').innerHTML = 'Hledat';
+					});
+				</script>
+			</div>
 		</div>
 	</footer>
 </div>

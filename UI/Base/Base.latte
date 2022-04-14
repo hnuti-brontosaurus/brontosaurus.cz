@@ -207,7 +207,6 @@
 	<div class="footer-wrapper" id="navigace">
 		<footer class="footer">
 			<nav class="footer-navigation" role="navigation">
-
 				<ul class="footer-navigation-main">
 					<li class="footer-navigation-main-item" n:foreach="$footerNavigationMenuItems as $menuItem">
 						<a n:class="'footer-navigation-main-item-link', $menuItem->isActive ? ' footer-navigation-main-item-link--active'"
@@ -233,20 +232,22 @@
 				</ul>
 			</nav>
 
-			<a class="footer-logoLink" href="{$homePageLink}" aria-label="Hnutí Brontosaurus"></a>
+			<div class="footer__bottom">
+				<a class="footer__logo" href="{$homePageLink}" aria-label="Hnutí Brontosaurus"></a>
 
-			<div class="footer-searchForm searchForm__gcseRoot">
-				<gcse:searchbox-only
-						resultsUrl="{$searchResultsPageLink}"
-						queryParameterName="q"
-				/>
+				<div class="footer__searchForm searchForm__gcseRoot">
+					<gcse:searchbox-only
+							resultsUrl="{$searchResultsPageLink}"
+							queryParameterName="q"
+					/>
 
-				<script type="text/javascript">
-					window.addEventListener('load', function () {
-						document.getElementById('gsc-i-id2').placeholder = 'Prohledat web';
-						document.getElementById('___gcse_1').querySelector('button.gsc-search-button').innerHTML = 'Hledat';
-					});
-				</script>
+					<script type="text/javascript">
+						window.addEventListener('load', function () {
+							document.getElementById('gsc-i-id2').placeholder = 'Prohledat web';
+							document.getElementById('___gcse_1').querySelector('button.gsc-search-button').innerHTML = 'Hledat';
+						});
+					</script>
+				</div>
 			</div>
 		</footer>
 	</div>
