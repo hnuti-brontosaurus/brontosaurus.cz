@@ -380,11 +380,11 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 		&::before {
 			background-image: url("../images/supportOverview-supporters-vansa.jpg");
 			background-size: 39em;
-			background-position: left -8em;
+			background-position: -5em -8em;
 
 			@media ($presentationBox-breakpoint-textOnSide-from) {
 				background-size: 43em;
-				background-position: -5em -2.5em;
+				background-position-y: -2.5em;
 			}
 		}
 	}
