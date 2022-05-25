@@ -147,7 +147,9 @@ function getLinkFor(string $slug): string
 	add_action('init', function () {
 		register_nav_menus([
 			'header' => __('Hlavička'),
-			'footer' => __('Patička'),
+			'footer-left' => __('Patička – vlevo'),
+			'footer-center' => __('Patička – uprostřed'),
+			'footer-right' => __('Patička – vpravo'),
 		]);
 	});
 })(wp_get_theme());

@@ -33,7 +33,9 @@ final class Base
 			'pageClassSelector' => $pageClassSelector,
 			'isOnPartnersPage' => $this->currentPost?->post_name === 'nasi-partneri',
 			'partnersPageLink' => $this->getLinkFor('nasi-partneri'),
-			'footerNavigationMenuItems' => $this->getMenuItemsFor('footer'),
+			'footerLeftNavigationMenuItems' => $this->getMenuItemsFor('footer-left'),
+			'footerCenterNavigationMenuItems' => $this->getMenuItemsFor('footer-center'),
+			'footerRightNavigationMenuItems' => $this->getMenuItemsFor('footer-right'),
 
 			'coursesPageLink' => $this->getLinkFor('kurzy-a-prednasky'),
 			'voluntaryPageLink' => $this->getLinkFor('dobrovolnicke-akce'),

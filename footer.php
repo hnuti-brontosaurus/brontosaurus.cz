@@ -78,31 +78,26 @@ $hb_currentPost = get_post();
 <div class="footer-wrapper" id="navigace">
 	<footer class="footer">
 		<nav class="footer-navigation" role="navigation">
+			<?php // three menus are used so that there is clear distinction what will render in which column ?>
+			<?php // otherwise we would have to rely on layout which wouldn't produce the desired result ?>
 
 			<?php wp_nav_menu([
-				'theme_location' => 'footer',
+				'theme_location' => 'footer-left',
 				'container' => false,
 				'depth' => 1,
 			]); ?>
-			<?php // TODO add rel="noopener noreferrer" target="_blank" to external links ?>
-			<?php // TODO add language switcher ?>
-<!--			<ul class="footer-navigation-main">-->
-<!--
-<!--				--><?php //if($hb_currentPost?->post_name === 'english'): ?>
-<!--				<li class="footer-navigation-main-item">-->
-<!--					<a class="footer-navigation-main-item-link" href="{$homePageLink}" title="Česky">-->
-<!--						Česky-->
-<!--					</a>-->
-<!--				</li>-->
-<!--				--><?php //else: ?>
-<!--				<li class="footer-navigation-main-item">-->
-<!--					<a class="footer-navigation-main-item-link" href="{$englishPageLink}" title="English">-->
-<!--						English-->
-<!--					</a>-->
-<!--				</li>-->
-<!--				--><?php //endif; ?>
-<!---->
-<!--			</ul>-->
+
+			<?php wp_nav_menu([
+				'theme_location' => 'footer-center',
+				'container' => false,
+				'depth' => 1,
+			]); ?>
+
+			<?php wp_nav_menu([
+				'theme_location' => 'footer-right',
+				'container' => false,
+				'depth' => 1,
+			]); ?>
 		</nav>
 
 		<div class="footer__bottom">

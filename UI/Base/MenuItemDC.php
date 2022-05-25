@@ -26,19 +26,36 @@ final class MenuItemDC
 		?\WP_Post $currentPost,
 	): static
 	{
-		$menuItemSlug = \basename($menuItemPost->url); // source: https://wordpress.stackexchange.com/questions/249069/how-can-i-get-the-page-url-slug-when-post-name-returns-an-id
 		return new static(
 			$menuItemPost->title,
 			$menuItemPost->url,
-			$currentPost === null
-				? false
-				: $menuItemSlug === $currentPost?->post_name
-					// about brontosaurus subpages hack
-					|| (
-						\in_array($currentPost->post_name, [AboutHighlightsController::PAGE_SLUG, AboutStructureController::PAGE_SLUG, AboutSuccessesController::PAGE_SLUG, BaseUnitsAndClubsListController::PAGE_SLUG])
-						&& $menuItemSlug === AboutCrossroadController::PAGE_SLUG
-					),
+			self::isActive($menuItemPost, $currentPost),
 			$menuItemPost->type === 'custom',
 		);
+	}
+
+	private static function isActive(\WP_Post $menuItemPost, ?\WP_Post $currentPost): bool
+	{
+		$menuItemSlug = \basename($menuItemPost->url); // source: https://wordpress.stackexchange.com/questions/249069/how-can-i-get-the-page-url-slug-when-post-name-returns-an-id
+
+		if ($currentPost === null) {
+			return false;
+		}
+
+		if ($menuItemSlug === $currentPost->post_name) {
+			return true;
+		}
+
+		// about brontosaurus subpages
+		if ($menuItemSlug === AboutCrossroadController::PAGE_SLUG && \in_array($currentPost->post_name, [
+			AboutHighlightsController::PAGE_SLUG,
+				AboutStructureController::PAGE_SLUG,
+				AboutSuccessesController::PAGE_SLUG,
+				BaseUnitsAndClubsListController::PAGE_SLUG,
+		])) {
+			return true;
+		}
+
+		return false;
 	}
 }

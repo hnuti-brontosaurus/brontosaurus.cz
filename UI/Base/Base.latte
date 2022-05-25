@@ -207,28 +207,13 @@
 	<div class="footer-wrapper" id="navigace">
 		<footer class="footer">
 			<nav class="footer-navigation" role="navigation">
-				<ul class="footer-navigation-main">
-					<li class="footer-navigation-main-item" n:foreach="$footerNavigationMenuItems as $menuItem">
+				<ul class="footer-navigation-main" n:foreach="[$footerLeftNavigationMenuItems, $footerCenterNavigationMenuItems, $footerRightNavigationMenuItems] as $menu">
+					<li class="footer-navigation-main-item" n:foreach="$menu as $menuItem">
 						<a n:class="'footer-navigation-main-item-link', $menuItem->isActive ? ' footer-navigation-main-item-link--active'"
 							href="{$menuItem->link}"{if $menuItem->isExternalLink} rel="noopener noreferrer" target="_blank"{/if}>
 							{$menuItem->label}
 						</a>
 					</li>
-
-					{if $isOnEnglishPage}
-						<li class="footer-navigation-main-item">
-							<a class="footer-navigation-main-item-link" href="{$homePageLink}" title="Česky">
-								Česky
-							</a>
-						</li>
-					{else}
-						<li class="footer-navigation-main-item">
-							<a class="footer-navigation-main-item-link" href="{$englishPageLink}" title="English">
-								English
-							</a>
-						</li>
-					{/if}
-
 				</ul>
 			</nav>
 
