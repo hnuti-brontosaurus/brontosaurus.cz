@@ -94,7 +94,7 @@
 		padding: 1em;
 		border-radius: 2em;
 		text-decoration: none;
-		background-color: darken($colors-tinge, 10);
+		background-color: $colors-tinge;
 		transition: background-color 200ms linear;
 
 		&:hover {
@@ -105,8 +105,9 @@
 		&::before {
 			content: "f";
 			position: absolute;
-			top: 26%;
+			top: 25%;
 			left: 41%;
+			color: $colors-emphasizing;
 			transition: color 200ms linear;
 		}
 
@@ -120,7 +121,7 @@
 		&::before {
 			content: "";
 			transition: background-color 200ms linear;
-			background-color: $colors-text;
+			background-color: $colors-emphasizing;
 			padding: 1em;
 			position: absolute;
 			left: 0;
