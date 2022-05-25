@@ -85,34 +85,8 @@
 		padding-top: vr-unit(1);
 	}
 
-	&__facebookLink {
-		position: relative;
-		display: inline-block;
-		margin: 0 0.2rem;
-		padding: 1em;
-		border-radius: 2em;
-		text-decoration: none;
-		background-color: darken($colors-tinge, 10);
-		transition: background-color 200ms linear;
-
-		&::before {
-			content: "f";
-			position: absolute;
-			top: 26%;
-			left: 41%;
-			transition: color 200ms linear;
-		}
-
-		&:hover {
-			background-color: $colors-emphasizing;
-
-			&::before {
-				color: $colors-default-background;
-			}
-		}
-	}
-
 	&__instagramLink,
+	&__facebookLink,
 	&__youtubeLink {
 		position: relative;
 		display: inline-block;
@@ -123,6 +97,26 @@
 		background-color: darken($colors-tinge, 10);
 		transition: background-color 200ms linear;
 
+		&:hover {
+			background-color: $colors-emphasizing;
+		}
+	}
+	&__facebookLink {
+		&::before {
+			content: "f";
+			position: absolute;
+			top: 26%;
+			left: 41%;
+			transition: color 200ms linear;
+		}
+
+		&:hover::before {
+			color: $colors-default-background;
+		}
+	}
+
+	&__instagramLink,
+	&__youtubeLink {
 		&::before {
 			content: "";
 			transition: background-color 200ms linear;
@@ -136,12 +130,8 @@
 			mask-position: center;
 		}
 
-		&:hover {
-			background-color: $colors-emphasizing;
-
-			&::before {
-				background-color: $colors-default-background;
-			}
+		&:hover::before {
+			background-color: $colors-default-background;
 		}
 	}
 
