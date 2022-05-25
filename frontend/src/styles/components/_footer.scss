@@ -95,8 +95,15 @@ $footer-breakpoint-fullSize-from: "min-width: " + ($footer-breakpoint-fullSize +
 		aspect-ratio: 4/1;
 		background-image: url("../images/logo-hb-looking-left.svg");
 		background-size: auto 100%;
-		background-position: left center;
+		background-position: center center;
 		background-repeat: no-repeat;
+
+		@media ($footer-breakpoint-fullSize-until) {
+			width: 100%;
+		}
+		@media ($footer-breakpoint-fullSize-from) {
+			background-position-x: left;
+		}
 	}
 
 	&__searchForm {
