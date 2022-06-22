@@ -11,67 +11,44 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	const slidesCount = $dataStorage.children.length;
-	let position = parseInt(window.getComputedStyle($dataStorage).getPropertyValue(CSS_PROPERTY_NAME)); // default carousel position
+	const defaultPosition = parseInt(window.getComputedStyle($dataStorage).getPropertyValue(CSS_PROPERTY_NAME));
 	const allowInfinite = typeof $dataStorage.dataset.carouselInfinite !== 'undefined';
 
+	const position = new Position(slidesCount, defaultPosition, allowInfinite);
+	position.addMoveToPreviousSubscriber((newPosition) => {
+		$dataStorage.style.setProperty(CSS_PROPERTY_NAME, newPosition.toString());
+		updateButtonVisibility();
+	});
+	position.addMoveToNextSubscriber((newPosition) => {
+		$dataStorage.style.setProperty(CSS_PROPERTY_NAME, newPosition.toString());
+		updateButtonVisibility();
+	});
+
 	$previousButton.addEventListener('click', () => {
-		if (isAtFirstPosition()) {
+		if (position.isAtFirst()) {
 			return;
 		}
 
-		if (position === 0) {
-			position = slidesCount - 1;
-		} else {
-			position--;
-		}
-
-		$dataStorage.style.setProperty(CSS_PROPERTY_NAME, position.toString());
-
-		updateButtonVisibility();
+		position.moveToPrevious();
 	});
 
 	$nextButton.addEventListener('click', () => {
-		if (isAtLastPosition()) {
+		if (position.isAtLast()) {
 			return;
 		}
 
-		if (position === (slidesCount - 1)) {
-			position = 0;
-		} else {
-			position++;
-		}
-
-		$dataStorage.style.setProperty(CSS_PROPERTY_NAME, position.toString());
-
-		updateButtonVisibility();
+		position.moveToNext();
 	});
-
-
-	const isAtFirstPosition = () => {
-		if (allowInfinite) {
-			return false;
-		}
-
-		return position === 0;
-	};
-
-	const isAtLastPosition = () => {
-		if (allowInfinite) {
-			return false;
-		}
-
-		return position >= (slidesCount - 1);
-	};
 
 	const updateButtonVisibility = () => {
 		$previousButton.classList.remove(CSS_BUTTON_HIDDEN_SELECTOR);
 		$nextButton.classList.remove(CSS_BUTTON_HIDDEN_SELECTOR);
 
-		if (isAtFirstPosition()) {
+		if (position.isAtFirst()) {
 			$previousButton.classList.add(CSS_BUTTON_HIDDEN_SELECTOR);
 		}
 
-		if (isAtLastPosition()) {
+		if (position.isAtLast()) {
 			$nextButton.classList.add(CSS_BUTTON_HIDDEN_SELECTOR);
 		}
 	};
@@ -80,3 +57,70 @@ document.addEventListener('DOMContentLoaded', () => {
 	// on init
 	updateButtonVisibility();
 });
+
+
+class Position
+{
+	private currentPosition: number;
+
+	constructor(
+		private slidesCount: number,
+		defaultPosition: number,
+		private allowInfinite: boolean,
+	)
+	{
+		this.currentPosition = defaultPosition;
+	}
+
+	public moveToNext(): void
+	{
+		if (this.currentPosition === (this.slidesCount - 1)) {
+			this.currentPosition = 0;
+		} else {
+			this.currentPosition++;
+		}
+
+		this.moveToNextSubscribers.forEach(subscriber => subscriber(this.currentPosition));
+	}
+
+	private moveToNextSubscribers: ((newPosition: number) => void)[] = [];
+	public addMoveToNextSubscriber(callback: (newPosition: number) => void): void
+	{
+		this.moveToNextSubscribers.push(callback);
+	}
+
+	public moveToPrevious(): void
+	{
+		if (this.currentPosition === 0) {
+			this.currentPosition = this.slidesCount - 1;
+		} else {
+			this.currentPosition--;
+		}
+
+		this.moveToPreviousSubscribers.forEach(subscriber => subscriber(this.currentPosition));
+	}
+
+	private moveToPreviousSubscribers: ((newPosition: number) => void)[] = [];
+	public addMoveToPreviousSubscriber(callback: (newPosition: number) => void): void
+	{
+		this.moveToPreviousSubscribers.push(callback);
+	}
+
+	public isAtFirst(): boolean
+	{
+		if (this.allowInfinite) {
+			return false;
+		}
+
+		return this.currentPosition === 0;
+	}
+
+	public isAtLast(): boolean
+	{
+		if (this.allowInfinite) {
+			return false;
+		}
+
+		return this.currentPosition >= (this.slidesCount - 1);
+	}
+}
