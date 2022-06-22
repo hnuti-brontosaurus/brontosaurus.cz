@@ -1,0 +1,29 @@
+import {Dot} from './Dot';
+import {Position} from './Position';
+import {selectors} from './selectors';
+
+export class Dots
+{
+	private dots: Dot[] = [];
+
+	constructor(
+		dataStorageEl: HTMLElement,
+		private position: Position,
+		totalSlides: number,
+	)
+	{
+		const containerEl = document.createElement('div');
+		containerEl.classList.add(selectors.DOTS);
+
+		for (let i = 0; i < totalSlides; i++) {
+			this.dots.push(new Dot(containerEl, this.position, i));
+		}
+
+		dataStorageEl.insertAdjacentElement("afterend", containerEl);
+	}
+
+	public repaint(newPosition: number): void
+	{
+		this.dots.forEach(dot => dot.repaint(newPosition));
+	}
+}

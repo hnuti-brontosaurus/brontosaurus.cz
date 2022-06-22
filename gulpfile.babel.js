@@ -48,8 +48,8 @@ const buildScriptsTask = (cb) => {
 		{
 			distFileName: 'references.js',
 			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
-			sourceFileName: 'references.ts',
-			sourcePath: paths.scripts.global.src,
+			sourceFileName: 'index.ts',
+			sourcePath: paths.scripts.global.src + '/references',
 		},
 	]);
 };
