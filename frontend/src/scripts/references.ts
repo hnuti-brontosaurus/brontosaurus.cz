@@ -15,13 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	const allowInfinite = typeof $dataStorage.dataset.carouselInfinite !== 'undefined';
 
 	const position = new Position(slidesCount, defaultPosition, allowInfinite);
-	position.addMoveToPreviousSubscriber((newPosition) => {
+	const dots = new Dots($dataStorage, position, slidesCount);
+
+	position.addPositionChangedSubscriber((newPosition) => {
 		$dataStorage.style.setProperty(CSS_PROPERTY_NAME, newPosition.toString());
 		updateButtonVisibility();
-	});
-	position.addMoveToNextSubscriber((newPosition) => {
-		$dataStorage.style.setProperty(CSS_PROPERTY_NAME, newPosition.toString());
-		updateButtonVisibility();
+		dots.repaint(newPosition);
 	});
 
 	$previousButton.addEventListener('click', () => {
@@ -56,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// on init
 	updateButtonVisibility();
+	dots.repaint(defaultPosition);
 });
 
 
@@ -80,13 +80,7 @@ class Position
 			this.currentPosition++;
 		}
 
-		this.moveToNextSubscribers.forEach(subscriber => subscriber(this.currentPosition));
-	}
-
-	private moveToNextSubscribers: ((newPosition: number) => void)[] = [];
-	public addMoveToNextSubscriber(callback: (newPosition: number) => void): void
-	{
-		this.moveToNextSubscribers.push(callback);
+		this.positionChangedSubscribers.forEach(subscriber => subscriber(this.currentPosition));
 	}
 
 	public moveToPrevious(): void
@@ -97,13 +91,24 @@ class Position
 			this.currentPosition--;
 		}
 
-		this.moveToPreviousSubscribers.forEach(subscriber => subscriber(this.currentPosition));
+		this.positionChangedSubscribers.forEach(subscriber => subscriber(this.currentPosition));
 	}
 
-	private moveToPreviousSubscribers: ((newPosition: number) => void)[] = [];
-	public addMoveToPreviousSubscriber(callback: (newPosition: number) => void): void
+	public moveTo(position: number): void
 	{
-		this.moveToPreviousSubscribers.push(callback);
+		if (position < 0 || position > (this.slidesCount - 1)) {
+			throw new Error('Position out of range');
+		}
+
+		this.currentPosition = position;
+
+		this.positionChangedSubscribers.forEach(subscriber => subscriber(this.currentPosition));
+	}
+
+	private positionChangedSubscribers: ((newPosition: number) => void)[] = [];
+	public addPositionChangedSubscriber(callback: (newPosition: number) => void): void
+	{
+		this.positionChangedSubscribers.push(callback);
 	}
 
 	public isAtFirst(): boolean
@@ -123,4 +128,65 @@ class Position
 
 		return this.currentPosition >= (this.slidesCount - 1);
 	}
+}
+
+
+const selectors = {
+	DOTS: 'references__dots',
+	DOT: 'references__dot',
+	DOT_ACTIVE: 'references__dot--active',
+}
+
+class Dots
+{
+	private dots: Dot[] = [];
+
+	constructor(
+		dataStorageEl: HTMLElement,
+		private position: Position,
+		totalSlides: number,
+	)
+	{
+		const containerEl = document.createElement('div');
+		containerEl.classList.add(selectors.DOTS);
+
+		for (let i = 0; i < totalSlides; i++) {
+			this.dots.push(new Dot(containerEl, this.position, i));
+		}
+
+		dataStorageEl.insertAdjacentElement("afterend", containerEl);
+	}
+
+	public repaint(newPosition: number): void
+	{
+		this.dots.forEach(dot => dot.repaint(newPosition));
+	}
+}
+
+class Dot
+{
+	private readonly el: HTMLElement;
+
+	constructor(
+		containerEl: HTMLElement,
+		private position: Position,
+		private offset: number,
+	) {
+		this.el = document.createElement('div');
+		this.el.classList.add(selectors.DOT);
+		containerEl.appendChild(this.el);
+
+		this.el.addEventListener('click', () => position.moveTo(this.offset));
+	}
+
+
+	public repaint(newPosition: number): void
+	{
+		if (this.offset === newPosition) {
+			this.el.classList.add(selectors.DOT_ACTIVE);
+		} else {
+			this.el.classList.remove(selectors.DOT_ACTIVE);
+		}
+	}
+
 }

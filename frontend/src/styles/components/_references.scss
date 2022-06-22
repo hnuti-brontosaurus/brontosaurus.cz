@@ -106,4 +106,24 @@
 	&__quotation {
 		font-size: 0.85em;
 	}
+
+
+	&__dots {
+		margin-block-start: #{vr-unit(0.5)};
+		display: flex;
+		justify-content: center;
+		gap: 0.4rem;
+	}
+	&__dot {
+		--references-dot-size: 0.4rem;
+		width: var(--references-dot-size);
+		height: var(--references-dot-size);
+		background-color: $colors-links;
+		border-radius: 50%;
+		cursor: pointer;
+
+		&--active {
+			background-color: $colors-text;
+		}
+	}
 }
