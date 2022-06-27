@@ -112,17 +112,23 @@
 		margin-block-start: #{vr-unit(0.5)};
 		display: flex;
 		justify-content: center;
-		gap: 0.4rem;
+		gap: 0.2rem;
 	}
 	&__dot {
-		--references-dot-size: 0.4rem;
-		width: var(--references-dot-size);
-		height: var(--references-dot-size);
-		background-color: $colors-links;
-		border-radius: 50%;
+		display: block;
+		padding: 0.1rem;
 		cursor: pointer;
 
-		&--active {
+		&::before {
+			content: "";
+			display: block;
+			--references-dot-visual-size: 0.4rem;
+			width: var(--references-dot-visual-size);
+			height: var(--references-dot-visual-size);
+			background-color: $colors-links;
+			border-radius: 50%;
+		}
+		&--active::before {
 			background-color: $colors-text;
 		}
 	}
