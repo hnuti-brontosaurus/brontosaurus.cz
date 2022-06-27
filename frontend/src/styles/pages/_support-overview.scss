@@ -81,10 +81,18 @@
 			grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
 			justify-content: center;
 			gap: vr-unit(2) vr-unit(1);
-			margin-block-end: vr-unit(1);
+			margin-block-end: vr-unit(2);
 
 			@media ($typography-breakpoint-large-from) {
 				justify-items: center;
+				grid-template-columns: repeat(2, 1fr);
+				column-gap: vr-unit(2);
+				margin-inline: auto;
+				width: max-content;
+			}
+			@media (min-width: 85.001em) {
+				grid-template-columns: repeat(4, 1fr);
+				column-gap: vr-unit(1);
 			}
 
 			li {
@@ -100,7 +108,7 @@
 				@media ($typography-breakpoint-large-from) {
 					--supportOverview-icon-size: #{vr-unit(4)};
 					padding-top: calc(var(--supportOverview-icon-size) + #{vr-unit(1)});
-					max-inline-size: vr-unit(10);
+					max-inline-size: vr-unit(9);
 					text-align: center;
 					background-position-x: center;
 				}
