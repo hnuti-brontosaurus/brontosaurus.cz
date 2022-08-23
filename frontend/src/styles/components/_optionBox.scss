@@ -128,20 +128,20 @@
 		}
 
 
-		// pridej se
+		// zapoj se
 
-		&--chci-se-zapojit {
-			background-image: url("../images/zapoj-se-chci-se-zapojit.jpg");
+		&--organizovani {
+			background-image: url("../images/zapoj-se-organizovani.jpg");
+		}
+		&--spoluprace {
+			background-image: url("../images/zapoj-se-spoluprace.jpg");
 			background-position-y: bottom;
 		}
-		&--chci-organizovat-akci {
-			background-image: url("../images/zapoj-se-chci-organizovat-akci.jpg");
+		&--clenstvi {
+			background-image: url("../images/zapoj-se-clenstvi.jpg");
 		}
-		&--chci-se-stat-clenem {
-			background-image: url("../images/zapoj-se-chci-se-stat-clenem.jpg");
-		}
-		&--chci-zalozit-clanek {
-			background-image: url("../images/zapoj-se-chci-zalozit-clanek.jpg");
+		&--zalozeni-clanku {
+			background-image: url("../images/zapoj-se-zalozeni-clanku.jpg");
 		}
 	}
 }
