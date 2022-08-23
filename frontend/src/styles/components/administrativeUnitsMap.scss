@@ -1,0 +1,65 @@
+.administrativeUnitsMap {
+	max-width: 40rem;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: vr-unit(2);
+
+	&__filters {
+		display: flex;
+		flex-wrap: wrap;
+		font-size: 0.9em;
+		list-style-type: none;
+
+		@media ($typography-breakpoint-large-from) {
+			margin-bottom: vr-unit(0.5);
+		}
+	}
+	&__filter {
+		margin-bottom: 0.3em;
+
+		&:not(:last-child) {
+			margin-right: 0.3em;
+		}
+	}
+	&__filterLink {
+		&--icon {
+			background-size: 0.7em;
+			background-position: vr-unit(0.5) center;
+			background-repeat: no-repeat;
+			padding-left: calc(#{vr-unit(1)} + 0.4em);
+		}
+
+		&--office {
+			background-image: url("../images/icon-marker-office.svg");
+		}
+		&--regional {
+			background-image: url("../images/icon-marker-regional.svg");
+		}
+		&--base {
+			background-image: url("../images/icon-marker-base.svg");
+		}
+		&--club {
+			background-image: url("../images/icon-marker-club.svg");
+		}
+		&--children {
+			background-image: url("../images/icon-marker-children.svg");
+		}
+	}
+	&__filter--active &__filterLink {
+		background-color: $colors-emphasizing;
+		color: $colors-default-background !important;
+	}
+
+	&__map {
+		height: 20em;
+		max-height: 100vh;
+		margin-left: -#{vr-unit(1)};
+		margin-right: -#{vr-unit(1)};
+
+		img {
+			max-width: initial;
+		}
+	}
+}
+
+

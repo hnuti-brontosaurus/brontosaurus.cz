@@ -17,15 +17,15 @@ const buildScriptsTask = (cb) => {
 	buildScripts(cb, [
 		{
 			distFileName: 'index.js',
-			distPath: paths.scripts.structure.dist, // folder to save the compiled js file into
-			sourceFileName: 'index.ts',
-			sourcePath: paths.scripts.structure.src,
-		},
-		{
-			distFileName: 'index.js',
 			distPath: paths.scripts.detail.dist, // folder to save the compiled js file into
 			sourceFileName: 'index.ts',
 			sourcePath: paths.scripts.detail.src,
+		},
+		{
+			distFileName: 'administrativeUnitsMap.js',
+			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
+			sourceFileName: 'index.ts',
+			sourcePath: paths.scripts.global.src + '/administrativeUnitsMap',
 		},
 		{
 			distFileName: 'events.js',
@@ -100,8 +100,6 @@ gulp.task('watch:webfonts', gulp.series(buildWebfontsTask, () => {
 const buildImagesTask = (cb) => {
 	return buildImages(cb, [
 		paths.images.global,
-		// paths.images.structure,
-		// paths.images.contacts,
 		// paths.images.rentals,
 	]);
 };

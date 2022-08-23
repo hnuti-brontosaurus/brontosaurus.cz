@@ -53,9 +53,14 @@ final class AboutStructureController implements Controller
 			$hasBeenUnableToLoad = true;
 		}
 
+		add_action('wp_enqueue_scripts', function () {
+			$theme = wp_get_theme();
+			$themeVersion = $theme->get('Version');
+			wp_enqueue_script('brontosaurus-aboutStructure-map', $theme->get_template_directory_uri() . '/frontend/dist/js/administrativeUnitsMap.js', [], $themeVersion);
+		});
+
 		$params = [
-			'viewAssetsPath' => get_template_directory_uri() . '/UI/AboutStructure/assets',
-			'organizationalUnitsInJson' => self::getOrganizationalUnitsInJson($organizationalUnits),
+			'organizationalUnitsInJson' => \json_encode($organizationalUnits),
 			'hasBeenUnableToLoad' => $hasBeenUnableToLoad,
 			'baseUnitsAndClubsLink' => $this->base->getLinkFor(BaseUnitsAndClubsListController::PAGE_SLUG),
 			'contactsPageLink' => $this->base->getLinkFor('kontakty'),
@@ -65,39 +70,6 @@ final class AboutStructureController implements Controller
 			__DIR__ . '/AboutStructureController.latte',
 			\array_merge($this->base->getLayoutVariables('aboutstructure'), $params),
 		);
-	}
-
-
-	/**
-	 * Creates structure for Google Maps API.
-	 * @param OrganizationalUnitDC[] $organizationalUnits
-	 * public because of use in zapoj-se
-	 */
-	public static function getOrganizationalUnitsInJson(array $organizationalUnits): string
-	{
-		$organizationalUnits = \array_map(
-			static fn(OrganizationalUnitDC $organizationalUnit): array => [
-				'name' => $organizationalUnit->name,
-				'lat' => $organizationalUnit->coordinates->latitude,
-				'lng' => $organizationalUnit->coordinates->longitude,
-				'address' => [
-					'street' => $organizationalUnit->address->street,
-					'postCode' => $organizationalUnit->address->postCode,
-					'city' => $organizationalUnit->address->city,
-				],
-				'chairman' => $organizationalUnit->chairman,
-				'website' => $organizationalUnit->website,
-				'email' => $organizationalUnit->emailAddress,
-				'isOfTypeClub' => $organizationalUnit->isOfTypeClub,
-				'isOfTypeBase' => $organizationalUnit->isOfTypeBase,
-				'isOfTypeRegional' => $organizationalUnit->isOfTypeRegional,
-				'isOfTypeOffice' => $organizationalUnit->isOfTypeOffice,
-				'isOfTypeChildren' => $organizationalUnit->isOfTypeChildren,
-			],
-			$organizationalUnits
-		);
-
-		return \json_encode($organizationalUnits);
 	}
 
 }
