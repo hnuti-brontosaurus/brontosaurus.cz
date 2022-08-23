@@ -47,7 +47,7 @@ $params = [
 
 <main class="zapoj-se" role="main" id="obsah">
 	<section>
-		<h1>Chceš se zapojit? Ozvi se nám!</h1>
+		<h1>Zapoj se do Brontosaura</h1>
 
 		<?php $latte->render(__DIR__ . '/../../UI/components/administrativeUnitsMap.latte', $params); ?>
 
