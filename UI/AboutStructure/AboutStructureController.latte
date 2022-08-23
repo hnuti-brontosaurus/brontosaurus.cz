@@ -70,7 +70,9 @@
 			</div>
 		</div>
 
-		{include 'unitMap.latte'}
+		<div class="about-structure-map">
+			{include '../components/administrativeUnitsMap.latte'}
+		</div>
 
 		<div class="about-structure-unit" id="ustredi">
 			<h2 class="about-structure-unit-heading">
@@ -193,5 +195,3 @@
 		</a>
 	</article>
 </main>
-
-<script src="{$viewAssetsPath}/dist/js/index.js" type="text/javascript"></script>{* maybe rather by using add_action('wp_enqueue_scripts') *}

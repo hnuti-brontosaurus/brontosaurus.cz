@@ -2,7 +2,6 @@
 
 use Grifart\GeocodingClient\MapyCz\NoResultException;
 use HnutiBrontosaurus\BisApiClient\BisApiClientRuntimeException;
-use HnutiBrontosaurus\Theme\UI\AboutStructure\AboutStructureController;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\OrganizationalUnitDC;
 
 
@@ -32,11 +31,15 @@ try {
 	$hasBeenUnableToLoad = true;
 }
 
-$viewAssetsPath = get_template_directory_uri() . '/UI/AboutStructure/assets';
+add_action('wp_enqueue_scripts', function () {
+	$theme = wp_get_theme();
+	$themeVersion = $theme->get('Version');
+	wp_enqueue_script('brontosaurus-zapojse-map', $theme->get_template_directory_uri() . '/frontend/dist/js/administrativeUnitsMap.js', [], $themeVersion);
+});
 
 $params = [
-	'viewAssetsPath' => $viewAssetsPath,
-	'organizationalUnitsInJson' => AboutStructureController::getOrganizationalUnitsInJson($organizationalUnits),
+	'themePath' => get_template_directory_uri(),
+	'organizationalUnitsInJson' => \json_encode($organizationalUnits),
 	'hasBeenUnableToLoad' => $hasBeenUnableToLoad,
 ];
 
@@ -46,7 +49,7 @@ $params = [
 	<section>
 		<h1>Chceš se zapojit? Ozvi se nám!</h1>
 
-		<?php $latte->render(__DIR__ . '/../../UI/AboutStructure/unitMap.latte', $params); ?>
+		<?php $latte->render(__DIR__ . '/../../UI/components/administrativeUnitsMap.latte', $params); ?>
 
 		<div class="hb-block-text">
 			<h2>Kontakty na lokální koordinátory</h2>
@@ -245,5 +248,3 @@ $params = [
 		</div>
 	</section>
 </aside>
-
-<script src="<?php echo $viewAssetsPath; ?>/dist/js/index.js" type="text/javascript"></script><?php // maybe rather by using add_action('wp_enqueue_scripts') ?>

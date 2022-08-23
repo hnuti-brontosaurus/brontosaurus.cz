@@ -1,7 +1,7 @@
 import Map from './Map';
 
 export default class Filters {
-	private /* const */ ACTIVE_FILTER_ITEM_CSS_CLASS_SELECTOR = 'about-structure-map-filters-item--active';
+	private /* const */ ACTIVE_FILTER_ITEM_CSS_CLASS_SELECTOR = 'administrativeUnitsMap__filter--active';
 
 	private items: NodeListOf<Element>;
 	private mapInstance: Map;
@@ -42,7 +42,7 @@ export default class Filters {
 			item.classList.remove(this.ACTIVE_FILTER_ITEM_CSS_CLASS_SELECTOR);
 		});
 
-		// add active class to item, which was click
+		// add active class to item, which was clicked
 		activeItem.classList.add(this.ACTIVE_FILTER_ITEM_CSS_CLASS_SELECTOR);
 	}
 

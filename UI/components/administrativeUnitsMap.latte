@@ -1,0 +1,52 @@
+<div class="administrativeUnitsMap">
+	{if $hasBeenUnableToLoad}
+		<div class="noResults">
+			Promiňte, zrovna&nbsp;nám vypadl systém, kde&nbsp;máme uloženy všechny informace o&nbsp;našich článcích.
+			Zkuste&nbsp;to prosím za&nbsp;chvilku znovu.
+		</div>
+	{else}
+		<ul class="administrativeUnitsMap__filters" id="administrativeUnitsMap-filters">
+			<li class="administrativeUnitsMap__filter" id="mapa-vse">
+				<a class="administrativeUnitsMap__filterLink button button--customization" href="#mapa-vse">
+					vše
+				</a>
+			</li>
+
+			<li class="administrativeUnitsMap__filter" id="mapa-ustredi" data-slug="office">
+				<a class="administrativeUnitsMap__filterLink administrativeUnitsMap__filterLink--icon administrativeUnitsMap__filterLink--office button button--customization" href="#mapa-ustredi">
+					ústředí
+				</a>
+			</li>
+
+			<li class="administrativeUnitsMap__filter" id="mapa-regionalni-centra" data-slug="regional">
+				<a class="administrativeUnitsMap__filterLink administrativeUnitsMap__filterLink--icon administrativeUnitsMap__filterLink--regional button button--customization" href="#mapa-regionalni-centra">
+					regionální centra
+				</a>
+			</li>
+
+			<li class="administrativeUnitsMap__filter" id="mapa-zakladni-clanky" data-slug="base">
+				<a class="administrativeUnitsMap__filterLink administrativeUnitsMap__filterLink--icon administrativeUnitsMap__filterLink--base button button--customization" href="#mapa-zakladni-clanky">
+					základní články
+				</a>
+			</li>
+
+			<li class="administrativeUnitsMap__filter" id="mapa-kluby" data-slug="club">
+				<a class="administrativeUnitsMap__filterLink administrativeUnitsMap__filterLink--icon administrativeUnitsMap__filterLink--club button button--customization" href="#mapa-kluby">
+					kluby
+				</a>
+			</li>
+
+			<li class="administrativeUnitsMap__filter" id="mapa-detske-oddily" data-slug="children">
+				<a class="administrativeUnitsMap__filterLink administrativeUnitsMap__filterLink--icon administrativeUnitsMap__filterLink--children button button--customization" href="#mapa-detske-oddily">
+					dětské oddíly BRĎO
+				</a>
+			</li>
+		</ul>
+
+		<div class="administrativeUnitsMap__map"
+			 id="map"
+			 data-organizationalUnits="{$organizationalUnitsInJson}"
+			 data-themePath="{$themePath}"
+		></div>
+	{/if}
+</div>

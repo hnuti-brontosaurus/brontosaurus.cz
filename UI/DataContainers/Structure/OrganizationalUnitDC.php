@@ -20,44 +20,23 @@ use HnutiBrontosaurus\Theme\UI\PropertyHandler;
  * @property-read bool $isOfTypeOffice
  * @property-read bool $isOfTypeChildren
  */
-final class OrganizationalUnitDC
+final class OrganizationalUnitDC implements \JsonSerializable
 {
 
 	use PropertyHandler;
 
 
-	/** @var string */
-	private $name;
-
-	/** @var CoordinatesDC */
-	private $coordinates;
-
-	/** @var AddressDC */
-	private $address;
-
-	/** @var string|NULL */
-	private $chairman;
-
-	/** @var string|NULL */
-	private $website;
-
-	/** @var string|NULL */
-	private $emailAddress;
-
-	/** @var bool */
-	private $isOfTypeClub = FALSE;
-
-	/** @var bool */
-	private $isOfTypeBase = FALSE;
-
-	/** @var bool */
-	private $isOfTypeRegional = FALSE;
-
-	/** @var bool */
-	private $isOfTypeOffice = FALSE;
-
-	/** @var bool */
-	private $ifOfTypeChildren = FALSE;
+	private string $name;
+	private CoordinatesDC $coordinates;
+	private AddressDC $address;
+	private ?string $chairman;
+	private ?string $website;
+	private ?string $emailAddress;
+	private bool $isOfTypeClub = false;
+	private bool $isOfTypeBase = false;
+	private bool $isOfTypeRegional = false;
+	private bool $isOfTypeOffice = false;
+	private bool $ifOfTypeChildren = false;
 
 
 	private function __construct(OrganizationalUnit $organizationalUnit, Location $location)
@@ -104,6 +83,29 @@ final class OrganizationalUnitDC
 			$this->isOfTypeRegional = $organizationalUnit->isRegionalUnit();
 			$this->isOfTypeOffice = $organizationalUnit->isOffice();
 		}
+	}
+
+
+	public function jsonSerialize(): array
+	{
+		return [
+			'name' => $this->name,
+			'lat' => $this->coordinates->latitude,
+			'lng' => $this->coordinates->longitude,
+			'address' => [
+				'street' => $this->address->street,
+				'postCode' => $this->address->postCode,
+				'city' => $this->address->city,
+			],
+			'chairman' => $this->chairman,
+			'website' => $this->website,
+			'email' => $this->emailAddress,
+			'isOfTypeClub' => $this->isOfTypeClub,
+			'isOfTypeBase' => $this->isOfTypeBase,
+			'isOfTypeRegional' => $this->isOfTypeRegional,
+			'isOfTypeOffice' => $this->isOfTypeOffice,
+			'isOfTypeChildren' => $this->isOfTypeChildren,
+		];
 	}
 
 }

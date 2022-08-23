@@ -14,7 +14,7 @@ export default class Map {
 	organizationalUnits: Array<OrganizationalUnit>;
 
 	constructor(mapElement: HTMLElement) {
-		this.iconsPath = mapElement.dataset.iconspath!; // should be present
+		this.iconsPath = mapElement.dataset.themepath! + '/frontend/dist/images'; // should be present
 
 		// Maps Google map to place where we want display our map
 		this.map = new google.maps.Map(mapElement);

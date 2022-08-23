@@ -2,7 +2,6 @@ export const ENV_PRODUCTION = 'production';
 
 const locations = {
 	global: 'frontend',
-	structure: 'UI/AboutStructure/assets',
 	detail: 'UI/EventDetail/assets',
 	contacts: 'UI/Contacts/assets',
 	rentals: 'UI/Rentals/assets',
@@ -14,14 +13,6 @@ export const paths = {
 			dist: locations.global + '/dist/images',
 			src: locations.global + '/src/images',
 		},
-		structure: {
-			dist: locations.structure + '/dist/images',
-			src: locations.structure + '/src/images',
-		},
-		contacts: {
-			dist: locations.contacts + '/dist/images',
-			src: locations.contacts + '/src/images',
-		},
 		rentals: {
 			dist: locations.rentals + '/dist/images',
 			src: locations.rentals + '/src/images',
@@ -32,10 +23,6 @@ export const paths = {
 		global: {
 			dist: locations.global + '/dist/js',
 			src: locations.global + '/src/scripts',
-		},
-		structure: {
-			dist: locations.structure + '/dist/js',
-			src: locations.structure + '/src/scripts',
 		},
 		detail: {
 			dist: locations.detail + '/dist/js',
