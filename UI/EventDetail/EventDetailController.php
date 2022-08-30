@@ -2,11 +2,11 @@
 
 namespace HnutiBrontosaurus\Theme\UI\EventDetail;
 
-use HnutiBrontosaurus\BisApiClient\BisApiClientRuntimeException;
-use HnutiBrontosaurus\BisApiClient\Client;
-use HnutiBrontosaurus\BisApiClient\NotFoundException;
-use HnutiBrontosaurus\BisApiClient\Response\Event\Event;
-use HnutiBrontosaurus\BisApiClient\Response\InvalidUserInputException;
+use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
+use HnutiBrontosaurus\LegacyBisApiClient\Client;
+use HnutiBrontosaurus\LegacyBisApiClient\NotFoundException;
+use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Event;
+use HnutiBrontosaurus\LegacyBisApiClient\Response\InvalidUserInputException;
 use HnutiBrontosaurus\Theme\SentryLogger;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;

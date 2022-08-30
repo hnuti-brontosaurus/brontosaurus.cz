@@ -2,8 +2,8 @@
 
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
-use HnutiBrontosaurus\BisApiClient\Response\Event\Invitation\Photo;
-use HnutiBrontosaurus\BisApiClient\Response\Event\Invitation\Presentation;
+use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Invitation\Photo;
+use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Invitation\Presentation;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 use HnutiBrontosaurus\Theme\UI\Utils;
 

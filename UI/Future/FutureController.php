@@ -2,9 +2,9 @@
 
 namespace HnutiBrontosaurus\Theme\UI\Future;
 
-use HnutiBrontosaurus\BisApiClient\BisApiClientRuntimeException;
-use HnutiBrontosaurus\BisApiClient\Client;
-use HnutiBrontosaurus\BisApiClient\Request\EventParameters;
+use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
+use HnutiBrontosaurus\LegacyBisApiClient\Client;
+use HnutiBrontosaurus\LegacyBisApiClient\Request\EventParameters;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
 use HnutiBrontosaurus\Theme\UI\DataContainers\MonthWrapperDC;

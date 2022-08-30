@@ -2,7 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme\UI\DataContainers;
 
-use HnutiBrontosaurus\BisApiClient\Response\Event\Event;
+use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Event;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventCollectionDC;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 

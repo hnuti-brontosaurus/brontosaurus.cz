@@ -6,7 +6,7 @@ use Grifart\GeocodingClient\MapyCz\Communicator;
 use Grifart\GeocodingClient\MapyCz\Mapping\Mapper;
 use Grifart\GeocodingClient\MapyCz\MapyCzGeocodingService;
 use GuzzleHttp\Client as HttpClient;
-use HnutiBrontosaurus\BisApiClient\Client;
+use HnutiBrontosaurus\LegacyBisApiClient\Client;
 use HnutiBrontosaurus\Theme\Configuration;
 use HnutiBrontosaurus\Theme\SentryLogger;
 use HnutiBrontosaurus\Theme\UI\AboutStructure\GeocodingClientFacade;
@@ -57,12 +57,12 @@ function hb_getGeocodingClient(): GeocodingClientFacade
 	);
 }
 
-function hb_getBisApiClient(Configuration $configuration): Client
+function hb_getLegacyBisApiClient(Configuration $configuration): Client
 {
 	return new Client(
-		$configuration->get('bis:url'),
-		$configuration->get('bis:username'),
-		$configuration->get('bis:password'),
+		$configuration->get('bis:legacy:url'),
+		$configuration->get('bis:legacy:username'),
+		$configuration->get('bis:legacy:password'),
 		new HttpClient(),
 	);
 }
@@ -83,7 +83,7 @@ function hb_getBisApiClient(Configuration $configuration): Client
 
 	// app
 
-	$bisApiClient = hb_getBisApiClient($configuration);
+	$bisApiClient = hb_getLegacyBisApiClient($configuration);
 
 	if ($configuration->get('mailer:smtp')) {
 		// only no-authentication access is supported right now as we do not have authenticated SMTP servers now

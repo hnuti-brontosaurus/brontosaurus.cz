@@ -2,7 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme\UI\BaseUnitsAndClubsList;
 
-use HnutiBrontosaurus\BisApiClient\Response\OrganizationalUnit\OrganizationalUnit;
+use HnutiBrontosaurus\LegacyBisApiClient\Response\OrganizationalUnit\OrganizationalUnit;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\AddressDC;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 
