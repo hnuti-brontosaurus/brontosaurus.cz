@@ -15,7 +15,8 @@
     },
     "autoload": {
         "psr-4": {
-            "HnutiBrontosaurus\\Theme\\": "."
+            "HnutiBrontosaurus\\Theme\\": ".",
+			"HnutiBrontosaurus\\LegacyBisApiClient\\": "legacy-bis-api-client/src"
         }
     },
     "config": {
