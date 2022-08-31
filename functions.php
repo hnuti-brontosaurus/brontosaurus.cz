@@ -36,15 +36,27 @@ function registerEventDetail(): void
 		'top',
 	);
 }
+const HB_OPPORTUNITY_ID = 'opportunityId';
+function registerOpportunityDetail(): void
+{
+	add_rewrite_rule(
+		'^zapoj-se/prilezitost/([\d]+)',
+		\sprintf('index.php?pagename=prilezitost&%s=$matches[1]', HB_OPPORTUNITY_ID),
+		'top',
+	);
+}
 add_action('init', function () {
 	registerEventDetail();
+	registerOpportunityDetail();
 });
 add_filter('query_vars', function($vars) {
 	array_push($vars, EventDetailController::PARAM_EVENT_ID);
+	array_push($vars, HB_OPPORTUNITY_ID);
 	return $vars;
 });
 add_action('after_switch_theme', function () {
 	registerEventDetail();
+	registerOpportunityDetail();
 	flush_rewrite_rules();
 });
 add_action('after_setup_theme', function () {

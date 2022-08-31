@@ -1,0 +1,136 @@
+.prilezitost {
+	&__noResults {
+		margin-bottom: calc(var(--hb-vr-base) * 4);
+	}
+
+	h1 {
+		margin-block-end: 0;
+		line-height: 1.1;
+	}
+
+	&__heading {
+		margin-inline-end: calc(var(--hb-vr-base) * 0.5);
+	}
+	&__tags {
+		vertical-align: middle;
+		margin-inline-start: calc(var(--hb-vr-base) * -0.25);
+
+		@media ($typography-breakpoint-small-until) {
+			display: inline-flex;
+		}
+	}
+	&__tag {
+		background-color: var(--hb-colors-links);
+		font-size: 0.5em;
+		font-weight: initial;
+
+		@media ($typography-breakpoint-large-from) {
+			font-size: 0.4em;
+		}
+	}
+
+	&__top {
+		margin-block-start: var(--hb-vr-base);
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
+			flex-direction: row;
+			gap: var(--hb-vr-base);
+			align-items: center;
+		}
+		@media ($typography-breakpoint-small-until) {
+			max-width: 30rem;
+		}
+		@media ($typography-breakpoint-large-from) {
+			max-width: max-content;
+			justify-content: center;
+			margin-inline: auto;
+			gap: calc(var(--hb-vr-base) * 2);
+		}
+		@media ($typography-breakpoint-large-from) {
+			margin-block-start: calc(var(--hb-vr-base) * 2);
+		}
+	}
+
+	&__image {
+		max-width: 20rem;
+
+		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) and ($typography-breakpoint-small-until) {
+			max-width: 13rem;
+		}
+
+		img {
+			border-radius: 2em;
+		}
+	}
+
+	&__basic {
+		display: grid;
+		grid-template-columns: min-content auto;
+		gap: calc(var(--hb-vr-base) * 0.5);
+
+		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
+			order: -1;
+		}
+	}
+
+	dt span {
+		position: absolute;
+		display: block;
+		width: 0;
+		height: 0;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	&__date,
+	&__place,
+	&__contact {
+		&::before {
+			content: "";
+			display: block;
+			--prilezitost-icon-height: 0.9rem;
+			height: var(--prilezitost-icon-height);
+			aspect-ratio: 0.9;
+			background-color: var(--hb-colors-text);
+			mask-size: auto 100%;
+			mask-position: center center;
+			mask-repeat: no-repeat;
+		}
+	}
+	&__date::before {
+		mask-image: url("../images/icon-datetime.svg");
+	}
+	&__place::before {
+		mask-image: url("../images/icon-place.svg");
+	}
+	&__contact::before {
+		mask-image: url("../images/icon-user.svg");
+	}
+
+	dd {
+		margin-inline-start: 0;
+	}
+
+	section {
+		margin-block-start: calc(var(--hb-vr-base) * 2);
+
+		@media ($detail-breakpoint-large-from) {
+			max-width: 60ch;
+		}
+		@media ($typography-breakpoint-large-from) {
+			max-width: 55ch;
+			margin-inline: auto;
+		}
+	}
+
+	p:not(:last-child) {
+		margin-block-end: calc(var(--hb-vr-base) * 0.5);
+	}
+
+	address {
+		font-style: normal;
+	}
+}
