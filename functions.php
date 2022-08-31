@@ -2,6 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme;
 
+use HnutiBrontosaurus\BisClient\Enums\OpportunityCategory;
 use HnutiBrontosaurus\Theme\UI\Courses\CoursesController;
 use HnutiBrontosaurus\Theme\UI\EventDetail\EventDetailController;
 use HnutiBrontosaurus\Theme\UI\ForChildren\ForChildrenController;
@@ -132,6 +133,43 @@ function getLinkFor(string $slug): string
 	}
 
 	return get_permalink($post->ID);
+}
+
+
+function hb_dateSpan(\DateTimeInterface $start, \DateTimeInterface $end, string $dateFormat): string
+{
+	$dateSpan_untilPart = $end->format($dateFormat);
+
+	$onlyOneDay = $start->format('j') === $end->format('j');
+	if ($onlyOneDay) {
+		return $dateSpan_untilPart;
+	}
+
+	$inSameMonth = $start->format('n') === $end->format('n');
+	$inSameYear = $start->format('Y') === $end->format('Y');
+
+	$dateSpan_fromPart = $start->format(\sprintf('j.%s%s',
+		( ! $inSameMonth || ! $inSameYear) ? ' n.' : '',
+		( ! $inSameYear) ? ' Y' : ''
+	));
+
+	// Czech language rules say that in case of multi-word date span there should be a space around the dash (@see http://prirucka.ujc.cas.cz/?id=810)
+	$optionalSpace = '';
+	if ( ! $inSameMonth) {
+		$optionalSpace = ' ';
+	}
+
+	return $dateSpan_fromPart . \sprintf('%s–%s', $optionalSpace, $optionalSpace) . $dateSpan_untilPart;
+}
+
+
+function hb_opportunityCategoryToString(OpportunityCategory $category): string
+{
+	return match (true) {
+		$category->equals(OpportunityCategory::ORGANIZING()) => 'organizování akcí',
+		$category->equals(OpportunityCategory::COLLABORATION()) => 'spolupráce',
+		$category->equals(OpportunityCategory::LOCATION_HELP()) => 'pomoc lokalitě',
+	};
 }
 
 
