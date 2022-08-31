@@ -75,6 +75,16 @@ function hb_getLegacyBisApiClient(Configuration $configuration): Client
 	);
 }
 
+function hb_getDateFormatForHuman(Configuration $configuration): string
+{
+	return $configuration->get('dateFormat:human');
+}
+
+function hb_getDateFormatForRobot(Configuration $configuration): string
+{
+	return $configuration->get('dateFormat:robot');
+}
+
 (function (?\WP_Post $post) {
 	// latte
 	$latte = hb_getLatte();
