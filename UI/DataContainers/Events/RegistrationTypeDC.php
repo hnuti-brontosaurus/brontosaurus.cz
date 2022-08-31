@@ -2,8 +2,8 @@
 
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
-use HnutiBrontosaurus\BisApiClient\Response\Event\Registration\RegistrationQuestion;
-use HnutiBrontosaurus\BisApiClient\Response\Event\Registration\RegistrationType;
+use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Registration\RegistrationQuestion;
+use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Registration\RegistrationType;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 use Nette\Utils\Strings;
 

@@ -1,0 +1,1 @@
+Potřebujeme rozjet zároveň akce ze starého BISu a zároveň příležitosti z nového BISu. Proto jsem sem staticky vložil kód starého API klienta (ten se už měnit nebude), kdežto ten linkovaný z composer je nový API klient. Časem tuto složku odstraníme.

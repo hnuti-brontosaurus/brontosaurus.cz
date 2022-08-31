@@ -3,8 +3,8 @@
 namespace HnutiBrontosaurus\Theme\UI\AboutStructure;
 
 use Grifart\GeocodingClient\MapyCz\NoResultException;
-use HnutiBrontosaurus\BisApiClient\BisApiClientRuntimeException;
-use HnutiBrontosaurus\BisApiClient\Client;
+use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
+use HnutiBrontosaurus\LegacyBisApiClient\Client;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\BaseUnitsAndClubsList\BaseUnitsAndClubsListController;
 use HnutiBrontosaurus\Theme\UI\Controller;

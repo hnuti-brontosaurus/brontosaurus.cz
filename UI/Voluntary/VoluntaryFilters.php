@@ -2,7 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme\UI\Voluntary;
 
-use HnutiBrontosaurus\BisApiClient\Request\EventParameters;
+use HnutiBrontosaurus\LegacyBisApiClient\Request\EventParameters;
 
 
 final class VoluntaryFilters

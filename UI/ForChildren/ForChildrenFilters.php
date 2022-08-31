@@ -2,7 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme\UI\ForChildren;
 
-use HnutiBrontosaurus\BisApiClient\Request\EventParameters;
+use HnutiBrontosaurus\LegacyBisApiClient\Request\EventParameters;
 
 
 final class ForChildrenFilters

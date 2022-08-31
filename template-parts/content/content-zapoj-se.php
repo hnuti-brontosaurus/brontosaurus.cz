@@ -1,12 +1,12 @@
 <?php declare(strict_types = 1);
 
 use Grifart\GeocodingClient\MapyCz\NoResultException;
-use HnutiBrontosaurus\BisApiClient\BisApiClientRuntimeException;
+use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\OrganizationalUnitDC;
 
 
 $configuration = hb_getConfiguration();
-$bisApiClient = hb_getBisApiClient($configuration);
+$bisApiClient = hb_getLegacyBisApiClient($configuration);
 $latte = hb_getLatte();
 $geocodingClient = hb_getGeocodingClient();
 

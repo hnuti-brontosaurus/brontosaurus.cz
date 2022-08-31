@@ -2,9 +2,9 @@
 
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
-use HnutiBrontosaurus\BisApiClient\Response\Event\Invitation\Food;
-use HnutiBrontosaurus\BisApiClient\Response\Event\Invitation\Invitation;
-use HnutiBrontosaurus\BisApiClient\Response\Event\Invitation\Presentation;
+use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Invitation\Food;
+use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Invitation\Invitation;
+use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Invitation\Presentation;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 use HnutiBrontosaurus\Theme\UI\Utils;
 

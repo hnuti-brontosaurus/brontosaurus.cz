@@ -3,7 +3,7 @@
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Structure;
 
 use Grifart\GeocodingClient\Location;
-use HnutiBrontosaurus\BisApiClient\Response\OrganizationalUnit\OrganizationalUnit;
+use HnutiBrontosaurus\LegacyBisApiClient\Response\OrganizationalUnit\OrganizationalUnit;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 
 

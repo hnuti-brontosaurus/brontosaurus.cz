@@ -2,10 +2,10 @@
 
 namespace HnutiBrontosaurus\Theme\UI\BaseUnitsAndClubsList;
 
-use HnutiBrontosaurus\BisApiClient\BisApiClientRuntimeException;
-use HnutiBrontosaurus\BisApiClient\Client;
-use HnutiBrontosaurus\BisApiClient\Request\OrganizationalUnitParameters;
-use HnutiBrontosaurus\BisApiClient\Response\OrganizationalUnit\OrganizationalUnit;
+use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
+use HnutiBrontosaurus\LegacyBisApiClient\Client;
+use HnutiBrontosaurus\LegacyBisApiClient\Request\OrganizationalUnitParameters;
+use HnutiBrontosaurus\LegacyBisApiClient\Response\OrganizationalUnit\OrganizationalUnit;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
 use Latte\Engine;

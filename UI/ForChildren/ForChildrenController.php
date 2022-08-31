@@ -2,10 +2,10 @@
 
 namespace HnutiBrontosaurus\Theme\UI\ForChildren;
 
-use HnutiBrontosaurus\BisApiClient\BisApiClientRuntimeException;
-use HnutiBrontosaurus\BisApiClient\Client;
-use HnutiBrontosaurus\BisApiClient\Request\EventParameters;
-use HnutiBrontosaurus\BisApiClient\Response\Event\Event;
+use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
+use HnutiBrontosaurus\LegacyBisApiClient\Client;
+use HnutiBrontosaurus\LegacyBisApiClient\Request\EventParameters;
+use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Event;
 use HnutiBrontosaurus\Theme\UI\AboutStructure\AboutStructureController;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
