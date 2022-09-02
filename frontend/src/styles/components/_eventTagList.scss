@@ -3,18 +3,14 @@
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
+	gap: vr-unit(0.25);
 	font-size: 0.9em;
 
 	&__item {
-		margin-top: vr-unit(0.25);
 		padding: vr-unit(0.25) vr-unit(0.5) calc(#{vr-unit(0.25)} - 0.15em);
 		background-color: transparentize($colors-default-background, 0.1);
 		background-repeat: no-repeat;
 		border-radius: 2em;
-
-		&:not(:last-child) {
-			margin-right: vr-unit(0.25);
-		}
 
 		&--type {
 			padding-left: calc(#{vr-unit(0.5)} + 1.25em);
