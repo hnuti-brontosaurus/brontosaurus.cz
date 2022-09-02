@@ -34,7 +34,13 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+		background-color: var(--hb-colors-tinge);
+		border-radius: 2em;
+		overflow: hidden;
 
+		@media ($header-breakpoint-navigationHiddenToVisible-hidden-until) {
+			max-width: 20rem;
+		}
 		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
 			flex-direction: row;
 			gap: var(--hb-vr-base);
@@ -44,25 +50,26 @@
 			max-width: 30rem;
 		}
 		@media ($typography-breakpoint-large-from) {
-			max-width: max-content;
-			justify-content: center;
-			margin-inline: auto;
-			gap: calc(var(--hb-vr-base) * 2);
-		}
-		@media ($typography-breakpoint-large-from) {
 			margin-block-start: calc(var(--hb-vr-base) * 2);
+			max-width: 35rem;
+			min-height: 15rem;
+			margin-inline: auto;
 		}
 	}
 
 	&__image {
-		max-width: 20rem;
-
-		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) and ($typography-breakpoint-small-until) {
-			max-width: 13rem;
+		@media ($header-breakpoint-navigationHiddenToVisible-hidden-until) {
+			border-bottom: 2px solid var(--hb-colors-emphasizing);
+		}
+		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
+			flex-basis: 50%;
+			align-self: stretch;
+			border-left: 2px solid var(--hb-colors-emphasizing);
 		}
 
 		img {
-			border-radius: 2em;
+			height: 100%;
+			object-fit: cover;
 		}
 	}
 
@@ -70,6 +77,7 @@
 		display: grid;
 		grid-template-columns: min-content auto;
 		gap: calc(var(--hb-vr-base) * 0.5);
+		padding: calc(var(--hb-vr-base) * 0.5) var(--hb-vr-base);
 
 		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
 			order: -1;
