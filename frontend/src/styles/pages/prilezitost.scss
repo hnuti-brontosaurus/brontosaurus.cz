@@ -128,4 +128,63 @@
 	address {
 		font-style: normal;
 	}
+
+	&__contact {
+		background-color: var(--hb-colors-tinge);
+		padding: calc(var(--hb-vr-base));
+		margin-inline: calc(var(--hb-vr-base) * -1) !important; // overwrite more generic rule from above
+
+		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
+			border-radius: 2rem;
+
+			@media ($typography-breakpoint-small-until) {
+				max-width: 30rem;
+			}
+		}
+		@media ($typography-breakpoint-large-from) {
+			flex-direction: column;
+			text-align: center;
+			padding-block: calc(var(--hb-vr-base) * 2);
+		}
+
+		dt {
+			position: absolute;
+			display: block;
+			width: 0;
+			height: 0;
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		dd {
+			&:not(:last-child) {
+				margin-block-end: calc(var(--hb-vr-base) * 0.25);
+			}
+		}
+	}
+	&__email,
+	&__phone {
+		display: inline-flex;
+		align-items: center;
+		gap: calc(var(--hb-vr-base) * 0.25);
+
+		&::before {
+			content: "";
+			display: block;
+			--prilezitost-contact-icon-size: 0.85rem;
+			height: var(--prilezitost-contact-icon-size);
+			background-color: var(--hb-colors-emphasizing);
+			mask-size: auto 100%;
+			mask-position: center center;
+			mask-repeat: no-repeat;
+		}
+	}
+	&__email::before {
+		width: calc(var(--prilezitost-contact-icon-size) * 1);
+		mask-image: url("../images/icon-letter.svg");
+	}
+	&__phone::before {
+		width: calc(var(--prilezitost-contact-icon-size) * 0.9);
+		mask-image: url("../images/icon-phone.svg");
+	}
 }

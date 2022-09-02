@@ -106,11 +106,16 @@ try {
 
 			<!--section 6-->
 			<section>
-				<h2>Kontakt</h2>
+				<h2>Komu se ozvat?</h2>
 				<address>
-					Kontaktní osoba: <?php echo $opportunity->getContactPerson()->getName(); ?><br>
-					E-mail: <a href="mailto:<?php echo $opportunity->getContactPerson()->getEmailAddress(); ?>" rel="noopener noreferrer" target="_blank"><?php echo $opportunity->getContactPerson()->getEmailAddress(); ?></a><br>
-					Telefon: <a href="tel:<?php echo $opportunity->getContactPerson()->getPhoneNumber(); ?>" rel="noopener noreferrer" target="_blank"><?php echo $opportunity->getContactPerson()->getPhoneNumber(); ?></a>
+					<dl class="prilezitost__contact">
+						<dt>Kontaktní osoba:</dt>
+						<dd><?php echo $opportunity->getContactPerson()->getName(); ?></dd>
+						<dt>E-mail:</dt>
+						<dd><a class="prilezitost__email" href="mailto:<?php echo $opportunity->getContactPerson()->getEmailAddress(); ?>" rel="noopener noreferrer" target="_blank"><?php echo $opportunity->getContactPerson()->getEmailAddress(); ?></a></dd>
+						<dt>Telefon:</dt>
+						<dd><a class="prilezitost__phone" href="tel:<?php echo $opportunity->getContactPerson()->getPhoneNumber(); ?>" rel="noopener noreferrer" target="_blank"><?php echo $opportunity->getContactPerson()->getPhoneNumber(); ?></a></dd>
+					</dl>
 				</address>
 			</section>
 		<?php endif; ?>
