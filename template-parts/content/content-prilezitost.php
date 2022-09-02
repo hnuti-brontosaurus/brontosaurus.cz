@@ -45,14 +45,14 @@ try {
 				</a>
 
 				<dl class="prilezitost__basic">
-					<dt class="prilezitost__date"><span>Datum</span></dt>
+					<dt class="prilezitost__date">Datum</dt>
 					<dd>
 						<time datetime="<?php echo $opportunity->getDateStart()->format($dateFormatForRobot); ?>">
 							<?php echo hb_dateSpan($opportunity->getDateStart(), $opportunity->getDateEnd(), $dateFormatForHuman); ?>
 						</time>
 					</dd>
 
-					<dt class="prilezitost__place"><span>Místo</span></dt>
+					<dt class="prilezitost__place">Místo</dt>
 					<dd>
 						<?php $location = $opportunity->getLocation(); ?>
 						<?php $coordinates = $location->getCoordinates(); ?>
@@ -65,7 +65,7 @@ try {
 						<?php endif; ?>
 					</dd>
 
-					<dt class="prilezitost__contact"><span>Kontaktní osoba</span></dt>
+					<dt class="prilezitost__contact">Kontakt</dt>
 					<dd>
 						<?php echo $opportunity->getContactPerson()->getName(); ?><br>
 						<a class="detail__basicInformation-contact" href="tel:<?php echo $opportunity->getContactPerson()->getPhoneNumber(); ?>" rel="noopener noreferrer" target="_blank"><?php echo $opportunity->getContactPerson()->getPhoneNumber(); ?></a><br>
