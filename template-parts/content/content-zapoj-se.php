@@ -7,6 +7,7 @@ use HnutiBrontosaurus\BisClient\Request\OpportunityParameters;
 use HnutiBrontosaurus\BisClient\Response\Opportunity;
 use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\OrganizationalUnitDC;
+use Nette\Utils\Strings;
 use function HnutiBrontosaurus\Theme\hb_dateSpan;
 use function HnutiBrontosaurus\Theme\hb_opportunityCategoryToString;
 
@@ -113,7 +114,13 @@ $numberOfOpportunitiesToDisplayOnLoad = 9;
 		</header>
 
 		<div class="events-event-excerpt">
-			<?php echo $opportunity->getIntroduction(); ?>
+			<?php
+				$text = (string) $opportunity->getIntroduction();
+				$text = \strip_tags($text);
+				$text = Strings::truncate($text, 200);
+				$text = \nl2br($text);
+				echo $text;
+			?>
 		</div>
 	</a>
 <?php } ?>
