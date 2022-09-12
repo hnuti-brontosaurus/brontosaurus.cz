@@ -79,7 +79,7 @@ $params = [
 	'hasBeenUnableToLoad' => $hasBeenUnableToLoad,
 ];
 
-$numberOfOpportunitiesToDisplayOnLoad = 9;
+$numberOfOpportunitiesToDisplayOnLoad = 6;
 ?>
 
 <?php function hb_opportunity(Opportunity $opportunity, string $dateFormat) { ?>
