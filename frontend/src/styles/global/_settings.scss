@@ -6,6 +6,16 @@ $colors-tinge: #f0f3f2;
 $colors-links: #e6e6e6;
 $colors-error: #a60000;
 
+:root {
+	--hb-colors-default-background: #{$colors-default-background};
+	--hb-colors-emphasizing: #{$colors-emphasizing};
+	--hb-colors-framing: #{$colors-framing};
+	--hb-colors-text: #{$colors-text};
+	--hb-colors-tinge: #{$colors-tinge};
+	--hb-colors-links: #{$colors-links};
+	--hb-colors-error: #{$colors-error};
+}
+
 $fonts-delm: "Delm";
 $fonts-delm-weight-regular: 300;
 $fonts-delm-weight-bold: 700;
@@ -13,6 +23,11 @@ $fonts-delm-weight-bold: 700;
 $typography-baseFontSize-small: 130%;
 $typography-baseFontSize-large: 140%;
 $typography-baseLineHeight: 1.3;
+
+:root {
+	--hb-line-height: #{$typography-baseLineHeight};
+	--hb-vr-base: calc(var(--hb-line-height) * 1rem);
+}
 
 $typography-breakpoint: 60em;
 $typography-breakpoint-small-until: "max-width: " + $typography-breakpoint;

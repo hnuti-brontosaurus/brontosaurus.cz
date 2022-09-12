@@ -1,6 +1,10 @@
 .zapoj-se {
 	padding-bottom: vr-unit(3);
 
+	&__opportunities {
+		margin-block-end: vr-unit(4);
+	}
+
 	&__map {
 		margin-block-start: vr-unit(3);
 		max-width: 40rem;

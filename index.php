@@ -6,6 +6,8 @@ use Grifart\GeocodingClient\MapyCz\Communicator;
 use Grifart\GeocodingClient\MapyCz\Mapping\Mapper;
 use Grifart\GeocodingClient\MapyCz\MapyCzGeocodingService;
 use GuzzleHttp\Client as HttpClient;
+use HnutiBrontosaurus\BisClient\BisClient;
+use HnutiBrontosaurus\BisClient\BisClientFactory;
 use HnutiBrontosaurus\LegacyBisApiClient\Client;
 use HnutiBrontosaurus\Theme\Configuration;
 use HnutiBrontosaurus\Theme\SentryLogger;
@@ -57,6 +59,12 @@ function hb_getGeocodingClient(): GeocodingClientFacade
 	);
 }
 
+function hb_getBisApiClient(Configuration $configuration): BisClient
+{
+	$factory = new BisClientFactory($configuration->get('bis:url'));
+	return $factory->create();
+}
+
 function hb_getLegacyBisApiClient(Configuration $configuration): Client
 {
 	return new Client(
@@ -65,6 +73,16 @@ function hb_getLegacyBisApiClient(Configuration $configuration): Client
 		$configuration->get('bis:legacy:password'),
 		new HttpClient(),
 	);
+}
+
+function hb_getDateFormatForHuman(Configuration $configuration): string
+{
+	return $configuration->get('dateFormat:human');
+}
+
+function hb_getDateFormatForRobot(Configuration $configuration): string
+{
+	return $configuration->get('dateFormat:robot');
 }
 
 (function (?\WP_Post $post) {

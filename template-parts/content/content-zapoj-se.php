@@ -1,19 +1,53 @@
 <?php declare(strict_types = 1);
 
 use Grifart\GeocodingClient\MapyCz\NoResultException;
+use HnutiBrontosaurus\BisClient\BisClientRuntimeException;
+use HnutiBrontosaurus\BisClient\Enums\OpportunityCategory;
+use HnutiBrontosaurus\BisClient\Request\OpportunityParameters;
+use HnutiBrontosaurus\BisClient\Response\Opportunity;
 use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\OrganizationalUnitDC;
+use Nette\Utils\Strings;
+use function HnutiBrontosaurus\Theme\hb_dateSpan;
+use function HnutiBrontosaurus\Theme\hb_opportunityCategoryToString;
 
 
 $configuration = hb_getConfiguration();
-$bisApiClient = hb_getLegacyBisApiClient($configuration);
+$bisApiClient = hb_getBisApiClient($configuration);
+$legacyBisApiClient = hb_getLegacyBisApiClient($configuration);
+$dateFormat = hb_getDateFormatForHuman($configuration);
 $latte = hb_getLatte();
 $geocodingClient = hb_getGeocodingClient();
+
+
+// todo: use some WP way of obtaining param
+$selectedFilter = \filter_input( INPUT_GET, 'jen', FILTER_SANITIZE_STRING ) ?? null;
+$selectedFilter = $selectedFilter !== null && $selectedFilter !== '' ? $selectedFilter : null;
+
+$isOrganizovaniAkciSelected = $selectedFilter === 'organizovani-akci';
+$isSpolupraceSelected = $selectedFilter === 'spoluprace';
+$isPomocLokaliteSelected = $selectedFilter === 'pomoc-lokalite';
+$isAnySelected = $isOrganizovaniAkciSelected || $isSpolupraceSelected || $isPomocLokaliteSelected;
+
+$applyFilter = static function (?string $filter): ?OpportunityParameters {
+	if ($filter === null) return null;
+
+	$params = new OpportunityParameters();
+	$category = match ($filter) {
+		'organizovani-akci' => OpportunityCategory::ORGANIZING(),
+		'spoluprace' => OpportunityCategory::COLLABORATION(),
+		'pomoc-lokalite' => OpportunityCategory::LOCATION_HELP(),
+	};
+	$params->setCategory($category);
+	return $params;
+};
 
 $hasBeenUnableToLoad = false;
 
 try {
-	foreach ($bisApiClient->getOrganizationalUnits() as $organizationalUnit) {
+	$opportunities = $bisApiClient->getOpportunities($applyFilter($selectedFilter));
+
+	foreach ($legacyBisApiClient->getOrganizationalUnits() as $organizationalUnit) {
 		try {
 			$location = $geocodingClient->getCoordinatesFor(
 				$organizationalUnit->getStreet(),
@@ -27,13 +61,15 @@ try {
 		}
 	}
 
-} catch (BisApiClientRuntimeException) {
+} catch (BisClientRuntimeException|BisApiClientRuntimeException) {
 	$hasBeenUnableToLoad = true;
 }
 
 add_action('wp_enqueue_scripts', function () {
 	$theme = wp_get_theme();
 	$themeVersion = $theme->get('Version');
+	wp_enqueue_script('brontosaurus-zapojse-lazy-load', $theme->get_template_directory_uri() . '/frontend/dist/js/lazyLoad.js', [], $themeVersion);
+	wp_enqueue_script('brontosaurus-zapojse-events', $theme->get_template_directory_uri() . '/frontend/dist/js/events.js', [], $themeVersion);
 	wp_enqueue_script('brontosaurus-zapojse-map', $theme->get_template_directory_uri() . '/frontend/dist/js/administrativeUnitsMap.js', [], $themeVersion);
 });
 
@@ -43,10 +79,128 @@ $params = [
 	'hasBeenUnableToLoad' => $hasBeenUnableToLoad,
 ];
 
+$numberOfOpportunitiesToDisplayOnLoad = 6;
 ?>
+
+<?php function hb_opportunity(Opportunity $opportunity, string $dateFormat) { ?>
+	<a class="events-event" href="prilezitost/<?php echo $opportunity->getId(); //todo: using rather WP routing somehow ?>">
+		<div class="events-event-image-wrapper">
+			<img alt="" class="events-event-image" data-src="<?php echo $opportunity->getImage(); ?>">
+			<noscript><?php // for search engines ?>
+				<img alt="" class="events-event-image" src="<?php echo $opportunity->getImage(); ?>">
+			</noscript>
+
+			<div class="events-event-meta eventTagList">
+				<div class="eventTagList__item">
+					<?php echo hb_opportunityCategoryToString($opportunity->getCategory()); ?>
+				</div>
+			</div>
+		</div>
+
+		<header class="events-event-header">
+			<h4 class="events-event-header-heading">
+				<?php echo $opportunity->getName(); ?>
+			</h4>
+
+			<div class="events-event-header-meta">
+				<time class="events-event-header-meta-datetime" datetime="{$event->dateStartForRobots}">
+					<?php echo hb_dateSpan($opportunity->getDateStart(), $opportunity->getDateEnd(), $dateFormat); ?>
+				</time>
+
+				<span class="events-event-header-meta-place" title="Místo konání">
+					<?php echo $opportunity->getLocation()->getName(); ?>
+				</span>
+			</div>
+		</header>
+
+		<div class="events-event-excerpt">
+			<?php
+				$text = (string) $opportunity->getIntroduction();
+				$text = \strip_tags($text);
+				$text = Strings::truncate($text, 200);
+				$text = \nl2br($text);
+				echo $text;
+			?>
+		</div>
+	</a>
+<?php } ?>
 
 <main class="zapoj-se" role="main" id="obsah">
 	<section>
+		<h1>Aktuální příležitosti</h1>
+
+		<div class="events-filters filters" id="events-filters"<?php if ($isAnySelected): ?> data-collapse-openedOnLoad="1"<?php endif; ?>>
+			<button class="filters__toggler button button--customization" id="events-filters-toggler" type="button" aria-hidden="true">
+				Zobrazit pouze
+			</button>
+
+			<ul class="filters__list" id="events-filters-list">
+				<li class="filters__item">
+					<a class="filters__link <?php echo ! $isAnySelected ? 'filters__link--selected' : ''; ?> button button--customization" href="?#obsah">
+						vše
+					</a>
+				</li>
+
+				<li class="filters__item">
+					<a class="filters__link <?php echo $isOrganizovaniAkciSelected ? 'filters__link--selected' : ''; ?> button button--customization" href="?jen=organizovani-akci#obsah">
+						organizování akcí
+					</a>
+				</li>
+
+				<li class="filters__item">
+					<a class="filters__link <?php echo $isSpolupraceSelected ? 'filters__link--selected' : ''; ?> button button--customization" href="?jen=spoluprace#obsah">
+						spolupráce
+					</a>
+				</li>
+
+				<li class="filters__item">
+					<a class="filters__link <?php echo $isPomocLokaliteSelected ? 'filters__link--selected' : ''; ?> button button--customization" href="?jen=pomoc-lokalite#obsah">
+						pomoc lokalitě
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="zapoj-se__opportunities">
+			<?php if ($hasBeenUnableToLoad): ?>
+				<div class="events-noResults noResults">
+					Promiň, zrovna&nbsp;nám vypadl systém, kde&nbsp;máme uloženy všechny informace o&nbsp;příležitostech.
+					Zkus&nbsp;to prosím za&nbsp;chvilku znovu.
+				</div>
+
+			<?php elseif (\count($opportunities) === 0): ?>
+				<div class="events-noResults noResults">
+					Zrovna&nbsp;tu žádné příležitosti nejsou, zkus&nbsp;to později.
+				</div>
+
+			<?php else: ?>
+				<div class="events-event-wrapper">
+					<?php $i = 1; foreach ($opportunities as $opportunity) {
+						hb_opportunity($opportunity, $dateFormat);
+						if ($i === $numberOfOpportunitiesToDisplayOnLoad) break;
+						$i++;
+					} ?>
+				</div>
+
+				<?php if (\count($opportunities) > $numberOfOpportunitiesToDisplayOnLoad): ?>
+					<button class="events-moreLink button button--customization" id="events-showMore-button" type="button">
+						Zobrazit další
+					</button>
+
+					<div class="events-event-wrapper events-event-wrapper--collapse" id="events-showMore-content">
+						<?php $i = 1; foreach ($opportunities as $opportunity) {
+							if ($i <= $numberOfOpportunitiesToDisplayOnLoad) {
+								$i++;
+								continue;
+							}
+							hb_opportunity($opportunity, $dateFormat);
+						} ?>
+					</div>
+				<?php endif; ?>
+			<?php endif; ?>
+		</div>
+
+
 		<h1>Zapoj se do Brontosaura</h1>
 
 		<div class="description">
