@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "423cd4672114d55157aa54b4cba365d7",
+    "content-hash": "23945bde63ac7e25cbe41803554137ea",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -558,12 +558,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnuti-brontosaurus/php-bis-api-client.git",
-                "reference": "ae66327856405551e6fe3c0da4866414e8b544b2"
+                "reference": "8a927686b2a5b08c73c327e85b59cb1ac86e20cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnuti-brontosaurus/php-bis-api-client/zipball/ae66327856405551e6fe3c0da4866414e8b544b2",
-                "reference": "ae66327856405551e6fe3c0da4866414e8b544b2",
+                "url": "https://api.github.com/repos/hnuti-brontosaurus/php-bis-api-client/zipball/8a927686b2a5b08c73c327e85b59cb1ac86e20cd",
+                "reference": "8a927686b2a5b08c73c327e85b59cb1ac86e20cd",
                 "shasum": ""
             },
             "require": {
@@ -595,7 +595,7 @@
                 "source": "https://github.com/hnuti-brontosaurus/php-bis-api-client/tree/opportunities",
                 "issues": "https://github.com/hnuti-brontosaurus/php-bis-api-client/issues"
             },
-            "time": "2022-08-31T12:14:50+00:00"
+            "time": "2022-10-03T08:09:00+00:00"
         },
         {
             "name": "http-interop/http-factory-guzzle",
