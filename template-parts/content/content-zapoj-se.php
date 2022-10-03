@@ -43,6 +43,7 @@ $applyFilter = static function (?string $filter): ?OpportunityParameters {
 };
 
 $hasBeenUnableToLoad = false;
+$organizationalUnits = [];
 
 try {
 	$opportunities = $bisApiClient->getOpportunities($applyFilter($selectedFilter));
