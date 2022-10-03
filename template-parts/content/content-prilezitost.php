@@ -40,8 +40,8 @@ try {
 			</h1>
 
 			<div class="prilezitost__top">
-				<a class="prilezitost__image" href="<?php echo $opportunity->getImage(); ?>">
-					<img src="<?php echo $opportunity->getImage(); ?>" alt="">
+				<a class="prilezitost__image" href="<?php echo $opportunity->getImage()->getMediumSizePath(); ?>">
+					<img src="<?php echo $opportunity->getImage()->getMediumSizePath(); ?>" alt="">
 				</a>
 
 				<dl class="prilezitost__basic">

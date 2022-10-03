@@ -85,9 +85,9 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 <?php function hb_opportunity(Opportunity $opportunity, string $dateFormat) { ?>
 	<a class="events-event" href="prilezitost/<?php echo $opportunity->getId(); //todo: using rather WP routing somehow ?>">
 		<div class="events-event-image-wrapper">
-			<img alt="" class="events-event-image" data-src="<?php echo $opportunity->getImage(); ?>">
+			<img alt="" class="events-event-image" data-src="<?php echo $opportunity->getImage()->getMediumSizePath(); ?>">
 			<noscript><?php // for search engines ?>
-				<img alt="" class="events-event-image" src="<?php echo $opportunity->getImage(); ?>">
+				<img alt="" class="events-event-image" src="<?php echo $opportunity->getImage()->getMediumSizePath(); ?>">
 			</noscript>
 
 			<div class="events-event-meta eventTagList">
