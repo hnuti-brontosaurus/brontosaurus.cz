@@ -6,106 +6,10 @@
 		Naši partneři
 	</h1>
 
-	<ul class="partners-list">
-		<li class="partners-list-item partners-list-item--mzp">
-			<a href="https://www.mzp.cz" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/ministerstvo-zivotniho-prostredi.png" alt="Ministerstvo životního prostředí" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--msmt">
-			<a href="http://www.msmt.cz" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/ministerstvo-skolstvi.png" alt="Ministerstvo školství, mládeže a tělovýchovy" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--mv">
-			<a href="https://www.mvcr.cz" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/ministerstvo-vnitra.png" alt="Ministerstvo vnitra České republiky" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--mzv">
-			<a href="https://www.mzv.cz" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/ministerstvo-zahranici.png" alt="Ministerstvo zahraničních věcí České republiky" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item">
-			<a href="https://www.sfzp.cz" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/statni-fond.png" alt="Státní fond životního prostředí České republiky" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item">
-			<a href="http://www.erasmusprogramme.com" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/erasmus.png" alt="Erasmus+" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--jmk">
-			<a href="https://www.jmk.cz/" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/jihomoravsky-kraj.png" alt="Jihomoravský kraj" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--brno">
-			<a href="https://www.brno.cz" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/brno.png" alt="Brno" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--praha">
-			<a href="http://www.praha.eu" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/praha.png" alt="Praha" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--pk">
-			<a href="https://www.pardubickykraj.cz/" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/pardubicky-kraj-logo.jpg" alt="Pardubický kraj" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--partnerstvi">
-			<a href="https://www.nadacepartnerstvi.cz" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/partnerstvi.png" alt="Nadace partnerství lidé a příroda" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--stromy">
-			<a href="https://www.stromysvobody.cz" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/stromy-svobody.png" alt="Stromy svobody 1918 až 2018" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--brnoSever">
-			<a href="http://www.sever.brno.cz/" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/brno-sever.png" alt="Brno sever" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--esc">
-			<a href="https://europa.eu/youth/solidarity_cs" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/european-solidarity-corps.jpg" alt="European solidarity corps" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--veronica">
-			<a href="https://nadace.veronica.cz/" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/nadace-veronika.jpg" alt="Nadace Veronica" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--grifart">
-			<a href="https://grifart.cz" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/grifart.png" alt="GRIFART, spol. s r.o." class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--smartlook">
-			<a href="https://www.smartlook.com/cs" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/smartlook.png" alt="Smartlook" class="partners-list-item-image">
+	<ul class="partners-list" n:inner-foreach="$partners as $logo">
+		<li class="partners-list-item partners-list-item--{$logo->id}">
+			<a href="{$logo->url}" rel="noopener noreferrer" target="_blank">
+				<img src="{$logo->image}" alt="{$logo->name}" class="partners-list-item-image">
 			</a>
 		</li>
 	</ul>
@@ -114,26 +18,10 @@
 		Mediální partneři
 	</h2>
 
-	<ul class="partners-list">
-		<li class="partners-list-item partners-list-item--dobrovolnik">
-			<a href="https://www.dobrovolnik.cz" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/dobrovolnik.png" alt="Dobrovolník.cz" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--m">
-			<img src="{$logosPath}/m.png" alt="m!" class="partners-list-item-image">
-		</li>
-
-		<li class="partners-list-item partners-list-item--prostredoskolaky">
-			<a href="http://www.prostredoskolaky.cz" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/pro-stredoskolaky.png" alt="ProStředoškoláky" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--signaly">
-			<a href="https://www.signaly.cz" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/signaly.png" alt="signály.cz" class="partners-list-item-image">
+	<ul class="partners-list" n:inner-foreach="$medialPartners as $logo">
+		<li class="partners-list-item partners-list-item--{$logo->id}">
+			<a href="{$logo->url}" rel="noopener noreferrer" target="_blank" n:tag-if="$logo->url !== null">
+				<img src="{$logo->image}" alt="{$logo->name}" class="partners-list-item-image">
 			</a>
 		</li>
 	</ul>
@@ -142,21 +30,11 @@
 		Spolupracujeme
 	</h2>
 
-	<ul class="partners-list">
-		<li class="partners-list-item partners-list-item--nasePriroda">
-			<a href="http://www.nasepriroda.cz" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/nase-priroda.svg" alt="Naše příroda" class="partners-list-item-image">
+	<ul class="partners-list" n:inner-foreach="$cooperating as $logo">
+		<li class="partners-list-item partners-list-item--{$logo->id}">
+			<a href="{$logo->url}" rel="noopener noreferrer" target="_blank" n:tag-if="$logo->url !== null">
+				<img src="{$logo->image}" alt="{$logo->name}" class="partners-list-item-image">
 			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--propamatky">
-			<a href="http://www.propamatky.info" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/pro-pamatky.png" alt="Pro památky, portál &ndash; časopis" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--mindless">
-			<img src="{$logosPath}/mindless.png" alt="Mindless" class="partners-list-item-image">
 		</li>
 	</ul>
 
@@ -164,40 +42,10 @@
 		Jsme členy
 	</h2>
 
-	<ul class="partners-list">
-		<li class="partners-list-item partners-list-item--yee">
-			<a href="https://yeenet.eu" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/yee.png" alt="YEE" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--zelenykruh">
-			<a href="http://www.zelenykruh.cz" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/zeleny-kruh.png" alt="Zelený kruh, asociace ekologických organizací" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--crdm">
-			<a href="http://crdm.cz" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/ceska-rada-deti.png" alt="Česká rada dětí a mládeže" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--zasnadnedarcovstvi">
-			<a href="http://www.snadnedarcovstvi.cz" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/snadne-darcovstvi.png" alt="Za snadné dárcovství" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--kppo">
-			<a href="http://www.stoppalmovemuoleji.cz" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/proti-palmovemu-oleji.png" alt="Koalice proti palmovému oleji" class="partners-list-item-image">
-			</a>
-		</li>
-
-		<li class="partners-list-item partners-list-item--kk">
-			<a href="https://klimatickakoalice.cz" rel="noopener noreferrer" target="_blank">
-				<img src="{$logosPath}/klimaticka-koalice.png" alt="Klimatická koalice" class="partners-list-item-image">
+	<ul class="partners-list" n:inner-foreach="$membersOf as $logo">
+		<li class="partners-list-item partners-list-item--{$logo->id}">
+			<a href="{$logo->url}" rel="noopener noreferrer" target="_blank">
+				<img src="{$logo->image}" alt="{$logo->name}" class="partners-list-item-image">
 			</a>
 		</li>
 	</ul>
