@@ -147,6 +147,18 @@ final class PartnersController implements Controller
 				'image' => self::getPath('smartlook.png'),
 				'url' => 'https://www.smartlook.com/cs',
 			],
+			[
+				'id' => 'osf',
+				'name' => 'Nadace OSF',
+				'image' => self::getPath('nadace-osf.png'),
+				'url' => 'https://osf.cz',
+			],
+			[
+				'id' => 'acf',
+				'name' => 'Active Citizens Fund',
+				'image' => self::getPath('active-citizens-fund.jpg'),
+				'url' => 'https://activecitizensfund.no',
+			],
 		];
 	}
 
