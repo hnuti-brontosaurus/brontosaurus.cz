@@ -31,6 +31,8 @@ use Nette\Utils\Strings;
  * @property-read InvitationDC $invitation
  * @property-read bool $areOrganizersListed
  * @property-read string|NULL $organizers
+ * @property-read bool $isOrganizerUnitListed
+ * @property-read string|NULL $organizerUnit
  * @property-read bool $hasCoverPhoto
  * @property-read string|NULL $coverPhotoPath
  * @property-read bool $hasProgram
@@ -116,6 +118,9 @@ final class EventDC
 	/** @var string|NULL */
 	private $organizers;
 
+	private bool $isOrganizerUnitListed; // could be probably removed once it's clear that unit is always listed
+	private ?string $organizerUnit = null;
+
 	/** @var ProgramDC */
 	private $program;
 
@@ -172,6 +177,10 @@ final class EventDC
 		if ($event->getOrganizer()->areOrganizersListed()) {
 			$this->areOrganizersListed = TRUE;
 			$this->organizers = $event->getOrganizer()->getOrganizers();
+
+			$unit = $event->getOrganizer()->getOrganizationalUnit();
+			$this->isOrganizerUnitListed = $unit !== null;
+			$this->organizerUnit = $unit?->getName();
 		}
 
 		$this->duration = self::getDuration($event);
