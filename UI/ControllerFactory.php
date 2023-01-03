@@ -3,6 +3,7 @@
 namespace HnutiBrontosaurus\Theme\UI;
 
 use HnutiBrontosaurus\LegacyBisApiClient\Client;
+use HnutiBrontosaurus\Theme\NotFound;
 use HnutiBrontosaurus\Theme\SentryLogger;
 use HnutiBrontosaurus\Theme\UI\AboutCrossroad\AboutCrossroadController;
 use HnutiBrontosaurus\Theme\UI\AboutHighlights\AboutHighlightsController;

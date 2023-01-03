@@ -16,11 +16,12 @@
     "autoload": {
         "psr-4": {
             "HnutiBrontosaurus\\Theme\\": ".",
-			"HnutiBrontosaurus\\LegacyBisApiClient\\": "legacy-bis-api-client/src"
+            "HnutiBrontosaurus\\LegacyBisApiClient\\": "legacy-bis-api-client/src"
         },
-		"classmap": [
-			"legacy-bis-api-client/src/exceptions.php"
-		]
+        "classmap": [
+            "exceptions.php",
+            "legacy-bis-api-client/src/exceptions.php"
+        ]
     },
     "config": {
         "platform": {
