@@ -9,14 +9,11 @@ use Latte\Engine;
 final class Utils
 {
 
-	public static function registerFormatPhoneNumberLatteFilter(Engine $latteEngine)
+	public static function registerFormatPhoneNumberLatteFilter(Engine $latteEngine): void
 	{
-		/**
-		 * @var string $phoneNumber
-		 * @return string
-		 */
-		$latteEngine->addFilter('formatPhoneNumber', function ($phoneNumber) {
-			$phoneNumber = (string) $phoneNumber; // we do not know what exactly comes from BIS so let's make it string
+		$latteEngine->addFilter('formatPhoneNumber', function (string $phoneNumber): string
+		{
+			// todo use brick/phone instead?
 			switch (\mb_strlen($phoneNumber)) {
 				case 9: // 123456789
 					return \sprintf('%s %s %s', \mb_substr($phoneNumber, 0, 3), \mb_substr($phoneNumber, 3, 3), \mb_substr($phoneNumber, 6, 3));
@@ -37,46 +34,28 @@ final class Utils
 		});
 	}
 
-	/**
-	 * @param Engine $latteEngine
-	 * @return void
-	 */
-	public static function registerTypeByDayCountLatteFilter(Engine $latteEngine)
+
+	public static function registerTypeByDayCountLatteFilter(Engine $latteEngine): void
 	{
-		/**
-		 * @var int $dayCount
-		 * @return string
-		 */
-		$latteEngine->addFilter('typeByDayCount', function ($dayCount) {
-			switch (EventDC::resolveDurationCategory($dayCount)) {
-				case EventDC::DURATION_CATEGORY_ONE_DAY:
-					return 'jednodenní';
-					break;
-
-				case EventDC::DURATION_CATEGORY_WEEKEND:
-					return 'víkendovka';
-					break;
-
-				case EventDC::DURATION_CATEGORY_LONG_TIME:
-				default: // fallback
-					return 'dlouhodobá';
-					break;
-			}
+		$latteEngine->addFilter('typeByDayCount', function (int $dayCount): string
+		{
+			return match (EventDC::resolveDurationCategory($dayCount))
+			{
+				EventDC::DURATION_CATEGORY_ONE_DAY => 'jednodenní',
+				EventDC::DURATION_CATEGORY_WEEKEND => 'víkendovka',
+				default => 'dlouhodobá',
+			};
 		});
 	}
 
 
 	/**
 	 * Inspired with https://zlml.cz/vlna-na-webu
-	 * @param string|null $input
-	 * @return string|null
+	 * @param string $input
+	 * @return string
 	 */
-	public static function handleNonBreakingSpaces($input)
+	public static function handleNonBreakingSpaces(string $input): string
 	{
-		if ($input === null) {
-			return null;
-		}
-
 		return \preg_replace('/(\s)([ksvzaiou])\s/i', "$1$2\xc2\xa0", $input); // &nbsp; === \xc2\xa0
 	}
 
