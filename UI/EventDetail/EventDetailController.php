@@ -67,7 +67,7 @@ final class EventDetailController implements Controller
 
 		try {
 			$this->event = $this->bisApiClient->getEvent($eventId);
-			$eventDC = EventDC::fromDTO($this->event, $this->dateFormatHuman, $this->dateFormatRobot);
+			$eventDC = new EventDC($this->event, $this->dateFormatHuman, $this->dateFormatRobot);
 
 			$this->processApplicationForm();
 

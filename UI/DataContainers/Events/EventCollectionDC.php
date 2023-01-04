@@ -39,7 +39,7 @@ final class EventCollectionDC implements \IteratorAggregate
 
 		if ($events !== null && \count($events) > 0) {
 			$this->events = \array_map(function (Event $event) {
-				return EventDC::fromDTO($event, $this->dateFormatHuman, $this->dateFormatRobot);
+				return new EventDC($event, $this->dateFormatHuman, $this->dateFormatRobot);
 			}, $events);
 			$this->hasAny = true;
 			$this->count = \count($events);
@@ -49,7 +49,7 @@ final class EventCollectionDC implements \IteratorAggregate
 
 	public function add(Event $event): void
 	{
-		$this->events[] = EventDC::fromDTO($event, $this->dateFormatHuman, $this->dateFormatRobot);
+		$this->events[] = new EventDC($event, $this->dateFormatHuman, $this->dateFormatRobot);
 		$this->hasAny = true;
 		$this->count++;
 	}
