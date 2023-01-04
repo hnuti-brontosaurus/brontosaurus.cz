@@ -102,7 +102,7 @@
 
 							<td class="detail__basicInformation-value">
 								{if $event->age->isInterval}
-								{$event->age->from}&ndash;{$event->age->until} let
+									{$event->age->from}&ndash;{$event->age->until} let
 								{elseif $event->age->isFromListed}
 									od {$event->age->from}
 									{if $event->age->from === 1}roku{else}let{/if}
