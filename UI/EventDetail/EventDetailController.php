@@ -50,6 +50,16 @@ final class EventDetailController implements Controller
 
 			return $hostname;
 		});
+
+		$this->latte->addFilter('resolveLinkTarget', static function (EventDC $event): string
+		{
+			$registrationType = $event->registrationType;
+			return match (true) {
+				$registrationType->isOfTypeEmail => 'mailto:' . $registrationType->email . '?subject=Přihláška na akci ' . $event->title,
+				$registrationType->isOfTypeCustomWebpage => $registrationType->url,
+				default => throw new \LogicException('Unsupported type'),
+			};
+		});
 	}
 
 

@@ -17,7 +17,7 @@
 
 	<a
 		n:class="'registration__actionButton', $event->registrationType->isOfTypeEmail ? 'registration__actionButton--email', $event->registrationType->isOfTypeCustomWebpage ? 'registration__actionButton--customWebpage', 'button', 'button--primary'"
-		href="{$event->registrationType->getLinkTarget($event->title)}"
+		href="{$event|resolveLinkTarget}"
 		{if $event->registrationType->isOfTypeCustomWebpage}target="_blank"{/if}
 		n:if="$event->registrationType->isOfTypeEmail || $event->registrationType->isOfTypeCustomWebpage"
 	>

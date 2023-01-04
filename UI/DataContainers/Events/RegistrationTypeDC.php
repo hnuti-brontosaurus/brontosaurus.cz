@@ -63,14 +63,4 @@ final class RegistrationTypeDC
 		return $url;
 	}
 
-
-	public function getLinkTarget(string $eventName): string
-	{
-		return match (true) {
-			$this->isOfTypeEmail => 'mailto:' . $this->email . '?subject=Přihláška na akci ' . $eventName,
-			$this->isOfTypeCustomWebpage => $this->url,
-			default => '',
-		};
-	}
-
 }
