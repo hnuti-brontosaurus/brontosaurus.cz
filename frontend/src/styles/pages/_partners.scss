@@ -57,6 +57,16 @@ $partners-breakpoint-fourColumns-from: "min-width: " + ($partners-breakpoint-thr
 				}
 			}
 
+			&--text {
+				font-size: 0.8em;
+				line-height: 1.1;
+				text-align: left;
+				max-width: none;
+
+				a {
+					text-decoration: none;
+				}
+			}
 			&--mzp {
 				max-width: 8.2em;
 			}

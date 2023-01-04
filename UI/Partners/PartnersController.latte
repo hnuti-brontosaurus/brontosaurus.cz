@@ -7,10 +7,14 @@
 	</h1>
 
 	<ul class="partners-list" n:inner-foreach="$partners as $logo">
-		<li class="partners-list-item partners-list-item--{$logo->id}">
-			<a href="{$logo->url}" rel="noopener noreferrer" target="_blank">
-				<img src="{$logo->image}" alt="{$logo->name}" class="partners-list-item-image">
-			</a>
+		<li n:class="'partners-list-item', isset($logo->id) ? 'partners-list-item--'.$logo->id : 'partners-list-item--text'">
+			{ifset $logo->text}
+				{$logo->text|noescape}
+			{else}
+				<a href="{$logo->url}" rel="noopener noreferrer" target="_blank">
+					<img src="{$logo->image}" alt="{$logo->name}" class="partners-list-item-image">
+				</a>
+			{/ifset}
 		</li>
 	</ul>
 

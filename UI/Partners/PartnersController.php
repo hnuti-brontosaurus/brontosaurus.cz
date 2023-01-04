@@ -41,7 +41,7 @@ final class PartnersController implements Controller
 		return get_template_directory_uri() . '/UI/Partners/logos/' . $fileName;
 	}
 
-	/** @return array<array{id: string, name: string, image: string, url: string}> */
+	/** @return array<array{id: string, name: string, image: string, url: string}|array{text: string}> */
 	private static function partners(): array
 	{
 		return [
@@ -50,6 +50,15 @@ final class PartnersController implements Controller
 				'name' => 'Ministerstvo životního prostředí',
 				'image' => self::getPath('ministerstvo-zivotniho-prostredi.png'),
 				'url' => 'https://www.mzp.cz',
+			],
+			[
+				'id' => 'sfzp',
+				'name' => 'Státní fond životního prostředí České republiky',
+				'image' => self::getPath('statni-fond.png'),
+				'url' => 'https://www.sfzp.cz',
+			],
+			[
+				'text' => 'Tento projekt je spolufinancován Státním fondem životního prostředí na základě rozhodnutí ministra životního prostředí. <br><strong><a href="https://www.sfzp.cz" rel="noopener noreferrer" target="_blank">www.sfzp.cz</a> <a href="https://www.mzp.cz" rel="noopener noreferrer" target="_blank">www.mzp.cz</a></strong>'
 			],
 			[
 				'id' => 'msmt',
@@ -68,12 +77,6 @@ final class PartnersController implements Controller
 				'name' => 'Ministerstvo zahraničních věcí České republiky',
 				'image' => self::getPath('ministerstvo-zahranici.png'),
 				'url' => 'https://www.mzv.cz',
-			],
-			[
-				'id' => 'sfzp',
-				'name' => 'Státní fond životního prostředí České republiky',
-				'image' => self::getPath('statni-fond.png'),
-				'url' => 'https://www.sfzp.cz',
 			],
 			[
 				'id' => 'erasmus',
