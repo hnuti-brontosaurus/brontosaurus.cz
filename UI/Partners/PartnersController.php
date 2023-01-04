@@ -106,6 +106,12 @@ final class PartnersController implements Controller
 				'url' => 'https://www.pardubickykraj.cz/',
 			],
 			[
+				'id' => 'muni',
+				'name' => 'Masarykova univerzita',
+				'image' => self::getPath('muni.jpg'),
+				'url' => 'https://www.muni.cz/',
+			],
+			[
 				'id' => 'partnerstvi',
 				'name' => 'Nadace partnerství lidé a příroda',
 				'image' => self::getPath('partnerstvi.png'),
