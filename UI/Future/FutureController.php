@@ -55,7 +55,9 @@ final class FutureController implements Controller
 
 				$lastMonth = $monthNumber;
 			}
-			$months[] = $currentMonthWrapperDC;
+			if ($currentMonthWrapperDC !== null) {
+				$months[] = $currentMonthWrapperDC;
+			}
 
 		} catch (BisApiClientRuntimeException $e) {
 			$months = [];
