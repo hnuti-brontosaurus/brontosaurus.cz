@@ -37,13 +37,13 @@ final class FutureController implements Controller
 
 			// categorize events by month
 			$months = [];
-			$currentMonthWrapperDC = NULL;
-			$lastMonth = NULL;
+			$currentMonthWrapperDC = null;
+			$lastMonth = null;
 
 			foreach ($events as $event) {
 				$monthNumber = (int) $event->getDateFrom()->format('n');
-				if ($lastMonth === NULL || $lastMonth !== $monthNumber) {
-					if ($currentMonthWrapperDC !== NULL) {
+				if ($lastMonth === null || $lastMonth !== $monthNumber) {
+					if ($currentMonthWrapperDC !== null) {
 						$months[] = $currentMonthWrapperDC;
 					}
 
