@@ -4,7 +4,6 @@ namespace HnutiBrontosaurus\Theme\UI\BaseUnitsAndClubsList;
 
 use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
 use HnutiBrontosaurus\LegacyBisApiClient\Client;
-use HnutiBrontosaurus\LegacyBisApiClient\Request\OrganizationalUnitParameters;
 use HnutiBrontosaurus\LegacyBisApiClient\Response\OrganizationalUnit\OrganizationalUnit;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
@@ -23,13 +22,11 @@ final class BaseUnitsAndClubsListController implements Controller
 
 	public function render(): void
 	{
-		$params = new OrganizationalUnitParameters();
-
 		$hasBeenUnableToLoad = false;
 
 		try {
 			// get all organizational units
-			$units = $this->bisApiClient->getOrganizationalUnits($params);
+			$units = $this->bisApiClient->getOrganizationalUnits();
 
 			// filter only base units and clubs
 			$units = \array_filter(
