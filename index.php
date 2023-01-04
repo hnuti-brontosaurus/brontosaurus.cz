@@ -186,6 +186,7 @@ function hb_getDateFormatForRobot(Configuration $configuration): string
 		$controller->render();
 
 	} catch (NotFound) {
-		$controllerFactory->render404();
+		$controllerFactory->create404()
+			->render();
 	}
 })(get_post());

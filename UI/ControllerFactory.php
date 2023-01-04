@@ -94,10 +94,10 @@ final class ControllerFactory
 		};
 	}
 
-	public function render404(): void
+	public function create404(): ErrorController
 	{
 		$base = $this->baseFactory->create(null);
-		(new ErrorController($base, $this->latte))->render();
+		return new ErrorController($base, $this->latte);
 	}
 
 }
