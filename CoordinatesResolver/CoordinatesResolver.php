@@ -22,6 +22,12 @@ final class CoordinatesResolver
 	 */
 	public function resolve(AdministrationUnit $organizationalUnit): Coordinates
 	{
+		// use coordinates included in response from BIS if possible
+		if (($coordinates = $organizationalUnit->getCoordinates()) !== null) {
+			return Coordinates::from($coordinates->getLatitude(), $coordinates->getLongitude());
+		}
+
+		// otherwise try geocoding
 		try {
 			$location = $this->resolveFromGeocoding($organizationalUnit);
 			return Coordinates::from($location->getLatitude(), $location->getLongitude());
