@@ -15,33 +15,14 @@ final class ContactDC
 {
 	use PropertyHandler;
 
-
-	/** @var string */
-	private $person;
-
-	/** @var string */
-	private $email;
-
-	/** @var string */
-	private $phone;
+	private function __construct(
+		private string $person,
+		private string $email,
+		private string $phone,
+	) {}
 
 
-	/**
-	 * @param string $person
-	 * @param string $email
-	 * @param string $phone
-	 */
-	private function __construct($person, $email, $phone)
-	{
-		$this->person = $person;
-		$this->email = $email;
-		$this->phone = $phone;
-	}
-
-	/**
-	 * @return self
-	 */
-	public static function fromDTO(Organizer $organizer)
+	public static function fromDTO(Organizer $organizer): self
 	{
 		return new self(
 			$organizer->getContactPersonName(),

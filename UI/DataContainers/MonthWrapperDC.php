@@ -9,39 +9,26 @@ use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 
 /**
  * @property-read int $monthNumber
- * @property-read EventCollectionDC $events
+ * @property-read EventCollectionDC|null $events
  */
 final class MonthWrapperDC
 {
-
 	use PropertyHandler;
 
 
-	/** @var int */
-	private $monthNumber;
-
-	/** @var EventCollectionDC */
-	private $events;
+	private int $monthNumber;
+	private ?EventCollectionDC $events = null;
 
 
-	/**
-	 * @param int $monthNumber
-	 */
-	public function __construct($monthNumber)
+	public function __construct(int $monthNumber)
 	{
 		$this->monthNumber = $monthNumber;
 	}
 
 
-	/**
-	 * @param Event $event
-	 * @param string $dateFormatHuman
-	 * @param string $dateFormatRobot
-	 * @return void
-	 */
-	public function addEvent(Event $event, $dateFormatHuman, $dateFormatRobot)
+	public function addEvent(Event $event, string $dateFormatHuman, string $dateFormatRobot): void
 	{
-		if ($this->events === NULL) {
+		if ($this->events === null) {
 			$this->events = new EventCollectionDC(NULL, $dateFormatHuman, $dateFormatRobot);
 		}
 

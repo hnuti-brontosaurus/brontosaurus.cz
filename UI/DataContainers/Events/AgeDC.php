@@ -18,58 +18,29 @@ final class AgeDC
 {
 	use PropertyHandler;
 
+	private function __construct(
+		private bool $isListed,
+		private bool $isInterval,
+		private bool $isFromListed,
+		private ?int $from,
+		private bool $isUntilListed,
+		private ?int $until,
+	) {}
 
-	/** @var bool */
-	private $isListed = false;
-
-	/** @var bool */
-	private $isInterval = false;
-
-	/** @var bool */
-	private $isFromListed = false;
-
-	/** @var int|null */
-	private $from;
-
-	/** @var bool */
-	private $isUntilListed = false;
-
-	/** @var int|null */
-	private $until;
-
-
-	/**
-	 * @param int|null $ageFrom
-	 * @param int|null $ageUntil
-	 */
-	private function __construct($ageFrom = null, $ageUntil = null)
+	public static function fromDTO(Event $event): self
 	{
-		$this->isListed = true;
+		$ageFrom = $event->getAgeFrom();
+		$ageFromValid = self::ageFromInValidConstraints($ageFrom);
+		$ageUntil = $event->getAgeUntil();
+		$ageUntilValid = self::ageUntilInValidConstraints($ageUntil);
 
-		if (self::validateAgeFromConstraints($ageFrom) && self::validateAgeUntilConstraints($ageUntil)) {
-			$this->isInterval = true;
-			$this->from = $ageFrom;
-			$this->until = $ageUntil;
-
-		} elseif (self::validateAgeFromConstraints($ageFrom)) {
-			$this->isFromListed = true;
-			$this->from = $ageFrom;
-
-		} elseif (self::validateAgeUntilConstraints($ageUntil)) {
-			$this->isUntilListed = true;
-			$this->until = $ageUntil;
-
-		} else {
-			$this->isListed = false;
-
-		}
-	}
-
-	public static function fromDTO(Event $event)
-	{
 		return new self(
-			$event->getAgeFrom(),
-			$event->getAgeUntil()
+			isListed: $ageFromValid || $ageUntilValid,
+			isInterval: $ageFromValid && $ageUntilValid,
+			isFromListed: $ageFromValid && ! $ageUntilValid,
+			from: $ageFrom,
+			isUntilListed: ! $ageFromValid && $ageUntilValid,
+			until: $ageUntil,
 		);
 	}
 
@@ -77,20 +48,16 @@ final class AgeDC
 	/**
 	 * Filter our stuff like "from 0 years".
 	 * One valid use-case for that would be when organizers would like to indicate that an event is even baby-friendly, but nobody used it like this yet, only "0-60" values are present which is probably pointless information.
-	 * @param int|null $ageFrom
-	 * @return bool
 	 */
-	private static function validateAgeFromConstraints($ageFrom)
+	private static function ageFromInValidConstraints(?int $ageFrom): bool
 	{
 		return $ageFrom !== null && $ageFrom !== 0;
 	}
 
 	/**
 	 * Filter out stuff like "until 99 years".
-	 * @param int|null $ageUntil
-	 * @return bool
 	 */
-	private static function validateAgeUntilConstraints($ageUntil)
+	private static function ageUntilInValidConstraints(?int $ageUntil): bool
 	{
 		return $ageUntil !== null && $ageUntil < 90;
 	}

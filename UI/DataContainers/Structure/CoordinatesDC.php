@@ -12,36 +12,20 @@ use HnutiBrontosaurus\Theme\UI\PropertyHandler;
  */
 final class CoordinatesDC
 {
-
 	use PropertyHandler;
 
 
-	/** @var float */
-	private $latitude;
-
-	/** @var float */
-	private $longitude;
-
-
-	/**
-	 * @param float $latitude
-	 * @param float $longitude
-	 */
-	private function __construct($latitude, $longitude)
-	{
-		$this->latitude = $latitude;
-		$this->longitude = $longitude;
-	}
+	private function __construct(
+		private float $latitude,
+		private float $longitude,
+	) {}
 
 
-	/**
-	 * @return CoordinatesDC
-	 */
-	public static function fromDTO(Coordinates $coordinates)
+	public static function fromDTO(Coordinates $coordinates): self
 	{
 		return new self(
 			$coordinates->getLatitude(),
-			$coordinates->getLongitude()
+			$coordinates->getLongitude(),
 		);
 	}
 

@@ -10,7 +10,7 @@ use HnutiBrontosaurus\Theme\UI\Utils;
 
 /**
  * @property-read bool $hasText
- * @property-read string $text
+ * @property-read string|null $text
  * @property-read bool $hasAnyPhotos
  * @property-read string[] $photos
  */
@@ -18,40 +18,24 @@ final class InvitationPresentationDC
 {
 	use PropertyHandler;
 
-
-	/** @var bool */
-	private $hasText = FALSE;
-
-	/** @var string|null */
-	private $text;
-
-	/** @var bool */
-	private $hasAnyPhotos = FALSE;
-
-	/** @var string[] */
-	private $photos;
+	/**
+	 * @param string[] $photos
+	 */
+	private function __construct(
+		private bool $hasText,
+		private ?string $text,
+		private bool $hasAnyPhotos,
+		private array $photos,
+	) {}
 
 
-	private function __construct($text = NULL, array $photos = [])
-	{
-		if ($text !== NULL) {
-			$this->hasText = TRUE;
-			$this->text = Utils::handleNonBreakingSpaces($text);
-		}
-
-		if (\count($photos) > 0) {
-			$this->hasAnyPhotos = TRUE;
-			$this->photos = \array_map(function (Photo $photo) {
-				return $photo->getPath();
-			}, $photos);
-		}
-	}
-
-	public static function fromDTO(Presentation $presentation)
+	public static function fromDTO(Presentation $presentation): self
 	{
 		return new self(
-			$presentation->hasText() ? $presentation->getText() : NULL,
-			$presentation->hasAnyPhotos() ? $presentation->getPhotos() : []
+			$presentation->hasText(),
+			$presentation->hasText() ? Utils::handleNonBreakingSpaces($presentation->getText()) : null,
+			$presentation->hasAnyPhotos(),
+			$presentation->hasAnyPhotos() ? \array_map(static fn(Photo $photo) => $photo->getPath(), $presentation->getPhotos()) : [],
 		);
 	}
 

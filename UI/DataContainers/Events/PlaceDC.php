@@ -4,7 +4,6 @@ namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
 use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Place;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
-use HnutiBrontosaurus\Theme\UI\Utils;
 
 
 /**
@@ -16,39 +15,18 @@ final class PlaceDC
 {
 	use PropertyHandler;
 
-
-	/** @var string */
-	private $name;
-
-	/** @var bool */
-	private $areCoordinatesListed = false;
-
-	/** @var string|null */
-	private $coordinates;
+	private function __construct(
+		private string $name,
+		private bool $areCoordinatesListed,
+		private ?string $coordinates,
+	) {}
 
 
-	/**
-	 * @param string $name
-	 * @param string|null $coordinates
-	 */
-	private function __construct($name, $coordinates = null)
-	{
-		$this->name = Utils::handleNonBreakingSpaces($name);
-
-		if ($coordinates !== null) {
-			$this->areCoordinatesListed = true;
-			$this->coordinates = $coordinates;
-		}
-	}
-
-	/**
-	 * @param Place $place
-	 * @return self
-	 */
-	public static function fromDTO(Place $place)
+	public static function fromDTO(Place $place): self
 	{
 		return new self(
 			$place->getName(),
+			$place->areCoordinatesListed(),
 			$place->areCoordinatesListed() ? $place->getCoordinates() : null
 		);
 	}

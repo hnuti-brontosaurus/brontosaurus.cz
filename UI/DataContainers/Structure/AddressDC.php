@@ -12,41 +12,17 @@ use HnutiBrontosaurus\Theme\UI\PropertyHandler;
  */
 final class AddressDC
 {
-
 	use PropertyHandler;
 
 
-	/** @var string */
-	private $street;
-
-	/** @var string */
-	private $city;
-
-	/** @var string */
-	private $postCode;
+	private function __construct(
+		private string $street,
+		private string $city,
+		private string $postCode,
+	) {}
 
 
-	/**
-	 * @param string $street
-	 * @param string $city
-	 * @param string $postCode
-	 */
-	private function __construct($street, $city, $postCode)
-	{
-		$this->street = $street;
-		$this->city = $city;
-		$this->postCode = $postCode;
-	}
-
-
-	/**
-	 * @param string $street
-	 * @param string $city
-	 * @param string $postCode
-	 *
-	 * @return AddressDC
-	 */
-	public static function from($street, $city, $postCode)
+	public static function from(string $street, string $city, string $postCode): self
 	{
 		return new self($street, $city, $postCode);
 	}

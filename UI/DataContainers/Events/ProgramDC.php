@@ -13,18 +13,11 @@ use HnutiBrontosaurus\Theme\UI\PropertyHandler;
  */
 final class ProgramDC
 {
-
 	use PropertyHandler;
 
-
-	/** @var bool */
-	private $isOfTypeNature = false;
-
-	/** @var bool */
-	private $isOfTypeSights = false;
-
-	/** @var bool */
-	private $isOfTypePsb = false;
+	private bool $isOfTypeNature;
+	private bool $isOfTypeSights;
+	private bool $isOfTypePsb;
 
 
 	public function __construct(Program $program)

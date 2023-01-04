@@ -28,92 +28,53 @@ final class InvitationDC
 {
 	use PropertyHandler;
 
-
-	/** @var string */
-	private $introduction;
-
-	/** @var string */
-	private $organizationalInformation;
-
-	/** @var bool */
-	private $isAccommodationListed = false;
-
-	/** @var string|null */
-	private $accommodation;
-
-	/** @var bool */
-	private $isFoodListed = false;
-
-	/** @var bool */
-	private $isFoodOfTypeChooseable = false;
-
-	/** @var bool */
-	private $isFoodOfTypeVegetarian = false;
-
-	/** @var bool */
-	private $isFoodOfTypeNonVegetarian = false;
-
-	/** @var string|null */
-	private $workDescription;
-
-	/** @var bool */
-	private $areWorkHoursPerDayListed = false;
-
-	/** @var int|null */
-	private $workHoursPerDay;
-
-	/** @var bool */
-	private $hasPresentation = FALSE;
-
-	/** @var InvitationPresentationDC|null */
-	private $presentation;
+	private bool $isAccommodationListed;
+	private ?string $accommodation;
+	private bool $isFoodListed;
+	private bool $isFoodOfTypeChooseable;
+	private bool $isFoodOfTypeVegetarian;
+	private bool $isFoodOfTypeNonVegetarian;
+	private bool $areWorkHoursPerDayListed;
+	private ?int $workHoursPerDay;
+	private bool $hasPresentation;
+	private ?InvitationPresentationDC $presentation;
 
 
 	private function __construct(
-		$introduction,
-		$organizationalInformation,
-		$accommodation,
+		private string $introduction,
+		private string $organizationalInformation,
+		?string $accommodation,
 		Food $food,
-		$workDescription,
-		$workHoursPerDay,
-		Presentation $presentation = NULL
+		private ?string $workDescription,
+		?int $workHoursPerDay,
+		?Presentation $presentation,
 	) {
-		$this->introduction = Utils::handleNonBreakingSpaces($introduction);
-		$this->organizationalInformation = Utils::handleNonBreakingSpaces($organizationalInformation);
-
-		if ($accommodation !== null) {
-			$this->isAccommodationListed = true;
-			$this->accommodation = Utils::handleNonBreakingSpaces($accommodation);
-		}
+		$this->isAccommodationListed = $accommodation !== null;
+		$this->accommodation = $accommodation !== null ? Utils::handleNonBreakingSpaces($accommodation) : null;
 
 		$this->isFoodListed = ! $food->equals(Food::NOT_LISTED());
 		$this->isFoodOfTypeChooseable = $food->equals(Food::CHOOSEABLE());
 		$this->isFoodOfTypeVegetarian = $food->equals(Food::VEGETARIAN());
 		$this->isFoodOfTypeNonVegetarian = $food->equals(Food::NON_VEGETARIAN());
 
-		$this->workDescription = Utils::handleNonBreakingSpaces($workDescription);
+		$this->areWorkHoursPerDayListed = $workHoursPerDay !== null;
+		$this->workHoursPerDay = $workHoursPerDay;
 
-		if ($workHoursPerDay !== null) {
-			$this->areWorkHoursPerDayListed = true;
-			$this->workHoursPerDay = $workHoursPerDay;
-		}
-
-		if ($presentation !== NULL) {
-			$this->hasPresentation = TRUE;
-			$this->presentation = InvitationPresentationDC::fromDTO($presentation);
-		}
+		$this->hasPresentation = $presentation !== null;
+		$this->presentation = $presentation !== null ? InvitationPresentationDC::fromDTO($presentation) : null;
 	}
 
-	public static function fromDTO(Invitation $invitation)
+
+	public static function fromDTO(Invitation $invitation): self
 	{
 		return new self(
-			$invitation->getIntroduction(),
-			$invitation->getOrganizationalInformation(),
+			Utils::handleNonBreakingSpaces($invitation->getIntroduction()),
+			Utils::handleNonBreakingSpaces($invitation->getOrganizationalInformation()),
 			$invitation->getAccommodation(),
 			$invitation->getFood(),
-			$invitation->getWorkDescription(),
+			$invitation->getWorkDescription() !== null ? Utils::handleNonBreakingSpaces($invitation->getWorkDescription()) : null,
 			$invitation->getWorkHoursPerDay(),
-			$invitation->getPresentation()
+			$invitation->getPresentation(),
 		);
 	}
 

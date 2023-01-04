@@ -12,7 +12,8 @@ use Nette\Utils\Strings;
  * @property-read int $id
  * @property-read string $title
  * @property-read string $slug
- * @property-read EventTypeDC $type
+ * @property-read bool $hasCoverPhoto
+ * @property-read string|NULL $coverPhotoPath
  * @property-read string $dateStartForHumans
  * @property-read string $dateStartForRobots
  * @property-read bool $hasTimeStart
@@ -24,7 +25,7 @@ use Nette\Utils\Strings;
  * @property-read PlaceDC $place
  * @property-read AgeDC $age
  * @property-read bool $isPaid
- * @property-read string $price
+ * @property-read int|string|null $price
  * @property-read ContactDC $contact
  * @property-read RegistrationTypeDC $registrationType
  * @property-read bool $isForFirstTimeAttendees
@@ -33,9 +34,6 @@ use Nette\Utils\Strings;
  * @property-read string|NULL $organizers
  * @property-read bool $isOrganizerUnitListed
  * @property-read string|NULL $organizerUnit
- * @property-read bool $hasCoverPhoto
- * @property-read string|NULL $coverPhotoPath
- * @property-read bool $hasProgram
  * @property-read ProgramDC $program
  * @property-read bool $hasRelatedWebsite
  * @property-read string|null $relatedWebsite
@@ -46,201 +44,97 @@ final class EventDC
 	use PropertyHandler;
 
 
-	/** @var int */
-	private $id;
+	private function __construct(
+		private int $id,
+		private string $title,
+		private string $slug,
+		private bool $hasCoverPhoto,
+		private ?string $coverPhotoPath,
+		private string $dateStartForHumans,
+		private string $dateStartForRobots,
+		private bool $hasTimeStart,
+		private ?string $timeStart,
+		private \DateTimeImmutable $dateEnd,
+		private string $dateSpan,
+		private int $duration,
+		private bool $isLongTime,
+		private PlaceDC $place,
+		private AgeDC $age,
+		private bool $isPaid,
+		private int|string|null $price,
+		private ContactDC $contact,
+		private RegistrationTypeDC $registrationType,
+		private bool $isForFirstTimeAttendees,
+		private InvitationDC $invitation,
+		private bool $areOrganizersListed,
+		private ?string $organizers,
+		private bool $isOrganizerUnitListed, // could be probably removed once it's clear that unit is always listed
+		private ?string $organizerUnit,
+		private ProgramDC $program,
+		private bool $hasRelatedWebsite,
+		private ?string $relatedWebsite,
+	) {}
 
-	/** @var string */
-	private $title;
-
-	/** @var string */
-	private $slug;
-
-	/** @var bool */
-	private $hasCoverPhoto = FALSE;
-
-	/** @var string|NULL */
-	private $coverPhotoPath;
-
-	/** @var EventTypeDC */
-	private $type;
-
-	/** @var string */
-	private $dateStartForHumans;
-
-	/** @var string */
-	private $dateStartForRobots;
-
-	/** @var bool */
-	private $hasTimeStart = FALSE;
-
-	/** @var string|null */
-	private $timeStart;
-
-	/** @var \DateTimeImmutable */
-	private $dateEnd;
-
-	/** @var string */
-	private $dateSpan;
-
-	/** @var int */
-	private $duration;
-
-	/** @var bool */
-	private $isLongTime;
-
-	/** @var PlaceDC */
-	private $place;
-
-	/** @var AgeDC */
-	private $age;
-
-	/** @var bool */
-	private $isPaid = FALSE;
-
-	/** @var string|NULL */
-	private $price;
-
-	/** @var ContactDC */
-	private $contact;
-
-	/** @var RegistrationTypeDC */
-	private $registrationType;
-
-	/** @var bool */
-	private $isForFirstTimeAttendees = FALSE;
-
-	/** @var InvitationDC */
-	private $invitation;
-
-	/** @var bool */
-	private $areOrganizersListed = FALSE;
-
-	/** @var string|NULL */
-	private $organizers;
-
-	private bool $isOrganizerUnitListed; // could be probably removed once it's clear that unit is always listed
-	private ?string $organizerUnit = null;
-
-	/** @var ProgramDC */
-	private $program;
-
-	/** @var bool */
-	private $hasRelatedWebsite = false;
-
-	/** @var string|null */
-	private $relatedWebsite;
-
-
-	/**
-	 * @param string $dateFormatHuman
-	 * @param string $dateFormatRobot
-	 */
-	public function __construct(Event $event, $dateFormatHuman, $dateFormatRobot)
+	public static function fromDTO(Event $event, string $dateFormatHuman, string $dateFormatRobot)
 	{
-		$this->id = $event->getId();
-		$this->title = Utils::handleNonBreakingSpaces($event->getName());
-		$this->slug = Strings::webalize($event->getName());
+		$duration = self::getDuration($event);
+		$organizer = $event->getOrganizer();
 
-		if ($event->hasCoverPhoto()) {
-			$this->hasCoverPhoto = TRUE;
-			$this->coverPhotoPath = $event->getCoverPhotoPath();
-		}
-
-
-		$this->type = new EventTypeDC($event->getType(), 'todo-some-icon');
-		$this->dateStartForHumans = $event->getDateFrom()->format($dateFormatHuman);
-		$this->dateStartForRobots = $event->getDateFrom()->format($dateFormatRobot);
-
-		if ($event->hasTimeFrom()) {
-			$this->hasTimeStart = TRUE;
-			$this->timeStart = $event->getTimeFrom();
-		}
-
-		$this->dateEnd = $event->getDateUntil();
-		$this->dateSpan = $this->getDateSpan($event->getDateFrom(), $event->getDateUntil(), $dateFormatHuman);
-		$this->place = PlaceDC::fromDTO($event->getPlace());
-		$this->age = AgeDC::fromDTO($event);
-
-		if ($event->isPaid()) {
-			$this->isPaid = true;
-			$this->price  = $event->getPrice();
-		}
-
-		$this->contact = ContactDC::fromDTO($event->getOrganizer());
-
-		$this->registrationType = RegistrationTypeDC::fromDTO($event->getRegistrationType());
-
-		$this->isForFirstTimeAttendees = $event->getTargetGroup()->isOfTypeFirstTimeAttendees();
-
-		$this->invitation = InvitationDC::fromDTO($event->getInvitation());
-
-		if ($event->getOrganizer()->areOrganizersListed()) {
-			$this->areOrganizersListed = TRUE;
-			$this->organizers = $event->getOrganizer()->getOrganizers();
-
-			$unit = $event->getOrganizer()->getOrganizationalUnit();
-			$this->isOrganizerUnitListed = $unit !== null;
-			$this->organizerUnit = $unit?->getName();
-		}
-
-		$this->duration = self::getDuration($event);
-		$this->isLongTime = self::resolveDurationCategory($this->duration) === self::DURATION_CATEGORY_LONG_TIME;
-
-		$this->program = new ProgramDC($event->getProgram());
-
-		if ($event->hasRelatedWebsite()) {
-			$this->hasRelatedWebsite = true;
-			$this->relatedWebsite = $event->getRelatedWebsite();
-		}
+		return new self(
+			$event->getId(),
+			Utils::handleNonBreakingSpaces($event->getName()),
+			Strings::webalize($event->getName()),
+			$event->getCoverPhotoPath() !== null,
+			$event->getCoverPhotoPath(),
+			$event->getDateFrom()->format($dateFormatHuman),
+			$event->getDateFrom()->format($dateFormatRobot),
+			$event->getTimeFrom() !== null,
+			$event->getTimeFrom(),
+			$event->getDateUntil(),
+			self::getDateSpan($event->getDateFrom(), $event->getDateUntil(), $dateFormatHuman),
+			$duration,
+			self::resolveDurationCategory($duration) === self::DURATION_CATEGORY_LONG_TIME,
+			PlaceDC::fromDTO($event->getPlace()),
+			AgeDC::fromDTO($event),
+			$event->isPaid(),
+			$event->isPaid() ? $event->getPrice() : null,
+			ContactDC::fromDTO($event->getOrganizer()),
+			RegistrationTypeDC::fromDTO($event->getRegistrationType()),
+			$event->getTargetGroup()->isOfTypeFirstTimeAttendees(),
+			InvitationDC::fromDTO($event->getInvitation()),
+			$organizer->getOrganizers() !== null,
+			$organizer->getOrganizers(),
+			$organizer->getOrganizationalUnit() !== null,
+			$organizer->getOrganizationalUnit()?->getName(),
+			new ProgramDC($event->getProgram()),
+			$event->getRelatedWebsite() !== null,
+			$event->getRelatedWebsite(),
+		);
 	}
 
 
-	/**
-	 * @param Event $event
-	 * @return int
-	 */
-	public static function getDuration(Event $event)
+	public static function getDuration(Event $event): int
 	{
 		$duration = $event->getDateUntil()->diff($event->getDateFrom())->days;
-		\assert($duration !== FALSE);
+		\assert($duration !== false);
 		return $duration + 1; // because 2018-11-30 -> 2018-11-30 is not 0, but 1 etc.
 	}
 
 	const DURATION_CATEGORY_ONE_DAY = 1;
 	const DURATION_CATEGORY_WEEKEND = 2;
 	const DURATION_CATEGORY_LONG_TIME = 3;
-	/**
-	 * @param int $dayCount
-	 * @return int
-	 */
-	public static function resolveDurationCategory($dayCount)
+
+	public static function resolveDurationCategory(int $dayCount): int
 	{
-		switch ($dayCount) {
-			case 1:
-				return self::DURATION_CATEGORY_ONE_DAY;
-				break;
-
-			case 2:
-			case 3:
-			case 4:
-			case 5:
-				return self::DURATION_CATEGORY_WEEKEND;
-				break;
-
-			default:
-				return self::DURATION_CATEGORY_LONG_TIME;
-				break;
-		}
+		return match ($dayCount) {
+			1 => self::DURATION_CATEGORY_ONE_DAY,
+			2, 3, 4, 5 => self::DURATION_CATEGORY_WEEKEND,
+			default => self::DURATION_CATEGORY_LONG_TIME,
+		};
 	}
 
 
-	/**
-	 * @param \DateTimeImmutable $dateFrom
-	 * @param \DateTimeImmutable $dateUntil
-	 * @param string $dateFormatHuman
-	 * @return string
-	 */
-	private function getDateSpan(\DateTimeImmutable $dateFrom, \DateTimeImmutable $dateUntil, $dateFormatHuman)
+	private static function getDateSpan(\DateTimeImmutable $dateFrom, \DateTimeImmutable $dateUntil, string $dateFormatHuman): string
 	{
 		$dateSpan_untilPart = $dateUntil->format($dateFormatHuman);
 
