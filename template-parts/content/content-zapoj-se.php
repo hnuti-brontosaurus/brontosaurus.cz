@@ -17,7 +17,7 @@ $bisApiClient = hb_getBisApiClient($configuration);
 $legacyBisApiClient = hb_getLegacyBisApiClient($configuration);
 $dateFormat = hb_getDateFormatForHuman($configuration);
 $latte = hb_getLatte();
-$geocodingClient = hb_getGeocodingClient();
+$coordinatesResolver = hb_getCoordinatesResolver();
 
 
 // todo: use some WP way of obtaining param
@@ -50,12 +50,8 @@ try {
 
 	foreach ($legacyBisApiClient->getOrganizationalUnits() as $organizationalUnit) {
 		try {
-			$location = $geocodingClient->getCoordinatesFor(
-				$organizationalUnit->getStreet(),
-				$organizationalUnit->getCity(),
-				$organizationalUnit->getPostCode()
-			);
-			$organizationalUnits[] = OrganizationalUnitDC::fromDTO($organizationalUnit, $location);
+			$coordinates = $coordinatesResolver->resolve($organizationalUnit);
+			$organizationalUnits[] = OrganizationalUnitDC::fromDTO($organizationalUnit, $coordinates);
 
 		} catch (NoResultException) {
 			continue; // in case of non-existing address just silently continue and ignore this unit

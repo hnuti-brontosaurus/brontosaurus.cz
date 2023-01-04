@@ -2,7 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Structure;
 
-use Grifart\GeocodingClient\Location;
+use HnutiBrontosaurus\Theme\CoordinatesResolver\Coordinates;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 
 
@@ -37,11 +37,11 @@ final class CoordinatesDC
 	/**
 	 * @return CoordinatesDC
 	 */
-	public static function fromDTO(Location $location)
+	public static function fromDTO(Coordinates $coordinates)
 	{
 		return new self(
-			$location->getLatitude(),
-			$location->getLongitude()
+			$coordinates->getLatitude(),
+			$coordinates->getLongitude()
 		);
 	}
 

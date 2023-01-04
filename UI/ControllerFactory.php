@@ -3,12 +3,12 @@
 namespace HnutiBrontosaurus\Theme\UI;
 
 use HnutiBrontosaurus\LegacyBisApiClient\Client;
+use HnutiBrontosaurus\Theme\CoordinatesResolver\CoordinatesResolver;
 use HnutiBrontosaurus\Theme\NotFound;
 use HnutiBrontosaurus\Theme\SentryLogger;
 use HnutiBrontosaurus\Theme\UI\AboutCrossroad\AboutCrossroadController;
 use HnutiBrontosaurus\Theme\UI\AboutHighlights\AboutHighlightsController;
 use HnutiBrontosaurus\Theme\UI\AboutStructure\AboutStructureController;
-use HnutiBrontosaurus\Theme\UI\AboutStructure\GeocodingClientFacade;
 use HnutiBrontosaurus\Theme\UI\AboutSuccesses\AboutSuccessesController;
 use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
 use HnutiBrontosaurus\Theme\UI\BaseUnitsAndClubsList\BaseUnitsAndClubsListController;
@@ -45,7 +45,7 @@ final class ControllerFactory
 		private Client $bisApiClient,
 		private BaseFactory $baseFactory,
 		private Engine $latte,
-		private GeocodingClientFacade $geocodingClientFacade,
+		private CoordinatesResolver $coordinatesResolver,
 		private Request $httpRequest,
 		private SentryLogger $logger,
 	) {
@@ -86,7 +86,7 @@ final class ControllerFactory
 			'nasi-partneri' => new PartnersController($base, $this->latte),
 //			'adopce-brontosaura' => new SupportAdoptionController($base, $this->latte), // disabled for now
 			FutureController::PAGE_SLUG => new FutureController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte),
-			AboutStructureController::PAGE_SLUG => new AboutStructureController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte, $this->geocodingClientFacade),
+			AboutStructureController::PAGE_SLUG => new AboutStructureController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte, $this->coordinatesResolver),
 			EventDetailController::PAGE_SLUG => new EventDetailController($this->dateFormatHuman, $this->dateFormatRobot, $this->recaptchaSiteKey, $this->recaptchaSecretKey, $this->applicationFormFacade, $this->bisApiClient, $base, $this->latte, $this->httpRequest, $this->logger),
 			'vysledky-vyhledavani' => new SearchResultsController($base, $this->latte),
 			BaseUnitsAndClubsListController::PAGE_SLUG => new BaseUnitsAndClubsListController($this->bisApiClient, $base, $this->latte),

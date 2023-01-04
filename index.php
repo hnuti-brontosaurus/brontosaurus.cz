@@ -10,9 +10,9 @@ use HnutiBrontosaurus\BisClient\BisClient;
 use HnutiBrontosaurus\BisClient\BisClientFactory;
 use HnutiBrontosaurus\LegacyBisApiClient\Client;
 use HnutiBrontosaurus\Theme\Configuration;
+use HnutiBrontosaurus\Theme\CoordinatesResolver\CoordinatesResolver;
 use HnutiBrontosaurus\Theme\NotFound;
 use HnutiBrontosaurus\Theme\SentryLogger;
-use HnutiBrontosaurus\Theme\UI\AboutStructure\GeocodingClientFacade;
 use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
 use HnutiBrontosaurus\Theme\UI\ControllerFactory;
 use HnutiBrontosaurus\Theme\UI\EventDetail\ApplicationFormFacade;
@@ -46,9 +46,9 @@ function hb_getLatte(): Engine
 	return $latte;
 }
 
-function hb_getGeocodingClient(): GeocodingClientFacade
+function hb_getCoordinatesResolver(): CoordinatesResolver
 {
-	return new GeocodingClientFacade(
+	return new CoordinatesResolver(
 		new CachedGeocodingService(
 			new CacheManager(__DIR__ . '/temp/geocoding-cache'),
 			new MapyCzGeocodingService(
@@ -173,7 +173,7 @@ function hb_getDateFormatForRobot(Configuration $configuration): string
 		$bisApiClient,
 		new BaseFactory($configuration->get('enableTracking')),
 		$latte,
-		hb_getGeocodingClient(),
+		hb_getCoordinatesResolver(),
 		(new RequestFactory())->fromGlobals(),
 		$sentryLogger,
 	);

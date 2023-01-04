@@ -5,6 +5,7 @@ namespace HnutiBrontosaurus\Theme\UI\AboutStructure;
 use Grifart\GeocodingClient\MapyCz\NoResultException;
 use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
 use HnutiBrontosaurus\LegacyBisApiClient\Client;
+use HnutiBrontosaurus\Theme\CoordinatesResolver\CoordinatesResolver;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\BaseUnitsAndClubsList\BaseUnitsAndClubsListController;
 use HnutiBrontosaurus\Theme\UI\Controller;
@@ -25,7 +26,7 @@ final class AboutStructureController implements Controller
 		private Client $bisApiClient,
 		private Base $base,
 		private Engine $latte,
-		private GeocodingClientFacade $geocodingClientFacade,
+		private CoordinatesResolver $coordinatesResolver,
 	) {}
 
 
@@ -37,12 +38,8 @@ final class AboutStructureController implements Controller
 		try {
 			foreach ($this->bisApiClient->getOrganizationalUnits() as $organizationalUnit) {
 				try {
-					$location = $this->geocodingClientFacade->getCoordinatesFor(
-						$organizationalUnit->getStreet(),
-						$organizationalUnit->getCity(),
-						$organizationalUnit->getPostCode()
-					);
-					$organizationalUnits[] = OrganizationalUnitDC::fromDTO($organizationalUnit, $location);
+					$coordinates = $this->coordinatesResolver->resolve($organizationalUnit);
+					$organizationalUnits[] = OrganizationalUnitDC::fromDTO($organizationalUnit, $coordinates);
 
 				} catch (NoResultException) {
 					continue; // in case of non-existing address just silently continue and ignore this unit

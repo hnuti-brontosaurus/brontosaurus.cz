@@ -2,8 +2,8 @@
 
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Structure;
 
-use Grifart\GeocodingClient\Location;
 use HnutiBrontosaurus\LegacyBisApiClient\Response\OrganizationalUnit\OrganizationalUnit;
+use HnutiBrontosaurus\Theme\CoordinatesResolver\Coordinates;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 
 
@@ -39,10 +39,10 @@ final class OrganizationalUnitDC implements \JsonSerializable
 	private bool $ifOfTypeChildren = false;
 
 
-	private function __construct(OrganizationalUnit $organizationalUnit, Location $location)
+	private function __construct(OrganizationalUnit $organizationalUnit, Coordinates $coordinates)
 	{
 		$this->name = $organizationalUnit->getName();
-		$this->coordinates = CoordinatesDC::fromDTO($location);
+		$this->coordinates = CoordinatesDC::fromDTO($coordinates);
 		$this->address = AddressDC::from(
 			$organizationalUnit->getStreet(),
 			$organizationalUnit->getCity(),
@@ -56,9 +56,9 @@ final class OrganizationalUnitDC implements \JsonSerializable
 	}
 
 
-	public static function fromDTO(OrganizationalUnit $organizationalUnit, Location $location)
+	public static function fromDTO(OrganizationalUnit $organizationalUnit, Coordinates $coordinates)
 	{
-		return new self($organizationalUnit, $location);
+		return new self($organizationalUnit, $coordinates);
 	}
 
 
