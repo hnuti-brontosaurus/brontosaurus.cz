@@ -1,6 +1,4 @@
-{**
- * @param \HB\DataContainers\Events\EventDC $event
- *}
+{varType HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventDC $event}
 <a class="events-event" href="detail/{$event->id}">{* todo: using rather WP routing somehow *}
 	<div class="events-event-image-wrapper">
 		<img alt="" n:class="events-event-image, ! $event->hasCoverPhoto ? 'events-event-image--noThumbnail'" data-src="{if $event->hasCoverPhoto}{$event->coverPhotoPath}{else}{$distPath}/images/logo-hb-brontosaurus.svg{/if}">
