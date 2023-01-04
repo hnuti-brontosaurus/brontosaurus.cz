@@ -2,7 +2,8 @@
 
 namespace HnutiBrontosaurus\Theme\UI\Meetups;
 
-use HnutiBrontosaurus\LegacyBisApiClient\Request\EventParameters;
+use HnutiBrontosaurus\BisClient\Enums\EventCategory;
+use HnutiBrontosaurus\BisClient\Request\Event\EventParameters;
 
 
 final class MeetupsFilters
@@ -26,13 +27,13 @@ final class MeetupsFilters
 
 	private static function allRelevantTypes(): void
 	{
-		self::$parameters->setTypes([
-			EventParameters::TYPE_CLUB_MEETUP,
-			EventParameters::TYPE_CLUB_TALK,
-			EventParameters::TYPE_FOR_PUBLIC,
-			EventParameters::TYPE_EKOSTAN,
-			EventParameters::TYPE_EXHIBITION,
-			EventParameters::TYPE_ACTION_GROUP,
+		self::$parameters->setCategories([
+			EventCategory::CLUB_MEETUP(),
+			EventCategory::CLUB_TALK(),
+			EventCategory::FOR_PUBLIC(),
+			EventCategory::EKOSTAN(),
+			EventCategory::EXHIBITION(),
+			EventCategory::INTERNAL_VOLUNTEER_MEETING(),
 		]);
 	}
 

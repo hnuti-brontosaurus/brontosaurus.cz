@@ -5,7 +5,7 @@ namespace HnutiBrontosaurus\Theme\CoordinatesResolver;
 use Grifart\GeocodingClient\GeocodingService;
 use Grifart\GeocodingClient\Location;
 use Grifart\GeocodingClient\MapyCz\NoResultException;
-use HnutiBrontosaurus\LegacyBisApiClient\Response\OrganizationalUnit\OrganizationalUnit;
+use HnutiBrontosaurus\BisClient\Response\AdministrationUnit\AdministrationUnit;
 use HnutiBrontosaurus\Theme\CannotResolveCoordinates;
 
 
@@ -20,7 +20,7 @@ final class CoordinatesResolver
 	/**
 	 * @throws CannotResolveCoordinates
 	 */
-	public function resolve(OrganizationalUnit $organizationalUnit): Coordinates
+	public function resolve(AdministrationUnit $organizationalUnit): Coordinates
 	{
 		try {
 			$location = $this->resolveFromGeocoding($organizationalUnit);
@@ -35,13 +35,9 @@ final class CoordinatesResolver
 	/**
 	 * @throws NoResultException
 	 */
-	private function resolveFromGeocoding(OrganizationalUnit $organizationalUnit): Location
+	private function resolveFromGeocoding(AdministrationUnit $administrationUnit): Location
 	{
-		$results = $this->geocodingService->geocodeAddress(\sprintf('%s, %s, %s',
-			$organizationalUnit->getStreet(),
-			$organizationalUnit->getCity(),
-			$organizationalUnit->getPostCode(),
-		));
+		$results = $this->geocodingService->geocodeAddress($administrationUnit->getAddress());
 
 		$result = \reset($results); // we want only first result
 		\assert($result !== false);

@@ -2,11 +2,10 @@
 
 namespace HnutiBrontosaurus\Theme\UI\EventDetail;
 
-use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
-use HnutiBrontosaurus\LegacyBisApiClient\Client;
-use HnutiBrontosaurus\LegacyBisApiClient\Request\EventAttendee;
-use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Event;
-use HnutiBrontosaurus\LegacyBisApiClient\Response\InvalidUserInputException;
+use HnutiBrontosaurus\BisClient\BisClient;
+use HnutiBrontosaurus\BisClient\BisClientRuntimeException;
+use HnutiBrontosaurus\BisClient\Request\Event\EventAttendee;
+use HnutiBrontosaurus\BisClient\Response\Event\Event;
 use HnutiBrontosaurus\Theme\SentryLogger;
 use HnutiBrontosaurus\Theme\UI\EventDetail\DTO\ApplicationForm;
 use HnutiBrontosaurus\Theme\UI\EventDetail\DTO\ApplicationFormAdditionalQuestion;
@@ -19,16 +18,13 @@ final class ApplicationFormFacade
 {
 
 	public function __construct(
-		private Client $bisApiClient,
+		private BisClient $bisApiClient,
 		private Mailer $mailer,
 		private EmailSettings $emailSettings,
 		private SentryLogger $sentryLogger,
 	) {}
 
 
-	/**
-	 * @throws InvalidUserInputException
-	 */
 	public function processApplicationForm(Event $event, ApplicationForm $applicationForm): void
 	{
 		$savingAttendeeToBisFailed = false;
@@ -36,17 +32,13 @@ final class ApplicationFormFacade
 		try {
 			$this->saveToBis($event, $applicationForm);
 
-		} catch (BisApiClientRuntimeException $e) {
+		} catch (BisClientRuntimeException $e) {
 			$errorMessage = \sprintf('BIS API client: could not add attendee %s to an event #%d.',
 				$applicationForm->getEmailAddress(),
 				$event->getId(),
 			);
 			Debugger::log($errorMessage); // send to tracy
 			$this->sentryLogger->captureMessage($errorMessage);
-
-			if ($e instanceof InvalidUserInputException) {
-				throw $e; // wrong input => cancel form sending
-			}
 
 			$savingAttendeeToBisFailed = true;
 
@@ -58,11 +50,10 @@ final class ApplicationFormFacade
 	/**
 	 * @param Event $event
 	 * @param ApplicationForm $applicationForm
-	 * @throws BisApiClientRuntimeException
 	 */
 	private function saveToBis(Event $event, ApplicationForm $applicationForm)
 	{
-		$this->bisApiClient->addAttendeeToEvent(new EventAttendee(
+		$this->bisApiClient->addAttendee(new EventAttendee(
 			$event->getId(),
 			$applicationForm->getFirstName(),
 			$applicationForm->getLastName(),
@@ -115,7 +106,7 @@ final class ApplicationFormFacade
 			$applicationForm->getEmailAddress()
 		);
 
-		$notificationSender->send($event->getOrganizer()->getContactEmail());
+		$notificationSender->send($event->getOrganizer()->getContactPerson()->getEmailAddress());
 
 
 		// send copy of the application form to the attendee
@@ -125,7 +116,7 @@ final class ApplicationFormFacade
 			$this->emailSettings,
 			$subject,
 			\implode("\n", $bodyLines),
-			$event->getOrganizer()->getContactEmail()
+			$event->getOrganizer()->getContactPerson()->getEmailAddress(),
 		);
 
 		$notificationSender->send($applicationForm->getEmailAddress());

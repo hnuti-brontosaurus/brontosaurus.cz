@@ -2,7 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme\UI;
 
-use HnutiBrontosaurus\LegacyBisApiClient\Client;
+use HnutiBrontosaurus\BisClient\BisClient;
 use HnutiBrontosaurus\Theme\CoordinatesResolver\CoordinatesResolver;
 use HnutiBrontosaurus\Theme\NotFound;
 use HnutiBrontosaurus\Theme\SentryLogger;
@@ -42,7 +42,7 @@ final class ControllerFactory
 		private string $recaptchaSiteKey,
 		private string $recaptchaSecretKey,
 		private ApplicationFormFacade $applicationFormFacade,
-		private Client $bisApiClient,
+		private BisClient $bisApiClient,
 		private BaseFactory $baseFactory,
 		private Engine $latte,
 		private CoordinatesResolver $coordinatesResolver,

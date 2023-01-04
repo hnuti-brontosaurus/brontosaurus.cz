@@ -2,11 +2,7 @@ export interface OrganizationalUnit {
 	name: string;
 	lat: number;
 	lng: number;
-	address: {
-		street: string;
-		postCode: string;
-		city: string;
-	};
+	address: string;
 	chairman: string;
 	website: string;
 	email: string;

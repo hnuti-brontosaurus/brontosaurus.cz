@@ -2,7 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
-use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Organizer;
+use HnutiBrontosaurus\BisClient\Response\ContactPerson;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 
 
@@ -22,12 +22,12 @@ final class ContactDC
 	) {}
 
 
-	public static function fromDTO(Organizer $organizer): self
+	public static function fromDTO(ContactPerson $contactPerson): self
 	{
 		return new self(
-			$organizer->getContactPersonName(),
-			$organizer->getContactEmail(),
-			$organizer->getContactPhone()
+			$contactPerson->getName(),
+			$contactPerson->getEmailAddress(),
+			$contactPerson->getPhoneNumber(),
 		);
 	}
 

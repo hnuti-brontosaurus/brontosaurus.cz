@@ -2,7 +2,10 @@
 
 namespace HnutiBrontosaurus\Theme\UI\Voluntary;
 
-use HnutiBrontosaurus\LegacyBisApiClient\Request\EventParameters;
+use HnutiBrontosaurus\BisClient\Enums\EventCategory;
+use HnutiBrontosaurus\BisClient\Enums\IntendedFor;
+use HnutiBrontosaurus\BisClient\Enums\Program;
+use HnutiBrontosaurus\BisClient\Request\Event\EventParameters;
 
 
 final class VoluntaryFilters
@@ -30,7 +33,7 @@ final class VoluntaryFilters
 			case self::FILTER_FIRST_TIME:
 				self::allRelevantTypes();
 				self::allRelevantPrograms();
-				self::$parameters->setTargetGroup(EventParameters::TARGET_GROUP_FIRST_TIME_ATTENDEES);
+				self::$parameters->setIntendedFor(IntendedFor::FIRST_TIME_PARTICIPANT());
 				break;
 
 			// these two are post-resolved by their day counts
@@ -38,25 +41,25 @@ final class VoluntaryFilters
 			case self::FILTER_ONE_DAY_EVENTS:
 				self::allRelevantTypes();
 				self::allRelevantPrograms();
-				self::allRelevantPrograms();
+				self::allRelevantTargetGroups();
 				break;
 
 			case self::FILTER_HOLIDAY_EVENTS:
 				self::allRelevantTypes();
 				self::allRelevantTargetGroups();
-				self::$parameters->setProgram(EventParameters::PROGRAM_PSB);
+				self::$parameters->setProgram(Program::PSB());
 				break;
 
 			case self::FILTER_NATURE:
 				self::allRelevantTypes();
 				self::allRelevantTargetGroups();
-				self::$parameters->setProgram(EventParameters::PROGRAM_NATURE);
+				self::$parameters->setProgram(Program::NATURE());
 				break;
 
 			case self::FILTER_SIGHTS:
 				self::allRelevantTypes();
 				self::allRelevantTargetGroups();
-				self::$parameters->setProgram(EventParameters::PROGRAM_SIGHTS);
+				self::$parameters->setProgram(Program::MONUMENTS());
 				break;
 		}
 	}
@@ -72,29 +75,29 @@ final class VoluntaryFilters
 
 	private static function allRelevantTypes(): void
 	{
-		self::$parameters->setTypes([
-			EventParameters::TYPE_VOLUNTARY,
-			EventParameters::TYPE_EXPERIENCE,
-			EventParameters::TYPE_SPORT,
+		self::$parameters->setCategories([
+			EventCategory::VOLUNTARY(),
+			EventCategory::EXPERIENCE(),
+			EventCategory::SPORT(),
 		]);
 	}
 
 	private static function allRelevantPrograms(): void
 	{
 		self::$parameters->setPrograms([
-			EventParameters::PROGRAM_NOT_SELECTED,
-			EventParameters::PROGRAM_NATURE,
-			EventParameters::PROGRAM_SIGHTS,
-			EventParameters::PROGRAM_PSB,
+			Program::NONE(),
+			Program::NATURE(),
+			Program::MONUMENTS(),
+			Program::PSB(),
 		]);
 	}
 
 	private static function allRelevantTargetGroups(): void
 	{
-		self::$parameters->setTargetGroups([
-			EventParameters::TARGET_GROUP_EVERYONE,
-			EventParameters::TARGET_GROUP_ADULTS,
-			EventParameters::TARGET_GROUP_FIRST_TIME_ATTENDEES,
+		self::$parameters->setMultipleIntendedFor([
+			IntendedFor::ALL(),
+			IntendedFor::YOUNG_AND_ADULT(),
+			IntendedFor::FIRST_TIME_PARTICIPANT(),
 		]);
 	}
 

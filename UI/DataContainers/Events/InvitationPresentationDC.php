@@ -2,8 +2,8 @@
 
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
-use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Invitation\Photo;
-use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Invitation\Presentation;
+use HnutiBrontosaurus\BisClient\Response\Event\Photo;
+use HnutiBrontosaurus\BisClient\Response\Event\Presentation;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 use HnutiBrontosaurus\Theme\UI\Utils;
 
@@ -31,11 +31,13 @@ final class InvitationPresentationDC
 
 	public static function fromDTO(Presentation $presentation): self
 	{
+		$text = $presentation->getText();
+		$photos = $presentation->getPhotos();
 		return new self(
-			$presentation->hasText(),
-			$presentation->hasText() ? Utils::handleNonBreakingSpaces($presentation->getText()) : null,
-			$presentation->hasAnyPhotos(),
-			$presentation->hasAnyPhotos() ? \array_map(static fn(Photo $photo) => $photo->getPath(), $presentation->getPhotos()) : [],
+			$text !== null,
+			$text !== null ? Utils::handleNonBreakingSpaces($text) : null,
+			\count($photos) > 0,
+			\array_map(fn(Photo $photo): string => $photo->getMediumSizePath(), $photos),
 		);
 	}
 

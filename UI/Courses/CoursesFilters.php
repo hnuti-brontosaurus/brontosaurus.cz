@@ -2,7 +2,8 @@
 
 namespace HnutiBrontosaurus\Theme\UI\Courses;
 
-use HnutiBrontosaurus\LegacyBisApiClient\Request\EventParameters;
+use HnutiBrontosaurus\BisClient\Enums\EventCategory;
+use HnutiBrontosaurus\BisClient\Request\Event\EventParameters;
 
 
 final class CoursesFilters
@@ -24,18 +25,18 @@ final class CoursesFilters
 
 		switch ($selectedFilter) {
 			case self::FILTER_TALKS:
-				$parameters->setTypes([
-					EventParameters::TYPE_EDUCATIONAL_TALK,
-					EventParameters::TYPE_CLUB_TALK,
+				$parameters->setCategories([
+					EventCategory::EDUCATIONAL_LECTURE(),
+					EventCategory::CLUB_TALK(),
 				]);
 				break;
 
 			case self::FILTER_ORGANIZING:
-				$parameters->setType(EventParameters::TYPE_EDUCATIONAL_OHB);
+				$parameters->setCategory(EventCategory::EDUCATIONAL_OHB());
 				break;
 
 			case self::FILTER_THEMATIC:
-				$parameters->setType(EventParameters::TYPE_EDUCATIONAL_COURSES);
+				$parameters->setCategory(EventCategory::EDUCATIONAL_COURSE());
 				break;
 		}
 	}
@@ -49,13 +50,13 @@ final class CoursesFilters
 
 	private static function allRelevantTypes(): void
 	{
-		self::$parameters->setTypes([
-			EventParameters::TYPE_EDUCATIONAL_TALK,
-			EventParameters::TYPE_EDUCATIONAL_COURSES,
-			EventParameters::TYPE_EDUCATIONAL_OHB,
-			EventParameters::TYPE_LEARNING_PROGRAM,
-			EventParameters::TYPE_RESIDENTIAL_LEARNING_PROGRAM,
-			EventParameters::TYPE_CLUB_TALK,
+		self::$parameters->setCategories([
+			EventCategory::EDUCATIONAL_LECTURE(),
+			EventCategory::EDUCATIONAL_COURSE(),
+			EventCategory::EDUCATIONAL_OHB(),
+			EventCategory::EDUCATIONAL_PROGRAM(),
+			EventCategory::EDUCATIONAL_PROGRAM_WITH_STAY(),
+			EventCategory::CLUB_TALK(),
 		]);
 	}
 

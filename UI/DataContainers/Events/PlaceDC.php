@@ -2,8 +2,9 @@
 
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
-use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Place;
+use HnutiBrontosaurus\BisClient\Response\Location;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
+use HnutiBrontosaurus\Theme\UI\Utils;
 
 
 /**
@@ -22,12 +23,15 @@ final class PlaceDC
 	) {}
 
 
-	public static function fromDTO(Place $place): self
+	public static function fromDTO(Location $place): self
 	{
+		$coordinates = $place->getCoordinates();
 		return new self(
-			$place->getName(),
-			$place->areCoordinatesListed(),
-			$place->areCoordinatesListed() ? $place->getCoordinates() : null
+			Utils::handleNonBreakingSpaces($place->getName()),
+			$coordinates !== null,
+			$coordinates !== null
+				? $coordinates->getLatitude() . ' ' . $coordinates->getLongitude() // e.g. 49.132456 16.123456
+				: null,
 		);
 	}
 

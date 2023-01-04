@@ -2,19 +2,17 @@
 
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
-use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Event;
+use HnutiBrontosaurus\BisClient\Enums\IntendedFor;
+use HnutiBrontosaurus\BisClient\Response\Event\Event;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 use HnutiBrontosaurus\Theme\UI\Utils;
-use Nette\Utils\Strings;
 
 
 /**
  * @property-read int $id
  * @property-read string $title
- * @property-read string $slug
  * @property-read string $dateStartForHumans
  * @property-read string $dateStartForRobots
- * @property-read bool $hasTimeStart
  * @property-read string|null $timeStart
  * @property-read \DateTimeImmutable $dateEnd
  * @property-read string $dateSpan
@@ -23,17 +21,17 @@ use Nette\Utils\Strings;
  * @property-read PlaceDC $place
  * @property-read AgeDC $age
  * @property-read bool $isPaid
- * @property-read string $price
+ * @property-read string|null $price
  * @property-read ContactDC $contact
- * @property-read RegistrationTypeDC $registrationType
+ * @property-read bool $isRegistrationRequired
+ * @property-read bool $isFull
  * @property-read bool $isForFirstTimeAttendees
  * @property-read InvitationDC $invitation
  * @property-read bool $areOrganizersListed
- * @property-read string|NULL $organizers
- * @property-read bool $isOrganizerUnitListed
+ * @property-read string|null $organizers
  * @property-read string|NULL $organizerUnit
  * @property-read bool $hasCoverPhoto
- * @property-read string|NULL $coverPhotoPath
+ * @property-read string|null $coverPhotoPath
  * @property-read bool $hasProgram
  * @property-read ProgramDC $program
  * @property-read bool $hasRelatedWebsite
@@ -41,18 +39,15 @@ use Nette\Utils\Strings;
  */
 final class EventDC
 {
-
 	use PropertyHandler;
 
 
 	private int $id;
 	private string $title;
-	private string $slug;
 	private bool $hasCoverPhoto;
 	private ?string $coverPhotoPath;
 	private string $dateStartForHumans;
 	private string $dateStartForRobots;
-	private bool $hasTimeStart;
 	private ?string $timeStart;
 	private \DateTimeImmutable $dateEnd;
 	private string $dateSpan;
@@ -61,14 +56,14 @@ final class EventDC
 	private PlaceDC $place;
 	private AgeDC $age;
 	private bool $isPaid;
-	private string|int|null $price;
+	private ?string $price;
 	private ContactDC $contact;
-	private RegistrationTypeDC $registrationType;
+	private bool $isRegistrationRequired;
+	private bool $isFull;
 	private bool $isForFirstTimeAttendees;
 	private InvitationDC $invitation;
 	private bool $areOrganizersListed;
 	private ?string $organizers;
-	private bool $isOrganizerUnitListed; // could be probably removed once it's clear that unit is always listed
 	private ?string $organizerUnit;
 	private ProgramDC $program;
 	private bool $hasRelatedWebsite;
@@ -79,48 +74,46 @@ final class EventDC
 	{
 		$this->id = $event->getId();
 		$this->title = Utils::handleNonBreakingSpaces($event->getName());
-		$this->slug = Strings::webalize($event->getName());
 
-		$this->hasCoverPhoto = $event->getCoverPhotoPath() !== null;
-		$this->coverPhotoPath = $event->getCoverPhotoPath();
+		$coverPhotoPath = $event->getCoverPhotoPath();
+		$this->hasCoverPhoto = $coverPhotoPath !== null;
+		$this->coverPhotoPath = $event->getCoverPhotoPath()->getMediumSizePath(); // todo small?
 
 		$this->dateStartForHumans = $event->getDateFrom()->format($dateFormatHuman);
 		$this->dateStartForRobots = $event->getDateFrom()->format($dateFormatRobot);
-
-		$this->hasTimeStart = $event->getTimeFrom() !== null;
-		$this->timeStart = $event->getTimeFrom();
+		$this->timeStart = $event->getDateFrom()->format('H:i');
 
 		$this->dateEnd = $event->getDateUntil();
 		$this->dateSpan = $this->getDateSpan($event->getDateFrom(), $event->getDateUntil(), $dateFormatHuman);
-		$this->place = PlaceDC::fromDTO($event->getPlace());
+		$this->place = PlaceDC::fromDTO($event->getLocation());
 		$this->age = AgeDC::fromDTO($event);
 
-		$this->isPaid = $event->getPrice() !== null;
-		$this->price  = $event->getPrice();
+		$price = $event->getPrice();
+		$this->isPaid = $price !== null;
+		$this->price = $price;
 
-		$this->contact = ContactDC::fromDTO($event->getOrganizer());
+		$this->contact = ContactDC::fromDTO($event->getContactPerson());
 
-		$this->registrationType = RegistrationTypeDC::fromDTO($event->getRegistrationType());
+		$this->isRegistrationRequired = $event->getIsRegistrationRequired();
+		$this->isFull = $event->getIsFull();
 
-		$this->isForFirstTimeAttendees = $event->getTargetGroup()->isOfTypeFirstTimeAttendees();
+		$this->isForFirstTimeAttendees = $event->getTargetGroup()->equals(IntendedFor::FIRST_TIME_PARTICIPANT());
 
 		$this->invitation = InvitationDC::fromDTO($event->getInvitation());
 
-		$organizer = $event->getOrganizer();
-		$areOrganizersListed = $organizer->getOrganizers() !== null;
-		$this->areOrganizersListed = $areOrganizersListed;
-		$this->organizers = $organizer->getOrganizers();
-		$unit = $organizer->getOrganizationalUnit();
-		$this->isOrganizerUnitListed = $areOrganizersListed && $unit !== null;
-		$this->organizerUnit = $areOrganizersListed && $unit !== null ? $unit->getName() : null;
+		$organizers = $event->getOrganizers();
+		$this->areOrganizersListed = $organizers !== null;
+		$this->organizers = $organizers;
+		$this->organizerUnit = \implode(', ', $event->getAdministrationUnits());
 
 		$this->duration = self::getDuration($event);
 		$this->isLongTime = self::resolveDurationCategory($this->duration) === self::DURATION_CATEGORY_LONG_TIME;
 
 		$this->program = new ProgramDC($event->getProgram());
 
-		$this->hasRelatedWebsite = $event->getRelatedWebsite() !== null;
-		$this->relatedWebsite = $event->getRelatedWebsite();
+		$relatedWebsite = $event->getRelatedWebsite();
+		$this->hasRelatedWebsite = $relatedWebsite !== null;
+		$this->relatedWebsite = $relatedWebsite;
 	}
 
 
@@ -131,13 +124,15 @@ final class EventDC
 		return $duration + 1; // because 2018-11-30 -> 2018-11-30 is not 0, but 1 etc.
 	}
 
-	public const DURATION_CATEGORY_ONE_DAY = 1;
-	public const DURATION_CATEGORY_WEEKEND = 2;
-	public const DURATION_CATEGORY_LONG_TIME = 3;
+
+	const DURATION_CATEGORY_ONE_DAY = 1;
+	const DURATION_CATEGORY_WEEKEND = 2;
+	const DURATION_CATEGORY_LONG_TIME = 3;
 
 	public static function resolveDurationCategory(int $dayCount): int
 	{
-		return match ($dayCount) {
+		return match ($dayCount)
+		{
 			1 => self::DURATION_CATEGORY_ONE_DAY,
 			2, 3, 4, 5 => self::DURATION_CATEGORY_WEEKEND,
 			default => self::DURATION_CATEGORY_LONG_TIME,

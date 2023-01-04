@@ -2,7 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
-use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Program;
+use HnutiBrontosaurus\BisClient\Enums\Program;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 
 
@@ -22,9 +22,9 @@ final class ProgramDC
 
 	public function __construct(Program $program)
 	{
-		$this->isOfTypeNature = $program->isOfTypeNature();
-		$this->isOfTypeSights = $program->isOfTypeSights();
-		$this->isOfTypePsb = $program->isOfTypePsb();
+		$this->isOfTypeNature = $program->equals(Program::NATURE());
+		$this->isOfTypeSights = $program->equals(Program::MONUMENTS());
+		$this->isOfTypePsb = $program->equals(Program::PSB());
 	}
 
 }

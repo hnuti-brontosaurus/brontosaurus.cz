@@ -2,9 +2,10 @@
 
 namespace HnutiBrontosaurus\Theme\UI\Future;
 
-use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
-use HnutiBrontosaurus\LegacyBisApiClient\Client;
-use HnutiBrontosaurus\LegacyBisApiClient\Request\EventParameters;
+use HnutiBrontosaurus\BisClient\BisClient;
+use HnutiBrontosaurus\BisClient\BisClientRuntimeException;
+use HnutiBrontosaurus\BisClient\Request\Event\EventParameters;
+use HnutiBrontosaurus\BisClient\RuntimeException;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
 use HnutiBrontosaurus\Theme\UI\DataContainers\MonthWrapperDC;
@@ -18,7 +19,7 @@ final class FutureController implements Controller
 	public function __construct(
 		private string $dateFormatHuman,
 		private string $dateFormatRobot,
-		private Client $bisApiClient,
+		private BisClient $bisApiClient,
 		private Base $base,
 		private Engine $latte,
 	) {}
@@ -27,8 +28,7 @@ final class FutureController implements Controller
 	public function render(): void
 	{
 		$params = new EventParameters();
-		$params->hideTheseAlreadyStarted();
-		$params->orderByStartDate();
+//		$params->orderByDateFrom(); // todo what with this?
 
 		$hasBeenUnableToLoad = false;
 
@@ -59,7 +59,7 @@ final class FutureController implements Controller
 				$months[] = $currentMonthWrapperDC;
 			}
 
-		} catch (BisApiClientRuntimeException $e) {
+		} catch (BisClientRuntimeException) {
 			$months = [];
 			$hasBeenUnableToLoad = true;
 		}

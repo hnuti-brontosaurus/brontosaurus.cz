@@ -1,11 +1,11 @@
 <?php declare(strict_types = 1);
 
-use Grifart\GeocodingClient\MapyCz\NoResultException;
 use HnutiBrontosaurus\BisClient\BisClientRuntimeException;
 use HnutiBrontosaurus\BisClient\Enums\OpportunityCategory;
-use HnutiBrontosaurus\BisClient\Request\OpportunityParameters;
-use HnutiBrontosaurus\BisClient\Response\Opportunity;
+use HnutiBrontosaurus\BisClient\Request\Opportunity\OpportunityParameters;
+use HnutiBrontosaurus\BisClient\Response\Opportunity\Opportunity;
 use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
+use HnutiBrontosaurus\Theme\CannotResolveCoordinates;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\OrganizationalUnitDC;
 use Nette\Utils\Strings;
 use function HnutiBrontosaurus\Theme\hb_dateSpan;
@@ -14,7 +14,6 @@ use function HnutiBrontosaurus\Theme\hb_opportunityCategoryToString;
 
 $configuration = hb_getConfiguration();
 $bisApiClient = hb_getBisApiClient($configuration);
-$legacyBisApiClient = hb_getLegacyBisApiClient($configuration);
 $dateFormat = hb_getDateFormatForHuman($configuration);
 $latte = hb_getLatte();
 $coordinatesResolver = hb_getCoordinatesResolver();
@@ -48,12 +47,12 @@ $organizationalUnits = [];
 try {
 	$opportunities = $bisApiClient->getOpportunities($applyFilter($selectedFilter));
 
-	foreach ($legacyBisApiClient->getOrganizationalUnits() as $organizationalUnit) {
+	foreach ($bisApiClient->getAdministrationUnits() as $organizationalUnit) {
 		try {
 			$coordinates = $coordinatesResolver->resolve($organizationalUnit);
 			$organizationalUnits[] = OrganizationalUnitDC::fromDTO($organizationalUnit, $coordinates);
 
-		} catch (NoResultException) {
+		} catch (CannotResolveCoordinates) {
 			continue; // in case of non-existing address just silently continue and ignore this unit
 		}
 	}

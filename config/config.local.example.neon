@@ -1,8 +1,7 @@
 parameters:
     bis:
-        url: # string
-        username: # string
-        password: # string
+        clientId: # string
+        clientSecret: # string
 
     mailer:
         # mailcatcher settings

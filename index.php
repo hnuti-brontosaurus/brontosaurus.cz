@@ -5,10 +5,8 @@ use Grifart\GeocodingClient\Caching\CacheManager;
 use Grifart\GeocodingClient\MapyCz\Communicator;
 use Grifart\GeocodingClient\MapyCz\Mapping\Mapper;
 use Grifart\GeocodingClient\MapyCz\MapyCzGeocodingService;
-use GuzzleHttp\Client as HttpClient;
 use HnutiBrontosaurus\BisClient\BisClient;
 use HnutiBrontosaurus\BisClient\BisClientFactory;
-use HnutiBrontosaurus\LegacyBisApiClient\Client;
 use HnutiBrontosaurus\Theme\Configuration;
 use HnutiBrontosaurus\Theme\CoordinatesResolver\CoordinatesResolver;
 use HnutiBrontosaurus\Theme\NotFound;
@@ -61,18 +59,9 @@ function hb_getCoordinatesResolver(): CoordinatesResolver
 
 function hb_getBisApiClient(Configuration $configuration): BisClient
 {
-	$factory = new BisClientFactory($configuration->get('bis:url'));
-	return $factory->create();
-}
-
-function hb_getLegacyBisApiClient(Configuration $configuration): Client
-{
-	return new Client(
-		$configuration->get('bis:legacy:url'),
-		$configuration->get('bis:legacy:username'),
-		$configuration->get('bis:legacy:password'),
-		new HttpClient(),
-	);
+	return (new BisClientFactory(
+		$configuration->get('bis:url'),
+	))->create();
 }
 
 function hb_getDateFormatForHuman(Configuration $configuration): string
@@ -101,7 +90,7 @@ function hb_getDateFormatForRobot(Configuration $configuration): string
 
 	// app
 
-	$bisApiClient = hb_getLegacyBisApiClient($configuration);
+	$bisApiClient = hb_getBisApiClient($configuration);
 
 	if ($configuration->get('mailer:smtp')) {
 		// only no-authentication access is supported right now as we do not have authenticated SMTP servers now

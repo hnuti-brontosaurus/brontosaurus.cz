@@ -2,7 +2,10 @@
 
 namespace HnutiBrontosaurus\Theme\UI\ForChildren;
 
-use HnutiBrontosaurus\LegacyBisApiClient\Request\EventParameters;
+use HnutiBrontosaurus\BisClient\Enums\EventCategory;
+use HnutiBrontosaurus\BisClient\Enums\EventGroup;
+use HnutiBrontosaurus\BisClient\Enums\IntendedFor;
+use HnutiBrontosaurus\BisClient\Request\Event\EventParameters;
 
 
 final class ForChildrenFilters
@@ -27,21 +30,21 @@ final class ForChildrenFilters
 
 		switch ($selectedFilter) {
 			case self::FILTER_CAMPS:
-				self::$parameters->setFilter(EventParameters::FILTER_CAMP);
+				self::$parameters->setGroup(EventGroup::CAMP());
 				self::allRelevantTargetGroups();
 				break;
 
 			case self::FILTER_UNITS:
-				self::$parameters->setType(EventParameters::TYPE_GROUP_MEETING);
+				self::$parameters->setCategory(EventCategory::INTERNAL_GROUP_MEETING());
 				self::allRelevantTargetGroups();
 				break;
 
 			case self::FILTER_EVENTS:
-				self::$parameters->setTargetGroup(EventParameters::TARGET_GROUP_CHILDREN);
+				self::$parameters->setIntendedFor(IntendedFor::KIDS());
 				break;
 
 			case self::FILTER_EVENTS_WITH_PARENTS:
-				self::$parameters->setTargetGroup(EventParameters::TARGET_GROUP_FAMILIES);
+				self::$parameters->setIntendedFor(IntendedFor::PARENTS_WITH_KIDS());
 				break;
 		}
 	}
@@ -55,9 +58,9 @@ final class ForChildrenFilters
 
 	private static function allRelevantTargetGroups(): void
 	{
-		self::$parameters->setTargetGroups([
-			EventParameters::TARGET_GROUP_CHILDREN,
-			EventParameters::TARGET_GROUP_FAMILIES,
+		self::$parameters->setMultipleIntendedFor([
+			IntendedFor::KIDS(),
+			IntendedFor::PARENTS_WITH_KIDS(),
 		]);
 	}
 

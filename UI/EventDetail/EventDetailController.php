@@ -2,11 +2,9 @@
 
 namespace HnutiBrontosaurus\Theme\UI\EventDetail;
 
-use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
-use HnutiBrontosaurus\LegacyBisApiClient\Client;
-use HnutiBrontosaurus\LegacyBisApiClient\NotFoundException;
-use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Event;
-use HnutiBrontosaurus\LegacyBisApiClient\Response\InvalidUserInputException;
+use HnutiBrontosaurus\BisClient\BisClient;
+use HnutiBrontosaurus\BisClient\BisClientRuntimeException;
+use HnutiBrontosaurus\BisClient\Response\Event\Event;
 use HnutiBrontosaurus\Theme\NotFound;
 use HnutiBrontosaurus\Theme\SentryLogger;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
@@ -35,7 +33,7 @@ final class EventDetailController implements Controller
 		private string $recaptchaSiteKey,
 		private string $recaptchaSecretKey,
 		private ApplicationFormFacade $applicationFormFacade,
-		private Client $bisApiClient,
+		private BisClient $bisApiClient,
 		private Base $base,
 		private Engine $latte,
 		private Request $httpRequest,
@@ -51,14 +49,9 @@ final class EventDetailController implements Controller
 			return $hostname;
 		});
 
-		$this->latte->addFilter('resolveLinkTarget', static function (EventDC $event): string
+		$this->latte->addFilter('resolveRegistrationLink', static function (EventDC $event): string
 		{
-			$registrationType = $event->registrationType;
-			return match (true) {
-				$registrationType->isOfTypeEmail => 'mailto:' . $registrationType->email . '?subject=Přihláška na akci ' . $event->title,
-				$registrationType->isOfTypeCustomWebpage => $registrationType->url,
-				default => throw new \LogicException('Unsupported type'),
-			};
+			return \sprintf('%s/%d', 'TODO', $event->id); // todo
 		});
 	}
 
@@ -79,7 +72,7 @@ final class EventDetailController implements Controller
 			$this->event = $this->bisApiClient->getEvent($eventId);
 			$eventDC = new EventDC($this->event, $this->dateFormatHuman, $this->dateFormatRobot);
 
-			$this->processApplicationForm();
+//			$this->processApplicationForm();
 
 			// add event name to title tag (source https://stackoverflow.com/a/62410632/3668474)
 			add_filter('document_title_parts', function (array $title) {
@@ -88,10 +81,10 @@ final class EventDetailController implements Controller
 				]);
 			});
 
-		} catch (NotFoundException) {
+		} catch (\HnutiBrontosaurus\BisClient\NotFound) {
 			throw new NotFound();
 
-		} catch (BisApiClientRuntimeException) {
+		} catch (BisClientRuntimeException) {
 			$hasBeenUnableToLoad = true;
 		}
 
@@ -193,14 +186,7 @@ final class EventDetailController implements Controller
 			return;
 		}
 
-		try {
-			$this->applicationFormFacade->processApplicationForm($this->event, $applicationForm);
-
-		} catch (InvalidUserInputException $e) {
-			$this->applicationFormErrors = [$e->getMessage()];
-			$this->applicationFormData = $applicationForm->toArray();
-			return;
-		}
+		$this->applicationFormFacade->processApplicationForm($this->event, $applicationForm);
 
 		wp_redirect(\sprintf($this->httpRequest->getUrl()->getPath() . '?%s=1', self::APPLICATION_FORM_SUCCESS_KEY));
 	}

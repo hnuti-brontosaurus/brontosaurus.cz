@@ -7,24 +7,26 @@
  *}
 
 <div class="registration">
-	<p class="registration__text" n:if="$event->registrationType->isOfTypeNone">
-		Na tuto akci není třeba se hlásit, stačí přijít. 😉
-	</p>
+	{if $event->isFull}
+		<p class="registration__text">
+			Na tuto akci se už bohužel nedá přihlásit, ale můžeš <a href="{$categoryLink}">zkusit jinou</a>.
+		</p>
 
-	<p class="registration__text" n:if="$event->registrationType->isOfTypeDisabled">
-		Na tuto akci se už bohužel nedá přihlásit, ale můžeš <a href="{$categoryLink}">zkusit jinou</a>.
-	</p>
+	{elseif ! $event->isRegistrationRequired}
+		<p class="registration__text">
+			Na tuto akci není třeba se hlásit, stačí přijít. 😉
+		</p>
+	{else}
+		<a
+			class="registration__actionButton registration__actionButton--customWebpage button button--primary"
+			href="{$event|resolveRegistrationLink}"
+			target="_blank"
+		>
+			Chci jet
+		</a>
+	{/if}
 
-	<a
-		n:class="'registration__actionButton', $event->registrationType->isOfTypeEmail ? 'registration__actionButton--email', $event->registrationType->isOfTypeCustomWebpage ? 'registration__actionButton--customWebpage', 'button', 'button--primary'"
-		href="{$event|resolveLinkTarget}"
-		{if $event->registrationType->isOfTypeCustomWebpage}target="_blank"{/if}
-		n:if="$event->registrationType->isOfTypeEmail || $event->registrationType->isOfTypeCustomWebpage"
-	>
-		Chci jet
-	</a>
-
-	<button n:class="'registration__actionButton', 'registration__actionButton--brontoweb', ($displayForm || $errors !== null) ? 'registration__actionButton--activated', 'button', 'button--primary'" n:if="$event->registrationType->isOfTypeBrontoWeb">
+	{*<button n:class="'registration__actionButton', 'registration__actionButton--brontoweb', ($displayForm || $errors !== null) ? 'registration__actionButton--activated', 'button', 'button--primary'" n:if="$event->registrationType->isOfTypeBrontoWeb">
 		Chci jet
 	</button>
 
@@ -59,7 +61,7 @@
 			</label>
 
 			<input class="registration__inputField registration__inputField--birthDate" id="birthDate" name="birthDate" required type="text"{if $formData !== null} value="{$formData['birthDate']}"{/if}>
-			<span class="registration__inputNote">např. 12. 3. {\date('Y') - 16}{* keep the birth date example in target group's age *}</span>
+			<span class="registration__inputNote">např. 12. 3. {\date('Y') - 16}*}{* keep the birth date example in target group's age *}{*</span>
 		</div>
 
 		<div class="registration__formRow">
@@ -120,5 +122,5 @@
 				Odeslat přihlášku
 			</button>
 		</div>
-	</form>
+	</form>*}
 </div>

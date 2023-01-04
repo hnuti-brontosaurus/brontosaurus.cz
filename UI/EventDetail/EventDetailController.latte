@@ -112,7 +112,7 @@
 							</td>
 						</tr>
 
-						<tr class="detail__basicInformation-item" n:if="$event->hasTimeStart">
+						<tr class="detail__basicInformation-item">
 							<th class="detail__basicInformation-label">
 								Začátek akce
 							</th>
@@ -131,7 +131,7 @@
 
 							<td class="detail__basicInformation-value">
 								{if $event->isPaid}
-									{$event->price} Kč
+									{$event->price}
 								{else}
 									<span class="detail__basicInformation-priceNoFee">
 									bez poplatku
@@ -184,7 +184,7 @@
 			</div>
 
 			<!--section 2-->
-			<div class="detail-program" n:if="$event->invitation->introduction">{*@todo: remove if *}
+			<div class="detail-program" n:if="$event->invitation->introduction">
 				<h2>
 					Co na nás čeká
 				</h2>
@@ -195,7 +195,7 @@
 			</div>
 
 			<!--section 3-->
-			<div class="detail-information" n:if="$event->invitation->organizationalInformation">{*@todo: remove if *}
+			<div class="detail-information" n:if="$event->invitation->organizationalInformation">
 				<h2>
 					Co, kde a jak
 				</h2>
@@ -204,27 +204,20 @@
 					{$event->invitation->organizationalInformation|noescape}{* @todo: set escaping filter *}
 				</p>
 
-				<ul class="detail-information-list" n:if="$event->invitation->isAccommodationListed || $event->invitation->isFoodListed">
-					<li n:if="$event->invitation->isAccommodationListed">
+				<ul class="detail-information-list">
+					<li>
 						Ubytování: {$event->invitation->accommodation}
 					</li>
 
 					<li n:if="$event->invitation->isFoodListed">
 						Strava:
-						{switch TRUE}
-							{case $event->invitation->isFoodOfTypeChooseable}
-							můžete si vybrat
-							{case $event->invitation->isFoodOfTypeVegetarian}
-							vegetariánská
-							{case $event->invitation->isFoodOfTypeNonVegetarian}
-							ne-vegetariánská
-						{/switch}
+						{foreach $event->invitation->food as $food}{$food}{sep}, {/sep}{/foreach}
 					</li>
 				</ul>
 			</div>
 
 			<!--section 4-->
-			<div class="detail-work" n:if="$event->invitation->workDescription">{*@todo: remove if *}
+			<div class="detail-work" n:if="$event->invitation->isWorkDescriptionListed">
 				<h2>
 					Dobrovolnická pomoc
 				</h2>
@@ -260,14 +253,13 @@
 			</div>
 
 			<!--section 5-->
-			<div class="detail-team" n:if="$event->areOrganizersListed">
+			<div class="detail-team">
 				<h2>
 					Organizační tým
 				</h2>
 
 				<p class="detail-team-paragraph">
-					Těší se na tebe {$event->organizers}.
-					<br>
+					{if $event->areOrganizersListed}Těší se na tebe {$event->organizers}.<br>{/if}
 					Pořádá {$event->organizerUnit}
 				</p>
 			</div>

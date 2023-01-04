@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "142d6001bf965846c9a12da424690e0f",
+    "content-hash": "f1758ae999579b7b9fcd2665dd793f68",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -554,16 +554,16 @@
         },
         {
             "name": "hnuti-brontosaurus/php-bis-api-client",
-            "version": "dev-opportunities",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnuti-brontosaurus/php-bis-api-client.git",
-                "reference": "092b407a27a3223db37a07c28b75565e721b8c82"
+                "reference": "7f30878b7ac7fdb0e4d0812f267fbd82f470f3ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnuti-brontosaurus/php-bis-api-client/zipball/092b407a27a3223db37a07c28b75565e721b8c82",
-                "reference": "092b407a27a3223db37a07c28b75565e721b8c82",
+                "url": "https://api.github.com/repos/hnuti-brontosaurus/php-bis-api-client/zipball/7f30878b7ac7fdb0e4d0812f267fbd82f470f3ba",
+                "reference": "7f30878b7ac7fdb0e4d0812f267fbd82f470f3ba",
                 "shasum": ""
             },
             "require": {
@@ -572,9 +572,10 @@
                 "php": ">=8.0"
             },
             "require-dev": {
-                "phpstan/phpstan": "^0.12.88",
+                "phpstan/phpstan": "^1.8",
                 "tracy/tracy": "^2.5"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -582,6 +583,11 @@
                 },
                 "classmap": [
                     "src/exceptions.php"
+                ]
+            },
+            "scripts": {
+                "phpstan": [
+                    "phpstan analyze --no-progress --no-interaction -c phpstan.neon"
                 ]
             },
             "authors": [
@@ -592,10 +598,10 @@
             ],
             "description": "API client for Hnutí Brontosaurus IS written in PHP.",
             "support": {
-                "source": "https://github.com/hnuti-brontosaurus/php-bis-api-client/tree/opportunities",
+                "source": "https://github.com/hnuti-brontosaurus/php-bis-api-client/tree/main",
                 "issues": "https://github.com/hnuti-brontosaurus/php-bis-api-client/issues"
             },
-            "time": "2022-10-03T08:13:43+00:00"
+            "time": "2023-01-06T10:04:27+00:00"
         },
         {
             "name": "http-interop/http-factory-guzzle",

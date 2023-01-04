@@ -2,14 +2,13 @@
 
 namespace HnutiBrontosaurus\Theme\UI\BaseUnitsAndClubsList;
 
-use HnutiBrontosaurus\LegacyBisApiClient\Response\OrganizationalUnit\OrganizationalUnit;
-use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\AddressDC;
+use HnutiBrontosaurus\BisClient\Response\AdministrationUnit\AdministrationUnit;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 
 
 /**
  * @property-read string $name
- * @property-read AddressDC $address
+ * @property-read string $address
  * @property-read string $website
  * @property-read string $emailAddress
  */
@@ -19,21 +18,17 @@ final class OrganizationalUnitDC
 
 	private function __construct(
 		private string $name,
-		private AddressDC $address,
+		private string $address,
 		private ?string $website,
 		private ?string $emailAddress,
 	) {}
 
 
-	public static function fromDTO(OrganizationalUnit $organizationalUnit): self
+	public static function fromDTO(AdministrationUnit $organizationalUnit): self
 	{
 		return new self(
 			$organizationalUnit->getName(),
-			AddressDC::from(
-				$organizationalUnit->getStreet(),
-				$organizationalUnit->getCity(),
-				$organizationalUnit->getPostCode(),
-			),
+			$organizationalUnit->getAddress(),
 			$organizationalUnit->getWebsite(),
 			$organizationalUnit->getEmail(),
 		);

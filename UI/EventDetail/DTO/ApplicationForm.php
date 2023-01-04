@@ -3,7 +3,7 @@
 namespace HnutiBrontosaurus\Theme\UI\EventDetail\DTO;
 
 
-use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Registration\RegistrationQuestion;
+use HnutiBrontosaurus\BisClient\Response\Event\Registration\RegistrationQuestion;
 use Nette\Http\Request;
 
 
