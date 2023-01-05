@@ -77,6 +77,7 @@ final class VoluntaryFilters
 	{
 		self::$parameters->setCategories([
 			EventCategory::VOLUNTARY(),
+			EventCategory::VOLUNTARY_WITH_EXPERIENCE(),
 			EventCategory::EXPERIENCE(),
 			EventCategory::SPORT(),
 		]);
