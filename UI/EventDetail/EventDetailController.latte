@@ -226,8 +226,15 @@
 					{$event->invitation->workDescription|noescape}{* @todo: set escaping filter *}
 				</p>
 
-				<div n:if="$event->invitation->areWorkHoursPerDayListed">
-					Na&nbsp;akci budeme pracovat přibližně {$event->invitation->workHoursPerDay} hodin denně.
+				{var $areDays = $event->invitation->areWorkDaysListed}
+				{var $areHours = $event->invitation->areWorkHoursPerDayListed}
+				<div n:if="$areDays || $areHours">
+					Na&nbsp;akci budeme pracovat
+					{if $areDays}
+						{$event->invitation->workDays|formatDayCount}{if $areHours}, každý den zhruba {$event->invitation->workHoursPerDay|formatHourCount}.{else}.{/if}
+					{else}
+						přibližně {$event->invitation->workHoursPerDay|formatHourCount} denně.
+					{/if}
 				</div>
 			</div>
 

@@ -53,6 +53,20 @@ final class EventDetailController implements Controller
 		{
 			return \sprintf('%s/%d', 'TODO', $event->id); // todo
 		});
+
+		$this->latte->addFilter('formatDayCount', static fn(int $days): string =>
+			match($days) {
+				1 => \sprintf('%d den', $days),
+				2,3,4 => \sprintf('%d dny', $days),
+				default => \sprintf('%d dní', $days),
+		});
+
+		$this->latte->addFilter('formatHourCount', static fn(int $hours): string =>
+			match($hours) {
+				1 => \sprintf('%d hodinu', $hours),
+				2,3,4 => \sprintf('%d hodiny', $hours),
+				default => \sprintf('%d hodin', $hours),
+		});
 	}
 
 

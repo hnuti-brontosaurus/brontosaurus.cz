@@ -19,6 +19,8 @@ use HnutiBrontosaurus\Theme\UI\Utils;
  * @property-read string|null $workDescription
  * @property-read bool $areWorkHoursPerDayListed
  * @property-read int|null $workHoursPerDay
+ * @property-read bool $areWorkDaysListed
+ * @property-read int|null $workDays
  * @property-read bool $hasPresentation
  * @property-read InvitationPresentationDC|null $presentation
  */
@@ -38,6 +40,8 @@ final class InvitationDC
 		private array $food,
 		private bool $isWorkDescriptionListed,
 		private ?string $workDescription,
+		private bool $areWorkDaysListed,
+		private ?int $workDays,
 		private bool $areWorkHoursPerDayListed,
 		private ?int $workHoursPerDay,
 		private bool $hasPresentation,
@@ -50,6 +54,7 @@ final class InvitationDC
 		$accommodation = $invitation->getAccommodation();
 		$food = $invitation->getFood();
 		$workDescription = $invitation->getWorkDescription();
+		$workDays = $invitation->getWorkDays();
 		$workHoursPerDay = $invitation->getWorkHoursPerDay();
 		$presentation = $invitation->getPresentation();
 
@@ -70,6 +75,8 @@ final class InvitationDC
 
 			$workDescription !== null,
 			$workDescription !== null ? Utils::handleNonBreakingSpaces($workDescription) : null,
+			$workDays !== null,
+			$workDays,
 			$workHoursPerDay !== null,
 			$workHoursPerDay,
 			$presentation !== null,
