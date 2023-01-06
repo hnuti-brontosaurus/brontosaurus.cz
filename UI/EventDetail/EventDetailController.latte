@@ -146,8 +146,8 @@
 							</th>
 
 							<td class="detail__basicInformation-value">
-								{$event->contact->person}<br>
-								<a class="detail__basicInformation-contact" href="tel:{$event->contact->phone}" rel="noopener noreferrer" target="_blank">{$event->contact->phone|formatPhoneNumber}</a><br>
+								{if $event->contact->isPersonListed}{$event->contact->person}<br>{/if}
+								{if $event->contact->isPhoneListed}<a class="detail__basicInformation-contact" href="tel:{$event->contact->phone}" rel="noopener noreferrer" target="_blank">{$event->contact->phone|formatPhoneNumber}</a><br>{/if}
 								<a class="detail__basicInformation-contact" href="mailto:{$event->contact->email}" rel="noopener noreferrer" target="_blank">{$event->contact->email}</a>
 							</td>
 						</tr>
@@ -278,9 +278,9 @@
 				</h2>
 
 				<div class="detail-contact-data">
-					Kontaktní osoba: {$event->contact->person}<br>
-				E-mail: <a href="mailto:{$event->contact->email}" rel="noopener noreferrer" target="_blank">{$event->contact->email}</a><br>
-				Telefon: <a href="tel:{$event->contact->phone}" rel="noopener noreferrer" target="_blank">{$event->contact->phone|formatPhoneNumber}</a>
+					{if $event->contact->isPersonListed}Kontaktní osoba: {$event->contact->person}<br>{/if}
+					E-mail: <a href="mailto:{$event->contact->email}" rel="noopener noreferrer" target="_blank">{$event->contact->email}</a><br>
+					{if $event->contact->isPhoneListed}Telefon: <a href="tel:{$event->contact->phone}" rel="noopener noreferrer" target="_blank">{$event->contact->phone|formatPhoneNumber}</a>{/if}
 
 					{if $event->hasRelatedWebsite}
 						<br>

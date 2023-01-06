@@ -7,26 +7,32 @@ use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 
 
 /**
- * @property-read string $person
+ * @property-read bool $isPersonListed
+ * @property-read string|null $person
  * @property-read string $email
- * @property-read string $phone
+ * @property-read bool $isPhoneListed
+ * @property-read string|null $phone
  */
 final class ContactDC
 {
 	use PropertyHandler;
 
 	private function __construct(
-		private string $person,
+		private bool $isPersonListed,
+		private ?string $person,
 		private string $email,
-		private string $phone,
+		private bool $isPhoneListed,
+		private ?string $phone,
 	) {}
 
 
 	public static function fromDTO(ContactPerson $contactPerson): self
 	{
 		return new self(
+			$contactPerson->getName() !== null,
 			$contactPerson->getName(),
 			$contactPerson->getEmailAddress(),
+			$contactPerson->getPhoneNumber() !== null,
 			$contactPerson->getPhoneNumber(),
 		);
 	}
