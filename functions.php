@@ -189,9 +189,19 @@ function hb_opportunityCategoryToString(OpportunityCategory $category): string
 
 (function (\WP_Theme $theme) {
 	add_action('wp_enqueue_scripts', function () use ($theme) {
-		$themeVersion = $theme->get('Version');
-		wp_enqueue_script('brontosaurus-menu-handler', $theme->get_template_directory_uri() . '/frontend/dist/js/menuHandler.js', [], $themeVersion);
-		wp_enqueue_style('brontosaurus-main', $theme->get_template_directory_uri() . '/frontend/dist/css/style.css', [], $themeVersion);
+		$jsRelativePath = 'frontend/dist/js/menuHandler.js';
+		$cssRelativePath = 'frontend/dist/css/style.css';
+		$path = static fn(string ...$parts): string => \implode('/', $parts);
+		wp_enqueue_script(
+			handle: 'brontosaurus-menu-handler',
+			src: $path($theme->get_template_directory_uri(), $jsRelativePath),
+			ver: \filemtime($path($theme->get_template_directory(), $jsRelativePath)),
+		);
+		wp_enqueue_style(
+			handle: 'brontosaurus-main',
+			src: $path($theme->get_template_directory_uri(), $cssRelativePath),
+			ver: \filemtime($path($theme->get_template_directory(), $cssRelativePath)),
+		);
 	});
 
 	add_action('init', function () {
