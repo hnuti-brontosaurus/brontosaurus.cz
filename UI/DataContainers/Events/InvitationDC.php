@@ -2,8 +2,8 @@
 
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
+use HnutiBrontosaurus\BisClient\Response\Event\Event;
 use HnutiBrontosaurus\BisClient\Response\Event\Food;
-use HnutiBrontosaurus\BisClient\Response\Event\Invitation;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 use HnutiBrontosaurus\Theme\UI\Utils;
 
@@ -49,24 +49,27 @@ final class InvitationDC
 	) {}
 
 
-	public static function fromDTO(Invitation $invitation): self
+	public static function fromDTO(Event $event): self
 	{
-		$accommodation = $invitation->getAccommodation();
-		$food = $invitation->getFood();
-		$workDescription = $invitation->getWorkDescription();
-		$workDays = $invitation->getWorkDays();
-		$workHoursPerDay = $invitation->getWorkHoursPerDay();
-		$presentation = $invitation->getPresentation();
+		$accommodation = $event->getAccommodation();
+		$food = $event->getFood();
+		$workDescription = $event->getWorkDescription();
+		$workDays = $event->getWorkDays();
+		$workHoursPerDay = $event->getWorkHoursPerDay();
 
 		$foodLabels = [
-			Food::NON_VEGETARIAN()->toScalar() => 'ne-vegetariánská',
+			Food::MEAT()->toScalar() => 'ne-vegetariánská',
 			Food::VEGETARIAN()->toScalar() => 'vegetariánská',
 			Food::VEGAN()->toScalar() => 'veganská',
 		];
 
+		$text = $event->getAboutUs();
+		$photos = $event->getPhotos();
+		$hasPresentation = $text !== null || \count($photos) > 0;
+
 		return new self(
-			Utils::handleNonBreakingSpaces($invitation->getIntroduction()),
-			Utils::handleNonBreakingSpaces($invitation->getOrganizationalInformation()),
+			Utils::handleNonBreakingSpaces($event->getIntroduction()),
+			Utils::handleNonBreakingSpaces($event->getPracticalInformation()),
 
 			Utils::handleNonBreakingSpaces($accommodation),
 
@@ -79,8 +82,8 @@ final class InvitationDC
 			$workDays,
 			$workHoursPerDay !== null,
 			$workHoursPerDay,
-			$presentation !== null,
-			$presentation !== null ? InvitationPresentationDC::fromDTO($presentation) : null,
+			$hasPresentation,
+			$hasPresentation ? InvitationPresentationDC::fromDTO($text, $photos) : null,
 		);
 	}
 

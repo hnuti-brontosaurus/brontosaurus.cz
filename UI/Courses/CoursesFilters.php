@@ -27,7 +27,7 @@ final class CoursesFilters
 			case self::FILTER_TALKS:
 				$parameters->setCategories([
 					EventCategory::EDUCATIONAL_LECTURE(),
-					EventCategory::CLUB_TALK(),
+					EventCategory::CLUB_LECTURE(),
 				]);
 				break;
 
@@ -54,9 +54,9 @@ final class CoursesFilters
 			EventCategory::EDUCATIONAL_LECTURE(),
 			EventCategory::EDUCATIONAL_COURSE(),
 			EventCategory::EDUCATIONAL_OHB(),
-			EventCategory::EDUCATIONAL_PROGRAM(),
-			EventCategory::EDUCATIONAL_PROGRAM_WITH_STAY(),
-			EventCategory::CLUB_TALK(),
+			EventCategory::EDUCATIONAL_EDUCATIONAL(),
+			EventCategory::EDUCATIONAL_EDUCATIONAL_WITH_STAY(),
+			EventCategory::CLUB_LECTURE(),
 		]);
 	}
 

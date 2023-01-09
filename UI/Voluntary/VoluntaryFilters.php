@@ -76,10 +76,8 @@ final class VoluntaryFilters
 	private static function allRelevantTypes(): void
 	{
 		self::$parameters->setCategories([
-			EventCategory::VOLUNTARY(),
-			EventCategory::VOLUNTARY_WITH_EXPERIENCE(),
+			EventCategory::VOLUNTEERING(),
 			EventCategory::EXPERIENCE(),
-			EventCategory::SPORT(),
 		]);
 	}
 
@@ -89,7 +87,7 @@ final class VoluntaryFilters
 			Program::NONE(),
 			Program::NATURE(),
 			Program::MONUMENTS(),
-			Program::PSB(),
+			Program::HOLIDAYS_WITH_BRONTOSAURUS(),
 		]);
 	}
 

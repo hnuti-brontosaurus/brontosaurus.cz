@@ -24,7 +24,7 @@ final class ProgramDC
 	{
 		$this->isOfTypeNature = $program->equals(Program::NATURE());
 		$this->isOfTypeSights = $program->equals(Program::MONUMENTS());
-		$this->isOfTypePsb = $program->equals(Program::PSB());
+		$this->isOfTypePsb = $program->equals(Program::HOLIDAYS_WITH_BRONTOSAURUS());
 	}
 
 }

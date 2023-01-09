@@ -28,10 +28,10 @@ final class MeetupsFilters
 	private static function allRelevantTypes(): void
 	{
 		self::$parameters->setCategories([
-			EventCategory::CLUB_MEETUP(),
-			EventCategory::CLUB_TALK(),
+			EventCategory::CLUB_MEETING(),
+			EventCategory::CLUB_LECTURE(),
 			EventCategory::FOR_PUBLIC(),
-			EventCategory::EKOSTAN(),
+			EventCategory::ECO_TENT(),
 			EventCategory::EXHIBITION(),
 			EventCategory::INTERNAL_VOLUNTEER_MEETING(),
 		]);

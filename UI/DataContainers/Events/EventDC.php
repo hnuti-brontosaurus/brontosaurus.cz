@@ -99,7 +99,7 @@ final class EventDC
 
 		$this->isForFirstTimeAttendees = $event->getTargetGroup()->equals(IntendedFor::FIRST_TIME_PARTICIPANT());
 
-		$this->invitation = InvitationDC::fromDTO($event->getInvitation());
+		$this->invitation = InvitationDC::fromDTO($event);
 
 		$organizers = $event->getOrganizers();
 		$this->areOrganizersListed = $organizers !== null;

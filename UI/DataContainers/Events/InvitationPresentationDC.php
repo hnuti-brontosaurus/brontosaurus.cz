@@ -2,8 +2,8 @@
 
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
+use HnutiBrontosaurus\BisClient\Response\Event\Event;
 use HnutiBrontosaurus\BisClient\Response\Event\Photo;
-use HnutiBrontosaurus\BisClient\Response\Event\Presentation;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 use HnutiBrontosaurus\Theme\UI\Utils;
 
@@ -29,10 +29,11 @@ final class InvitationPresentationDC
 	) {}
 
 
-	public static function fromDTO(Presentation $presentation): self
+	/**
+	 * @param Photo[] $photos
+	 */
+	public static function fromDTO(?string $text, array $photos): self
 	{
-		$text = $presentation->getText();
-		$photos = $presentation->getPhotos();
 		return new self(
 			$text !== null,
 			$text !== null ? Utils::handleNonBreakingSpaces($text) : null,
