@@ -41,6 +41,7 @@ final class EventDetailController implements Controller
 	) {
 		$this->latte->addFilter('renderWebsiteUserFriendly', static function (string $website): string {
 			$hostname = \parse_url($website, PHP_URL_HOST);
+			$hostname = $hostname !== null ? $hostname : $website; // in case of passing "a.b.cz" to parse_url(), it fails to parse it for some reason, so just skip it
 
 			if (Strings::startsWith($hostname, 'www.')) {
 				$hostname = \str_replace('www.', '', $hostname);
