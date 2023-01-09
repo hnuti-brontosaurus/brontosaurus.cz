@@ -3,6 +3,7 @@
 namespace HnutiBrontosaurus\Theme;
 
 use HnutiBrontosaurus\BisClient\Enums\OpportunityCategory;
+use Brick\DateTime\LocalDate;
 use HnutiBrontosaurus\Theme\UI\Courses\CoursesController;
 use HnutiBrontosaurus\Theme\UI\EventDetail\EventDetailController;
 use HnutiBrontosaurus\Theme\UI\ForChildren\ForChildrenController;
@@ -148,8 +149,10 @@ function getLinkFor(string $slug): string
 }
 
 
-function hb_dateSpan(\DateTimeInterface $start, \DateTimeInterface $end, string $dateFormat): string
+function hb_dateSpan(LocalDate $start, LocalDate $end, string $dateFormat): string
 {
+	$start = $start->toNativeDateTimeImmutable();
+	$end = $end->toNativeDateTimeImmutable();
 	$dateSpan_untilPart = $end->format($dateFormat);
 
 	$onlyOneDay = $start->format('j') === $end->format('j');

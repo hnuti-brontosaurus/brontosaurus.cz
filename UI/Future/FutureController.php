@@ -28,7 +28,7 @@ final class FutureController implements Controller
 	public function render(): void
 	{
 		$params = new EventParameters();
-//		$params->orderByDateFrom(); // todo what with this?
+		$params->orderByStartDate();
 
 		$hasBeenUnableToLoad = false;
 
@@ -41,7 +41,7 @@ final class FutureController implements Controller
 			$lastMonth = null;
 
 			foreach ($events as $event) {
-				$monthNumber = (int) $event->getDateFrom()->format('n');
+				$monthNumber = $event->getStartDate()->getMonth();
 				if ($lastMonth === null || $lastMonth !== $monthNumber) {
 					if ($currentMonthWrapperDC !== null) {
 						$months[] = $currentMonthWrapperDC;

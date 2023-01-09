@@ -2,6 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
+use Brick\DateTime\LocalDate;
 use HnutiBrontosaurus\BisClient\Enums\IntendedFor;
 use HnutiBrontosaurus\BisClient\Response\Event\Event;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
@@ -81,15 +82,15 @@ final class EventDC
 		$this->hasCoverPhoto = $coverPhotoPath !== null;
 		$this->coverPhotoPath = $event->getCoverPhotoPath()->getMediumSizePath(); // todo small?
 
-		$this->dateStartForHumans = $event->getDateFrom()->format($dateFormatHuman);
-		$this->dateStartForRobots = $event->getDateFrom()->format($dateFormatRobot);
-		$time = $event->getDateFrom()->format('H:i');
-		$hasTimeStart = $time !== '00:00'; // assuming that no event will start at midnight
-		$this->hasTimeStart = $hasTimeStart;
-		$this->timeStart = $hasTimeStart ? $time : null;
+		$startDateNative = $event->getStartDate()->toNativeDateTimeImmutable();
+		$this->dateStartForHumans = $startDateNative->format($dateFormatHuman);
+		$this->dateStartForRobots = $startDateNative->format($dateFormatRobot);
+		$timeStart = $event->getStartTime();
+		$this->hasTimeStart = $timeStart !== null;
+		$this->timeStart = $timeStart?->toNativeDateTimeImmutable()->format('H:i');
 
-		$this->dateEnd = $event->getDateUntil();
-		$this->dateSpan = $this->getDateSpan($event->getDateFrom(), $event->getDateUntil(), $dateFormatHuman);
+		$this->dateEnd = $event->getEndDate()->toNativeDateTimeImmutable();
+		$this->dateSpan = $this->getDateSpan($event->getStartDate(), $event->getEndDate(), $dateFormatHuman);
 		$this->place = PlaceDC::fromDTO($event->getLocation());
 		$this->age = AgeDC::fromDTO($event);
 
@@ -124,8 +125,7 @@ final class EventDC
 
 	public static function getDuration(Event $event): int
 	{
-		$duration = $event->getDateUntil()->diff($event->getDateFrom())->days;
-		\assert($duration !== false);
+		$duration = $event->getStartDate()->daysUntil($event->getEndDate());
 		return $duration + 1; // because 2018-11-30 -> 2018-11-30 is not 0, but 1 etc.
 	}
 
@@ -145,8 +145,10 @@ final class EventDC
 	}
 
 
-	private function getDateSpan(\DateTimeImmutable $dateFrom, \DateTimeImmutable $dateUntil, string $dateFormatHuman): string
+	private function getDateSpan(LocalDate $dateFrom, LocalDate $dateUntil, string $dateFormatHuman): string
 	{
+		$dateFrom = $dateFrom->toNativeDateTimeImmutable();
+		$dateUntil = $dateUntil->toNativeDateTimeImmutable();
 		$dateSpan_untilPart = $dateUntil->format($dateFormatHuman);
 
 		$onlyOneDay = $dateFrom->format('j') === $dateUntil->format('j');

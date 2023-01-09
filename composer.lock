@@ -7,6 +7,61 @@
     "content-hash": "f1758ae999579b7b9fcd2665dd793f68",
     "packages": [
         {
+            "name": "brick/date-time",
+            "version": "0.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brick/date-time.git",
+                "reference": "68598d3cd11d9fba4527c8ac600e27e826f1addd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brick/date-time/zipball/68598d3cd11d9fba4527c8ac600e27e826f1addd",
+                "reference": "68598d3cd11d9fba4527c8ac600e27e826f1addd",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.2",
+                "phpunit/phpunit": "^9.0",
+                "vimeo/psalm": "4.23.0"
+            },
+            "suggest": {
+                "ext-timezonedb": "This PECL extension provides up-to-date timezone information"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Brick\\DateTime\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Date and time library",
+            "keywords": [
+                "brick",
+                "date",
+                "datetime",
+                "time"
+            ],
+            "support": {
+                "issues": "https://github.com/brick/date-time/issues",
+                "source": "https://github.com/brick/date-time/tree/0.4.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/BenMorel",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-06-18T22:07:10+00:00"
+        },
+        {
             "name": "clue/stream-filter",
             "version": "v1.6.0",
             "source": {
@@ -558,15 +613,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnuti-brontosaurus/php-bis-api-client.git",
-                "reference": "ca633d9359d367c65c4b3a889d4320be90d4e183"
+                "reference": "38ede0ae79eaf4d89fc06d19f2005f8df04d451d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnuti-brontosaurus/php-bis-api-client/zipball/ca633d9359d367c65c4b3a889d4320be90d4e183",
-                "reference": "ca633d9359d367c65c4b3a889d4320be90d4e183",
+                "url": "https://api.github.com/repos/hnuti-brontosaurus/php-bis-api-client/zipball/38ede0ae79eaf4d89fc06d19f2005f8df04d451d",
+                "reference": "38ede0ae79eaf4d89fc06d19f2005f8df04d451d",
                 "shasum": ""
             },
             "require": {
+                "brick/date-time": "^0.4.0",
                 "grifart/enum": "^0.2.1",
                 "guzzlehttp/guzzle": "^7.3",
                 "php": ">=8.0"
@@ -601,7 +657,7 @@
                 "source": "https://github.com/hnuti-brontosaurus/php-bis-api-client/tree/main",
                 "issues": "https://github.com/hnuti-brontosaurus/php-bis-api-client/issues"
             },
-            "time": "2023-01-09T11:56:34+00:00"
+            "time": "2023-01-09T13:44:10+00:00"
         },
         {
             "name": "http-interop/http-factory-guzzle",

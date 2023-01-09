@@ -100,7 +100,7 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 
 			<div class="events-event-header-meta">
 				<time class="events-event-header-meta-datetime" datetime="{$event->dateStartForRobots}">
-					<?php echo hb_dateSpan($opportunity->getDateStart(), $opportunity->getDateEnd(), $dateFormat); ?>
+					<?php echo hb_dateSpan($opportunity->getStartDate(), $opportunity->getEndDate(), $dateFormat); ?>
 				</time>
 
 				<span class="events-event-header-meta-place" title="Místo konání">
