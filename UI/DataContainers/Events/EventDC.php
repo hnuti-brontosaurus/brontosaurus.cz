@@ -13,6 +13,7 @@ use HnutiBrontosaurus\Theme\UI\Utils;
  * @property-read string $title
  * @property-read string $dateStartForHumans
  * @property-read string $dateStartForRobots
+ * @property-read bool $hasTimeStart
  * @property-read string|null $timeStart
  * @property-read \DateTimeImmutable $dateEnd
  * @property-read string $dateSpan
@@ -48,6 +49,7 @@ final class EventDC
 	private ?string $coverPhotoPath;
 	private string $dateStartForHumans;
 	private string $dateStartForRobots;
+	private bool $hasTimeStart;
 	private ?string $timeStart;
 	private \DateTimeImmutable $dateEnd;
 	private string $dateSpan;
@@ -81,7 +83,10 @@ final class EventDC
 
 		$this->dateStartForHumans = $event->getDateFrom()->format($dateFormatHuman);
 		$this->dateStartForRobots = $event->getDateFrom()->format($dateFormatRobot);
-		$this->timeStart = $event->getDateFrom()->format('H:i');
+		$time = $event->getDateFrom()->format('H:i');
+		$hasTimeStart = $time !== '00:00'; // assuming that no event will start at midnight
+		$this->hasTimeStart = $hasTimeStart;
+		$this->timeStart = $hasTimeStart ? $time : null;
 
 		$this->dateEnd = $event->getDateUntil();
 		$this->dateSpan = $this->getDateSpan($event->getDateFrom(), $event->getDateUntil(), $dateFormatHuman);
