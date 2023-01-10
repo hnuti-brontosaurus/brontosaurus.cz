@@ -3,7 +3,7 @@
 namespace HnutiBrontosaurus\Theme\UI\EventDetail;
 
 use HnutiBrontosaurus\BisClient\BisClient;
-use HnutiBrontosaurus\BisClient\BisClientRuntimeException;
+use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\Response\Event\Event;
 use HnutiBrontosaurus\Theme\NotFound;
 use HnutiBrontosaurus\Theme\SentryLogger;
@@ -99,7 +99,7 @@ final class EventDetailController implements Controller
 		} catch (\HnutiBrontosaurus\BisClient\NotFound) {
 			throw new NotFound();
 
-		} catch (BisClientRuntimeException) {
+		} catch (ConnectionToBisFailed) {
 			$hasBeenUnableToLoad = true;
 		}
 

@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-use HnutiBrontosaurus\BisClient\BisClientRuntimeException;
+use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use function HnutiBrontosaurus\Theme\hb_dateSpan;
 use function HnutiBrontosaurus\Theme\hb_opportunityCategoryToString;
 use const HnutiBrontosaurus\Theme\HB_OPPORTUNITY_ID;

@@ -3,8 +3,8 @@
 namespace HnutiBrontosaurus\Theme\UI\ForChildren;
 
 use HnutiBrontosaurus\BisClient\BisClient;
+use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\Request\Event\EventParameters;
-use HnutiBrontosaurus\BisClient\RuntimeException;
 use HnutiBrontosaurus\Theme\UI\AboutStructure\AboutStructureController;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
@@ -38,7 +38,7 @@ final class ForChildrenController implements Controller
 			$events = $this->bisApiClient->getEvents($params);
 			$eventCollection = new EventCollectionDC($events, $this->dateFormatHuman, $this->dateFormatRobot);
 
-		} catch (RuntimeException $e) {
+		} catch (ConnectionToBisFailed) {
 			$eventCollection = EventCollectionDC::unableToLoad($this->dateFormatHuman, $this->dateFormatRobot);
 
 		}

@@ -3,9 +3,8 @@
 namespace HnutiBrontosaurus\Theme\UI\Future;
 
 use HnutiBrontosaurus\BisClient\BisClient;
-use HnutiBrontosaurus\BisClient\BisClientRuntimeException;
+use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\Request\Event\EventParameters;
-use HnutiBrontosaurus\BisClient\RuntimeException;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
 use HnutiBrontosaurus\Theme\UI\DataContainers\MonthWrapperDC;
@@ -59,7 +58,7 @@ final class FutureController implements Controller
 				$months[] = $currentMonthWrapperDC;
 			}
 
-		} catch (BisClientRuntimeException) {
+		} catch (ConnectionToBisFailed) {
 			$months = [];
 			$hasBeenUnableToLoad = true;
 		}

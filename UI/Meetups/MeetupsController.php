@@ -3,8 +3,8 @@
 namespace HnutiBrontosaurus\Theme\UI\Meetups;
 
 use HnutiBrontosaurus\BisClient\BisClient;
+use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\Request\Event\EventParameters;
-use HnutiBrontosaurus\BisClient\RuntimeException;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventCollectionDC;
@@ -37,7 +37,7 @@ final class MeetupsController implements Controller
 			$events = $this->bisApiClient->getEvents($params);
 			$eventCollection = new EventCollectionDC($events, $this->dateFormatHuman, $this->dateFormatRobot);
 
-		} catch (RuntimeException) {
+		} catch (ConnectionToBisFailed) {
 			$eventCollection = EventCollectionDC::unableToLoad($this->dateFormatHuman, $this->dateFormatRobot);
 
 		}

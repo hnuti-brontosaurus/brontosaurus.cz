@@ -1,10 +1,9 @@
 <?php declare(strict_types = 1);
 
-use HnutiBrontosaurus\BisClient\BisClientRuntimeException;
+use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\Enums\OpportunityCategory;
 use HnutiBrontosaurus\BisClient\Request\Opportunity\OpportunityParameters;
 use HnutiBrontosaurus\BisClient\Response\Opportunity\Opportunity;
-use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
 use HnutiBrontosaurus\Theme\CannotResolveCoordinates;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\OrganizationalUnitDC;
 use Nette\Utils\Strings;
@@ -57,7 +56,7 @@ try {
 		}
 	}
 
-} catch (BisClientRuntimeException|BisApiClientRuntimeException) {
+} catch (ConnectionToBisFailed) {
 	$hasBeenUnableToLoad = true;
 }
 
