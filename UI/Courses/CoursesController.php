@@ -4,7 +4,7 @@ namespace HnutiBrontosaurus\Theme\UI\Courses;
 
 use HnutiBrontosaurus\BisClient\BisClient;
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
-use HnutiBrontosaurus\BisClient\Request\Event\EventParameters;
+use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventCollectionDC;

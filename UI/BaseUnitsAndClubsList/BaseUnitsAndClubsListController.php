@@ -2,10 +2,9 @@
 
 namespace HnutiBrontosaurus\Theme\UI\BaseUnitsAndClubsList;
 
+use HnutiBrontosaurus\BisClient\AdministrationUnit\Response\AdministrationUnit;
 use HnutiBrontosaurus\BisClient\BisClient;
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
-use HnutiBrontosaurus\BisClient\Response\AdministrationUnit\AdministrationUnit;
-use HnutiBrontosaurus\BisClient\Response\OrganizationalUnit\OrganizationalUnit;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
 use Latte\Engine;

@@ -1,9 +1,9 @@
 <?php declare(strict_types = 1);
 
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
-use HnutiBrontosaurus\BisClient\Enums\OpportunityCategory;
-use HnutiBrontosaurus\BisClient\Request\Opportunity\OpportunityParameters;
-use HnutiBrontosaurus\BisClient\Response\Opportunity\Opportunity;
+use HnutiBrontosaurus\BisClient\Opportunity\Category;
+use HnutiBrontosaurus\BisClient\Opportunity\Request\OpportunityParameters;
+use HnutiBrontosaurus\BisClient\Opportunity\Response\Opportunity;
 use HnutiBrontosaurus\Theme\CannotResolveCoordinates;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\OrganizationalUnitDC;
 use Nette\Utils\Strings;
@@ -32,9 +32,9 @@ $applyFilter = static function (?string $filter): ?OpportunityParameters {
 
 	$params = new OpportunityParameters();
 	$category = match ($filter) {
-		'organizovani-akci' => OpportunityCategory::ORGANIZING(),
-		'spoluprace' => OpportunityCategory::COLLABORATION(),
-		'pomoc-lokalite' => OpportunityCategory::LOCATION_HELP(),
+		'organizovani-akci' => Category::ORGANIZING(),
+		'spoluprace' => Category::COLLABORATION(),
+		'pomoc-lokalite' => Category::LOCATION_HELP(),
 	};
 	$params->setCategory($category);
 	return $params;

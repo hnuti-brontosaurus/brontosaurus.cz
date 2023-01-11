@@ -2,7 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme\UI\BaseUnitsAndClubsList;
 
-use HnutiBrontosaurus\BisClient\Response\AdministrationUnit\AdministrationUnit;
+use HnutiBrontosaurus\BisClient\AdministrationUnit\Response\AdministrationUnit;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 
 

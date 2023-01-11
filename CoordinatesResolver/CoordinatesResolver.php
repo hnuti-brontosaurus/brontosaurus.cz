@@ -5,7 +5,7 @@ namespace HnutiBrontosaurus\Theme\CoordinatesResolver;
 use Grifart\GeocodingClient\GeocodingService;
 use Grifart\GeocodingClient\Location;
 use Grifart\GeocodingClient\MapyCz\NoResultException;
-use HnutiBrontosaurus\BisClient\Response\AdministrationUnit\AdministrationUnit;
+use HnutiBrontosaurus\BisClient\AdministrationUnit\Response\AdministrationUnit;
 use HnutiBrontosaurus\Theme\CannotResolveCoordinates;
 
 

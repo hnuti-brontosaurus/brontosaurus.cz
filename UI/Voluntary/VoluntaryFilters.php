@@ -2,10 +2,10 @@
 
 namespace HnutiBrontosaurus\Theme\UI\Voluntary;
 
-use HnutiBrontosaurus\BisClient\Enums\EventCategory;
-use HnutiBrontosaurus\BisClient\Enums\IntendedFor;
-use HnutiBrontosaurus\BisClient\Enums\Program;
-use HnutiBrontosaurus\BisClient\Request\Event\EventParameters;
+use HnutiBrontosaurus\BisClient\Event\Category;
+use HnutiBrontosaurus\BisClient\Event\IntendedFor;
+use HnutiBrontosaurus\BisClient\Event\Program;
+use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 
 
 final class VoluntaryFilters
@@ -76,8 +76,8 @@ final class VoluntaryFilters
 	private static function allRelevantTypes(): void
 	{
 		self::$parameters->setCategories([
-			EventCategory::VOLUNTEERING(),
-			EventCategory::EXPERIENCE(),
+			Category::VOLUNTEERING(),
+			Category::EXPERIENCE(),
 		]);
 	}
 

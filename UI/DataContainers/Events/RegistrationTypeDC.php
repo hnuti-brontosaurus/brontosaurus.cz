@@ -2,8 +2,6 @@
 
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
-use HnutiBrontosaurus\BisClient\Response\Event\Registration\RegistrationQuestion;
-use HnutiBrontosaurus\BisClient\Response\Event\Registration\RegistrationType;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 use Nette\Utils\Strings;
 

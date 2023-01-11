@@ -2,7 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
-use HnutiBrontosaurus\BisClient\Enums\Program;
+use HnutiBrontosaurus\BisClient\Event\Program;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 
 

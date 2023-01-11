@@ -2,7 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Structure;
 
-use HnutiBrontosaurus\BisClient\Response\AdministrationUnit\AdministrationUnit;
+use HnutiBrontosaurus\BisClient\AdministrationUnit\Response\AdministrationUnit;
 use HnutiBrontosaurus\Theme\CoordinatesResolver\Coordinates;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 

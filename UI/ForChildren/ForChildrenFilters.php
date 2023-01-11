@@ -2,10 +2,10 @@
 
 namespace HnutiBrontosaurus\Theme\UI\ForChildren;
 
-use HnutiBrontosaurus\BisClient\Enums\EventCategory;
-use HnutiBrontosaurus\BisClient\Enums\EventGroup;
-use HnutiBrontosaurus\BisClient\Enums\IntendedFor;
-use HnutiBrontosaurus\BisClient\Request\Event\EventParameters;
+use HnutiBrontosaurus\BisClient\Event\Category;
+use HnutiBrontosaurus\BisClient\Event\Group;
+use HnutiBrontosaurus\BisClient\Event\IntendedFor;
+use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 
 
 final class ForChildrenFilters
@@ -30,12 +30,12 @@ final class ForChildrenFilters
 
 		switch ($selectedFilter) {
 			case self::FILTER_CAMPS:
-				self::$parameters->setGroup(EventGroup::CAMP());
+				self::$parameters->setGroup(Group::CAMP());
 				self::allRelevantTargetGroups();
 				break;
 
 			case self::FILTER_UNITS:
-				self::$parameters->setCategory(EventCategory::INTERNAL_GROUP_MEETING());
+				self::$parameters->setCategory(Category::INTERNAL_VOLUNTEER_MEETING());
 				self::allRelevantTargetGroups();
 				break;
 

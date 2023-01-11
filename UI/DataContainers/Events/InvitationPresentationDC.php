@@ -2,8 +2,8 @@
 
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
-use HnutiBrontosaurus\BisClient\Response\Event\Event;
-use HnutiBrontosaurus\BisClient\Response\Event\Photo;
+use HnutiBrontosaurus\BisClient\Event\Response\Event;
+use HnutiBrontosaurus\BisClient\Event\Response\Photo;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 use HnutiBrontosaurus\Theme\UI\Utils;
 

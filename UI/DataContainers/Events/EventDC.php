@@ -3,8 +3,8 @@
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
 use Brick\DateTime\LocalDate;
-use HnutiBrontosaurus\BisClient\Enums\IntendedFor;
-use HnutiBrontosaurus\BisClient\Response\Event\Event;
+use HnutiBrontosaurus\BisClient\Event\IntendedFor;
+use HnutiBrontosaurus\BisClient\Event\Response\Event;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 use HnutiBrontosaurus\Theme\UI\Utils;
 

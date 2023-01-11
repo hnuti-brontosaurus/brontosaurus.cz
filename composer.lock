@@ -613,12 +613,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnuti-brontosaurus/php-bis-api-client.git",
-                "reference": "40a848887616f637c6d81868206a2b39c59c2fed"
+                "reference": "34f97750ba357112aebb06d9dfe69cc88f1f992c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnuti-brontosaurus/php-bis-api-client/zipball/40a848887616f637c6d81868206a2b39c59c2fed",
-                "reference": "40a848887616f637c6d81868206a2b39c59c2fed",
+                "url": "https://api.github.com/repos/hnuti-brontosaurus/php-bis-api-client/zipball/34f97750ba357112aebb06d9dfe69cc88f1f992c",
+                "reference": "34f97750ba357112aebb06d9dfe69cc88f1f992c",
                 "shasum": ""
             },
             "require": {
@@ -654,10 +654,10 @@
             ],
             "description": "API client for Hnutí Brontosaurus IS written in PHP.",
             "support": {
-                "source": "https://github.com/hnuti-brontosaurus/php-bis-api-client/tree/main",
+                "source": "https://github.com/hnuti-brontosaurus/php-bis-api-client/tree/4.0.0-beta.1",
                 "issues": "https://github.com/hnuti-brontosaurus/php-bis-api-client/issues"
             },
-            "time": "2023-01-11T09:50:40+00:00"
+            "time": "2023-01-11T10:20:45+00:00"
         },
         {
             "name": "http-interop/http-factory-guzzle",
