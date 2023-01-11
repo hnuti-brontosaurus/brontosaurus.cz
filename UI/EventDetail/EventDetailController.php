@@ -5,6 +5,7 @@ namespace HnutiBrontosaurus\Theme\UI\EventDetail;
 use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
 use HnutiBrontosaurus\LegacyBisApiClient\Client;
 use HnutiBrontosaurus\LegacyBisApiClient\NotFoundException;
+use HnutiBrontosaurus\LegacyBisApiClient\Request\EventParameters;
 use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Event;
 use HnutiBrontosaurus\LegacyBisApiClient\Response\InvalidUserInputException;
 use HnutiBrontosaurus\Theme\NotFound;
@@ -76,7 +77,9 @@ final class EventDetailController implements Controller
 		$hasBeenUnableToLoad = false;
 
 		try {
-			$this->event = $this->bisApiClient->getEvent($eventId);
+			$params = new EventParameters();
+			$params->hideTheseAlreadyStarted(); // this should be rather named includePast()..
+			$this->event = $this->bisApiClient->getEvent($eventId, $params);
 			$eventDC = new EventDC($this->event, $this->dateFormatHuman, $this->dateFormatRobot);
 
 			$this->processApplicationForm();
