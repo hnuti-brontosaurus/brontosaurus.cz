@@ -40,7 +40,7 @@
 				<div class="detail__tagList-wrapper">
 					{if $event->hasCoverPhoto}
 						<a class="detail__coverImage-wrapper" href="{$event->coverPhotoPath}">
-							<img class="detail__coverImage" src="{if $event->hasCoverPhoto}{$event->coverPhotoPath}{else}{$distPath}/images/logo-hb-brontosaurus.svg{/if}" alt="">
+							<img class="detail__coverImage" src="{if $event->hasCoverPhoto}{$event->coverPhotoPath}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}" alt="">
 						</a>
 					{else}
 						<div class="detail__coverImage detail__coverImage--none"></div>

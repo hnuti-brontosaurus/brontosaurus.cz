@@ -1,9 +1,9 @@
 {varType HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventDC $event}
 <a class="events-event" href="detail/{$event->id}">{* todo: using rather WP routing somehow *}
 	<div class="events-event-image-wrapper">
-		<img alt="" n:class="events-event-image, ! $event->hasCoverPhoto ? 'events-event-image--noThumbnail'" data-src="{if $event->hasCoverPhoto}{$event->coverPhotoPath}{else}{$distPath}/images/logo-hb-brontosaurus.svg{/if}">
+		<img alt="" n:class="events-event-image, ! $event->hasCoverPhoto ? 'events-event-image--noThumbnail'" data-src="{if $event->hasCoverPhoto}{$event->coverPhotoPath}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}">
 		<noscript>{* for search engines *}
-			<img alt="" n:class="events-event-image, ! $event->hasCoverPhoto ? 'events-event-image--noThumbnail'" src="{if $event->hasCoverPhoto}{$event->coverPhotoPath}{else}{$distPath}/images/logo-hb-brontosaurus.svg{/if}">
+			<img alt="" n:class="events-event-image, ! $event->hasCoverPhoto ? 'events-event-image--noThumbnail'" src="{if $event->hasCoverPhoto}{$event->coverPhotoPath}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}">
 		</noscript>
 
 		<div class="events-event-meta eventTagList">
