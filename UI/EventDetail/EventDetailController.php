@@ -4,6 +4,7 @@ namespace HnutiBrontosaurus\Theme\UI\EventDetail;
 
 use HnutiBrontosaurus\BisClient\BisClient;
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
+use HnutiBrontosaurus\BisClient\EventNotFound;
 use HnutiBrontosaurus\BisClient\Response\Event\Event;
 use HnutiBrontosaurus\Theme\NotFound;
 use HnutiBrontosaurus\Theme\SentryLogger;
@@ -96,7 +97,7 @@ final class EventDetailController implements Controller
 				]);
 			});
 
-		} catch (\HnutiBrontosaurus\BisClient\NotFound) {
+		} catch (EventNotFound) {
 			throw new NotFound();
 
 		} catch (ConnectionToBisFailed) {
