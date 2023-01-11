@@ -80,7 +80,7 @@ final class EventDC
 
 		$coverPhotoPath = $event->getCoverPhotoPath();
 		$this->hasCoverPhoto = $coverPhotoPath !== null;
-		$this->coverPhotoPath = $event->getCoverPhotoPath()->getMediumSizePath(); // todo small?
+		$this->coverPhotoPath = $coverPhotoPath?->getMediumSizePath(); // todo small?
 
 		$startDateNative = $event->getStartDate()->toNativeDateTimeImmutable();
 		$this->dateStartForHumans = $startDateNative->format($dateFormatHuman);
