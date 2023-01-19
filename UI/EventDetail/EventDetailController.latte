@@ -146,7 +146,7 @@
 							</th>
 
 							<td class="detail__basicInformation-value">
-								{$event->contact->person}<br>
+								{if $event->contact->hasPerson}{$event->contact->person}<br>{/if}
 								<a class="detail__basicInformation-contact" href="tel:{$event->contact->phone}" rel="noopener noreferrer" target="_blank">{$event->contact->phone|formatPhoneNumber}</a><br>
 								<a class="detail__basicInformation-contact" href="mailto:{$event->contact->email}" rel="noopener noreferrer" target="_blank">{$event->contact->email}</a>
 							</td>
@@ -279,7 +279,7 @@
 				</h2>
 
 				<div class="detail-contact-data">
-					Kontaktní osoba: {$event->contact->person}<br>
+					{if $event->contact->hasPerson}Kontaktní osoba: {$event->contact->person}<br>{/if}
 					E-mail: <a href="mailto:{$event->contact->email}" rel="noopener noreferrer" target="_blank">{$event->contact->email}</a><br>
 					Telefon: <a href="tel:{$event->contact->phone}" rel="noopener noreferrer" target="_blank">{$event->contact->phone|formatPhoneNumber}</a>
 
