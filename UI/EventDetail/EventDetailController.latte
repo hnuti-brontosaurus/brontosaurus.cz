@@ -46,26 +46,8 @@
 						<div class="detail__coverImage detail__coverImage--none"></div>
 					{/if}
 
-					<div class="detail__tagList eventTagList">
-						<span
-							n:class="'eventTagList__item', 'eventTagList__item--type', $event->program->isOfTypeNature ? 'eventTagList__item--nature', $event->program->isOfTypeSights ? 'eventTagList__item--sights'"
-							n:if="$event->program->isOfTypeNature || $event->program->isOfTypeSights"
-						>
-							akce
-							{if $event->program->isOfTypeNature}
-								příroda
-							{elseif $event->program->isOfTypeSights}
-								památky
-							{/if}
-						</span>
-
-						<div class="eventTagList__item" n:if="$event->program->isOfTypePsb">
-							prázdninové
-						</div>
-
-						<div class="eventTagList__item" n:if="! ($event->program->isOfTypePsb && $event->isLongTime)">
-							{$event->duration|typeByDayCount}
-						</div>
+					<div class="detail__tagList">
+						{include '../components/eventTagList.latte', tags: $event->tags}
 					</div>
 				</div>
 

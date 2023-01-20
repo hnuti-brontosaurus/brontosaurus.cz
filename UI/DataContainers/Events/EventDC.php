@@ -37,6 +37,7 @@ use HnutiBrontosaurus\Theme\UI\Utils;
  * @property-read ProgramDC $program
  * @property-read bool $hasRelatedWebsite
  * @property-read string|null $relatedWebsite
+ * @property-read Tag[] $tags
  */
 final class EventDC
 {
@@ -70,6 +71,8 @@ final class EventDC
 	private ProgramDC $program;
 	private bool $hasRelatedWebsite;
 	private ?string $relatedWebsite;
+	/** @var Tag[] */
+	public array $tags = [];
 
 
 	public function __construct(Event $event, string $dateFormatHuman, string $dateFormatRobot)
@@ -119,6 +122,25 @@ final class EventDC
 		$relatedWebsite = $event->getRelatedWebsite();
 		$this->hasRelatedWebsite = $relatedWebsite !== null;
 		$this->relatedWebsite = $relatedWebsite;
+
+		$this->tags = [];
+		if ($this->program->isOfTypeNature) {
+			$this->tags[] = new Tag('akce příroda', 'nature');
+		}
+		if ($this->program->isOfTypeSights) {
+			$this->tags[] = new Tag('akce památky', 'sights');
+		}
+		if ($this->program->isOfTypePsb) {
+			$this->tags[] = new Tag('prázdninové');
+		}
+		if (! ($this->program->isOfTypePsb && $this->isLongTime)) {
+			$this->tags[] = new Tag(match (self::resolveDurationCategory($this->duration))
+			{
+				self::DURATION_CATEGORY_ONE_DAY => 'jednodenní',
+				self::DURATION_CATEGORY_WEEKEND => 'víkendovka',
+				default => 'dlouhodobá',
+			});
+		}
 	}
 
 
