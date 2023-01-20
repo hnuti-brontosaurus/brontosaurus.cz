@@ -34,7 +34,6 @@ use HnutiBrontosaurus\Theme\UI\Utils;
  * @property-read string|NULL $organizerUnit
  * @property-read bool $hasCoverPhoto
  * @property-read string|null $coverPhotoPath
- * @property-read bool $hasProgram
  * @property-read ProgramDC $program
  * @property-read bool $hasRelatedWebsite
  * @property-read string|null $relatedWebsite
