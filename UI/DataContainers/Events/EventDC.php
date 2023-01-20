@@ -19,7 +19,6 @@ use HnutiBrontosaurus\Theme\UI\Utils;
  * @property-read \DateTimeImmutable $dateEnd
  * @property-read string $dateSpan
  * @property-read int $duration
- * @property-read bool $isLongTime
  * @property-read PlaceDC $place
  * @property-read AgeDC $age
  * @property-read bool $isPaid
@@ -55,7 +54,6 @@ final class EventDC
 	private \DateTimeImmutable $dateEnd;
 	private string $dateSpan;
 	private int $duration;
-	private bool $isLongTime;
 	private PlaceDC $place;
 	private AgeDC $age;
 	private bool $isPaid;
@@ -115,7 +113,6 @@ final class EventDC
 		$this->organizerUnit = \implode(', ', $event->getAdministrationUnits());
 
 		$this->duration = self::getDuration($event);
-		$this->isLongTime = self::resolveDurationCategory($this->duration) === self::DURATION_CATEGORY_LONG_TIME;
 
 		$this->program = new ProgramDC($event->getProgram());
 
