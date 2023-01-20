@@ -47,7 +47,7 @@ final class VoluntaryFilters
 			case self::FILTER_HOLIDAY_EVENTS:
 				self::allRelevantTypes();
 				self::allRelevantTargetGroups();
-				self::$parameters->setProgram(Program::PSB());
+				self::$parameters->setProgram(Program::HOLIDAYS_WITH_BRONTOSAURUS());
 				break;
 
 			case self::FILTER_NATURE:

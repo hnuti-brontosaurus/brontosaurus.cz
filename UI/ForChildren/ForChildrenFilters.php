@@ -35,7 +35,7 @@ final class ForChildrenFilters
 				break;
 
 			case self::FILTER_UNITS:
-				self::$parameters->setCategory(Category::INTERNAL_VOLUNTEER_MEETING());
+				self::$parameters->setCategory(Category::INTERNAL_SECTION_MEETING());
 				self::allRelevantTargetGroups();
 				break;
 
