@@ -151,11 +151,11 @@ final class EventDC
 	}
 
 
-	const DURATION_CATEGORY_ONE_DAY = 1;
-	const DURATION_CATEGORY_WEEKEND = 2;
-	const DURATION_CATEGORY_LONG_TIME = 3;
+	private const DURATION_CATEGORY_ONE_DAY = 1;
+	private const DURATION_CATEGORY_WEEKEND = 2;
+	private const DURATION_CATEGORY_LONG_TIME = 3;
 
-	public static function resolveDurationCategory(int $dayCount): int
+	private static function resolveDurationCategory(int $dayCount): int
 	{
 		return match ($dayCount)
 		{

@@ -50,7 +50,6 @@ final class ControllerFactory
 		private SentryLogger $logger,
 	) {
 		Utils::registerFormatPhoneNumberLatteFilter($this->latte);
-		Utils::registerTypeByDayCountLatteFilter($this->latte);
 	}
 
 	/*
