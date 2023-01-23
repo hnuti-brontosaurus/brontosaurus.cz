@@ -2,8 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
-use HnutiBrontosaurus\BisClient\Event\Response\Event;
-use HnutiBrontosaurus\BisClient\Event\Response\Photo;
+use HnutiBrontosaurus\BisClient\Event\Response\Image;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 use HnutiBrontosaurus\Theme\UI\Utils;
 
@@ -30,7 +29,7 @@ final class InvitationPresentationDC
 
 
 	/**
-	 * @param Photo[] $photos
+	 * @param Image[] $photos
 	 */
 	public static function fromDTO(?string $text, array $photos): self
 	{
@@ -38,7 +37,7 @@ final class InvitationPresentationDC
 			$text !== null,
 			$text !== null ? Utils::handleNonBreakingSpaces($text) : null,
 			\count($photos) > 0,
-			\array_map(fn(Photo $photo): string => $photo->getMediumSizePath(), $photos),
+			\array_map(fn(Image $photo): string => $photo->getMedium(), $photos),
 		);
 	}
 

@@ -4,7 +4,7 @@
     "require": {
         "google/recaptcha": "^1.2",
         "grifart/geocoding-client": "^0.1.0",
-        "hnuti-brontosaurus/php-bis-api-client": "dev-main#26c35d58dc069f5489ef3cb3ddc0a66ffd7dec21",
+        "hnuti-brontosaurus/php-bis-api-client": "dev-main",
         "latte/latte": "^2.10",
         "nette/http": "^3.1",
         "nette/mail": "^3.1",

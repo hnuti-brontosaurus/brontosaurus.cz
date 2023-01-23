@@ -2,6 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
+use HnutiBrontosaurus\BisClient\Event\Response\Diet;
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
 use HnutiBrontosaurus\BisClient\Event\Response\Food;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
@@ -51,30 +52,30 @@ final class InvitationDC
 
 	public static function fromDTO(Event $event): self
 	{
-		$accommodation = $event->getAccommodation();
-		$food = $event->getFood();
-		$workDescription = $event->getWorkDescription();
-		$workDays = $event->getWorkDays();
-		$workHoursPerDay = $event->getWorkHoursPerDay();
+		$accommodation = $event->getPropagation()->getAccommodation();
+		$food = $event->getPropagation()->getDiets();
+		$workDescription = $event->getPropagation()->getInvitationTextWorkDescription();
+		$workDays = $event->getPropagation()->getWorkingDays();
+		$workHoursPerDay = $event->getPropagation()->getWorkingHours();
 
 		$foodLabels = [
-			Food::MEAT()->toScalar() => 'ne-vegetariánská',
-			Food::VEGETARIAN()->toScalar() => 'vegetariánská',
-			Food::VEGAN()->toScalar() => 'veganská',
+			Diet::MEAT()->toScalar() => 'ne-vegetariánská',
+			Diet::VEGETARIAN()->toScalar() => 'vegetariánská',
+			Diet::VEGAN()->toScalar() => 'veganská',
 		];
 
-		$text = $event->getAboutUs();
-		$photos = $event->getPhotos();
+		$text = $event->getPropagation()->getInvitationTextAboutUs();
+		$photos = $event->getPropagation()->getImages();
 		$hasPresentation = $text !== null || \count($photos) > 0;
 
 		return new self(
-			Utils::handleNonBreakingSpaces($event->getIntroduction()),
-			Utils::handleNonBreakingSpaces($event->getPracticalInformation()),
+			Utils::handleNonBreakingSpaces($event->getPropagation()->getInvitationTextIntroduction()),
+			Utils::handleNonBreakingSpaces($event->getPropagation()->getInvitationTextPracticalInformation()),
 
 			Utils::handleNonBreakingSpaces($accommodation),
 
 			\count($food) > 0,
-			\array_map(static fn(Food $food): string => $foodLabels[$food->toScalar()], $food),
+			\array_map(static fn(Diet $food): string => $foodLabels[$food->toScalar()], $food),
 
 			$workDescription !== null,
 			$workDescription !== null ? Utils::handleNonBreakingSpaces($workDescription) : null,

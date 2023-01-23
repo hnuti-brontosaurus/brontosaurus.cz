@@ -29,9 +29,9 @@ final class AgeDC
 
 	public static function fromDTO(Event $event): self
 	{
-		$ageFrom = $event->getAgeFrom();
+		$ageFrom = $event->getPropagation()->getMinimumAge();
 		$ageFromValid = self::ageFromInValidConstraints($ageFrom);
-		$ageUntil = $event->getAgeUntil();
+		$ageUntil = $event->getPropagation()->getMaximumAge();
 		$ageUntilValid = self::ageUntilInValidConstraints($ageUntil);
 
 		return new self(

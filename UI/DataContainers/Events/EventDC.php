@@ -95,20 +95,20 @@ final class EventDC
 		$this->place = PlaceDC::fromDTO($event->getLocation());
 		$this->age = AgeDC::fromDTO($event);
 
-		$price = $event->getPrice();
+		$price = $event->getPropagation()->getCost();
 		$this->isPaid = $price !== null;
 		$this->price = $price;
 
-		$this->contact = ContactDC::fromDTO($event->getContactPerson());
+		$this->contact = ContactDC::fromDTO($event->getPropagation()->getContactPerson());
 
-		$this->isRegistrationRequired = $event->getIsRegistrationRequired();
-		$this->isFull = $event->getIsFull();
+		$this->isRegistrationRequired = $event->getRegistration()->getIsRegistrationRequired();
+		$this->isFull = $event->getRegistration()->getIsEventFull();
 
-		$this->isForFirstTimeAttendees = $event->getTargetGroup()->equals(IntendedFor::FIRST_TIME_PARTICIPANT());
+		$this->isForFirstTimeAttendees = $event->getIntendedFor()->equals(IntendedFor::FIRST_TIME_PARTICIPANT());
 
 		$this->invitation = InvitationDC::fromDTO($event);
 
-		$organizers = $event->getOrganizers();
+		$organizers = $event->getPropagation()->getOrganizers();
 		$this->areOrganizersListed = $organizers !== null;
 		$this->organizers = $organizers;
 		$this->organizerUnit = \implode(', ', $event->getAdministrationUnits());
@@ -117,7 +117,7 @@ final class EventDC
 
 		$this->program = new ProgramDC($event->getProgram());
 
-		$relatedWebsite = $event->getRelatedWebsite();
+		$relatedWebsite = $event->getPropagation()->getWebUrl();
 		$this->hasRelatedWebsite = $relatedWebsite !== null;
 		$this->relatedWebsite = $relatedWebsite;
 
