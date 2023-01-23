@@ -113,7 +113,7 @@ final class EventDC
 		$this->organizers = $organizers;
 		$this->organizerUnit = \implode(', ', $event->getAdministrationUnits());
 
-		$this->duration = self::getDuration($event);
+		$this->duration = $event->getDuration();
 
 		$this->program = new ProgramDC($event->getProgram());
 
@@ -132,17 +132,10 @@ final class EventDC
 		$group = $event->getGroup();
 		$this->tags[] = new Tag(match (true) {
 			$this->program->isOfTypePsb => 'prázdninové',
-			$this->duration === 1 => 'jednodenní',
+			$event->getDuration() === 1 => 'jednodenní',
 			$group->equals(Group::WEEKEND_EVENT()) => 'víkendovka',
 			$group->equals(Group::OTHER()) && $this->duration > 1 => 'dlouhodobá',
 		});
-	}
-
-
-	public static function getDuration(Event $event): int
-	{
-		$duration = $event->getStartDate()->daysUntil($event->getEndDate());
-		return $duration + 1; // because 2018-11-30 -> 2018-11-30 is not 0, but 1 etc.
 	}
 
 

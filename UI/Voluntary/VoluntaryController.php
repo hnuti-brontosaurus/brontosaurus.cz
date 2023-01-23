@@ -83,7 +83,7 @@ final class VoluntaryController implements Controller
 		$filteredEvents = [];
 
 		foreach ($events as $event) {
-			if ($selectedFilter === VoluntaryFilters::FILTER_ONE_DAY_EVENTS && EventDC::getDuration($event) === 1) {
+			if ($selectedFilter === VoluntaryFilters::FILTER_ONE_DAY_EVENTS && $event->getDuration() === 1) {
 				$filteredEvents[] = $event;
 			}
 		}
