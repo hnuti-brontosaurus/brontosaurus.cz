@@ -3,6 +3,7 @@
 namespace HnutiBrontosaurus\Theme\UI\Voluntary;
 
 use HnutiBrontosaurus\BisClient\Event\Category;
+use HnutiBrontosaurus\BisClient\Event\Group;
 use HnutiBrontosaurus\BisClient\Event\IntendedFor;
 use HnutiBrontosaurus\BisClient\Event\Program;
 use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
@@ -36,9 +37,15 @@ final class VoluntaryFilters
 				self::$parameters->setIntendedFor(IntendedFor::FIRST_TIME_PARTICIPANT());
 				break;
 
-			// these two are post-resolved by their day counts
 			case self::FILTER_WEEKEND_EVENTS:
+				self::$parameters->setGroup(Group::WEEKEND_EVENT());
+				self::allRelevantTypes();
+				self::allRelevantPrograms();
+				self::allRelevantTargetGroups();
+				break;
+
 			case self::FILTER_ONE_DAY_EVENTS:
+				self::$parameters->setGroup(Group::OTHER()); // includes possibly also other events than camps and weekend events, is filtered later by day count
 				self::allRelevantTypes();
 				self::allRelevantPrograms();
 				self::allRelevantTargetGroups();

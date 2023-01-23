@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f38a5db7f8eacca5870d22673c69df3e",
+    "content-hash": "de5ee5a06a4b02abb65f944352ca3898",
     "packages": [
         {
             "name": "brick/date-time",
@@ -609,16 +609,16 @@
         },
         {
             "name": "hnuti-brontosaurus/php-bis-api-client",
-            "version": "4.0.0-beta.1",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnuti-brontosaurus/php-bis-api-client.git",
-                "reference": "34f97750ba357112aebb06d9dfe69cc88f1f992c"
+                "reference": "279822954e3969ec7049fb6f1c88b60f43009c77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnuti-brontosaurus/php-bis-api-client/zipball/34f97750ba357112aebb06d9dfe69cc88f1f992c",
-                "reference": "34f97750ba357112aebb06d9dfe69cc88f1f992c",
+                "url": "https://api.github.com/repos/hnuti-brontosaurus/php-bis-api-client/zipball/279822954e3969ec7049fb6f1c88b60f43009c77",
+                "reference": "279822954e3969ec7049fb6f1c88b60f43009c77",
                 "shasum": ""
             },
             "require": {
@@ -631,6 +631,7 @@
                 "phpstan/phpstan": "^1.8",
                 "tracy/tracy": "^2.5"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -653,10 +654,10 @@
             ],
             "description": "API client for Hnutí Brontosaurus IS written in PHP.",
             "support": {
-                "source": "https://github.com/hnuti-brontosaurus/php-bis-api-client/tree/4.0.0-beta.1",
+                "source": "https://github.com/hnuti-brontosaurus/php-bis-api-client/tree/main",
                 "issues": "https://github.com/hnuti-brontosaurus/php-bis-api-client/issues"
             },
-            "time": "2023-01-11T10:20:45+00:00"
+            "time": "2023-01-23T07:56:33+00:00"
         },
         {
             "name": "http-interop/http-factory-guzzle",
@@ -2813,7 +2814,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "hnuti-brontosaurus/php-bis-api-client": 10
+        "hnuti-brontosaurus/php-bis-api-client": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

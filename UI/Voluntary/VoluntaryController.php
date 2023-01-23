@@ -45,8 +45,8 @@ final class VoluntaryController implements Controller
 		}
 
 		if ($eventCollection === null) {
-			// in case of weekend or one day events, we need to do post filtering because BIS API can not filter by event duration
-			if ($selectedFilter === VoluntaryFilters::FILTER_WEEKEND_EVENTS || $selectedFilter === VoluntaryFilters::FILTER_ONE_DAY_EVENTS) {
+			// in case of one-day events, we need to do post-filtering because BIS doesn't distinct on domain level
+			if ($selectedFilter === VoluntaryFilters::FILTER_ONE_DAY_EVENTS) {
 				$events = $this->postFilter($events, $selectedFilter);
 			}
 
@@ -83,10 +83,7 @@ final class VoluntaryController implements Controller
 		$filteredEvents = [];
 
 		foreach ($events as $event) {
-			if ($selectedFilter === VoluntaryFilters::FILTER_WEEKEND_EVENTS && EventDC::resolveDurationCategory(EventDC::getDuration($event)) === EventDC::DURATION_CATEGORY_WEEKEND) {
-				$filteredEvents[] = $event;
-			}
-			if ($selectedFilter === VoluntaryFilters::FILTER_ONE_DAY_EVENTS && EventDC::resolveDurationCategory(EventDC::getDuration($event)) === EventDC::DURATION_CATEGORY_ONE_DAY) {
+			if ($selectedFilter === VoluntaryFilters::FILTER_ONE_DAY_EVENTS && EventDC::getDuration($event) === 1) {
 				$filteredEvents[] = $event;
 			}
 		}

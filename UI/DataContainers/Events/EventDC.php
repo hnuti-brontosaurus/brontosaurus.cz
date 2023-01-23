@@ -3,6 +3,7 @@
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
 use Brick\DateTime\LocalDate;
+use HnutiBrontosaurus\BisClient\Event\Group;
 use HnutiBrontosaurus\BisClient\Event\IntendedFor;
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
@@ -127,17 +128,14 @@ final class EventDC
 		if ($this->program->isOfTypeSights) {
 			$this->tags[] = new Tag('akce památky', 'sights');
 		}
-		if ($this->program->isOfTypePsb) {
-			$this->tags[] = new Tag('prázdninové');
-		}
-		if (! ($this->program->isOfTypePsb && $this->isLongTime)) {
-			$this->tags[] = new Tag(match (self::resolveDurationCategory($this->duration))
-			{
-				self::DURATION_CATEGORY_ONE_DAY => 'jednodenní',
-				self::DURATION_CATEGORY_WEEKEND => 'víkendovka',
-				default => 'dlouhodobá',
-			});
-		}
+
+		$group = $event->getGroup();
+		$this->tags[] = new Tag(match (true) {
+			$this->program->isOfTypePsb => 'prázdninové',
+			$this->duration === 1 => 'jednodenní',
+			$group->equals(Group::WEEKEND_EVENT()) => 'víkendovka',
+			$group->equals(Group::OTHER()) && $this->duration > 1 => 'dlouhodobá',
+		});
 	}
 
 
@@ -145,21 +143,6 @@ final class EventDC
 	{
 		$duration = $event->getStartDate()->daysUntil($event->getEndDate());
 		return $duration + 1; // because 2018-11-30 -> 2018-11-30 is not 0, but 1 etc.
-	}
-
-
-	private const DURATION_CATEGORY_ONE_DAY = 1;
-	private const DURATION_CATEGORY_WEEKEND = 2;
-	private const DURATION_CATEGORY_LONG_TIME = 3;
-
-	private static function resolveDurationCategory(int $dayCount): int
-	{
-		return match ($dayCount)
-		{
-			1 => self::DURATION_CATEGORY_ONE_DAY,
-			2, 3, 4, 5 => self::DURATION_CATEGORY_WEEKEND,
-			default => self::DURATION_CATEGORY_LONG_TIME,
-		};
 	}
 
 
