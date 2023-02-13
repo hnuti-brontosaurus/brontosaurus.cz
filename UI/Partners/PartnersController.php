@@ -168,6 +168,12 @@ final class PartnersController implements Controller
 				'image' => self::getPath('active-citizens-fund.jpg'),
 				'url' => 'https://activecitizensfund.no',
 			],
+			[
+				'id' => 'smsticket',
+				'name' => 'smsticket',
+				'image' => self::getPath('smsticket.png'),
+				'url' => 'https://www.smsticket.cz',
+			],
 		];
 	}
 
