@@ -72,7 +72,9 @@ try {
 					<dt>Kontakt</dt>
 					<dd>
 						<?php echo $opportunity->getContactPerson()->getName(); ?><br>
+						<?php if ($opportunity->getContactPerson()->getPhoneNumber() !== ''): ?>
 						<a class="detail__basicInformation-contact" href="tel:<?php echo $opportunity->getContactPerson()->getPhoneNumber(); ?>" rel="noopener noreferrer" target="_blank"><?php echo $opportunity->getContactPerson()->getPhoneNumber(); ?></a><br>
+						<?php endif; ?>
 						<a class="detail__basicInformation-contact" href="mailto:<?php echo $opportunity->getContactPerson()->getEmailAddress(); ?>" rel="noopener noreferrer" target="_blank"><?php echo $opportunity->getContactPerson()->getEmailAddress(); ?></a>
 					</dd>
 				</dl>
@@ -117,8 +119,10 @@ try {
 						<dd><?php echo $opportunity->getContactPerson()->getName(); ?></dd>
 						<dt>E-mail:</dt>
 						<dd><a class="prilezitost__email" href="mailto:<?php echo $opportunity->getContactPerson()->getEmailAddress(); ?>" rel="noopener noreferrer" target="_blank"><?php echo $opportunity->getContactPerson()->getEmailAddress(); ?></a></dd>
+						<?php if ($opportunity->getContactPerson()->getPhoneNumber() !== ''): ?>
 						<dt>Telefon:</dt>
 						<dd><a class="prilezitost__phone" href="tel:<?php echo $opportunity->getContactPerson()->getPhoneNumber(); ?>" rel="noopener noreferrer" target="_blank"><?php echo $opportunity->getContactPerson()->getPhoneNumber(); ?></a></dd>
+						<?php endif; ?>
 					</dl>
 				</address>
 			</section>

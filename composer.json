@@ -20,7 +20,9 @@
         },
         "classmap": [
             "exceptions.php",
-            "legacy-bis-api-client/src/exceptions.php"
+            "legacy-bis-api-client/src/exceptions.php",
+			"legacy-bis-api-client/src/Response/exceptions.php",
+			"legacy-bis-api-client/src/Response/OrganizationalUnit/exceptions.php"
         ]
     },
     "config": {
