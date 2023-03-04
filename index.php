@@ -7,6 +7,7 @@ use Grifart\GeocodingClient\MapyCz\Mapping\Mapper;
 use Grifart\GeocodingClient\MapyCz\MapyCzGeocodingService;
 use HnutiBrontosaurus\BisClient\BisClient;
 use HnutiBrontosaurus\BisClient\BisClientFactory;
+use HnutiBrontosaurus\Theme\ApplicationUrlTemplate;
 use HnutiBrontosaurus\Theme\Configuration;
 use HnutiBrontosaurus\Theme\CoordinatesResolver\CoordinatesResolver;
 use HnutiBrontosaurus\Theme\NotFound;
@@ -159,6 +160,7 @@ function hb_getDateFormatForRobot(Configuration $configuration): string
 			),
 			$sentryLogger,
 		),
+		ApplicationUrlTemplate::from($configuration->get('bis:applicationUrlTemplate')),
 		$bisApiClient,
 		new BaseFactory($configuration->get('enableTracking')),
 		$latte,

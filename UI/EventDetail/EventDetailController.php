@@ -6,6 +6,7 @@ use HnutiBrontosaurus\BisClient\BisClient;
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\EventNotFound;
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
+use HnutiBrontosaurus\Theme\ApplicationUrlTemplate;
 use HnutiBrontosaurus\Theme\NotFound;
 use HnutiBrontosaurus\Theme\SentryLogger;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
@@ -34,6 +35,7 @@ final class EventDetailController implements Controller
 		private string $recaptchaSiteKey,
 		private string $recaptchaSecretKey,
 		private ApplicationFormFacade $applicationFormFacade,
+		private ApplicationUrlTemplate $applicationUrlTemplate,
 		private BisClient $bisApiClient,
 		private Base $base,
 		private Engine $latte,
@@ -51,9 +53,9 @@ final class EventDetailController implements Controller
 			return $hostname;
 		});
 
-		$this->latte->addFilter('resolveRegistrationLink', static function (EventDC $event): string
+		$this->latte->addFilter('resolveRegistrationLink', function (EventDC $event): string
 		{
-			return \sprintf('%s/%d', 'TODO', $event->id); // todo
+			return $this->applicationUrlTemplate->for($event->id);
 		});
 
 		$this->latte->addFilter('formatDayCount', static fn(int $days): string =>
