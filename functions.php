@@ -75,7 +75,7 @@ add_action('init', function () {
 		'has_archive' => true,
 		'public' => true,
 		'show_ui' => true,
-		'show_in_rest' => true, // disables gutenberg (it is not ready for various styles)
+		'show_in_rest' => true,
 		'supports' => ['title', 'editor', 'excerpt', 'thumbnail'],
 		'hierarchical' => false,
 	]);
