@@ -2,7 +2,8 @@
 
 namespace HnutiBrontosaurus\Theme;
 
-use HnutiBrontosaurus\BisClient\Enums\OpportunityCategory;
+use Brick\DateTime\LocalDate;
+use HnutiBrontosaurus\BisClient\Opportunity\Category;
 use HnutiBrontosaurus\Theme\UI\Courses\CoursesController;
 use HnutiBrontosaurus\Theme\UI\EventDetail\EventDetailController;
 use HnutiBrontosaurus\Theme\UI\ForChildren\ForChildrenController;
@@ -164,8 +165,10 @@ function getLinkFor(string $slug): string
 }
 
 
-function hb_dateSpan(\DateTimeInterface $start, \DateTimeInterface $end, string $dateFormat): string
+function hb_dateSpan(LocalDate $start, LocalDate $end, string $dateFormat): string
 {
+	$start = $start->toNativeDateTimeImmutable();
+	$end = $end->toNativeDateTimeImmutable();
 	$dateSpan_untilPart = $end->format($dateFormat);
 
 	$onlyOneDay = $start->format('j') === $end->format('j');
@@ -191,12 +194,12 @@ function hb_dateSpan(\DateTimeInterface $start, \DateTimeInterface $end, string 
 }
 
 
-function hb_opportunityCategoryToString(OpportunityCategory $category): string
+function hb_opportunityCategoryToString(Category $category): string
 {
 	return match (true) {
-		$category->equals(OpportunityCategory::ORGANIZING()) => 'organizování akcí',
-		$category->equals(OpportunityCategory::COLLABORATION()) => 'spolupráce',
-		$category->equals(OpportunityCategory::LOCATION_HELP()) => 'pomoc lokalitě',
+		$category->equals(Category::ORGANIZING()) => 'organizování akcí',
+		$category->equals(Category::COLLABORATION()) => 'spolupráce',
+		$category->equals(Category::LOCATION_HELP()) => 'pomoc lokalitě',
 	};
 }
 

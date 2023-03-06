@@ -4,8 +4,63 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "142d6001bf965846c9a12da424690e0f",
+    "content-hash": "f1758ae999579b7b9fcd2665dd793f68",
     "packages": [
+        {
+            "name": "brick/date-time",
+            "version": "0.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brick/date-time.git",
+                "reference": "68598d3cd11d9fba4527c8ac600e27e826f1addd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brick/date-time/zipball/68598d3cd11d9fba4527c8ac600e27e826f1addd",
+                "reference": "68598d3cd11d9fba4527c8ac600e27e826f1addd",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.2",
+                "phpunit/phpunit": "^9.0",
+                "vimeo/psalm": "4.23.0"
+            },
+            "suggest": {
+                "ext-timezonedb": "This PECL extension provides up-to-date timezone information"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Brick\\DateTime\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Date and time library",
+            "keywords": [
+                "brick",
+                "date",
+                "datetime",
+                "time"
+            ],
+            "support": {
+                "issues": "https://github.com/brick/date-time/issues",
+                "source": "https://github.com/brick/date-time/tree/0.4.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/BenMorel",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-06-18T22:07:10+00:00"
+        },
         {
             "name": "clue/stream-filter",
             "version": "v1.6.0",
@@ -554,27 +609,29 @@
         },
         {
             "name": "hnuti-brontosaurus/php-bis-api-client",
-            "version": "dev-opportunities",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnuti-brontosaurus/php-bis-api-client.git",
-                "reference": "092b407a27a3223db37a07c28b75565e721b8c82"
+                "reference": "6f8465ec494f7fb1998b61dece9a94bba3f6a592"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnuti-brontosaurus/php-bis-api-client/zipball/092b407a27a3223db37a07c28b75565e721b8c82",
-                "reference": "092b407a27a3223db37a07c28b75565e721b8c82",
+                "url": "https://api.github.com/repos/hnuti-brontosaurus/php-bis-api-client/zipball/6f8465ec494f7fb1998b61dece9a94bba3f6a592",
+                "reference": "6f8465ec494f7fb1998b61dece9a94bba3f6a592",
                 "shasum": ""
             },
             "require": {
+                "brick/date-time": "^0.4.0",
                 "grifart/enum": "^0.2.1",
                 "guzzlehttp/guzzle": "^7.3",
                 "php": ">=8.0"
             },
             "require-dev": {
-                "phpstan/phpstan": "^0.12.88",
+                "phpstan/phpstan": "^1.8",
                 "tracy/tracy": "^2.5"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -582,6 +639,11 @@
                 },
                 "classmap": [
                     "src/exceptions.php"
+                ]
+            },
+            "scripts": {
+                "phpstan": [
+                    "phpstan analyze --no-progress --no-interaction -c phpstan.neon"
                 ]
             },
             "authors": [
@@ -592,10 +654,10 @@
             ],
             "description": "API client for Hnutí Brontosaurus IS written in PHP.",
             "support": {
-                "source": "https://github.com/hnuti-brontosaurus/php-bis-api-client/tree/opportunities",
+                "source": "https://github.com/hnuti-brontosaurus/php-bis-api-client/tree/4.0.0-beta.3",
                 "issues": "https://github.com/hnuti-brontosaurus/php-bis-api-client/issues"
             },
-            "time": "2022-10-03T08:13:43+00:00"
+            "time": "2023-01-30T14:18:22+00:00"
         },
         {
             "name": "http-interop/http-factory-guzzle",

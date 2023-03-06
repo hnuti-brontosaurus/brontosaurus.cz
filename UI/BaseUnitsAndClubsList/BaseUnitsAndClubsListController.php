@@ -2,9 +2,9 @@
 
 namespace HnutiBrontosaurus\Theme\UI\BaseUnitsAndClubsList;
 
-use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
-use HnutiBrontosaurus\LegacyBisApiClient\Client;
-use HnutiBrontosaurus\LegacyBisApiClient\Response\OrganizationalUnit\OrganizationalUnit;
+use HnutiBrontosaurus\BisClient\AdministrationUnit\Response\AdministrationUnit;
+use HnutiBrontosaurus\BisClient\BisClient;
+use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
 use Latte\Engine;
@@ -15,7 +15,7 @@ final class BaseUnitsAndClubsListController implements Controller
 	public const PAGE_SLUG = 'zakladni-clanky-a-kluby';
 
 	public function __construct(
-		private Client $bisApiClient,
+		private BisClient $bisApiClient,
 		private Base $base,
 		private Engine $latte,
 	) {}
@@ -26,23 +26,23 @@ final class BaseUnitsAndClubsListController implements Controller
 
 		try {
 			// get all organizational units
-			$units = $this->bisApiClient->getOrganizationalUnits();
+			$units = $this->bisApiClient->getAdministrationUnits();
 
 			// filter only base units and clubs
 			$units = \array_filter(
 				$units,
-				static fn(OrganizationalUnit $unit): bool
+				static fn(AdministrationUnit $unit): bool
 					=> $unit->isBaseUnit() || $unit->isClub()
 			);
 
 			// transfer DTOs to DCs
 			$units = \array_map(
-				static fn(OrganizationalUnit $unit): OrganizationalUnitDC
+				static fn(AdministrationUnit $unit): OrganizationalUnitDC
 					=> OrganizationalUnitDC::fromDTO($unit),
 				$units,
 			);
 
-		} catch (BisApiClientRuntimeException) {
+		} catch (ConnectionToBisFailed) {
 			$hasBeenUnableToLoad = true;
 		}
 

@@ -2,12 +2,11 @@
 
 namespace HnutiBrontosaurus\Theme\UI\EventDetail;
 
-use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
-use HnutiBrontosaurus\LegacyBisApiClient\Client;
-use HnutiBrontosaurus\LegacyBisApiClient\NotFoundException;
-use HnutiBrontosaurus\LegacyBisApiClient\Request\EventParameters;
-use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Event;
-use HnutiBrontosaurus\LegacyBisApiClient\Response\InvalidUserInputException;
+use HnutiBrontosaurus\BisClient\BisClient;
+use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
+use HnutiBrontosaurus\BisClient\EventNotFound;
+use HnutiBrontosaurus\BisClient\Event\Response\Event;
+use HnutiBrontosaurus\Theme\ApplicationUrlTemplate;
 use HnutiBrontosaurus\Theme\NotFound;
 use HnutiBrontosaurus\Theme\SentryLogger;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
@@ -36,7 +35,8 @@ final class EventDetailController implements Controller
 		private string $recaptchaSiteKey,
 		private string $recaptchaSecretKey,
 		private ApplicationFormFacade $applicationFormFacade,
-		private Client $bisApiClient,
+		private ApplicationUrlTemplate $applicationUrlTemplate,
+		private BisClient $bisApiClient,
 		private Base $base,
 		private Engine $latte,
 		private Request $httpRequest,
@@ -44,6 +44,7 @@ final class EventDetailController implements Controller
 	) {
 		$this->latte->addFilter('renderWebsiteUserFriendly', static function (string $website): string {
 			$hostname = \parse_url($website, PHP_URL_HOST);
+			$hostname = $hostname !== null ? $hostname : $website; // in case of passing "a.b.cz" to parse_url(), it fails to parse it for some reason, so just skip it
 
 			if (Strings::startsWith($hostname, 'www.')) {
 				$hostname = \str_replace('www.', '', $hostname);
@@ -52,14 +53,23 @@ final class EventDetailController implements Controller
 			return $hostname;
 		});
 
-		$this->latte->addFilter('resolveLinkTarget', static function (EventDC $event): string
+		$this->latte->addFilter('resolveRegistrationLink', function (EventDC $event): string
 		{
-			$registrationType = $event->registrationType;
-			return match (true) {
-				$registrationType->isOfTypeEmail => 'mailto:' . $registrationType->email . '?subject=Přihláška na akci ' . $event->title,
-				$registrationType->isOfTypeCustomWebpage => $registrationType->url,
-				default => throw new \LogicException('Unsupported type'),
-			};
+			return $this->applicationUrlTemplate->for($event->id);
+		});
+
+		$this->latte->addFilter('formatDayCount', static fn(int $days): string =>
+			match($days) {
+				1 => \sprintf('%d den', $days),
+				2,3,4 => \sprintf('%d dny', $days),
+				default => \sprintf('%d dní', $days),
+		});
+
+		$this->latte->addFilter('formatHourCount', static fn(int $hours): string =>
+			match($hours) {
+				1 => \sprintf('%d hodinu', $hours),
+				2,3,4 => \sprintf('%d hodiny', $hours),
+				default => \sprintf('%d hodin', $hours),
 		});
 	}
 
@@ -77,12 +87,10 @@ final class EventDetailController implements Controller
 		$hasBeenUnableToLoad = false;
 
 		try {
-			$params = new EventParameters();
-			$params->hideTheseAlreadyStarted(); // this should be rather named includePast()..
-			$this->event = $this->bisApiClient->getEvent($eventId, $params);
+			$this->event = $this->bisApiClient->getEvent($eventId);
 			$eventDC = new EventDC($this->event, $this->dateFormatHuman, $this->dateFormatRobot);
 
-			$this->processApplicationForm();
+//			$this->processApplicationForm();
 
 			// add event name to title tag (source https://stackoverflow.com/a/62410632/3668474)
 			add_filter('document_title_parts', function (array $title) {
@@ -91,10 +99,10 @@ final class EventDetailController implements Controller
 				]);
 			});
 
-		} catch (NotFoundException) {
+		} catch (EventNotFound) {
 			throw new NotFound();
 
-		} catch (BisApiClientRuntimeException) {
+		} catch (ConnectionToBisFailed) {
 			$hasBeenUnableToLoad = true;
 		}
 
@@ -196,14 +204,7 @@ final class EventDetailController implements Controller
 			return;
 		}
 
-		try {
-			$this->applicationFormFacade->processApplicationForm($this->event, $applicationForm);
-
-		} catch (InvalidUserInputException $e) {
-			$this->applicationFormErrors = [$e->getMessage()];
-			$this->applicationFormData = $applicationForm->toArray();
-			return;
-		}
+		$this->applicationFormFacade->processApplicationForm($this->event, $applicationForm);
 
 		wp_redirect(\sprintf($this->httpRequest->getUrl()->getPath() . '?%s=1', self::APPLICATION_FORM_SUCCESS_KEY));
 	}

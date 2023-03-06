@@ -2,9 +2,10 @@
 
 namespace HnutiBrontosaurus\Theme\UI\Future;
 
-use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
-use HnutiBrontosaurus\LegacyBisApiClient\Client;
-use HnutiBrontosaurus\LegacyBisApiClient\Request\EventParameters;
+use HnutiBrontosaurus\BisClient\BisClient;
+use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
+use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
+use HnutiBrontosaurus\BisClient\Event\Request\Period;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
 use HnutiBrontosaurus\Theme\UI\DataContainers\MonthWrapperDC;
@@ -18,7 +19,7 @@ final class FutureController implements Controller
 	public function __construct(
 		private string $dateFormatHuman,
 		private string $dateFormatRobot,
-		private Client $bisApiClient,
+		private BisClient $bisApiClient,
 		private Base $base,
 		private Engine $latte,
 	) {}
@@ -27,8 +28,8 @@ final class FutureController implements Controller
 	public function render(): void
 	{
 		$params = new EventParameters();
-		$params->hideTheseAlreadyStarted();
 		$params->orderByStartDate();
+		$params->setPeriod(Period::FUTURE_ONLY());
 
 		$hasBeenUnableToLoad = false;
 
@@ -41,7 +42,7 @@ final class FutureController implements Controller
 			$lastMonth = null;
 
 			foreach ($events as $event) {
-				$monthNumber = (int) $event->getDateFrom()->format('n');
+				$monthNumber = $event->getStartDate()->getMonth();
 				if ($lastMonth === null || $lastMonth !== $monthNumber) {
 					if ($currentMonthWrapperDC !== null) {
 						$months[] = $currentMonthWrapperDC;
@@ -59,7 +60,7 @@ final class FutureController implements Controller
 				$months[] = $currentMonthWrapperDC;
 			}
 
-		} catch (BisApiClientRuntimeException $e) {
+		} catch (ConnectionToBisFailed) {
 			$months = [];
 			$hasBeenUnableToLoad = true;
 		}

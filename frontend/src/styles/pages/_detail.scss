@@ -93,8 +93,7 @@ $detail-breakpoint-large-from: "min-width: " + ($detail-breakpoint-mediumToLarge
 	&__tagList {
 		position: absolute;
 		bottom: 0;
-		width: 100%;
-		justify-content: flex-end !important; // overwrite `.eventTagList` rule
+		right: 0;
 		padding: 0 vr-unit(0.5) vr-unit(0.5);
 		text-align: center;
 	}

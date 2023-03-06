@@ -99,6 +99,7 @@ build.frontend:
             -x "UI/EventDetail/assets/src/*"
             -x "UI/Rentals/assets/src/*"
             -i "vendor/*"
+            -i "ApplicationUrlTemplate.php"
             -i "archive-novinky.php"
             -i "bootstrap.php"
             -i "composer.json"

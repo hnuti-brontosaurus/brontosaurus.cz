@@ -2,16 +2,17 @@
 
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
-use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Event;
+use Brick\DateTime\LocalDate;
+use HnutiBrontosaurus\BisClient\Event\Group;
+use HnutiBrontosaurus\BisClient\Event\IntendedFor;
+use HnutiBrontosaurus\BisClient\Event\Response\Event;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 use HnutiBrontosaurus\Theme\UI\Utils;
-use Nette\Utils\Strings;
 
 
 /**
  * @property-read int $id
  * @property-read string $title
- * @property-read string $slug
  * @property-read string $dateStartForHumans
  * @property-read string $dateStartForRobots
  * @property-read bool $hasTimeStart
@@ -19,35 +20,32 @@ use Nette\Utils\Strings;
  * @property-read \DateTimeImmutable $dateEnd
  * @property-read string $dateSpan
  * @property-read int $duration
- * @property-read bool $isLongTime
  * @property-read PlaceDC $place
  * @property-read AgeDC $age
  * @property-read bool $isPaid
- * @property-read string $price
+ * @property-read string|null $price
  * @property-read ContactDC $contact
- * @property-read RegistrationTypeDC $registrationType
+ * @property-read bool $isRegistrationRequired
+ * @property-read bool $isFull
  * @property-read bool $isForFirstTimeAttendees
  * @property-read InvitationDC $invitation
  * @property-read bool $areOrganizersListed
- * @property-read string|NULL $organizers
- * @property-read bool $isOrganizerUnitListed
+ * @property-read string|null $organizers
  * @property-read string|NULL $organizerUnit
  * @property-read bool $hasCoverPhoto
- * @property-read string|NULL $coverPhotoPath
- * @property-read bool $hasProgram
+ * @property-read string|null $coverPhotoPath
  * @property-read ProgramDC $program
  * @property-read bool $hasRelatedWebsite
  * @property-read string|null $relatedWebsite
+ * @property-read Tag[] $tags
  */
 final class EventDC
 {
-
 	use PropertyHandler;
 
 
 	private int $id;
 	private string $title;
-	private string $slug;
 	private bool $hasCoverPhoto;
 	private ?string $coverPhotoPath;
 	private string $dateStartForHumans;
@@ -57,96 +55,94 @@ final class EventDC
 	private \DateTimeImmutable $dateEnd;
 	private string $dateSpan;
 	private int $duration;
-	private bool $isLongTime;
 	private PlaceDC $place;
 	private AgeDC $age;
 	private bool $isPaid;
-	private string|int|null $price;
+	private ?string $price;
 	private ContactDC $contact;
-	private RegistrationTypeDC $registrationType;
+	private bool $isRegistrationRequired;
+	private bool $isFull;
 	private bool $isForFirstTimeAttendees;
 	private InvitationDC $invitation;
 	private bool $areOrganizersListed;
 	private ?string $organizers;
-	private bool $isOrganizerUnitListed; // could be probably removed once it's clear that unit is always listed
 	private ?string $organizerUnit;
 	private ProgramDC $program;
 	private bool $hasRelatedWebsite;
 	private ?string $relatedWebsite;
+	/** @var Tag[] */
+	public array $tags = [];
 
 
 	public function __construct(Event $event, string $dateFormatHuman, string $dateFormatRobot)
 	{
 		$this->id = $event->getId();
 		$this->title = Utils::handleNonBreakingSpaces($event->getName());
-		$this->slug = Strings::webalize($event->getName());
 
-		$this->hasCoverPhoto = $event->getCoverPhotoPath() !== null;
-		$this->coverPhotoPath = $event->getCoverPhotoPath();
+		$coverPhotoPath = $event->getCoverPhotoPath();
+		$this->hasCoverPhoto = $coverPhotoPath !== null;
+		$this->coverPhotoPath = $coverPhotoPath?->getMediumSizePath(); // todo small?
 
-		$this->dateStartForHumans = $event->getDateFrom()->format($dateFormatHuman);
-		$this->dateStartForRobots = $event->getDateFrom()->format($dateFormatRobot);
+		$startDateNative = $event->getStartDate()->toNativeDateTimeImmutable();
+		$this->dateStartForHumans = $startDateNative->format($dateFormatHuman);
+		$this->dateStartForRobots = $startDateNative->format($dateFormatRobot);
+		$timeStart = $event->getStartTime();
+		$this->hasTimeStart = $timeStart !== null;
+		$this->timeStart = $timeStart?->toNativeDateTimeImmutable()->format('H:i');
 
-		$this->hasTimeStart = $event->getTimeFrom() !== null;
-		$this->timeStart = $event->getTimeFrom();
-
-		$this->dateEnd = $event->getDateUntil();
-		$this->dateSpan = $this->getDateSpan($event->getDateFrom(), $event->getDateUntil(), $dateFormatHuman);
-		$this->place = PlaceDC::fromDTO($event->getPlace());
+		$this->dateEnd = $event->getEndDate()->toNativeDateTimeImmutable();
+		$this->dateSpan = $this->getDateSpan($event->getStartDate(), $event->getEndDate(), $dateFormatHuman);
+		$this->place = PlaceDC::fromDTO($event->getLocation());
 		$this->age = AgeDC::fromDTO($event);
 
-		$this->isPaid = $event->getPrice() !== null;
-		$this->price  = $event->getPrice();
+		$price = $event->getPropagation()->getCost();
+		$this->isPaid = $price !== null;
+		$this->price = $price;
 
-		$this->contact = ContactDC::fromDTO($event->getOrganizer());
+		$this->contact = ContactDC::fromDTO($event->getPropagation()->getContactPerson());
 
-		$this->registrationType = RegistrationTypeDC::fromDTO($event->getRegistrationType());
+		$this->isRegistrationRequired = $event->getRegistration()->getIsRegistrationRequired();
+		$this->isFull = $event->getRegistration()->getIsEventFull();
 
-		$this->isForFirstTimeAttendees = $event->getTargetGroup()->isOfTypeFirstTimeAttendees();
+		$this->isForFirstTimeAttendees = $event->getIntendedFor()->equals(IntendedFor::FIRST_TIME_PARTICIPANT());
 
-		$this->invitation = InvitationDC::fromDTO($event->getInvitation());
+		$this->invitation = InvitationDC::fromDTO($event);
 
-		$organizer = $event->getOrganizer();
-		$areOrganizersListed = $organizer->getOrganizers() !== null;
-		$this->areOrganizersListed = $areOrganizersListed;
-		$this->organizers = $organizer->getOrganizers();
-		$unit = $organizer->getOrganizationalUnit();
-		$this->isOrganizerUnitListed = $areOrganizersListed && $unit !== null;
-		$this->organizerUnit = $areOrganizersListed && $unit !== null ? $unit->getName() : null;
+		$organizers = $event->getPropagation()->getOrganizers();
+		$this->areOrganizersListed = $organizers !== null;
+		$this->organizers = $organizers;
+		$this->organizerUnit = \implode(', ', $event->getAdministrationUnits());
 
-		$this->duration = self::getDuration($event);
-		$this->isLongTime = self::resolveDurationCategory($this->duration) === self::DURATION_CATEGORY_LONG_TIME;
+		$this->duration = $event->getDuration();
 
 		$this->program = new ProgramDC($event->getProgram());
 
-		$this->hasRelatedWebsite = $event->getRelatedWebsite() !== null;
-		$this->relatedWebsite = $event->getRelatedWebsite();
+		$relatedWebsite = $event->getPropagation()->getWebUrl();
+		$this->hasRelatedWebsite = $relatedWebsite !== null;
+		$this->relatedWebsite = $relatedWebsite;
+
+		$this->tags = [];
+		if ($this->program->isOfTypeNature) {
+			$this->tags[] = new Tag('akce příroda', 'nature');
+		}
+		if ($this->program->isOfTypeSights) {
+			$this->tags[] = new Tag('akce památky', 'sights');
+		}
+
+		$group = $event->getGroup();
+		$this->tags[] = new Tag(match (true) {
+			$this->program->isOfTypePsb => 'prázdninové',
+			$event->getDuration() === 1 => 'jednodenní',
+			$group->equals(Group::WEEKEND_EVENT()) => 'víkendovka',
+			$group->equals(Group::OTHER()) && $this->duration > 1 => 'dlouhodobá',
+		});
 	}
 
 
-	public static function getDuration(Event $event): int
+	private function getDateSpan(LocalDate $dateFrom, LocalDate $dateUntil, string $dateFormatHuman): string
 	{
-		$duration = $event->getDateUntil()->diff($event->getDateFrom())->days;
-		\assert($duration !== false);
-		return $duration + 1; // because 2018-11-30 -> 2018-11-30 is not 0, but 1 etc.
-	}
-
-	public const DURATION_CATEGORY_ONE_DAY = 1;
-	public const DURATION_CATEGORY_WEEKEND = 2;
-	public const DURATION_CATEGORY_LONG_TIME = 3;
-
-	public static function resolveDurationCategory(int $dayCount): int
-	{
-		return match ($dayCount) {
-			1 => self::DURATION_CATEGORY_ONE_DAY,
-			2, 3, 4, 5 => self::DURATION_CATEGORY_WEEKEND,
-			default => self::DURATION_CATEGORY_LONG_TIME,
-		};
-	}
-
-
-	private function getDateSpan(\DateTimeImmutable $dateFrom, \DateTimeImmutable $dateUntil, string $dateFormatHuman): string
-	{
+		$dateFrom = $dateFrom->toNativeDateTimeImmutable();
+		$dateUntil = $dateUntil->toNativeDateTimeImmutable();
 		$dateSpan_untilPart = $dateUntil->format($dateFormatHuman);
 
 		$onlyOneDay = $dateFrom->format('j') === $dateUntil->format('j');

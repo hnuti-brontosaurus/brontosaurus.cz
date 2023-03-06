@@ -2,9 +2,9 @@
 
 namespace HnutiBrontosaurus\Theme\UI\AboutStructure;
 
-use Grifart\GeocodingClient\MapyCz\NoResultException;
-use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
-use HnutiBrontosaurus\LegacyBisApiClient\Client;
+use HnutiBrontosaurus\BisClient\BisClient;
+use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
+use HnutiBrontosaurus\Theme\CannotResolveCoordinates;
 use HnutiBrontosaurus\Theme\CoordinatesResolver\CoordinatesResolver;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\BaseUnitsAndClubsList\BaseUnitsAndClubsListController;
@@ -23,7 +23,7 @@ final class AboutStructureController implements Controller
 	public function __construct(
 		private string $dateFormatHuman,
 		private string $dateFormatRobot,
-		private Client $bisApiClient,
+		private BisClient $bisApiClient,
 		private Base $base,
 		private Engine $latte,
 		private CoordinatesResolver $coordinatesResolver,
@@ -36,17 +36,17 @@ final class AboutStructureController implements Controller
 		$hasBeenUnableToLoad = false;
 
 		try {
-			foreach ($this->bisApiClient->getOrganizationalUnits() as $organizationalUnit) {
+			foreach ($this->bisApiClient->getAdministrationUnits() as $organizationalUnit) {
 				try {
 					$coordinates = $this->coordinatesResolver->resolve($organizationalUnit);
 					$organizationalUnits[] = OrganizationalUnitDC::fromDTO($organizationalUnit, $coordinates);
 
-				} catch (NoResultException) {
-					continue; // in case of non-existing address just silently continue and ignore this unit
+				} catch (CannotResolveCoordinates) {
+					continue; // if can not resolve (e.g. non-existing address) just ignore this unit and continue
 				}
 			}
 
-		} catch (BisApiClientRuntimeException) {
+		} catch (ConnectionToBisFailed) {
 			$hasBeenUnableToLoad = true;
 		}
 

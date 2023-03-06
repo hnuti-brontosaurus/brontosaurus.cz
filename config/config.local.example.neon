@@ -1,8 +1,7 @@
 parameters:
     bis:
-        url: # string
-        username: # string
-        password: # string
+        url: https://bis.brontosaurus.cz
+        applicationUrlTemplate: "https://bis.brontosaurus.cz/akce/{ID}/prihlasit"
 
     mailer:
         # mailcatcher settings

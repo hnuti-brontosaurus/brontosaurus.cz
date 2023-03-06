@@ -1,11 +1,10 @@
 <?php declare(strict_types = 1);
 
-use Grifart\GeocodingClient\MapyCz\NoResultException;
-use HnutiBrontosaurus\BisClient\BisClientRuntimeException;
-use HnutiBrontosaurus\BisClient\Enums\OpportunityCategory;
-use HnutiBrontosaurus\BisClient\Request\OpportunityParameters;
-use HnutiBrontosaurus\BisClient\Response\Opportunity;
-use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
+use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
+use HnutiBrontosaurus\BisClient\Opportunity\Category;
+use HnutiBrontosaurus\BisClient\Opportunity\Request\OpportunityParameters;
+use HnutiBrontosaurus\BisClient\Opportunity\Response\Opportunity;
+use HnutiBrontosaurus\Theme\CannotResolveCoordinates;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\OrganizationalUnitDC;
 use Nette\Utils\Strings;
 use function HnutiBrontosaurus\Theme\hb_dateSpan;
@@ -14,7 +13,6 @@ use function HnutiBrontosaurus\Theme\hb_opportunityCategoryToString;
 
 $configuration = hb_getConfiguration();
 $bisApiClient = hb_getBisApiClient($configuration);
-$legacyBisApiClient = hb_getLegacyBisApiClient($configuration);
 $dateFormat = hb_getDateFormatForHuman($configuration);
 $latte = hb_getLatte();
 $coordinatesResolver = hb_getCoordinatesResolver();
@@ -34,9 +32,9 @@ $applyFilter = static function (?string $filter): ?OpportunityParameters {
 
 	$params = new OpportunityParameters();
 	$category = match ($filter) {
-		'organizovani-akci' => OpportunityCategory::ORGANIZING(),
-		'spoluprace' => OpportunityCategory::COLLABORATION(),
-		'pomoc-lokalite' => OpportunityCategory::LOCATION_HELP(),
+		'organizovani-akci' => Category::ORGANIZING(),
+		'spoluprace' => Category::COLLABORATION(),
+		'pomoc-lokalite' => Category::LOCATION_HELP(),
 	};
 	$params->setCategory($category);
 	return $params;
@@ -48,17 +46,17 @@ $organizationalUnits = [];
 try {
 	$opportunities = $bisApiClient->getOpportunities($applyFilter($selectedFilter));
 
-	foreach ($legacyBisApiClient->getOrganizationalUnits() as $organizationalUnit) {
+	foreach ($bisApiClient->getAdministrationUnits() as $organizationalUnit) {
 		try {
 			$coordinates = $coordinatesResolver->resolve($organizationalUnit);
 			$organizationalUnits[] = OrganizationalUnitDC::fromDTO($organizationalUnit, $coordinates);
 
-		} catch (NoResultException) {
+		} catch (CannotResolveCoordinates) {
 			continue; // in case of non-existing address just silently continue and ignore this unit
 		}
 	}
 
-} catch (BisClientRuntimeException|BisApiClientRuntimeException) {
+} catch (ConnectionToBisFailed) {
 	$hasBeenUnableToLoad = true;
 }
 
@@ -101,7 +99,7 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 
 			<div class="events-event-header-meta">
 				<time class="events-event-header-meta-datetime" datetime="{$event->dateStartForRobots}">
-					<?php echo hb_dateSpan($opportunity->getDateStart(), $opportunity->getDateEnd(), $dateFormat); ?>
+					<?php echo hb_dateSpan($opportunity->getStartDate(), $opportunity->getEndDate(), $dateFormat); ?>
 				</time>
 
 				<span class="events-event-header-meta-place" title="Místo konání">

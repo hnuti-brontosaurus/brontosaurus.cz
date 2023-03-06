@@ -27,7 +27,7 @@ export class InfoWindow {
 		contentElement.innerHTML = resolveUnitTitle(unit);
 
 		contentElement.innerHTML += "<br>";
-		contentElement.innerHTML += `Adresa: ${unit.address.street}, ${unit.address.postCode} ${unit.address.city}`;
+		contentElement.innerHTML += `Adresa: ${unit.address}`;
 		if (unit.chairman !== null) {
 			contentElement.innerHTML += `<br>Předseda: ${unit.chairman}`;
 		}

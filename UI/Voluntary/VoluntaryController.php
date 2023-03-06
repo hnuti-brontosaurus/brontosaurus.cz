@@ -2,10 +2,10 @@
 
 namespace HnutiBrontosaurus\Theme\UI\Voluntary;
 
-use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
-use HnutiBrontosaurus\LegacyBisApiClient\Client;
-use HnutiBrontosaurus\LegacyBisApiClient\Request\EventParameters;
-use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Event;
+use HnutiBrontosaurus\BisClient\BisClient;
+use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
+use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
+use HnutiBrontosaurus\BisClient\Event\Response\Event;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventCollectionDC;
@@ -21,7 +21,7 @@ final class VoluntaryController implements Controller
 	public function __construct(
 		private string $dateFormatHuman,
 		private string $dateFormatRobot,
-		private Client $bisApiClient,
+		private BisClient $bisApiClient,
 		private Base $base,
 		private Engine $latte,
 	) {}
@@ -40,13 +40,13 @@ final class VoluntaryController implements Controller
 		try {
 			$events = $this->bisApiClient->getEvents($params);
 
-		} catch (BisApiClientRuntimeException) {
+		} catch (ConnectionToBisFailed) {
 			$eventCollection = EventCollectionDC::unableToLoad($this->dateFormatHuman, $this->dateFormatRobot);
 		}
 
 		if ($eventCollection === null) {
-			// in case of weekend or one day events, we need to do post filtering because BIS API can not filter by event duration
-			if ($selectedFilter === VoluntaryFilters::FILTER_WEEKEND_EVENTS || $selectedFilter === VoluntaryFilters::FILTER_ONE_DAY_EVENTS) {
+			// in case of one-day events, we need to do post-filtering because BIS doesn't distinct on domain level
+			if ($selectedFilter === VoluntaryFilters::FILTER_ONE_DAY_EVENTS) {
 				$events = $this->postFilter($events, $selectedFilter);
 			}
 
@@ -83,10 +83,7 @@ final class VoluntaryController implements Controller
 		$filteredEvents = [];
 
 		foreach ($events as $event) {
-			if ($selectedFilter === VoluntaryFilters::FILTER_WEEKEND_EVENTS && EventDC::resolveDurationCategory(EventDC::getDuration($event)) === EventDC::DURATION_CATEGORY_WEEKEND) {
-				$filteredEvents[] = $event;
-			}
-			if ($selectedFilter === VoluntaryFilters::FILTER_ONE_DAY_EVENTS && EventDC::resolveDurationCategory(EventDC::getDuration($event)) === EventDC::DURATION_CATEGORY_ONE_DAY) {
+			if ($selectedFilter === VoluntaryFilters::FILTER_ONE_DAY_EVENTS && $event->getDuration() === 1) {
 				$filteredEvents[] = $event;
 			}
 		}

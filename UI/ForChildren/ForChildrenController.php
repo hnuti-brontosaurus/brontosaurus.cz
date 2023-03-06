@@ -2,15 +2,13 @@
 
 namespace HnutiBrontosaurus\Theme\UI\ForChildren;
 
-use HnutiBrontosaurus\LegacyBisApiClient\BisApiClientRuntimeException;
-use HnutiBrontosaurus\LegacyBisApiClient\Client;
-use HnutiBrontosaurus\LegacyBisApiClient\Request\EventParameters;
-use HnutiBrontosaurus\LegacyBisApiClient\Response\Event\Event;
+use HnutiBrontosaurus\BisClient\BisClient;
+use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
+use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 use HnutiBrontosaurus\Theme\UI\AboutStructure\AboutStructureController;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventCollectionDC;
-use HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventDC;
 use Latte\Engine;
 
 
@@ -22,7 +20,7 @@ final class ForChildrenController implements Controller
 	public function __construct(
 		private string $dateFormatHuman,
 		private string $dateFormatRobot,
-		private Client $bisApiClient,
+		private BisClient $bisApiClient,
 		private Base $base,
 		private Engine $latte,
 	) {}
@@ -40,7 +38,7 @@ final class ForChildrenController implements Controller
 			$events = $this->bisApiClient->getEvents($params);
 			$eventCollection = new EventCollectionDC($events, $this->dateFormatHuman, $this->dateFormatRobot);
 
-		} catch (BisApiClientRuntimeException $e) {
+		} catch (ConnectionToBisFailed) {
 			$eventCollection = EventCollectionDC::unableToLoad($this->dateFormatHuman, $this->dateFormatRobot);
 
 		}

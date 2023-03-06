@@ -40,32 +40,14 @@
 				<div class="detail__tagList-wrapper">
 					{if $event->hasCoverPhoto}
 						<a class="detail__coverImage-wrapper" href="{$event->coverPhotoPath}">
-							<img class="detail__coverImage" src="{if $event->hasCoverPhoto}{$event->coverPhotoPath}{else}{$distPath}/images/logo-hb-brontosaurus.svg{/if}" alt="">
+							<img class="detail__coverImage" src="{if $event->hasCoverPhoto}{$event->coverPhotoPath}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}" alt="">
 						</a>
 					{else}
 						<div class="detail__coverImage detail__coverImage--none"></div>
 					{/if}
 
-					<div class="detail__tagList eventTagList">
-						<span
-							n:class="'eventTagList__item', 'eventTagList__item--type', $event->program->isOfTypeNature ? 'eventTagList__item--nature', $event->program->isOfTypeSights ? 'eventTagList__item--sights'"
-							n:if="$event->program->isOfTypeNature || $event->program->isOfTypeSights"
-						>
-							akce
-							{if $event->program->isOfTypeNature}
-								příroda
-							{elseif $event->program->isOfTypeSights}
-								památky
-							{/if}
-						</span>
-
-						<div class="eventTagList__item" n:if="$event->program->isOfTypePsb">
-							prázdninové
-						</div>
-
-						<div class="eventTagList__item" n:if="! ($event->program->isOfTypePsb && $event->isLongTime)">
-							{$event->duration|typeByDayCount}
-						</div>
+					<div class="detail__tagList">
+						{include '../components/eventTagList.latte', tags: $event->tags}
 					</div>
 				</div>
 
@@ -131,7 +113,7 @@
 
 							<td class="detail__basicInformation-value">
 								{if $event->isPaid}
-									{$event->price} Kč
+									{$event->price}
 								{else}
 									<span class="detail__basicInformation-priceNoFee">
 									bez poplatku
@@ -146,8 +128,8 @@
 							</th>
 
 							<td class="detail__basicInformation-value">
-								{if $event->contact->hasPerson}{$event->contact->person}<br>{/if}
-								<a class="detail__basicInformation-contact" href="tel:{$event->contact->phone}" rel="noopener noreferrer" target="_blank">{$event->contact->phone|formatPhoneNumber}</a><br>
+								{if $event->contact->isPersonListed}{$event->contact->person}<br>{/if}
+								{if $event->contact->isPhoneListed}<a class="detail__basicInformation-contact" href="tel:{$event->contact->phone}" rel="noopener noreferrer" target="_blank">{$event->contact->phone|formatPhoneNumber}</a><br>{/if}
 								<a class="detail__basicInformation-contact" href="mailto:{$event->contact->email}" rel="noopener noreferrer" target="_blank">{$event->contact->email}</a>
 							</td>
 						</tr>
@@ -184,7 +166,7 @@
 			</div>
 
 			<!--section 2-->
-			<div class="detail-program" n:if="$event->invitation->introduction">{*@todo: remove if *}
+			<div class="detail-program" n:if="$event->invitation->introduction">
 				<h2>
 					Co na nás čeká
 				</h2>
@@ -195,7 +177,7 @@
 			</div>
 
 			<!--section 3-->
-			<div class="detail-information" n:if="$event->invitation->organizationalInformation">{*@todo: remove if *}
+			<div class="detail-information" n:if="$event->invitation->organizationalInformation">
 				<h2>
 					Co, kde a jak
 				</h2>
@@ -204,27 +186,20 @@
 					{$event->invitation->organizationalInformation|noescape}{* @todo: set escaping filter *}
 				</p>
 
-				<ul class="detail-information-list" n:if="$event->invitation->isAccommodationListed || $event->invitation->isFoodListed">
-					<li n:if="$event->invitation->isAccommodationListed">
+				<ul class="detail-information-list">
+					<li>
 						Ubytování: {$event->invitation->accommodation}
 					</li>
 
 					<li n:if="$event->invitation->isFoodListed">
 						Strava:
-						{switch TRUE}
-							{case $event->invitation->isFoodOfTypeChooseable}
-							můžete si vybrat
-							{case $event->invitation->isFoodOfTypeVegetarian}
-							vegetariánská
-							{case $event->invitation->isFoodOfTypeNonVegetarian}
-							ne-vegetariánská
-						{/switch}
+						{foreach $event->invitation->food as $food}{$food}{sep}, {/sep}{/foreach}
 					</li>
 				</ul>
 			</div>
 
 			<!--section 4-->
-			<div class="detail-work" n:if="$event->invitation->workDescription">{*@todo: remove if *}
+			<div class="detail-work" n:if="$event->invitation->isWorkDescriptionListed">
 				<h2>
 					Dobrovolnická pomoc
 				</h2>
@@ -233,8 +208,15 @@
 					{$event->invitation->workDescription|noescape}{* @todo: set escaping filter *}
 				</p>
 
-				<div n:if="$event->invitation->areWorkHoursPerDayListed">
-					Na&nbsp;akci budeme pracovat přibližně {$event->invitation->workHoursPerDay} hodin denně.
+				{var $areDays = $event->invitation->areWorkDaysListed}
+				{var $areHours = $event->invitation->areWorkHoursPerDayListed}
+				<div n:if="$areDays || $areHours">
+					Na&nbsp;akci budeme pracovat
+					{if $areDays}
+						{$event->invitation->workDays|formatDayCount}{if $areHours}, každý den zhruba {$event->invitation->workHoursPerDay|formatHourCount}.{else}.{/if}
+					{else}
+						přibližně {$event->invitation->workHoursPerDay|formatHourCount} denně.
+					{/if}
 				</div>
 			</div>
 
@@ -260,14 +242,13 @@
 			</div>
 
 			<!--section 5-->
-			<div class="detail-team" n:if="$event->areOrganizersListed">
+			<div class="detail-team">
 				<h2>
 					Organizační tým
 				</h2>
 
 				<p class="detail-team-paragraph">
-					Těší se na tebe {$event->organizers}.
-					<br>
+					{if $event->areOrganizersListed}Těší se na tebe {$event->organizers}.<br>{/if}
 					Pořádá {$event->organizerUnit}
 				</p>
 			</div>
@@ -279,9 +260,9 @@
 				</h2>
 
 				<div class="detail-contact-data">
-					{if $event->contact->hasPerson}Kontaktní osoba: {$event->contact->person}<br>{/if}
+					{if $event->contact->isPersonListed}Kontaktní osoba: {$event->contact->person}<br>{/if}
 					E-mail: <a href="mailto:{$event->contact->email}" rel="noopener noreferrer" target="_blank">{$event->contact->email}</a><br>
-					Telefon: <a href="tel:{$event->contact->phone}" rel="noopener noreferrer" target="_blank">{$event->contact->phone|formatPhoneNumber}</a>
+					{if $event->contact->isPhoneListed}Telefon: <a href="tel:{$event->contact->phone}" rel="noopener noreferrer" target="_blank">{$event->contact->phone|formatPhoneNumber}</a>{/if}
 
 					{if $event->hasRelatedWebsite}
 						<br>

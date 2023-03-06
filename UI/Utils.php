@@ -2,7 +2,6 @@
 
 namespace HnutiBrontosaurus\Theme\UI;
 
-use HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventDC;
 use Latte\Engine;
 
 
@@ -31,20 +30,6 @@ final class Utils
 			}
 
 			return $phoneNumber; // fallback any other format
-		});
-	}
-
-
-	public static function registerTypeByDayCountLatteFilter(Engine $latteEngine): void
-	{
-		$latteEngine->addFilter('typeByDayCount', function (int $dayCount): string
-		{
-			return match (EventDC::resolveDurationCategory($dayCount))
-			{
-				EventDC::DURATION_CATEGORY_ONE_DAY => 'jednodenní',
-				EventDC::DURATION_CATEGORY_WEEKEND => 'víkendovka',
-				default => 'dlouhodobá',
-			};
 		});
 	}
 

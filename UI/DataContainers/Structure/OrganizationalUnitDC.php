@@ -2,7 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Structure;
 
-use HnutiBrontosaurus\LegacyBisApiClient\Response\OrganizationalUnit\OrganizationalUnit;
+use HnutiBrontosaurus\BisClient\AdministrationUnit\Response\AdministrationUnit;
 use HnutiBrontosaurus\Theme\CoordinatesResolver\Coordinates;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 
@@ -10,7 +10,7 @@ use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 /**
  * @property-read string $name
  * @property-read CoordinatesDC $coordinates
- * @property-read AddressDC $address
+ * @property-read string $address
  * @property-read string $chairman
  * @property-read string $website
  * @property-read string $emailAddress
@@ -28,7 +28,7 @@ final class OrganizationalUnitDC implements \JsonSerializable
 
 	private string $name;
 	private CoordinatesDC $coordinates;
-	private AddressDC $address;
+	private string $address;
 	private ?string $chairman;
 	private ?string $website;
 	private ?string $emailAddress;
@@ -39,15 +39,11 @@ final class OrganizationalUnitDC implements \JsonSerializable
 	private bool $ifOfTypeChildren = false;
 
 
-	private function __construct(OrganizationalUnit $organizationalUnit, Coordinates $coordinates)
+	private function __construct(AdministrationUnit $organizationalUnit, Coordinates $coordinates)
 	{
 		$this->name = $organizationalUnit->getName();
 		$this->coordinates = CoordinatesDC::fromDTO($coordinates);
-		$this->address = AddressDC::from(
-			$organizationalUnit->getStreet(),
-			$organizationalUnit->getCity(),
-			$organizationalUnit->getPostCode()
-		);
+		$this->address = $organizationalUnit->getAddress();
 		$this->chairman = $organizationalUnit->getChairman();
 		$this->website = $organizationalUnit->getWebsite();
 		$this->emailAddress = $organizationalUnit->getEmail();
@@ -56,32 +52,22 @@ final class OrganizationalUnitDC implements \JsonSerializable
 	}
 
 
-	public static function fromDTO(OrganizationalUnit $organizationalUnit, Coordinates $coordinates)
+	public static function fromDTO(AdministrationUnit $administrationUnit, Coordinates $coordinates)
 	{
-		return new self($organizationalUnit, $coordinates);
+		return new self($administrationUnit, $coordinates);
 	}
 
 
-	/**
-	 * Children units are not explicitly flagged in API so we have to find them in a different way.
-	 * This simple algorithm relies on axiom (which is based on quick analysis and does not have to be true though)
-	 * that all children units have "brdo" or "brďo" string in their name.
-	 *
-	 * @return void
-	 */
-	private function resolveUnitTypes(OrganizationalUnit $organizationalUnit)
+	private function resolveUnitTypes(AdministrationUnit $administrationUnit): void
 	{
-		$name = $organizationalUnit->getName();
-
-		$isOfTypeChildren = (\mb_stripos($name, 'brdo') !== FALSE) || (\mb_stripos($name, 'brďo') !== FALSE); // Be aware of checking just `mb_stripos() || mb_stripos()` - if found string is on zero-th position, it checks `0 || 0` which means `FALSE || FALSE` in PHP because of auto type casting.
-		$this->isOfTypeChildren = $isOfTypeChildren;
+		$this->isOfTypeChildren = $administrationUnit->getIsForKids();
 
 		// All units including children units have set type coming through API. We let type setting only if we had not decided already that such unit is of children type.
-		if ( ! $isOfTypeChildren) {
-			$this->isOfTypeClub = $organizationalUnit->isClub();
-			$this->isOfTypeBase = $organizationalUnit->isBaseUnit();
-			$this->isOfTypeRegional = $organizationalUnit->isRegionalUnit();
-			$this->isOfTypeOffice = $organizationalUnit->isOffice();
+		if ( ! $this->isOfTypeChildren) {
+			$this->isOfTypeClub = $administrationUnit->isClub();
+			$this->isOfTypeBase = $administrationUnit->isBaseUnit();
+			$this->isOfTypeRegional = $administrationUnit->isRegionalUnit();
+			$this->isOfTypeOffice = $administrationUnit->isOffice();
 		}
 	}
 
@@ -92,11 +78,7 @@ final class OrganizationalUnitDC implements \JsonSerializable
 			'name' => $this->name,
 			'lat' => $this->coordinates->latitude,
 			'lng' => $this->coordinates->longitude,
-			'address' => [
-				'street' => $this->address->street,
-				'postCode' => $this->address->postCode,
-				'city' => $this->address->city,
-			],
+			'address' => $this->address,
 			'chairman' => $this->chairman,
 			'website' => $this->website,
 			'email' => $this->emailAddress,

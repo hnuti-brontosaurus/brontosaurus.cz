@@ -1,0 +1,11 @@
+{varType HnutiBrontosaurus\Theme\UI\DataContainers\Events\Tag[] $tags}
+
+<div class="eventTagList" n:inner-foreach="$tags as $tag">
+	<div n:class="
+		'eventTagList__item',
+		$tag->hasSelectorModifier ? 'eventTagList__item--type',
+		$tag->hasSelectorModifier ? 'eventTagList__item--' . $tag->selectorModifier,
+	">
+		{$tag->label}
+	</div>
+</div>

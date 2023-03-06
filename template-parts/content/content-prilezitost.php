@@ -1,6 +1,7 @@
 <?php declare(strict_types = 1);
 
-use HnutiBrontosaurus\BisClient\BisClientRuntimeException;
+use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
+use HnutiBrontosaurus\BisClient\OpportunityNotFound;
 use function HnutiBrontosaurus\Theme\hb_dateSpan;
 use function HnutiBrontosaurus\Theme\hb_opportunityCategoryToString;
 use const HnutiBrontosaurus\Theme\HB_OPPORTUNITY_ID;
@@ -16,7 +17,10 @@ try {
 	$opportunityId = (int) \get_query_var(HB_OPPORTUNITY_ID);
 	$opportunity = $bisApiClient->getOpportunity($opportunityId);
 
-} catch (BisClientRuntimeException) {
+} catch (OpportunityNotFound) {
+	$hasBeenUnableToLoad = true; // todo change to 404
+
+} catch (ConnectionToBisFailed) {
 	$hasBeenUnableToLoad = true;
 }
 ?>
@@ -47,8 +51,8 @@ try {
 				<dl class="prilezitost__basic">
 					<dt>Datum</dt>
 					<dd>
-						<time datetime="<?php echo $opportunity->getDateStart()->format($dateFormatForRobot); ?>">
-							<?php echo hb_dateSpan($opportunity->getDateStart(), $opportunity->getDateEnd(), $dateFormatForHuman); ?>
+						<time datetime="<?php echo $opportunity->getStartDate()->toNativeDateTimeImmutable()->format($dateFormatForRobot); ?>">
+							<?php echo hb_dateSpan($opportunity->getStartDate(), $opportunity->getEndDate(), $dateFormatForHuman); ?>
 						</time>
 					</dd>
 

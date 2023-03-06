@@ -19,10 +19,8 @@
 					<h2 class="baseUnits__unitName">{$unit->name}</h2>
 
 					<div class="baseUnits__contact">
-						<a class="baseUnits__address" href="https://mapy.cz/?q={$unit->address->street}, {$unit->address->city}, {$unit->address->postCode}" rel="noopener noreferrer" target="_blank">
-							{$unit->address->street},
-							{$unit->address->city},
-							{$unit->address->postCode}
+						<a class="baseUnits__address" href="https://mapy.cz/?q={$unit->address}" rel="noopener noreferrer" target="_blank">
+							{$unit->address}
 						</a>
 					</div>
 
