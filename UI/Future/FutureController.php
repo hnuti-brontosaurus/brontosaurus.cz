@@ -5,6 +5,7 @@ namespace HnutiBrontosaurus\Theme\UI\Future;
 use HnutiBrontosaurus\BisClient\BisClient;
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
+use HnutiBrontosaurus\BisClient\Event\Request\Period;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
 use HnutiBrontosaurus\Theme\UI\DataContainers\MonthWrapperDC;
@@ -28,6 +29,7 @@ final class FutureController implements Controller
 	{
 		$params = new EventParameters();
 		$params->orderByStartDate();
+		$params->setPeriod(Period::FUTURE_ONLY());
 
 		$hasBeenUnableToLoad = false;
 
