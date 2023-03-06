@@ -3,167 +3,38 @@
 {block content}
 <main role="main">
 	<article class="about-successes">
-		<h1 class="about-successes-heading">
+		<h1 class="about-successes__heading">
 			Příběhy nadšení
 		</h1>
 
-		<p class="about-successes-introduction">
+		<p class="about-successes__introduction">
 			Je to už téměř padesát let, kdy v roce 1974 vzbudila Akce Brontosaurus obrovskou vlnu nadšení
 			pro pomoc přírodě a památkám. Desetitisíce lidí se pustily do sázení stromů, oprav hradů,
 			kosení chráněných luk nebo čištění studánek.
 		</p>
 
-		<div class="about-successes__callForStories">
-			<p>
-				Chceme připomenout a oslavit 50 let naší činnosti – hledáme 50 brontosauřích příběhů
-				z oblasti ochrany přírody, enviro-vzdělávání, osvěty, péče o památky, práce s dobrovolníky,
-				komunitou, veřejností apod. Pošlete nám je a inspirujte tak nové generace a další Příběhy nadšení!
-			</p>
+		<div class="about-successes__stories">
+			{var $displayOnLoad = 3}
+			<div class="events-event-wrapper" n:inner-foreach="$stories as $story">
+				{include story, story: $story}
+				{breakIf $iterator->counter === $displayOnLoad}
+			</div>
+			{if count($stories) > $displayOnLoad}
+				<button class="events-moreLink button button--customization" id="events-showMore-button" type="button">
+					Zobrazit další
+				</button>
 
-			<a class="button button--primary" href="https://forms.gle/csqc8a3R9aMN5EwK6" rel="noopener" target="_blank">
-				Chci nominovat příběh
-			</a>
+				<div class="events-event-wrapper events-event-wrapper--collapse" id="events-showMore-content" n:inner-foreach="$stories as $story">
+					{continueIf $iterator->counter <= $displayOnLoad}
+					{include story, story: $story}
+				</div>
+			{/if}
 		</div>
 
-		<div class="about-successes-item">
-			<div class="about-successes-item-headingWrapper">
-				<h2 class="about-successes-item-heading about-successes-item-heading-castle">
-					Oprava zříceniny hradu Lukov
-				</h2>
-			</div>
+		<div class="about-successes__video">
+			<iframe src="https://www.youtube.com/embed/6RCZ2E5S9qo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-			<p class="about-successes-item-text">
-				Zříceniny kdysi slavného hradu Lukova na&nbsp;úpatí Hostýnských vrchů se&nbsp;díky neúnavné práci
-				generací brontosaurů opět probudily k&nbsp;životu. Na záchraně jednoho z&nbsp;největších moravských
-				opevnění pracujeme od&nbsp;roku&nbsp;1983. I&nbsp;díky práci našich dobrovolníků získal Lukov titul Památka
-				roku 2016.
-			</p>
-
-			<div class="about-successes-item-quotation presentationBox presentationBox--aboutSuccesses-lukov presentationBox--textOnRight">
-				<blockquote class="presentationBox__text">
-					<div class="presentationBox__quotation">{block |trim}
-							Lukovská zřícenina je místem, kde se&nbsp;prolíná řada století, desetiletí i&nbsp;jednotlivých let. Každá zeď má svůj příběh.
-						{/block}</div>
-
-					<div class="about-successes-item-quotation-name">
-						Rostislav Konůpka
-						<br>
-						z&nbsp;Klubu přátel Lukova
-					</div>
-				</blockquote>
-			</div>
-		</div>
-
-		<div class="about-successes-item">
-			<div class="about-successes-item-headingWrapper">
-				<h2 class="about-successes-item-heading about-successes-item-heading-nature">
-					Živá učebna pro&nbsp;děti
-				</h2>
-			</div>
-
-			<p class="about-successes-item-text">
-				Brontosauři pomáhají Centru ekologické výchovy Dúbrava zvelebit zanedbanou zahradu tak,
-				aby sloužila jako živá učebna pro děti. Vysadili jsme stovky keřů a&nbsp;stromů do&nbsp;živých plotů,
-				modelu lužního lesa a&nbsp;arboreta, přispěli k&nbsp;vybudování ukázkových biotopů&nbsp;&ndash; mokřadu, stepi,
-				vápencové skály a&nbsp;dalších.
-			</p>
-
-			<div class="about-successes-item-quotation presentationBox presentationBox--aboutSuccesses-ucebna">
-				<blockquote class="presentationBox__text">
-					<div class="presentationBox__quotation">{block |trim}
-							Bez nich by&nbsp;naše plány, jak vytvořit ze&nbsp;zahrady živou učebnu, zůstaly jenom na&nbsp;papíře.
-						{/block}</div>
-
-					<div class="about-successes-item-quotation-name">
-						Anežka Plintovičová
-						<br>
-						vedoucí Centra ekologické výchovy Dúbrava
-					</div>
-				</blockquote>
-			</div>
-		</div>
-
-		<div class="about-successes-item">
-			<div class="about-successes-item-headingWrapper">
-				<h2 class="about-successes-item-heading about-successes-item-heading-castle">
-					Škola brontosaurů v&nbsp;Himalájích
-				</h2>
-			</div>
-
-			<p class="about-successes-item-text">
-				Mnoho let brontosauři pomáhají vesničanům v&nbsp;indickém Ladhaku. Ve&nbsp;vesnici Mulkbekh staví
-				energeticky soběstačný školní internát. Chtějí škole pomáhat k&nbsp;její samostatnosti tak, aby
-				tamní obyvatelé považovali vytvořené dílo za&nbsp;vlastní a&nbsp;zvládli jej vést. Každý rok také do&nbsp;Ladhaku
-				přijíždí dobrovolníci, kteří vyučují děti a&nbsp;školí místní učitele.
-			</p>
-
-			<div class="about-successes-item-quotation presentationBox presentationBox--aboutSuccesses-himalaje presentationBox--textOnRight">
-				<blockquote class="presentationBox__text">
-					<div class="presentationBox__quotation">{block |trim}
-							Pomoci si&nbsp;velice vážím, protože dovede učinit člověka šťastným.
-						{/block}</div>
-
-					<div class="about-successes-item-quotation-name">
-						říká tibetský duchovní vůdce Dalajláma. Hnutí Brontosaurus je jedinou českou neziskovou organizací, jejíž projekty finančně podporuje.
-					</div>
-				</blockquote>
-			</div>
-		</div>
-
-		<div class="about-successes-item">
-			<div class="about-successes-item-headingWrapper">
-				<h2 class="about-successes-item-heading about-successes-item-heading-castle">
-					Cesta ke&nbsp;kořenům
-				</h2>
-			</div>
-
-			<p class="about-successes-item-text">
-				Před válkou žili na&nbsp;Jesenicku vesměs obyvatelé německé národnosti. Po&nbsp;jejich odsunu tam
-				zbyla spousta památek, které však chátraly. Každý rok tyto památky obnovujeme a&nbsp;když jsme
-				nad&nbsp;Jeseníkem slavnostně otevírali naučnou stezku Vincenze Priessnitze, akce se&nbsp;zúčastnila
-				tisícovka lidí. Do&nbsp;dneška naši dobrovolníci obnovili desítky drobných památek.
-			</p>
-
-			<div class="about-successes-item-quotation presentationBox presentationBox--aboutSuccesses-koreny">
-				<blockquote class="presentationBox__text">
-					<div class="presentationBox__quotation">{block |trim}
-							Uvědomili jsme&nbsp;si, že&nbsp;největší bohatství máme kolem sebe a&nbsp;musíme o&nbsp;něj pečovat, abychom ho&nbsp;neztratili.
-						{/block}</div>
-
-					<div class="about-successes-item-quotation-name">
-						Tom Hradil,
-						<br>
-						zakladatel projektu
-					</div>
-				</blockquote>
-			</div>
-		</div>
-
-		<div class="about-successes-item">
-			<div class="about-successes-item-headingWrapper">
-				<h2 class="about-successes-item-heading about-successes-item-heading-nature">
-					Značení turistických tras na&nbsp;Ukrajině
-				</h2>
-			</div>
-
-			<p class="about-successes-item-text">
-				Dobrovolníci z&nbsp;Česka a&nbsp;Ukrajiny spolupracují při rozvoji šetrné turistiky v&nbsp;Podkarpatské Rusi.
-				Každoročně značíme desítky kilometrů turistických tras kolem Koločavy a&nbsp;Volovce.
-			</p>
-
-			<div class="about-successes-item-quotation presentationBox presentationBox--aboutSuccesses-ukrajina presentationBox--textOnRight">
-				<blockquote class="presentationBox__text">
-					<div class="presentationBox__quotation">{block |trim}
-							Pomáháme rozvoji, který podpoří tento chudý region, ale&nbsp;přitom nezatíží přírodu. Vše přitom děláme ruku v&nbsp;ruce s&nbsp;místními.
-						{/block}</div>
-
-					<div class="about-successes-item-quotation-name">
-						Kristina Studená
-						<br>
-						koordinátorka projektu Karpatskou stezkou
-					</div>
-				</blockquote>
-			</div>
+			<iframe src="https://www.youtube.com/embed/DM-BiimluBw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 		</div>
 
 		<div class="about-successes__support">
@@ -173,5 +44,33 @@
 
 			<a class="button button--primary" href="{$supportOverviewLink}">Chci podpořit Brontosaura</a>
 		</div>
+
+		<a class="action action--ulterior" href="https://forms.gle/csqc8a3R9aMN5EwK6" rel="noopener" target="_blank">
+			Chci nominovat příběh
+		</a>
 	</article>
 </main>
+
+{define story, object $story}
+<a class="events-event" href="{$story->link}">
+	<div class="events-event-image-wrapper">
+		<img alt="" class="events-event-image" src="{$story->thumbnail}">
+	</div>
+
+	<header class="events-event-header">
+		<h4 class="events-event-header-heading">
+			{$story->title}
+		</h4>
+
+		<div class="events-event-header-meta" n:if="$story->location">
+			<span class="events-event-header-meta-place" title="Místo">
+				{$story->location}
+			</span>
+		</div>
+	</header>
+
+	<div class="events-event-excerpt">
+		{$story->excerpt}
+	</div>
+</a>
+{/define}
