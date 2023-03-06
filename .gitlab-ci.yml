@@ -90,7 +90,6 @@ build.frontend:
             -i "DataContainers/*"
             -i "frontend/*"
             -x "frontend/src/*"
-            -i "legacy-bis-api-client/*"
             -i "log/*"
             -i "template-parts/*"
             -i "UI/*"
