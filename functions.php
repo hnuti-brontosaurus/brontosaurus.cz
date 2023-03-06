@@ -15,9 +15,11 @@ use function add_rewrite_rule;
 use function add_theme_support;
 use function array_key_exists;
 use function array_push;
+use function esc_attr;
 use function filemtime;
 use function flush_rewrite_rules;
 use function get_permalink;
+use function get_post_meta;
 use function get_posts;
 use function implode;
 use function register_nav_menus;
@@ -112,6 +114,32 @@ add_action('init', function () {
 		'supports' => ['title', 'editor', 'excerpt', 'thumbnail'],
 		'hierarchical' => false,
 	]);
+	add_action('add_meta_boxes', function () {
+		add_meta_box(
+			'pribehy-nadseni_location',
+			'Místo',
+			function (WP_Post $post) {
+				?>
+				<div style="margin-bottom: 1em;">
+					<input type="text" name="pribehy-nadseni_location" required><?php echo esc_attr(get_post_meta($post->ID, 'pribehy-nadseni_location', true)); ?></input>
+				</div>
+				<?php
+			},
+			'pribehy-nadseni',
+			'side',
+		);
+	});
+	add_action('save_post', function ($postId) {
+		foreach (['pribehy-nadseni_location'] as $field) {
+			if (array_key_exists($field, $_POST)) {
+				update_post_meta(
+					$postId,
+					$field,
+					$_POST[$field],
+				);
+			}
+		}
+	});
 
 	register_post_type('contacts', [
 		'labels' => [
