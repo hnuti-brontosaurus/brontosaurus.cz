@@ -143,10 +143,6 @@ $hb_pageClassSelector = $hb_currentPost !== null ? $hb_currentPost->post_name : 
 		</header>
 	</div>
 
-	<div style="background-color: #ffcb31;padding:1.3rem 2.6rem;margin-block-end:0.65rem;text-align:center;">
-		Z důvodu přesunu dat mezi našimi systémy může dnes na tomto webu <strong>docházet k výpadkům</strong>. Omlouváme se za komplikace a děkujeme za pochopení.
-	</div>
-
 	<div class="coverPhoto<?php echo $hb_pageClassSelector !== '' ? ' coverPhoto--' . $hb_pageClassSelector : ''; ?>"></div>
 
 	<div class="content">
