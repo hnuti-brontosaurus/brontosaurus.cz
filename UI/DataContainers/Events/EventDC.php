@@ -130,12 +130,15 @@ final class EventDC
 		}
 
 		$group = $event->getGroup();
-		$this->tags[] = new Tag(match (true) {
-			$this->program->isOfTypePsb => 'prázdninové',
-			$event->getDuration() === 1 => 'jednodenní',
-			$group->equals(Group::WEEKEND_EVENT()) => 'víkendovka',
-			$group->equals(Group::OTHER()) && $this->duration > 1 => 'dlouhodobá',
-		});
+		if ($this->program->isOfTypePsb) {
+			$this->tags[] = new Tag('prázdninové');
+		} elseif ($event->getDuration() === 1) {
+			$this->tags[] = new Tag('jednodenní');
+		} elseif ($group === Group::WEEKEND_EVENT()) {
+			$this->tags[] = new Tag('víkendovka');
+		} elseif ($group === Group::OTHER()) {
+			$this->tags[] = new Tag('dlouhodobá');
+		}
 	}
 
 
