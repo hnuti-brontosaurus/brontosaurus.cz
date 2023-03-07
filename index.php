@@ -14,8 +14,6 @@ use HnutiBrontosaurus\Theme\NotFound;
 use HnutiBrontosaurus\Theme\SentryLogger;
 use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
 use HnutiBrontosaurus\Theme\UI\ControllerFactory;
-use HnutiBrontosaurus\Theme\UI\EventDetail\ApplicationFormFacade;
-use HnutiBrontosaurus\Theme\UI\EventDetail\EmailSettings;
 use Latte\Bridges\Tracy\BlueScreenPanel;
 use Latte\Bridges\Tracy\LattePanel;
 use Latte\Engine;
@@ -151,15 +149,6 @@ function hb_getDateFormatForRobot(Configuration $configuration): string
 		$configuration->get('dateFormat:robot'),
 		$configuration->get('recaptcha:siteKey'),
 		$configuration->get('recaptcha:secretKey'),
-		new ApplicationFormFacade(
-			$bisApiClient,
-			$mailer,
-			EmailSettings::from(
-				$configuration->get('mailer:from:address'),
-				$configuration->get('mailer:from:name'),
-			),
-			$sentryLogger,
-		),
 		ApplicationUrlTemplate::from($configuration->get('bis:applicationUrlTemplate')),
 		$bisApiClient,
 		new BaseFactory($configuration->get('enableTracking')),

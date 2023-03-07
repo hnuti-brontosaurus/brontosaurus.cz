@@ -17,7 +17,6 @@ use HnutiBrontosaurus\Theme\UI\Contacts\ContactsController;
 use HnutiBrontosaurus\Theme\UI\Courses\CoursesController;
 use HnutiBrontosaurus\Theme\UI\English\EnglishController;
 use HnutiBrontosaurus\Theme\UI\Error\ErrorController;
-use HnutiBrontosaurus\Theme\UI\EventDetail\ApplicationFormFacade;
 use HnutiBrontosaurus\Theme\UI\EventDetail\EventDetailController;
 use HnutiBrontosaurus\Theme\UI\FirstTime\FirstTimeController;
 use HnutiBrontosaurus\Theme\UI\ForChildren\ForChildrenController;
@@ -42,7 +41,6 @@ final class ControllerFactory
 		private string $dateFormatRobot,
 		private string $recaptchaSiteKey,
 		private string $recaptchaSecretKey,
-		private ApplicationFormFacade $applicationFormFacade,
 		private ApplicationUrlTemplate $applicationUrlTemplate,
 		private BisClient $bisApiClient,
 		private BaseFactory $baseFactory,
@@ -88,7 +86,7 @@ final class ControllerFactory
 //			'adopce-brontosaura' => new SupportAdoptionController($base, $this->latte), // disabled for now
 			FutureController::PAGE_SLUG => new FutureController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte),
 			AboutStructureController::PAGE_SLUG => new AboutStructureController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte, $this->coordinatesResolver),
-			EventDetailController::PAGE_SLUG => new EventDetailController($this->dateFormatHuman, $this->dateFormatRobot, $this->recaptchaSiteKey, $this->recaptchaSecretKey, $this->applicationFormFacade, $this->applicationUrlTemplate, $this->bisApiClient, $base, $this->latte, $this->httpRequest, $this->logger),
+			EventDetailController::PAGE_SLUG => new EventDetailController($this->dateFormatHuman, $this->dateFormatRobot, $this->recaptchaSiteKey, $this->recaptchaSecretKey, $this->applicationUrlTemplate, $this->bisApiClient, $base, $this->latte, $this->httpRequest, $this->logger),
 			'vysledky-vyhledavani' => new SearchResultsController($base, $this->latte),
 			BaseUnitsAndClubsListController::PAGE_SLUG => new BaseUnitsAndClubsListController($this->bisApiClient, $base, $this->latte),
 			default => new ErrorController($base, $this->latte),
