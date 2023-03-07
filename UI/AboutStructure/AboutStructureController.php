@@ -21,8 +21,6 @@ final class AboutStructureController implements Controller
 	public const PAGE_SLUG = 'hnuti-brontosaurus';
 
 	public function __construct(
-		private string $dateFormatHuman,
-		private string $dateFormatRobot,
 		private BisClient $bisApiClient,
 		private Base $base,
 		private Engine $latte,

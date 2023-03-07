@@ -81,7 +81,7 @@ final class ControllerFactory
 			'nasi-partneri' => new PartnersController($base, $this->latte),
 //			'adopce-brontosaura' => new SupportAdoptionController($base, $this->latte), // disabled for now
 			FutureController::PAGE_SLUG => new FutureController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte),
-			AboutStructureController::PAGE_SLUG => new AboutStructureController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte, $this->coordinatesResolver),
+			AboutStructureController::PAGE_SLUG => new AboutStructureController($this->bisApiClient, $base, $this->latte, $this->coordinatesResolver),
 			EventDetailController::PAGE_SLUG => new EventDetailController($this->dateFormatHuman, $this->dateFormatRobot, $this->applicationUrlTemplate, $this->bisApiClient, $base, $this->latte, $this->httpRequest),
 			'vysledky-vyhledavani' => new SearchResultsController($base, $this->latte),
 			BaseUnitsAndClubsListController::PAGE_SLUG => new BaseUnitsAndClubsListController($this->bisApiClient, $base, $this->latte),
