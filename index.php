@@ -11,7 +11,6 @@ use HnutiBrontosaurus\Theme\ApplicationUrlTemplate;
 use HnutiBrontosaurus\Theme\Configuration;
 use HnutiBrontosaurus\Theme\CoordinatesResolver\CoordinatesResolver;
 use HnutiBrontosaurus\Theme\NotFound;
-use HnutiBrontosaurus\Theme\SentryLogger;
 use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
 use HnutiBrontosaurus\Theme\UI\ControllerFactory;
 use Latte\Bridges\Tracy\BlueScreenPanel;
@@ -89,17 +88,9 @@ function hb_getDateFormatForRobot(Configuration $configuration): string
 
 	$bisApiClient = hb_getBisApiClient($configuration);
 
-	try {
-		$dsn = $configuration->get('sentry:dsn');
-
-		if ($dsn === '') {
-			$dsn = null;
-		}
-
-	} catch (\Exception) {
-		$dsn = null;
+	if ($configuration->has('sentry:dsn') && ($dsn = $configuration->get('sentry:dsn')) !== '') {
+		\Sentry\init(['dsn' => $dsn]);
 	}
-	$sentryLogger = SentryLogger::initialize($dsn);
 
 
 	// use template part if available
