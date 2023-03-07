@@ -147,8 +147,6 @@ function hb_getDateFormatForRobot(Configuration $configuration): string
 	$controllerFactory = new ControllerFactory(
 		$configuration->get('dateFormat:human'),
 		$configuration->get('dateFormat:robot'),
-		$configuration->get('recaptcha:siteKey'),
-		$configuration->get('recaptcha:secretKey'),
 		ApplicationUrlTemplate::from($configuration->get('bis:applicationUrlTemplate')),
 		$bisApiClient,
 		new BaseFactory($configuration->get('enableTracking')),

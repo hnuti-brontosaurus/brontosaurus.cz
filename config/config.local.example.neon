@@ -12,10 +12,6 @@ parameters:
             address: "web@brontosaurus.cz"
             name: "Web Hnutí Brontosaurus"
 
-    recaptcha:
-        secretKey: # string
-        siteKey: # string
-
     sentry:
         dsn:
 

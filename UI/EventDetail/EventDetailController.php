@@ -15,7 +15,6 @@ use HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventDC;
 use Latte\Engine;
 use Nette\Http\Request;
 use Nette\Utils\Strings;
-use ReCaptcha\ReCaptcha;
 
 
 final class EventDetailController implements Controller
@@ -28,8 +27,6 @@ final class EventDetailController implements Controller
 	public function __construct(
 		private string $dateFormatHuman,
 		private string $dateFormatRobot,
-		private string $recaptchaSiteKey,
-		private string $recaptchaSecretKey,
 		private ApplicationUrlTemplate $applicationUrlTemplate,
 		private BisClient $bisApiClient,
 		private Base $base,
