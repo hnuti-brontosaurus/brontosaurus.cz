@@ -110,7 +110,6 @@ build.frontend:
             -i "header.php"
             -i "index.php"
             -i "screenshot.png"
-            -i "SentryLogger.php"
             -i "single-novinky.php"
             -i "style.css"'
 

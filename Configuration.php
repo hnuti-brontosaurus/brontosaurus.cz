@@ -33,6 +33,18 @@ final class Configuration
 	}
 
 
+	public function has(string $name): bool
+	{
+		try {
+			$this->get($name);
+			return true;
+
+		} catch (\Exception) {
+			return false;
+		}
+	}
+
+
 	/**
 	 * Gets single item of configuration. You can use `:` separator to target nested keys.
 	 * @throws \Exception

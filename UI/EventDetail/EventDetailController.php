@@ -8,7 +8,6 @@ use HnutiBrontosaurus\BisClient\EventNotFound;
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
 use HnutiBrontosaurus\Theme\ApplicationUrlTemplate;
 use HnutiBrontosaurus\Theme\NotFound;
-use HnutiBrontosaurus\Theme\SentryLogger;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventDC;
@@ -32,7 +31,6 @@ final class EventDetailController implements Controller
 		private Base $base,
 		private Engine $latte,
 		private Request $httpRequest,
-		private SentryLogger $sentryLogger,
 	) {
 		$this->latte->addFilter('renderWebsiteUserFriendly', static function (string $website): string {
 			$hostname = \parse_url($website, PHP_URL_HOST);
