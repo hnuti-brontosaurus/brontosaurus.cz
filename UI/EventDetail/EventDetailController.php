@@ -46,7 +46,6 @@ final class EventDetailController implements Controller
 
 
 	private Event $event;
-	private bool $applicationFormSuccess = false;
 
 	public function render(): void
 	{
@@ -81,7 +80,6 @@ final class EventDetailController implements Controller
 			'event' => $eventDC,
 			'categoryLink' => $this->base->getLinkFor($parentPageSlug),
 			'hasBeenUnableToLoad' => $hasBeenUnableToLoad,
-			'applicationFormSuccess' => $this->applicationFormSuccess,
 			'selfLink' => $this->getSelfLink($parentPageSlug, $eventId),
 			'firstTimePageLink' => $this->base->getLinkFor('jedu-poprve'),
 			'aboutCrossroadPageLink' => $this->base->getLinkFor('o-brontosaurovi'),
