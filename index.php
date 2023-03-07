@@ -14,14 +14,10 @@ use HnutiBrontosaurus\Theme\NotFound;
 use HnutiBrontosaurus\Theme\SentryLogger;
 use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
 use HnutiBrontosaurus\Theme\UI\ControllerFactory;
-use HnutiBrontosaurus\Theme\UI\EventDetail\ApplicationFormFacade;
-use HnutiBrontosaurus\Theme\UI\EventDetail\EmailSettings;
 use Latte\Bridges\Tracy\BlueScreenPanel;
 use Latte\Bridges\Tracy\LattePanel;
 use Latte\Engine;
 use Nette\Http\RequestFactory;
-use Nette\Mail\SendmailMailer;
-use Nette\Mail\SmtpMailer;
 use Tracy\Debugger;
 
 
@@ -93,22 +89,6 @@ function hb_getDateFormatForRobot(Configuration $configuration): string
 
 	$bisApiClient = hb_getBisApiClient($configuration);
 
-	if ($configuration->get('mailer:smtp')) {
-		// only no-authentication access is supported right now as we do not have authenticated SMTP servers now
-		$options = [];
-		$options['host'] = $configuration->get('mailer:host');
-
-		try {
-			$port = $configuration->get('mailer:port');
-			$options['port'] = $port;
-
-		} catch (Exception) {}
-
-		$mailer = new SmtpMailer($options);
-	} else {
-		$mailer = new SendmailMailer();
-	}
-
 	try {
 		$dsn = $configuration->get('sentry:dsn');
 
@@ -149,17 +129,6 @@ function hb_getDateFormatForRobot(Configuration $configuration): string
 	$controllerFactory = new ControllerFactory(
 		$configuration->get('dateFormat:human'),
 		$configuration->get('dateFormat:robot'),
-		$configuration->get('recaptcha:siteKey'),
-		$configuration->get('recaptcha:secretKey'),
-		new ApplicationFormFacade(
-			$bisApiClient,
-			$mailer,
-			EmailSettings::from(
-				$configuration->get('mailer:from:address'),
-				$configuration->get('mailer:from:name'),
-			),
-			$sentryLogger,
-		),
 		ApplicationUrlTemplate::from($configuration->get('bis:applicationUrlTemplate')),
 		$bisApiClient,
 		new BaseFactory($configuration->get('enableTracking')),

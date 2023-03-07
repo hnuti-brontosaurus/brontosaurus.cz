@@ -158,10 +158,6 @@
 				{include '@registration.latte',
 					event => $event,
 					categoryLink => $categoryLink,
-					displayForm => FALSE,
-					errors => $applicationFormErrors,
-					formData => $applicationFormData,
-					recaptchaSiteKey => $recaptchaSiteKey,
 				}
 			</div>
 
@@ -276,10 +272,6 @@
 					{include '@registration.latte',
 						event => $event,
 						categoryLink => $categoryLink,
-						displayForm => TRUE,
-						errors => $applicationFormErrors,
-						formData => $applicationFormData,
-						recaptchaSiteKey => $recaptchaSiteKey,
 					}
 				</div>
 			</div>

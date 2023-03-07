@@ -3,19 +3,6 @@ parameters:
         url: https://bis.brontosaurus.cz
         applicationUrlTemplate: "https://bis.brontosaurus.cz/akce/{ID}/prihlasit"
 
-    mailer:
-        # mailcatcher settings
-        smtp: true
-        host: 127.0.0.1
-        port: 1025
-        from:
-            address: "web@brontosaurus.cz"
-            name: "Web Hnutí Brontosaurus"
-
-    recaptcha:
-        secretKey: # string
-        siteKey: # string
-
     sentry:
         dsn:
 

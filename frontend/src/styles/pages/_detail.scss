@@ -1,4 +1,4 @@
-$detail-breakpoint-mediumToLarge: $registration-breakpoint-form-oneColumnToTwoColumns;
+$detail-breakpoint-mediumToLarge: 50em;
 $detail-breakpoint-medium-until: "max-width: " + $detail-breakpoint-mediumToLarge;
 $detail-breakpoint-large-from: "min-width: " + ($detail-breakpoint-mediumToLarge + 0.001);
 
