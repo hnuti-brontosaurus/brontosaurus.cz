@@ -135,7 +135,6 @@ function hb_getDateFormatForRobot(Configuration $configuration): string
 		$latte,
 		hb_getCoordinatesResolver(),
 		(new RequestFactory())->fromGlobals(),
-		$sentryLogger,
 	);
 
 	try {
