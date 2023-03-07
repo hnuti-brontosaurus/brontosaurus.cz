@@ -16,9 +16,13 @@ final class ApplicationUrlTemplate
 		return new self($urlTemplate);
 	}
 
-	public function for(int $eventId): string
+	public function for(int $eventId, string $returnUrl): string
 	{
-		return str_replace('{ID}', (string) $eventId, $this->urlTemplate);
+		$url = $this->urlTemplate;
+		$url = str_replace('{ID}', (string) $eventId, $url); // BC
+		$url = str_replace('{id}', (string) $eventId, $url);
+		$url = str_replace('{returnUrl}', $returnUrl, $url);
+		return $url;
 	}
 
 }

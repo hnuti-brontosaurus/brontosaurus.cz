@@ -1,7 +1,7 @@
 parameters:
     bis:
         url: https://bis.brontosaurus.cz
-        applicationUrlTemplate: "https://bis.brontosaurus.cz/akce/{ID}/prihlasit"
+        applicationUrlTemplate: "https://bis.brontosaurus.cz/akce/{id}/prihlasit?next={returnUrl}"
 
     sentry:
         dsn:
