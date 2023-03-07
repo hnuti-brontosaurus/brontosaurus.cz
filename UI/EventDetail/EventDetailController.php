@@ -19,6 +19,7 @@ use function array_merge;
 use function get_query_var;
 use function parse_url;
 use function preg_match;
+use function rtrim;
 use function sprintf;
 use function str_replace;
 use function wp_enqueue_script;
@@ -51,7 +52,11 @@ final class EventDetailController implements Controller
 	{
 		$eventId = (int) get_query_var(self::PARAM_EVENT_ID);
 
-		$this->registerFilters();
+//		$parentPageSlug = get_query_var(self::PARAM_PARENT_PAGE_SLUG); // does not work for some reason
+		preg_match('/^\/([\w-]+).*/', $this->httpRequest->getUrl()->getPath(), $matches);
+		$parentPageSlug = $matches[1];
+
+		$this->registerFilters($parentPageSlug);
 
 		$hasBeenUnableToLoad = false;
 
@@ -72,15 +77,12 @@ final class EventDetailController implements Controller
 			$hasBeenUnableToLoad = true;
 		}
 
-//		$parentPageSlug = get_query_var(self::PARAM_PARENT_PAGE_SLUG); // does not work for some reason
-		preg_match('/^\/([\w-]+).*/', $this->httpRequest->getUrl()->getPath(), $matches);
-		$parentPageSlug = $matches[1];
 		$params = [
 			'event' => $eventDC,
 			'categoryLink' => $this->base->getLinkFor($parentPageSlug),
 			'hasBeenUnableToLoad' => $hasBeenUnableToLoad,
 			'applicationFormSuccess' => $this->applicationFormSuccess,
-			'selfLink' => $this->base->getLinkFor($parentPageSlug) . 'detail/' . $eventId . '/',
+			'selfLink' => $this->getSelfLink($parentPageSlug, $eventId),
 			'firstTimePageLink' => $this->base->getLinkFor('jedu-poprve'),
 			'aboutCrossroadPageLink' => $this->base->getLinkFor('o-brontosaurovi'),
 		];
@@ -98,7 +100,16 @@ final class EventDetailController implements Controller
 	}
 
 
-	private function registerFilters(): void
+	private function getSelfLink(string $parentPageSlug, int $eventId): string
+	{
+		return sprintf('%s/detail/%d/',
+			rtrim($this->base->getLinkFor($parentPageSlug), '/'),
+			$eventId,
+		);
+	}
+
+
+	private function registerFilters(string $parentPageSlug): void
 	{
 		$this->latte->addFilter('renderWebsiteUserFriendly', static function (string $website): string {
 			$hostname = parse_url($website, PHP_URL_HOST);
@@ -111,8 +122,10 @@ final class EventDetailController implements Controller
 			return $hostname;
 		});
 
-		$this->latte->addFilter('resolveRegistrationLink', fn(EventDC $event): string =>
-			$this->applicationUrlTemplate->for($event->id));
+		$this->latte->addFilter('resolveRegistrationLink', function (EventDC $event) use ($parentPageSlug): string {
+			$returnUrl = $this->getSelfLink($parentPageSlug, $event->id);
+			return $this->applicationUrlTemplate->for($event->id, $returnUrl);
+		});
 
 		$this->latte->addFilter('formatDayCount', static fn(int $days): string =>
 			match($days) {
