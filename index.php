@@ -18,8 +18,6 @@ use Latte\Bridges\Tracy\BlueScreenPanel;
 use Latte\Bridges\Tracy\LattePanel;
 use Latte\Engine;
 use Nette\Http\RequestFactory;
-use Nette\Mail\SendmailMailer;
-use Nette\Mail\SmtpMailer;
 use Tracy\Debugger;
 
 
@@ -90,22 +88,6 @@ function hb_getDateFormatForRobot(Configuration $configuration): string
 	// app
 
 	$bisApiClient = hb_getBisApiClient($configuration);
-
-	if ($configuration->get('mailer:smtp')) {
-		// only no-authentication access is supported right now as we do not have authenticated SMTP servers now
-		$options = [];
-		$options['host'] = $configuration->get('mailer:host');
-
-		try {
-			$port = $configuration->get('mailer:port');
-			$options['port'] = $port;
-
-		} catch (Exception) {}
-
-		$mailer = new SmtpMailer($options);
-	} else {
-		$mailer = new SendmailMailer();
-	}
 
 	try {
 		$dsn = $configuration->get('sentry:dsn');
