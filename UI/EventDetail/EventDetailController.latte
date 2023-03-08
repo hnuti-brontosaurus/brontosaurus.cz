@@ -2,6 +2,7 @@
 {layout $layoutPath}
 
 {block meta}
+{if $event}
 <meta property="og:locale" content="cs_CZ">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{$event->title} – Hnutí Brontosaurus">
@@ -13,6 +14,7 @@
 <meta name="twitter:title" content="{$event->title} – Hnutí Brontosaurus">
 <meta name="twitter:description" content="{$event->invitation->introduction|stripHtml|truncate:150}">{* @todo: set escaping filter *}
 <meta name="twitter:image" content="{$event->coverPhotoPath}" n:if="$event->hasCoverPhoto">
+{/if}
 {/block}
 
 {block content}

@@ -74,6 +74,7 @@ final class EventDetailController implements Controller
 
 		} catch (ConnectionToBisFailed) {
 			$hasBeenUnableToLoad = true;
+			$eventDC = null;
 		}
 
 		$params = [
