@@ -36,7 +36,8 @@ final class InvitationDC
 	private function __construct(
 		private string $introduction,
 		private string $organizationalInformation,
-		private string $accommodation,
+		private bool $isAccommodationListed,
+		private ?string $accommodation,
 		private bool $isFoodListed,
 		private array $food,
 		private bool $isWorkDescriptionListed,
@@ -72,7 +73,8 @@ final class InvitationDC
 			Utils::handleNonBreakingSpaces($event->getPropagation()->getInvitationTextIntroduction()),
 			Utils::handleNonBreakingSpaces($event->getPropagation()->getInvitationTextPracticalInformation()),
 
-			Utils::handleNonBreakingSpaces($accommodation),
+			$accommodation !== null,
+			$accommodation !== null ? Utils::handleNonBreakingSpaces($accommodation) : null,
 
 			\count($food) > 0,
 			\array_map(static fn(Diet $food): string => $foodLabels[$food->toScalar()], $food),

@@ -176,8 +176,8 @@
 					{$event->invitation->organizationalInformation|noescape}{* @todo: set escaping filter *}
 				</p>
 
-				<ul class="detail-information-list">
-					<li>
+				<ul class="detail-information-list" n:if="$event->invitation->isAccommodationListed || $event->invitation->isFoodListed">
+					<li n:if="$event->invitation->isAccommodationListed">
 						Ubytování: {$event->invitation->accommodation}
 					</li>
 
