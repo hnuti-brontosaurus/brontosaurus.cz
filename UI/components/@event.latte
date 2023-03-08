@@ -28,6 +28,6 @@
 	</header>
 
 	<p class="events-event-excerpt">
-		{$event->invitation->introduction|striptags|truncate:200|breaklines|noescape}{* @todo *}
+		{$event->invitation->introduction|stripHtml|truncate:200|breaklines}
 	</p>
 </a>
