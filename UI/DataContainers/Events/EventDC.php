@@ -88,7 +88,7 @@ final class EventDC
 		$this->dateStartForRobots = $startDateNative->format($dateFormatRobot);
 		$timeStart = $event->getStartTime();
 		$this->hasTimeStart = $timeStart !== null;
-		$this->timeStart = $timeStart?->toNativeDateTimeImmutable()->format('H:i');
+		$this->timeStart = $timeStart?->toNativeDateTimeImmutable()->format('G:i');
 
 		$this->dateEnd = $event->getEndDate()->toNativeDateTimeImmutable();
 		$this->dateSpan = $this->getDateSpan($event->getStartDate(), $event->getEndDate(), $dateFormatHuman);
