@@ -3,6 +3,7 @@
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
 use Brick\DateTime\LocalDate;
+use HnutiBrontosaurus\BisClient\Event\Category;
 use HnutiBrontosaurus\BisClient\Event\Group;
 use HnutiBrontosaurus\BisClient\Event\IntendedFor;
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
@@ -131,7 +132,14 @@ final class EventDC
 
 		$group = $event->getGroup();
 		if ($this->program->isOfTypePsb) {
-			$this->tags[] = new Tag('prázdninové');
+			if ($event->getCategory() === Category::VOLUNTEERING()) {
+				$this->tags[] = new Tag('dobrovolnická');
+			} elseif ($event->getCategory() === Category::EXPERIENCE()) {
+				$this->tags[] = new Tag('zážitková');
+			}
+
+			$this->tags[] = new Tag('prázdninová');
+
 		} elseif ($event->getDuration() === 1) {
 			$this->tags[] = new Tag('jednodenní');
 		} elseif ($group === Group::WEEKEND_EVENT()) {
