@@ -1,42 +1,42 @@
 {
-    "name": "hnuti-brontosaurus/wp-theme",
-    "description": "WP theme for Hnutí Brontosaurus",
-    "require": {
-        "grifart/geocoding-client": "^0.1.0",
-        "hnuti-brontosaurus/php-bis-api-client": "^4.0.0-beta",
+	"name": "hnuti-brontosaurus/wp-theme",
+	"description": "WP theme for Hnutí Brontosaurus",
+	"require": {
+		"grifart/geocoding-client": "^0.1.0",
+		"hnuti-brontosaurus/php-bis-api-client": "^4.0.0-beta",
 		"latte/latte": "^3.0",
-        "nette/http": "^3.1",
-        "nette/neon": "^3.2",
-        "nette/utils": "^4.0",
-        "sentry/sdk": "^3.1",
-        "tracy/tracy": "^2.8"
-    },
+		"nette/http": "^3.1",
+		"nette/neon": "^3.2",
+		"nette/utils": "^4.0",
+		"sentry/sdk": "^3.1",
+		"tracy/tracy": "^2.8"
+	},
 	"require-dev": {
 		"phpstan/phpstan": "^1.10",
 		"szepeviktor/phpstan-wordpress": "^1.1"
 	},
-    "autoload": {
-        "psr-4": {
-            "HnutiBrontosaurus\\Theme\\": "."
-        },
-        "classmap": [
-            "exceptions.php"
-        ]
-    },
-    "config": {
-        "platform": {
-            "php": "8.0.0"
-        },
-        "sort-packages": true
-    },
-    "repositories": [
-        {
-            "url": "https://github.com/grifart/geocoding-client.git",
-            "type": "vcs"
-        },
-        {
-            "url": "https://github.com/hnuti-brontosaurus/php-bis-api-client.git",
-            "type": "vcs"
-        }
-    ]
+	"autoload": {
+		"psr-4": {
+			"HnutiBrontosaurus\\Theme\\": "."
+		},
+		"classmap": [
+			"exceptions.php"
+		]
+	},
+	"config": {
+		"platform": {
+			"php": "8.0.0"
+		},
+		"sort-packages": true
+	},
+	"repositories": [
+		{
+			"url": "https://github.com/grifart/geocoding-client.git",
+			"type": "vcs"
+		},
+		{
+			"url": "https://github.com/hnuti-brontosaurus/php-bis-api-client.git",
+			"type": "vcs"
+		}
+	]
 }
