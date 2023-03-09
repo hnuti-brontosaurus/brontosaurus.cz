@@ -1,5 +1,6 @@
 .eventTagList {
 	display: flex;
+	justify-content: flex-end;
 	align-items: center;
 	flex-wrap: wrap;
 	gap: vr-unit(0.25);

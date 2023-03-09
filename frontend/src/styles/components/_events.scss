@@ -87,6 +87,7 @@ $events-breakpoint-threeColumns-from: "min-width: " + ($events-breakpoint-TwoToT
 			position: absolute;
 			right: 0;
 			bottom: 0;
+			width: 100%;
 			padding: 0 vr-unit(0.5) vr-unit(0.25);
 			border-bottom: 2px solid $colors-emphasizing;
 		}
