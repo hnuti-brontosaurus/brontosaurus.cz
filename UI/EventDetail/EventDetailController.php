@@ -19,6 +19,7 @@ use function array_merge;
 use function get_query_var;
 use function parse_url;
 use function preg_match;
+use function remove_all_actions;
 use function rtrim;
 use function sprintf;
 use function str_replace;
@@ -49,6 +50,15 @@ final class EventDetailController implements Controller
 
 	public function render(): void
 	{
+		// remove generated meta data on this page, see https://support.rankmath.com/ticket/is-there-anyway-to-disable-or-remove-specific-meta-from-posts/
+		// https://rankmath.com/kb/filters-hooks-api-developer/#change-the-title
+		add_filter( 'rank_math/frontend/title', static fn($title) => null);
+		// https://rankmath.com/kb/filters-hooks-api-developer/#remove-opengraph-tags
+		add_action( 'rank_math/head', function() {
+			remove_all_actions( 'rank_math/opengraph/facebook' );
+			remove_all_actions( 'rank_math/opengraph/twitter' );
+		});
+
 		$eventId = (int) get_query_var(self::PARAM_EVENT_ID);
 
 //		$parentPageSlug = get_query_var(self::PARAM_PARENT_PAGE_SLUG); // does not work for some reason
