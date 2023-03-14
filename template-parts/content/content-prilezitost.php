@@ -2,6 +2,7 @@
 
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\OpportunityNotFound;
+use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
 use function HnutiBrontosaurus\Theme\hb_dateSpan;
 use function HnutiBrontosaurus\Theme\hb_opportunityCategoryToString;
 use const HnutiBrontosaurus\Theme\HB_OPPORTUNITY_ID;
@@ -18,7 +19,12 @@ try {
 	$opportunity = $bisApiClient->getOpportunity($opportunityId);
 
 } catch (OpportunityNotFound) {
-	$hasBeenUnableToLoad = true; // todo change to 404
+	$configuration = hb_getConfiguration();
+	$baseFactory = new BaseFactory($configuration->get('enableTracking'));
+	$base = $baseFactory->create(null);
+	$latte = hb_getLatte();
+	$latte->render(__DIR__ . '/../../UI/Error/ErrorController.404.latte', $base->getLayoutVariables('error404'));
+	exit;
 
 } catch (ConnectionToBisFailed) {
 	$hasBeenUnableToLoad = true;
