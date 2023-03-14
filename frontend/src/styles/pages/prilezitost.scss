@@ -14,6 +14,7 @@
 	&__tags {
 		vertical-align: middle;
 		margin-inline-start: calc(var(--hb-vr-base) * -0.25);
+		justify-content: center;
 
 		@media ($typography-breakpoint-small-until) {
 			display: inline-flex;
