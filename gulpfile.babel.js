@@ -40,6 +40,12 @@ const buildScriptsTask = (cb) => {
 			sourcePath: paths.scripts.global.src,
 		},
 		{
+			distFileName: 'lightbox.js',
+			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
+			sourceFileName: 'lightbox.ts',
+			sourcePath: paths.scripts.global.src,
+		},
+		{
 			distFileName: 'menuHandler.js',
 			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
 			sourceFileName: 'menuHandler.ts',

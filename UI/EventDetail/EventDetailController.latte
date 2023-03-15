@@ -224,7 +224,7 @@
 
 				<ul class="photogallery" n:if="$event->invitation->presentation->hasAnyPhotos">
 					<li class="photogallery__item" n:foreach="$event->invitation->presentation->photos as $photo">
-						<a class="photogallery__link" href="{$photo}">
+						<a class="photogallery__link" href="{$photo}" data-glightbox data-gallery="gallery">
 							<img src="{$photo}" alt="" class="photogallery__image">
 						</a>
 					</li>

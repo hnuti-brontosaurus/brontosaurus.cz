@@ -100,6 +100,7 @@ final class EventDetailController implements Controller
 			$theme = wp_get_theme();
 			$themeVersion = $theme->get('Version');
 			wp_enqueue_script('brontosaurus-detail', $theme->get_template_directory_uri() . '/UI/EventDetail/assets/dist/js/index.js', [], $themeVersion);
+			wp_enqueue_script('brontosaurus-detail-lightbox', $theme->get_template_directory_uri() . '/frontend/dist/js/lightbox.js', [], $themeVersion);
 		});
 
 		$this->latte->render(
