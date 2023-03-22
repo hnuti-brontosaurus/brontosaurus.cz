@@ -7,7 +7,7 @@ use HnutiBrontosaurus\BisClient\Event\Category;
 use HnutiBrontosaurus\BisClient\Event\Group;
 use HnutiBrontosaurus\BisClient\Event\IntendedFor;
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
-use HnutiBrontosaurus\Theme\UI\EventDetail\EventDetailController;
+use HnutiBrontosaurus\Theme\UI\Event\EventController;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 use HnutiBrontosaurus\Theme\UI\Utils;
 use function get_site_url;
@@ -86,7 +86,7 @@ final class EventDC
 		$this->id = $event->getId();
 		$this->link = sprintf('%s/%s/%d/', // todo: use rather WP routing somehow
 			rtrim(get_site_url(), '/'),
-			EventDetailController::PAGE_SLUG,
+			EventController::PAGE_SLUG,
 			$event->getId(),
 		);
 		$this->title = Utils::handleNonBreakingSpaces($event->getName());

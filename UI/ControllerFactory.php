@@ -16,7 +16,7 @@ use HnutiBrontosaurus\Theme\UI\Contacts\ContactsController;
 use HnutiBrontosaurus\Theme\UI\Courses\CoursesController;
 use HnutiBrontosaurus\Theme\UI\English\EnglishController;
 use HnutiBrontosaurus\Theme\UI\Error\ErrorController;
-use HnutiBrontosaurus\Theme\UI\EventDetail\EventDetailController;
+use HnutiBrontosaurus\Theme\UI\Event\EventController;
 use HnutiBrontosaurus\Theme\UI\FirstTime\FirstTimeController;
 use HnutiBrontosaurus\Theme\UI\ForChildren\ForChildrenController;
 use HnutiBrontosaurus\Theme\UI\Future\FutureController;
@@ -80,7 +80,7 @@ final class ControllerFactory
 //			'adopce-brontosaura' => new SupportAdoptionController($base, $this->latte), // disabled for now
 			FutureController::PAGE_SLUG => new FutureController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte),
 			AboutStructureController::PAGE_SLUG => new AboutStructureController($this->bisApiClient, $base, $this->latte, $this->coordinatesResolver),
-			EventDetailController::PAGE_SLUG => new EventDetailController($this->dateFormatHuman, $this->dateFormatRobot, $this->applicationUrlTemplate, $this->bisApiClient, $base, $this->latte),
+			EventController::PAGE_SLUG => new EventController($this->dateFormatHuman, $this->dateFormatRobot, $this->applicationUrlTemplate, $this->bisApiClient, $base, $this->latte),
 			'vysledky-vyhledavani' => new SearchResultsController($base, $this->latte),
 			BaseUnitsAndClubsListController::PAGE_SLUG => new BaseUnitsAndClubsListController($this->bisApiClient, $base, $this->latte),
 			default => new ErrorController($base, $this->latte),

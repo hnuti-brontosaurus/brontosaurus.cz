@@ -5,7 +5,7 @@ namespace HnutiBrontosaurus\Theme;
 use Brick\DateTime\LocalDate;
 use HnutiBrontosaurus\BisClient\Opportunity\Category;
 use HnutiBrontosaurus\Theme\UI\Courses\CoursesController;
-use HnutiBrontosaurus\Theme\UI\EventDetail\EventDetailController;
+use HnutiBrontosaurus\Theme\UI\Event\EventController;
 use HnutiBrontosaurus\Theme\UI\ForChildren\ForChildrenController;
 use HnutiBrontosaurus\Theme\UI\Future\FutureController;
 use HnutiBrontosaurus\Theme\UI\Meetups\MeetupsController;
@@ -17,15 +17,15 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 
 // todo: possibly place elsewhere
-function registerEventDetail(): void
+function registerEvent(): void
 {
 	add_rewrite_rule(
 		sprintf('^%s/([\d]+)',
-			EventDetailController::PAGE_SLUG,
+			EventController::PAGE_SLUG,
 		),
 		sprintf('index.php?pagename=%s&%s=$matches[1]',
-			EventDetailController::PAGE_SLUG,
-			EventDetailController::PARAM_EVENT_ID,
+			EventController::PAGE_SLUG,
+			EventController::PARAM_EVENT_ID,
 		),
 		'top',
 	);
@@ -40,16 +40,16 @@ function registerOpportunityDetail(): void
 	);
 }
 add_action('init', function () {
-	registerEventDetail();
+	registerEvent();
 	registerOpportunityDetail();
 });
 add_filter('query_vars', function($vars) {
-	array_push($vars, EventDetailController::PARAM_EVENT_ID);
+	array_push($vars, EventController::PARAM_EVENT_ID);
 	array_push($vars, HB_OPPORTUNITY_ID);
 	return $vars;
 });
 add_action('after_switch_theme', function () {
-	registerEventDetail();
+	registerEvent();
 	registerOpportunityDetail();
 	flush_rewrite_rules();
 });

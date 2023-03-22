@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace HnutiBrontosaurus\Theme\UI\EventDetail;
+namespace HnutiBrontosaurus\Theme\UI\Event;
 
 use HnutiBrontosaurus\BisClient\BisClient;
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
@@ -26,7 +26,7 @@ use function wp_get_theme;
 use const PHP_URL_HOST;
 
 
-final class EventDetailController implements Controller
+final class EventController implements Controller
 {
 
 	public const PAGE_SLUG = 'akce';
@@ -88,13 +88,13 @@ final class EventDetailController implements Controller
 		add_action('wp_enqueue_scripts', function () {
 			$theme = wp_get_theme();
 			$themeVersion = $theme->get('Version');
-			wp_enqueue_script('brontosaurus-detail', $theme->get_template_directory_uri() . '/UI/EventDetail/assets/dist/js/index.js', [], $themeVersion);
+			wp_enqueue_script('brontosaurus-detail', $theme->get_template_directory_uri() . '/UI/Event/assets/dist/js/index.js', [], $themeVersion);
 			wp_enqueue_script('brontosaurus-detail-lightbox', $theme->get_template_directory_uri() . '/frontend/dist/js/lightbox.js', [], $themeVersion);
 		});
 
 		$this->registerFilters();
 		$this->latte->render(
-			__DIR__ . '/EventDetailController.latte',
+			__DIR__ . '/EventController.latte',
 			array_merge($this->base->getLayoutVariables('detail'), $params),
 		);
 	}

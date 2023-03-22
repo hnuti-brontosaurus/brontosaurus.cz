@@ -2,7 +2,7 @@ export const ENV_PRODUCTION = 'production';
 
 const locations = {
 	global: 'frontend',
-	detail: 'UI/EventDetail/assets',
+	detail: 'UI/Event/assets',
 	contacts: 'UI/Contacts/assets',
 	rentals: 'UI/Rentals/assets',
 };

@@ -57,7 +57,7 @@ build.frontend:
         paths: # note that you have to add a path also to the pack stage of this CI configuration
             - UI/AboutStructure/assets/dist
             - UI/Contacts/assets/dist
-            - UI/EventDetail/assets/dist
+            - UI/Event/assets/dist
             - UI/Rentals/assets/dist
             - frontend/dist
         expire_in: 1 day
@@ -95,7 +95,7 @@ build.frontend:
             -i "UI/*"
             -x "UI/AboutStructure/assets/src/*"
             -x "UI/Contacts/assets/src/*"
-            -x "UI/EventDetail/assets/src/*"
+            -x "UI/Event/assets/src/*"
             -x "UI/Rentals/assets/src/*"
             -i "vendor/*"
             -i "ApplicationUrlTemplate.php"
