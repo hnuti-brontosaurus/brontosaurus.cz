@@ -149,7 +149,6 @@ $detail-breakpoint-large-from: "min-width: " + ($detail-breakpoint-mediumToLarge
 		@media ($detail-breakpoint-large-from) {
 			margin-bottom: vr-unit(0.5);
 			padding-top: vr-unit(0.5);
-			font-weight: bold;
 		}
 	}
 
