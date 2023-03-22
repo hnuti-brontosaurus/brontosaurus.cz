@@ -11,6 +11,7 @@ use HnutiBrontosaurus\Theme\NotFound;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventDC;
+use HnutiBrontosaurus\Theme\UI\Future\FutureController;
 use Latte\Engine;
 use Nette\Http\Request;
 use Nette\Utils\Strings;
@@ -89,7 +90,7 @@ final class EventDetailController implements Controller
 
 		$params = [
 			'event' => $eventDC,
-			'alternativeForFullEventLink' => $this->base->getLinkFor($parentPageSlug),
+			'alternativeForFullEventLink' => $this->base->getLinkFor(FutureController::PAGE_SLUG),
 			'hasBeenUnableToLoad' => $hasBeenUnableToLoad,
 			'selfLink' => $this->getSelfLink($parentPageSlug, $eventId),
 			'firstTimePageLink' => $this->base->getLinkFor('jedu-poprve'),

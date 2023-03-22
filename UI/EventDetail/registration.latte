@@ -4,7 +4,8 @@
 <div class="registration">
 	{if $event->isFull}
 		<p class="registration__full">
-			Na tuto akci se už bohužel nedá přihlásit, ale můžeš <a href="{$alternativeForFullEventLink}">zkusit jinou</a>.
+			<strong>Tato akce už má bohužel plno.</strong><br>
+			Buď se vrať se zpět, nebo se podívej <a href="{$alternativeForFullEventLink}">co se chystá</a>.
 		</p>
 
 	{elseif ! $event->isRegistrationRequired}
