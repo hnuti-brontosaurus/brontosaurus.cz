@@ -30,36 +30,18 @@ final class AgeDC
 	public static function fromDTO(Event $event): self
 	{
 		$ageFrom = $event->getPropagation()->getMinimumAge();
-		$ageFromValid = self::ageFromInValidConstraints($ageFrom);
+		$ageFromListed = $ageFrom !== null;
 		$ageUntil = $event->getPropagation()->getMaximumAge();
-		$ageUntilValid = self::ageUntilInValidConstraints($ageUntil);
+		$ageUntilListed = $ageUntil !== null;
 
 		return new self(
-			isListed: $ageFromValid || $ageUntilValid,
-			isInterval: $ageFromValid && $ageUntilValid,
-			isFromListed: $ageFromValid && ! $ageUntilValid,
+			isListed: $ageFromListed || $ageUntilListed,
+			isInterval: $ageFromListed && $ageUntilListed,
+			isFromListed: $ageFromListed && ! $ageUntilListed,
 			from: $ageFrom,
-			isUntilListed: ! $ageFromValid && $ageUntilValid,
+			isUntilListed: ! $ageFromListed && $ageUntilListed,
 			until: $ageUntil,
 		);
-	}
-
-
-	/**
-	 * Filter our stuff like "from 0 years".
-	 * One valid use-case for that would be when organizers would like to indicate that an event is even baby-friendly, but nobody used it like this yet, only "0-60" values are present which is probably pointless information.
-	 */
-	private static function ageFromInValidConstraints(?int $ageFrom): bool
-	{
-		return $ageFrom !== null && $ageFrom !== 0;
-	}
-
-	/**
-	 * Filter out stuff like "until 99 years".
-	 */
-	private static function ageUntilInValidConstraints(?int $ageUntil): bool
-	{
-		return $ageUntil !== null && $ageUntil < 90;
 	}
 
 }
