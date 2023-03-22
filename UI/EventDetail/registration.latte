@@ -1,10 +1,10 @@
 {varType HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventDC $event}
-{varType string $categoryLink}
+{varType string $alternativeForFullEventLink}
 
 <div class="registration">
 	{if $event->isFull}
 		<p class="registration__full">
-			Na tuto akci se už bohužel nedá přihlásit, ale můžeš <a href="{$categoryLink}">zkusit jinou</a>.
+			Na tuto akci se už bohužel nedá přihlásit, ale můžeš <a href="{$alternativeForFullEventLink}">zkusit jinou</a>.
 		</p>
 
 	{elseif ! $event->isRegistrationRequired}

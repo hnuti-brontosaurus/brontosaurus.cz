@@ -89,7 +89,7 @@ final class EventDetailController implements Controller
 
 		$params = [
 			'event' => $eventDC,
-			'categoryLink' => $this->base->getLinkFor($parentPageSlug),
+			'alternativeForFullEventLink' => $this->base->getLinkFor($parentPageSlug),
 			'hasBeenUnableToLoad' => $hasBeenUnableToLoad,
 			'selfLink' => $this->getSelfLink($parentPageSlug, $eventId),
 			'firstTimePageLink' => $this->base->getLinkFor('jedu-poprve'),

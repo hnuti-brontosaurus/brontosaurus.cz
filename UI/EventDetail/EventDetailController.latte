@@ -1,5 +1,5 @@
 {varType HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventDC $event}
-{varType string $categoryLink}
+{varType string $alternativeForFullEventLink}
 {layout $layoutPath}
 
 {block meta}
@@ -152,7 +152,7 @@
 			<div class="detail__registrationLink">
 				{include 'registration.latte',
 					event => $event,
-					categoryLink => $categoryLink,
+					alternativeForFullEventLink => $alternativeForFullEventLink,
 				}
 			</div>
 
@@ -266,7 +266,7 @@
 				<div class="detail-registrationLink">
 					{include 'registration.latte',
 						event => $event,
-						categoryLink => $categoryLink,
+						alternativeForFullEventLink => $alternativeForFullEventLink,
 					}
 				</div>
 			</div>
