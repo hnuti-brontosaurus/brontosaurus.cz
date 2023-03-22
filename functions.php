@@ -10,6 +10,7 @@ use HnutiBrontosaurus\Theme\UI\ForChildren\ForChildrenController;
 use HnutiBrontosaurus\Theme\UI\Future\FutureController;
 use HnutiBrontosaurus\Theme\UI\Meetups\MeetupsController;
 use HnutiBrontosaurus\Theme\UI\Voluntary\VoluntaryController;
+use function flush_rewrite_rules;
 use function sprintf;
 
 
@@ -42,6 +43,7 @@ function registerOpportunityDetail(): void
 add_action('init', function () {
 	registerEvent();
 	registerOpportunityDetail();
+	flush_rewrite_rules();
 });
 add_filter('query_vars', function($vars) {
 	array_push($vars, EventController::PARAM_EVENT_ID);
