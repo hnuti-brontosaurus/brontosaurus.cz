@@ -13,15 +13,12 @@ use HnutiBrontosaurus\Theme\UI\Controller;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventDC;
 use HnutiBrontosaurus\Theme\UI\Future\FutureController;
 use Latte\Engine;
-use Nette\Http\Request;
 use Nette\Utils\Strings;
 use function add_action;
 use function array_merge;
 use function get_query_var;
 use function parse_url;
-use function preg_match;
 use function remove_all_actions;
-use function rtrim;
 use function sprintf;
 use function str_replace;
 use function wp_enqueue_script;
@@ -32,8 +29,7 @@ use const PHP_URL_HOST;
 final class EventDetailController implements Controller
 {
 
-	public const PAGE_SLUG = 'detail';
-	public const PARAM_PARENT_PAGE_SLUG = 'parentPageSlug';
+	public const PAGE_SLUG = 'akce';
 	public const PARAM_EVENT_ID = 'eventId';
 
 	public function __construct(
@@ -43,7 +39,6 @@ final class EventDetailController implements Controller
 		private BisClient $bisApiClient,
 		private Base $base,
 		private Engine $latte,
-		private Request $httpRequest,
 	) {}
 
 
@@ -61,13 +56,6 @@ final class EventDetailController implements Controller
 		});
 
 		$eventId = (int) get_query_var(self::PARAM_EVENT_ID);
-
-//		$parentPageSlug = get_query_var(self::PARAM_PARENT_PAGE_SLUG); // does not work for some reason
-		preg_match('/^\/([\w-]+).*/', $this->httpRequest->getUrl()->getPath(), $matches);
-		$parentPageSlug = $matches[1];
-
-		$this->registerFilters($parentPageSlug);
-
 		$hasBeenUnableToLoad = false;
 
 		try {
@@ -92,7 +80,7 @@ final class EventDetailController implements Controller
 			'event' => $eventDC,
 			'alternativeForFullEventLink' => $this->base->getLinkFor(FutureController::PAGE_SLUG),
 			'hasBeenUnableToLoad' => $hasBeenUnableToLoad,
-			'selfLink' => $this->getSelfLink($parentPageSlug, $eventId),
+			'selfLink' => $eventDC->link,
 			'firstTimePageLink' => $this->base->getLinkFor('jedu-poprve'),
 			'aboutCrossroadPageLink' => $this->base->getLinkFor('o-brontosaurovi'),
 		];
@@ -104,6 +92,7 @@ final class EventDetailController implements Controller
 			wp_enqueue_script('brontosaurus-detail-lightbox', $theme->get_template_directory_uri() . '/frontend/dist/js/lightbox.js', [], $themeVersion);
 		});
 
+		$this->registerFilters();
 		$this->latte->render(
 			__DIR__ . '/EventDetailController.latte',
 			array_merge($this->base->getLayoutVariables('detail'), $params),
@@ -111,16 +100,7 @@ final class EventDetailController implements Controller
 	}
 
 
-	private function getSelfLink(string $parentPageSlug, int $eventId): string
-	{
-		return sprintf('%s/detail/%d/',
-			rtrim($this->base->getLinkFor($parentPageSlug), '/'),
-			$eventId,
-		);
-	}
-
-
-	private function registerFilters(string $parentPageSlug): void
+	private function registerFilters(): void
 	{
 		$this->latte->addFilter('renderWebsiteUserFriendly', static function (string $website): string {
 			$hostname = parse_url($website, PHP_URL_HOST);
@@ -133,10 +113,8 @@ final class EventDetailController implements Controller
 			return $hostname;
 		});
 
-		$this->latte->addFilter('resolveRegistrationLink', function (EventDC $event) use ($parentPageSlug): string {
-			$returnUrl = $this->getSelfLink($parentPageSlug, $event->id);
-			return $this->applicationUrlTemplate->for($event->id, $returnUrl);
-		});
+		$this->latte->addFilter('resolveRegistrationLink', fn(EventDC $event): string =>
+			$this->applicationUrlTemplate->for($event->id, $event->link));
 
 		$this->latte->addFilter('formatDayCount', static fn(int $days): string =>
 			match($days) {

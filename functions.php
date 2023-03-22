@@ -10,6 +10,7 @@ use HnutiBrontosaurus\Theme\UI\ForChildren\ForChildrenController;
 use HnutiBrontosaurus\Theme\UI\Future\FutureController;
 use HnutiBrontosaurus\Theme\UI\Meetups\MeetupsController;
 use HnutiBrontosaurus\Theme\UI\Voluntary\VoluntaryController;
+use function sprintf;
 
 
 require_once __DIR__ . '/vendor/autoload.php';
@@ -19,19 +20,11 @@ require_once __DIR__ . '/vendor/autoload.php';
 function registerEventDetail(): void
 {
 	add_rewrite_rule(
-		\sprintf('^(%s)/%s/([\d]+)',
-			\implode('|', [
-				VoluntaryController::PAGE_SLUG,
-				CoursesController::PAGE_SLUG,
-				MeetupsController::PAGE_SLUG,
-				ForChildrenController::PAGE_SLUG,
-				FutureController::PAGE_SLUG,
-			]),
+		sprintf('^%s/([\d]+)',
 			EventDetailController::PAGE_SLUG,
 		),
-		\sprintf('index.php?pagename=%s&%s=$matches[1]&%s=$matches[2]',
+		sprintf('index.php?pagename=%s&%s=$matches[1]',
 			EventDetailController::PAGE_SLUG,
-			EventDetailController::PARAM_PARENT_PAGE_SLUG,
 			EventDetailController::PARAM_EVENT_ID,
 		),
 		'top',
