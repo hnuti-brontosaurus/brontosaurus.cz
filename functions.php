@@ -4,13 +4,30 @@ namespace HnutiBrontosaurus\Theme;
 
 use Brick\DateTime\LocalDate;
 use HnutiBrontosaurus\BisClient\Opportunity\Category;
-use HnutiBrontosaurus\Theme\UI\Courses\CoursesController;
 use HnutiBrontosaurus\Theme\UI\Event\EventController;
-use HnutiBrontosaurus\Theme\UI\ForChildren\ForChildrenController;
-use HnutiBrontosaurus\Theme\UI\Future\FutureController;
-use HnutiBrontosaurus\Theme\UI\Meetups\MeetupsController;
-use HnutiBrontosaurus\Theme\UI\Voluntary\VoluntaryController;
+use WP_Post;
+use WP_Theme;
+use function __;
+use function add_action;
+use function add_filter;
+use function add_meta_box;
+use function add_rewrite_rule;
+use function add_theme_support;
+use function array_key_exists;
+use function array_push;
+use function filemtime;
+use function flush_rewrite_rules;
+use function get_permalink;
+use function get_posts;
+use function implode;
+use function register_nav_menus;
+use function register_post_type;
+use function reset;
 use function sprintf;
+use function update_post_meta;
+use function wp_enqueue_script;
+use function wp_enqueue_style;
+use function wp_get_theme;
 
 
 require_once __DIR__ . '/vendor/autoload.php';
@@ -35,7 +52,7 @@ function registerOpportunityDetail(): void
 {
 	add_rewrite_rule(
 		'^zapoj-se/prilezitost/([\d]+)',
-		\sprintf('index.php?pagename=prilezitost&%s=$matches[1]', HB_OPPORTUNITY_ID),
+		sprintf('index.php?pagename=prilezitost&%s=$matches[1]', HB_OPPORTUNITY_ID),
 		'top',
 	);
 }
@@ -109,7 +126,7 @@ add_action('init', function () {
 		add_meta_box(
 			'contacts_role',
 			'Kontakt',
-			function (\WP_Post $post) {
+			function (WP_Post $post) {
 				?>
 				<div style="margin-bottom: 1em;">
 					<label for="contacts_role" class="required">Funkce</label><br>
@@ -135,7 +152,7 @@ add_action('init', function () {
 	add_action('save_post', function ($postId) {
 		foreach (['contacts_role', 'contacts_about', 'contacts_email'] as $field) {
 			if (array_key_exists($field, $_POST)) {
-				\update_post_meta(
+				update_post_meta(
 					$postId,
 					$field,
 					$_POST[$field],
@@ -149,7 +166,7 @@ add_action('init', function () {
 function getLinkFor(string $slug): string
 {
 	$posts = get_posts(['name' => $slug, 'post_type' => 'page', 'posts_per_page' => 1]);
-	$post = \reset($posts);
+	$post = reset($posts);
 	if ($post === false) {
 		throw new \RuntimeException("$slug does not exist");
 	}
@@ -189,30 +206,30 @@ function hb_dateSpan(LocalDate $start, LocalDate $end, string $dateFormat): stri
 
 function hb_opportunityCategoryToString(Category $category): string
 {
-	return match (true) {
-		$category->equals(Category::ORGANIZING()) => 'organizování akcí',
-		$category->equals(Category::COLLABORATION()) => 'spolupráce',
-		$category->equals(Category::LOCATION_HELP()) => 'pomoc lokalitě',
+	return match ($category) {
+		Category::ORGANIZING() => 'organizování akcí',
+		Category::COLLABORATION() => 'spolupráce',
+		Category::LOCATION_HELP() => 'pomoc lokalitě',
 	};
 }
 
 
 // frontend stuff
 
-(function (\WP_Theme $theme) {
+(function (WP_Theme $theme) {
 	add_action('wp_enqueue_scripts', function () use ($theme) {
 		$jsRelativePath = 'frontend/dist/js/menuHandler.js';
 		$cssRelativePath = 'frontend/dist/css/style.css';
-		$path = static fn(string ...$parts): string => \implode('/', $parts);
+		$path = static fn(string ...$parts): string => implode('/', $parts);
 		wp_enqueue_script(
 			handle: 'brontosaurus-menu-handler',
 			src: $path($theme->get_template_directory_uri(), $jsRelativePath),
-			ver: \filemtime($path($theme->get_template_directory(), $jsRelativePath)),
+			ver: filemtime($path($theme->get_template_directory(), $jsRelativePath)),
 		);
 		wp_enqueue_style(
 			handle: 'brontosaurus-main',
 			src: $path($theme->get_template_directory_uri(), $cssRelativePath),
-			ver: \filemtime($path($theme->get_template_directory(), $cssRelativePath)),
+			ver: filemtime($path($theme->get_template_directory(), $cssRelativePath)),
 		);
 	});
 
