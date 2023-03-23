@@ -1,10 +1,10 @@
 .courses {
-	&-heading {
+	&__heading {
 		text-align: center;
 	}
 
-	&-events {
-		margin-bottom: vr-unit(2);
+	&__events {
+		margin-block-end: calc(var(--hb-vr-base) * 2);
 	}
 
 	&__info {
@@ -18,13 +18,13 @@
 		}
 	}
 
-	&-description {
-		margin-bottom: vr-unit(3);
+	&__description {
+		margin-block-end: calc(var(--hb-vr-base) * 3);
+	}
 
-		&-highSchoolProgramsLink {
-			background-image: url("../images/highSchoolPrograms.jpg");
-			background-position-y: 36%;
-			background-repeat: no-repeat;
-		}
+	&__highSchoolsPrograms {
+		background-image: url("../images/highSchoolPrograms.jpg");
+		background-position-y: 36%;
+		background-repeat: no-repeat;
 	}
 }
