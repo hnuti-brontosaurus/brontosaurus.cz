@@ -7,6 +7,17 @@
 		margin-bottom: vr-unit(2);
 	}
 
+	&__info {
+		text-align: center;
+		margin-block: calc(var(--hb-vr-base) * 0.5 * -1) calc(var(--hb-vr-base) * 2);
+		font-size: 0.8em;
+
+		@media ($events-breakpoint-oneColumn-until) {
+			max-width: 16rem;
+			margin-inline: auto;
+		}
+	}
+
 	&-description {
 		margin-bottom: vr-unit(3);
 

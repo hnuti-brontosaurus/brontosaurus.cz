@@ -43,6 +43,11 @@
 			</ul>
 		</div>
 
+		<p class="courses__info" n:if="$filters->isOrganizingSelected">
+			👉 Na této stránce je přehled aktuálně vypsaných kurzů. Pro více informací či další kurzy
+			<a href="https://organizator.brontosaurus.cz" rel="noopener">klikni zde</a>.
+		</p>
+
 		{include '../components/@eventList.latte', eventCollection => $eventCollection}
 	</div>
 </main>
