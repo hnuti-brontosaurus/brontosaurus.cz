@@ -16,7 +16,6 @@ use HnutiBrontosaurus\Theme\UI\ControllerFactory;
 use Latte\Bridges\Tracy\BlueScreenPanel;
 use Latte\Bridges\Tracy\LattePanel;
 use Latte\Engine;
-use Nette\Http\RequestFactory;
 use Tracy\Debugger;
 
 
@@ -125,7 +124,6 @@ function hb_getDateFormatForRobot(Configuration $configuration): string
 		new BaseFactory($configuration->get('enableTracking')),
 		$latte,
 		hb_getCoordinatesResolver(),
-		(new RequestFactory())->fromGlobals(),
 	);
 
 	try {

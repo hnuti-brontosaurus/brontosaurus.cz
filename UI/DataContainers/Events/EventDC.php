@@ -7,12 +7,17 @@ use HnutiBrontosaurus\BisClient\Event\Category;
 use HnutiBrontosaurus\BisClient\Event\Group;
 use HnutiBrontosaurus\BisClient\Event\IntendedFor;
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
+use HnutiBrontosaurus\Theme\UI\Event\EventController;
 use HnutiBrontosaurus\Theme\UI\PropertyHandler;
 use HnutiBrontosaurus\Theme\UI\Utils;
+use function get_site_url;
+use function rtrim;
+use function sprintf;
 
 
 /**
  * @property-read int $id
+ * @property-read string $link
  * @property-read string $title
  * @property-read string $dateStartForHumans
  * @property-read string $dateStartForRobots
@@ -46,6 +51,7 @@ final class EventDC
 
 
 	private int $id;
+	private string $link;
 	private string $title;
 	private bool $hasCoverPhoto;
 	private ?string $coverPhotoPath;
@@ -78,6 +84,11 @@ final class EventDC
 	public function __construct(Event $event, string $dateFormatHuman, string $dateFormatRobot)
 	{
 		$this->id = $event->getId();
+		$this->link = sprintf('%s/%s/%d/', // todo: use rather WP routing somehow
+			rtrim(get_site_url(), '/'),
+			EventController::PAGE_SLUG,
+			$event->getId(),
+		);
 		$this->title = Utils::handleNonBreakingSpaces($event->getName());
 
 		$coverPhotoPath = $event->getCoverPhotoPath();
