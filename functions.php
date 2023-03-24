@@ -33,6 +33,12 @@ use function wp_get_theme;
 require_once __DIR__ . '/vendor/autoload.php';
 
 
+/**
+ * turn off <link rel="canonical"> produced by rank math seo plugin
+ * that's because on `/akce/ID` and `/prilezitost/ID` it generates bad URL (with no ID) and I couldn't find any simple way to modify it inside of controller
+ */
+add_filter('rank_math/frontend/canonical', static fn($canonical) => null);
+
 // todo: possibly place elsewhere
 function registerEvent(): void
 {
