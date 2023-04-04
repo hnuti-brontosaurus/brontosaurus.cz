@@ -20,7 +20,7 @@ use HnutiBrontosaurus\Theme\UI\PropertyHandler;
  * @property-read bool $isOfTypeOffice
  * @property-read bool $isOfTypeChildren
  */
-final class OrganizationalUnitDC implements \JsonSerializable
+final class AdministrationUnitDC implements \JsonSerializable
 {
 
 	use PropertyHandler;

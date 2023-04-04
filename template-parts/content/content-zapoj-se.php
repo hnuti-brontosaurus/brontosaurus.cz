@@ -5,7 +5,7 @@ use HnutiBrontosaurus\BisClient\Opportunity\Category;
 use HnutiBrontosaurus\BisClient\Opportunity\Request\OpportunityParameters;
 use HnutiBrontosaurus\BisClient\Opportunity\Response\Opportunity;
 use HnutiBrontosaurus\Theme\CannotResolveCoordinates;
-use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\OrganizationalUnitDC;
+use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\AdministrationUnitDC;
 use Nette\Utils\Strings;
 use function HnutiBrontosaurus\Theme\hb_dateSpan;
 use function HnutiBrontosaurus\Theme\hb_opportunityCategoryToString;
@@ -41,7 +41,7 @@ $applyFilter = static function (?string $filter): ?OpportunityParameters {
 };
 
 $hasBeenUnableToLoad = false;
-$organizationalUnits = [];
+$administrationUnits = [];
 
 try {
 	$opportunities = $bisApiClient->getOpportunities($applyFilter($selectedFilter));
@@ -49,7 +49,7 @@ try {
 	foreach ($bisApiClient->getAdministrationUnits() as $organizationalUnit) {
 		try {
 			$coordinates = $coordinatesResolver->resolve($organizationalUnit);
-			$organizationalUnits[] = OrganizationalUnitDC::fromDTO($organizationalUnit, $coordinates);
+			$administrationUnits[] = AdministrationUnitDC::fromDTO($organizationalUnit, $coordinates);
 
 		} catch (CannotResolveCoordinates) {
 			continue; // in case of non-existing address just silently continue and ignore this unit
@@ -70,7 +70,7 @@ add_action('wp_enqueue_scripts', function () {
 
 $params = [
 	'themePath' => get_template_directory_uri(),
-	'organizationalUnitsInJson' => \json_encode($organizationalUnits),
+	'administrationUnitsInJson' => \json_encode($administrationUnits),
 	'hasBeenUnableToLoad' => $hasBeenUnableToLoad,
 ];
 

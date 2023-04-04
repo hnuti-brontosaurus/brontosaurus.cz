@@ -9,7 +9,7 @@ use HnutiBrontosaurus\Theme\CoordinatesResolver\CoordinatesResolver;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\BaseUnitsAndClubsList\BaseUnitsAndClubsListController;
 use HnutiBrontosaurus\Theme\UI\Controller;
-use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\OrganizationalUnitDC;
+use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\AdministrationUnitDC;
 use Latte\Engine;
 
 
@@ -30,14 +30,14 @@ final class AboutStructureController implements Controller
 
 	public function render(): void
 	{
-		$organizationalUnits = [];
+		$administrationUnits = [];
 		$hasBeenUnableToLoad = false;
 
 		try {
 			foreach ($this->bisApiClient->getAdministrationUnits() as $organizationalUnit) {
 				try {
 					$coordinates = $this->coordinatesResolver->resolve($organizationalUnit);
-					$organizationalUnits[] = OrganizationalUnitDC::fromDTO($organizationalUnit, $coordinates);
+					$administrationUnits[] = AdministrationUnitDC::fromDTO($organizationalUnit, $coordinates);
 
 				} catch (CannotResolveCoordinates) {
 					continue; // if can not resolve (e.g. non-existing address) just ignore this unit and continue
@@ -55,7 +55,7 @@ final class AboutStructureController implements Controller
 		});
 
 		$params = [
-			'organizationalUnitsInJson' => \json_encode($organizationalUnits),
+			'administrationUnitsInJson' => \json_encode($administrationUnits),
 			'hasBeenUnableToLoad' => $hasBeenUnableToLoad,
 			'baseUnitsAndClubsLink' => $this->base->getLinkFor(BaseUnitsAndClubsListController::PAGE_SLUG),
 			'contactsPageLink' => $this->base->getLinkFor('kontakty'),
