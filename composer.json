@@ -26,7 +26,10 @@
 		"platform": {
 			"php": "8.0.0"
 		},
-		"sort-packages": true
+		"sort-packages": true,
+		"allow-plugins": {
+			"php-http/discovery": false
+		}
 	},
 	"repositories": [
 		{
