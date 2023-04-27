@@ -108,7 +108,7 @@ final class EventDC
 		$this->age = AgeDC::fromDTO($event);
 
 		$price = $event->getPropagation()->getCost();
-		$this->isPaid = $price !== null;
+		$this->isPaid = $price !== '' && $price !== '0';
 		$this->price = $price;
 
 		$this->contact = ContactDC::fromDTO($event->getPropagation()->getContactPerson());
