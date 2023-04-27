@@ -2,7 +2,13 @@
 {varType string $alternativeForFullEventLink}
 
 <div class="registration">
-	{if $event->isFull}
+	{if $event->isPast}
+		<p class="hb-message">
+			<strong>Tato akce již proběhla.</strong><br>
+			Buď se vrať se zpět, nebo se podívej <a href="{$alternativeForFullEventLink}">co se chystá</a>.
+		</p>
+
+	{elseif $event->isFull}
 		<p class="hb-message">
 			<strong>Tato akce už má bohužel plno.</strong><br>
 			Buď se vrať se zpět, nebo se podívej <a href="{$alternativeForFullEventLink}">co se chystá</a>.

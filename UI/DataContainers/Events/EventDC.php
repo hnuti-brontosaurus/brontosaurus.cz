@@ -3,6 +3,7 @@
 namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
 use Brick\DateTime\LocalDate;
+use Brick\DateTime\TimeZone;
 use DateTimeImmutable;
 use HnutiBrontosaurus\BisClient\Event\Category;
 use HnutiBrontosaurus\BisClient\Event\Group;
@@ -35,6 +36,7 @@ final /*readonly*/ class EventDC
 	public bool $isPaid;
 	public ?string $price;
 	public ContactDC $contact;
+	public bool $isPast;
 	public bool $isRegistrationRequired;
 	public bool $isFull;
 	public bool $isForFirstTimeAttendees;
@@ -82,6 +84,7 @@ final /*readonly*/ class EventDC
 		$this->contact = ContactDC::fromDTO($event->getPropagation()->getContactPerson());
 
 		$this->isRegistrationRequired = $event->getRegistration()->getIsRegistrationRequired();
+		$this->isPast = $event->getEndDate()->isBefore(LocalDate::now(TimeZone::utc()));
 		$this->isFull = $event->getRegistration()->getIsEventFull();
 
 		$this->isForFirstTimeAttendees = $event->getIntendedFor()->equals(IntendedFor::FIRST_TIME_PARTICIPANT());
