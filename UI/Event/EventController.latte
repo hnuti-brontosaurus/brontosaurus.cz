@@ -18,6 +18,22 @@
 {/if}
 {/block}
 
+{define local application, HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventDC $event}
+{if $event->isRegistrationRequired}
+	<a
+		class="registration__actionButton button button--primary"
+		href="{$event|resolveRegistrationLink}"
+		rel="noopener"
+	>
+		Chci jet
+	</a>
+{else}
+	<p class="registration__text">
+		Na tuto akci není třeba se hlásit, stačí přijít. 😉
+	</p>
+{/if}
+{/define}
+
 {block content}
 <main role="main">
 	<article class="detail">
@@ -150,10 +166,23 @@
 			</div>
 
 			<div class="detail__registrationLink">
-				{include 'registration.latte',
-					event => $event,
-					alternativeForFullEventLink => $alternativeForFullEventLink,
-				}
+				<div class="registration">
+					{if $event->isPast}
+						<p class="hb-message">
+							<strong>Tato akce již proběhla.</strong><br>
+							Buď se vrať se zpět, nebo se podívej <a href="{$alternativeForFullEventLink}">co se chystá</a>.
+						</p>
+
+					{elseif $event->isFull}
+						<p class="hb-message">
+							<strong>Tato akce už má bohužel plno.</strong><br>
+							Buď se vrať se zpět, nebo se podívej <a href="{$alternativeForFullEventLink}">co se chystá</a>.
+						</p>
+
+					{else}
+						{include application, event: $event}
+					{/if}
+				</div>
 			</div>
 
 			<!--section 2-->
@@ -262,12 +291,11 @@
 				</div>
 			</div>
 
-			<div class="detail-registrationLink-wrapper">
+			<div class="detail-registrationLink-wrapper" n:if=" ! $event->isPast && ! $event->isFull">
 				<div class="detail-registrationLink">
-					{include 'registration.latte',
-						event => $event,
-						alternativeForFullEventLink => $alternativeForFullEventLink,
-					}
+					<div class="registration">
+						{include application, event: $event}
+					</div>
 				</div>
 			</div>
 		{/if}
