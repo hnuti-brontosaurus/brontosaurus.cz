@@ -1,5 +1,5 @@
 {varType HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventDC $event}
-<a class="events-event" href="{$event->link}">
+<a n:class="'events-event', $event->isFull ? 'events-event--full'" href="{$event->link}">
 	<div class="events-event-image-wrapper">
 		<img alt="" n:class="events-event-image, ! $event->hasCoverPhoto ? 'events-event-image--noThumbnail'" data-src="{if $event->hasCoverPhoto}{$event->coverPhotoPath}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}">
 		<noscript>{* for search engines *}
@@ -14,6 +14,10 @@
 	<header class="events-event-header">
 		<h4 class="events-event-header-heading">
 			{$event->title}
+
+			<span class="events-event-header-heading-full" n:if="$event->isFull">
+				plně obsazeno
+			</span>
 		</h4>
 
 		<div class="events-event-header-meta">
