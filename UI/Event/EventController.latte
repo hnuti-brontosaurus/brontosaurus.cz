@@ -8,7 +8,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="{$event->title} – Hnutí Brontosaurus">
 <meta property="og:description" content="{$event->invitation->introduction|stripHtml|truncate:150}">{* @todo: set escaping filter *}
-<meta property="og:url" content="{$selfLink}">
+<meta property="og:url" content="{$event->link}">
 <meta property="og:site_name" content="Hnutí Brontosaurus">
 <meta property="og:image" content="{$event->coverPhotoPath}" n:if="$event->hasCoverPhoto">
 <meta name="twitter:card" content="summary_large_image">

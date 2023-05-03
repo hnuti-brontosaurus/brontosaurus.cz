@@ -4,10 +4,10 @@ namespace HnutiBrontosaurus\Theme\UI\DataContainers\Events;
 
 use Brick\DateTime\LocalDate;
 use Brick\DateTime\TimeZone;
-use DateTimeImmutable;
 use HnutiBrontosaurus\BisClient\Event\Category;
 use HnutiBrontosaurus\BisClient\Event\Group;
 use HnutiBrontosaurus\BisClient\Event\IntendedFor;
+use HnutiBrontosaurus\BisClient\Event\Program;
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
 use HnutiBrontosaurus\Theme\UI\Event\EventController;
 use HnutiBrontosaurus\Theme\UI\Utils;
@@ -24,13 +24,10 @@ final /*readonly*/ class EventDC
 	public string $title;
 	public bool $hasCoverPhoto;
 	public ?string $coverPhotoPath;
-	public string $dateStartForHumans;
 	public string $dateStartForRobots;
 	public bool $hasTimeStart;
 	public ?string $timeStart;
-	public DateTimeImmutable $dateEnd;
 	public string $dateSpan;
-	public int $duration;
 	public PlaceDC $place;
 	public AgeDC $age;
 	public bool $isPaid;
@@ -44,7 +41,6 @@ final /*readonly*/ class EventDC
 	public bool $areOrganizersListed;
 	public ?string $organizers;
 	public ?string $organizerUnit;
-	public ProgramDC $program;
 	public bool $hasRelatedWebsite;
 	public ?string $relatedWebsite;
 	/** @var Tag[] */
@@ -66,13 +62,11 @@ final /*readonly*/ class EventDC
 		$this->coverPhotoPath = $coverPhotoPath?->getMediumSizePath(); // todo small?
 
 		$startDateNative = $event->getStartDate()->toNativeDateTimeImmutable();
-		$this->dateStartForHumans = $startDateNative->format($dateFormatHuman);
 		$this->dateStartForRobots = $startDateNative->format($dateFormatRobot);
 		$timeStart = $event->getStartTime();
 		$this->hasTimeStart = $timeStart !== null;
 		$this->timeStart = $timeStart?->toNativeDateTimeImmutable()->format('G:i');
 
-		$this->dateEnd = $event->getEndDate()->toNativeDateTimeImmutable();
 		$this->dateSpan = $this->getDateSpan($event->getStartDate(), $event->getEndDate(), $dateFormatHuman);
 		$this->place = PlaceDC::fromDTO($event->getLocation());
 		$this->age = AgeDC::fromDTO($event);
@@ -96,24 +90,20 @@ final /*readonly*/ class EventDC
 		$this->organizers = $organizers;
 		$this->organizerUnit = implode(', ', $event->getAdministrationUnits());
 
-		$this->duration = $event->getDuration();
-
-		$this->program = new ProgramDC($event->getProgram());
-
 		$relatedWebsite = $event->getPropagation()->getWebUrl();
 		$this->hasRelatedWebsite = $relatedWebsite !== null;
 		$this->relatedWebsite = $relatedWebsite;
 
 		$this->tags = [];
-		if ($this->program->isOfTypeNature) {
+		if ($event->getProgram() === Program::NATURE()) {
 			$this->tags[] = new Tag('akce příroda', 'nature');
 		}
-		if ($this->program->isOfTypeSights) {
+		if ($event->getProgram() === Program::MONUMENTS()) {
 			$this->tags[] = new Tag('akce památky', 'sights');
 		}
 
 		$group = $event->getGroup();
-		if ($this->program->isOfTypePsb) {
+		if ($event->getProgram() === Program::HOLIDAYS_WITH_BRONTOSAURUS()) {
 			if ($event->getCategory() === Category::VOLUNTEERING()) {
 				$this->tags[] = new Tag('dobrovolnická');
 			} elseif ($event->getCategory() === Category::EXPERIENCE()) {

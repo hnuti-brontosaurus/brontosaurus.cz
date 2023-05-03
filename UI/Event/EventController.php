@@ -74,7 +74,6 @@ final class EventController implements Controller
 			'event' => $eventDC,
 			'alternativeForFullEventLink' => $this->base->getLinkFor(FutureController::PAGE_SLUG),
 			'hasBeenUnableToLoad' => $hasBeenUnableToLoad,
-			'selfLink' => $eventDC->link,
 			'firstTimePageLink' => $this->base->getLinkFor('jedu-poprve'),
 			'aboutCrossroadPageLink' => $this->base->getLinkFor('o-brontosaurovi'),
 		];
