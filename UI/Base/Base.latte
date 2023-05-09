@@ -32,10 +32,12 @@
 		<div class="searchForm searchForm--hidden" id="searchBar" n:if=" ! $isOnSearchResultsPage">
 			<div class="searchForm__innerWrapper">
 				<div class="searchForm__gcseRoot">
-					<gcse:searchbox-only
-							resultsUrl="{$searchResultsPageLink}"
-							queryParameterName="q"
-					/>
+					<div
+						class="gcse-searchbox-only"
+						data-resultsUrl="{$searchResultsPageLink}"
+						data-queryParameterName="q"
+						data-enableAutoComplete="false"
+					></div>
 
 					<script type="text/javascript">
 						window.addEventListener('load', function () {
@@ -211,10 +213,12 @@
 				<a class="footer__logo" href="{$homePageLink}" aria-label="Hnutí Brontosaurus"></a>
 
 				<div class="footer__searchForm searchForm__gcseRoot">
-					<gcse:searchbox-only
-							resultsUrl="{$searchResultsPageLink}"
-							queryParameterName="q"
-					/>
+					<div
+						class="gcse-searchbox-only"
+						data-resultsUrl="{$searchResultsPageLink}"
+						data-queryParameterName="q"
+						data-enableAutoComplete="false"
+					></div>
 
 					<script type="text/javascript">
 						window.addEventListener('load', function () {

@@ -104,10 +104,12 @@ $hb_currentPost = get_post();
 			<a class="footer__logo" href="<?php echo get_home_url(); ?>" aria-label="Hnutí Brontosaurus"></a>
 
 			<div class="footer__searchForm searchForm__gcseRoot">
-				<gcse:searchbox-only
-					resultsUrl="{$searchResultsPageLink}"
-					queryParameterName="q"
-				/>
+				<div
+					class="gcse-searchbox-only"
+					data-resultsUrl="<?php echo getLinkFor('vysledky-vyhledavani'); ?>"
+					data-queryParameterName="q"
+					data-enableAutoComplete="false"
+				></div>
 
 				<script type="text/javascript">
 					window.addEventListener('load', function () {

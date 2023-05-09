@@ -42,10 +42,12 @@ $hb_pageClassSelector = $hb_currentPost !== null ? $hb_currentPost->post_name : 
 		<div class="searchForm searchForm--hidden" id="searchBar">
 			<div class="searchForm__innerWrapper">
 				<div class="searchForm__gcseRoot">
-					<gcse:searchbox-only
-						resultsUrl="{$searchResultsPageLink}"
-						queryParameterName="q"
-					/>
+					<div
+						class="gcse-searchbox-only"
+						data-resultsUrl="<?php echo getLinkFor('vysledky-vyhledavani'); ?>"
+						data-queryParameterName="q"
+						data-enableAutoComplete="false"
+					></div>
 
 					<script type="text/javascript">
 						window.addEventListener('load', function () {
