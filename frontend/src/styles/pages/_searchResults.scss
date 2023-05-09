@@ -71,6 +71,10 @@
 			white-space: nowrap !important;
 		}
 
+		.gs-image-box {
+			margin-right: #{vr-unit(0.25)};
+		}
+
 		.gs-snippet {
 			font-size: 0.9rem !important;
 		}
