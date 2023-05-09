@@ -25,18 +25,8 @@ $hb_pageClassSelector = $hb_currentPost !== null ? $hb_currentPost->post_name : 
 	<!-- End Google Tag Manager -->
 	<?php endif; ?>
 
-	<script type="text/javascript">
-		// Google Custom Search
-		(function() {
-			var cx = '002857815640148702223:d1mce-dceb4';
-			var gcse = document.createElement('script');
-			gcse.type = 'text/javascript';
-			gcse.async = true;
-			gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-			var s = document.getElementsByTagName('script')[0];
-			s.parentNode.insertBefore(gcse, s);
-		})();
-	</script>
+	<!-- Google Custom Search -->
+	<script async src="https://cse.google.com/cse.js?cx=4766a09e4b0ac4a34"></script>
 </head>
 <body <?php body_class(); ?>>
 <?php if($hb_enableTracking): ?>
