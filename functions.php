@@ -240,7 +240,7 @@ function hb_opportunityCategoryToString(Category $category): string
 	});
 
 	add_action('enqueue_block_editor_assets', function () use ($path, $theme) {
-		$cssRelativePath = 'frontend/dist/css/content.css';
+		$cssRelativePath = 'frontend/dist/css/editor.css';
 		wp_enqueue_style(
 			handle: 'brontosaurus-editor',
 			src: $path($theme->get_template_directory_uri(), $cssRelativePath),
