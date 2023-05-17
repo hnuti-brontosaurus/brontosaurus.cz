@@ -226,12 +226,12 @@ function hb_opportunityCategoryToString(Category $category): string
 	$path = static fn(string ...$parts): string => implode('/', $parts);
 	add_action('wp_enqueue_scripts', function () use ($path, $theme) {
 		$jsRelativePath = 'frontend/dist/js/menuHandler.js';
-		$cssRelativePath = 'frontend/dist/css/style.css';
 		wp_enqueue_script(
 			handle: 'brontosaurus-menu-handler',
 			src: $path($theme->get_template_directory_uri(), $jsRelativePath),
 			ver: filemtime($path($theme->get_template_directory(), $jsRelativePath)),
 		);
+		$cssRelativePath = 'frontend/dist/css/style.css';
 		wp_enqueue_style(
 			handle: 'brontosaurus-main',
 			src: $path($theme->get_template_directory_uri(), $cssRelativePath),
