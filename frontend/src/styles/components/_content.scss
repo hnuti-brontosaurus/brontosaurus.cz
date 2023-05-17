@@ -41,7 +41,9 @@
 	}
 
 	&__dynamic {
-		p {
+		ol,
+		p,
+		ul {
 			@include block-text();
 		}
 
