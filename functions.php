@@ -239,6 +239,15 @@ function hb_opportunityCategoryToString(Category $category): string
 		);
 	});
 
+	add_action('enqueue_block_editor_assets', function () use ($path, $theme) {
+		$cssRelativePath = 'frontend/dist/css/content.css';
+		wp_enqueue_style(
+			handle: 'brontosaurus-editor',
+			src: $path($theme->get_template_directory_uri(), $cssRelativePath),
+			ver: filemtime($path($theme->get_template_directory(), $cssRelativePath)),
+		);
+	});
+
 	add_action('init', function () {
 		register_nav_menus([
 			'header' => __('Hlavička'),

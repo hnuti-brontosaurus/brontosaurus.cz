@@ -75,6 +75,11 @@ const buildStylesTask = (cb) => {
 			distFileName: 'style.css',
 			sourceFileName: paths.styles.global.src + '/style.scss', // name of source file
 		},
+		{
+			distPath: paths.styles.global.dist, // folder to save the compiled css file into
+			distFileName: 'content.css',
+			sourceFileName: paths.styles.global.src + '/content.scss', // name of source file
+		},
 	]);
 };
 
