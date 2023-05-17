@@ -1,0 +1,50 @@
+@mixin hb-content() {
+	ol,
+	p,
+	ul {
+		@include block-text();
+	}
+
+	p + p {
+		margin-block-start: vr-unit(1);
+	}
+
+	p + .wp-block-columns {
+		margin-block-start: vr-unit(1);
+	}
+
+	.wp-block-columns {
+		display: grid;
+		grid-gap: vr-unit(1);
+		grid-template-columns: 1fr;
+		justify-content: center;
+		max-width: 28rem;
+
+		@media (min-width: 40.001em) and ($typography-breakpoint-small-until) {
+			margin-left: -#{vr-unit(1)};
+			margin-right: -#{vr-unit(1)};
+			max-width: calc(28rem + #{vr-unit(2)});
+		}
+		@media ($typography-breakpoint-large-from) {
+			grid-template-columns: 1fr 1fr;
+			margin-left: auto;
+			margin-right: auto;
+			max-width: 40rem;
+		}
+
+		.wp-block-column {
+			grid-column-start: span 2;
+			margin-left: revert;
+
+			@media ($typography-breakpoint-large-from) {
+				grid-column-start: span 1;
+			}
+		}
+	}
+
+	.wp-block-image {
+		img {
+			border-radius: 2em;
+		}
+	}
+}
