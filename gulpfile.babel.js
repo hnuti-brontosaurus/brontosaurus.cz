@@ -62,7 +62,7 @@ const buildScriptsTask = (cb) => {
 
 gulp.task('build:scripts', gulp.series(buildScriptsTask));
 gulp.task('watch:scripts', gulp.series(buildScriptsTask, () => {
-	gulp.watch(getSourcePathFromPathObject(paths.scripts).map((path) => path + '/**/*.ts'), gulp.series(buildScriptsTask));
+	gulp.watch(getSourcePathFromPathObject(paths.scripts).map((path) => path + '/**/*.{ts,js}'), gulp.series(buildScriptsTask));
 }));
 
 
