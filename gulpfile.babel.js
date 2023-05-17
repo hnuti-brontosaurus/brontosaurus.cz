@@ -28,6 +28,12 @@ const buildScriptsTask = (cb) => {
 			sourcePath: paths.scripts.global.src + '/administrativeUnitsMap',
 		},
 		{
+			distFileName: 'editor.js',
+			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
+			sourceFileName: 'editor.js',
+			sourcePath: paths.scripts.global.src,
+		},
+		{
 			distFileName: 'events.js',
 			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
 			sourceFileName: 'index.ts',
