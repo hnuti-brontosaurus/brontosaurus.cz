@@ -42,9 +42,12 @@
 		}
 	}
 
+	// see editor.js for image styles
 	.wp-block-image {
-		img {
-			border-radius: 2em;
+		&:not(.is-style-sharp) {
+			img {
+				border-radius: 2em;
+			}
 		}
 	}
 }
