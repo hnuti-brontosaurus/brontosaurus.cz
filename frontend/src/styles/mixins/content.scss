@@ -5,11 +5,8 @@
 		@include block-text();
 	}
 
-	p + p {
-		margin-block-start: vr-unit(1);
-	}
-
-	p + .wp-block-columns {
+	* + p,
+	* + .wp-block-columns {
 		margin-block-start: vr-unit(1);
 	}
 
