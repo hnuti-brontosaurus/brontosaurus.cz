@@ -32,6 +32,7 @@ $news-breakpoint-coverImageFloating-from: "min-width: " + ($news-breakpoint-cove
 
 	&__item-heading {
 		margin-bottom: 0 !important;
+		line-height: 1.1;
 	}
 	&:not(&--single) &__item-heading {
 		// overwrite global h2 rules
