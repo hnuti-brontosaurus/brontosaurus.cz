@@ -58,6 +58,7 @@ $news-breakpoint-coverImageFloating-from: "min-width: " + ($news-breakpoint-cove
 	}
 
 	&__item-content {
+		@include hb-content();
 		@media ($news-breakpoint-coverImageBelow-until) {
 			display: flex;
 			flex-direction: column;
@@ -75,22 +76,14 @@ $news-breakpoint-coverImageFloating-from: "min-width: " + ($news-breakpoint-cove
 			margin-left: vr-unit(0.5);
 			margin-bottom: vr-unit(0.5);
 		}
-	}
 
-	&__item-perex {
-		margin-bottom: vr-unit(0.5);
-
-		p,
-		ul {
-			margin-bottom: 2em;
-		}
-
-		figure {
-			margin-bottom: 3em;
+		img {
+			border-radius: 2em;
 		}
 	}
 
 	&__item-moreLink {
+		margin-block-start: #{vr-unit(0.5)};
 		color: $colors-framing;
 		font-size: 0.85em;
 		transition: color 200ms linear;

@@ -45,7 +45,7 @@ $dateForHumans = $configuration->get('dateFormat:human');
 								</div>
 								<?php endif; ?>
 
-								<div class="news__item-perex">
+								<div>
 									<?php echo $article->perex ?>
 								</div>
 

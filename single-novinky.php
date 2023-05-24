@@ -36,7 +36,7 @@ $article = NewsPost::from($post);
 				</div>
 			<?php endif; ?>
 
-			<div class="news__item-perex">
+			<div>
 				<?php echo $article->content ?>
 			</div>
 		</div>
