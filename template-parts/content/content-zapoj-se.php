@@ -53,6 +53,8 @@ try {
 
 		} catch (CannotResolveCoordinates) {
 			continue; // in case of non-existing address just silently continue and ignore this unit
+		} catch (RuntimeException) { // todo temp!!
+			continue;
 		}
 	}
 
