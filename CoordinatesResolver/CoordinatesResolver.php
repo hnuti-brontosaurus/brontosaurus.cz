@@ -7,6 +7,8 @@ use Grifart\GeocodingClient\Location;
 use Grifart\GeocodingClient\MapyCz\NoResultException;
 use HnutiBrontosaurus\BisClient\AdministrationUnit\Response\AdministrationUnit;
 use HnutiBrontosaurus\Theme\CannotResolveCoordinates;
+use function assert;
+use function reset;
 
 
 final class CoordinatesResolver
@@ -20,16 +22,16 @@ final class CoordinatesResolver
 	/**
 	 * @throws CannotResolveCoordinates
 	 */
-	public function resolve(AdministrationUnit $organizationalUnit): Coordinates
+	public function resolve(AdministrationUnit $administrationUnit): Coordinates
 	{
 		// use coordinates included in response from BIS if possible
-		if (($coordinates = $organizationalUnit->getCoordinates()) !== null) {
+		if (($coordinates = $administrationUnit->getCoordinates()) !== null) {
 			return Coordinates::from($coordinates->getLatitude(), $coordinates->getLongitude());
 		}
 
 		// otherwise try geocoding
 		try {
-			$location = $this->resolveFromGeocoding($organizationalUnit);
+			$location = $this->resolveFromGeocoding($administrationUnit);
 			return Coordinates::from($location->getLatitude(), $location->getLongitude());
 
 		} catch (NoResultException) {
@@ -45,8 +47,8 @@ final class CoordinatesResolver
 	{
 		$results = $this->geocodingService->geocodeAddress($administrationUnit->getAddress());
 
-		$result = \reset($results); // we want only first result
-		\assert($result !== false);
+		$result = reset($results); // we want only first result
+		assert($result !== false);
 
 		return $result;
 	}
