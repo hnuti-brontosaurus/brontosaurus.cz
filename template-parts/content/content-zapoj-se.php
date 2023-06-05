@@ -19,7 +19,7 @@ $coordinatesResolver = hb_getCoordinatesResolver();
 
 
 // todo: use some WP way of obtaining param
-$selectedFilter = \filter_input( INPUT_GET, 'jen', FILTER_SANITIZE_STRING ) ?? null;
+$selectedFilter = filter_input( INPUT_GET, 'jen', FILTER_SANITIZE_STRING ) ?? null;
 $selectedFilter = $selectedFilter !== null && $selectedFilter !== '' ? $selectedFilter : null;
 
 $isOrganizovaniAkciSelected = $selectedFilter === 'organizovani-akci';
@@ -46,10 +46,10 @@ $administrationUnits = [];
 try {
 	$opportunities = $bisApiClient->getOpportunities($applyFilter($selectedFilter));
 
-	foreach ($bisApiClient->getAdministrationUnits() as $organizationalUnit) {
+	foreach ($bisApiClient->getAdministrationUnits() as $administrationUnit) {
 		try {
-			$coordinates = $coordinatesResolver->resolve($organizationalUnit);
-			$administrationUnits[] = AdministrationUnitDC::fromDTO($organizationalUnit, $coordinates);
+			$coordinates = $coordinatesResolver->resolve($administrationUnit);
+			$administrationUnits[] = AdministrationUnitDC::fromDTO($administrationUnit, $coordinates);
 
 		} catch (CannotResolveCoordinates) {
 			continue; // in case of non-existing address just silently continue and ignore this unit
