@@ -4,6 +4,7 @@ namespace HnutiBrontosaurus\Theme\CoordinatesResolver;
 
 use Grifart\GeocodingClient\GeocodingFailed;
 use Grifart\GeocodingClient\GeocodingProvider;
+use Grifart\GeocodingClient\Providers\MapyCz\ConnectionToMapyCzApiFailed;
 use HnutiBrontosaurus\BisClient\AdministrationUnit\Response\AdministrationUnit;
 use HnutiBrontosaurus\Theme\CannotResolveCoordinates;
 use function assert;
@@ -36,7 +37,7 @@ final class CoordinatesResolver
 
 			return Coordinates::from($location->getLatitude(), $location->getLongitude());
 
-		} catch (GeocodingFailed $e) {
+		} catch (GeocodingFailed|ConnectionToMapyCzApiFailed $e) {
 			throw new CannotResolveCoordinates(previous: $e);
 		}
 	}
