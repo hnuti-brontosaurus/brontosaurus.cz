@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e67f5058a41381b1d6f7f75d1fb1c0d6",
+    "content-hash": "0fec5e38d61db32adb71c8d24b2dd9aa",
     "packages": [
         {
             "name": "brick/date-time",
@@ -178,16 +178,16 @@
         },
         {
             "name": "grifart/geocoding-client",
-            "version": "0.1.0",
+            "version": "0.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/grifart/geocoding-client.git",
-                "reference": "58c57100a0e1747b7a4c2ec49e17805af15078b8"
+                "reference": "c5404c5b21bb947d058add604c29ab537fcffae6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/grifart/geocoding-client/zipball/58c57100a0e1747b7a4c2ec49e17805af15078b8",
-                "reference": "58c57100a0e1747b7a4c2ec49e17805af15078b8",
+                "url": "https://api.github.com/repos/grifart/geocoding-client/zipball/c5404c5b21bb947d058add604c29ab537fcffae6",
+                "reference": "c5404c5b21bb947d058add604c29ab537fcffae6",
                 "shasum": ""
             },
             "require": {
@@ -197,6 +197,7 @@
             },
             "require-dev": {
                 "nette/tester": "^2.3",
+                "phpstan/phpstan": "^1.10",
                 "tracy/tracy": "^2.8"
             },
             "type": "library",
@@ -205,7 +206,13 @@
                     "Grifart\\GeocodingClient\\": "src/"
                 },
                 "classmap": [
-                    "src/MapyCz/exceptions.php"
+                    "src/exceptions.php",
+                    "src/Providers/MapyCz/exceptions.php"
+                ]
+            },
+            "scripts": {
+                "phpstan": [
+                    "phpstan analyze --level=max src"
                 ]
             },
             "license": [
@@ -219,10 +226,10 @@
             ],
             "description": "Client for geocoding API of mapy.cz.",
             "support": {
-                "source": "https://github.com/grifart/geocoding-client/tree/0.1.0",
+                "source": "https://github.com/grifart/geocoding-client/tree/0.2.2",
                 "issues": "https://github.com/grifart/geocoding-client/issues"
             },
-            "time": "2021-02-08T19:14:29+00:00"
+            "time": "2023-06-06T08:50:31+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

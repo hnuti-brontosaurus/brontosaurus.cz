@@ -1,10 +1,8 @@
 <?php declare(strict_types = 1);
 
-use Grifart\GeocodingClient\Caching\CachedGeocodingService;
-use Grifart\GeocodingClient\Caching\CacheManager;
-use Grifart\GeocodingClient\MapyCz\Communicator;
-use Grifart\GeocodingClient\MapyCz\Mapping\Mapper;
-use Grifart\GeocodingClient\MapyCz\MapyCzGeocodingService;
+use Grifart\GeocodingClient\Providers\Cache\CacheManager;
+use Grifart\GeocodingClient\Providers\Cache\CacheProvider;
+use Grifart\GeocodingClient\Providers\MapyCz\MapyCzProvider;
 use HnutiBrontosaurus\BisClient\BisClient;
 use HnutiBrontosaurus\BisClient\BisClientFactory;
 use HnutiBrontosaurus\Theme\ApplicationUrlTemplate;
@@ -42,12 +40,9 @@ function hb_getLatte(): Engine
 function hb_getCoordinatesResolver(): CoordinatesResolver
 {
 	return new CoordinatesResolver(
-		new CachedGeocodingService(
+		new CacheProvider(
 			new CacheManager(__DIR__ . '/temp/geocoding-cache'),
-			new MapyCzGeocodingService(
-				new Communicator(),
-				new Mapper(),
-			),
+			new MapyCzProvider(),
 		),
 	);
 }
