@@ -33,7 +33,7 @@ export class InfoWindow {
 		}
 
 		if (unit.website !== null ) {
-			contentElement.innerHTML += `<br>Web: <a href="http://${unit.website}" target="_blank">${unit.website}</a>`
+			contentElement.innerHTML += `<br>Web: <a href="${unit.website}" target="_blank">${unit.website}</a>`
 		}
 
 		if (unit.email !== null) {
