@@ -56,6 +56,7 @@ final class AboutSuccessesController implements Controller
 						'title' => $post->post_title,
 						'location' => $location,
 						'excerpt' => $post->post_excerpt,
+						'hasThumbnail' => $thumbnail !== null,
 						'thumbnail' => $thumbnail,
 						'link' => get_page_link($post),
 					];

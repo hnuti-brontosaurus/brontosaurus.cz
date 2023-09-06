@@ -68,7 +68,7 @@
 {define story, object $story}
 <a class="events-event" href="{$story->link}">
 	<div class="events-event-image-wrapper">
-		<img alt="" class="events-event-image" src="{$story->thumbnail}">
+		<img alt="" n:class="events-event-image, ! $story->hasThumbnail ? 'events-event-image--noThumbnail'" src="{if $story->hasThumbnail}{$story->thumbnail}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}">
 	</div>
 
 	<header class="events-event-header">
