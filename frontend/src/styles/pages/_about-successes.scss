@@ -19,14 +19,15 @@ article .about-successes {
 	}
 
 	&__video {
+		margin-block-start: vr-unit(3);
 		max-inline-size: 50rem;
 		margin-inline: auto;
-		margin-block-end: vr-unit(3);
+		margin-block-end: vr-unit(2);
 
 		@media ($typography-breakpoint-large-from) {
 			display: flex;
 			gap: vr-unit(0.5);
-			margin-block-end: vr-unit(4);
+			margin-block-end: vr-unit(1);
 		}
 
 		iframe {
