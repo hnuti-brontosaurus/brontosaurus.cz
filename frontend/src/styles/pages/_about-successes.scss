@@ -5,156 +5,52 @@ $about-successes-half-from: "min-width: " + ($about-successes-breakpoint + 0.001
 article .about-successes {
 	margin-bottom: vr-unit(3);
 
-	&-heading {
+	&__heading {
 		@include heading-first-level();
 	}
 
-	&-introduction {
+	&__introduction {
 		@include block-text();
 		margin-bottom: vr-unit(1);
 	}
 
-	&__callForStories {
-		margin-bottom: vr-unit(2);
+	&__stories {
+		margin-block-end: vr-unit(4);
+	}
+
+	&__video {
+		margin-block-start: vr-unit(3);
+		max-inline-size: 50rem;
+		margin-inline: auto;
+		margin-block-end: vr-unit(2);
 
 		@media ($typography-breakpoint-large-from) {
-			margin-bottom: vr-unit(3);
+			display: flex;
+			gap: vr-unit(0.5);
+			margin-block-end: vr-unit(1);
 		}
 
-		p {
-			@include block-text();
-			margin-bottom: vr-unit(1);
-		}
-
-		a {
+		iframe {
 			display: block;
-			width: max-content;
-			margin-inline: auto;
-		}
-	}
-
-	&-item {
-		&:not(:last-child) {
-			margin-bottom: vr-unit(2);
-
-			@media ($typography-breakpoint-large-from) {
-				margin-bottom: vr-unit(3);
-			}
-		}
-
-		&-headingWrapper {
-			margin-bottom: vr-unit(0.5);
-
-			@media ($typography-breakpoint-large-from) {
-				text-align: center;
-			}
-		}
-		&-heading {
-			display: inline-block;
-
-			@media ($typography-breakpoint-large-from) {
-				font-weight: bold;
-			}
-
-			&-castle,
-			&-nature {
-				position: relative;
-
-				&::before {
-					@media ($about-successes-half-from) {
-						content: "";
-						position: absolute;
-						background-size: auto 100%;
-						background-repeat: no-repeat;
-						width: 20px;
-						height: 20px;
-						top: 0.2em;
-						left: -1.3em;
-					}
-				}
-			}
-			&-castle {
-				&::before {
-					@media ($about-successes-half-from) {
-						background-image: url("../images/icon-castle.svg");
-					}
-				}
-			}
-
-			&-nature {
-				&::before {
-					@media ($about-successes-half-from) {
-						background-image: url("../images/icon-nature.svg");
-					}
-				}
-			}
-		}
-
-		&-text {
-			max-width: 32em;
-			margin-bottom: vr-unit(1);
-
-			@media ($typography-breakpoint-large-from) {
-				margin-left: auto;
-				margin-right: auto;
-			}
-		}
-
-		&-quotation {
-			max-width: 47.5rem;
-			margin-bottom: vr-unit(1);
-
-			@media ($presentationBox-breakpoint-textOnSide-from) {
-				margin-bottom: vr-unit(2);
-			}
-
-			&-name {
-				font-size: 0.8em;
-				text-align: right;
-				line-height: 1.3;
-				color: #444;
-			}
-		}
-		&-quote {
-			padding: vr-unit(2) vr-unit(1);
-			flex-basis: 100%;
-			text-align: center;
-			font-weight: $fonts-delm-weight-bold;
-
-			@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-				padding-left: vr-unit(2);
-				padding-right: vr-unit(2);
-			}
-			@media ($about-successes-half-from) {
-				flex-basis: 50%;
-				padding-top: vr-unit(4);
-				padding-bottom: vr-unit(4);
-			}
-		}
-	}
-
-	&-contact {
-		display: block;
-		max-width: 18em;
-		margin: -#{vr-unit(0.5)} auto 0;
-		font-size: 0.85em;
-		text-align: center;
-
-		@media ($typography-breakpoint-large-from) {
-			margin-top: -#{vr-unit(1)};
+			inline-size: 100%;
+			aspect-ratio: 16/9;
+			border-radius: 2em;
+			margin-block-end: vr-unit(1);
 		}
 	}
 
 	&__support {
-		@media ($typography-breakpoint-large-from) {
-			max-width: 25em;
-			margin-left: auto;
-			margin-right: auto;
-			text-align: center;
-		}
+		text-align: center;
+		margin-block-end: vr-unit(2);
 
 		p {
-			margin-bottom: vr-unit(0.5);
+			margin-block-end: vr-unit(0.5);
+		}
+
+		a {
+			display: block;
+			max-width: max-content;
+			margin-inline: auto;
 		}
 	}
 }
