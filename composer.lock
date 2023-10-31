@@ -233,22 +233,22 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "7.7.0",
+            "version": "7.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "fb7566caccf22d74d1ab270de3551f72a58399f5"
+                "reference": "1110f66a6530a40fe7aea0378fe608ee2b2248f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/fb7566caccf22d74d1ab270de3551f72a58399f5",
-                "reference": "fb7566caccf22d74d1ab270de3551f72a58399f5",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/1110f66a6530a40fe7aea0378fe608ee2b2248f9",
+                "reference": "1110f66a6530a40fe7aea0378fe608ee2b2248f9",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "guzzlehttp/promises": "^1.5.3 || ^2.0",
-                "guzzlehttp/psr7": "^1.9.1 || ^2.4.5",
+                "guzzlehttp/promises": "^1.5.3 || ^2.0.1",
+                "guzzlehttp/psr7": "^1.9.1 || ^2.5.1",
                 "php": "^7.2.5 || ^8.0",
                 "psr/http-client": "^1.0",
                 "symfony/deprecation-contracts": "^2.2 || ^3.0"
@@ -339,7 +339,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/guzzle/issues",
-                "source": "https://github.com/guzzle/guzzle/tree/7.7.0"
+                "source": "https://github.com/guzzle/guzzle/tree/7.8.0"
             },
             "funding": [
                 {
@@ -355,7 +355,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-05-21T14:04:53+00:00"
+            "time": "2023-08-27T10:20:53+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -442,16 +442,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "2.6.0",
+            "version": "2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "8bd7c33a0734ae1c5d074360512beb716bef3f77"
+                "reference": "be45764272e8873c72dbe3d2edcfdfcc3bc9f727"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/8bd7c33a0734ae1c5d074360512beb716bef3f77",
-                "reference": "8bd7c33a0734ae1c5d074360512beb716bef3f77",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/be45764272e8873c72dbe3d2edcfdfcc3bc9f727",
+                "reference": "be45764272e8873c72dbe3d2edcfdfcc3bc9f727",
                 "shasum": ""
             },
             "require": {
@@ -538,7 +538,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/2.6.0"
+                "source": "https://github.com/guzzle/psr7/tree/2.6.1"
             },
             "funding": [
                 {
@@ -554,20 +554,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-08-03T15:06:02+00:00"
+            "time": "2023-08-27T10:13:57+00:00"
         },
         {
             "name": "hnuti-brontosaurus/php-bis-api-client",
-            "version": "4.0.0-beta.7",
+            "version": "4.0.0-beta.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnuti-brontosaurus/php-bis-api-client.git",
-                "reference": "3b5eecc0f2d70ede478082e80bcd53d6fdb244e5"
+                "reference": "7cd11ad33b6f9fd1b869d895f811e5a7262e44dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnuti-brontosaurus/php-bis-api-client/zipball/3b5eecc0f2d70ede478082e80bcd53d6fdb244e5",
-                "reference": "3b5eecc0f2d70ede478082e80bcd53d6fdb244e5",
+                "url": "https://api.github.com/repos/hnuti-brontosaurus/php-bis-api-client/zipball/7cd11ad33b6f9fd1b869d895f811e5a7262e44dc",
+                "reference": "7cd11ad33b6f9fd1b869d895f811e5a7262e44dc",
                 "shasum": ""
             },
             "require": {
@@ -602,10 +602,10 @@
             ],
             "description": "API client for Hnutí Brontosaurus IS written in PHP.",
             "support": {
-                "source": "https://github.com/hnuti-brontosaurus/php-bis-api-client/tree/4.0.0-beta.7",
+                "source": "https://github.com/hnuti-brontosaurus/php-bis-api-client/tree/4.0.0-beta.8",
                 "issues": "https://github.com/hnuti-brontosaurus/php-bis-api-client/issues"
             },
-            "time": "2023-08-14T06:54:58+00:00"
+            "time": "2023-10-31T08:28:05+00:00"
         },
         {
             "name": "http-interop/http-factory-guzzle",
@@ -726,16 +726,16 @@
         },
         {
             "name": "latte/latte",
-            "version": "v3.0.7",
+            "version": "v3.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/latte.git",
-                "reference": "4a5e59b8c6e52a9fa8f138ff78aca850164385e0"
+                "reference": "794f252da7437499e467766d633eed85e1a437b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/latte/zipball/4a5e59b8c6e52a9fa8f138ff78aca850164385e0",
-                "reference": "4a5e59b8c6e52a9fa8f138ff78aca850164385e0",
+                "url": "https://api.github.com/repos/nette/latte/zipball/794f252da7437499e467766d633eed85e1a437b7",
+                "reference": "794f252da7437499e467766d633eed85e1a437b7",
                 "shasum": ""
             },
             "require": {
@@ -805,27 +805,27 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/latte/issues",
-                "source": "https://github.com/nette/latte/tree/v3.0.7"
+                "source": "https://github.com/nette/latte/tree/v3.0.10"
             },
-            "time": "2023-08-09T11:39:14+00:00"
+            "time": "2023-10-11T13:42:28+00:00"
         },
         {
             "name": "nette/neon",
-            "version": "v3.4.0",
+            "version": "v3.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/neon.git",
-                "reference": "372d945c156ee7f35c953339fb164538339e6283"
+                "reference": "457bfbf0560f600b30d9df4233af382a478bb44d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/neon/zipball/372d945c156ee7f35c953339fb164538339e6283",
-                "reference": "372d945c156ee7f35c953339fb164538339e6283",
+                "url": "https://api.github.com/repos/nette/neon/zipball/457bfbf0560f600b30d9df4233af382a478bb44d",
+                "reference": "457bfbf0560f600b30d9df4233af382a478bb44d",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "php": ">=8.0 <8.3"
+                "php": "8.0 - 8.3"
             },
             "require-dev": {
                 "nette/tester": "^2.4",
@@ -873,22 +873,22 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/neon/issues",
-                "source": "https://github.com/nette/neon/tree/v3.4.0"
+                "source": "https://github.com/nette/neon/tree/v3.4.1"
             },
-            "time": "2023-01-13T03:08:29+00:00"
+            "time": "2023-09-27T08:59:11+00:00"
         },
         {
             "name": "nette/utils",
-            "version": "v4.0.1",
+            "version": "v4.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/utils.git",
-                "reference": "9124157137da01b1f5a5a22d6486cb975f26db7e"
+                "reference": "a9d127dd6a203ce6d255b2e2db49759f7506e015"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/utils/zipball/9124157137da01b1f5a5a22d6486cb975f26db7e",
-                "reference": "9124157137da01b1f5a5a22d6486cb975f26db7e",
+                "url": "https://api.github.com/repos/nette/utils/zipball/a9d127dd6a203ce6d255b2e2db49759f7506e015",
+                "reference": "a9d127dd6a203ce6d255b2e2db49759f7506e015",
                 "shasum": ""
             },
             "require": {
@@ -910,8 +910,7 @@
                 "ext-intl": "to use Strings::webalize(), toAscii(), normalize() and compare()",
                 "ext-json": "to use Nette\\Utils\\Json",
                 "ext-mbstring": "to use Strings::lower() etc...",
-                "ext-tokenizer": "to use Nette\\Utils\\Reflection::getUseStatements()",
-                "ext-xml": "to use Strings::length() etc. when mbstring is not available"
+                "ext-tokenizer": "to use Nette\\Utils\\Reflection::getUseStatements()"
             },
             "type": "library",
             "extra": {
@@ -960,9 +959,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/utils/issues",
-                "source": "https://github.com/nette/utils/tree/v4.0.1"
+                "source": "https://github.com/nette/utils/tree/v4.0.3"
             },
-            "time": "2023-07-30T15:42:21+00:00"
+            "time": "2023-10-29T21:02:13+00:00"
         },
         {
             "name": "php-http/client-common",
@@ -1294,31 +1293,26 @@
         },
         {
             "name": "php-http/promise",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/promise.git",
-                "reference": "4c4c1f9b7289a2ec57cde7f1e9762a5789506f88"
+                "reference": "ef4905bfb492ff389eb7f12e26925a0f20073050"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/promise/zipball/4c4c1f9b7289a2ec57cde7f1e9762a5789506f88",
-                "reference": "4c4c1f9b7289a2ec57cde7f1e9762a5789506f88",
+                "url": "https://api.github.com/repos/php-http/promise/zipball/ef4905bfb492ff389eb7f12e26925a0f20073050",
+                "reference": "ef4905bfb492ff389eb7f12e26925a0f20073050",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1 || ^8.0"
             },
             "require-dev": {
-                "friends-of-phpspec/phpspec-code-coverage": "^4.3.2",
-                "phpspec/phpspec": "^5.1.2 || ^6.2"
+                "friends-of-phpspec/phpspec-code-coverage": "^4.3.2 || ^6.3",
+                "phpspec/phpspec": "^5.1.2 || ^6.2 || ^7.4"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Http\\Promise\\": "src/"
@@ -1345,9 +1339,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-http/promise/issues",
-                "source": "https://github.com/php-http/promise/tree/1.1.0"
+                "source": "https://github.com/php-http/promise/tree/1.2.0"
             },
-            "time": "2020-07-07T09:29:14+00:00"
+            "time": "2023-10-24T09:20:26+00:00"
         },
         {
             "name": "psr/container",
@@ -1399,16 +1393,16 @@
         },
         {
             "name": "psr/http-client",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/http-client.git",
-                "reference": "0955afe48220520692d2d09f7ab7e0f93ffd6a31"
+                "reference": "bb5906edc1c324c9a05aa0873d40117941e5fa90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-client/zipball/0955afe48220520692d2d09f7ab7e0f93ffd6a31",
-                "reference": "0955afe48220520692d2d09f7ab7e0f93ffd6a31",
+                "url": "https://api.github.com/repos/php-fig/http-client/zipball/bb5906edc1c324c9a05aa0873d40117941e5fa90",
+                "reference": "bb5906edc1c324c9a05aa0873d40117941e5fa90",
                 "shasum": ""
             },
             "require": {
@@ -1445,9 +1439,9 @@
                 "psr-18"
             ],
             "support": {
-                "source": "https://github.com/php-fig/http-client/tree/1.0.2"
+                "source": "https://github.com/php-fig/http-client"
             },
-            "time": "2023-04-10T20:12:12+00:00"
+            "time": "2023-09-23T14:17:50+00:00"
         },
         {
             "name": "psr/http-factory",
@@ -1710,16 +1704,16 @@
         },
         {
             "name": "sentry/sentry",
-            "version": "3.21.0",
+            "version": "3.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-php.git",
-                "reference": "624aafc22b84b089ffa43b71fb01e0096505ec4f"
+                "reference": "c0e3df5a5c1d133cd9461e7672568ff07042c19d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/624aafc22b84b089ffa43b71fb01e0096505ec4f",
-                "reference": "624aafc22b84b089ffa43b71fb01e0096505ec4f",
+                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/c0e3df5a5c1d133cd9461e7672568ff07042c19d",
+                "reference": "c0e3df5a5c1d133cd9461e7672568ff07042c19d",
                 "shasum": ""
             },
             "require": {
@@ -1737,7 +1731,7 @@
                 "psr/http-factory": "^1.0",
                 "psr/http-factory-implementation": "^1.0",
                 "psr/log": "^1.0|^2.0|^3.0",
-                "symfony/options-resolver": "^3.4.43|^4.4.30|^5.0.11|^6.0",
+                "symfony/options-resolver": "^3.4.43|^4.4.30|^5.0.11|^6.0|^7.0",
                 "symfony/polyfill-php80": "^1.17"
             },
             "conflict": {
@@ -1794,7 +1788,7 @@
             ],
             "support": {
                 "issues": "https://github.com/getsentry/sentry-php/issues",
-                "source": "https://github.com/getsentry/sentry-php/tree/3.21.0"
+                "source": "https://github.com/getsentry/sentry-php/tree/3.22.0"
             },
             "funding": [
                 {
@@ -1806,7 +1800,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2023-07-31T15:31:24+00:00"
+            "time": "2023-10-23T20:34:53+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -1877,16 +1871,16 @@
         },
         {
             "name": "symfony/http-client",
-            "version": "v5.4.26",
+            "version": "v5.4.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-client.git",
-                "reference": "19d48ef7f38e5057ed1789a503cd3eccef039bce"
+                "reference": "04784c66cbee613a827363ee1e65db65392893c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-client/zipball/19d48ef7f38e5057ed1789a503cd3eccef039bce",
-                "reference": "19d48ef7f38e5057ed1789a503cd3eccef039bce",
+                "url": "https://api.github.com/repos/symfony/http-client/zipball/04784c66cbee613a827363ee1e65db65392893c1",
+                "reference": "04784c66cbee613a827363ee1e65db65392893c1",
                 "shasum": ""
             },
             "require": {
@@ -1948,7 +1942,7 @@
                 "http"
             ],
             "support": {
-                "source": "https://github.com/symfony/http-client/tree/v5.4.26"
+                "source": "https://github.com/symfony/http-client/tree/v5.4.29"
             },
             "funding": [
                 {
@@ -1964,7 +1958,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-07-03T12:14:50+00:00"
+            "time": "2023-09-14T20:49:15+00:00"
         },
         {
             "name": "symfony/http-client-contracts",
@@ -2115,16 +2109,16 @@
         },
         {
             "name": "symfony/polyfill-php73",
-            "version": "v1.27.0",
+            "version": "v1.28.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php73.git",
-                "reference": "9e8ecb5f92152187c4799efd3c96b78ccab18ff9"
+                "reference": "fe2f306d1d9d346a7fee353d0d5012e401e984b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/9e8ecb5f92152187c4799efd3c96b78ccab18ff9",
-                "reference": "9e8ecb5f92152187c4799efd3c96b78ccab18ff9",
+                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/fe2f306d1d9d346a7fee353d0d5012e401e984b5",
+                "reference": "fe2f306d1d9d346a7fee353d0d5012e401e984b5",
                 "shasum": ""
             },
             "require": {
@@ -2133,7 +2127,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.27-dev"
+                    "dev-main": "1.28-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -2174,7 +2168,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php73/tree/v1.27.0"
+                "source": "https://github.com/symfony/polyfill-php73/tree/v1.28.0"
             },
             "funding": [
                 {
@@ -2190,20 +2184,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-11-03T14:55:06+00:00"
+            "time": "2023-01-26T09:26:14+00:00"
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.27.0",
+            "version": "v1.28.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "7a6ff3f1959bb01aefccb463a0f2cd3d3d2fd936"
+                "reference": "6caa57379c4aec19c0a12a38b59b26487dcfe4b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/7a6ff3f1959bb01aefccb463a0f2cd3d3d2fd936",
-                "reference": "7a6ff3f1959bb01aefccb463a0f2cd3d3d2fd936",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/6caa57379c4aec19c0a12a38b59b26487dcfe4b5",
+                "reference": "6caa57379c4aec19c0a12a38b59b26487dcfe4b5",
                 "shasum": ""
             },
             "require": {
@@ -2212,7 +2206,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.27-dev"
+                    "dev-main": "1.28-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -2257,7 +2251,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/v1.27.0"
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.28.0"
             },
             "funding": [
                 {
@@ -2273,7 +2267,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-11-03T14:55:06+00:00"
+            "time": "2023-01-26T09:26:14+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -2360,16 +2354,16 @@
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.10.3",
+            "version": "v2.10.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "ec6637866d6836ef6f8de2bab63ae7708b23bcd7"
+                "reference": "86bdba4aa0f707d3f125933931d3df6e5c7aad79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/ec6637866d6836ef6f8de2bab63ae7708b23bcd7",
-                "reference": "ec6637866d6836ef6f8de2bab63ae7708b23bcd7",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/86bdba4aa0f707d3f125933931d3df6e5c7aad79",
+                "reference": "86bdba4aa0f707d3f125933931d3df6e5c7aad79",
                 "shasum": ""
             },
             "require": {
@@ -2429,24 +2423,24 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/tracy/issues",
-                "source": "https://github.com/nette/tracy/tree/v2.10.3"
+                "source": "https://github.com/nette/tracy/tree/v2.10.5"
             },
-            "time": "2023-07-30T13:56:20+00:00"
+            "time": "2023-10-16T21:54:18+00:00"
         }
     ],
     "packages-dev": [
         {
             "name": "php-stubs/wordpress-stubs",
-            "version": "v6.3.0",
+            "version": "v6.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-stubs/wordpress-stubs.git",
-                "reference": "adda7609e71d5f4dc7b87c74f8ec9e3437d2e92c"
+                "reference": "f22b00cacd3b9addc2b07ff48290084503c48574"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-stubs/wordpress-stubs/zipball/adda7609e71d5f4dc7b87c74f8ec9e3437d2e92c",
-                "reference": "adda7609e71d5f4dc7b87c74f8ec9e3437d2e92c",
+                "url": "https://api.github.com/repos/php-stubs/wordpress-stubs/zipball/f22b00cacd3b9addc2b07ff48290084503c48574",
+                "reference": "f22b00cacd3b9addc2b07ff48290084503c48574",
                 "shasum": ""
             },
             "require-dev": {
@@ -2459,6 +2453,7 @@
             },
             "suggest": {
                 "paragonie/sodium_compat": "Pure PHP implementation of libsodium",
+                "symfony/polyfill-php80": "Symfony polyfill backporting some PHP 8.0+ features to lower PHP versions",
                 "szepeviktor/phpstan-wordpress": "WordPress extensions for PHPStan"
             },
             "type": "library",
@@ -2475,22 +2470,22 @@
             ],
             "support": {
                 "issues": "https://github.com/php-stubs/wordpress-stubs/issues",
-                "source": "https://github.com/php-stubs/wordpress-stubs/tree/v6.3.0"
+                "source": "https://github.com/php-stubs/wordpress-stubs/tree/v6.3.2"
             },
-            "time": "2023-08-10T16:34:11+00:00"
+            "time": "2023-10-14T10:08:05+00:00"
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.28",
+            "version": "1.10.40",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "e4545b55904ebef470423d3ddddb74fa7325497a"
+                "reference": "93c84b5bf7669920d823631e39904d69b9c7dc5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/e4545b55904ebef470423d3ddddb74fa7325497a",
-                "reference": "e4545b55904ebef470423d3ddddb74fa7325497a",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/93c84b5bf7669920d823631e39904d69b9c7dc5d",
+                "reference": "93c84b5bf7669920d823631e39904d69b9c7dc5d",
                 "shasum": ""
             },
             "require": {
@@ -2539,26 +2534,26 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-08-08T12:33:42+00:00"
+            "time": "2023-10-30T14:48:31+00:00"
         },
         {
             "name": "szepeviktor/phpstan-wordpress",
-            "version": "v1.3.0",
+            "version": "v1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/szepeviktor/phpstan-wordpress.git",
-                "reference": "5b5cc77ed51fdaf64efe3f00b5aae4b709d2cfa9"
+                "reference": "b8516ed6bab7ec50aae981698ce3f67f1be2e45a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/szepeviktor/phpstan-wordpress/zipball/5b5cc77ed51fdaf64efe3f00b5aae4b709d2cfa9",
-                "reference": "5b5cc77ed51fdaf64efe3f00b5aae4b709d2cfa9",
+                "url": "https://api.github.com/repos/szepeviktor/phpstan-wordpress/zipball/b8516ed6bab7ec50aae981698ce3f67f1be2e45a",
+                "reference": "b8516ed6bab7ec50aae981698ce3f67f1be2e45a",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.2 || ^8.0",
                 "php-stubs/wordpress-stubs": "^4.7 || ^5.0 || ^6.0",
-                "phpstan/phpstan": "^1.10.0",
+                "phpstan/phpstan": "^1.10.30",
                 "symfony/polyfill-php73": "^1.12.0"
             },
             "require-dev": {
@@ -2568,6 +2563,9 @@
                 "phpstan/phpstan-strict-rules": "^1.2",
                 "phpunit/phpunit": "^8.0 || ^9.0",
                 "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^0.8"
+            },
+            "suggest": {
+                "swissspidy/phpstan-no-private": "Detect usage of internal core functions, classes and methods"
             },
             "type": "phpstan-extension",
             "extra": {
@@ -2596,9 +2594,9 @@
             ],
             "support": {
                 "issues": "https://github.com/szepeviktor/phpstan-wordpress/issues",
-                "source": "https://github.com/szepeviktor/phpstan-wordpress/tree/v1.3.0"
+                "source": "https://github.com/szepeviktor/phpstan-wordpress/tree/v1.3.2"
             },
-            "time": "2023-04-23T06:15:06+00:00"
+            "time": "2023-10-16T17:23:56+00:00"
         }
     ],
     "aliases": [],
