@@ -53,9 +53,14 @@ final class Base
 	{
 		$theme_locations = get_nav_menu_locations();
 		$menu = get_term($theme_locations[$themeLocation], 'nav_menu');
+		$items = wp_get_nav_menu_items($menu);
+		if ($items === false) {
+			return [];
+		}
+
 		return \array_map(
 			fn(\WP_Post $post): MenuItemDC => MenuItemDC::fromPost($post, $this->currentPost),
-			wp_get_nav_menu_items($menu)
+			$items
 		);
 	}
 
