@@ -1,4 +1,3 @@
-import 'nodelist-foreach-polyfill';
 // @ts-ignore
 const loadGoogleMapsApi = require('load-google-maps-api'); // must be this way, because of exporting using `export =`
 import Map from './Map';
