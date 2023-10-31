@@ -1,4 +1,5 @@
-export interface OrganizationalUnit {
+export interface OrganizationalUnit
+{
 	name: string;
 	lat: number;
 	lng: number;

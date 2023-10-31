@@ -1,4 +1,4 @@
-import {OrganizationalUnit} from "./organizationalUnit";
+import {OrganizationalUnit} from './types';
 
 export const resolveUnitTypeSlug = (unit: OrganizationalUnit): string|undefined => {
 	let slug = null;

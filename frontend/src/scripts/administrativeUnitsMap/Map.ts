@@ -1,10 +1,10 @@
-import {InfoWindow} from "./InfoWindow";
-import {resolveIconFileName, resolveUnitTitle, resolveUnitTypeSlug} from "./utils";
-import {OrganizationalUnit} from "./organizationalUnit";
+import {InfoWindow} from './InfoWindow';
+import {resolveIconFileName, resolveUnitTitle, resolveUnitTypeSlug} from './utils';
 import {OverlappingMarkerSpiderfier} from 'ts-overlapping-marker-spiderfier';
+import {OrganizationalUnit} from './types';
 
 export default class Map {
-	private iconsPath: string;
+	private readonly iconsPath: string;
 	map: google.maps.Map;
 	mapLayers: google.maps.MVCObject;
 	mapBounds: google.maps.LatLngBounds;
@@ -13,7 +13,8 @@ export default class Map {
 	slugs: Array<string>;
 	organizationalUnits: Array<OrganizationalUnit>;
 
-	constructor(mapElement: HTMLElement) {
+	public constructor(mapElement: HTMLElement)
+	{
 		this.iconsPath = mapElement.dataset.themepath! + '/frontend/dist/images'; // should be present
 
 		// Maps Google map to place where we want display our map
@@ -45,7 +46,8 @@ export default class Map {
 
 
 	// place markers and set layers by type for filter
-	/* private */ placeMarkers(): void {
+	public placeMarkers(): void
+	{
 		this.organizationalUnits.forEach((unit) => {
 			const slug = resolveUnitTypeSlug(unit);
 
@@ -59,7 +61,8 @@ export default class Map {
 	}
 
 	// Inspiration from: https://stackoverflow.com/a/30013345
-	/* private */ placeMarker(unit: OrganizationalUnit): void {
+	private placeMarker(unit: OrganizationalUnit): void
+	{
 		this.mapBounds.extend({lat: unit.lat, lng: unit.lng});
 
 		// make marker and set option
@@ -79,14 +82,16 @@ export default class Map {
 		});
 	}
 
-	displayLayer(filter: string|null = null): void {
+	public displayLayer(filter: string|null = null): void
+	{
 		this.slugs.forEach((slug) => {
 			this.mapLayers.set(slug, slug === filter || filter === null ? this.map : null);
 		});
 		this.centerAndZoom();
 	}
 
-	centerAndZoom(): void {
+	public centerAndZoom(): void
+	{
 		this.map.fitBounds(this.mapBounds);
 		this.map.panToBounds(this.mapBounds);
 	}
