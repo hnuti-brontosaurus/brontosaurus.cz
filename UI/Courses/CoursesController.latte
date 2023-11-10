@@ -48,7 +48,9 @@
 			<a href="https://organizator.brontosaurus.cz" rel="noopener">klikni zde</a>.
 		</p>
 
-		{include '../components/@eventList.latte', eventCollection => $eventCollection}
+		<div class="hb-eventList">
+			{include '../components/@eventList.latte', eventCollection => $eventCollection}
+		</div>
 	</div>
 </main>
 

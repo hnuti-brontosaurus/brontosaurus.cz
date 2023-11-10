@@ -13,18 +13,18 @@
 			kosení chráněných luk nebo čištění studánek.
 		</p>
 
-		<div class="about-successes__stories">
+		<div class="about-successes__stories hb-eventList">
 			{var $displayOnLoad = 3}
-			<div class="events-event-wrapper" n:inner-foreach="$stories as $story">
+			<div class="hb-eventList__grid" n:inner-foreach="$stories as $story">
 				{include story, story: $story}
 				{breakIf $iterator->counter === $displayOnLoad}
 			</div>
 			{if count($stories) > $displayOnLoad}
-				<button class="events-moreLink button button--customization" id="events-showMore-button" type="button">
+				<button class="events__moreLink button button--customization" id="hb-eventList-showMore-button" type="button">
 					Zobrazit další
 				</button>
 
-				<div class="events-event-wrapper events-event-wrapper--collapse" id="events-showMore-content" n:inner-foreach="$stories as $story">
+				<div class="hb-eventList__grid hb-eventList__grid--collapse" id="hb-eventList-showMore-content" n:inner-foreach="$stories as $story">
 					{continueIf $iterator->counter <= $displayOnLoad}
 					{include story, story: $story}
 				</div>

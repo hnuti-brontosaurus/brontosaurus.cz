@@ -11,7 +11,9 @@
 			Seznam akcí
 		</h2>
 
-		{include '../components/@eventList.latte', eventCollection => $eventCollection}
+		<div class="hb-eventList">
+			{include '../components/@eventList.latte', eventCollection => $eventCollection}
+		</div>
 	</div>
 </main>
 

@@ -12,7 +12,7 @@ export default class {
 			showMoreContentElement,
 			showMoreContentElement,
 			{
-				opened: 'events-event-wrapper--opened',
+				opened: 'hb-eventList__grid--opened',
 			},
 		);
 	}

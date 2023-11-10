@@ -156,20 +156,20 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 			</ul>
 		</div>
 
-		<div class="zapoj-se__opportunities">
+		<div class="zapoj-se__opportunities hb-eventList">
 			<?php if ($hasBeenUnableToLoad): ?>
-				<div class="events-noResults noResults">
+				<div class="hb-eventList__noResults noResults">
 					Promiň, zrovna&nbsp;nám vypadl systém, kde&nbsp;máme uloženy všechny informace o&nbsp;příležitostech.
 					Zkus&nbsp;to prosím za&nbsp;chvilku znovu.
 				</div>
 
 			<?php elseif (\count($opportunities) === 0): ?>
-				<div class="events-noResults noResults">
+				<div class="hb-eventList__noResults noResults">
 					Zrovna&nbsp;tu žádné příležitosti nejsou, zkus&nbsp;to později.
 				</div>
 
 			<?php else: ?>
-				<div class="events-event-wrapper">
+				<div class="hb-eventList__grid">
 					<?php $i = 1; foreach ($opportunities as $opportunity) {
 						hb_opportunity($opportunity, $dateFormat);
 						if ($i === $numberOfOpportunitiesToDisplayOnLoad) break;
@@ -178,11 +178,11 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 				</div>
 
 				<?php if (\count($opportunities) > $numberOfOpportunitiesToDisplayOnLoad): ?>
-					<button class="events-moreLink button button--customization" id="events-showMore-button" type="button">
+					<button class="hb-eventList__moreLink button button--customization" id="hb-eventList-showMore-button" type="button">
 						Zobrazit další
 					</button>
 
-					<div class="events-event-wrapper events-event-wrapper--collapse" id="events-showMore-content">
+					<div class="hb-eventList__grid hb-eventList__grid--collapse" id="hb-eventList-showMore-content">
 						<?php $i = 1; foreach ($opportunities as $opportunity) {
 							if ($i <= $numberOfOpportunitiesToDisplayOnLoad) {
 								$i++;

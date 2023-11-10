@@ -19,12 +19,12 @@ const initializeFiltersToggler = () => {
 };
 
 const initializeMoreEventsToggler = () => {
-	const showMoreButtonElement = document.getElementById('events-showMore-button');
+	const showMoreButtonElement = document.getElementById('hb-eventList-showMore-button');
 	if (showMoreButtonElement === null) {
 		return;
 	}
 
-	const showMoreContentElement = document.getElementById('events-showMore-content');
+	const showMoreContentElement = document.getElementById('hb-eventList-showMore-content');
 	if (showMoreContentElement === null) {
 		return;
 	}
