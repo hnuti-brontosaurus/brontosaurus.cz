@@ -64,7 +64,6 @@ add_action('wp_enqueue_scripts', function () {
 	$theme = wp_get_theme();
 	$themeVersion = $theme->get('Version');
 	wp_enqueue_script('brontosaurus-zapojse-lazy-load', $theme->get_template_directory_uri() . '/frontend/dist/js/lazyLoad.js', [], $themeVersion);
-	wp_enqueue_script('brontosaurus-zapojse-events', $theme->get_template_directory_uri() . '/frontend/dist/js/events.js', [], $themeVersion);
 	wp_enqueue_script('brontosaurus-zapojse-map', $theme->get_template_directory_uri() . '/frontend/dist/js/administrativeUnitsMap.js', [], $themeVersion);
 });
 
@@ -124,8 +123,8 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 	<section>
 		<h1>Aktuální příležitosti</h1>
 
-		<div class="events-filters filters" id="events-filters"<?php if ($isAnySelected): ?> data-collapse-openedOnLoad="1"<?php endif; ?>>
-			<button class="filters__toggler button button--customization" id="events-filters-toggler" type="button" aria-hidden="true">
+		<div class="zapoj-se__filters filters hb-expandable" <?php if ($isAnySelected): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
+			<button class="hb-expandable__toggler button button--customization" type="button" aria-hidden="true" data-hb-expandable-toggler>
 				Zobrazit pouze
 			</button>
 

@@ -54,7 +54,6 @@ final class CoursesController implements Controller
 			$theme = wp_get_theme();
 			$themeVersion = $theme->get('Version');
 			wp_enqueue_script('brontosaurus-courses-lazy-load', $theme->get_template_directory_uri() . '/frontend/dist/js/lazyLoad.js', [], $themeVersion);
-			wp_enqueue_script('brontosaurus-courses-events', $theme->get_template_directory_uri() . '/frontend/dist/js/events.js', [], $themeVersion);
 		});
 
 		$this->latte->render(

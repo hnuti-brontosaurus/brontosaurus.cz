@@ -1,0 +1,34 @@
+.hb-expandable {
+	&__toggler {
+		display: block;
+		margin-inline: auto;
+		position: relative;
+		padding-inline-start: 0.75em;
+		padding-inline-end: calc(#{vr-unit(1)} + #{vr-unit(0.25)});
+
+		&::after {
+			content: "";
+			position: absolute;
+			top: #{vr-unit(0.5)};
+			right: #{vr-unit(0.5)};
+			display: inline-block;
+			width: 11px; // fine-tuned value
+			height: 7px; // fine-tuned value
+			background-image: url("../images/icon-arrow-down-black.svg");
+			background-position: left center;
+			background-repeat: no-repeat;
+			background-size: 11px; // fine-tuned value
+			transition: transform 100ms linear;
+		}
+	}
+	&--expanded &__toggler {
+		background-color: transparent; // overwrite button style
+
+		&:hover {
+			background-color: darken($colors-tinge, 10);
+		}
+		&::after {
+			transform: rotate(180deg);
+		}
+	}
+}

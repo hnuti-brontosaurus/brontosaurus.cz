@@ -50,7 +50,6 @@ final class MeetupsController implements Controller
 			$theme = wp_get_theme();
 			$themeVersion = $theme->get('Version');
 			wp_enqueue_script('brontosaurus-meetups-lazy-load', $theme->get_template_directory_uri() . '/frontend/dist/js/lazyLoad.js', [], $themeVersion);
-			wp_enqueue_script('brontosaurus-meetups-events', $theme->get_template_directory_uri() . '/frontend/dist/js/events.js', [], $themeVersion);
 		});
 
 		$this->latte->render(

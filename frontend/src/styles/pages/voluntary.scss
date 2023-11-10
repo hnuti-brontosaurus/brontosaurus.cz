@@ -4,7 +4,11 @@
 	}
 
 	&-events {
-		margin-bottom: vr-unit(2);
+		padding-bottom: vr-unit(3);
+
+		&-filters {
+			margin-bottom: vr-unit(1);
+		}
 	}
 
 	&-description {

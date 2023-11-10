@@ -9,47 +9,42 @@ $events-breakpoint-threeColumns-from: "min-width: " + ($events-breakpoint-TwoToT
 .hb-eventList {
 	&__grid {
 		display: grid;
+		gap: calc(var(--hb-vr-base) * 1);
 		grid-template-columns: 1fr;
 		max-width: 19rem;
-		margin: 0 auto vr-unit(1);
-		padding: vr-unit(1);
-		grid-gap: vr-unit(1);
+		margin-inline: auto;
+		padding-inline: calc(var(--hb-vr-base) * 1);
 
 		@media ($events-breakpoint-twoColumns-from) {
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 			max-width: 38rem;
-			margin-left: -#{vr-unit(1)};
-			margin-right: -#{vr-unit(1)};
+			margin-inline: calc(var(--hb-vr-base) * -1);
 		}
 		@media (min-width: 47.001em) {
-			margin-left: auto;
-			margin-right: auto;
+			margin-inline: auto;
 		}
 
 		@media ($events-breakpoint-threeColumns-from) {
 			grid-template-columns: 1fr 1fr 1fr;
 			max-width: 62em;
-			grid-gap: vr-unit(1);
 		}
-
-		&--collapse {
-			margin-top: -#{vr-unit(1)};
-			overflow: hidden;
-			overflow-anchor: none;
-			transition: max-height 200ms ease-in-out;
-			--height: 0;
-			max-height: var(--height);
-		}
-		&:not(&--opened) {
-			padding-top: 0;
-			padding-bottom: 0;
-		}
+	}
+	&__grid:not(:first-child) { // &__grid ~ &__grid doesn't work with `display: contents`
+		margin-block-start: calc(var(--hb-vr-base) * 1);
+	}
+	.hb-expandable:not(.hb-expandable--expanded) .hb-eventList__grid {
+		overflow: hidden;
+		overflow-anchor: none;
+		transition: max-height 200ms ease-in-out;
+		--height: 0;
+		max-height: var(--height);
+		padding-block: 0;
 	}
 
 	&__noResults {
-		margin-top: vr-unit(3);
-		margin-bottom: vr-unit(5);
+		margin-block-start: calc(var(--hb-vr-base) * 3);
+		margin-block-end: calc(var(--hb-vr-base) * 5);
 
 		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
 			text-align: center;
@@ -57,8 +52,11 @@ $events-breakpoint-threeColumns-from: "min-width: " + ($events-breakpoint-TwoToT
 	}
 
 	&__moreLink {
+		margin-block-start: calc(var(--hb-vr-base) * 1);
 		display: block;
-		margin-left: auto;
-		margin-right: auto;
+		margin-inline: auto;
+	}
+	.hb-expandable.hb-expandable--expanded &__moreLink {
+		display: none;
 	}
 }

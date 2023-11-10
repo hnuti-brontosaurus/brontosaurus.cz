@@ -18,12 +18,12 @@
 			Akce pro&nbsp;děti a&nbsp;rodiče s&nbsp;dětmi
 		</h2>
 
-		<div class="events-filters filters" id="events-filters"{if $filters->isAnySelected} data-collapse-openedOnLoad="1"{/if}>
-			<button class="filters__toggler button button--customization" id="events-filters-toggler" type="button" aria-hidden="true">
+		<div class="forchildren-events-filters filters hb-expandable" {if $filters->isAnySelected} data-hb-expandable-expanded="1"{/if}>
+			<button class="hb-expandable__toggler button button--customization" type="button" aria-hidden="true" data-hb-expandable-toggler>
 				Zobrazit pouze
 			</button>
 
-			<ul class="filters__list" id="events-filters-list">
+			<ul class="filters__list" data-hb-expandable-content>
 				<li class="filters__item">
 					<a n:class="'filters__link', ! $filters->isAnySelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$forChildrenPageLink}#obsah">
 						vše
@@ -56,9 +56,7 @@
 			</ul>
 		</div>
 
-		<div class="hb-eventList">
-			{include '../components/@eventList.latte', eventCollection => $eventCollection}
-		</div>
+		{include '../components/@eventList.latte', eventCollection => $eventCollection}
 	</div>
 </main>
 
