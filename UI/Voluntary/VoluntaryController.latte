@@ -1,73 +1,71 @@
 {layout $layoutPath}
 
 {block content}
-<main role="main" id="obsah">
-	<h1 class="voluntary-heading">
+<main class="voluntary__events hb-events" role="main" id="obsah">
+	<h1 class="hb-events__heading">
 		Zážitkové a&nbsp;dobrovolnické akce
 	</h1>
 
-	<div class="voluntary-events events">
-		<h2 class="events-heading sr-only">
-			Seznam akcí
-		</h2>
+	<h2 class="sr-only">
+		Seznam akcí
+	</h2>
 
-		<div class="voluntary-events-filters filters hb-expandable" {if $filters->isAnySelected} data-hb-expandable-expanded="1"{/if}>
-			<button class="hb-expandable__toggler button button--customization" type="button" aria-hidden="true" data-hb-expandable-toggler>
-				Zobrazit pouze
-			</button>
+	<div class="hb-events__filters filters hb-expandable" {if $filters->isAnySelected} data-hb-expandable-expanded="1"{/if}>
+		<button class="hb-expandable__toggler button button--customization" type="button" aria-hidden="true" data-hb-expandable-toggler>
+			Zobrazit pouze
+		</button>
 
-			<ul class="filters__list" data-hb-expandable-content>
-				<li class="filters__item">
-					<a n:class="'filters__link', ! $filters->isAnySelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$voluntaryPageLink}#obsah">
-						vše
-					</a>
-				</li>
+		<ul class="filters__list" data-hb-expandable-content>
+			<li class="filters__item">
+				<a n:class="'filters__link', ! $filters->isAnySelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$voluntaryPageLink}#obsah">
+					vše
+				</a>
+			</li>
 
-				<li class="filters__item">
-					<a n:class="'filters__link', $filters->isFirstTimeAttendeesSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$voluntaryPageLink}?{$filters->key}=jedu-poprve#obsah">
-						jedu poprvé
-					</a>
-				</li>
+			<li class="filters__item">
+				<a n:class="'filters__link', $filters->isFirstTimeAttendeesSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$voluntaryPageLink}?{$filters->key}=jedu-poprve#obsah">
+					jedu poprvé
+				</a>
+			</li>
 
-				<li class="filters__item">
-					<a n:class="'filters__link', $filters->isWeekendEventsSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$voluntaryPageLink}?{$filters->key}=vikendovky#obsah">
-						víkendovky
-					</a>
-				</li>
+			<li class="filters__item">
+				<a n:class="'filters__link', $filters->isWeekendEventsSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$voluntaryPageLink}?{$filters->key}=vikendovky#obsah">
+					víkendovky
+				</a>
+			</li>
 
-				<li class="filters__item">
-					<a n:class="'filters__link', $filters->isOneDayEventsSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$voluntaryPageLink}?{$filters->key}=jednodenni#obsah">
-						jednodenní
-					</a>
-				</li>
+			<li class="filters__item">
+				<a n:class="'filters__link', $filters->isOneDayEventsSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$voluntaryPageLink}?{$filters->key}=jednodenni#obsah">
+					jednodenní
+				</a>
+			</li>
 
-				<li class="filters__item">
-					<a n:class="'filters__link', $filters->isHolidayEventsSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$voluntaryPageLink}?{$filters->key}=prazdninove#obsah">
-						prázdninové
-					</a>
-				</li>
+			<li class="filters__item">
+				<a n:class="'filters__link', $filters->isHolidayEventsSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$voluntaryPageLink}?{$filters->key}=prazdninove#obsah">
+					prázdninové
+				</a>
+			</li>
 
-				<li class="filters__item">
-					<a n:class="'filters__link', $filters->isNatureSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$voluntaryPageLink}?{$filters->key}=priroda#obsah">
-						příroda
-					</a>
-				</li>
+			<li class="filters__item">
+				<a n:class="'filters__link', $filters->isNatureSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$voluntaryPageLink}?{$filters->key}=priroda#obsah">
+					příroda
+				</a>
+			</li>
 
-				<li class="filters__item">
-					<a n:class="'filters__link', $filters->isSightsSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$voluntaryPageLink}?{$filters->key}=pamatky#obsah">
-						památky
-					</a>
-				</li>
-			</ul>
-		</div>
-
-		{include '../components/@eventList.latte', eventCollection => $eventCollection}
+			<li class="filters__item">
+				<a n:class="'filters__link', $filters->isSightsSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$voluntaryPageLink}?{$filters->key}=pamatky#obsah">
+					památky
+				</a>
+			</li>
+		</ul>
 	</div>
+
+	{include '../components/@eventList.latte', eventCollection => $eventCollection}
 </main>
 
 
 <aside>
-	<section class="voluntary-description description">
+	<section class="voluntary__description description">
 		<h1 id="co-zazijes-na-dobrovolnicke-akci">
 			Co&nbsp;zažiješ na&nbsp;dobrovolnické akci
 		</h1>
@@ -103,7 +101,7 @@
 				</div>
 			</a>
 
-			<a class="voluntary-description-firstTimeLink description-list-item--fullWidth action action--ulterior" href="{$firstTimePageLink}">
+			<a class="voluntary__firstTimeLink description-list-item--fullWidth action action--ulterior" href="{$firstTimePageLink}">
 				Co čekat, když jedu poprvé?
 			</a>
 

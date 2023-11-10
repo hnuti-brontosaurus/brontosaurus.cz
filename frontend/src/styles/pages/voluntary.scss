@@ -1,21 +1,13 @@
 .voluntary {
-	&-heading {
-		text-align: center;
+	&__events {
+		margin-block-end: calc(var(--hb-vr-base) * 3);
 	}
 
-	&-events {
-		padding-bottom: vr-unit(3);
-
-		&-filters {
-			margin-bottom: vr-unit(1);
-		}
+	&__description {
+		margin-block-end: calc(var(--hb-vr-base) * 2);
 	}
 
-	&-description {
-		margin-bottom: vr-unit(2);
-
-		&-firstTimeLink {
-			justify-self: center;
-		}
+	&__firstTimeLink {
+		justify-self: center;
 	}
 }

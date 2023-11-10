@@ -1,55 +1,53 @@
 {layout $layoutPath}
 
 {block content}
-<main role="main" id="obsah">
-	<h1 class="courses__heading">
+<main class="courses__events hb-events" role="main" id="obsah">
+	<h1 class="hb-events__heading">
 		Vzdělávací kurzy a&nbsp;přednášky
 	</h1>
 
-	<div class="courses__events events">
-		<h2 class="events-heading sr-only">
-			Seznam akcí
-		</h2>
+	<h2 class="sr-only">
+		Seznam akcí
+	</h2>
 
-		<div class="courses__filters filters hb-expandable" {if $filters->isAnySelected} data-hb-expandable-expanded="1"{/if}>
-			<button class="hb-expandable__toggler button button--customization" type="button" aria-hidden="true" data-hb-expandable-toggler>
-				Zobrazit pouze
-			</button>
+	<div class="hb-events__filters filters hb-expandable" {if $filters->isAnySelected} data-hb-expandable-expanded="1"{/if}>
+		<button class="hb-expandable__toggler button button--customization" type="button" aria-hidden="true" data-hb-expandable-toggler>
+			Zobrazit pouze
+		</button>
 
-			<ul class="filters__list" data-hb-expandable-content>
-				<li class="filters__item">
-					<a n:class="'filters__link', ! $filters->isAnySelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$coursesPageLink}#obsah">
-						vše
-					</a>
-				</li>
+		<ul class="filters__list" data-hb-expandable-content>
+			<li class="filters__item">
+				<a n:class="'filters__link', ! $filters->isAnySelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$coursesPageLink}#obsah">
+					vše
+				</a>
+			</li>
 
-				<li class="filters__item">
-					<a n:class="'filters__link', $filters->isMeetupsSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$coursesPageLink}?{$filters->key}=prednasky#obsah">
-						přednášky
-					</a>
-				</li>
+			<li class="filters__item">
+				<a n:class="'filters__link', $filters->isMeetupsSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$coursesPageLink}?{$filters->key}=prednasky#obsah">
+					přednášky
+				</a>
+			</li>
 
-				<li class="filters__item">
-					<a n:class="'filters__link', $filters->isOrganizingSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$coursesPageLink}?{$filters->key}=organizatorske-kurzy#obsah">
-						organizátorské kurzy
-					</a>
-				</li>
+			<li class="filters__item">
+				<a n:class="'filters__link', $filters->isOrganizingSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$coursesPageLink}?{$filters->key}=organizatorske-kurzy#obsah">
+					organizátorské kurzy
+				</a>
+			</li>
 
-				<li class="filters__item">
-					<a n:class="'filters__link', $filters->isThematicSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$coursesPageLink}?{$filters->key}=tematicke-kurzy#obsah">
-						tématické kurzy
-					</a>
-				</li>
-			</ul>
-		</div>
-
-		<p class="courses__info" n:if="$filters->isOrganizingSelected">
-			👉 Na této stránce je přehled aktuálně vypsaných kurzů. Pro více informací či další kurzy
-			<a href="https://organizator.brontosaurus.cz" rel="noopener">klikni zde</a>.
-		</p>
-
-		{include '../components/@eventList.latte', eventCollection => $eventCollection}
+			<li class="filters__item">
+				<a n:class="'filters__link', $filters->isThematicSelected ? 'filters__link--selected', 'button', 'button--customization'" href="{$coursesPageLink}?{$filters->key}=tematicke-kurzy#obsah">
+					tématické kurzy
+				</a>
+			</li>
+		</ul>
 	</div>
+
+	<p class="courses__info" n:if="$filters->isOrganizingSelected">
+		👉 Na této stránce je přehled aktuálně vypsaných kurzů. Pro více informací či další kurzy
+		<a href="https://organizator.brontosaurus.cz" rel="noopener">klikni zde</a>.
+	</p>
+
+	{include '../components/@eventList.latte', eventCollection => $eventCollection}
 </main>
 
 

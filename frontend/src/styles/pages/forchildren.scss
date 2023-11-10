@@ -1,31 +1,23 @@
 .forchildren {
-	&-heading {
+	&__mapWrapper {
 		text-align: center;
+		margin-block-end: calc(var(--hb-vr-base) * 1);
 	}
-
-	$map-size-icon: 1.7em;
-	&-map-wrapper {
-		text-align: center;
-		margin-bottom: vr-unit(1);
-	}
-	&-map {
+	&__map {
+		--forchildren-map-size-icon: 1.7em;
 		background-image: url("../images/icon-map.svg");
 		background-position: left 0.1em;
-		background-size: $map-size-icon auto;
+		background-size: var(--forchildren-map-size-icon) auto;
 		background-repeat: no-repeat;
 		display: inline-block;
-		padding-left: calc(#{$map-size-icon} + 0.5em);
+		padding-left: calc(var(--forchildren-map-size-icon) + 0.5em);
 	}
 
-	&-events {
-		padding-bottom: vr-unit(3);
-
-		&-filters {
-			margin-bottom: vr-unit(1);
-		}
+	&__events {
+		margin-block-end: calc(var(--hb-vr-base) * 3);
 	}
 
-	&-description {
-		margin-bottom: vr-unit(2);
+	&__description {
+		margin-block-end: calc(var(--hb-vr-base) * 2);
 	}
 }

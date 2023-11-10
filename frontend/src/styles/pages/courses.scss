@@ -1,14 +1,6 @@
 .courses {
-	&__heading {
-		text-align: center;
-	}
-
 	&__events {
-		padding-block-end: calc(var(--hb-vr-base) * 3);
-	}
-
-	&__filters {
-		margin-block-end: calc(var(--hb-vr-base) * 1);
+		margin-block-end: calc(var(--hb-vr-base) * 3);
 	}
 
 	&__info {
