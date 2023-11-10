@@ -6,7 +6,7 @@
 		{var $eventsDisplayedOnLoad = 9}
 
 		<div class="hb-eventList__grid" n:inner-foreach="$eventCollection as $event">
-			{include './@event.latte', event => $event}
+			{include './event.latte', event => $event}
 
 			{ifset $inFutureView}{else}
 				{breakIf $iterator->counter === $eventsDisplayedOnLoad}
@@ -21,7 +21,7 @@
 
 				<div class="hb-eventList__grid" n:inner-foreach="$eventCollection as $event" data-hb-expandable-content>
 					{continueIf $iterator->counter <= $eventsDisplayedOnLoad}
-					{include './@event.latte', event => $event}
+					{include './event.latte', event => $event}
 				</div>
 			</div>
 		{/if}{/ifset}
