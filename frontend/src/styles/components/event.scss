@@ -1,0 +1,116 @@
+.hb-event {
+	border-radius: 15px;
+	display: block;
+	width: 100%;
+	margin: 0 auto;
+	padding-block-end: calc(var(--hb-vr-base) * 1);
+	text-decoration: none;
+	box-shadow: 0 0 12px 0 $colors-framing;
+	transition: transform 200ms linear;
+
+	&:hover {
+		color: $colors-text !important; // overwrite `.content a` style
+		transform: scale(1.02);
+	}
+
+	&__imageWrapper {
+		margin-block-end: calc(var(--hb-vr-base) * 1);
+		position: relative;
+		text-align: center;
+	}
+	&--full &__imageWrapper {
+		opacity: 0.5;
+	}
+	&__image {
+		background-color: $colors-tinge;
+		border-radius: 15px 15px 0 0;
+		width: 100%;
+		height: 13rem; // intentionally just `height` as we want to have high images
+		object-fit: cover;
+
+		&--noThumbnail {
+			object-fit: none;
+		}
+	}
+
+	&__tags {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		width: 100%;
+		padding: 0 calc(var(--hb-vr-base) * 0.5) calc(var(--hb-vr-base) * 0.25);
+		border-bottom: 2px solid $colors-emphasizing;
+	}
+
+	&__header {
+		margin-block-end: calc(var(--hb-vr-base) * 1);
+		padding-inline: calc(var(--hb-vr-base) * 1);
+	}
+
+	&__heading {
+		margin-block-end: 0.1em;
+		color: $colors-emphasizing;
+		font-variant-caps: small-caps;
+		font-size: 1.5em;
+		line-height: 1;
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		column-gap: calc(var(--hb-vr-base) * 0.5);
+	}
+
+	&__full {
+		display: inline-flex;
+		font-size: 0.8rem;
+		padding-inline: calc(var(--hb-vr-base) * 0.5);
+		padding-block: calc(var(--hb-vr-base) * 0.125) calc(var(--hb-vr-base) * 0.125 - 0.15em);
+		background-color: var(--hb-colors-tinge);
+		color: var(--hb-colors-text);
+		border-radius: 2em;
+		font-weight: $fonts-delm-weight-regular;
+		font-variant-caps: initial;
+		transform: translateY(-2px);
+	}
+
+	&__meta {
+		display: flex;
+		flex-wrap: wrap;
+		font-size: 0.8em;
+		opacity: 0.8;
+	}
+
+	&__date {
+		margin-inline-end: calc(var(--hb-vr-base) * 0.5);
+		padding-inline-start: 0.85rem;
+		background-image: url("../images/icon-datetime.svg");
+		background-position: left top;
+		background-size: auto 14px; // px so that the icon is not rendered blurry...
+		background-repeat: no-repeat;
+
+		@media ($typography-breakpoint-large-from) {
+			background-size: auto 16px; // ...but the we have to set new size when font becomes larger
+			background-position-y: 0.1em;
+		}
+	}
+
+	&__place {
+		padding-inline-start: 0.9em;
+		background-image: url("../images/icon-place.svg");
+		background-position: left top;
+		background-size: auto 15px; // px so that the icon is not rendered blurry...
+		background-repeat: no-repeat;
+
+		@media ($typography-breakpoint-large-from) {
+			background-size: auto 17px; // ...but the we have to set new size when font becomes larger
+			background-position-y: 0.1em;
+		}
+	}
+
+	&__excerpt {
+		padding-inline: calc(var(--hb-vr-base) * 1);
+		font-size: 0.9em;
+	}
+	&--full &__excerpt {
+		opacity: 0.7;
+	}
+}

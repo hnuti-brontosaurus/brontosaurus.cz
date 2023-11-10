@@ -18,8 +18,8 @@
 				{$month->monthNumber|convertMonthNumberToName}
 			</h2>
 
-			<div class="future-events-list">
-				{include '../components/@eventList.latte', eventCollection => $month->events, inFutureView => TRUE}
+			<div class="future-events-list hb-eventList">
+				{include '../components/eventList.latte', eventCollection => $month->events, inFutureView => TRUE}
 			</div>
 		</div>
 	{/if}

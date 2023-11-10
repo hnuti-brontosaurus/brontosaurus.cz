@@ -1,0 +1,23 @@
+.forchildren {
+	&__mapWrapper {
+		text-align: center;
+		margin-block-end: calc(var(--hb-vr-base) * 1);
+	}
+	&__map {
+		--forchildren-map-size-icon: 1.7em;
+		background-image: url("../images/icon-map.svg");
+		background-position: left 0.1em;
+		background-size: var(--forchildren-map-size-icon) auto;
+		background-repeat: no-repeat;
+		display: inline-block;
+		padding-left: calc(var(--forchildren-map-size-icon) + 0.5em);
+	}
+
+	&__events {
+		margin-block-end: calc(var(--hb-vr-base) * 3);
+	}
+
+	&__description {
+		margin-block-end: calc(var(--hb-vr-base) * 2);
+	}
+}

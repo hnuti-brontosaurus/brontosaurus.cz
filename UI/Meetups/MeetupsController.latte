@@ -1,23 +1,21 @@
 {layout $layoutPath}
 
 {block content}
-<main role="main" id="obsah">
-	<h1 class="meetups-heading">
+<main class="meetups__events hb-events" role="main" id="obsah">
+	<h1 class="hb-events__heading">
 		Setkávejte&nbsp;se s&nbsp;přáteli
 	</h1>
 
-	<div class="meetups-events events">
-		<h2 class="events-heading sr-only">
-			Seznam akcí
-		</h2>
+	<h2 class="sr-only">
+		Seznam akcí
+	</h2>
 
-		{include '../components/@eventList.latte', eventCollection => $eventCollection}
-	</div>
+	{include '../components/eventList.latte', eventCollection => $eventCollection}
 </main>
 
 
 <aside>
-	<section class="meetups-description description">
+	<section class="meetups__description description">
 		<h1>
 			Setkávání a&nbsp;kluby
 		</h1>
@@ -55,5 +53,5 @@
 	</section>
 
 
-	{include '../components/@related.latte', excludeMeetups => TRUE}
+	{include '../components/related.latte', excludeMeetups => TRUE}
 </aside>

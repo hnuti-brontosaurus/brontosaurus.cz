@@ -1,0 +1,9 @@
+.hb-events {
+	&__heading {
+		text-align: center;
+	}
+
+	&__filters {
+		margin-block-end: calc(var(--hb-vr-base) * 1);
+	}
+}

@@ -34,10 +34,10 @@ const buildScriptsTask = (cb) => {
 			sourcePath: paths.scripts.global.src,
 		},
 		{
-			distFileName: 'events.js',
+			distFileName: 'expandable.js',
 			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
-			sourceFileName: 'index.ts',
-			sourcePath: paths.scripts.global.src + '/events',
+			sourceFileName: 'expandable.ts',
+			sourcePath: paths.scripts.global.src,
 		},
 		{
 			distFileName: 'lazyLoad.js',

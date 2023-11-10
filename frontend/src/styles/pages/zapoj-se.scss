@@ -1,6 +1,10 @@
 .zapoj-se {
 	padding-bottom: vr-unit(3);
 
+	&__filters {
+		margin-block-end: vr-unit(1);
+	}
+
 	&__opportunities {
 		margin-block-end: vr-unit(4);
 	}

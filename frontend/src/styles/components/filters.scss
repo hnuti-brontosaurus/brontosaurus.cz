@@ -1,0 +1,44 @@
+.filters {
+	&.hb-expandable .hb-expandable__toggler {
+		transition: margin-bottom 200ms 50ms ease-in-out;
+
+		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
+			display: none;
+		}
+	}
+	&.hb-expandable--expanded .hb-expandable__toggler {
+		margin-block-end: calc(var(--hb-vr-base) * 0.5);
+	}
+
+	&__list {
+		display: flex;
+		gap: calc(var(--hb-vr-base) * 0.25);
+		flex-wrap: wrap;
+		justify-content: center;
+		text-align: center;
+		list-style: none;
+
+		@media ($header-breakpoint-navigationHiddenToVisible-hidden-until) {
+			overflow: hidden;
+			overflow-anchor: none;
+			transition: max-height 200ms ease-in-out;
+			--height: 0;
+			max-height: var(--height);
+		}
+	}
+
+	&__link {
+		display: inline-block;
+		background-color: $colors-links;
+		text-decoration: none;
+
+		&--selected {
+			background-color: $colors-emphasizing !important;
+			color: $colors-default-background !important;
+		}
+
+		&:active {
+			color: $colors-tinge;
+		}
+	}
+}

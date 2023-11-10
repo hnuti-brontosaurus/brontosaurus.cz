@@ -253,6 +253,13 @@ function hb_opportunityCategoryToString(Category $category): string
 (function (WP_Theme $theme) {
 	$path = static fn(string ...$parts): string => implode('/', $parts);
 	add_action('wp_enqueue_scripts', function () use ($path, $theme) {
+		$jsRelativePath = 'frontend/dist/js/expandable.js';
+		wp_enqueue_script(
+			handle: 'hb-expandable',
+			src: $path($theme->get_template_directory_uri(), $jsRelativePath),
+			ver: filemtime($path($theme->get_template_directory(), $jsRelativePath)),
+		);
+
 		$jsRelativePath = 'frontend/dist/js/menuHandler.js';
 		wp_enqueue_script(
 			handle: 'brontosaurus-menu-handler',

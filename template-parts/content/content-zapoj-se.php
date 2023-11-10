@@ -64,7 +64,6 @@ add_action('wp_enqueue_scripts', function () {
 	$theme = wp_get_theme();
 	$themeVersion = $theme->get('Version');
 	wp_enqueue_script('brontosaurus-zapojse-lazy-load', $theme->get_template_directory_uri() . '/frontend/dist/js/lazyLoad.js', [], $themeVersion);
-	wp_enqueue_script('brontosaurus-zapojse-events', $theme->get_template_directory_uri() . '/frontend/dist/js/events.js', [], $themeVersion);
 	wp_enqueue_script('brontosaurus-zapojse-map', $theme->get_template_directory_uri() . '/frontend/dist/js/administrativeUnitsMap.js', [], $themeVersion);
 });
 
@@ -78,37 +77,37 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 ?>
 
 <?php function hb_opportunity(Opportunity $opportunity, string $dateFormat) { ?>
-	<a class="events-event" href="prilezitost/<?php echo $opportunity->getId(); //todo: using rather WP routing somehow ?>">
-		<div class="events-event-image-wrapper">
-			<img alt="" class="events-event-image" data-src="<?php echo $opportunity->getImage()->getMediumSizePath(); ?>">
+	<a class="hb-event" href="prilezitost/<?php echo $opportunity->getId(); //todo: using rather WP routing somehow ?>">
+		<div class="hb-event-image-wrapper">
+			<img alt="" class="hb-event-image" data-src="<?php echo $opportunity->getImage()->getMediumSizePath(); ?>">
 			<noscript><?php // for search engines ?>
-				<img alt="" class="events-event-image" src="<?php echo $opportunity->getImage()->getMediumSizePath(); ?>">
+				<img alt="" class="hb-event-image" src="<?php echo $opportunity->getImage()->getMediumSizePath(); ?>">
 			</noscript>
 
-			<div class="events-event-meta eventTagList">
+			<div class="hb-event-meta eventTagList">
 				<div class="eventTagList__item">
 					<?php echo hb_opportunityCategoryToString($opportunity->getCategory()); ?>
 				</div>
 			</div>
 		</div>
 
-		<header class="events-event-header">
-			<h4 class="events-event-header-heading">
+		<header class="hb-event-header">
+			<h4 class="hb-event-header-heading">
 				<?php echo $opportunity->getName(); ?>
 			</h4>
 
-			<div class="events-event-header-meta">
-				<time class="events-event-header-meta-datetime" datetime="{$event->dateStartForRobots}">
+			<div class="hb-event-header-meta">
+				<time class="hb-event-header-meta-datetime" datetime="{$event->dateStartForRobots}">
 					<?php echo hb_dateSpan($opportunity->getStartDate(), $opportunity->getEndDate(), $dateFormat); ?>
 				</time>
 
-				<span class="events-event-header-meta-place" title="Místo konání">
+				<span class="hb-event-header-meta-place" title="Místo konání">
 					<?php echo $opportunity->getLocation()->getName(); ?>
 				</span>
 			</div>
 		</header>
 
-		<div class="events-event-excerpt">
+		<div class="hb-event-excerpt">
 			<?php
 				$text = (string) $opportunity->getIntroduction();
 				$text = \strip_tags($text);
@@ -124,8 +123,8 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 	<section>
 		<h1>Aktuální příležitosti</h1>
 
-		<div class="events-filters filters" id="events-filters"<?php if ($isAnySelected): ?> data-collapse-openedOnLoad="1"<?php endif; ?>>
-			<button class="filters__toggler button button--customization" id="events-filters-toggler" type="button" aria-hidden="true">
+		<div class="zapoj-se__filters filters hb-expandable" <?php if ($isAnySelected): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
+			<button class="hb-expandable__toggler button button--customization" type="button" aria-hidden="true" data-hb-expandable-toggler>
 				Zobrazit pouze
 			</button>
 
@@ -156,20 +155,20 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 			</ul>
 		</div>
 
-		<div class="zapoj-se__opportunities">
+		<div class="zapoj-se__opportunities hb-eventList">
 			<?php if ($hasBeenUnableToLoad): ?>
-				<div class="events-noResults noResults">
+				<div class="hb-eventList__noResults noResults">
 					Promiň, zrovna&nbsp;nám vypadl systém, kde&nbsp;máme uloženy všechny informace o&nbsp;příležitostech.
 					Zkus&nbsp;to prosím za&nbsp;chvilku znovu.
 				</div>
 
 			<?php elseif (\count($opportunities) === 0): ?>
-				<div class="events-noResults noResults">
+				<div class="hb-eventList__noResults noResults">
 					Zrovna&nbsp;tu žádné příležitosti nejsou, zkus&nbsp;to později.
 				</div>
 
 			<?php else: ?>
-				<div class="events-event-wrapper">
+				<div class="hb-eventList__grid">
 					<?php $i = 1; foreach ($opportunities as $opportunity) {
 						hb_opportunity($opportunity, $dateFormat);
 						if ($i === $numberOfOpportunitiesToDisplayOnLoad) break;
@@ -178,11 +177,11 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 				</div>
 
 				<?php if (\count($opportunities) > $numberOfOpportunitiesToDisplayOnLoad): ?>
-					<button class="events-moreLink button button--customization" id="events-showMore-button" type="button">
+					<button class="hb-eventList__moreLink button button--customization" id="hb-eventList-showMore-button" type="button">
 						Zobrazit další
 					</button>
 
-					<div class="events-event-wrapper events-event-wrapper--collapse" id="events-showMore-content">
+					<div class="hb-eventList__grid hb-eventList__grid--collapse" id="hb-eventList-showMore-content">
 						<?php $i = 1; foreach ($opportunities as $opportunity) {
 							if ($i <= $numberOfOpportunitiesToDisplayOnLoad) {
 								$i++;

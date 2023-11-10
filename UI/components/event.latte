@@ -1,0 +1,37 @@
+{varType HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventDC $event}
+<a n:class="'hb-event', $event->isFull ? 'hb-event--full'" href="{$event->link}">
+	<div class="hb-event__imageWrapper">
+		<img alt="" n:class="hb-event__image, ! $event->hasCoverPhoto ? 'hb-event__image--noThumbnail'" data-src="{if $event->hasCoverPhoto}{$event->coverPhotoPath}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}">
+		<noscript>{* for search engines *}
+			<img alt="" n:class="hb-event__image, ! $event->hasCoverPhoto ? 'hb-event__image--noThumbnail'" src="{if $event->hasCoverPhoto}{$event->coverPhotoPath}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}">
+		</noscript>
+
+		<div class="hb-event__tags">
+			{include '../components/eventTagList.latte', tags: $event->tags}
+		</div>
+	</div>
+
+	<header class="hb-event__header">
+		<h4 class="hb-event__heading">
+			{$event->title}
+
+			<span class="hb-event__full" n:if="$event->isFull">
+				plně obsazeno
+			</span>
+		</h4>
+
+		<div class="hb-event__meta">
+			<time class="hb-event__date" datetime="{$event->dateStartForRobots}">
+				{$event->dateSpan}
+			</time>
+
+			<span class="hb-event__place" title="Místo konání">
+				{$event->place->name}
+			</span>
+		</div>
+	</header>
+
+	<p class="hb-event__excerpt">
+		{$event->invitation->introduction|stripHtml|truncate:200|breaklines}
+	</p>
+</a>

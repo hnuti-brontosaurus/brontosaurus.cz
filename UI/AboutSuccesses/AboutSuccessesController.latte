@@ -13,18 +13,18 @@
 			kosení chráněných luk nebo čištění studánek.
 		</p>
 
-		<div class="about-successes__stories">
+		<div class="about-successes__stories hb-eventList">
 			{var $displayOnLoad = 3}
-			<div class="events-event-wrapper" n:inner-foreach="$stories as $story">
+			<div class="hb-eventList__grid" n:inner-foreach="$stories as $story">
 				{include story, story: $story}
 				{breakIf $iterator->counter === $displayOnLoad}
 			</div>
 			{if count($stories) > $displayOnLoad}
-				<button class="events-moreLink button button--customization" id="events-showMore-button" type="button">
+				<button class="events__moreLink button button--customization" id="hb-eventList-showMore-button" type="button">
 					Zobrazit další
 				</button>
 
-				<div class="events-event-wrapper events-event-wrapper--collapse" id="events-showMore-content" n:inner-foreach="$stories as $story">
+				<div class="hb-eventList__grid hb-eventList__grid--collapse" id="hb-eventList-showMore-content" n:inner-foreach="$stories as $story">
 					{continueIf $iterator->counter <= $displayOnLoad}
 					{include story, story: $story}
 				</div>
@@ -66,27 +66,27 @@
 </main>
 
 {define story, object $story}
-<a class="events-event" href="{$story->link}">
-	<div class="events-event-image-wrapper">
-		<img alt="" n:class="events-event-image, ! $story->hasThumbnail ? 'events-event-image--noThumbnail'" data-src="{if $story->hasThumbnail}{$story->thumbnail}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}">
+<a class="hb-event" href="{$story->link}">
+	<div class="hb-event-image-wrapper">
+		<img alt="" n:class="hb-event-image, ! $story->hasThumbnail ? 'hb-event-image--noThumbnail'" data-src="{if $story->hasThumbnail}{$story->thumbnail}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}">
 		<noscript>{* for search engines *}
-			<img alt="" n:class="events-event-image, ! $story->hasThumbnail ? 'events-event-image--noThumbnail'" src="{if $story->hasThumbnail}{$story->thumbnail}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}">
+			<img alt="" n:class="hb-event-image, ! $story->hasThumbnail ? 'hb-event-image--noThumbnail'" src="{if $story->hasThumbnail}{$story->thumbnail}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}">
 		</noscript>
 	</div>
 
-	<header class="events-event-header">
-		<h4 class="events-event-header-heading">
+	<header class="hb-event-header">
+		<h4 class="hb-event-header-heading">
 			{$story->title}
 		</h4>
 
-		<div class="events-event-header-meta" n:if="$story->location">
-			<span class="events-event-header-meta-place" title="Místo">
+		<div class="hb-event-header-meta" n:if="$story->location">
+			<span class="hb-event-header-meta-place" title="Místo">
 				{$story->location}
 			</span>
 		</div>
 	</header>
 
-	<div class="events-event-excerpt">
+	<div class="hb-event-excerpt">
 		{$story->excerpt}
 	</div>
 </a>
