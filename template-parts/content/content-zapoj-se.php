@@ -78,37 +78,37 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 ?>
 
 <?php function hb_opportunity(Opportunity $opportunity, string $dateFormat) { ?>
-	<a class="events-event" href="prilezitost/<?php echo $opportunity->getId(); //todo: using rather WP routing somehow ?>">
-		<div class="events-event-image-wrapper">
-			<img alt="" class="events-event-image" data-src="<?php echo $opportunity->getImage()->getMediumSizePath(); ?>">
+	<a class="hb-event" href="prilezitost/<?php echo $opportunity->getId(); //todo: using rather WP routing somehow ?>">
+		<div class="hb-event-image-wrapper">
+			<img alt="" class="hb-event-image" data-src="<?php echo $opportunity->getImage()->getMediumSizePath(); ?>">
 			<noscript><?php // for search engines ?>
-				<img alt="" class="events-event-image" src="<?php echo $opportunity->getImage()->getMediumSizePath(); ?>">
+				<img alt="" class="hb-event-image" src="<?php echo $opportunity->getImage()->getMediumSizePath(); ?>">
 			</noscript>
 
-			<div class="events-event-meta eventTagList">
+			<div class="hb-event-meta eventTagList">
 				<div class="eventTagList__item">
 					<?php echo hb_opportunityCategoryToString($opportunity->getCategory()); ?>
 				</div>
 			</div>
 		</div>
 
-		<header class="events-event-header">
-			<h4 class="events-event-header-heading">
+		<header class="hb-event-header">
+			<h4 class="hb-event-header-heading">
 				<?php echo $opportunity->getName(); ?>
 			</h4>
 
-			<div class="events-event-header-meta">
-				<time class="events-event-header-meta-datetime" datetime="{$event->dateStartForRobots}">
+			<div class="hb-event-header-meta">
+				<time class="hb-event-header-meta-datetime" datetime="{$event->dateStartForRobots}">
 					<?php echo hb_dateSpan($opportunity->getStartDate(), $opportunity->getEndDate(), $dateFormat); ?>
 				</time>
 
-				<span class="events-event-header-meta-place" title="Místo konání">
+				<span class="hb-event-header-meta-place" title="Místo konání">
 					<?php echo $opportunity->getLocation()->getName(); ?>
 				</span>
 			</div>
 		</header>
 
-		<div class="events-event-excerpt">
+		<div class="hb-event-excerpt">
 			<?php
 				$text = (string) $opportunity->getIntroduction();
 				$text = \strip_tags($text);

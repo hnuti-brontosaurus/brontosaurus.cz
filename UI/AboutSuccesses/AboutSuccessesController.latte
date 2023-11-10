@@ -66,27 +66,27 @@
 </main>
 
 {define story, object $story}
-<a class="events-event" href="{$story->link}">
-	<div class="events-event-image-wrapper">
-		<img alt="" n:class="events-event-image, ! $story->hasThumbnail ? 'events-event-image--noThumbnail'" data-src="{if $story->hasThumbnail}{$story->thumbnail}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}">
+<a class="hb-event" href="{$story->link}">
+	<div class="hb-event-image-wrapper">
+		<img alt="" n:class="hb-event-image, ! $story->hasThumbnail ? 'hb-event-image--noThumbnail'" data-src="{if $story->hasThumbnail}{$story->thumbnail}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}">
 		<noscript>{* for search engines *}
-			<img alt="" n:class="events-event-image, ! $story->hasThumbnail ? 'events-event-image--noThumbnail'" src="{if $story->hasThumbnail}{$story->thumbnail}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}">
+			<img alt="" n:class="hb-event-image, ! $story->hasThumbnail ? 'hb-event-image--noThumbnail'" src="{if $story->hasThumbnail}{$story->thumbnail}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}">
 		</noscript>
 	</div>
 
-	<header class="events-event-header">
-		<h4 class="events-event-header-heading">
+	<header class="hb-event-header">
+		<h4 class="hb-event-header-heading">
 			{$story->title}
 		</h4>
 
-		<div class="events-event-header-meta" n:if="$story->location">
-			<span class="events-event-header-meta-place" title="Místo">
+		<div class="hb-event-header-meta" n:if="$story->location">
+			<span class="hb-event-header-meta-place" title="Místo">
 				{$story->location}
 			</span>
 		</div>
 	</header>
 
-	<div class="events-event-excerpt">
+	<div class="hb-event-excerpt">
 		{$story->excerpt}
 	</div>
 </a>
