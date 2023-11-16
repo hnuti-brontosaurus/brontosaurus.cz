@@ -6,11 +6,11 @@
 	padding-block-end: calc(var(--hb-vr-base) * 1);
 	text-decoration: none;
 	box-shadow: 0 0 12px 0 $colors-framing;
-	transition: transform 200ms linear;
+	transition: box-shadow 100ms ease-out;
 
 	&:hover {
-		color: $colors-text !important; // overwrite `.content a` style
-		transform: scale(1.02);
+		color: inherit !important; // don't use link color for whole card
+		box-shadow: 0 0 17px 2px $colors-framing;
 	}
 
 	&__imageWrapper {
