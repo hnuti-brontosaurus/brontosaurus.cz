@@ -47,6 +47,12 @@
 				{$event->title}
 			</h1>
 
+			<div class="detail__tags" n:if="$event->tags">
+				<span class="detail__tag eventTag" n:foreach="$event->tags as $tag">
+					{$tag}
+				</span>
+			</div>
+
 			<div class="detail__top">
 				<div class="detail__labels-wrapper">
 					{if $event->hasCoverPhoto}

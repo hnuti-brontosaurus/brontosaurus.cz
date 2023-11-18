@@ -20,6 +20,12 @@
 			{$event->title}
 		</h4>
 
+		<div class="hb-event__tags" n:if="$event->tags">
+			<span class="hb-event__tag eventTag" n:foreach="$event->tags as $tag">
+				{$tag}
+			</span>
+		</div>
+
 		<div class="hb-event__meta">
 			<time class="hb-event__date" datetime="{$event->dateStartForRobots}">
 				{$event->dateSpan}

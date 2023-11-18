@@ -9,8 +9,10 @@ use HnutiBrontosaurus\BisClient\Event\Group;
 use HnutiBrontosaurus\BisClient\Event\IntendedFor;
 use HnutiBrontosaurus\BisClient\Event\Program;
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
+use HnutiBrontosaurus\BisClient\Event\Response\Tag;
 use HnutiBrontosaurus\Theme\UI\Event\EventController;
 use HnutiBrontosaurus\Theme\UI\Utils;
+use function array_map;
 use function get_site_url;
 use function implode;
 use function rtrim;
@@ -45,6 +47,8 @@ final /*readonly*/ class EventDC
 	public ?string $relatedWebsite;
 	/** @var Label[] */
 	public array $labels = [];
+	/** @var string[] */
+	public array $tags = [];
 
 
 	public function __construct(Event $event, string $dateFormatHuman, string $dateFormatRobot)
@@ -119,6 +123,8 @@ final /*readonly*/ class EventDC
 		} elseif ($group === Group::OTHER()) {
 			$this->labels[] = new Label('dlouhodobá');
 		}
+
+		$this->tags = array_map(static fn(Tag $tag) => $tag->getName(), $event->getTags());
 	}
 
 
