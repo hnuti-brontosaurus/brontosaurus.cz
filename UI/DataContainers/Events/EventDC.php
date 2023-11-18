@@ -43,8 +43,8 @@ final /*readonly*/ class EventDC
 	public ?string $organizerUnit;
 	public bool $hasRelatedWebsite;
 	public ?string $relatedWebsite;
-	/** @var Tag[] */
-	public array $tags = [];
+	/** @var Label[] */
+	public array $labels = [];
 
 
 	public function __construct(Event $event, string $dateFormatHuman, string $dateFormatRobot)
@@ -94,30 +94,30 @@ final /*readonly*/ class EventDC
 		$this->hasRelatedWebsite = $relatedWebsite !== null;
 		$this->relatedWebsite = $relatedWebsite;
 
-		$this->tags = [];
+		$this->labels = [];
 		if ($event->getProgram() === Program::NATURE()) {
-			$this->tags[] = new Tag('akce příroda', 'nature');
+			$this->labels[] = new Label('akce příroda', 'nature');
 		}
 		if ($event->getProgram() === Program::MONUMENTS()) {
-			$this->tags[] = new Tag('akce památky', 'sights');
+			$this->labels[] = new Label('akce památky', 'sights');
 		}
 
 		$group = $event->getGroup();
 		if ($event->getProgram() === Program::HOLIDAYS_WITH_BRONTOSAURUS()) {
 			if ($event->getCategory() === Category::VOLUNTEERING()) {
-				$this->tags[] = new Tag('dobrovolnická');
+				$this->labels[] = new Label('dobrovolnická');
 			} elseif ($event->getCategory() === Category::EXPERIENCE()) {
-				$this->tags[] = new Tag('zážitková');
+				$this->labels[] = new Label('zážitková');
 			}
 
-			$this->tags[] = new Tag('prázdninová');
+			$this->labels[] = new Label('prázdninová');
 
 		} elseif ($event->getDuration() === 1) {
-			$this->tags[] = new Tag('jednodenní');
+			$this->labels[] = new Label('jednodenní');
 		} elseif ($group === Group::WEEKEND_EVENT()) {
-			$this->tags[] = new Tag('víkendovka');
+			$this->labels[] = new Label('víkendovka');
 		} elseif ($group === Group::OTHER()) {
-			$this->tags[] = new Tag('dlouhodobá');
+			$this->labels[] = new Label('dlouhodobá');
 		}
 	}
 

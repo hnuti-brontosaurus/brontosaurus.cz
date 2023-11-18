@@ -41,9 +41,9 @@ $detail-breakpoint-large-from: "min-width: " + ($detail-breakpoint-mediumToLarge
 		}
 	}
 
-	// cover image and tag list
+	// cover image and labels
 
-	&__tagList-wrapper {
+	&__labels-wrapper {
 		position: relative;
 
 		@media ($detail-breakpoint-medium-until) {
@@ -90,7 +90,7 @@ $detail-breakpoint-large-from: "min-width: " + ($detail-breakpoint-mediumToLarge
 		}
 	}
 
-	&__tagList {
+	&__labels {
 		position: absolute;
 		bottom: 0;
 		right: 0;

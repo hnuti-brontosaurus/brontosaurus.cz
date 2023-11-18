@@ -6,8 +6,8 @@
 			<img alt="" n:class="hb-event__image, ! $event->hasCoverPhoto ? 'hb-event__image--noThumbnail'" src="{if $event->hasCoverPhoto}{$event->coverPhotoPath}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}">
 		</noscript>
 
-		<div class="hb-event__tags">
-			{include '../components/eventTagList.latte', tags: $event->tags}
+		<div class="hb-event__labels">
+			{include '../components/eventLabels.latte', labels: $event->labels}
 		</div>
 	</div>
 

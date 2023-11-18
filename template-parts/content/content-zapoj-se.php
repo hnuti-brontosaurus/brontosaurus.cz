@@ -84,8 +84,8 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 				<img alt="" class="hb-event__image" src="<?php echo $opportunity->getImage()->getMediumSizePath(); ?>">
 			</noscript>
 
-			<div class="hb-event__tags eventTagList">
-				<div class="eventTagList__item">
+			<div class="hb-event__labels eventLabels">
+				<div class="eventLabels__item">
 					<?php echo hb_opportunityCategoryToString($opportunity->getCategory()); ?>
 				</div>
 			</div>
