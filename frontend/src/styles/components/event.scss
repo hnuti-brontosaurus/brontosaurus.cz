@@ -42,6 +42,16 @@
 		border-bottom: 2px solid $colors-emphasizing;
 	}
 
+	&__full {
+		display: block;
+		margin-block: calc(var(--hb-vr-base) * -1) calc(var(--hb-vr-base) * 0.5);
+		padding: calc(var(--hb-vr-base) * 0.25) calc(var(--hb-vr-base) * 1) calc(calc(var(--hb-vr-base) * 0.25) - 0.15em);
+		background-color: var(--hb-colors-tinge);
+		color: var(--hb-colors-text);
+		font-size: 0.9rem;
+		text-align: center;
+	}
+
 	&__header {
 		margin-block-end: calc(var(--hb-vr-base) * 1);
 		padding-inline: calc(var(--hb-vr-base) * 1);
@@ -58,18 +68,8 @@
 		flex-wrap: wrap;
 		column-gap: calc(var(--hb-vr-base) * 0.5);
 	}
-
-	&__full {
-		display: inline-flex;
-		font-size: 0.8rem;
-		padding-inline: calc(var(--hb-vr-base) * 0.5);
-		padding-block: calc(var(--hb-vr-base) * 0.125) calc(var(--hb-vr-base) * 0.125 - 0.15em);
-		background-color: var(--hb-colors-tinge);
-		color: var(--hb-colors-text);
-		border-radius: 2em;
-		font-weight: $fonts-delm-weight-regular;
-		font-variant-caps: initial;
-		transform: translateY(-2px);
+	&--full &__header {
+		opacity: 0.6;
 	}
 
 	&__meta {

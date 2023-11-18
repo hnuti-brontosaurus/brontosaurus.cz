@@ -11,13 +11,13 @@
 		</div>
 	</div>
 
+	<div class="hb-event__full" n:if="$event->isFull">
+		plně obsazeno
+	</div>
+
 	<header class="hb-event__header">
 		<h4 class="hb-event__heading">
 			{$event->title}
-
-			<span class="hb-event__full" n:if="$event->isFull">
-				plně obsazeno
-			</span>
 		</h4>
 
 		<div class="hb-event__meta">
