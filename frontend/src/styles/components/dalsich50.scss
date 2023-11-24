@@ -1,0 +1,10 @@
+.dalsich50 {
+	padding: calc(var(--hb-vr-base) * 0.5) calc(var(--hb-vr-base) * 1);
+	background-color: var(--hb-colors-emphasizing);
+	color: var(--hb-colors-default-background);
+	text-align: center;
+
+	a {
+		color: inherit;
+	}
+}
