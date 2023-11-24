@@ -66,7 +66,7 @@ yarn install
 # spustí úlohy v Gulpu pro vývojový režim –
 # při každé změně znovu zpracuje změněné zdroje,
 # aby byly vývojáři hned dostupné v prohlížeči
-yarn watch
+yarn dev
 
 # zpracuje zdroje do co nejefektivnější podoby pro nasazení na ostrý web
 # typicky součást buildu v CI
