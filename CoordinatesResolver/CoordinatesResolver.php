@@ -25,9 +25,9 @@ final class CoordinatesResolver
 	public function resolve(AdministrationUnit $administrationUnit): Coordinates
 	{
 		// use coordinates included in response from BIS if possible
-//		if (($coordinates = $administrationUnit->getCoordinates()) !== null) {
-//			return Coordinates::from($coordinates->getLatitude(), $coordinates->getLongitude());
-//		}
+		if (($coordinates = $administrationUnit->getCoordinates()) !== null) {
+			return Coordinates::from($coordinates->getLatitude(), $coordinates->getLongitude());
+		}
 
 		// otherwise try geocoding
 		try {
