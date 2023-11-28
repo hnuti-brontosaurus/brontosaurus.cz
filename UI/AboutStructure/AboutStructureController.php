@@ -11,6 +11,8 @@ use HnutiBrontosaurus\Theme\UI\BaseUnitsAndClubsList\BaseUnitsAndClubsListContro
 use HnutiBrontosaurus\Theme\UI\Controller;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\AdministrationUnitDC;
 use Latte\Engine;
+use Tracy\Debugger;
+use Tracy\ILogger;
 
 
 /*
@@ -39,7 +41,8 @@ final class AboutStructureController implements Controller
 					$coordinates = $this->coordinatesResolver->resolve($organizationalUnit);
 					$administrationUnits[] = AdministrationUnitDC::fromDTO($organizationalUnit, $coordinates);
 
-				} catch (CannotResolveCoordinates) {
+				} catch (CannotResolveCoordinates $e) {
+					Debugger::log($e, ILogger::WARNING);
 					continue; // if can not resolve (e.g. non-existing address) just ignore this unit and continue
 				}
 			}
