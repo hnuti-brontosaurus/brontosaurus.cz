@@ -10,7 +10,7 @@ use HnutiBrontosaurus\Theme\UI\PropertyHandler;
  * @property-read bool $hasSelectorModifier
  * @property-read ?string $selectorModifier
  */
-final class Tag
+final class Label
 {
 	use PropertyHandler;
 

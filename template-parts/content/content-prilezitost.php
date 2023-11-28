@@ -42,8 +42,8 @@ try {
 			<h1>
 				<span class="prilezitost__heading"><?php echo $opportunity->getName(); ?></span>
 
-				<span class="prilezitost__tags eventTagList">
-					<span class="prilezitost__tag eventTagList__item">
+				<span class="prilezitost__labels eventLabels">
+					<span class="prilezitost__label eventLabels__item">
 						<?php echo hb_opportunityCategoryToString($opportunity->getCategory()); ?>
 					</span>
 				</span>

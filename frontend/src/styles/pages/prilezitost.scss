@@ -11,7 +11,7 @@
 	&__heading {
 		margin-inline-end: calc(var(--hb-vr-base) * 0.5);
 	}
-	&__tags {
+	&__labels {
 		vertical-align: middle;
 		margin-inline-start: calc(var(--hb-vr-base) * -0.25);
 		justify-content: center;
@@ -20,7 +20,7 @@
 			display: inline-flex;
 		}
 	}
-	&__tag {
+	&__label {
 		background-color: var(--hb-colors-links);
 		font-size: 0.5em;
 		font-weight: initial;

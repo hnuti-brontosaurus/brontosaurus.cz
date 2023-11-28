@@ -6,11 +6,11 @@
 	padding-block-end: calc(var(--hb-vr-base) * 1);
 	text-decoration: none;
 	box-shadow: 0 0 12px 0 $colors-framing;
-	transition: transform 200ms linear;
+	transition: box-shadow 100ms ease-out;
 
 	&:hover {
-		color: $colors-text !important; // overwrite `.content a` style
-		transform: scale(1.02);
+		color: inherit !important; // don't use link color for whole card
+		box-shadow: 0 0 17px 2px $colors-framing;
 	}
 
 	&__imageWrapper {
@@ -33,7 +33,7 @@
 		}
 	}
 
-	&__tags {
+	&__labels {
 		position: absolute;
 		right: 0;
 		bottom: 0;
@@ -42,13 +42,22 @@
 		border-bottom: 2px solid $colors-emphasizing;
 	}
 
+	&__full {
+		display: block;
+		margin-block: calc(var(--hb-vr-base) * -1) calc(var(--hb-vr-base) * 0.5);
+		padding: calc(var(--hb-vr-base) * 0.25) calc(var(--hb-vr-base) * 1) calc(calc(var(--hb-vr-base) * 0.25) - 0.15em);
+		background-color: var(--hb-colors-tinge);
+		color: var(--hb-colors-text);
+		font-size: 0.9rem;
+		text-align: center;
+	}
+
 	&__header {
 		margin-block-end: calc(var(--hb-vr-base) * 1);
 		padding-inline: calc(var(--hb-vr-base) * 1);
 	}
 
 	&__heading {
-		margin-block-end: 0.1em;
 		color: $colors-emphasizing;
 		font-variant-caps: small-caps;
 		font-size: 1.5em;
@@ -57,18 +66,13 @@
 		align-items: center;
 		flex-wrap: wrap;
 		column-gap: calc(var(--hb-vr-base) * 0.5);
+		margin-block-end: -0.1em;
+	}
+	&--full &__header {
+		opacity: 0.6;
 	}
 
-	&__full {
-		display: inline-flex;
-		font-size: 0.8rem;
-		padding-inline: calc(var(--hb-vr-base) * 0.5);
-		padding-block: calc(var(--hb-vr-base) * 0.125) calc(var(--hb-vr-base) * 0.125 - 0.15em);
-		background-color: var(--hb-colors-tinge);
-		color: var(--hb-colors-text);
-		border-radius: 2em;
-		font-weight: $fonts-delm-weight-regular;
-		font-variant-caps: initial;
+	&__tag {
 		transform: translateY(-2px);
 	}
 
@@ -77,6 +81,9 @@
 		flex-wrap: wrap;
 		font-size: 0.8em;
 		opacity: 0.8;
+	}
+	&__tags + &__meta {
+		margin-block-start: calc(var(--hb-vr-base) * 0.5);
 	}
 
 	&__date {
