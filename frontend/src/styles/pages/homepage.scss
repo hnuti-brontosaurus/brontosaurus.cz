@@ -4,6 +4,7 @@ $default-breakpoint-oneColumn-until: "max-width: " + $default-breakpoint-oneColu
 .homepage {
 	&-heading {
 		text-align: center;
+		margin-block-end: #{vr-unit(0.5)} !important;
 	}
 
 	&-subheading {
