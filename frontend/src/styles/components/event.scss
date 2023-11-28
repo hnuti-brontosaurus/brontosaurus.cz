@@ -77,6 +77,7 @@
 	}
 
 	&__meta {
+		margin-block-start: calc(var(--hb-vr-base) * 0.125);
 		display: flex;
 		flex-wrap: wrap;
 		font-size: 0.8em;
