@@ -12,10 +12,12 @@ export default class Map {
 	markerCluster: OverlappingMarkerSpiderfier;
 	slugs: Array<string>;
 	organizationalUnits: Array<OrganizationalUnit>;
+	private readonly centerToCzechia: boolean;
 
 	public constructor(mapElement: HTMLElement)
 	{
 		this.iconsPath = mapElement.dataset.themepath! + '/frontend/dist/images'; // should be present
+		this.centerToCzechia = !! mapElement.dataset.centerToCzechia;
 
 		// Maps Google map to place where we want display our map
 		this.map = new google.maps.Map(mapElement);
@@ -92,6 +94,12 @@ export default class Map {
 
 	public centerAndZoom(): void
 	{
+		if (this.centerToCzechia) {
+			this.map.setCenter(new google.maps.LatLng(49.7437572, 15.3386383)); // Czechia geographic center, see https://en.mapy.cz/s/gupehogeha
+			this.map.setZoom(7);
+			return;
+		}
+
 		this.map.fitBounds(this.mapBounds);
 		this.map.panToBounds(this.mapBounds);
 	}
