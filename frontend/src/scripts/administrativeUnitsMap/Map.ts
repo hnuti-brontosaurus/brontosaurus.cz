@@ -89,7 +89,6 @@ export default class Map {
 		this.slugs.forEach((slug) => {
 			this.mapLayers.set(slug, slug === filter || filter === null ? this.map : null);
 		});
-		this.centerAndZoom();
 	}
 
 	public centerAndZoom(): void
