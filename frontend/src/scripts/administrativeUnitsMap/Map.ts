@@ -7,26 +7,20 @@ export default class Map {
 	private readonly iconsPath: string;
 	map: google.maps.Map;
 	mapLayers: google.maps.MVCObject;
-	mapBounds: google.maps.LatLngBounds;
 	infoWindow: InfoWindow;
 	markerCluster: OverlappingMarkerSpiderfier;
 	slugs: Array<string>;
 	organizationalUnits: Array<OrganizationalUnit>;
-	private readonly centerToCzechia: boolean;
 
 	public constructor(mapElement: HTMLElement)
 	{
 		this.iconsPath = mapElement.dataset.themepath! + '/frontend/dist/images'; // should be present
-		this.centerToCzechia = !! mapElement.dataset.centerToCzechia;
 
 		// Maps Google map to place where we want display our map
 		this.map = new google.maps.Map(mapElement);
 
 		// For layers by type, @source: https://stackoverflow.com/a/23036174
 		this.mapLayers = new google.maps.MVCObject();
-
-		// Let's center and zoom map automatically @source:https://coderwall.com/p/hojgtq/auto-center-and-auto-zoom-a-google-map
-		this.mapBounds = new google.maps.LatLngBounds();
 
 		this.infoWindow = new InfoWindow(this.map);
 
@@ -41,8 +35,6 @@ export default class Map {
 		this.organizationalUnits = JSON.parse(organizationalUnitsInJSON);
 
 		this.placeMarkers();
-
-		// Centering and zooming of map
 		this.centerAndZoom();
 	}
 
@@ -65,8 +57,6 @@ export default class Map {
 	// Inspiration from: https://stackoverflow.com/a/30013345
 	private placeMarker(unit: OrganizationalUnit): void
 	{
-		this.mapBounds.extend({lat: unit.lat, lng: unit.lng});
-
 		// make marker and set option
 		const marker = new google.maps.Marker({
 			position: {lat: unit.lat, lng: unit.lng},
@@ -93,13 +83,7 @@ export default class Map {
 
 	public centerAndZoom(): void
 	{
-		if (this.centerToCzechia) {
-			this.map.setCenter(new google.maps.LatLng(49.7437572, 15.3386383)); // Czechia geographic center, see https://en.mapy.cz/s/gupehogeha
-			this.map.setZoom(7);
-			return;
-		}
-
-		this.map.fitBounds(this.mapBounds);
-		this.map.panToBounds(this.mapBounds);
+		this.map.setCenter(new google.maps.LatLng(49.7437572, 15.3386383)); // Czechia geographic center, see https://en.mapy.cz/s/gupehogeha
+		this.map.setZoom(7);
 	}
 }
