@@ -177,11 +177,11 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 				</div>
 
 				<?php if (\count($opportunities) > $numberOfOpportunitiesToDisplayOnLoad): ?>
-					<button class="hb-eventList__moreLink button button--customization" id="hb-eventList-showMore-button" type="button">
+					<button class="hb-eventList__moreLink button button--customization" type="button" data-hb-expandable-toggler data-hb-expandable-toggler-remove-on-expand>
 						Zobrazit další
 					</button>
 
-					<div class="hb-eventList__grid hb-eventList__grid--collapse" id="hb-eventList-showMore-content">
+					<div class="hb-eventList__grid hb-eventList__grid--collapse" data-hb-expandable-content>
 						<?php $i = 1; foreach ($opportunities as $opportunity) {
 							if ($i <= $numberOfOpportunitiesToDisplayOnLoad) {
 								$i++;
