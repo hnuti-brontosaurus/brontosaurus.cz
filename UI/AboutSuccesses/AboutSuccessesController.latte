@@ -20,13 +20,15 @@
 				{breakIf $iterator->counter === $displayOnLoad}
 			</div>
 			{if count($stories) > $displayOnLoad}
-				<button class="hb-eventList__moreLink button button--customization" type="button" data-hb-expandable-toggler data-hb-expandable-toggler-remove-on-expand>
-					Zobrazit další
-				</button>
+				<div class="hb-expandable">
+					<button class="hb-eventList__moreLink button button--customization" type="button" data-hb-expandable-toggler data-hb-expandable-toggler-remove-on-expand>
+						Zobrazit další
+					</button>
 
-				<div class="hb-eventList__grid hb-eventList__grid--collapse" n:inner-foreach="$stories as $story" data-hb-expandable-content>
-					{continueIf $iterator->counter <= $displayOnLoad}
-					{include story, story: $story}
+					<div class="hb-eventList__grid hb-eventList__grid--collapse" n:inner-foreach="$stories as $story" data-hb-expandable-content>
+						{continueIf $iterator->counter <= $displayOnLoad}
+						{include story, story: $story}
+					</div>
 				</div>
 			{/if}
 		</div>

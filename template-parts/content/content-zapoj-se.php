@@ -128,7 +128,7 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 				Zobrazit pouze
 			</button>
 
-			<ul class="filters__list" id="events-filters-list">
+			<ul class="filters__list" id="events-filters-list" data-hb-expandable-content>
 				<li class="filters__item">
 					<a class="filters__link <?php echo ! $isAnySelected ? 'filters__link--selected' : ''; ?> button button--customization" href="?#obsah">
 						vše
@@ -177,18 +177,20 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 				</div>
 
 				<?php if (\count($opportunities) > $numberOfOpportunitiesToDisplayOnLoad): ?>
-					<button class="hb-eventList__moreLink button button--customization" type="button" data-hb-expandable-toggler data-hb-expandable-toggler-remove-on-expand>
-						Zobrazit další
-					</button>
+					<div class="hb-expandable">
+						<button class="hb-eventList__moreLink button button--customization" type="button" data-hb-expandable-toggler data-hb-expandable-toggler-remove-on-expand>
+							Zobrazit další
+						</button>
 
-					<div class="hb-eventList__grid hb-eventList__grid--collapse" data-hb-expandable-content>
-						<?php $i = 1; foreach ($opportunities as $opportunity) {
-							if ($i <= $numberOfOpportunitiesToDisplayOnLoad) {
-								$i++;
-								continue;
-							}
-							hb_opportunity($opportunity, $dateFormat);
-						} ?>
+						<div class="hb-eventList__grid hb-eventList__grid--collapse" data-hb-expandable-content>
+							<?php $i = 1; foreach ($opportunities as $opportunity) {
+								if ($i <= $numberOfOpportunitiesToDisplayOnLoad) {
+									$i++;
+									continue;
+								}
+								hb_opportunity($opportunity, $dateFormat);
+							} ?>
+						</div>
 					</div>
 				<?php endif; ?>
 			<?php endif; ?>
