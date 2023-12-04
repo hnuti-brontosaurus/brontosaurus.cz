@@ -67,26 +67,26 @@
 
 {define story, object $story}
 <a class="hb-event" href="{$story->link}">
-	<div class="hb-event-image-wrapper">
-		<img alt="" n:class="hb-event-image, ! $story->hasThumbnail ? 'hb-event-image--noThumbnail'" data-src="{if $story->hasThumbnail}{$story->thumbnail}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}">
+	<div class="hb-event__imageWrapper">
+		<img alt="" n:class="'hb-event__image', ! $story->hasThumbnail ? 'hb-event__image--noThumbnail'" data-src="{if $story->hasThumbnail}{$story->thumbnail}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}">
 		<noscript>{* for search engines *}
-			<img alt="" n:class="hb-event-image, ! $story->hasThumbnail ? 'hb-event-image--noThumbnail'" src="{if $story->hasThumbnail}{$story->thumbnail}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}">
+			<img alt="" n:class="'hb-event__image', ! $story->hasThumbnail ? 'hb-event__image--noThumbnail'" src="{if $story->hasThumbnail}{$story->thumbnail}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}">
 		</noscript>
 	</div>
 
-	<header class="hb-event-header">
-		<h4 class="hb-event-header-heading">
+	<header class="hb-event__header">
+		<h4 class="hb-event__heading">
 			{$story->title}
 		</h4>
 
-		<div class="hb-event-header-meta" n:if="$story->location">
-			<span class="hb-event-header-meta-place" title="Místo">
+		<div class="hb-event__meta" n:if="$story->location">
+			<span class="hb-event__place" title="Místo">
 				{$story->location}
 			</span>
 		</div>
 	</header>
 
-	<div class="hb-event-excerpt">
+	<div class="hb-event__excerpt">
 		{$story->excerpt}
 	</div>
 </a>
