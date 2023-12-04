@@ -11,13 +11,21 @@
 		Vyraz s námi pomáhat přírodě a památkám u nás i v zahraničí.
 	</p>
 
-	<a class="homepage-voluntary hero" href="{$voluntaryPageLink}">
-		<div class="homepage-voluntary-link button button--primary">Najdi své&nbsp;dobrodružství</div>
-	</a>
+	<h2>Nejbližší</h2>
 
-	<a class="homepage-voluntaryMoreLink action action--ulterior" href="{$voluntaryPageLink}#co-zazijes-na-dobrovolnicke-akci">
-		více informací
-	</a>
+	<div class="homepage__featured">
+		{include '../components/eventList.latte', eventCollection => $eventCollection}
+	</div>
+
+	<div class="homepage__links">
+		<a class="action action--primary" href="{$voluntaryPageLink}#obsah">
+			zobrazit další
+		</a>
+
+		<a class="action action--link-secondary-sm" href="{$voluntaryPageLink}#co-zazijes-na-dobrovolnicke-akci">
+			více informací o akcích
+		</a>
+	</div>
 </main>
 
 <aside>

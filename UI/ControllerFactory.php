@@ -73,7 +73,7 @@ final class ControllerFactory
 			AboutHighlightsController::PAGE_SLUG => new AboutHighlightsController($base, $this->latte),
 			AboutSuccessesController::PAGE_SLUG => new AboutSuccessesController($base, $this->latte),
 			'english' => new EnglishController($base, $this->latte),
-			'hlavni-stranka' => new HomepageController($base, $this->latte),
+			'hlavni-stranka' => new HomepageController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte),
 			'jedu-poprve' => new FirstTimeController($base, $this->latte),
 			'programy-pro-stredni-skoly' => new HighSchoolsController($base, $this->latte),
 			'nasi-partneri' => new PartnersController($base, $this->latte),

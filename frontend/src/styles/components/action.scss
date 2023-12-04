@@ -1,6 +1,26 @@
 .action {
 	// Primary action, so called "CTA".
-	&--primary {} // @todo: will be moved from .button--primary
+	&--primary {
+		display: inline-block;
+		border-radius: 2em;
+		text-decoration: none;
+		transition:
+			background-color 200ms ease-in-out,
+			color 200ms ease-in-out;
+
+		padding:
+			calc(var(--hb-vr-base) * 0.25)
+			calc(var(--hb-vr-base) * 0.5)
+			calc(var(--hb-vr-base) * 0.25 - 0.15rem);
+
+		background-color: var(--hb-colors-emphasizing);
+		color: var(--hb-colors-default-background) !important; // overwrite global link style
+
+		&:hover {
+			background-color: #{darken($colors-emphasizing, 10)};
+			color: inherit;
+		}
+	}
 
 	// When there are more possibilities to interact with.
 	&--possible {} // @todo: will be moved from .button--secondary
