@@ -32,25 +32,6 @@ $default-breakpoint-oneColumn-until: "max-width: " + $default-breakpoint-oneColu
 		gap: calc(var(--hb-vr-base) * 1);
 		margin-block-end: calc(var(--hb-vr-base) * 2);
 
-		.action--primary {
-			display: inline-flex;
-			align-items: center;
-			gap: calc(var(--hb-vr-base) * 0.25);
-
-			&::before {
-				content: "";
-				display: block;
-				height: 0.7em;
-				aspect-ratio: 1;
-				transform: translateY(calc(-0.15em / 2));
-				background-color: white;
-				mask-image: url("../images/icon-smallPaw.svg");
-				mask-size: auto 100%;
-				mask-position: center center;
-				mask-repeat: no-repeat;
-			}
-		}
-
 		.action--link-secondary-sm {
 			display: inline-block;
 			font-size: 0.8em;
