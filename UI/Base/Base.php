@@ -3,6 +3,10 @@
 namespace HnutiBrontosaurus\Theme\UI\Base;
 
 
+use function str_replace;
+use const ABSPATH;
+
+
 final class Base
 {
 	public function __construct(
@@ -21,6 +25,7 @@ final class Base
 			'layoutPath' => $this->getLayoutPath(),
 			'languageCode' => get_language_attributes(),
 			'themePath' => get_template_directory_uri(),
+			'themePathRelative' => str_replace(ABSPATH, '', get_template_directory_uri()),
 			'enableTracking' => $this->enableTracking,
 			'isOnSearchResultsPage' => $this->currentPost?->post_name === 'vysledky-vyhledavani',
 			'searchResultsPageLink' => $this->getLinkFor('vysledky-vyhledavani'),
