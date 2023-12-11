@@ -32,6 +32,9 @@
 			object-fit: none;
 		}
 	}
+	&--smaller &__image {
+		height: 9rem;
+	}
 
 	&__labels {
 		position: absolute;
