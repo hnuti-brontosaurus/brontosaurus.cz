@@ -2,6 +2,7 @@
 {varType bool $inFutureView}{* optional; future view has an exception from standard rendering because it does not show "load more" button and thus it renders all events at once *}
 {varType bool $smaller}{* optional *}
 
+{var $smaller = isset($smaller) && $smaller}
 <div n:class="'hb-eventList', $smaller ? 'hb-eventList--smaller'">
 	{if $eventCollection->hasAny}
 		{var $eventsDisplayedOnLoad = 9}

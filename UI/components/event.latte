@@ -1,5 +1,7 @@
 {varType HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventDC $event}
 {varType bool $smaller}{* optional *}
+
+{var $smaller = isset($smaller) && $smaller}
 <a n:class="'hb-event', $event->isFull ? 'hb-event--full', $smaller ? 'hb-event--smaller'" href="{$event->link}">
 	<div class="hb-event__imageWrapper">
 		<img alt="" n:class="hb-event__image, ! $event->hasCoverPhoto ? 'hb-event__image--noThumbnail'" data-src="{if $event->hasCoverPhoto}{$event->coverPhotoPath}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}">

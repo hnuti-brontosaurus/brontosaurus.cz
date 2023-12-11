@@ -2,7 +2,7 @@ $default-breakpoint-oneColumnToTwoColumns: 45em;
 $default-breakpoint-oneColumn-until: "max-width: " + $default-breakpoint-oneColumnToTwoColumns;
 
 .homepage {
-	margin-block-start: calc(var(--hb-vr-base) * 1.5 * -1); // when cover photos are removed/refactored, this would not be needed anymore as .content would have lower offset
+	margin-block-start: calc(var(--hb-vr-base) * 2 * -1); // when cover photos are removed/refactored, this would not be needed anymore as .content would have lower offset
 
 	&-heading {
 		text-align: center;

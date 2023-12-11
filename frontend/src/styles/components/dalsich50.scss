@@ -4,6 +4,10 @@
 	color: var(--hb-colors-default-background);
 	text-align: center;
 
+	@include header-navigation-collapsed-until() {
+		margin-block-end: calc(var(--hb-vr-base) * 0.5);
+	}
+
 	a {
 		color: inherit;
 	}

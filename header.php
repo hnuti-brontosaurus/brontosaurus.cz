@@ -135,6 +135,8 @@ $hb_pageClassSelector = $hb_currentPost !== null ? $hb_currentPost->post_name : 
 		</header>
 	</div>
 
+	<?php if ($hb_pageClassSelector !== 'zapoj-se'): ?>
 	<div class="coverPhoto<?php echo $hb_pageClassSelector !== '' ? ' coverPhoto--' . $hb_pageClassSelector : ''; ?>"></div>
+	<?php endif; ?>
 
 	<div class="content">
