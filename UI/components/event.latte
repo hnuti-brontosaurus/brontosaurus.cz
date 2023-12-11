@@ -1,5 +1,8 @@
 {varType HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventDC $event}
-<a n:class="'hb-event', $event->isFull ? 'hb-event--full'" href="{$event->link}">
+{varType bool $smaller}{* optional *}
+
+{var $smaller = isset($smaller) && $smaller}
+<a n:class="'hb-event', $event->isFull ? 'hb-event--full', $smaller ? 'hb-event--smaller'" href="{$event->link}">
 	<div class="hb-event__imageWrapper">
 		<img alt="" n:class="hb-event__image, ! $event->hasCoverPhoto ? 'hb-event__image--noThumbnail'" data-src="{if $event->hasCoverPhoto}{$event->coverPhotoPath}{else}{$themePath}/frontend/dist/images/logo-hb-brontosaurus.svg{/if}">
 		<noscript>{* for search engines *}
@@ -38,6 +41,7 @@
 	</header>
 
 	<p class="hb-event__excerpt">
-		{$event->invitation->introduction|stripHtml|truncate:200|breaklines}
+		{var $charsCount = $smaller ? 60 : 200}
+		{$event->invitation->introduction|stripHtml|truncate:$charsCount|breaklines}
 	</p>
 </a>

@@ -1,5 +1,9 @@
 .content {
-	padding: vr-unit(2) vr-unit(1);
+	padding: vr-unit(0.5) vr-unit(1) vr-unit(2);
+	.coverPhoto + & {
+		padding-block-start: vr-unit(2);
+	}
+
 	color: transparentize($colors-text, 0.2);
 
 	a {
@@ -13,10 +17,6 @@
 	@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
 		padding-left: vr-unit(2);
 		padding-right: vr-unit(2);
-	}
-	@media ($typography-breakpoint-large-from) {
-		padding-bottom: vr-unit(2);
-		padding-top: vr-unit(2);
 	}
 
 	h1 {

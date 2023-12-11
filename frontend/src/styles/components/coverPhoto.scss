@@ -127,7 +127,6 @@
 	&--meetups,
 	&--forchildren,
 	&--firsttime,
-	&--home,
 	&--supportoverview,
 	&--supportadoption {
 		display: block;
@@ -269,7 +268,6 @@
 
 	// right-sided bubbles
 
-	&--home,
 	&--voluntary,
 	&--firsttime,
 	&--supportoverview,
@@ -288,7 +286,6 @@
 		}
 	}
 
-	&--home,
 	&--voluntary,
 	&--firsttime {
 		&::after {
@@ -303,26 +300,6 @@
 				max-width: 6em;
 				font-size: 1.5em;
 			}
-		}
-	}
-
-	&--home {
-		background-image: url("../images/hlavicka-uvodni.jpg");
-		background-position: -6.5em -3em;
-		background-size: 45em;
-
-		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-			background-size: 70em;
-			background-position-y: -5em;
-		}
-		@media (min-width: 82.001em) {
-			background-size: 97em;
-			background-position: -6em -11em;
-		}
-
-		&::after {
-			//content: "Dobrý\00a0pocit\00a0najdeš\00a0tam,\00a0\00a0\00a0\0015kde\00a0se\00a0 děje\00a0něco\00a0 dobrého…"; // @todo: unhack \0015
-			content: "Dobrý pocit najdeš tam, kde se děje něco dobrého…"; // @todo: unhack \0015
 		}
 	}
 

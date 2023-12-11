@@ -128,7 +128,9 @@
 		</header>
 	</div>
 
+	{if $pageClassSelector !== 'future'}
 	<div n:class="'coverPhoto', $pageClassSelector !== '', ' coverPhoto--' . $pageClassSelector"></div>
+	{/if}
 
 	<div class="content">
 		{block content /}

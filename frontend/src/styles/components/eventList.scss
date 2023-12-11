@@ -33,6 +33,11 @@ $events-breakpoint-threeColumns-from: "min-width: " + ($events-breakpoint-TwoToT
 	&__grid:not(:first-child) { // &__grid ~ &__grid doesn't work with `display: contents`
 		margin-block-start: calc(var(--hb-vr-base) * 1);
 	}
+	&--smaller &__grid {
+		@media ($events-breakpoint-threeColumns-from) {
+			max-width: 50em;
+		}
+	}
 	.hb-expandable:not(.hb-expandable--expanded) .hb-eventList__grid {
 		overflow: hidden;
 		overflow-anchor: none;

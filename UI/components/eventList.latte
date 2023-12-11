@@ -1,7 +1,9 @@
 {varType HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventCollectionDC $eventCollection}
 {varType bool $inFutureView}{* optional; future view has an exception from standard rendering because it does not show "load more" button and thus it renders all events at once *}
+{varType bool $smaller}{* optional *}
 
-<div class="hb-eventList">
+{var $smaller = isset($smaller) && $smaller}
+<div n:class="'hb-eventList', $smaller ? 'hb-eventList--smaller'">
 	{if $eventCollection->hasAny}
 		{var $eventsDisplayedOnLoad = 9}
 
@@ -21,7 +23,7 @@
 
 				<div class="hb-eventList__grid" n:inner-foreach="$eventCollection as $event" data-hb-expandable-content>
 					{continueIf $iterator->counter <= $eventsDisplayedOnLoad}
-					{include './event.latte', event => $event}
+					{include './event.latte', event => $event, smaller => $smaller}
 				</div>
 			</div>
 		{/if}{/ifset}

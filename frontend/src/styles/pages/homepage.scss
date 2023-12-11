@@ -2,6 +2,8 @@ $default-breakpoint-oneColumnToTwoColumns: 45em;
 $default-breakpoint-oneColumn-until: "max-width: " + $default-breakpoint-oneColumnToTwoColumns;
 
 .homepage {
+	margin-block-start: calc(var(--hb-vr-base) * 2 * -1); // when cover photos are removed/refactored, this would not be needed anymore as .content would have lower offset
+
 	&-heading {
 		text-align: center;
 		margin-block-end: #{vr-unit(0.5)} !important;
@@ -19,35 +21,24 @@ $default-breakpoint-oneColumn-until: "max-width: " + $default-breakpoint-oneColu
 		text-align: center;
 	}
 
-	&-voluntary {
-		position: relative;
-		display: block;
-		margin-bottom: vr-unit(1);
-		background-image: url("../images/hlavicka-dobrovolnickeAkce.jpg");
-		background-position: calc(100% + 8em) -1em;
-		background-size: 45em;
-
-		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-			background-position-x: center;
-		}
-
-		&-link {
-			position: absolute;
-			max-width: 15rem;
-			width: 100%;
-			bottom: vr-unit(1.5);
-			left: 50%; transform: translateX(-50%); // center absolutely positioned element
-			white-space: nowrap; // avoid line breaks (when `left: 50%` hits right border of an element, it causes line break)
-		}
-		&:hover {
-			.button--primary {
-				@include buttons-primary-hoverEffect();
-			}
-		}
+	&__featured {
+		margin-block-end: calc(var(--hb-vr-base) * 1);
 	}
 
-	&-voluntaryMoreLink {
-		margin-bottom: vr-unit(2);
+	&__links {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		justify-items: center;
+		align-items: center;
+		gap: calc(var(--hb-vr-base) * 1);
+		margin-block-end: calc(var(--hb-vr-base) * 2);
+
+		.action--link-secondary-sm {
+			display: inline-block;
+			font-size: 0.8em;
+			text-decoration: underline;
+		}
 	}
 
 	&-related {

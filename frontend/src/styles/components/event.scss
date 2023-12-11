@@ -32,6 +32,9 @@
 			object-fit: none;
 		}
 	}
+	&--smaller &__image {
+		height: 9rem;
+	}
 
 	&__labels {
 		position: absolute;
@@ -53,7 +56,7 @@
 	}
 
 	&__header {
-		margin-block-end: calc(var(--hb-vr-base) * 1);
+		margin-block-end: calc(var(--hb-vr-base) * 0.5);
 		padding-inline: calc(var(--hb-vr-base) * 1);
 	}
 

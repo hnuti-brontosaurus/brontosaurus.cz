@@ -2,6 +2,15 @@
 
 {block content}
 <main class="homepage" role="main">
+	{capture $path}{$themePathRelative}/frontend/dist/images/nadeje-pro-zemi.jpg{/capture}
+	<a class="hb-block-banner hb-mbe-4" href="https://brontosaurus.cz/konference" style="--hb-block-banner-background-url: url({$path|noescape})">
+		<div class="hb-block-banner__text">
+			<div class="hb-fs-xl hb-mbe-1">Zažij konferenci <span class="hb-fw-b">Naděje pro Zemi</span></div>
+			<div class="hb-mbe-1">26.-27. ledna v Brně</div>
+			<span class="hb-fs-xs">více informací »</span>
+		</div>
+	</a>
+
 	<h1 class="homepage-heading">
 		Dobrovolnické a zážitkové akce
 	</h1>
@@ -11,13 +20,19 @@
 		Vyraz s námi pomáhat přírodě a památkám u nás i v zahraničí.
 	</p>
 
-	<a class="homepage-voluntary hero" href="{$voluntaryPageLink}">
-		<div class="homepage-voluntary-link button button--primary">Najdi své&nbsp;dobrodružství</div>
-	</a>
+	<div class="homepage__featured">
+		{include '../components/eventList.latte', eventCollection => $eventCollection, smaller => true}
+	</div>
 
-	<a class="homepage-voluntaryMoreLink action action--ulterior" href="{$voluntaryPageLink}#co-zazijes-na-dobrovolnicke-akci">
-		více informací
-	</a>
+	<div class="homepage__links">
+		<a class="action action--primary action--paw" href="{$voluntaryPageLink}#obsah">
+			zobrazit další
+		</a>
+
+		<a class="action action--link-secondary-sm" href="{$voluntaryPageLink}#co-zazijes-na-dobrovolnicke-akci">
+			více informací o akcích
+		</a>
+	</div>
 </main>
 
 <aside>
