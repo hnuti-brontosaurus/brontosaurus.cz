@@ -1,16 +1,19 @@
 <?php declare(strict_types = 1);
 
+namespace HnutiBrontosaurus\Theme;
+
 use HnutiBrontosaurus\Theme\DataContainers\NewsPost;
+use function get_header;
+use function get_post;
+use function set_query_var;
 
 
-require_once __DIR__ . '/bootstrap.php';
+/** @var Container $hb_container defined in functions.php */
 
-
-$configuration = hb_getConfiguration();
-set_query_var('hb_enableTracking', $configuration->get('enableTracking')); // temporary pass setting to template (better solution is to use WP database to store these things)
+set_query_var('hb_enableTracking', $hb_container->getEnableTracking()); // temporary pass setting to template (better solution is to use WP database to store these things)
 get_header();
 
-$dateForHumans = $configuration->get('dateFormat:human');
+$dateForHumans = $hb_container->getDateFormatForHuman();
 
 $post = get_post();
 if ($post === null) {

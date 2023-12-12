@@ -2,28 +2,27 @@
 
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\OpportunityNotFound;
-use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
+use HnutiBrontosaurus\Theme\Container;
 use function HnutiBrontosaurus\Theme\hb_dateSpan;
 use function HnutiBrontosaurus\Theme\hb_opportunityCategoryToString;
 use const HnutiBrontosaurus\Theme\HB_OPPORTUNITY_ID;
 
 
-$configuration = hb_getConfiguration();
-$bisApiClient = hb_getBisApiClient($configuration);
-$dateFormatForHuman = hb_getDateFormatForHuman($configuration);
-$dateFormatForRobot = hb_getDateFormatForRobot($configuration);
+/** @var Container $hb_container defined in functions.php */
+
+$hb_bisApiClient = $hb_container->getBisClient();
+$hb_dateFormatForHuman = $hb_container->getDateFormatForHuman();
+$hb_dateFormatForRobot = $hb_container->getDateFormatForRobot();
 
 try {
 	$hasBeenUnableToLoad = false;
 	$opportunityId = (int) \get_query_var(HB_OPPORTUNITY_ID);
-	$opportunity = $bisApiClient->getOpportunity($opportunityId);
+	$opportunity = $hb_bisApiClient->getOpportunity($opportunityId);
 
 } catch (OpportunityNotFound) {
-	$configuration = hb_getConfiguration();
-	$baseFactory = new BaseFactory($configuration->get('enableTracking'));
-	$base = $baseFactory->create(null);
-	$latte = hb_getLatte();
-	$latte->render(__DIR__ . '/../../UI/Error/ErrorController.404.latte', $base->getLayoutVariables('error404'));
+	$hb_base = $hb_container->getBaseFactory()->create(null);
+	$hb_latte = $hb_container->getLatte();
+	$hb_latte->render(__DIR__ . '/../../UI/Error/ErrorController.404.latte', $hb_base->getLayoutVariables('error404'));
 	exit;
 
 } catch (ConnectionToBisFailed) {
@@ -57,8 +56,8 @@ try {
 				<dl class="prilezitost__basic">
 					<dt>Datum</dt>
 					<dd>
-						<time datetime="<?php echo $opportunity->getStartDate()->toNativeDateTimeImmutable()->format($dateFormatForRobot); ?>">
-							<?php echo hb_dateSpan($opportunity->getStartDate(), $opportunity->getEndDate(), $dateFormatForHuman); ?>
+						<time datetime="<?php echo $opportunity->getStartDate()->toNativeDateTimeImmutable()->format($hb_dateFormatForRobot); ?>">
+							<?php echo hb_dateSpan($opportunity->getStartDate(), $opportunity->getEndDate(), $hb_dateFormatForHuman); ?>
 						</time>
 					</dd>
 

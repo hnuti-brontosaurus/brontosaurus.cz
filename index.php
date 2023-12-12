@@ -1,72 +1,30 @@
 <?php declare(strict_types = 1);
 
-use Grifart\GeocodingClient\Providers\Cache\CacheManager;
-use Grifart\GeocodingClient\Providers\Cache\CacheProvider;
-use Grifart\GeocodingClient\Providers\MapyCz\MapyCzProvider;
-use HnutiBrontosaurus\BisClient\BisClient;
-use HnutiBrontosaurus\BisClient\BisClientFactory;
-use HnutiBrontosaurus\Theme\ApplicationUrlTemplate;
-use HnutiBrontosaurus\Theme\Configuration;
-use HnutiBrontosaurus\Theme\CoordinatesResolver\CoordinatesResolver;
-use HnutiBrontosaurus\Theme\NotFound;
-use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
+namespace HnutiBrontosaurus\Theme;
+
 use HnutiBrontosaurus\Theme\UI\ControllerFactory;
 use Latte\Bridges\Tracy\BlueScreenPanel;
 use Latte\Bridges\Tracy\LattePanel;
-use Latte\Engine;
 use Tracy\Debugger;
+use WP_Post;
+use function apply_filters;
+use function get_footer;
+use function get_header;
+use function get_post;
+use function get_template_part;
+use function ob_end_clean;
+use function ob_get_contents;
+use function ob_start;
+use function Sentry\init as initializeSentry;
+use function set_query_var;
 
 
-require_once __DIR__ . '/bootstrap.php';
+/** @var Container $hb_container defined in functions.php */
 
 
-// DI & bootstrap in one
-
-function hb_getLatte(): Engine
-{
-	$cachePath = __DIR__ . '/temp/cache/latte';
-	if ( ! \is_dir($cachePath)) {
-		if ( ! @mkdir($cachePath, recursive: true)) {
-			throw new \RuntimeException('Can not create cache path.');
-		}
-	}
-
-	$latte = new Engine();
-	$latte->setTempDirectory($cachePath);
-
-	return $latte;
-}
-
-function hb_getCoordinatesResolver(): CoordinatesResolver
-{
-	return new CoordinatesResolver(
-		new CacheProvider(
-			new CacheManager(__DIR__ . '/temp/geocoding-cache'),
-			new MapyCzProvider(),
-		),
-	);
-}
-
-function hb_getBisApiClient(Configuration $configuration): BisClient
-{
-	return (new BisClientFactory(
-		$configuration->get('bis:url'),
-	))->create();
-}
-
-function hb_getDateFormatForHuman(Configuration $configuration): string
-{
-	return $configuration->get('dateFormat:human');
-}
-
-function hb_getDateFormatForRobot(Configuration $configuration): string
-{
-	return $configuration->get('dateFormat:robot');
-}
-
-(function (?\WP_Post $post) {
+(function (?WP_Post $post, Container $container) {
 	// latte
-	$latte = hb_getLatte();
+	$latte = $container->getLatte();
 
 	// tracy
 	Debugger::$logDirectory = __DIR__ . '/log';
@@ -75,22 +33,18 @@ function hb_getDateFormatForRobot(Configuration $configuration): string
 	BlueScreenPanel::initialize();
 	LattePanel::initialize($latte);
 
-	// config
-	$configuration = hb_getConfiguration();
-
 	// app
 
-	$bisApiClient = hb_getBisApiClient($configuration);
-
-	if ($configuration->has('sentry:dsn') && ($dsn = $configuration->get('sentry:dsn')) !== '') {
-		\Sentry\init(['dsn' => $dsn]);
+	$dsn = $container->getSentryDsn();
+	if ($dsn !== null) {
+		initializeSentry(['dsn' => $dsn]);
 	}
 
 
 	// use template part if available
 	if ($post !== null) {
 		ob_start();
-		set_query_var('hb_enableTracking', $configuration->get('enableTracking')); // temporary pass setting to template (better solution is to use WP database to store these things)
+		set_query_var('hb_enableTracking', $container->getEnableTracking()); // temporary pass setting to template (better solution is to use WP database to store these things)
 		if ($post->post_content !== '') {
 			// todo use the_post() instead, but it did not work in current flow (with the controller things probably)
 			echo '<h1>'.$post->post_title.'</h1>';
@@ -112,13 +66,13 @@ function hb_getDateFormatForRobot(Configuration $configuration): string
 
 
 	$controllerFactory = new ControllerFactory(
-		$configuration->get('dateFormat:human'),
-		$configuration->get('dateFormat:robot'),
-		ApplicationUrlTemplate::from($configuration->get('bis:applicationUrlTemplate')),
-		$bisApiClient,
-		new BaseFactory($configuration->get('enableTracking')),
+		$container->getDateFormatForHuman(),
+		$container->getDateFormatForRobot(),
+		$container->getApplicationUrlTemplate(),
+		$container->getBisClient(),
+		$container->getBaseFactory(),
 		$latte,
-		hb_getCoordinatesResolver(),
+		$container->getCoordinatesResolver(),
 	);
 
 	try {
@@ -132,4 +86,4 @@ function hb_getDateFormatForRobot(Configuration $configuration): string
 		$controllerFactory->create404()
 			->render();
 	}
-})(get_post());
+})(get_post(), $hb_container);

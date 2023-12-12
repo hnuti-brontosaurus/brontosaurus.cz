@@ -5,17 +5,19 @@ use HnutiBrontosaurus\BisClient\Opportunity\Category;
 use HnutiBrontosaurus\BisClient\Opportunity\Request\OpportunityParameters;
 use HnutiBrontosaurus\BisClient\Opportunity\Response\Opportunity;
 use HnutiBrontosaurus\Theme\CannotResolveCoordinates;
+use HnutiBrontosaurus\Theme\Container;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\AdministrationUnitDC;
 use Nette\Utils\Strings;
 use function HnutiBrontosaurus\Theme\hb_dateSpan;
 use function HnutiBrontosaurus\Theme\hb_opportunityCategoryToString;
 
 
-$configuration = hb_getConfiguration();
-$bisApiClient = hb_getBisApiClient($configuration);
-$dateFormat = hb_getDateFormatForHuman($configuration);
-$latte = hb_getLatte();
-$coordinatesResolver = hb_getCoordinatesResolver();
+/** @var Container $hb_container defined in functions.php */
+
+$hb_bisApiClient = $hb_container->getBisClient();
+$hb_dateFormat = $hb_container->getDateFormatForHuman();
+$hb_latte = $hb_container->getLatte();
+$hb_coordinatesResolver = $hb_container->getCoordinatesResolver();
 
 
 // todo: use some WP way of obtaining param
@@ -44,11 +46,11 @@ $hasBeenUnableToLoad = false;
 $administrationUnits = [];
 
 try {
-	$opportunities = $bisApiClient->getOpportunities($applyFilter($selectedFilter));
+	$opportunities = $hb_bisApiClient->getOpportunities($applyFilter($selectedFilter));
 
-	foreach ($bisApiClient->getAdministrationUnits() as $administrationUnit) {
+	foreach ($hb_bisApiClient->getAdministrationUnits() as $administrationUnit) {
 		try {
-			$coordinates = $coordinatesResolver->resolve($administrationUnit);
+			$coordinates = $hb_coordinatesResolver->resolve($administrationUnit);
 			$administrationUnits[] = AdministrationUnitDC::fromDTO($administrationUnit, $coordinates);
 
 		} catch (CannotResolveCoordinates) {
@@ -170,7 +172,7 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 			<?php else: ?>
 				<div class="hb-eventList__grid">
 					<?php $i = 1; foreach ($opportunities as $opportunity) {
-						hb_opportunity($opportunity, $dateFormat);
+						hb_opportunity($opportunity, $hb_dateFormat);
 						if ($i === $numberOfOpportunitiesToDisplayOnLoad) break;
 						$i++;
 					} ?>
@@ -188,7 +190,7 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 									$i++;
 									continue;
 								}
-								hb_opportunity($opportunity, $dateFormat);
+								hb_opportunity($opportunity, $hb_dateFormat);
 							} ?>
 						</div>
 					</div>
@@ -275,7 +277,7 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 		<div class="zapoj-se__map">
 			<h2>Chceš se zapojit? Ozvi se nám!</h2>
 
-			<?php $latte->render(__DIR__ . '/../../UI/components/administrativeUnitsMap.latte', $params); ?>
+			<?php $hb_latte->render(__DIR__ . '/../../UI/components/administrativeUnitsMap.latte', $params); ?>
 		</div>
 
 		<div class="hb-block-text">
