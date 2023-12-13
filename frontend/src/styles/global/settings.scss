@@ -34,3 +34,16 @@ $typography-breakpoint-small-until: "max-width: " + $typography-breakpoint;
 $typography-breakpoint-large-from: "min-width: " + ($typography-breakpoint + 0.001);
 
 $content-maxWidth: 47.5rem;
+
+
+$header-breakpoint-navigationHiddenToVisible: 39em;
+@mixin header-navigation-collapsed-until() {
+	@media ($header-breakpoint-navigationHiddenToVisible-hidden-until) {
+		@content;
+	}
+}
+@mixin header-navigation-expanded-from() {
+	@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
+		@content;
+	}
+}

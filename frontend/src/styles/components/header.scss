@@ -1,16 +1,5 @@
-$header-breakpoint-navigationHiddenToVisible: 39em;
 $header-breakpoint-navigationHiddenToVisible-hidden-until: "max-width: " + $header-breakpoint-navigationHiddenToVisible;
 $header-breakpoint-navigationHiddenToVisible-visible-from: "min-width: " + ($header-breakpoint-navigationHiddenToVisible + 0.001);
-@mixin header-navigation-collapsed-until() {
-	@media ($header-breakpoint-navigationHiddenToVisible-hidden-until) {
-		@content;
-	}
-}
-@mixin header-navigation-expanded-from() {
-	@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-		@content;
-	}
-}
 
 
 .header-paddingFixContainer { // ideally would be in separate place and header should be modified through page's element (in BEM terminology), but this is enough for now
