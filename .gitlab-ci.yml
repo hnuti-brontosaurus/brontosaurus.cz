@@ -60,14 +60,12 @@ build.frontend:
             - UI/Event/assets/dist
             - UI/Rentals/assets/dist
             - frontend/dist
+            - hb-events/build
         expire_in: 1 day
 
-    before_script:
-        - 'yarn install'
-
     script:
-        - 'export NODE_ENV=production'
-        - 'yarn build'
+        - 'yarn install && NODE_ENV=production yarn build'
+        - 'cd hb-events && yarn install && yarn build'
 
 
 
@@ -90,6 +88,8 @@ build.frontend:
             -i "DataContainers/*"
             -i "frontend/*"
             -x "frontend/src/*"
+            -i "hb-events/*"
+            -x "hb-events/src/*"
             -i "log/*"
             -i "Rewrites/*"
             -i "template-parts/*"

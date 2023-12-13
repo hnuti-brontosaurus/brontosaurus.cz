@@ -86,6 +86,11 @@ const buildStylesTask = (cb) => {
 			distFileName: 'editor.css',
 			sourceFileName: paths.styles.global.src + '/editor.scss', // name of source file
 		},
+		{
+			distPath: paths.styles.global.dist, // folder to save the compiled css file into
+			distFileName: 'events.css',
+			sourceFileName: paths.styles.global.src + '/events.scss', // name of source file
+		},
 	]);
 };
 

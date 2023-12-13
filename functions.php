@@ -2,6 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme;
 
+use HnutiBrontosaurus\Theme\Events\Events;
 use HnutiBrontosaurus\Theme\Rewrites\Event;
 use HnutiBrontosaurus\Theme\Rewrites\Opportunity;
 use WP_Theme;
@@ -41,6 +42,8 @@ $hb_container = require_once __DIR__ . '/bootstrap.php';
 			'footer-center' => __('Patička – uprostřed'),
 			'footer-right' => __('Patička – vpravo'),
 		]);
+
+		Events::init($container);
 	});
 
 	add_filter('query_vars', function($vars) {
