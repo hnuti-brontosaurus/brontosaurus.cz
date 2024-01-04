@@ -1,4 +1,4 @@
-image: grifart/php8.0-with-all-modules-and-various-tools
+image: grifart/php8.1-with-all-modules-and-various-tools
 
 
 # STAGES
