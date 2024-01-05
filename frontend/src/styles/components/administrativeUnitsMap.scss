@@ -55,6 +55,22 @@
 			max-width: initial;
 		}
 	}
+	&__infoWindow {
+		display: flex;
+		gap: calc(var(--hb-vr-base) * 0.5);
+	}
+	&__infoWindowImageContainer {
+		flex-basis: 12rem;
+		flex-shrink: 0;
+	}
+	&__infoWindowImage {
+		max-width: 100% !important;
+		object-fit: cover;
+		height: 100%;
+	}
+	&__infoWindowDescription {
+		margin-block-start: calc(var(--hb-vr-base) * 0.25);
+	}
 }
 
 

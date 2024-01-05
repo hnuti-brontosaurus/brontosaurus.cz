@@ -12,6 +12,8 @@ final class AdministrationUnit implements \JsonSerializable
 
 	private function __construct(
 		private string $name,
+		private ?string $description,
+		private ?string $image,
 		private Coordinates $coordinates,
 		private string $address,
 		private ?string $chairman,
@@ -32,6 +34,8 @@ final class AdministrationUnit implements \JsonSerializable
 	{
 		return new self(
 			name: $administrationUnit->getName(),
+			description: $administrationUnit->getDescription(),
+			image: $administrationUnit->getImage()?->getMediumSizePath(),
 			coordinates: $coordinatesResolver->resolve($administrationUnit),
 			address: $administrationUnit->getAddress(),
 			chairman: $administrationUnit->getChairman(),
@@ -50,6 +54,8 @@ final class AdministrationUnit implements \JsonSerializable
 	{
 		return [
 			'name' => $this->name,
+			'description' => $this->description,
+			'image' => $this->image,
 			'lat' => $this->coordinates->getLatitude(),
 			'lng' => $this->coordinates->getLongitude(),
 			'address' => $this->address,
