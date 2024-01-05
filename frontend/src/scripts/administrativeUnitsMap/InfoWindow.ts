@@ -24,24 +24,24 @@ export class InfoWindow
 	private static buildContent(unit: OrganizationalUnit): HTMLDivElement
 	{
 		// Make string for content of info window
-		const contentElement = document.createElement('div');
-		contentElement.id = 'infowindow';
-		contentElement.innerHTML = resolveUnitTitle(unit);
+		const contentEl = document.createElement('div');
+		contentEl.id = 'infowindow';
 
-		contentElement.innerHTML += "<br>";
-		contentElement.innerHTML += `Adresa: ${unit.address}`;
+		contentEl.innerHTML = resolveUnitTitle(unit);
+		contentEl.innerHTML += `<br>Adresa: ${unit.address}`;
+
 		if (unit.chairman !== null) {
-			contentElement.innerHTML += `<br>Předseda: ${unit.chairman}`;
+			contentEl.innerHTML += `<br>Předseda: ${unit.chairman}`;
 		}
 
 		if (unit.website !== null ) {
-			contentElement.innerHTML += `<br>Web: <a href="${unit.website}" target="_blank">${unit.website}</a>`
+			contentEl.innerHTML += `<br>Web: <a href="${unit.website}" target="_blank">${unit.website}</a>`
 		}
 
 		if (unit.email !== null) {
-			contentElement.innerHTML += `<br>E-mail: <a href="mailto:${unit.email}">${unit.email}</a>`;
+			contentEl.innerHTML += `<br>E-mail: <a href="mailto:${unit.email}">${unit.email}</a>`;
 		}
 
-		return contentElement;
+		return contentEl;
 	}
 }
