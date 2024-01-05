@@ -22,9 +22,9 @@ use function set_query_var;
 /** @var Container $hb_container defined in functions.php */
 
 
-(function (?WP_Post $post, Container $container) {
+(function (?WP_Post $post, Container $hb_container) {
 	// latte
-	$latte = $container->getLatte();
+	$latte = $hb_container->getLatte();
 
 	// tracy
 	Debugger::$logDirectory = __DIR__ . '/log';
@@ -35,7 +35,7 @@ use function set_query_var;
 
 	// app
 
-	$dsn = $container->getSentryDsn();
+	$dsn = $hb_container->getSentryDsn();
 	if ($dsn !== null) {
 		initializeSentry(['dsn' => $dsn]);
 	}
@@ -44,7 +44,7 @@ use function set_query_var;
 	// use template part if available
 	if ($post !== null) {
 		ob_start();
-		set_query_var('hb_enableTracking', $container->getEnableTracking()); // temporary pass setting to template (better solution is to use WP database to store these things)
+		set_query_var('hb_enableTracking', $hb_container->getEnableTracking()); // temporary pass setting to template (better solution is to use WP database to store these things)
 		if ($post->post_content !== '') {
 			// todo use the_post() instead, but it did not work in current flow (with the controller things probably)
 			echo '<h1>'.$post->post_title.'</h1>';
@@ -66,13 +66,13 @@ use function set_query_var;
 
 
 	$controllerFactory = new ControllerFactory(
-		$container->getDateFormatForHuman(),
-		$container->getDateFormatForRobot(),
-		$container->getApplicationUrlTemplate(),
-		$container->getBisClient(),
-		$container->getBaseFactory(),
+		$hb_container->getDateFormatForHuman(),
+		$hb_container->getDateFormatForRobot(),
+		$hb_container->getApplicationUrlTemplate(),
+		$hb_container->getBisClient(),
+		$hb_container->getBaseFactory(),
 		$latte,
-		$container->getCoordinatesResolver(),
+		$hb_container->getCoordinatesResolver(),
 	);
 
 	try {
