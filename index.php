@@ -45,6 +45,7 @@ use function set_query_var;
 	if ($post !== null) {
 		ob_start();
 		set_query_var('hb_enableTracking', $hb_container->getEnableTracking()); // temporary pass setting to template (better solution is to use WP database to store these things)
+		set_query_var('hb_container', $hb_container); // query vars are exported with extract() in template parts
 		if ($post->post_content !== '') {
 			// todo use the_post() instead, but it did not work in current flow (with the controller things probably)
 			echo '<h1>'.$post->post_title.'</h1>';
