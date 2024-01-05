@@ -86,6 +86,11 @@ final class Container
 		return $this->configuration->get('dateFormat:robot');
 	}
 
+	public function getDebugMode(): bool
+	{
+		return $this->configuration->get('debugMode');
+	}
+
 	public function getEnableTracking(): bool
 	{
 		return $this->configuration->get('enableTracking');

@@ -6,4 +6,5 @@ parameters:
     sentry:
         dsn:
 
+    debugMode: false
     enableTracking: false

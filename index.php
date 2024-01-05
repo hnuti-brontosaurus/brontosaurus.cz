@@ -29,7 +29,7 @@ use function set_query_var;
 	// tracy
 	Debugger::$logDirectory = __DIR__ . '/log';
 	Debugger::$strictMode = true;
-	Debugger::enable();
+	Debugger::enable( ! $hb_container->getDebugMode());
 	BlueScreenPanel::initialize();
 	LattePanel::initialize($latte);
 

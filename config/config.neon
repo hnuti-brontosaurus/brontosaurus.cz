@@ -2,4 +2,5 @@ parameters:
     dateFormat:
         human: "j. n. Y"
         robot: "Y-m-d"
+    debugMode: false
     enableTracking: false # default, could be rewritten in local config
