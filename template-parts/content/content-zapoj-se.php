@@ -6,7 +6,7 @@ use HnutiBrontosaurus\BisClient\Opportunity\Request\OpportunityParameters;
 use HnutiBrontosaurus\BisClient\Opportunity\Response\Opportunity;
 use HnutiBrontosaurus\Theme\CannotResolveCoordinates;
 use HnutiBrontosaurus\Theme\Container;
-use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\AdministrationUnitDC;
+use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\AdministrationUnit;
 use Nette\Utils\Strings;
 use function HnutiBrontosaurus\Theme\hb_dateSpan;
 use function HnutiBrontosaurus\Theme\hb_opportunityCategoryToString;
@@ -50,8 +50,7 @@ try {
 
 	foreach ($hb_bisApiClient->getAdministrationUnits() as $administrationUnit) {
 		try {
-			$coordinates = $hb_coordinatesResolver->resolve($administrationUnit);
-			$administrationUnits[] = AdministrationUnitDC::fromDTO($administrationUnit, $coordinates);
+			$administrationUnits[] = AdministrationUnit::from($administrationUnit, $hb_coordinatesResolver);
 
 		} catch (CannotResolveCoordinates) {
 			continue; // in case of non-existing address just silently continue and ignore this unit

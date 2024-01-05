@@ -9,7 +9,7 @@ use HnutiBrontosaurus\Theme\CoordinatesResolver\CoordinatesResolver;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\BaseUnitsAndClubsList\BaseUnitsAndClubsListController;
 use HnutiBrontosaurus\Theme\UI\Controller;
-use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\AdministrationUnitDC;
+use HnutiBrontosaurus\Theme\UI\DataContainers\Structure\AdministrationUnit;
 use Latte\Engine;
 use Tracy\Debugger;
 use Tracy\ILogger;
@@ -36,10 +36,9 @@ final class AboutStructureController implements Controller
 		$hasBeenUnableToLoad = false;
 
 		try {
-			foreach ($this->bisApiClient->getAdministrationUnits() as $organizationalUnit) {
+			foreach ($this->bisApiClient->getAdministrationUnits() as $administrationUnit) {
 				try {
-					$coordinates = $this->coordinatesResolver->resolve($organizationalUnit);
-					$administrationUnits[] = AdministrationUnitDC::fromDTO($organizationalUnit, $coordinates);
+					$administrationUnits[] = AdministrationUnit::from($administrationUnit, $this->coordinatesResolver);
 
 				} catch (CannotResolveCoordinates $e) {
 					Debugger::log($e, ILogger::WARNING);
