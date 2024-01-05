@@ -1,0 +1,16 @@
+{
+	"apiVersion": 3,
+	"name": "hb/events",
+	"title": "HB: akce",
+	"category": "embed",
+	"icon": "screenoptions",
+	"editorScript": ["file:./build/index.js"],
+	"style": ["file:../frontend/dist/css/events.css"],
+	"attributes": {
+		"tags": {
+			"type": "string",
+			"default": "",
+			"enum": [ "", "retro_event", "region_event" ]
+		}
+	}
+}

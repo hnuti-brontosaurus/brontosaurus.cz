@@ -1,4 +1,4 @@
-image: grifart/php8.0-with-all-modules-and-various-tools
+image: grifart/php8.1-with-all-modules-and-various-tools
 
 
 # STAGES
@@ -60,14 +60,12 @@ build.frontend:
             - UI/Event/assets/dist
             - UI/Rentals/assets/dist
             - frontend/dist
+            - hb-events/build
         expire_in: 1 day
 
-    before_script:
-        - 'yarn install'
-
     script:
-        - 'export NODE_ENV=production'
-        - 'yarn build'
+        - 'yarn install && NODE_ENV=production yarn build'
+        - 'cd hb-events && yarn install && yarn build'
 
 
 
@@ -90,7 +88,10 @@ build.frontend:
             -i "DataContainers/*"
             -i "frontend/*"
             -x "frontend/src/*"
+            -i "hb-events/*"
+            -x "hb-events/src/*"
             -i "log/*"
+            -i "Rewrites/*"
             -i "template-parts/*"
             -i "UI/*"
             -x "UI/AboutStructure/assets/src/*"
@@ -99,16 +100,20 @@ build.frontend:
             -x "UI/Rentals/assets/src/*"
             -i "vendor/*"
             -i "ApplicationUrlTemplate.php"
+            -i "Assets.php"
             -i "archive-novinky.php"
             -i "bootstrap.php"
             -i "composer.json"
             -i "composer.lock"
             -i "Configuration.php"
+            -i "Container.php"
             -i "exceptions.php"
             -i "footer.php"
             -i "functions.php"
             -i "header.php"
+            -i "helpers.php"
             -i "index.php"
+            -i "PostTypeInitializer.php"
             -i "screenshot.png"
             -i "single-novinky.php"
             -i "style.css"'
