@@ -11,9 +11,9 @@ use HnutiBrontosaurus\Theme\UI\PropertyHandler;
  * @property-read string $name
  * @property-read CoordinatesDC $coordinates
  * @property-read string $address
- * @property-read string $chairman
- * @property-read string $website
- * @property-read string $emailAddress
+ * @property-read string|null $chairman
+ * @property-read string|null $website
+ * @property-read string|null $emailAddress
  * @property-read bool $isOfTypeClub
  * @property-read bool $isOfTypeBase
  * @property-read bool $isOfTypeRegional

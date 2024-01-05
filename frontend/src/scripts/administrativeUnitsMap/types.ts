@@ -4,9 +4,9 @@ export interface OrganizationalUnit
 	lat: number;
 	lng: number;
 	address: string;
-	chairman: string;
-	website: string;
-	email: string;
+	chairman: string|null;
+	website: string|null;
+	email: string|null;
 	isOfTypeClub: boolean;
 	isOfTypeBase: boolean;
 	isOfTypeRegional: boolean;
