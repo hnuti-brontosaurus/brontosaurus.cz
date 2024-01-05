@@ -1,4 +1,4 @@
-$hb-banner-breakpoint: 50em;
+$hb-banner-breakpoint: 30em;
 @mixin hb-banner-narrow-until() {
 	@media (max-width: $hb-banner-breakpoint) {
 		@content;
@@ -11,20 +11,23 @@ $hb-banner-breakpoint: 50em;
 }
 
 .hb-block-banner {
+	--hb-block-banner-size: 51rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
 	align-items: center;
-	max-inline-size: 51rem;
+	max-inline-size: var(--hb-block-banner-size);
 	margin-inline: auto;
 
 	border-radius: 2em;
 	overflow: hidden;
+	block-size: calc(var(--hb-vr-base) * 20);
 
-	min-block-size: 10em;
+	@media (min-width: 23.001em) {
+		block-size: calc(var(--hb-vr-base) * 18);
+	}
 	@include hb-banner-wide-from() {
-		block-size: 25vw;
-		max-block-size: 15em;
+		block-size: calc(var(--hb-vr-base) * 11);
 	}
 
 	position: relative;
@@ -33,13 +36,14 @@ $hb-banner-breakpoint: 50em;
 		position: absolute;
 		inset-inline-start: 0;
 		inset-block-start: 0;
-		inline-size: 45vw;
+		inline-size: 100%;
 		block-size: 100%;
 		background-color: var(--hb-colors-emphasizing);
-		clip-path: circle(66% at 30% 40%);
+		--hb-block-banner-size-circle: calc(var(--hb-vr-base) * 6);
+		clip-path: circle(var(--hb-block-banner-size-circle) at 50% calc(var(--hb-vr-base) * 1));
 
-		@media (min-width: 50.001em) {
-			clip-path: circle(8rem at 5rem 4rem);
+		@include hb-banner-wide-from() {
+			clip-path: circle(var(--hb-block-banner-size-circle) at calc(var(--hb-vr-base) * 4) calc(var(--hb-vr-base) * 3));
 		}
 	}
 	&::after {
@@ -49,19 +53,16 @@ $hb-banner-breakpoint: 50em;
 		inset-inline-start: 0;
 		inset-block-end: 0;
 		display: block;
-		inline-size: 100%;
+		inline-size: 33rem;
 		background-image: var(--hb-block-banner-background-url);
 		background-size: 100% auto;
 		background-repeat: no-repeat;
-		background-position: center center;
+		background-position: -2rem bottom;
+		block-size: 100%;
 
-		@include hb-banner-narrow-until() {
-			min-block-size: 10em;
-			block-size: 25vw;
-			max-block-size: 20em;
-		}
 		@include hb-banner-wide-from() {
-			block-size: 100%;
+			inline-size: var(--hb-block-banner-size);
+			background-position: center center;
 		}
 	}
 
@@ -75,7 +76,7 @@ $hb-banner-breakpoint: 50em;
 		max-inline-size: 19rem;
 
 		@include hb-banner-narrow-until() {
-			align-self: flex-start;
+			text-align: center;
 		}
 		@include hb-banner-wide-from() {
 			padding-block-start: calc(var(--hb-vr-base) * 2);
