@@ -42,10 +42,10 @@ export default class Map {
 	// place markers and set layers by type for filter
 	public placeMarkers(): void
 	{
-		this.organizationalUnits.forEach((unit) => {
+		this.organizationalUnits.forEach(unit => {
 			const slug = resolveUnitTypeSlug(unit);
 
-			if (slug !== undefined && this.slugs.indexOf(slug) === -1) {
+			if (typeof slug !== 'undefined' && this.slugs.indexOf(slug) === -1) {
 				this.slugs.push(slug);
 				this.mapLayers.set(slug, this.map);
 			}
@@ -62,7 +62,7 @@ export default class Map {
 			position: {lat: unit.lat, lng: unit.lng},
 			map: this.map,
 			title: resolveUnitTitle(unit),
-			icon: this.iconsPath + '/' + resolveIconFileName(unit),
+			icon: `${this.iconsPath}/${resolveIconFileName(unit)}`,
 		});
 
 		// Bind marker.map to the specific slug property of unitTypesLayers which is set and unset below [1]
@@ -76,9 +76,8 @@ export default class Map {
 
 	public displayLayer(filter: string|null = null): void
 	{
-		this.slugs.forEach((slug) => {
-			this.mapLayers.set(slug, slug === filter || filter === null ? this.map : null);
-		});
+		this.slugs.forEach(slug =>
+			this.mapLayers.set(slug, slug === filter || filter === null ? this.map : null));
 	}
 
 	public centerAndZoom(): void

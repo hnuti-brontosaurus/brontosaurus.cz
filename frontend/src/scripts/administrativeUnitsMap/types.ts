@@ -1,6 +1,8 @@
 export interface OrganizationalUnit
 {
 	name: string;
+	description: string|null,
+	image: string|null,
 	lat: number;
 	lng: number;
 	address: string;

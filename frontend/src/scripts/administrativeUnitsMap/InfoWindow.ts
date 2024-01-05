@@ -23,25 +23,42 @@ export class InfoWindow
 
 	private static buildContent(unit: OrganizationalUnit): HTMLDivElement
 	{
-		// Make string for content of info window
-		const contentElement = document.createElement('div');
-		contentElement.id = 'infowindow';
-		contentElement.innerHTML = resolveUnitTitle(unit);
+		const containerEl = document.createElement('div');
+		containerEl.id = 'infowindow';
+		containerEl.classList.add('administrativeUnitsMap__infoWindow')
 
-		contentElement.innerHTML += "<br>";
-		contentElement.innerHTML += `Adresa: ${unit.address}`;
+		if (unit.image !== null) {
+			const imageContainerEl = containerEl.appendChild(document.createElement('div'));
+			imageContainerEl.classList.add('administrativeUnitsMap__infoWindowImageContainer');
+			const imageEl = imageContainerEl.appendChild(document.createElement('img'));
+			imageEl.classList.add('administrativeUnitsMap__infoWindowImage');
+			imageEl.src = unit.image;
+		}
+
+		const contentEl = containerEl.appendChild(document.createElement('div'));
+		const metaEl = contentEl.appendChild(document.createElement('div'));
+
+		metaEl.innerHTML = resolveUnitTitle(unit);
+		metaEl.innerHTML += `<br>Adresa: ${unit.address}`;
+
 		if (unit.chairman !== null) {
-			contentElement.innerHTML += `<br>Předseda: ${unit.chairman}`;
+			metaEl.innerHTML += `<br>Předseda: ${unit.chairman}`;
 		}
 
 		if (unit.website !== null ) {
-			contentElement.innerHTML += `<br>Web: <a href="${unit.website}" target="_blank">${unit.website}</a>`
+			metaEl.innerHTML += `<br>Web: <a href="${unit.website}" target="_blank">${unit.website}</a>`
 		}
 
 		if (unit.email !== null) {
-			contentElement.innerHTML += `<br>E-mail: <a href="mailto:${unit.email}">${unit.email}</a>`;
+			metaEl.innerHTML += `<br>E-mail: <a href="mailto:${unit.email}">${unit.email}</a>`;
 		}
 
-		return contentElement;
+		if (unit.description !== null) {
+			const descriptionEl = contentEl.appendChild(document.createElement('p'));
+			descriptionEl.classList.add('administrativeUnitsMap__infoWindowDescription')
+			descriptionEl.innerHTML += unit.description;
+		}
+
+		return containerEl;
 	}
 }

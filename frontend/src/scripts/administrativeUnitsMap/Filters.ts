@@ -26,19 +26,18 @@ export default class Filters {
 
 	private attachListeners(): void
 	{
-		this.items.forEach((item: Element): void => {
-			item.addEventListener('click', (event: Event) => {
+		this.items.forEach(item =>
+			item.addEventListener('click', ev => {
 				window.history.pushState(null, '', item.children[0].getAttribute('href'));
-				event.preventDefault();
+				ev.preventDefault();
 
 				this.displayLayer(item as HTMLElement);
-			});
-		});
+			}));
 	}
 
 	private updateFilterActiveState(activeItem: HTMLElement): void
 	{
-		this.items.forEach((item: Element) =>
+		this.items.forEach(item =>
 			item.classList.remove(this.ACTIVE_FILTER_ITEM_CSS_CLASS_SELECTOR));
 
 		activeItem.classList.add(this.ACTIVE_FILTER_ITEM_CSS_CLASS_SELECTOR);

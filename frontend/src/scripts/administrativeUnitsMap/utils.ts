@@ -1,42 +1,44 @@
 import {OrganizationalUnit} from './types';
 
-export const resolveUnitTypeSlug = (unit: OrganizationalUnit): string|undefined => {
-	let slug = null;
+export function resolveUnitTypeSlug(unit: OrganizationalUnit): string | undefined
+{
+	if (unit.isOfTypeClub) {
+		return 'club';
 
-	switch (true) {
-		case unit.isOfTypeClub:
-			slug = 'club';
-			break;
+	} else if (unit.isOfTypeBase) {
+		return 'base';
 
-		case unit.isOfTypeBase:
-			slug = 'base';
-			break;
+	} else if (unit.isOfTypeRegional) {
+		return 'regional';
 
-		case unit.isOfTypeRegional:
-			slug = 'regional';
-			break;
+	} else if (unit.isOfTypeOffice) {
+		return 'office';
 
-		case unit.isOfTypeOffice:
-			slug = 'office';
-			break;
+	} else if (unit.isOfTypeChildren) {
+		return 'children';
 
-		case unit.isOfTypeChildren:
-			slug = 'children';
-			break;
-	}
-
-	if (slug === null) { // no option selected, fall back to Google Maps default marker
+	} else { // no option selected, fall back to Google Maps default marker
 		return;
 	}
+}
 
-	return slug;
-};
+export function resolveIconFileName(unit: OrganizationalUnit): string
+{
+	return `icon-marker-${resolveUnitTypeSlug(unit)}.svg`;
+}
 
-export const resolveIconFileName = function (unit: OrganizationalUnit): string {
-	return 'icon-marker-' + resolveUnitTypeSlug(unit) + '.svg';
-};
+export function resolveUnitTitle(unit: OrganizationalUnit): string
+{
+	const type = resolveUnitTypeLabel(unit);
+	if (type === null) {
+		return unit.name;
+	}
 
-export const resolveUnitTypeLabel = function (unit: OrganizationalUnit): string|null {
+	return `${unit.name} – ${type}`;
+}
+
+function resolveUnitTypeLabel(unit: OrganizationalUnit): string|null
+{
 	switch (true) {
 		case unit.isOfTypeClub:
 			return 'klub';
@@ -55,9 +57,4 @@ export const resolveUnitTypeLabel = function (unit: OrganizationalUnit): string|
 	}
 
 	return null;
-};
-
-export const resolveUnitTitle = (unit: OrganizationalUnit): string => {
-	const unitType = resolveUnitTypeLabel(unit);
-	return unit.name + (unitType !== null ? ' – ' + unitType : '');
-};
+}
