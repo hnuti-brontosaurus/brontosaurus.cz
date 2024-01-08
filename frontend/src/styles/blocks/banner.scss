@@ -1,10 +1,10 @@
 $hb-banner-breakpoint: 30em;
-@mixin hb-banner-narrow-until() {
+@mixin hb-banner-vertical-until() {
 	@media (max-width: $hb-banner-breakpoint) {
 		@content;
 	}
 }
-@mixin hb-banner-wide-from() {
+@mixin hb-banner-horizontal-from() {
 	@media (min-width: ($hb-banner-breakpoint + 0.001em)) {
 		@content;
 	}
@@ -26,7 +26,7 @@ $hb-banner-breakpoint: 30em;
 	@media (min-width: 23.001em) {
 		block-size: calc(var(--hb-vr-base) * 18);
 	}
-	@include hb-banner-wide-from() {
+	@include hb-banner-horizontal-from() {
 		block-size: calc(var(--hb-vr-base) * 11);
 	}
 
@@ -42,7 +42,7 @@ $hb-banner-breakpoint: 30em;
 		--hb-block-banner-size-circle: calc(var(--hb-vr-base) * 6);
 		clip-path: circle(var(--hb-block-banner-size-circle) at 50% calc(var(--hb-vr-base) * 1));
 
-		@include hb-banner-wide-from() {
+		@include hb-banner-horizontal-from() {
 			clip-path: circle(var(--hb-block-banner-size-circle) at calc(var(--hb-vr-base) * 4) calc(var(--hb-vr-base) * 3));
 		}
 	}
@@ -53,16 +53,30 @@ $hb-banner-breakpoint: 30em;
 		inset-inline-start: 0;
 		inset-block-end: 0;
 		display: block;
-		inline-size: 33rem;
-		background-image: var(--hb-block-banner-background-url);
-		background-size: 100% auto;
-		background-repeat: no-repeat;
-		background-position: -2rem bottom;
+		inline-size: 100%;
+		max-inline-size: 33rem;
 		block-size: 100%;
+		background-image: var(--hb-block-banner-background-url);
+		background-size: auto 32rem;
+		background-repeat: no-repeat;
+		background-position: calc(100% + 12rem) calc(100% + 8rem);
 
-		@include hb-banner-wide-from() {
-			inline-size: var(--hb-block-banner-size);
-			background-position: center center;
+		@include hb-banner-horizontal-from() {
+			max-inline-size: var(--hb-block-banner-size);
+			background-size: calc(100% + 12rem) auto;
+			background-position: calc(100% + 8rem) center;
+		}
+		@media (min-width: 40.001em) {
+			background-size: calc(100% + 3rem) auto;
+			background-position-x: calc(100% + 3rem);
+		}
+		@media (min-width: 50.001em) {
+			background-size: calc(100% + 6rem) auto;
+			background-position: calc(100% + 6rem) calc(50% - 1rem);
+		}
+		@media (min-width: 70.001em) {
+			background-size: calc(100% + 4rem) auto;
+			background-position: calc(100% + 4rem) calc(50% - 1rem);
 		}
 	}
 
@@ -75,10 +89,10 @@ $hb-banner-breakpoint: 30em;
 		color: var(--hb-colors-default-background);
 		max-inline-size: 19rem;
 
-		@include hb-banner-narrow-until() {
+		@include hb-banner-vertical-until() {
 			text-align: center;
 		}
-		@include hb-banner-wide-from() {
+		@include hb-banner-horizontal-from() {
 			padding-block-start: calc(var(--hb-vr-base) * 2);
 		}
 
@@ -89,7 +103,7 @@ $hb-banner-breakpoint: 30em;
 
 	&__action {
 		z-index: 1;
-		@include hb-banner-narrow-until() {
+		@include hb-banner-vertical-until() {
 			align-self: flex-end;
 			margin-inline-end: calc(var(--hb-vr-base) * 1);
 		}
@@ -102,12 +116,12 @@ $hb-banner-breakpoint: 30em;
 			inset-inline-start: 50%;
 			transform: translateX(-50%);
 
-			@include hb-banner-wide-from() {
+			@include hb-banner-horizontal-from() {
 				display: none;
 			}
 		}
 		&--inline {
-			@include hb-banner-narrow-until() {
+			@include hb-banner-vertical-until() {
 				display: none;
 			}
 		}
