@@ -94,4 +94,22 @@ $hb-banner-breakpoint: 30em;
 			margin-inline-end: calc(var(--hb-vr-base) * 1);
 		}
 	}
+
+	&__button {
+		&--standalone {
+			position: absolute;
+			inset-block-start: calc(100% + 12rem);
+			inset-inline-start: 50%;
+			transform: translateX(-50%);
+
+			@include hb-banner-wide-from() {
+				display: none;
+			}
+		}
+		&--inline {
+			@include hb-banner-narrow-until() {
+				display: none;
+			}
+		}
+	}
 }
