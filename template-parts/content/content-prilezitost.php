@@ -3,9 +3,9 @@
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\OpportunityNotFound;
 use HnutiBrontosaurus\Theme\Container;
+use HnutiBrontosaurus\Theme\Rewrites\Opportunity;
 use function HnutiBrontosaurus\Theme\hb_dateSpan;
 use function HnutiBrontosaurus\Theme\hb_opportunityCategoryToString;
-use const HnutiBrontosaurus\Theme\HB_OPPORTUNITY_ID;
 
 
 /** @var Container $hb_container defined in functions.php */
@@ -16,7 +16,7 @@ $hb_dateFormatForRobot = $hb_container->getDateFormatForRobot();
 
 try {
 	$hasBeenUnableToLoad = false;
-	$opportunityId = (int) \get_query_var(HB_OPPORTUNITY_ID);
+	$opportunityId = (int) \get_query_var(Opportunity::HB_OPPORTUNITY_ID);
 	$opportunity = $hb_bisApiClient->getOpportunity($opportunityId);
 
 } catch (OpportunityNotFound) {

@@ -9,7 +9,7 @@ use function sprintf;
 
 final class Opportunity
 {
-	private const HB_OPPORTUNITY_ID = 'opportunityId';
+	public const HB_OPPORTUNITY_ID = 'opportunityId';
 
 	public static function rewriteRule(): void
 	{
