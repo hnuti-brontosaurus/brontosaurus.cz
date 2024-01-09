@@ -3,12 +3,12 @@
 import gulp from 'gulp';
 import taskList from 'gulp-task-listing';
 
-import {paths} from './gulp/constants';
-import buildImages from './gulp/build-images';
-import buildScripts from './gulp/build-scripts';
-import buildStyles from './gulp/build-styles';
-import buildWebfonts from './gulp/build-webfonts';
-import {getSourcePathFromPathObject} from "./gulp/utils";
+import {paths} from './gulp/constants.js';
+import buildImages from './gulp/build-images.js';
+import buildScripts from './gulp/build-scripts.js';
+import buildStyles from './gulp/build-styles.js';
+import buildWebfonts from './gulp/build-webfonts.js';
+import {getSourcePathFromPathObject} from './gulp/utils.js';
 
 
 // SCRIPTS

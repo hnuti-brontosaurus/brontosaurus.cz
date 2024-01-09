@@ -10,8 +10,8 @@ import sourcemaps from 'gulp-sourcemaps';
 import tsify from 'tsify';
 import uglify from 'gulp-uglify';
 
-import {ENV_PRODUCTION} from './constants';
-import {createErrorHandler} from './errorHandler';
+import {ENV_PRODUCTION} from './constants.js';
+import {createErrorHandler} from './errorHandler.js';
 
 
 export default (cb, files) => {

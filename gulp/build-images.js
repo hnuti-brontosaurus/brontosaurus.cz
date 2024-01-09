@@ -3,13 +3,11 @@
 import flatten from 'gulp-flatten';
 import gulp from 'gulp';
 import gulpIf from 'gulp-if';
-import imagemin from 'gulp-imagemin';
 import imageResize from 'gulp-image-resize';
-import imagemin_mozjpeg from 'imagemin-mozjpeg';
-import imagemin_pngquant from 'imagemin-pngquant';
+import image from 'gulp-image';
 import plumber from 'gulp-plumber';
 
-import {ENV_PRODUCTION} from './constants';
+import {ENV_PRODUCTION} from './constants.js';
 
 /**
  * NOTE ON IMAGE RESIZING
@@ -47,17 +45,12 @@ export default (cb, dirs) => {
 
 		gulp.src(dir.src + '/**/*.{gif,ico,jpg,jpeg,png,svg}')
 			.pipe(gulpIf( ! isProduction, plumber()))
-			.pipe(gulpIf(isProduction, imagemin([
-				imagemin.gifsicle({optimizationLevel: 2}),
-				imagemin_mozjpeg({
-					quality: 75
-				}),
-				imagemin_pngquant({
-					quality: [0.49, 0.51] // we want express 0.5, but it needs a range
-				}),
-				imagemin.svgo()
-			], {
-				verbose: true
+			.pipe(gulpIf(isProduction, image({
+				pngquant: ['--quality', '49-51'],
+				mozjpeg: ['-quality', 75],
+				gifsicle: ['-l 2'],
+				svgo: true,
+				concurrent: 10,
 			})))
 			// crop images due to performance
 			.pipe(gulpIf(isProduction, gulpIf('header/*', imageResize({
