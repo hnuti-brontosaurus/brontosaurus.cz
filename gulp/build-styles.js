@@ -4,10 +4,12 @@ import gulp from 'gulp';
 import autoprefixer from 'gulp-autoprefixer';
 import plumber from 'gulp-plumber';
 import rename from 'gulp-rename';
-const sass = require('gulp-sass')(require('sass'));
+import gulpSass from 'gulp-sass';
+import * as sassPackage from 'sass';
+const sass = gulpSass(sassPackage);
 import sourcemaps from 'gulp-sourcemaps';
 
-import {ENV_PRODUCTION} from './constants';
+import {ENV_PRODUCTION} from './constants.js';
 
 
 export default (cb, files) => {

@@ -1,4 +1,4 @@
-import {paths} from "./constants";
+import {paths} from "./constants.js";
 
 
 /**
