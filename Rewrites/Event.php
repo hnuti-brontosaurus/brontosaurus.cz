@@ -25,7 +25,7 @@ final class Event
 		);
 	}
 
-	public static function queryVars(array $vars): void
+	public static function queryVars(array &$vars): void
 	{
 		array_push($vars, EventController::PARAM_EVENT_ID);
 	}

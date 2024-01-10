@@ -20,7 +20,7 @@ final class Opportunity
 		);
 	}
 
-	public static function queryVars(array $vars): void
+	public static function queryVars(array &$vars): void
 	{
 		array_push($vars, self::HB_OPPORTUNITY_ID);
 	}

@@ -16,7 +16,7 @@ $hb_dateFormatForRobot = $hb_container->getDateFormatForRobot();
 
 try {
 	$hasBeenUnableToLoad = false;
-	$opportunityId = (int) \get_query_var(Opportunity::HB_OPPORTUNITY_ID);
+	$opportunityId = (int) get_query_var(Opportunity::HB_OPPORTUNITY_ID);
 	$opportunity = $hb_bisApiClient->getOpportunity($opportunityId);
 
 } catch (OpportunityNotFound) {
