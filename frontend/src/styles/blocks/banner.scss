@@ -65,6 +65,9 @@ $hb-banner-breakpoint: 30em;
 			max-inline-size: var(--hb-block-banner-size);
 		}
 	}
+	&--rotate::after {
+		transform: rotateY(0.5turn);
+	}
 
 
 	&__text {
