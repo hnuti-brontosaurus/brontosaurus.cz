@@ -1,55 +1,22 @@
 .references {
 	position: relative;
-	max-width: 40rem;
-	margin-left: auto;
-	margin-right: auto;
+	max-inline-size: 40rem;
+	margin-inline: auto;
 
 	&__link {
 		position: relative;
 		display: block;
 		text-decoration: none;
 
-		/*&::before,
-		&::after {
-			opacity: 0;
-			transition: opacity 500ms ease-in-out;
-		}
-		&::before {
-			content: "";
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			z-index: 1;
-			background-color: transparentize($colors-text, 0.7);
-			border-radius: 2em;
-		}
-
-		&::after {
-			content: "O Brontosaurovi";
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			padding: vr-unit(0.5) vr-unit(1) calc(#{vr-unit(0.5)} - 0.25rem);
-			border-radius: 2em;
-			background-color: $colors-tinge;
-			z-index: 2;
-		}*/
-
 		&:hover {
 			color: inherit !important;
-
-			/*&::before,
-			&::after {
-				opacity: 1;
-			}*/
 		}
 	}
 
 	&__button {
 		position: absolute;
-		top: calc(50% - #{vr-unit(1)});
-		padding: vr-unit(1);
+		inset-block-start: calc(50% - var(--hb-vr-base) * 1);
+		padding: calc(var(--hb-vr-base) * 1);
 		background-image: url("../images/icon-arrow-right.svg");
 		background-position: center center;
 		background-size: auto 1.5em;
@@ -59,7 +26,7 @@
 		transition: opacity 200ms ease-in-out;
 
 		&--previous {
-			left: -#{vr-unit(1)};
+			inset-inline-start: calc(var(--hb-vr-base) * -1);
 			transform: rotateY(200grad);
 
 			&:active {
@@ -68,7 +35,7 @@
 		}
 
 		&--next {
-			right: -#{vr-unit(1)};
+			inset-inline-end: calc(var(--hb-vr-base) * -1);
 		}
 
 		&--hidden {
@@ -90,8 +57,7 @@
 		flex-basis: 100%;
 		transform: translateX(calc(var(--carouselPosition) * -100%));
 		transition: transform 200ms ease-in-out;
-		margin-left: initial;
-		margin-right: initial;
+		margin-inline: initial;
 	}
 
 	&__name {
@@ -99,7 +65,7 @@
 	}
 
 	&__role {
-		margin-top: -0.2em;
+		margin-block-start: -0.2em;
 		font-size: 0.85em;
 	}
 
@@ -109,7 +75,7 @@
 
 
 	&__dots {
-		margin-block-start: #{vr-unit(0.5)};
+		margin-block-start: calc(var(--hb-vr-base) * 0.5);
 		display: flex;
 		justify-content: center;
 		gap: 0.2rem;
@@ -123,13 +89,13 @@
 			content: "";
 			display: block;
 			--references-dot-visual-size: 0.4rem;
-			width: var(--references-dot-visual-size);
-			height: var(--references-dot-visual-size);
-			background-color: $colors-links;
+			inline-size: var(--references-dot-visual-size);
+			block-size: var(--references-dot-visual-size);
+			background-color: var(--hb-colors-links);
 			border-radius: 50%;
 		}
 		&--active::before {
-			background-color: $colors-text;
+			background-color: var(--hb-colors-text);
 		}
 	}
 }

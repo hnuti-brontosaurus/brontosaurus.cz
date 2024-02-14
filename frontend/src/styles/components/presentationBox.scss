@@ -1,27 +1,26 @@
-$presentationBox-breakpoint-textPosition: 50em;
-$presentationBox-breakpoint-textOnBottom-until: "max-width: " + $presentationBox-breakpoint-textPosition;
-$presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-breakpoint-textPosition + 0.001);
+@mixin presentationBox-breakpoint-textOnSide-from() {
+	@media (min-width: 50.001em) {
+		@content;
+	}
+}
 
 .presentationBox {
 	position: relative;
-	min-height: 18rem;
-	padding: vr-unit(8) vr-unit(1) vr-unit(1);
-	margin-left: -#{vr-unit(1)};
-	margin-right: -#{vr-unit(1)};
-	background-color: $colors-tinge;
+	min-block-size: 18rem;
+	padding: calc(var(--hb-vr-base) * 8) calc(var(--hb-vr-base) * 1) calc(var(--hb-vr-base) * 1);
+	margin-inline: calc(var(--hb-vr-base) * -1);
+	background-color: var(--hb-colors-tinge);
 	overflow: hidden; // prevent background-image to go out of set border-radius
 
-	@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-		margin-left: -#{vr-unit(2)};
-		margin-right: -#{vr-unit(2)};
+	@include header-navigation-expanded-from() {
+		margin-inline: calc(var(--hb-vr-base) * -2);
 	}
-	@media ($presentationBox-breakpoint-textOnSide-from) {
+	@include presentationBox-breakpoint-textOnSide-from() {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		padding: vr-unit(2);
-		margin-left: auto;
-		margin-right: auto;
+		padding: calc(var(--hb-vr-base) * 2);
+		margin-inline: auto;
 		border-radius: 2em;
 		background-color: transparent;
 	}
@@ -29,43 +28,43 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 	&::before {
 		content: "";
 		display: block;
-		width: 100%;
-		height: vr-unit(7); // we need it in line height unit as we use padding-top on the text below
+		inline-size: 100%;
+		block-size: calc(var(--hb-vr-base) * 7); // we need it in line height unit as we use padding-top on the text below
 		position: absolute;
-		top: 0;
-		left: 0;
+		inset-block-start: 0;
+		inset-inline-start: 0;
 
-		@media ($presentationBox-breakpoint-textOnSide-from) {
-			height: 100%;
+		@include presentationBox-breakpoint-textOnSide-from() {
+			block-size: 100%;
 			z-index: -1;
 		}
 	}
 
 	&::after {
-		left: 0;
+		inset-inline-start: 0;
 
-		@media ($presentationBox-breakpoint-textOnSide-from) {
+		@include presentationBox-breakpoint-textOnSide-from() {
 			content: "";
 			display: block;
-			width: 50%;
-			height: 100%;
+			inline-size: 50%;
+			block-size: 100%;
 			position: absolute;
-			top: 0;
+			inset-block-start: 0;
 			z-index: -1;
 			background-color: transparentize($colors-tinge, 0.1);
 		}
 	}
 	&--thirdsLayout {
 		&::after {
-			@media ($presentationBox-breakpoint-textOnSide-from) {
-				width: 60%;
+			@include presentationBox-breakpoint-textOnSide-from() {
+				inline-size: 60%;
 			}
 		}
 	}
 	&--textOnRight {
 		&::after {
-			left: initial;
-			right: 0;
+			inset-inline-start: initial;
+			inset-inline-end: 0;
 		}
 	}
 
@@ -73,33 +72,33 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 		margin: 0;
 
 		&:not(:last-child) {
-			margin-bottom: vr-unit(0.5);
+			margin-block-end: calc(var(--hb-vr-base) * 0.5);
 		}
 
 
-		@media ($presentationBox-breakpoint-textOnSide-from) {
-			max-width: calc(50% - #{vr-unit(2)});
+		@include presentationBox-breakpoint-textOnSide-from() {
+			max-inline-size: calc(50% - (var(--hb-vr-base) * 2));
 		}
 	}
 	&--thirdsLayout &__text {
-		@media ($presentationBox-breakpoint-textOnSide-from) {
-			max-width: calc(60% - #{vr-unit(2)});
+		@include presentationBox-breakpoint-textOnSide-from() {
+			max-inline-size: calc(60% - (var(--hb-vr-base) * 2));
 		}
 	}
 	&--textOnRight &__text {
-		@media ($presentationBox-breakpoint-textOnSide-from) {
-			margin-left: calc(50% + #{vr-unit(2)});
+		@include presentationBox-breakpoint-textOnSide-from() {
+			margin-inline-start: calc(50% + (var(--hb-vr-base) * 2));
 		}
 	}
 	&--thirdsLayout.presentationBox--textOnRight &__text {
-		@media ($presentationBox-breakpoint-textOnSide-from) {
-			margin-left: calc(40% + #{vr-unit(2)} - 0.5rem); // constant 0.5rem so it has vr offset from left
+		@include presentationBox-breakpoint-textOnSide-from() {
+			margin-inline-start: calc(40% + (var(--hb-vr-base) * 2) - 0.5rem); // constant 0.5rem so it has vr offset from left
 		}
 	}
 
 	&__quotation {
 		font-style: italic;
-		margin-bottom: vr-unit(1);
+		margin-block-end: calc(var(--hb-vr-base) * 1);
 		position: relative;
 
 		&::before {
@@ -107,7 +106,7 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 
 			// hanging punctuation
 			position: absolute;
-			left: -0.4em;
+			inset-inline-start: -0.4em;
 		}
 		&::after {
 			content: "“";
@@ -123,7 +122,7 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 			background-size: 39em;
 			background-position: center -9em;
 
-			@media ($presentationBox-breakpoint-textOnSide-from) {
+			@include presentationBox-breakpoint-textOnSide-from() {
 				background-size: 43em;
 				background-position: -3em -7em;
 			}
@@ -136,7 +135,7 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 			background-size: 39em;
 			background-position: 80% -7em;
 
-			@media ($presentationBox-breakpoint-textOnSide-from) {
+			@include presentationBox-breakpoint-textOnSide-from() {
 				background-size: 40em;
 				background-position: left -4em;
 			}
@@ -149,7 +148,7 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 			background-size: 39em;
 			background-position: center -2.8em;
 
-			@media ($presentationBox-breakpoint-textOnSide-from) {
+			@include presentationBox-breakpoint-textOnSide-from() {
 				background-size: 40em;
 				background-position: left -0.1em;
 			}
@@ -162,7 +161,7 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 			background-size: 39em;
 			background-position: center -5em;
 
-			@media ($presentationBox-breakpoint-textOnSide-from) {
+			@include presentationBox-breakpoint-textOnSide-from() {
 				background-size: 50em;
 				background-position: left -5em;
 			}
@@ -178,7 +177,7 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 			background-position: center -7em;
 			background-size: 40em;
 
-			@media ($presentationBox-breakpoint-textOnSide-from) {
+			@include presentationBox-breakpoint-textOnSide-from() {
 				background-position: -4em -8.5em;
 				background-size: 50em;
 			}
@@ -191,11 +190,12 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 	&--aboutSuccesses-lukov {
 		&::before {
 			background-image: url("../images/aboutSuccesses-lukov.jpg");
-			background-size: cover;
+			background-size: 39em;
+			background-position-y: -2em;
 
-			@media ($presentationBox-breakpoint-textOnBottom-until) {
-				background-size: 39em;
-				background-position-y: -2em;
+			@include presentationBox-breakpoint-textOnSide-from() {
+				background-size: cover;
+				background-position-y: center;
 			}
 		}
 	}
@@ -206,7 +206,7 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 			background-size: 45em;
 			background-position-y: -11em;
 
-			@media ($presentationBox-breakpoint-textOnSide-from) {
+			@include presentationBox-breakpoint-textOnSide-from() {
 				background-size: 63em;
 				background-position: center -15em;
 			}
@@ -216,11 +216,12 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 	&--aboutSuccesses-himalaje {
 		&::before {
 			background-image: url("../images/aboutSuccesses-himalaje.jpg");
-			background-size: cover;
+			background-size: 39em;
+			background-position: center -1em;
 
-			@media ($presentationBox-breakpoint-textOnBottom-until) {
-				background-size: 39em;
-				background-position: center -1em;
+			@include presentationBox-breakpoint-textOnSide-from() {
+				background-size: cover;
+				background-position: center center;
 			}
 		}
 	}
@@ -231,7 +232,7 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 			background-size: 39em;
 			background-position: calc(100% + 3em) -6.4em;
 
-			@media ($presentationBox-breakpoint-textOnSide-from) {
+			@include presentationBox-breakpoint-textOnSide-from() {
 				background-size: 54em;
 				background-position-x: calc(100% + 6em);
 			}
@@ -244,7 +245,7 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 			background-size: 39em;
 			background-position-y: -2em;
 
-			@media ($presentationBox-breakpoint-textOnSide-from) {
+			@include presentationBox-breakpoint-textOnSide-from() {
 				background-size: 48em;
 				background-position-y: -1em;
 			}
@@ -260,7 +261,7 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 			background-position: center -8em;
 			background-size: 38em;
 
-			@media ($presentationBox-breakpoint-textOnSide-from) {
+			@include presentationBox-breakpoint-textOnSide-from() {
 				background-position-x: 0;
 				background-size: 70em;
 				background-position-y: -13em;
@@ -273,7 +274,7 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 			background-position: center -1em;
 			background-size: 35em;
 
-			@media ($presentationBox-breakpoint-textOnSide-from) {
+			@include presentationBox-breakpoint-textOnSide-from() {
 				background-position-x: -9em;
 				background-size: 50em;
 			}
@@ -297,7 +298,7 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 				background-position-y: calc(100% + 3em);
 				background-size: 35em;
 			}
-			@media ($presentationBox-breakpoint-textOnSide-from) {
+			@include presentationBox-breakpoint-textOnSide-from() {
 				background-size: 42em;
 			}
 		}
@@ -312,7 +313,7 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 				background-position-y: -11em;
 				background-size: 35em;
 			}
-			@media ($presentationBox-breakpoint-textOnSide-from) {
+			@include presentationBox-breakpoint-textOnSide-from() {
 				background-position: left -18em;
 				background-size: 58em;
 			}
@@ -328,7 +329,7 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 			background-size: 40em;
 			background-position: -4em -4.5em;
 
-			@media ($presentationBox-breakpoint-textOnSide-from) {
+			@include presentationBox-breakpoint-textOnSide-from() {
 				background-position: left -3em;
 			}
 		}
@@ -342,7 +343,7 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 			background-repeat: no-repeat;
 			background-color: #125EA2;
 
-			@media ($presentationBox-breakpoint-textOnSide-from) {
+			@include presentationBox-breakpoint-textOnSide-from() {
 				background-size: 20em;
 				background-position: right -4em;
 			}
@@ -356,7 +357,7 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 			background-size: 39em;
 			background-position: left -4em;
 
-			@media ($presentationBox-breakpoint-textOnSide-from) {
+			@include presentationBox-breakpoint-textOnSide-from() {
 				background-size: 43em;
 				background-position: -3em top;
 			}
@@ -369,7 +370,7 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 			background-size: 45em;
 			background-position: calc(100% + 14em) -4.5em;
 
-			@media ($presentationBox-breakpoint-textOnSide-from) {
+			@include presentationBox-breakpoint-textOnSide-from() {
 				background-size: 47em;
 				background-position-y: -2.5em;
 			}
@@ -382,7 +383,7 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 			background-size: 39em;
 			background-position: -5em -8em;
 
-			@media ($presentationBox-breakpoint-textOnSide-from) {
+			@include presentationBox-breakpoint-textOnSide-from() {
 				background-size: 43em;
 				background-position-y: -2.5em;
 			}
@@ -395,7 +396,7 @@ $presentationBox-breakpoint-textOnSide-from: "min-width: " + ($presentationBox-b
 			background-size: 39em;
 			background-position: right -7em;
 
-			@media ($presentationBox-breakpoint-textOnSide-from) {
+			@include presentationBox-breakpoint-textOnSide-from() {
 				background-size: 40em;
 				background-position-y: -4em;
 			}
