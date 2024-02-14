@@ -57,26 +57,12 @@ $hb-banner-breakpoint: 30em;
 		max-inline-size: 33rem;
 		block-size: 100%;
 		background-image: var(--hb-block-banner-background-url);
-		background-size: auto 32rem;
+		background-size: cover;
 		background-repeat: no-repeat;
-		background-position: calc(100% + 12rem) calc(100% + 8rem);
+		background-position: center center;
 
 		@include hb-banner-horizontal-from() {
 			max-inline-size: var(--hb-block-banner-size);
-			background-size: calc(100% + 12rem) auto;
-			background-position: calc(100% + 8rem) center;
-		}
-		@media (min-width: 40.001em) {
-			background-size: calc(100% + 3rem) auto;
-			background-position-x: calc(100% + 3rem);
-		}
-		@media (min-width: 50.001em) {
-			background-size: calc(100% + 6rem) auto;
-			background-position: calc(100% + 6rem) calc(50% - 1rem);
-		}
-		@media (min-width: 70.001em) {
-			background-size: calc(100% + 4rem) auto;
-			background-position: calc(100% + 4rem) calc(50% - 1rem);
 		}
 	}
 
@@ -91,9 +77,6 @@ $hb-banner-breakpoint: 30em;
 
 		@include hb-banner-vertical-until() {
 			text-align: center;
-		}
-		@include hb-banner-horizontal-from() {
-			padding-block-start: calc(var(--hb-vr-base) * 2);
 		}
 
 		:first-child {
@@ -112,7 +95,7 @@ $hb-banner-breakpoint: 30em;
 	&__button {
 		&--standalone {
 			position: absolute;
-			inset-block-start: calc(100% + 12rem);
+			inset-block-start: calc(100% + (var(--hb-vr-base) * 9));
 			inset-inline-start: 50%;
 			transform: translateX(-50%);
 
