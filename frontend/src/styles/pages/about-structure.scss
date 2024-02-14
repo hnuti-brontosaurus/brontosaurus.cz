@@ -90,7 +90,7 @@
 			margin-top: vr-unit(1);
 			margin-bottom: vr-unit(1);
 
-			@media ($presentationBox-breakpoint-textOnSide-from) {
+			@include presentationBox-breakpoint-textOnSide-from() {
 				min-height: vr-unit(15);
 				display: flex;
 				justify-content: center;
