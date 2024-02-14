@@ -12,24 +12,28 @@
 	&-fw-r { font-weight: #{$fonts-delm-weight-regular}; }
 	&-fw-b { font-weight: #{$fonts-delm-weight-bold}; }
 
+	&-mis-0 { margin-inline-start: 0; }
 	&-mis-1 { margin-inline-start: calc(var(--hb-vr-base) * 0.25); }
 	&-mis-2 { margin-inline-start: calc(var(--hb-vr-base) * 0.5); }
 	&-mis-3 { margin-inline-start: calc(var(--hb-vr-base) * 1); }
 	&-mis-4 { margin-inline-start: calc(var(--hb-vr-base) * 2); }
 	&-mis-5 { margin-inline-start: calc(var(--hb-vr-base) * 3); }
 
+	&-mie-0 { margin-inline-end: 0; }
 	&-mie-1 { margin-inline-end: calc(var(--hb-vr-base) * 0.25); }
 	&-mie-2 { margin-inline-end: calc(var(--hb-vr-base) * 0.5); }
 	&-mie-3 { margin-inline-end: calc(var(--hb-vr-base) * 1); }
 	&-mie-4 { margin-inline-end: calc(var(--hb-vr-base) * 2); }
 	&-mie-5 { margin-inline-end: calc(var(--hb-vr-base) * 3); }
 
+	&-mbs-0 { margin-block-start: 0; }
 	&-mbs-1 { margin-block-start: calc(var(--hb-vr-base) * 0.25); }
 	&-mbs-2 { margin-block-start: calc(var(--hb-vr-base) * 0.5); }
 	&-mbs-3 { margin-block-start: calc(var(--hb-vr-base) * 1); }
 	&-mbs-4 { margin-block-start: calc(var(--hb-vr-base) * 2); }
 	&-mbs-5 { margin-block-start: calc(var(--hb-vr-base) * 3); }
 
+	&-mbe-0 { margin-block-end: 0; }
 	&-mbe-1 { margin-block-end: calc(var(--hb-vr-base) * 0.25); }
 	&-mbe-2 { margin-block-end: calc(var(--hb-vr-base) * 0.5); }
 	&-mbe-3 { margin-block-end: calc(var(--hb-vr-base) * 1); }
