@@ -27,16 +27,33 @@
 
 	&::before {
 		content: "";
-		display: block;
-		inline-size: 100%;
-		block-size: calc(var(--hb-vr-base) * 7); // we need it in line height unit as we use padding-top on the text below
 		position: absolute;
 		inset-block-start: 0;
 		inset-inline-start: 0;
+		display: block;
+		inline-size: 100%;
+		block-size: calc(var(--hb-vr-base) * 7); // we need it in line height unit as we use padding-top on the text below
+		background-image: var(--presentationBox-background-image-url);
+		background-size: cover;
+		background-position: center center;
+		background-repeat: no-repeat;
 
 		@include presentationBox-breakpoint-textOnSide-from() {
+			inset-inline-start: 50%;
+			inline-size: 50%;
 			block-size: 100%;
 			z-index: -1;
+		}
+	}
+	&--thirdsLayout::before {
+		@include presentationBox-breakpoint-textOnSide-from() {
+			inline-size: 40%;
+			inset-inline-start: 60%;
+		}
+	}
+	&--textOnRight::before {
+		@include presentationBox-breakpoint-textOnSide-from() {
+			inset-inline-start: 0;
 		}
 	}
 
@@ -54,30 +71,26 @@
 			background-color: transparentize($colors-tinge, 0.1);
 		}
 	}
-	&--thirdsLayout {
-		&::after {
-			@include presentationBox-breakpoint-textOnSide-from() {
-				inline-size: 60%;
-			}
+	&--thirdsLayout::after {
+		@include presentationBox-breakpoint-textOnSide-from() {
+			inline-size: 60%;
 		}
 	}
-	&--textOnRight {
-		&::after {
-			inset-inline-start: initial;
-			inset-inline-end: 0;
-		}
+	&--textOnRight::after {
+		inset-inline-start: initial;
+		inset-inline-end: 0;
 	}
+
 
 	&__text {
 		margin: 0;
 
-		&:not(:last-child) {
-			margin-block-end: calc(var(--hb-vr-base) * 0.5);
-		}
-
-
 		@include presentationBox-breakpoint-textOnSide-from() {
 			max-inline-size: calc(50% - (var(--hb-vr-base) * 2));
+		}
+
+		&:not(:last-child) {
+			margin-block-end: calc(var(--hb-vr-base) * 0.5);
 		}
 	}
 	&--thirdsLayout &__text {
@@ -90,11 +103,12 @@
 			margin-inline-start: calc(50% + (var(--hb-vr-base) * 2));
 		}
 	}
-	&--thirdsLayout.presentationBox--textOnRight &__text {
+	&--thirdsLayout#{&}--textOnRight &__text {
 		@include presentationBox-breakpoint-textOnSide-from() {
 			margin-inline-start: calc(40% + (var(--hb-vr-base) * 2) - 0.5rem); // constant 0.5rem so it has vr offset from left
 		}
 	}
+
 
 	&__quotation {
 		font-style: italic;
@@ -110,296 +124,6 @@
 		}
 		&::after {
 			content: "“";
-		}
-	}
-
-
-	// about crossroad modifiers
-
-	&--aboutCrossroad-pavlicek {
-		&::before {
-			background-image: url("../images/aboutCrossroad-references-jaroslav-pavlicek.jpg");
-			background-size: 39em;
-			background-position: center -9em;
-
-			@include presentationBox-breakpoint-textOnSide-from() {
-				background-size: 43em;
-				background-position: -3em -7em;
-			}
-		}
-	}
-
-	&--aboutCrossroad-binka {
-		&::before {
-			background-image: url("../images/aboutCrossroad-references-bohuslav-binka.jpg");
-			background-size: 39em;
-			background-position: 80% -7em;
-
-			@include presentationBox-breakpoint-textOnSide-from() {
-				background-size: 40em;
-				background-position: left -4em;
-			}
-		}
-	}
-
-	&--aboutCrossroad-dalajlama {
-		&::before {
-			background-image: url("../images/aboutCrossroad-references-dalajlama.jpg");
-			background-size: 39em;
-			background-position: center -2.8em;
-
-			@include presentationBox-breakpoint-textOnSide-from() {
-				background-size: 40em;
-				background-position: left -0.1em;
-			}
-		}
-	}
-
-	&--aboutCrossroad-tesar {
-		&::before {
-			background-image: url("../images/aboutCrossroad-references-ladislav-tesar.jpg");
-			background-size: 39em;
-			background-position: center -5em;
-
-			@include presentationBox-breakpoint-textOnSide-from() {
-				background-size: 50em;
-				background-position: left -5em;
-			}
-		}
-	}
-
-
-	// about structure modifiers
-
-	&--aboutStructure-baseUnits {
-		&::before {
-			background-image: url("../images/baseUnit.jpg");
-			background-position: center -7em;
-			background-size: 40em;
-
-			@include presentationBox-breakpoint-textOnSide-from() {
-				background-position: -4em -8.5em;
-				background-size: 50em;
-			}
-		}
-	}
-
-
-	// about successes modifiers
-
-	&--aboutSuccesses-lukov {
-		&::before {
-			background-image: url("../images/aboutSuccesses-lukov.jpg");
-			background-size: 39em;
-			background-position-y: -2em;
-
-			@include presentationBox-breakpoint-textOnSide-from() {
-				background-size: cover;
-				background-position-y: center;
-			}
-		}
-	}
-
-	&--aboutSuccesses-ucebna {
-		&::before {
-			background-image: url("../images/aboutSuccesses-ucebna.jpg");
-			background-size: 45em;
-			background-position-y: -11em;
-
-			@include presentationBox-breakpoint-textOnSide-from() {
-				background-size: 63em;
-				background-position: center -15em;
-			}
-		}
-	}
-
-	&--aboutSuccesses-himalaje {
-		&::before {
-			background-image: url("../images/aboutSuccesses-himalaje.jpg");
-			background-size: 39em;
-			background-position: center -1em;
-
-			@include presentationBox-breakpoint-textOnSide-from() {
-				background-size: cover;
-				background-position: center center;
-			}
-		}
-	}
-
-	&--aboutSuccesses-koreny {
-		&::before {
-			background-image: url("../images/aboutSuccesses-koreny.jpg");
-			background-size: 39em;
-			background-position: calc(100% + 3em) -6.4em;
-
-			@include presentationBox-breakpoint-textOnSide-from() {
-				background-size: 54em;
-				background-position-x: calc(100% + 6em);
-			}
-		}
-	}
-
-	&--aboutSuccesses-ukrajina {
-		&::before {
-			background-image: url("../images/aboutSuccesses-ukrajina.jpg");
-			background-size: 39em;
-			background-position-y: -2em;
-
-			@include presentationBox-breakpoint-textOnSide-from() {
-				background-size: 48em;
-				background-position-y: -1em;
-			}
-		}
-	}
-
-
-	// highschool modifiers
-
-	&--highschool-climateChange {
-		&::before {
-			background-image: url("../images/highschools-climateChange.jpg");
-			background-position: center -8em;
-			background-size: 38em;
-
-			@include presentationBox-breakpoint-textOnSide-from() {
-				background-position-x: 0;
-				background-size: 70em;
-				background-position-y: -13em;
-			}
-		}
-	}
-	&--highschool-outdoor {
-		&::before {
-			background-image: url("../images/highschools-outdoor.jpg");
-			background-position: center -1em;
-			background-size: 35em;
-
-			@include presentationBox-breakpoint-textOnSide-from() {
-				background-position-x: -9em;
-				background-size: 50em;
-			}
-		}
-	}
-	&--highschool-in {
-		&::before {
-			background-image: url("../images/highschools-in.jpg");
-			background-position: right center;
-			background-size: cover;
-			transform: rotateY(180deg);
-		}
-	}
-	&--highschool-biodiversity {
-		&::before {
-			background-image: url("../images/highschools-biodiversity.jpg");
-			background-position: left calc(100% + 2em);
-			background-size: 27em;
-
-			@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-				background-position-y: calc(100% + 3em);
-				background-size: 35em;
-			}
-			@include presentationBox-breakpoint-textOnSide-from() {
-				background-size: 42em;
-			}
-		}
-	}
-	&--highschool-planting {
-		&::before {
-			background-image: url("../images/highschools-planting.jpg");
-			background-position: center -7em;
-			background-size: 28em;
-
-			@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-				background-position-y: -11em;
-				background-size: 35em;
-			}
-			@include presentationBox-breakpoint-textOnSide-from() {
-				background-position: left -18em;
-				background-size: 58em;
-			}
-		}
-	}
-
-
-	// support overview modifiers
-
-	&--supportOverview-frelich {
-		&::before {
-			background-image: url("../images/supportOverview-supporters-frelich.jpg");
-			background-size: 40em;
-			background-position: -4em -4.5em;
-
-			@include presentationBox-breakpoint-textOnSide-from() {
-				background-position: left -3em;
-			}
-		}
-	}
-
-	&--supportOverview-brzobohata {
-		&::before {
-			background-image: url("../images/supportOverview-supporters-brzobohata.jpg");
-			background-size: 17em;
-			background-position: center -8em;
-			background-repeat: no-repeat;
-			background-color: #125EA2;
-
-			@include presentationBox-breakpoint-textOnSide-from() {
-				background-size: 20em;
-				background-position: right -4em;
-			}
-
-		}
-	}
-
-	&--supportOverview-perlik {
-		&::before {
-			background-image: url("../images/supportOverview-supporters-perlik.jpg");
-			background-size: 39em;
-			background-position: left -4em;
-
-			@include presentationBox-breakpoint-textOnSide-from() {
-				background-size: 43em;
-				background-position: -3em top;
-			}
-		}
-	}
-
-	&--supportOverview-hladky {
-		&::before {
-			background-image: url("../images/supportOverview-supporters-hladky.jpg");
-			background-size: 45em;
-			background-position: calc(100% + 14em) -4.5em;
-
-			@include presentationBox-breakpoint-textOnSide-from() {
-				background-size: 47em;
-				background-position-y: -2.5em;
-			}
-		}
-	}
-
-	&--supportOverview-vansa {
-		&::before {
-			background-image: url("../images/supportOverview-supporters-vansa.jpg");
-			background-size: 39em;
-			background-position: -5em -8em;
-
-			@include presentationBox-breakpoint-textOnSide-from() {
-				background-size: 43em;
-				background-position-y: -2.5em;
-			}
-		}
-	}
-
-	&--supportOverview-zemanek {
-		&::before {
-			background-image: url("../images/supportOverview-supporters-zemanek.jpg");
-			background-size: 39em;
-			background-position: right -7em;
-
-			@include presentationBox-breakpoint-textOnSide-from() {
-				background-size: 40em;
-				background-position-y: -4em;
-			}
 		}
 	}
 }
