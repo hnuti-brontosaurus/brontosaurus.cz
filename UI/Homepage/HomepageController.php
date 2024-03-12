@@ -6,11 +6,14 @@ use HnutiBrontosaurus\BisClient\BisClient;
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 use HnutiBrontosaurus\BisClient\Event\Request\Period;
+use HnutiBrontosaurus\BisClient\Event\Response\Event;
 use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
 use HnutiBrontosaurus\Theme\UI\DataContainers\Events\EventCollectionDC;
 use HnutiBrontosaurus\Theme\UI\Voluntary\VoluntaryFilters;
 use Latte\Engine;
+use function array_filter;
+use function array_slice;
 
 
 final class HomepageController implements Controller
@@ -35,10 +38,19 @@ final class HomepageController implements Controller
 
 			$params
 				->setPeriod(Period::FUTURE_ONLY())
-				->setLimit(3)
+				->setLimit(6) // we need three, but because of post-filtering, we need to load more
 				->orderByStartDate();
-
 			$events = $this->bisApiClient->getEvents($params);
+
+			// post-filter: leave out full events
+			$events = array_filter(
+				$events,
+				static fn(Event $event) => ! $event->getRegistration()->getIsEventFull(),
+			);
+
+			// keep only first three
+			$events = array_slice($events, offset: 0, length: 3, preserve_keys: false);
+
 			$eventCollection = new EventCollectionDC($events, $this->dateFormatHuman, $this->dateFormatRobot);
 
 		} catch (ConnectionToBisFailed) {
