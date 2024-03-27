@@ -111,19 +111,6 @@
 
 
 	&__quotation {
-		font-style: italic;
 		margin-block-end: calc(var(--hb-vr-base) * 1);
-		position: relative;
-
-		&::before {
-			content: "„";
-
-			// hanging punctuation
-			position: absolute;
-			inset-inline-start: -0.4em;
-		}
-		&::after {
-			content: "“";
-		}
 	}
 }

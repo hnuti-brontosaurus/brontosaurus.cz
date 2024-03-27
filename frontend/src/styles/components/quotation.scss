@@ -1,0 +1,15 @@
+.quotation {
+	font-style: italic;
+	position: relative;
+
+	&::before {
+		content: "„";
+
+		// hanging punctuation
+		position: absolute;
+		inset-inline-start: -0.4em;
+	}
+	&::after {
+		content: "“";
+	}
+}
