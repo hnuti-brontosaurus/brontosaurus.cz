@@ -282,7 +282,7 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 		<div class="hb-block-text">
 			<h2>Kontakty na lokální koordinátory</h2>
 
-			<ul class="hb--centered" style="list-style-type: none">
+			<ul class="hb-ta-c" style="list-style-type: none">
 				<li><strong>Praha:</strong>
 					Rostislav Konůpka,
 					<a href="tel:+420722561150" rel="noopener noreferrer" target="_blank">722 561 150</a>,
