@@ -1,42 +1,17 @@
 .supportOverview {
-	&__paragraph {
-		@include block-text();
-		margin-bottom: vr-unit(1);
+	&__headingAmendment {
+		display: block;
+		font-size: 1.2rem;
+
+		@media (min-width: 40.001em) {
+			margin-block-start: -0.5rlh;
+			font-size: 1.5rem;
+		}
 	}
 
 	&__widget {
 		max-inline-size: calc(18rem + #{vr-unit(4)});
 		position: relative;
-
-		&,
-		&Root {
-			margin-inline: auto;
-		}
-
-		&Root {
-			/*
-			 * used style in darujme.cz widget:
-
-				.widget {
-				  background-color: revert;
-				}
-				.widget-head {
-				  background-color: revert;
-				  border-bottom: revert;
-				  padding: revert;
-				}
-				.widget-title {
-				  font-size: 16px;
-				  text-align: left;
-				}
-				.widget-body {
-				  padding: revert;
-				}
-				.widget-periodic-button, .widget-entries-button {
-				  background-color: #fff;
-				}
-			 */
-		}
 	}
 	&__darujmeLogo {
 		--supportOverview-darujme-logoSize-butterfly: 1.3rem;
@@ -64,7 +39,7 @@
 		ul {
 			list-style-type: none;
 			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+			grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
 			justify-content: center;
 			gap: vr-unit(2) vr-unit(1);
 			margin-block-end: vr-unit(2);
@@ -87,10 +62,8 @@
 				background-size: var(--supportOverview-icon-size) auto;
 				background-repeat: no-repeat;
 				max-inline-size: vr-unit(15);
+				padding-top: calc(var(--supportOverview-icon-size) + 0.5rlh);
 
-				@media ($typography-breakpoint-small-until) {
-					padding-left: calc(var(--supportOverview-icon-size) + #{vr-unit(1)});
-				}
 				@media ($typography-breakpoint-large-from) {
 					--supportOverview-icon-size: #{vr-unit(4)};
 					padding-top: calc(var(--supportOverview-icon-size) + #{vr-unit(1)});
@@ -113,33 +86,5 @@
 				}
 			}
 		}
-	}
-
-	&__adoptionLink {
-		display: block;
-		max-width: max-content;
-		margin-inline: auto;
-	}
-
-	&__video {
-		max-inline-size: 40rem;
-		margin-inline: auto;
-		margin-block-end: vr-unit(3);
-
-		@media ($typography-breakpoint-large-from) {
-			margin-block-end: vr-unit(4);
-		}
-
-		iframe {
-			display: block;
-			inline-size: 100%;
-			aspect-ratio: 16/9;
-			border-radius: 2em;
-			margin-block-end: vr-unit(1);
-		}
-	}
-
-	&__successesLink {
-		margin-block-end: vr-unit(2);
 	}
 }
