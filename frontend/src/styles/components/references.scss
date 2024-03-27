@@ -60,19 +60,6 @@
 		margin-inline: initial;
 	}
 
-	&__name {
-		font-weight: bold;
-	}
-
-	&__role {
-		margin-block-start: -0.2em;
-		font-size: 0.85em;
-	}
-
-	&__quotation {
-		font-size: 0.85em;
-	}
-
 
 	&__dots {
 		margin-block-start: calc(var(--hb-vr-base) * 0.5);

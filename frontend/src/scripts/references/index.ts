@@ -2,31 +2,35 @@ import {Position} from './Position';
 import {Dots} from './Dots';
 import {selectors} from './selectors';
 
-document.addEventListener('DOMContentLoaded', () => {
-	const CSS_PROPERTY_NAME = '--carouselPosition';
+document.addEventListener('DOMContentLoaded', () =>
+	document.querySelectorAll<HTMLElement>('[data-references]')
+		.forEach(el => initialize(el)));
 
-	const $dataStorage = document.getElementById('references-data-storage');
-	const $previousButton = document.getElementById('references-action-previous');
-	const $nextButton = document.getElementById('references-action-next');
+function initialize(rootEl: HTMLElement): void
+{
+	const CarousePositionPropertyName = '--carouselPosition';
 
-	if ($dataStorage === null || $previousButton === null || $nextButton === null) {
+	const slidesEl = rootEl.querySelector<HTMLElement>('[data-references-slides]');
+	const previousButtonEl = rootEl.querySelector<HTMLElement>('[data-references-button="previous"]');
+	const nextButtonEl = rootEl.querySelector<HTMLElement>('[data-references-button="next"]');
+	if (slidesEl === null || previousButtonEl === null || nextButtonEl === null) {
 		return;
 	}
 
-	const slidesCount = $dataStorage.children.length;
-	const defaultPosition = parseInt(window.getComputedStyle($dataStorage).getPropertyValue(CSS_PROPERTY_NAME));
-	const allowInfinite = typeof $dataStorage.dataset.carouselInfinite !== 'undefined';
+	const slidesCount = slidesEl.children.length;
+	const defaultPosition = parseInt(window.getComputedStyle(slidesEl).getPropertyValue(CarousePositionPropertyName));
+	const allowInfinite = typeof rootEl.dataset.referencesInfinite !== 'undefined';
 
 	const position = new Position(slidesCount, defaultPosition, allowInfinite);
-	const dots = new Dots($dataStorage, position, slidesCount);
+	const dots = new Dots(slidesEl, position, slidesCount);
 
 	position.addPositionChangedSubscriber((newPosition) => {
-		$dataStorage.style.setProperty(CSS_PROPERTY_NAME, newPosition.toString());
+		slidesEl.style.setProperty(CarousePositionPropertyName, newPosition.toString());
 		updateButtonVisibility();
 		dots.repaint(newPosition);
 	});
 
-	$previousButton.addEventListener('click', () => {
+	previousButtonEl.addEventListener('click', () => {
 		if (position.isAtFirst()) {
 			return;
 		}
@@ -34,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		position.moveToPrevious();
 	});
 
-	$nextButton.addEventListener('click', () => {
+	nextButtonEl.addEventListener('click', () => {
 		if (position.isAtLast()) {
 			return;
 		}
@@ -43,15 +47,15 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 
 	const updateButtonVisibility = () => {
-		$previousButton.classList.remove(selectors.BUTTON_HIDDEN);
-		$nextButton.classList.remove(selectors.BUTTON_HIDDEN);
+		previousButtonEl.classList.remove(selectors.BUTTON_HIDDEN);
+		nextButtonEl.classList.remove(selectors.BUTTON_HIDDEN);
 
 		if (position.isAtFirst()) {
-			$previousButton.classList.add(selectors.BUTTON_HIDDEN);
+			previousButtonEl.classList.add(selectors.BUTTON_HIDDEN);
 		}
 
 		if (position.isAtLast()) {
-			$nextButton.classList.add(selectors.BUTTON_HIDDEN);
+			nextButtonEl.classList.add(selectors.BUTTON_HIDDEN);
 		}
 	};
 
@@ -59,4 +63,4 @@ document.addEventListener('DOMContentLoaded', () => {
 	// on init
 	updateButtonVisibility();
 	dots.repaint(defaultPosition);
-});
+}
