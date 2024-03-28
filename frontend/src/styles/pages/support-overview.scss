@@ -1,18 +1,4 @@
 .supportOverview {
-	margin-bottom: vr-unit(3);
-
-	@media ($typography-breakpoint-large-from) {
-		margin-bottom: vr-unit(4);
-	}
-
-	&__section {
-		margin-bottom: vr-unit(2);
-
-		@media ($typography-breakpoint-large-from) {
-			margin-bottom: vr-unit(3);
-		}
-	}
-
 	&__paragraph {
 		@include block-text();
 		margin-bottom: vr-unit(1);
