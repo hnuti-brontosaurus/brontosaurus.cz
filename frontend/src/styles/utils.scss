@@ -15,7 +15,21 @@
 .hb-fw-r { font-weight: 300; }
 .hb-fw-b { font-weight: 700; }
 
+/* margin inline */
+.hb-mi-auto { margin-inline: auto; }
+.hb-mi-0 { margin-inline: 0; }
+.hb-mi-1 { margin-inline: 0.125rlh; }
+.hb-mi-2 { margin-inline: 0.25rlh; }
+.hb-mi-3 { margin-inline: 0.5rlh; }
+.hb-mi-4 { margin-inline: 1rlh; }
+.hb-mi-5 { margin-inline: 2rlh; }
+.hb-mi-6 { margin-inline: 3rlh; }
+.hb-mi-7 { margin-inline: 4rlh; }
+.hb-mi-8 { margin-inline: 5rlh; }
+.hb-mi-9 { margin-inline: 6rlh; }
+
 /* margin inline start */
+.hb-mis-auto { margin-inline-start: auto; }
 .hb-mis-0 { margin-inline-start: 0; }
 .hb-mis-1 { margin-inline-start: 0.125rlh; }
 .hb-mis-2 { margin-inline-start: 0.25rlh; }
@@ -28,6 +42,7 @@
 .hb-mis-9 { margin-inline-start: 6rlh; }
 
 /* margin inline end */
+.hb-mie-auto { margin-inline-end: auto; }
 .hb-mie-0 { margin-inline-end: 0; }
 .hb-mie-1 { margin-inline-end: 0.125rlh; }
 .hb-mie-2 { margin-inline-end: 0.25rlh; }
@@ -39,7 +54,21 @@
 .hb-mie-8 { margin-inline-end: 5rlh; }
 .hb-mie-9 { margin-inline-end: 6rlh; }
 
+/* margin block */
+.hb-mb-auto { margin-block: auto; }
+.hb-mb-0 { margin-block: 0; }
+.hb-mb-1 { margin-block: 0.125rlh; }
+.hb-mb-2 { margin-block: 0.25rlh; }
+.hb-mb-3 { margin-block: 0.5rlh; }
+.hb-mb-4 { margin-block: 1rlh; }
+.hb-mb-5 { margin-block: 2rlh; }
+.hb-mb-6 { margin-block: 3rlh; }
+.hb-mb-7 { margin-block: 4rlh; }
+.hb-mb-8 { margin-block: 5rlh; }
+.hb-mb-9 { margin-block: 6rlh; }
+
 /* margin block start */
+.hb-mbs-auto { margin-block-start: auto; }
 .hb-mbs-0 { margin-block-start: 0; }
 .hb-mbs-1 { margin-block-start: 0.125rlh; }
 .hb-mbs-2 { margin-block-start: 0.25rlh; }
@@ -61,6 +90,7 @@
 .hb-mbns-9 { margin-block-start: -6rlh; }
 
 /* margin block end */
+.hb-mbe-auto { margin-block-end: auto; }
 .hb-mbe-0 { margin-block-end: 0; }
 .hb-mbe-1 { margin-block-end: 0.125rlh; }
 .hb-mbe-2 { margin-block-end: 0.25rlh; }
@@ -72,6 +102,7 @@
 .hb-mbe-8 { margin-block-end: 5rlh; }
 .hb-mbe-9 { margin-block-end: 6rlh; }
 @media ($typography-breakpoint-large-from) {
+	.hb-lg-mbe-auto { margin-block-end: auto; }
 	.hb-lg-mbe-0 { margin-block-end: 0; }
 	.hb-lg-mbe-1 { margin-block-end: 0.125rlh; }
 	.hb-lg-mbe-2 { margin-block-end: 0.25rlh; }
