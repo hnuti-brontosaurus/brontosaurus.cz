@@ -1,115 +1,108 @@
 .contacts {
-	&-introduction {
+	&__introduction {
 		@include block-text();
-		margin-bottom: vr-unit(2);
 	}
 
-	&-details {
-		margin-bottom: vr-unit(2);
+	&__box {
+		max-inline-size: 35rem;
+		margin-inline: auto;
+		margin-block-end: 1rlh;
+		display: grid;
+		grid-template-areas:
+			"map"
+			"contacts"
+			"openingHours";
+		grid-template-columns: 100%;
+		grid-template-rows: 30vh auto auto;
+		border-radius: 2em;
+		overflow: hidden;
 
-		&-blockContainer {
-			max-width: 35rem;
-			margin-left: auto;
-			margin-right: auto;
-			margin-bottom: vr-unit(1);
-			display: grid;
+		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
 			grid-template-areas:
-				"map"
-				"contacts"
-				"openingHours";
-			grid-template-columns: 100%;
-			grid-template-rows: 30vh auto auto;
-			border-radius: 2em;
-			overflow: hidden;
+				"map contacts"
+				"map openingHours";
+			grid-template-columns: 50% 50%;
+			grid-template-rows: 50% 50%;
+		}
+	}
 
-			@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-				grid-template-areas:
-					"map contacts"
-					"map openingHours";
-				grid-template-columns: 50% 50%;
-				grid-template-rows: 50% 50%;
+	&__boxInner {
+		grid-area: contacts;
+		font-style: normal;
+		background-color: $colors-tinge;
+		padding: 2rlh;
+		font-size: 0.9em;
+	}
+
+	&__map {
+		grid-area: map;
+		inline-size: 100%;
+		block-size: 100%;
+	}
+
+	&__boxItem {
+		margin-block-end: 0.4em; // need atypical margin
+
+		&::before {
+			content: "";
+			display: block;
+			position: absolute;
+			margin-inline-start: calc(-0.5rlh - 20px);
+			inline-size: 2em;
+			margin-block-start: 0.05em;
+			background-size: auto 100%;
+			background-repeat: no-repeat;
+		}
+
+		&--address {
+			&::before {
+				background-image: url("../images/icon-place-green.svg");
+				background-position-x: 3px;
+				block-size: 23px;
 			}
 		}
-
-		&-map {
-			grid-area: map;
-			width: 100%;
-			height: 100%;
-		}
-
-		&-contacts {
-			grid-area: contacts;
-			font-style: normal;
-			background-color: $colors-tinge;
-			padding: vr-unit(2);
-			font-size: 0.9em;
-
-			&-item {
-				margin-bottom: 0.4em; // need atypical margin
-
-				&::before {
-					content: "";
-					display: block;
-					position: absolute;
-					margin-left: calc(-#{vr-unit(0.5)} - 20px);
-					width: 2em;
-					margin-top: 0.05em;
-					background-size: auto 100%;
-					background-repeat: no-repeat;
-				}
-
-				&--address {
-					&::before {
-						background-image: url("../images/icon-place-green.svg");
-						background-position-x: 3px;
-						height: 23px;
-					}
-				}
-				&--phone {
-					&::before {
-						background-image: url("../images/icon-phone.svg");
-						height: 24px;
-					}
-
-					&-number {
-						display: block;
-					}
-				}
-				&--email {
-					&::before {
-						background-image: url("../images/icon-letter.svg");
-						background-position-x: 1px;
-						height: 20px;
-					}
-				}
-
-				&-subheading {
-					@include screenreaders-only();
-				}
+		&--phone {
+			&::before {
+				background-image: url("../images/icon-phone.svg");
+				block-size: 24px;
 			}
 		}
-
-		&-openingHours {
-			grid-area: openingHours;
-			background-color: $colors-tinge;
-			padding: 0 vr-unit(2) vr-unit(2);
-
-			&-list {
-				list-style-type: none;
-				font-size: 0.9em;
+		&--email {
+			&::before {
+				background-image: url("../images/icon-letter.svg");
+				background-position-x: 1px;
+				block-size: 20px;
 			}
 		}
 	}
 
-	&-invoicing,
-	&-accounts {
+	&__subheading {
+		@include screenreaders-only();
+	}
+
+	&__phoneNumber {
+		display: block;
+	}
+
+	&__openingHours {
+		grid-area: openingHours;
+		background-color: $colors-tinge;
+		padding: 0 2rlh 2rlh;
+	}
+	&__openingDays {
+		list-style-type: none;
+		font-size: 0.9em;
+	}
+
+	&__invoicing,
+	&__accounts {
 		@include block-text();
 		font-size: 0.85em;
 	}
 
-	&-people {
-		max-width: 40rem;
-		margin: 0 auto vr-unit(2.5);
+	&__people {
+		max-inline-size: 40rem;
+		margin: 0 auto 2rlh;
 
 		@media ($typography-breakpoint-small-until) {
 			clear: right;
@@ -119,77 +112,68 @@
 			justify-content: space-between;
 			flex-direction: row;
 		}
+	}
 
-		&-imageWrapper {
-			@media ($typography-breakpoint-small-until) {
-				float: right;
-				max-width: 33vw;
-				margin-left: vr-unit(0.5);
+	&__imageWrapper {
+		@media ($typography-breakpoint-small-until) {
+			float: right;
+			max-inline-size: 33vw;
+			margin-inline-start: 0.5rlh;
 
-				@media (min-width: 40.001em) {
-					max-width: 25vw;
-				}
-			}
-			@media ($typography-breakpoint-large-from) {
-				flex-basis: 47%;
+			@media (min-width: 40.001em) {
+				max-inline-size: 25vw;
 			}
 		}
-		&:nth-child(odd) {
-			.contacts-people-imageWrapper {
-				@media ($typography-breakpoint-large-from) {
-					order: 1;
-				}
+		@media ($typography-breakpoint-large-from) {
+			flex-basis: 47%;
+		}
+	}
+	&:nth-child(odd) {
+		.contacts__imageWrapper {
+			@media ($typography-breakpoint-large-from) {
+				order: 1;
 			}
 		}
-		&-image {
-			border-radius: 23% / 25%;
-			margin-bottom: vr-unit(0.5);
-			max-width: 100%;
+	}
 
-			@media ($typography-breakpoint-large-from) {
-				margin-bottom: 0;
-			}
+	&__image {
+		border-radius: 23% / 25%;
+		margin-block-end: 0.5rlh;
+		max-inline-size: 100%;
+
+		@media ($typography-breakpoint-large-from) {
+			margin-block-end: 0;
 		}
+	}
 
-		&-description {
-			@media ($typography-breakpoint-large-from) {
-				flex-basis: 47%;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-			}
+	&__description {
+		@media ($typography-breakpoint-large-from) {
+			flex-basis: 47%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+	}
 
-			&-name {
-				margin-bottom: vr-unit(0.5);
+	&__about {
+		@media ($typography-breakpoint-large-from) {
+			max-inline-size: 15em;
+		}
+	}
 
-				&-bold {
-					font-weight: bold;
-				}
-			}
+	&__mail {
+		padding-inline-start: 1rlh;
 
-			&-about {
-				margin-bottom: vr-unit(0.5);
-
-				@media ($typography-breakpoint-large-from) {
-					max-width: 15em;
-				}
-			}
-
-			&-contact {
-				padding-left: vr-unit(1);
-
-				&::before {
-					display: block;
-					content: "";
-					width: 23px;
-					height: 25px;
-					background-image: url("../images/icon-letter.svg");
-					background-repeat: no-repeat;
-					position: absolute;
-					margin-left: -#{vr-unit(1)};
-					margin-top: 0.1em;
-				}
-			}
+		&::before {
+			display: block;
+			content: "";
+			inline-size: 23px;
+			block-size: 25px;
+			background-image: url("../images/icon-letter.svg");
+			background-repeat: no-repeat;
+			position: absolute;
+			margin-inline-start: -1rlh;
+			margin-block-start: 0.1em;
 		}
 	}
 }
