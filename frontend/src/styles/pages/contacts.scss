@@ -41,8 +41,6 @@
 	}
 
 	&__boxItem {
-		margin-block-end: 0.4em; // need atypical margin
-
 		&::before {
 			content: "";
 			display: block;
@@ -87,7 +85,7 @@
 	&__openingHours {
 		grid-area: openingHours;
 		background-color: $colors-tinge;
-		padding: 0 2rlh 2rlh;
+		padding: 1rlh 2rlh 2rlh;
 	}
 	&__openingDays {
 		list-style-type: none;
