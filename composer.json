@@ -1,6 +1,9 @@
 {
 	"name": "hnuti-brontosaurus/wp-theme",
 	"description": "WP theme for Hnutí Brontosaurus",
+	"scripts": {
+		"phpstan": "phpstan analyze --no-progress -c phpstan.neon --memory-limit 1G"
+	},
 	"require": {
 		"grifart/geocoding-client": "^0.2.0",
 		"hnuti-brontosaurus/php-bis-api-client": "^4.0.0-beta",

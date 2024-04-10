@@ -1,0 +1,162 @@
+name: hb
+on: [push]
+jobs:
+    build_backend:
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v4
+
+            -
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: '8.0'
+                env:
+                    fail-fast: true
+
+            -   name: Install deps
+                run: composer install --ansi
+
+#            -   name: Run phpstan
+#                run: composer phpstan
+
+            -   name: Upload artifact
+                uses: actions/upload-artifact@v4
+                with:
+                    name: backend-deps
+                    path: vendor
+
+    build_frontend:
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v4
+
+            -
+                uses: actions/setup-node@v4
+                with:
+                    node-version: 18.x
+
+            -   name: Install external deps
+                run: sudo apt-get install -y pngquant
+
+            -   name: Install deps
+                uses: borales/actions-yarn@v5
+                with:
+                    cmd: install
+
+            -   name: Build deps
+                uses: borales/actions-yarn@v5
+                with:
+                    cmd: build
+                env:
+                    NODE_ENV: production
+
+            -   name: Build hb-events
+                working-directory: ./hb-events
+                run: |
+                    yarn install
+                    yarn build
+
+            -   name: Upload artifact
+                uses: actions/upload-artifact@v4
+                with:
+                    name: frontend-deps
+                    path: |
+                        UI/AboutStructure/assets/dist
+                        UI/Contacts/assets/dist
+                        UI/Event/assets/dist
+                        UI/Rentals/assets/dist
+                        frontend/dist
+                        hb-events/build
+
+    pack:
+        runs-on: ubuntu-latest
+        needs:
+            - build_backend
+            - build_frontend
+        steps:
+            -   uses: actions/checkout@v4
+            -   name: Download backend artifact
+                uses: actions/download-artifact@v4
+                with:
+                    name: backend-deps
+
+            -   name: Download frontend artifact
+                uses: actions/download-artifact@v4
+                with:
+                    name: frontend-deps
+
+            -   name: Pack files for release
+                run: |
+                    zip -r brontosaurus-theme.zip . \
+                        -i "config/*" \
+                        -i "CoordinatesResolver/*" \
+                        -i "DataContainers/*" \
+                        -i "frontend/*" \
+                        -x "frontend/src/*" \
+                        -i "hb-events/*" \
+                        -x "hb-events/src/*" \
+                        -i "log/*" \
+                        -i "Rewrites/*" \
+                        -i "template-parts/*" \
+                        -i "UI/*" \
+                        -x "UI/AboutStructure/assets/src/*" \
+                        -x "UI/Contacts/assets/src/*" \
+                        -x "UI/Event/assets/src/*" \
+                        -x "UI/Rentals/assets/src/*" \
+                        -i "vendor/*" \
+                        -i "ApplicationUrlTemplate.php" \
+                        -i "Assets.php" \
+                        -i "archive-novinky.php" \
+                        -i "bootstrap.php" \
+                        -i "composer.json" \
+                        -i "composer.lock" \
+                        -i "Configuration.php" \
+                        -i "Container.php" \
+                        -i "exceptions.php" \
+                        -i "footer.php" \
+                        -i "functions.php" \
+                        -i "header.php" \
+                        -i "helpers.php" \
+                        -i "index.php" \
+                        -i "PostTypeInitializer.php" \
+                        -i "screenshot.png" \
+                        -i "single-novinky.php" \
+                        -i "style.css"
+
+            -   name: Upload artifact
+                uses: actions/upload-artifact@v4
+                with:
+                    name: deps
+                    path: brontosaurus-theme.zip
+
+    deploy_staging:
+        runs-on: ubuntu-latest
+        needs: pack
+        environment:
+            name: staging
+            url: https://dev.brontosaurus.cz
+
+        steps:
+            -   uses: actions/checkout@v4
+
+            -   name: Download artifact
+                uses: actions/download-artifact@v4
+                with:
+                    name: deps
+
+            -   name: Extract files to deploy
+                run: |
+                    mkdir -p deploy/files
+                    unzip brontosaurus-theme.zip -d deploy/files
+
+            -   name: Set up SSH connection
+                run: |
+                    mkdir -p ~/.ssh
+                    echo "${{ secrets.SERVER_KEYSCAN }}" > ~/.ssh/known_hosts
+                    echo "${{ secrets.KEY_PRIVATE }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+                    echo "${{ secrets.KEY_PUBLIC }}" > ~/.ssh/id_rsa.pub
+
+            -   name: Deploy
+                run: |
+                    bash deploy/deploy.sh ${{ secrets.STAGING_REMOTE_USER_AND_HOST }}:${{ secrets.STAGING_REMOTE_PROJECT_DIR }}/wp-content/themes/brontosaurus-theme
+                    ssh ${{ secrets.STAGING_REMOTE_USER_AND_HOST }} "rm -rf ${{ secrets.STAGING_REMOTE_PROJECT_DIR }}/wp-content/themes/brontosaurus-theme/temp/cache"
