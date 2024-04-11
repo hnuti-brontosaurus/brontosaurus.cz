@@ -1,6 +1,6 @@
 {
-	"type": "module",
-	"devDependencies": {
+  "type": "module",
+  "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/preset-env": "^7.12.16",
     "@babel/register": "^7.12.13",
@@ -29,7 +29,7 @@
   "dependencies": {
     "@types/googlemaps": "^3.43.3",
     "@types/headroom": "^0.12.0",
-    "glightbox": "^3.2.0",
+    "glightbox": "~3.2.0",
     "headroom.js": "^0.12.0",
     "load-google-maps-api": "^2.0.2",
     "sanitize.css": "^12.0.1",
