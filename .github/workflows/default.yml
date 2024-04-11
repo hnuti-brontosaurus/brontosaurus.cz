@@ -131,6 +131,7 @@ jobs:
 
     deploy_staging:
         runs-on: ubuntu-latest
+        if: ${{ ! startsWith(github.ref, 'refs/heads/dependabot') }}
         needs: pack
         environment:
             name: staging
