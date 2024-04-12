@@ -161,3 +161,36 @@ jobs:
                 run: |
                     bash deploy/deploy.sh ${{ secrets.STAGING_REMOTE_USER_AND_HOST }}:${{ secrets.STAGING_REMOTE_PROJECT_DIR }}/wp-content/themes/brontosaurus-theme
                     ssh ${{ secrets.STAGING_REMOTE_USER_AND_HOST }} "rm -rf ${{ secrets.STAGING_REMOTE_PROJECT_DIR }}/wp-content/themes/brontosaurus-theme/temp/cache"
+
+    deploy_production:
+        runs-on: ubuntu-latest
+        if: ${{ github.ref_name == 'main' }}
+        needs: pack
+        environment:
+            name: production
+            url: https://brontosaurus.cz
+
+        steps:
+            -   uses: actions/checkout@v4
+
+            -   name: Download artifact
+                uses: actions/download-artifact@v4
+                with:
+                    name: deps
+
+            -   name: Extract files to deploy
+                run: |
+                    mkdir -p deploy/files
+                    unzip brontosaurus-theme.zip -d deploy/files
+
+            -   name: Set up SSH connection
+                run: |
+                    mkdir -p ~/.ssh
+                    echo "${{ secrets.SERVER_KEYSCAN }}" > ~/.ssh/known_hosts
+                    echo "${{ secrets.KEY_PRIVATE }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+                    echo "${{ secrets.KEY_PUBLIC }}" > ~/.ssh/id_rsa.pub
+
+            -   name: Deploy
+                run: |
+                    bash deploy/deploy.sh ${{ secrets.PRODUCTION_REMOTE_USER_AND_HOST }}:${{ secrets.PRODUCTION_REMOTE_PROJECT_DIR }}/wp-content/themes/brontosaurus-theme
+                    ssh ${{ secrets.PRODUCTION_REMOTE_USER_AND_HOST }} "rm -rf ${{ secrets.PRODUCTION_REMOTE_PROJECT_DIR }}/wp-content/themes/brontosaurus-theme/temp/cache"
