@@ -42,7 +42,6 @@
 			grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
 			justify-content: center;
 			gap: vr-unit(2) vr-unit(1);
-			margin-block-end: vr-unit(2);
 
 			@media ($typography-breakpoint-large-from) {
 				justify-items: center;

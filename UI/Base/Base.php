@@ -3,6 +3,7 @@
 namespace HnutiBrontosaurus\Theme\UI\Base;
 
 
+use function in_array;
 use function str_replace;
 use const ABSPATH;
 
@@ -21,6 +22,7 @@ final class Base
 
 	public function getLayoutVariables(string $pageClassSelector): array
 	{
+		$noCoverPhotoIn = ['future', 'supportoverview'];
 		return [
 			'layoutPath' => $this->getLayoutPath(),
 			'languageCode' => get_language_attributes(),
@@ -35,6 +37,7 @@ final class Base
 			'headerNavigationMenuItems' => $this->getMenuItemsFor('header'),
 			'isOnFutureEventsPage' => $this->currentPost?->post_name === 'co-se-chysta',
 			'futureEventsPageLink' => $this->getLinkFor('co-se-chysta'),
+			'withCoverPhoto' => ! in_array($pageClassSelector, $noCoverPhotoIn, true),
 			'pageClassSelector' => $pageClassSelector,
 			'isOnPartnersPage' => $this->currentPost?->post_name === 'nasi-partneri',
 			'partnersPageLink' => $this->getLinkFor('nasi-partneri'),

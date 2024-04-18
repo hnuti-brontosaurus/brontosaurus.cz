@@ -56,8 +56,7 @@ final class SupportOverviewController implements Controller
 			(object) [
 				'title' => 'Pro památky',
 				'text' => [
-					'Pečujeme o desítky historických památek tvořících naše kulturní dědictví, například o hrad Lukov.',
-					'Probouzíme o ně zájem u mladých lidí i veřejnosti.',
+					'Pečujeme o desítky historických památek tvořících naše kulturní dědictví, například o hrad Lukov. Probouzíme o ně zájem u mladých lidí i veřejnosti.',
 					'Chceme v tom pokračovat a opravovat i méně známé památky u nás i u krajanů v Banátu. Podpoř nás, ať můžeme pomáhat na dalších lokalitách.',
 				],
 				'image' => self::imagePathFor('adopce-pamatky'),
@@ -65,8 +64,7 @@ final class SupportOverviewController implements Controller
 			(object) [
 				'title' => 'Chráníme vše živé',
 				'text' => [
-					'Ohroženy jsou nejen chráněné druhy rostlin a živočichů, ale ubývá i těch donedávna hojných.',
-					'Chceme, aby příroda zůstala pestrá i bohatá.',
+					'Ohroženy jsou nejen chráněné druhy rostlin a živočichů, ale ubývá i těch donedávna hojných. Chceme, aby příroda zůstala pestrá i bohatá.',
 					'Budujeme úkryty, vyvěšujeme budky i netopýrníky, vysazujeme květnaté louky, staráme se o migrující žáby. Podpoř nás při tvorbě prostředí plného ptačího zpěvu a hmyzího bzukotu.',
 				],
 				'image' => self::imagePathFor('adopce-zivot'),
