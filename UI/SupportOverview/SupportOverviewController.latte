@@ -2,27 +2,62 @@
 
 {block content}
 <main class="b-mbe-6 hb-lg-mbe-7" role="main">
-	<section class="hb-mbe-5 hb-lg-mbe-6">
+	<section>
 		<h1>
 			Adoptuj Brontosaura
+			<span class="supportOverview__headingAmendment">a nech za sebou viditelnou stopu!</span>
 		</h1>
 
-		<p class="supportOverview__paragraph" id="adoptuj-form">
-			Už skoro 50 let dobrovolně kosíme louky, sázíme stromy, opravujeme hrady a pomáháme krajanům v zahraničí.
-			Vedeme mladé lidi k aktivnímu zájmu a péči o přírodu a své okolí. Ti pak i díky tomu pomáhají
-			v mnoha naléhavých situacích, kdy je to třeba.
-			Adoptuj Brontosaura a připoj se k desítkám tisíc lidí,
-			kteří pomáhají zlepšit životní prostředí.
-		</p>
+		<div class="hb-block-text hb-mbe-3">
+			<span class="quotation">Vůně ohně, kytara a sladký spánek ve spacáku
+				po dni naplněném kamarádstvím a péčí o přírodu.</span>
+			To bychom přáli zažít každému.
+		</div>
 
-		<div class="supportOverview__widget optionBox">
+		<p class="hb-block-text hb-mbe-3">
+			Už padesát let zapojujeme mladé lidi do dobrovolnických činností
+			a pečujeme s nimi o přírodu a památky. Přispíváme k řešení
+			ztráty pestrosti přírody, dopadů sucha a změn počasí, či chátrání památek.
+			Necháváme za sebou vysázená stromořadí, opravené hrady, obnovené mokřady.
+			Pojď do toho s námi!
+		</p>
+	</section>
+
+	<div class="hb-spacer-2 hb-lg-spacer-3"></div>
+
+	<section class="references" data-references data-references-infinite data-references-autoplay>
+		<button class="references__button references__button--previous button button--customization" data-references-button="previous" type="button" aria-hidden="true"></button>
+		<button class="references__button references__button--next button button--customization" data-references-button="next" type="button" aria-hidden="true"></button>
+
+		<ul class="references__list" data-references-slides n:inner-foreach="$whatWeDo as $item">
+			<li n:class="
+				'references__list-item',
+				'presentationBox',
+				$iterator->counter % 2 === 0 ? 'presentationBox--textOnRight'
+			" style="--presentationBox-background-image-url: url('{$item->image}')"
+			>
+				<div class="presentationBox__text">
+					<div class="hb-fs-l hb-fw-b hb-mbe-2">
+						{$item->title}
+					</div>
+
+					<p class="hb-mbe-2" n:foreach="$item->text as $text">{$text}</p>
+				</div>
+			</li>
+		</ul>
+	</section>
+
+	<div class="hb-spacer-5 hb-lg-spacer-6"></div>
+
+	<section>
+		<div class="supportOverview__widget optionBox hb-mi-auto hb-mbe-3">
 			<a class="supportOverview__darujmeLogo" href="https://www.darujme.cz/projekt/525" rel="noopener noreferrer" target="_blank" title="Zobrazit na darujme.cz">
 				<svg class="darujme-butterfly" viewBox="0 0 57 48" xmlns="http://www.w3.org/2000/svg"><path d="M56.96 5.23c.2-4.26-3.38-5.1-6.25-4.4-2.57.62-4.75 2.02-6.82 3.53-6.12 4.47-11.14 9.36-14.43 16.05-.12.26-.67 1.3-.93 1.7-.25-.4-.8-1.44-.93-1.7-3.3-6.68-8.3-11.57-14.43-16.04-2.07-1.5-4.25-2.9-6.83-3.53C3.46.13-.12.97.08 5.23c.1 1.8 0 3.18.07 4.98.18 3.52.36 7.04 1.48 10.43.94 2.8 2.65 4.98 5.64 6 1.3.46 2.7.72 4.05.95 1.16.2 2.36.25 3.23.33-1.65.75-3.64 1.35-5.27 2.43-2.47 1.63-4.06 4.1-3.2 6.93 1.3 4.2 4.1 7.52 8.26 9.64 1.55.8 3.06.74 4.6-.16 3.48-2.05 6.06-4.8 7.88-8.1l-5.9-6.54c-1.9-1.96-1.94-4.97 0-6.92 1.92-1.87 5.06-1.56 7 .3l.6.65.62-.64c1.93-1.88 5.07-2.2 7-.32 1.93 1.95 1.88 4.96 0 6.92l-5.9 6.53c1.8 3.32 4.4 6.06 7.87 8.1 1.55.9 3.06.96 4.6.17 4.18-2.12 6.96-5.44 8.25-9.64.88-2.84-.7-5.3-3.18-6.93-1.63-1.08-3.62-1.68-5.27-2.42.87-.07 2.06-.12 3.22-.32 1.37-.23 2.76-.5 4.06-.94 3-1.03 4.7-3.2 5.63-6 1.14-3.4 1.32-6.92 1.5-10.43.08-1.8-.02-3.16.06-4.97" fill="#ed9136" fill-rule="evenodd"></path></svg>
 				<svg class="darujme-label" viewBox="0 0 98 9" xmlns="http://www.w3.org/2000/svg"><path d="M74.3 8c0-.5.4-1 .9-1s1 .5 1 1-.5.9-1 .9a1 1 0 0 1-1-1zm5.4-3.5c0-2.6 2-4.4 4.5-4.4 1.7 0 2.8.9 3.4 2l-1.3.6a2.5 2.5 0 0 0-2.1-1.3c-1.7 0-3 1.3-3 3 0 1.9 1.3 3.2 3 3.2.9 0 1.7-.6 2.1-1.3l1.3.7c-.7 1-1.7 1.9-3.4 1.9a4.3 4.3 0 0 1-4.5-4.4zm11.1 4.2V7.5l4.4-6h-4.4V0h6.4v1.2l-4.5 6.1h4.6v1.3h-6.5zM.2 8.9V0h3.3c2.7.1 4.6 2 4.6 4.5 0 2.6-1.9 4.4-4.6 4.4H.2zm6.3-4.4c0-1.7-1-3-3-3H1.8v6h1.7c1.9 0 3-1.3 3-3zM17 8.9l-.7-1.7h-4l-.7 1.7H10L13.3 0h2l3.3 9h-1.8zm-2.7-7.2l-1.6 4.1H16l-1.6-4.1zM27 8.9l-2-3.3h-1.5V9H22V0h4c1.7 0 2.8 1.2 2.8 2.8 0 1.5-1 2.4-2 2.5l2 3.5H27zm.1-6c0-.9-.6-1.4-1.5-1.4h-2v2.8h2c1 0 1.5-.6 1.5-1.4zm5.5 2.4V.1h1.6v5.2c0 1.3.7 2.2 2.2 2.2 1.5 0 2.2-.9 2.2-2.2V0h1.6v5.2c0 2.2-1.3 3.6-3.8 3.6s-3.8-1.5-3.8-3.6zM42.8 8l.7-1.1c.4.4.9.7 1.5.7 1 0 1.5-.6 1.5-1.6V.1h1.6v6C48 8 46.8 9 45 9a3 3 0 0 1-2.3-1zm16.9.9V2.4L57 8.9h-.6l-2.7-6.5v6.5h-1.5V0h2.1l2.4 6 2.4-6h2.2v9zm5.5 0V0h6v1.4h-4.5v2.2h4.4V5h-4.4v2.4h4.5V9h-6z" fill="#1A1A1A" fill-rule="evenodd"></path></svg>
 			</a>
 
 			<div class="optionBox__text">
-				<div class="supportOverview__widgetRoot" data-darujme-widget-token="rao2gvoi1xiqhumk">&nbsp;</div>
+				<div class="hb-mi-auto" data-darujme-widget-token="rao2gvoi1xiqhumk">&nbsp;</div>
 				<script type="text/javascript">
 					+function(w, d, s, u, a, b) {
 						w['DarujmeObject'] = u;
@@ -35,157 +70,109 @@
 				</script>
 			</div>
 		</div>
-	</section>
 
-	<section class="supportOverview__thanks supportOverview__section">
-		<h1>
-			Díky dobrovolníkům, dobrovolnicím a dárcům
-		</h1>
-
-		<ul>
-			<li class="icon-tree">Už skoro 50 let sázíme stromy, opravujeme hrady a pečujeme o životní prostředí.</li>
-			<li class="icon-people">Každoročně uspořádáme stovky dobrovolnických akcí v Česku i zahraničí.</li>
-			<li class="icon-earth">Rozvíjíme mladé lidi a vedeme je k zodpovědnému přístupu k životu a planetě.</li>
-			<li class="icon-hand">Každoročně dobrovolnickou prací vytváříme hodnotu přes 6 milionů Kč.</li>
-		</ul>
-
-		<a class="supportOverview__adoptionLink button button--primary" href="https://www.darujme.cz/darovat/525?frequency=monthly&amount=500&widget=1203034" rel="noopener noreferrer" target="_blank">
-			Adoptovat Brontosaura
+		<a class="action action--ulterior" href="#todo">
+			darovat jednorázově
 		</a>
 	</section>
 
-	<section class="supportOverview__section">
+	<div class="hb-spacer-5 hb-lg-spacer-6"></div>
+
+	<section class="supportOverview__thanks">
+		<h1>
+			Co dokážeme s tvou podporou za jeden rok?
+		</h1>
+
+		<ul>
+			<li class="icon-tree">postaráme se o 1 500 ptačích budek a vysadíme a opečujeme stovky stromů</li>
+			<li class="icon-people">umožníme 2 200 mladým lidem pomáhat přírodním a historickým památkám</li>
+			<li class="icon-earth">odpracujeme 120 000 dobrovolnických hodin a pomůžeme na 90 místech</li>
+			<li class="icon-hand">uspořádáme na 650 akcí pro přírodu, památky a lidi</li>
+		</ul>
+	</section>
+
+	<div class="hb-spacer-5 hb-lg-spacer-6"></div>
+
+	<section class="hb-block">
+		<h1>
+			Příběhy 50 let brontosauřího nadšení
+		</h1>
+
+		<p class="hb-block-text hb-mbe-4">
+			Již 50 let pomáháme přírodě, památkám a lidem. Koukni na Příběhy nadšení a zjisti, proč našim členům,
+			organizátorům a dárcům dává Brontosaurus smysl a dlouhodobě ho podporují.
+		</p>
+
+		<div class="hb-eventList hb-eventList--smaller hb-mbe-4">
+			<div class="hb-eventList__grid" n:inner-foreach="$stories as $story">
+				<a class="hb-event" href="{$story->link}">
+					<div class="hb-event__imageWrapper">
+						<img alt="" class="hb-event__image" data-src="{$story->image}">
+					</div>
+
+					<header class="hb-event__header">
+						<h4 class="hb-event__heading">
+							{$story->title}
+						</h4>
+					</header>
+
+					<div class="hb-event__excerpt">
+						{$story->text}
+					</div>
+				</a>
+			</div>
+		</div>
+
+		<a class="action action--ulterior" href="{$aboutSuccessesLink}">
+			zobrazit další
+		</a>
+	</section>
+
+	<div class="hb-spacer-5 hb-lg-spacer-6"></div>
+
+	<section>
 		<h1>
 			Proč adoptuji Brontosaura?
 		</h1>
 
-		<div class="references">
-			<button class="references__button references__button--previous button button--customization" id="references-action-previous" type="button" aria-hidden="true"></button>
-			<button class="references__button references__button--next button button--customization" id="references-action-next" type="button" aria-hidden="true"></button>
+		<div class="references" data-references data-references-infinite>
+			<button class="references__button references__button--previous button button--customization" data-references-button="previous" type="button" aria-hidden="true"></button>
+			<button class="references__button references__button--next button button--customization" data-references-button="next" type="button" aria-hidden="true"></button>
 
-			<ul class="references__list" id="references-data-storage" data-carousel-infinite>
-				<li class="references__list-item presentationBox presentationBox--textOnRight" style="--presentationBox-background-image-url: url('{$themePathRelative|noescape}/frontend/dist/images/supportOverview-supporters-frelich.jpg')">
+			<ul class="references__list" n:inner-foreach="$references as $item" data-references-slides>
+				<li n:class="
+					'references__list-item',
+					'presentationBox',
+					$iterator->counter % 2 === 0 ? 'presentationBox--textOnRight'
+				" style="--presentationBox-background-image-url: url('{$item->image}')"
+				>
 					<div class="presentationBox__text">
-						<div class="references__name">
-							Zdeněk Frélich
+						<div class="hb-fs-l hb-fw-b">
+							{$item->name}
 						</div>
 
-						<div class="references__role">
-							poradce pro&nbsp;oblast životního prostředí
+						<div class="hb-fs-xs hb-mbns-2">
+							{$item->role}
 						</div>
 					</div>
 
-					<div class="presentationBox__text presentationBox__quotation quotation">{block |trim}
-						Adoptoval jsem Brontosaura, protože chci, aby&nbsp;byl nezávislý.
-					{/block}</div>
-				</li>
-
-				<li class="references__list-item presentationBox" style="--presentationBox-background-image-url: url('{$themePathRelative|noescape}/frontend/dist/images/supportOverview-supporters-brzobohata.jpg')">
-					<div class="presentationBox__text">
-						<div class="references__name">
-							Zuzana „Zula“ Brzobohatá
-						</div>
-
-						<div class="references__role">
-							bývalá europoslankyně
-						</div>
-					</div>
-
-					<div class="presentationBox__text presentationBox__quotation quotation">{block |trim}
-						Vracím brontosaurům to, co&nbsp;mi dali: umět&nbsp;se postavit čelem k&nbsp;věcem, organizovat akce pro&nbsp;druhé a&nbsp;vidět svět jinýma očima.
-					{/block}</div>
-				</li>
-
-				<li class="references__list-item presentationBox presentationBox--textOnRight" style="--presentationBox-background-image-url: url('{$themePathRelative|noescape}/frontend/dist/images/supportOverview-supporters-perlik.jpg')">
-					<div class="presentationBox__text">
-						<div class="references__name">
-							Martin Perlík
-						</div>
-
-						<div class="references__role">
-							stavební inženýr a&nbsp;projektant
-						</div>
-					</div>
-
-					<div class="presentationBox__text presentationBox__quotation quotation">{block |trim}
-						Hodně&nbsp;let jsem organizoval brontosauří akce. Teď&nbsp;už jsem z&nbsp;Brontosaura vyrostl a&nbsp;nastal čas, aby se&nbsp;snažili mladší. Adopce Brontosaura je pro&nbsp;mne příležitost, jak s&nbsp;nimi udržet kontakt.
-					{/block}</div>
-				</li>
-
-				<li class="references__list-item presentationBox" style="--presentationBox-background-image-url: url('{$themePathRelative|noescape}/frontend/dist/images/supportOverview-supporters-hladky.jpg')">
-					<div class="presentationBox__text">
-						<div class="references__name">
-							Pepa Hladký
-						</div>
-
-						<div class="references__role">
-							cestovatel, vodák a&nbsp;organizátor akcí
-						</div>
-					</div>
-
-					<div class="presentationBox__text presentationBox__quotation quotation">{block |trim}
-						Když jsem&nbsp;se stal organizátorem brontosauřích táborů a&nbsp;víkendovek, uvědomil jsem&nbsp;si, kolik&nbsp;je za&nbsp;tím tvrdé dřiny. Proto&nbsp;jej chci podporovat.
-					{/block}</div>
-				</li>
-
-				<li class="references__list-item presentationBox presentationBox--textOnRight" style="--presentationBox-background-image-url: url('{$themePathRelative|noescape}/frontend/dist/images/supportOverview-supporters-vansa.jpg')">
-					<div class="presentationBox__text">
-						<div class="references__name">
-							Tibor Vansa
-						</div>
-
-						<div class="references__role">
-							předseda Pirátů na&nbsp;Praze&nbsp;4
-						</div>
-					</div>
-
-					<div class="presentationBox__text presentationBox__quotation quotation">{block |trim}
-						Brontíci mi&nbsp;dali šanci zapadnout a&nbsp;zároveň být sám&nbsp;sebou, potkat lidi s&nbsp;podobnými ideály. Chtěl&nbsp;bych, aby tuhle partu mohli zažít i&nbsp;mladší generace.
-					{/block}</div>
-				</li>
-
-				<li class="references__list-item presentationBox" style="--presentationBox-background-image-url: url('{$themePathRelative|noescape}/frontend/dist/images/supportOverview-supporters-zemanek.jpg')">
-					<div class="presentationBox__text">
-						<div class="references__name">
-							Roman Zemánek
-						</div>
-
-						<div class="references__role">
-							ředitel domu dětí a&nbsp;mládeže Strážnice
-						</div>
-					</div>
-
-					<div class="presentationBox__text presentationBox__quotation quotation">{block |trim}
-						Brontosaurus je moje srdeční záležitost, ale i&nbsp;rozum mi&nbsp;říká, že co&nbsp;je dobré a&nbsp;má smysl pro&nbsp;lidi a&nbsp;přírodu, si&nbsp;zaslouží moji podporu.
-					{/block}</div>
+					<div class="hb-fs-s presentationBox__text presentationBox__quotation quotation">{$item->quotation}</div>
 				</li>
 			</ul>
 		</div>
 	</section>
 
-	<div class="supportOverview__video">
-		<h1>
-			Příběhy nadšení
-		</h1>
+	<div class="hb-spacer-5 hb-lg-spacer-6"></div>
 
-		<p class="supportOverview__paragraph">
-			Již skoro 50 let pomáháme přírodě, památkám a lidem.
-			Koukni na Příběhy nadšení a zjisti, proč našim členům, organizátorům
-			a dárcům dává Brontosaurus smysl a dlouhodobě ho podporují.
-		</p>
+	<section>
+		<div class="hb-block-text hb-ta-c">
+			<div class="hb-mbe-3">
+				<strong>Podpoř brontosauří tradici i v dalších 50 letech! Děkujeme.</strong>
+			</div>
 
-		<iframe src="https://www.youtube.com/embed/6RCZ2E5S9qo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-		<a class="supportOverview__successesLink action action--ulterior" href="{$aboutSuccessesLink}" target="_blank">{* target=blank dočasně, momentálně to chtějí mít upozaděné *}
-			zobrazit další
-		</a>
-
-		<a class="supportOverview__adoptionLink button button--primary" href="https://www.darujme.cz/darovat/525?frequency=monthly&amount=500&widget=1203034" rel="noopener noreferrer" target="_blank">
-			Adoptovat Brontosaura
-		</a>
-	</div>
+			<a class="button button--primary" href="https://www.darujme.cz/darovat/525?frequency=monthly&amount=500&widget=1203034" rel="noopener noreferrer" target="_blank">
+				Chci podpořit Brontosaura
+			</a>
+		</div>
+	</section>
 </main>
-
-<aside>
-	{include '../components/related.latte', excludeSupport => TRUE}
-</aside>

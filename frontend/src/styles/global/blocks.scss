@@ -3,6 +3,9 @@
 	font-weight: $fonts-delm-weight-bold;
 	margin-block-end: 0.5rlh;
 
+	@media ($typography-breakpoint-small-until) {
+		line-height: 1;
+	}
 	@media ($typography-breakpoint-large-from) {
 		font-size: 2.5em;
 		text-align: center;

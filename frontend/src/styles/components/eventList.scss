@@ -13,13 +13,13 @@ $events-breakpoint-threeColumns-from: "min-width: " + ($events-breakpoint-TwoToT
 		grid-template-columns: 1fr;
 		max-width: 19rem;
 		margin-inline: auto;
-		padding-inline: calc(var(--hb-vr-base) * 1);
 
 		@media ($events-breakpoint-twoColumns-from) {
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 			max-width: 38rem;
 			margin-inline: calc(var(--hb-vr-base) * -1);
+			padding-inline: calc(var(--hb-vr-base) * 1);
 		}
 		@media (min-width: 47.001em) {
 			margin-inline: auto;
