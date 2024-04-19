@@ -46,42 +46,42 @@ final class SupportOverviewController implements Controller
 	{
 		return [
 			(object) [
-				'title' => 'Za živou krajinu',
+				'title' => 'Za živou krajinu',
 				'text' => [
-					'Chceme, aby naše krajina čelící suchu a ztrátě pestrosti byla zdravá a odolala změnám klimatu.',
-					'Sázíme stromořadí, oživujeme polní krajinu, staráme se o mokřady, budujeme lužní park Krče. Chceme s dobrovolníky a dobrovolnicemi obnovit další místa po celé ČR. Podpoř nás v tom.',
+					'Chceme, aby naše krajina čelící suchu a ztrátě pestrosti byla zdravá a odolala změnám klimatu.',
+					'Sázíme stromořadí, oživujeme polní krajinu, staráme se o mokřady, budujeme lužní park Krče. Chceme s dobrovolníky a dobrovolnicemi obnovit další místa po celé ČR. Podpoř nás v tom.',
 				],
 				'image' => self::imagePathFor('adopce-krajina'),
 			],
 			(object) [
 				'title' => 'Pro památky',
 				'text' => [
-					'Pečujeme o desítky historických památek tvořících naše kulturní dědictví, například o hrad Lukov. Probouzíme o ně zájem u mladých lidí i veřejnosti.',
-					'Chceme v tom pokračovat a opravovat i méně známé památky u nás i u krajanů v Banátu. Podpoř nás, ať můžeme pomáhat na dalších lokalitách.',
+					'Pečujeme o desítky historických památek tvořících naše kulturní dědictví, například o hrad Lukov. Probouzíme o ně zájem u mladých lidí i veřejnosti.',
+					'Chceme v tom pokračovat a opravovat i méně známé památky u nás i u krajanů v Banátu. Podpoř nás, ať můžeme pomáhat na dalších lokalitách.',
 				],
 				'image' => self::imagePathFor('adopce-pamatky'),
 			],
 			(object) [
 				'title' => 'Chráníme vše živé',
 				'text' => [
-					'Ohroženy jsou nejen chráněné druhy rostlin a živočichů, ale ubývá i těch donedávna hojných. Chceme, aby příroda zůstala pestrá i bohatá.',
-					'Budujeme úkryty, vyvěšujeme budky i netopýrníky, vysazujeme květnaté louky, staráme se o migrující žáby. Podpoř nás při tvorbě prostředí plného ptačího zpěvu a hmyzího bzukotu.',
+					'Ohroženy jsou nejen chráněné druhy rostlin a živočichů, ale ubývá i těch donedávna hojných. Chceme, aby příroda zůstala pestrá i bohatá.',
+					'Budujeme úkryty, vyvěšujeme budky i netopýrníky, vysazujeme květnaté louky, staráme se o migrující žáby. Podpoř nás při tvorbě prostředí plného ptačího zpěvu a hmyzího bzukotu.',
 				],
 				'image' => self::imagePathFor('adopce-zivot'),
 			],
 			(object) [
-				'title' => 'Práce na chráněných územích',
+				'title' => 'Práce na chráněných územích',
 				'text' => [
 					'Česká republika oplývá vzácnými přírodními lokalitami, které je třeba chránit pro budoucí generace.',
-					'Snažíme se přispět k jejich zachování. Péčí o orchidejové louky, udržováním stepních společenstev či  bojem s invazními druhy. Podpoř zapojení dalších mladých lidí do těchto aktivit!',
+					'Snažíme se přispět k jejich zachování. Péčí o orchidejové louky, udržováním stepních společenstev či bojem s invazními druhy. Podpoř zapojení dalších mladých lidí do těchto aktivit!',
 				],
 				'image' => self::imagePathFor('adopce-uzemi'),
 			],
 			(object) [
-				'title' => 'Pro další generace',
+				'title' => 'Pro další generace',
 				'text' => [
-					'Mladí lidé pociťují obavy z budoucnosti a často nevidí, jak něco změnit. Otevíráme jim cestu do komunit přátel se kterými mnohé zmůžou.',
-					'Na výukových programech v přírodě jim ukazujeme, jak mohou životní prostředí chránit. Podpoř aktivity pro mládež, která se chce podílet na naší budoucnosti.',
+					'Mladí lidé pociťují obavy z budoucnosti a často nevidí, jak něco změnit. Otevíráme jim cestu do komunit přátel se kterými mnohé zmůžou.',
+					'Na výukových programech v přírodě jim ukazujeme, jak mohou životní prostředí chránit. Podpoř aktivity pro mládež, která se chce podílet na naší budoucnosti.',
 				],
 				'image' => self::imagePathFor('adopce-generace'),
 			],
@@ -95,20 +95,20 @@ final class SupportOverviewController implements Controller
 	{
 		return [
 			(object) [
-				'title' => 'Spolu po tornádu',
-				'text' => 'Po tornádu se nám podařilo obnovit stovky dalších stromů a zeleně. Navíc jsme opravili zničenou dětskou klubovnu v Mikulčicíc nově vylepšenou o ekologická opatření.',
+				'title' => 'Spolu po tornádu',
+				'text' => 'Po tornádu se nám podařilo obnovit stovky dalších stromů a zeleně. Navíc jsme opravili zničenou dětskou klubovnu v Mikulčicíc nově vylepšenou o ekologická opatření.',
 				'image' => 'https://brontosaurus.cz/wp-content/uploads/2024/01/IMGP2396-scaled.jpg',
 				'link' => 'https://brontosaurus.cz/pribehy-nadseni/spolu-po-tornadu/',
 			],
 			(object) [
-				'title' => 'Malé Česko v Banátu - přátelství skrze pomoc',
-				'text' => 'Brontosauři ve zdejších obcích s významnou českou komunitou pravidelně čistí veřejná prostranství, opravují památky, pečují o přírodu a rozvíjejí šetrnou turistiku skrze mapování turistických tras.',
+				'title' => 'Malé Česko v Banátu – přátelství skrze pomoc',
+				'text' => 'Brontosauři ve zdejších obcích s významnou českou komunitou pravidelně čistí veřejná prostranství, opravují památky, pečují o přírodu a rozvíjejí šetrnou turistiku skrze mapování turistických tras.',
 				'image' => 'https://brontosaurus.cz/wp-content/uploads/2024/01/rumunsko-mala.jpg',
 				'link' => 'https://brontosaurus.cz/pribehy-nadseni/male-cesko-v-banatu/',
 			],
 			(object) [
 				'title' => 'Kudlačena, aneb stále jsme to nevzdali',
-				'text' => 'Brontosauři kolem péče o Kudlačenu zformovali základní článek Kolovrátek, se kterým se dlouhodobě věnují pravidelnému kosení a hrabání pro zachování pestrosti krajiny a ochranu vzácných druhů.',
+				'text' => 'Brontosauři kolem péče o Kudlačenu zformovali základní článek Kolovrátek, se kterým se dlouhodobě věnují pravidelnému kosení a hrabání pro zachování pestrosti krajiny a ochranu vzácných druhů.',
 				'image' => 'https://brontosaurus.cz/wp-content/uploads/2023/09/kudlacena-14-scaled.jpg',
 				'link' => 'https://brontosaurus.cz/pribehy-nadseni/kudlacena/',
 			],
