@@ -1,6 +1,7 @@
 import {Position} from './Position';
 import {Dots} from './Dots';
 import {selectors} from './selectors';
+import {Autoplay} from './Autoplay';
 
 document.addEventListener('DOMContentLoaded', () =>
 	document.querySelectorAll<HTMLElement>('[data-references]')
@@ -20,9 +21,11 @@ function initialize(rootEl: HTMLElement): void
 	const slidesCount = slidesEl.children.length;
 	const defaultPosition = parseInt(window.getComputedStyle(slidesEl).getPropertyValue(CarousePositionPropertyName));
 	const allowInfinite = typeof rootEl.dataset.referencesInfinite !== 'undefined';
+	const allowAutoplay = typeof rootEl.dataset.referencesAutoplay !== 'undefined';
 
 	const position = new Position(slidesCount, defaultPosition, allowInfinite);
 	const dots = new Dots(slidesEl, position, slidesCount);
+	const autoplay = new Autoplay(position);
 
 	position.addPositionChangedSubscriber((newPosition) => {
 		slidesEl.style.setProperty(CarousePositionPropertyName, newPosition.toString());
@@ -35,6 +38,7 @@ function initialize(rootEl: HTMLElement): void
 			return;
 		}
 
+		autoplay.disable();
 		position.moveToPrevious();
 	});
 
@@ -43,6 +47,7 @@ function initialize(rootEl: HTMLElement): void
 			return;
 		}
 
+		autoplay.disable();
 		position.moveToNext();
 	});
 
@@ -63,4 +68,8 @@ function initialize(rootEl: HTMLElement): void
 	// on init
 	updateButtonVisibility();
 	dots.repaint(defaultPosition);
+
+	if (allowAutoplay) {
+		autoplay.enable();
+	}
 }
