@@ -115,11 +115,8 @@ $partners-breakpoint-fourColumns-from: "min-width: " + ($partners-breakpoint-thr
 			&--smartlook {
 				max-width: 8em;
 			}
-			&--osf {
-				max-width: 8.4em;
-			}
-			&--acf {
-				max-width: 8.4em;
+			&--menime {
+				grid-column-start: 1;
 			}
 
 			&--dobrovolnik {
