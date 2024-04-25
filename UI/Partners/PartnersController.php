@@ -157,22 +157,28 @@ final class PartnersController implements Controller
 				'url' => 'https://www.smartlook.com/cs',
 			],
 			[
-				'id' => 'osf',
-				'name' => 'Nadace OSF',
-				'image' => self::getPath('nadace-osf.png'),
-				'url' => 'https://osf.cz',
-			],
-			[
-				'id' => 'acf',
-				'name' => 'Active Citizens Fund',
-				'image' => self::getPath('active-citizens-fund.jpg'),
-				'url' => 'https://activecitizensfund.no',
-			],
-			[
 				'id' => 'smsticket',
 				'name' => 'smsticket',
 				'image' => self::getPath('smsticket.png'),
 				'url' => 'https://www.smsticket.cz',
+			],
+			[
+				'id' => 'menime',
+				'name' => '',
+				'image' => self::getPath('menime.png'),
+				'url' => 'https://www.activecitizensfund.cz/',
+			],
+			[
+				'id' => 'acf',
+				'name' => 'Active citizens fund',
+				'image' => self::getPath('acf.png'),
+				'url' => 'https://www.activecitizensfund.cz/',
+			],
+			[
+				'id' => 'osf',
+				'name' => 'Nadace OSF',
+				'image' => self::getPath('osf.png'),
+				'url' => 'https://www.activecitizensfund.cz/',
 			],
 		];
 	}
