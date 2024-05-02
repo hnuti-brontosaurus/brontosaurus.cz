@@ -43,7 +43,7 @@ $hb-banner-breakpoint: 30em;
 		clip-path: circle(var(--hb-block-banner-size-circle) at 50% calc(var(--hb-vr-base) * 0.5));
 
 		@include hb-banner-horizontal-from() {
-			clip-path: circle(var(--hb-block-banner-size-circle) at calc(var(--hb-vr-base) * 4) calc(var(--hb-vr-base) * 3));
+			clip-path: circle(var(--hb-block-banner-size-circle) at calc(var(--hb-vr-base) * 3) calc(var(--hb-vr-base) * 3));
 		}
 	}
 	&::after {
@@ -82,7 +82,7 @@ $hb-banner-breakpoint: 30em;
 	&__text {
 		padding: calc(var(--hb-vr-base) * 1);
 		color: var(--hb-colors-default-background);
-		max-inline-size: 19rem;
+		max-inline-size: 13rem;
 		margin-inline: auto;
 
 		@include hb-banner-vertical-until() {
