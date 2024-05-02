@@ -82,7 +82,7 @@ $hb-banner-breakpoint: 30em;
 	&__text {
 		padding: calc(var(--hb-vr-base) * 1);
 		color: var(--hb-colors-default-background);
-		max-inline-size: 19rem;
+		max-inline-size: 13rem;
 		margin-inline: auto;
 
 		@include hb-banner-vertical-until() {
