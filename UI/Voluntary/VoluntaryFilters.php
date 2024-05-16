@@ -95,6 +95,7 @@ final class VoluntaryFilters
 			Program::NATURE(),
 			Program::MONUMENTS(),
 			Program::HOLIDAYS_WITH_BRONTOSAURUS(),
+			Program::INTERNATIONAL(),
 		]);
 	}
 
