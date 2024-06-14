@@ -87,6 +87,7 @@ $hb-banner-breakpoint: 30em;
 
 		@include hb-banner-vertical-until() {
 			text-align: center;
+			margin-block-start: unset;
 		}
 
 		:first-child {
