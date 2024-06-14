@@ -79,9 +79,9 @@ final class PartnersController implements Controller
 				'url' => 'https://www.mzv.cz',
 			],
 			[
-				'id' => 'erasmus',
-				'name' => 'Erasmus+',
-				'image' => self::getPath('erasmus.png'),
+				'id' => 'spolufinancovano-eu',
+				'name' => 'Spolufinancováno Evropskou unií',
+				'image' => self::getPath('spolufinancovano-eu.png'),
 				'url' => 'http://www.erasmusprogramme.com',
 			],
 			[

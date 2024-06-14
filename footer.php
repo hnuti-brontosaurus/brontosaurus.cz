@@ -18,7 +18,7 @@ $hb_currentPost = get_post();
 
 		<li class="sponsors-list-item">
 			<a href="http://www.erasmusprogramme.com" target="_blank">
-				<img src="<?php echo get_template_directory_uri(); ?>/frontend/dist/images/erasmus.png" alt="Erasmus+" class="sponsors-list-item-image">
+				<img src="<?php echo get_template_directory_uri(); ?>/frontend/dist/images/spolufinancovano-eu.png" alt="Spolufinancováno Evropskou unií" class="sponsors-list-item-image">
 			</a>
 		</li>
 
