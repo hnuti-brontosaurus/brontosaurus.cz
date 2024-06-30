@@ -9,29 +9,6 @@
 		}
 	}
 
-	&__widget {
-		max-inline-size: calc(18rem + #{vr-unit(4)});
-		position: relative;
-	}
-	&__darujmeLogo {
-		--supportOverview-darujme-logoSize-butterfly: 1.3rem;
-		--supportOverview-darujme-logoSize-label: 4rem;
-		display: flex;
-		align-items: center;
-		position: absolute;
-		top: vr-unit(0.5);
-		right: vr-unit(2);
-		gap: vr-unit(0.25);
-		width: calc(var(--supportOverview-darujme-logoSize-butterfly) + #{vr-unit(0.25)} + var(--supportOverview-darujme-logoSize-label));
-
-		.darujme-butterfly {
-			max-inline-size: var(--supportOverview-darujme-logoSize-butterfly);
-		}
-		.darujme-label {
-			max-inline-size: var(--supportOverview-darujme-logoSize-label);
-		}
-	}
-
 	&__thanks {
 		max-inline-size: 62em;
 		margin-inline: auto;
@@ -85,5 +62,19 @@
 				}
 			}
 		}
+	}
+
+	.hb-option {
+		justify-content: flex-start;
+	}
+	.hb-option__image {
+		border-radius: unset;
+	}
+	.hb-option--imageFirst .hb-option__image {
+		order: -1;
+	}
+	.hb-option__button {
+		position: relative;
+		height: 2rem;
 	}
 }
