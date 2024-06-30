@@ -1,3 +1,5 @@
+import { ElementsInView } from "./ElementsInView";
+
 export class Position
 {
 	private currentPosition: number;
@@ -6,6 +8,7 @@ export class Position
 		private slidesCount: number,
 		defaultPosition: number,
 		private allowInfinite: boolean,
+		private elementsInView: ElementsInView,
 	)
 	{
 		this.currentPosition = defaultPosition;
@@ -65,6 +68,30 @@ export class Position
 			return false;
 		}
 
-		return this.currentPosition >= (this.slidesCount - 1);
+
+		/**
+		 * slides	at once		last position
+		 * 5		1			4
+		 * 5		2			3
+		 * 5		3			2
+		 */
+		const number = this.elementsInView.count();
+		let lastPosition;
+		// todo make an expression instead of hardcoding
+		switch (number) {
+			case 1:
+				lastPosition = 4;
+				break;
+			case 2:
+				lastPosition = 3
+				break;
+			case 3:
+				lastPosition = 2
+				break;
+			default:
+				throw new Error('Unsupported number of slides at once');
+		}
+
+		return this.currentPosition >= lastPosition;
 	}
 }
