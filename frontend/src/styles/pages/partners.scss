@@ -119,6 +119,9 @@ $partners-breakpoint-fourColumns-from: "min-width: " + ($partners-breakpoint-thr
 				grid-column-start: 1;
 			}
 
+			&--ct {
+				max-width: unset;
+			}
 			&--dobrovolnik {
 				max-width: 7.7em;
 			}
