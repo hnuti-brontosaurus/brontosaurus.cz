@@ -188,6 +188,12 @@ final class PartnersController implements Controller
 	{
 		return [
 			[
+				'id' => 'ct',
+				'name' => 'Česká televize',
+				'image' => self::getPath('ct.png'),
+				'url' => 'https://www.ceskatelevize.cz/',
+			],
+			[
 				'id' => 'dobrovolnik',
 				'name' => 'Dobrovolník.cz',
 				'image' => self::getPath('dobrovolnik.png'),
