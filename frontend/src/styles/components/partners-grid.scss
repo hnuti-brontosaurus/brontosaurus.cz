@@ -1,0 +1,16 @@
+// this is a workaround as WP grid block currently can't set anything beside column min size
+// once more complex configuration is supported, this can be removed
+.partners-grid {
+	max-inline-size: 40rem;
+	margin-inline: auto;
+}
+.partners-grid .is-layout-grid {
+	grid-template-columns: repeat(auto-fill, minmax(min(12rem, 100%), 1fr));
+	gap: 2rlh 1rlh;
+	align-items: center;
+	justify-items: center;
+	margin-bottom: 4rlh;
+}
+.partners-grid .is-layout-grid :where(.content__dynamic *+p, .content__dynamic *+figure, .content__dynamic *+.wp-block-columns) {
+	margin-block-start: unset;
+}
