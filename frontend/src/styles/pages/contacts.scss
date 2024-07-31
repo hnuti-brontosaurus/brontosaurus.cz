@@ -88,8 +88,12 @@
 		padding: 1rlh 2rlh 2rlh;
 	}
 	&__openingDays {
-		list-style-type: none;
 		font-size: 0.9em;
+		line-height: 1.2;
+
+		span {
+			font-weight: bold;
+		}
 	}
 
 	&__invoicing,
