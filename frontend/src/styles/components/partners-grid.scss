@@ -14,9 +14,11 @@
 .partners-grid .is-layout-grid > * {
 	max-inline-size: 10rem;
 }
-.partners-grid .is-layout-grid > .wp-container-content-3 {
-	max-inline-size: revert;
-	grid-column-end: span 3;
+@media ($typography-breakpoint-large-from) {
+	.partners-grid .is-layout-grid > .wp-container-content-3 {
+		max-inline-size: revert;
+		grid-column-end: span 3;
+	}
 }
 .partners-grid .is-layout-grid :where(.content__dynamic *+p, .content__dynamic *+figure, .content__dynamic *+.wp-block-columns) {
 	margin-block-start: unset;
