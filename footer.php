@@ -39,12 +39,6 @@ $hb_currentPost = get_post();
 				<img src="<?php echo get_template_directory_uri(); ?>/frontend/dist/images/statni-fond.png" alt="Státní fond životního prostředí České republiky" class="sponsors-list-item-image">
 			</a>
 		</li>
-
-		<li class="sponsors-list-item sponsors-list-item--mzv">
-			<a href="https://www.mzv.cz" target="_blank">
-				<img src="<?php echo get_template_directory_uri(); ?>/frontend/dist/images/ministerstvo-zahranici.png" alt="Ministerstvo zahraničních věcí České republiky" class="sponsors-list-item-image">
-			</a>
-		</li>
 	</ul>
 
 	Děkujeme za&nbsp;podporu <a class="sponsors-link" href="<?php echo getLinkFor('nasi-partneri') ?>">všem našim partnerům</a>.
