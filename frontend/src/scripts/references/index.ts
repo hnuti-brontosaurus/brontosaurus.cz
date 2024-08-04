@@ -1,7 +1,8 @@
 import {Position} from './Position';
-import {Dots} from './Dots';
+import {DotsFactory} from './Dots';
 import {selectors} from './selectors';
 import {Autoplay} from './Autoplay';
+import { ElementsInView } from './ElementsInView';
 
 document.addEventListener('DOMContentLoaded', () =>
 	document.querySelectorAll<HTMLElement>('[data-references]')
@@ -22,9 +23,13 @@ function initialize(rootEl: HTMLElement): void
 	const defaultPosition = parseInt(window.getComputedStyle(slidesEl).getPropertyValue(CarousePositionPropertyName));
 	const allowInfinite = typeof rootEl.dataset.referencesInfinite !== 'undefined';
 	const allowAutoplay = typeof rootEl.dataset.referencesAutoplay !== 'undefined';
+	const noDots = typeof rootEl.dataset.referencesNoDots !== 'undefined';
 
-	const position = new Position(slidesCount, defaultPosition, allowInfinite);
-	const dots = new Dots(slidesEl, position, slidesCount);
+	const elementsInView = new ElementsInView(slidesEl);
+	const position = new Position(slidesCount, defaultPosition, allowInfinite, elementsInView);
+	const dots = noDots
+		? DotsFactory.disabled() // todo listen to elements in view, display only if count == 1
+		: DotsFactory.enabled(slidesEl, position, slidesCount);
 	const autoplay = new Autoplay(position);
 
 	position.addPositionChangedSubscriber((newPosition) => {
@@ -63,6 +68,8 @@ function initialize(rootEl: HTMLElement): void
 			nextButtonEl.classList.add(selectors.BUTTON_HIDDEN);
 		}
 	};
+
+	// todo: resize, orientationchange
 
 
 	// on init

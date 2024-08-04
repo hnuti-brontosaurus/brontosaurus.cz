@@ -7,6 +7,7 @@ use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\UI\Controller;
 use Latte\Engine;
 use stdClass;
+use function array_chunk;
 use function sprintf;
 use function wp_get_theme;
 
@@ -52,6 +53,7 @@ final class SupportOverviewController implements Controller
 					'Sázíme stromořadí, oživujeme polní krajinu, staráme se o mokřady, budujeme lužní park Krče. Chceme s dobrovolníky a dobrovolnicemi obnovit další místa po celé ČR. Podpoř nás v tom.',
 				],
 				'image' => self::imagePathFor('adopce-krajina'),
+				'price' => 2000,
 			],
 			(object) [
 				'title' => 'Pro památky',
@@ -60,6 +62,7 @@ final class SupportOverviewController implements Controller
 					'Chceme v tom pokračovat a opravovat i méně známé památky u nás i u krajanů v Banátu. Podpoř nás, ať můžeme pomáhat na dalších lokalitách.',
 				],
 				'image' => self::imagePathFor('adopce-pamatky'),
+				'price' => 1000,
 			],
 			(object) [
 				'title' => 'Chráníme vše živé',
@@ -68,6 +71,7 @@ final class SupportOverviewController implements Controller
 					'Budujeme úkryty, vyvěšujeme budky i netopýrníky, vysazujeme květnaté louky, staráme se o migrující žáby. Podpoř nás při tvorbě prostředí plného ptačího zpěvu a hmyzího bzukotu.',
 				],
 				'image' => self::imagePathFor('adopce-zivot'),
+				'price' => 600,
 			],
 			(object) [
 				'title' => 'Práce na chráněných územích',
@@ -76,6 +80,7 @@ final class SupportOverviewController implements Controller
 					'Snažíme se přispět k jejich zachování. Péčí o orchidejové louky, udržováním stepních společenstev či bojem s invazními druhy. Podpoř zapojení dalších mladých lidí do těchto aktivit!',
 				],
 				'image' => self::imagePathFor('adopce-uzemi'),
+				'price' => 200,
 			],
 			(object) [
 				'title' => 'Pro další generace',
@@ -84,6 +89,7 @@ final class SupportOverviewController implements Controller
 					'Na výukových programech v přírodě jim ukazujeme, jak mohou životní prostředí chránit. Podpoř aktivity pro mládež, která se chce podílet na naší budoucnosti.',
 				],
 				'image' => self::imagePathFor('adopce-generace'),
+				'price' => 100,
 			],
 		];
 	}
