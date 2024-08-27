@@ -126,8 +126,7 @@
 	&--meetups,
 	&--forchildren,
 	&--firsttime,
-	&--supportoverview,
-	&--supportadoption {
+	&--supportoverview {
 		display: block;
 		position: relative;
 
@@ -269,8 +268,7 @@
 
 	&--voluntary,
 	&--firsttime,
-	&--supportoverview,
-	&--supportadoption {
+	&--supportoverview {
 		&::before {
 			clip-path: circle(66% at 66% 24%);
 			right: 0;
@@ -323,8 +321,7 @@
 		}
 	}
 
-	&--supportoverview,
-	&--supportadoption {
+	&--supportoverview {
 		background-image: url("../images/hlavicka-moznost-podpory.jpg");
 		background-position: 35% -11em;
 		background-size: 35em;

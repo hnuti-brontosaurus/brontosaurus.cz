@@ -77,7 +77,6 @@ final class ControllerFactory
 			'jedu-poprve' => new FirstTimeController($base, $this->latte),
 			'programy-pro-stredni-skoly' => new HighSchoolsController($base, $this->latte),
 			'nasi-partneri' => new PartnersController($base, $this->latte),
-//			'adopce-brontosaura' => new SupportAdoptionController($base, $this->latte), // disabled for now
 			FutureController::PAGE_SLUG => new FutureController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte),
 			AboutStructureController::PAGE_SLUG => new AboutStructureController($this->bisApiClient, $base, $this->latte, $this->coordinatesResolver),
 			EventController::PAGE_SLUG => new EventController($this->dateFormatHuman, $this->dateFormatRobot, $this->applicationUrlTemplate, $this->bisApiClient, $base, $this->latte),
