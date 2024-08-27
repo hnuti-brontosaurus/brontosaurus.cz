@@ -1,3 +1,5 @@
+import { ElementsInView } from "./ElementsInView";
+
 export class Position
 {
 	private currentPosition: number;
@@ -6,6 +8,7 @@ export class Position
 		private slidesCount: number,
 		defaultPosition: number,
 		private allowInfinite: boolean,
+		private elementsInView: ElementsInView,
 	)
 	{
 		this.currentPosition = defaultPosition;
@@ -13,7 +16,7 @@ export class Position
 
 	public moveToNext(): void
 	{
-		if (this.currentPosition === (this.slidesCount - 1)) {
+		if (this.currentPosition === this.getLastPosition()) {
 			this.currentPosition = 0;
 		} else {
 			this.currentPosition++;
@@ -25,7 +28,7 @@ export class Position
 	public moveToPrevious(): void
 	{
 		if (this.currentPosition === 0) {
-			this.currentPosition = this.slidesCount - 1;
+			this.currentPosition = this.getLastPosition();
 		} else {
 			this.currentPosition--;
 		}
@@ -39,7 +42,10 @@ export class Position
 			throw new Error('Position out of range');
 		}
 
-		this.currentPosition = position;
+		const lastPosition = this.getLastPosition()
+		this.currentPosition = position > lastPosition
+			? lastPosition
+			: position;
 
 		this.positionChangedSubscribers.forEach(subscriber => subscriber(this.currentPosition));
 	}
@@ -65,6 +71,32 @@ export class Position
 			return false;
 		}
 
-		return this.currentPosition >= (this.slidesCount - 1);
+		const lastPosition = this.getLastPosition();
+		return this.currentPosition >= lastPosition;
+	}
+
+	private getLastPosition(): number
+	{
+		/**
+		 * slides	at once		last position
+		 * 5		1			4
+		 * 5		2			3
+		 * 5		3			2
+		 */
+		const number = this.elementsInView.count();
+		// todo make an expression instead of hardcoding
+		switch (number) {
+			case 1:
+				return 4;
+
+			case 2:
+				return 3;
+
+			case 3:
+				return 2;
+
+			default:
+				throw new Error('Unsupported count of slides displayed at once');
+		}
 	}
 }

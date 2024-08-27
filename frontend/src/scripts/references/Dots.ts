@@ -2,7 +2,28 @@ import {Dot} from './Dot';
 import {Position} from './Position';
 import {selectors} from './selectors';
 
-export class Dots
+interface Dots {
+	repaint(newPosition: number): void,
+}
+
+export class DotsFactory
+{
+	public static enabled(
+		dataStorageEl: HTMLElement,
+		position: Position,
+		totalSlides: number,
+	): OnePerSlide
+	{
+		return new OnePerSlide(dataStorageEl, position, totalSlides);
+	}
+
+	public static disabled(): Noop
+	{
+		return new Noop();
+	}
+}
+
+class OnePerSlide implements Dots
 {
 	private dots: Dot[] = [];
 
@@ -26,4 +47,16 @@ export class Dots
 	{
 		this.dots.forEach(dot => dot.repaint(newPosition));
 	}
+}
+
+/**
+ * When no dots are needed
+ */
+class Noop implements Dots
+{
+	constructor()
+	{}
+
+	public repaint(newPosition: number): void
+	{}
 }
