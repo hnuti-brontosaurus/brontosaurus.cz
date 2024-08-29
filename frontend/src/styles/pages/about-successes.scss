@@ -4,8 +4,6 @@ $about-successes-half-from: "min-width: " + ($about-successes-breakpoint + 0.001
 
 .about-successes {
 	&__video {
-		max-inline-size: 50rem;
-
 		iframe {
 			display: block;
 			inline-size: 100%;

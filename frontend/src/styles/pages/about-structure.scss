@@ -1,26 +1,5 @@
 .about-structure {
-	&__overview {
-		display: flex;
-		align-items: center;
-		margin-bottom: vr-unit(2);
-
-		@media ($typography-breakpoint-large-from) {
-			justify-content: center; // when there is no brontoimage
-			max-width: 40rem;
-			margin-left: auto;
-			margin-right: auto;
-		}
-	}
-
-	&-text {
-		@include block-text();
-
-		&:not(:last-child) {
-			margin-bottom: vr-unit(1);
-		}
-	}
-
-	&-image {
+	&__graphics {
 		flex-basis: 17em;
 		flex-shrink: 0;
 
@@ -28,76 +7,19 @@
 		@media (max-width: 50em), (pointer: none), (pointer: coarse) {
 			display: none;
 		}
-
-		&-part {
-			&-shape {
-				fill: $colors-emphasizing;
-				cursor: pointer;
-				transition: fill 200ms linear;
-
-				&:hover {
-					fill: darken($colors-emphasizing, 10);
-				}
-			}
-
-			&-label {
-				fill: $colors-text;
-				font-size: 1.2em;
-				opacity: 0;
-				pointer-events: none;
-				transition: opacity 200ms 100ms linear;
-			}
-
-			&-shape:hover + &-label {
-				opacity: 1;
-				pointer-events: auto;
-			}
-		}
 	}
 
-	&-map {
-		max-width: 40rem;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: vr-unit(2);
+	&__subheading {
+		font-weight: $fonts-delm-weight-bold !important;
 	}
 
-	&-unit {
-		margin-bottom: vr-unit(1);
+	&__text:not(:last-child) {
+		margin-block-end: 0.5rlh;
+	}
 
-		@media ($typography-breakpoint-large-from) {
-			margin-bottom: vr-unit(2);
-		}
-
-		&-subheading {
-			font-weight: $fonts-delm-weight-bold !important;
-
-			@media ($typography-breakpoint-large-from) {
-				text-align: center;
-			}
-		}
-
-		&-description {
-			@include block-text();
-
-			&:not(:last-child) {
-				margin-bottom: vr-unit(0.5);
-			}
-		}
-
-		&-block {
-			max-width: 40rem;
-			margin-top: vr-unit(1);
-			margin-bottom: vr-unit(1);
-
-			@include presentationBox-breakpoint-textOnSide-from() {
-				min-height: vr-unit(15);
-				display: flex;
-				justify-content: center;
-				flex-direction: column;
-				margin-left: auto;
-				margin-right: auto;
-			}
+	&__presentationBox {
+		@include presentationBox-breakpoint-textOnSide-from() {
+			min-height: vr-unit(15);
 		}
 	}
 }

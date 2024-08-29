@@ -1,0 +1,24 @@
+.brontographics {
+    &__shape {
+        fill: $colors-emphasizing;
+        cursor: pointer;
+        transition: fill 200ms linear;
+
+        &:hover {
+            fill: darken($colors-emphasizing, 10);
+        }
+    }
+
+    &__label {
+        fill: $colors-text;
+        font-size: 1.2em;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 200ms 100ms linear;
+    }
+
+    &__shape:hover + &__label {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
