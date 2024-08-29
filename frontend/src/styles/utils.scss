@@ -15,6 +15,42 @@
 .hb-fw-r { font-weight: 300; }
 .hb-fw-b { font-weight: 700; }
 
+/* display */
+.hb-d-b { display: block; }
+.hb-d-ib { display: inline-block; }
+.hb-d-f { display: flex; }
+
+/* flex */
+.hb-fd-c { flex-direction: column; }
+.hb-fd-r { flex-direction: row; }
+.hb-fb-50 { flex-basis: 50%; }
+.hb-jc-fs { justify-content: flex-start; }
+.hb-jc-c { justify-content: center; }
+.hb-jc-fe { justify-content: flex-end; }
+.hb-ai-fs { align-items: flex-start; }
+.hb-ai-c { align-items: center; }
+.hb-ai-fe { align-items: flex-end; }
+.hb-g-0 { gap: 0; }
+.hb-g-1 { gap: 0.125rlh; }
+.hb-g-2 { gap: 0.25rlh; }
+.hb-g-3 { gap: 0.5rlh; }
+.hb-g-4 { gap: 1rlh; }
+.hb-g-5 { gap: 2rlh; }
+.hb-g-6 { gap: 3rlh; }
+.hb-g-7 { gap: 4rlh; }
+.hb-g-8 { gap: 5rlh; }
+.hb-g-9 { gap: 6rlh; }
+@media ($typography-breakpoint-large-from) {
+	.hb-lg-fd-c { flex-direction: column; }
+	.hb-lg-fd-r { flex-direction: row; }
+	.hb-lg-jc-fs { justify-content: flex-start; }
+	.hb-lg-jc-c { justify-content: center; }
+	.hb-lg-jc-fe { justify-content: flex-end; }
+	.hb-lg-ai-fs { align-items: flex-start; }
+	.hb-lg-ai-c { align-items: center; }
+	.hb-lg-ai-fe { align-items: flex-end; }
+}
+
 /* margin inline */
 .hb-mi-auto { margin-inline: auto; }
 .hb-mi-0 { margin-inline: 0; }

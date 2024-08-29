@@ -1,3 +1,6 @@
+.hb-block-heading {
+	@include heading-first-level();
+}
 .hb-block-text {
 	@include block-text();
 }
