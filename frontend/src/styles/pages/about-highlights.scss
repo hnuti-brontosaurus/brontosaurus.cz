@@ -2,10 +2,6 @@ article .about-highlights {
 	text-align: center;
 	margin-bottom: vr-unit(3);
 
-	&-heading {
-		@include heading-first-level();
-	}
-
 	&-list {
 		max-width: 20rem;
 		margin-bottom: vr-unit(1);

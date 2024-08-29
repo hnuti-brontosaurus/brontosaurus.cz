@@ -5,10 +5,6 @@ $about-successes-half-from: "min-width: " + ($about-successes-breakpoint + 0.001
 article .about-successes {
 	margin-bottom: vr-unit(3);
 
-	&__heading {
-		@include heading-first-level();
-	}
-
 	&__introduction {
 		@include block-text();
 		margin-bottom: vr-unit(1);

@@ -1,4 +1,8 @@
 article .about-crossroad {
+	&__heading {
+		@include heading-first-level();
+	}
+
 	&__crossroad {
 		max-width: 40rem;
 		list-style-type: none;
