@@ -2,19 +2,19 @@
 
 {block content}
 <main role="main">
-	<article class="about-successes">
+	<article class="about-successes hb-mbe-6">
 		<h1>
 			Příběhy nadšení
 		</h1>
 
-		<p class="about-successes__introduction">
+		<p class="hb-block-text hb-mbe-4">
 			Už je to přes 50 let, kdy v roce 1974 vzbudila Akce Brontosaurus obrovskou vlnu nadšení
 			pro pomoc přírodě a památkám. Desetitisíce lidí se díky ní pustily do sázení stromů,
 			oprav hradů, úklidů koryt řek, kosení chráněných luk nebo čištění studánek.
 			U příležitosti výročí půlstoletí Brontosaura představujeme vybrané příběhy úspěšných dobrovolnických projektů.
 		</p>
 
-		<div class="about-successes__stories hb-eventList">
+		<div class="hb-eventList hb-mbe-4">
 			{var $displayOnLoad = 3}
 			<div class="hb-eventList__grid" n:inner-foreach="$stories as $story">
 				{include story, story: $story}
@@ -34,7 +34,7 @@
 			{/if}
 		</div>
 
-		<p class="about-successes__introduction">
+		<p class="hb-block-text hb-mbe-4">
 			Tyto příběhy jsou jen malým dílem obrovského úsilí o zdravé životní prostředí,
 			respekt k přírodě a udržitelný život. Mohou nás však inspirovat k aktivitě
 			a přinášet naději a důvěru v budoucnost.
@@ -45,19 +45,19 @@
 			péče o přírodu, památky a lidi s Brontosaurem!
 		</p>
 
-		<div class="about-successes__video">
+		<div class="about-successes__video [ hb-d-f hb-fd-c hb-lg-fd-r hb-g-4 hb-lg-g-3 ][ hb-mi-auto hb-mbs-6 hb-mbe-5 hb-lg-mbe-4 ]">
 			<iframe src="https://www.youtube.com/embed/6RCZ2E5S9qo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 			<iframe src="https://www.youtube.com/embed/DM-BiimluBw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 		</div>
 
-		<div class="about-successes__support">
-			<p>
+		<div class="hb-ta-c hb-mbe-5">
+			<p class="hb-mbe-3">
 				Dává ti smysl, co děláme?
 				Adoptuj Brontosaura a podpoř naši péči přírodu a památky.
 			</p>
 
-			<a class="button button--primary" href="{$supportOverviewLink}">Chci adoptovat Brontosaura</a>
+			<a class="[ button button--primary ][ hb-d-b hb-mw-mc hb-mi-auto ]" href="{$supportOverviewLink}">Chci adoptovat Brontosaura</a>
 		</div>
 	</article>
 </main>

@@ -49,7 +49,19 @@
 	.hb-lg-ai-fs { align-items: flex-start; }
 	.hb-lg-ai-c { align-items: center; }
 	.hb-lg-ai-fe { align-items: flex-end; }
+	.hb-lg-g-0 { gap: 0; }
+	.hb-lg-g-1 { gap: 0.125rlh; }
+	.hb-lg-g-2 { gap: 0.25rlh; }
+	.hb-lg-g-3 { gap: 0.5rlh; }
+	.hb-lg-g-4 { gap: 1rlh; }
+	.hb-lg-g-5 { gap: 2rlh; }
+	.hb-lg-g-6 { gap: 3rlh; }
+	.hb-lg-g-7 { gap: 4rlh; }
+	.hb-lg-g-8 { gap: 5rlh; }
+	.hb-lg-g-9 { gap: 6rlh; }
 }
+
+.hb-mw-mc { max-width: max-content; }
 
 /* margin inline */
 .hb-mi-auto { margin-inline: auto; }

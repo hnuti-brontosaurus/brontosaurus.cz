@@ -2,51 +2,15 @@ $about-successes-breakpoint: 40em;
 $about-successes-full-until: "max-width: " + $about-successes-breakpoint;
 $about-successes-half-from: "min-width: " + ($about-successes-breakpoint + 0.001);
 
-article .about-successes {
-	margin-bottom: vr-unit(3);
-
-	&__introduction {
-		@include block-text();
-		margin-bottom: vr-unit(1);
-	}
-
-	&__stories {
-		margin-block-end: vr-unit(1);
-	}
-
+.about-successes {
 	&__video {
-		margin-block-start: vr-unit(3);
 		max-inline-size: 50rem;
-		margin-inline: auto;
-		margin-block-end: vr-unit(2);
-
-		@media ($typography-breakpoint-large-from) {
-			display: flex;
-			gap: vr-unit(0.5);
-			margin-block-end: vr-unit(1);
-		}
 
 		iframe {
 			display: block;
 			inline-size: 100%;
 			aspect-ratio: 16/9;
 			border-radius: 2em;
-			margin-block-end: vr-unit(1);
-		}
-	}
-
-	&__support {
-		text-align: center;
-		margin-block-end: vr-unit(2);
-
-		p {
-			margin-block-end: vr-unit(0.5);
-		}
-
-		a {
-			display: block;
-			max-width: max-content;
-			margin-inline: auto;
 		}
 	}
 }
