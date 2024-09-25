@@ -37,10 +37,6 @@ $hb_pageClassSelector = $hb_currentPost !== null ? $hb_currentPost->post_name : 
 <?php endif; ?>
 
 <div class="header-paddingFixContainer">
-	<div class="dalsich50">
-		Užij si <a href="https://dort.brontosaurus.cz" rel="noopener"><strong>Festival dobrovolnictví DORT</strong></a> a nastartuj dalších 50 let Brontosaura 🦕
-	</div>
-
 	<div class="header-wrapper" id="header-wrapper">
 		<?php if( ! $hb_isOnSearchResultsPage): ?>
 		<div class="searchForm searchForm--hidden" id="searchBar">
