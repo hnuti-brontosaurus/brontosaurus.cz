@@ -23,6 +23,12 @@ $hb-banner-breakpoint: 30em;
 	overflow: hidden;
 	block-size: calc(var(--hb-vr-base) * 20);
 
+	box-shadow: 0 0 12px 0 var(--hb-colors-framing);
+	transition: box-shadow 100ms ease-out;
+	&:hover {
+		box-shadow: 0 0 17px 2px var(--hb-colors-framing);
+	}
+
 	@media (min-width: 23.001em) {
 		block-size: calc(var(--hb-vr-base) * 18);
 	}
