@@ -36,7 +36,7 @@ jobs:
                     node-version: 18.x
 
             -   name: Install external deps
-                run: sudo apt-get install -y pngquant
+                run: sudo apt-get install -y pngquant gm
 
             -   name: Install deps
                 uses: borales/actions-yarn@v5
