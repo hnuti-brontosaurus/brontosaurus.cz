@@ -22,6 +22,7 @@ use function wp_get_theme;
 final class AboutSuccessesController implements Controller
 {
 	public const PAGE_SLUG = 'nase-uspechy';
+	public const PARAM_ALL = 'vsechny';
 
 	public function __construct(
 		private Base $base,
@@ -31,6 +32,10 @@ final class AboutSuccessesController implements Controller
 
 	public function render(): void
 	{
+		// todo: use some WP way of obtaining param
+		$all = \filter_input( INPUT_GET, self::PARAM_ALL ) ?? null;
+		$shouldListAll = $all === '';
+
 		$posts = get_posts(['post_type' => 'pribehy-nadseni', 'numberposts' => -1]);
 
 		add_action('wp_enqueue_scripts', function () {
@@ -42,6 +47,7 @@ final class AboutSuccessesController implements Controller
 		$this->latte->render(
 			__DIR__ . '/AboutSuccessesController.latte',
 			\array_merge($this->base->getLayoutVariables('aboutsuccesses'), [
+				'displayOnLoad' => $shouldListAll ? null : 1,
 				'stories' => array_map(function (WP_Post $post) {
 					$thumbnail = get_the_post_thumbnail_url($post);
 					$thumbnail = $thumbnail === false ? null : $thumbnail; // convert false to null which makes more sense

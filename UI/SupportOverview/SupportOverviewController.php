@@ -31,7 +31,7 @@ final class SupportOverviewController implements Controller
 
 		$params = [
 			'whatWeDo' => self::whatWeDo(),
-			'aboutSuccessesLink' => $this->base->getLinkFor(AboutSuccessesController::PAGE_SLUG),
+			'aboutSuccessesLink' => $this->base->getLinkFor(AboutSuccessesController::PAGE_SLUG) . "?" . AboutSuccessesController::PARAM_ALL,
 			'stories' => self::stories(),
 			'references' => self::references(),
 		];
