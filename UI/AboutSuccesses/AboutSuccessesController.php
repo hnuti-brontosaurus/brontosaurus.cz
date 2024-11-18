@@ -47,7 +47,7 @@ final class AboutSuccessesController implements Controller
 		$this->latte->render(
 			__DIR__ . '/AboutSuccessesController.latte',
 			\array_merge($this->base->getLayoutVariables('aboutsuccesses'), [
-				'displayOnLoad' => $shouldListAll ? null : 1,
+				'displayOnLoad' => $shouldListAll ? null : 3,
 				'stories' => array_map(function (WP_Post $post) {
 					$thumbnail = get_the_post_thumbnail_url($post);
 					$thumbnail = $thumbnail === false ? null : $thumbnail; // convert false to null which makes more sense
