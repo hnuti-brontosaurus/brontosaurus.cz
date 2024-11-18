@@ -30,7 +30,7 @@ final class VoluntaryController implements Controller
 	{
 		// todo: use some WP way of obtaining param
 		$selectedFilter = \filter_input( INPUT_GET, self::FILTER_KEY ) ?? null;
-		$selectedFilter = $selectedFilter !== null && $selectedFilter !== '' ? \htmlspecialchars($selectedFilter :) null;
+		$selectedFilter = $selectedFilter !== null && $selectedFilter !== '' ? \htmlspecialchars($selectedFilter) : null;
 
 		$params = new EventParameters();
 		VoluntaryFilters::apply($selectedFilter, $params);
