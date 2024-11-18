@@ -21,8 +21,8 @@ $hb_coordinatesResolver = $hb_container->getCoordinatesResolver();
 
 
 // todo: use some WP way of obtaining param
-$selectedFilter = filter_input( INPUT_GET, 'jen', FILTER_SANITIZE_STRING ) ?? null;
-$selectedFilter = $selectedFilter !== null && $selectedFilter !== '' ? $selectedFilter : null;
+$selectedFilter = filter_input( INPUT_GET, 'jen' ) ?? null;
+$selectedFilter = $selectedFilter !== null && $selectedFilter !== '' ? htmlspecialchars($selectedFilter) : null;
 
 $isOrganizovaniAkciSelected = $selectedFilter === 'organizovani-akci';
 $isSpolupraceSelected = $selectedFilter === 'spoluprace';

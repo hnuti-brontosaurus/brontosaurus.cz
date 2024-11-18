@@ -27,8 +27,8 @@ final class CoursesController implements Controller
 	public function render(): void
 	{
 		// todo: use some WP way of obtaining param
-		$selectedFilter = \filter_input( INPUT_GET, self::FILTER_KEY, FILTER_SANITIZE_STRING ) ?? null;
-		$selectedFilter = $selectedFilter !== null && $selectedFilter !== '' ? $selectedFilter : null;
+		$selectedFilter = \filter_input( INPUT_GET, self::FILTER_KEY ) ?? null;
+		$selectedFilter = $selectedFilter !== null && $selectedFilter !== '' ? \htmlspecialchars($selectedFilter) : null;
 
 		$params = new EventParameters();
 		CoursesFilters::apply($selectedFilter, $params);
