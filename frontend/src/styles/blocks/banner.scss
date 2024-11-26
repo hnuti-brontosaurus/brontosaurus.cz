@@ -46,10 +46,10 @@ $hb-banner-breakpoint: 30em;
 		block-size: 100%;
 		background-color: var(--hb-colors-emphasizing);
 		--hb-block-banner-size-circle: calc(var(--hb-vr-base) * 6);
-		clip-path: circle(var(--hb-block-banner-size-circle) at 50% calc(var(--hb-vr-base) * 0));
+		clip-path: circle(var(--hb-block-banner-size-circle) at 50% calc(var(--hb-vr-base) * 0.5));
 
 		@include hb-banner-horizontal-from() {
-			clip-path: circle(var(--hb-block-banner-size-circle) at calc(var(--hb-vr-base) * 3) calc(var(--hb-vr-base) * 2));
+			clip-path: circle(var(--hb-block-banner-size-circle) at calc(var(--hb-vr-base) * 3) calc(var(--hb-vr-base) * 3));
 		}
 	}
 	&::after {
