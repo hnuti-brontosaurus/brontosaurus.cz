@@ -58,6 +58,7 @@ final class HomepageController implements Controller
 		}
 
 		$params = [
+			'banner' => self::banner(),
 			'aboutCrossroadPageLink' => $this->base->getLinkFor('o-brontosaurovi'),
 			'eventCollection' => $eventCollection,
 		];
@@ -73,6 +74,25 @@ final class HomepageController implements Controller
 			__DIR__ . '/HomepageController.latte',
 			\array_merge($this->base->getLayoutVariables('home'), $params),
 		);
+	}
+
+	private static function banner(): ?\stdCLass
+	{
+		$heading = get_option('homepage-banner_heading');
+		$subheading = get_option('homepage-banner_subheading');
+		$image = get_option('homepage-banner_image');
+		$link = get_option('homepage-banner_link');
+
+		if ($image === '') {
+			return null;
+		}
+
+		return (object) [
+			'heading' => $heading,
+			'subheading' => $subheading ?: null,
+			'image' => $image,
+			'link' => $link ?: null,
+		];
 	}
 
 }

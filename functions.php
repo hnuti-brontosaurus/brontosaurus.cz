@@ -18,6 +18,8 @@ use function wp_get_theme;
 /** @var Container $hb_container */
 $hb_container = require_once __DIR__ . '/bootstrap.php';
 
+require_once __DIR__ . '/homepage-banner.php';
+
 
 (function (Container $container, WP_Theme $theme) {
 

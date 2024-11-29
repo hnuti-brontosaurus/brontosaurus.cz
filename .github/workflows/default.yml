@@ -117,6 +117,7 @@ jobs:
                         -i "functions.php" \
                         -i "header.php" \
                         -i "helpers.php" \
+                        -i "homepage-banner.php" \
                         -i "index.php" \
                         -i "PostTypeInitializer.php" \
                         -i "screenshot.png" \
