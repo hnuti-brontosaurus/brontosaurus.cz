@@ -2,19 +2,21 @@
 
 {block content}
 <main class="homepage" role="main">
-	{capture $path}https://brontosaurus.cz/wp-content/uploads/2024/11/mikulcicky-luh-upravena.jpg{/capture}
-	<a class="hb-block-banner hb-mbe-5" href="https://darkyprirode.cz" rel="noopener" style="--hb-block-banner-background-url: url({$path|noescape})">
+	{if $banner !== null}
+	{var $tag = $banner->link !== null ? 'a' : 'div'}
+	<{$tag} class="hb-block-banner hb-mbe-5" {if $banner->link !== null}href="{$banner->link}" rel="noopener"{/if} style="--hb-block-banner-background-url: url({$banner->image|noescape})">
 		<div class="hb-block-banner__textContainer">
 			<div class="hb-block-banner__text hb-mbs-3">
-				<div class="hb-fs-xl hb-mbe-2 hb-fw-b">Věnuj dárek přírodě</div>
-				<div class="hb-mbe-2">Daruj budku nebo strom</div>
+				<div class="hb-fs-xl hb-mbe-2 hb-fw-b">{$banner->heading}</div>
+				<div class="hb-mbe-2" n:if="$banner->subheading !== null">{$banner->subheading}</div>
 				<span class="hb-block-banner__button hb-block-banner__button--standalone action action--primary action--paw">více info</span>
 				<span class="hb-block-banner__button hb-block-banner__button--inline hb-fs-xs" aria-hidden="true">více info »</span>
 			</div>
 		</div>
-	</a>
+	</{$tag}>
+	{/if}
 
-	<h1 class="homepage-heading">
+	<h1 n:class="'homepage-heading', $banner === null ? 'hb-mbs-4'">
 		Dobrovolnické a zážitkové akce
 	</h1>
 
