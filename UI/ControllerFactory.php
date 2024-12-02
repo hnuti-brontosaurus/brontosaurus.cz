@@ -23,7 +23,6 @@ use HnutiBrontosaurus\Theme\UI\Future\FutureController;
 use HnutiBrontosaurus\Theme\UI\HighSchools\HighSchoolsController;
 use HnutiBrontosaurus\Theme\UI\Homepage\HomepageController;
 use HnutiBrontosaurus\Theme\UI\Meetups\MeetupsController;
-use HnutiBrontosaurus\Theme\UI\Partners\PartnersController;
 use HnutiBrontosaurus\Theme\UI\Preview\PreviewController;
 use HnutiBrontosaurus\Theme\UI\Rentals\RentalsController;
 use HnutiBrontosaurus\Theme\UI\SearchResults\SearchResultsController;
@@ -76,7 +75,6 @@ final class ControllerFactory
 			'hlavni-stranka' => new HomepageController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte),
 			'jedu-poprve' => new FirstTimeController($base, $this->latte),
 			'programy-pro-stredni-skoly' => new HighSchoolsController($base, $this->latte),
-			'nasi-partneri' => new PartnersController($base, $this->latte),
 			FutureController::PAGE_SLUG => new FutureController($this->dateFormatHuman, $this->dateFormatRobot, $this->bisApiClient, $base, $this->latte),
 			AboutStructureController::PAGE_SLUG => new AboutStructureController($this->bisApiClient, $base, $this->latte, $this->coordinatesResolver),
 			EventController::PAGE_SLUG => new EventController($this->dateFormatHuman, $this->dateFormatRobot, $this->applicationUrlTemplate, $this->bisApiClient, $base, $this->latte),
