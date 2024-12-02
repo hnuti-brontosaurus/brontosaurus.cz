@@ -4,7 +4,7 @@
 <main class="homepage" role="main">
 	{if $banner !== null}
 	{var $tag = $banner->link !== null ? 'a' : 'div'}
-	<{$tag} class="hb-block-banner hb-mbe-5" {if $banner->link !== null}href="{$banner->link}" rel="noopener"{/if} style="--hb-block-banner-background-url: url({$banner->image|noescape})">
+	<{$tag} class="hb-block-banner hb-mbs-2 hb-mbe-5" {if $banner->link !== null}href="{$banner->link}" rel="noopener"{/if} style="--hb-block-banner-background-url: url({$banner->image|noescape})">
 		<div class="hb-block-banner__textContainer">
 			<div class="hb-block-banner__text hb-mbs-3">
 				<div class="hb-fs-xl hb-mbe-2 hb-fw-b">{$banner->heading}</div>
