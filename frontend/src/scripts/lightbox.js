@@ -1,4 +1,3 @@
-// @ts-ignore no types
 import GLightbox from 'glightbox';
 
 document.addEventListener('DOMContentLoaded', () => {

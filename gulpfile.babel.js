@@ -18,7 +18,7 @@ const buildScriptsTask = (cb) => {
 		{
 			distFileName: 'index.js',
 			distPath: paths.scripts.detail.dist, // folder to save the compiled js file into
-			sourceFileName: 'index.ts',
+			sourceFileName: 'index.js',
 			sourcePath: paths.scripts.detail.src,
 		},
 		{
@@ -42,19 +42,19 @@ const buildScriptsTask = (cb) => {
 		{
 			distFileName: 'lazyLoad.js',
 			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
-			sourceFileName: 'lazyLoad.ts',
+			sourceFileName: 'lazyLoad.js',
 			sourcePath: paths.scripts.global.src,
 		},
 		{
 			distFileName: 'lightbox.js',
 			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
-			sourceFileName: 'lightbox.ts',
+			sourceFileName: 'lightbox.js',
 			sourcePath: paths.scripts.global.src,
 		},
 		{
 			distFileName: 'menuHandler.js',
 			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
-			sourceFileName: 'menuHandler.ts',
+			sourceFileName: 'menuHandler.js',
 			sourcePath: paths.scripts.global.src,
 		},
 		{

@@ -1,4 +1,4 @@
-export default (document: Document) => {
+export default (document) => {
 	let flashMessageElement = document.querySelector('.detail__flashMessage');
 	if (flashMessageElement === null) {
 		return;
@@ -10,6 +10,6 @@ export default (document: Document) => {
 	}
 
 	closeButtonElement.addEventListener('click', () => {
-		flashMessageElement!.classList.add('detail__flashMessage--hidden'); // definitely is there
+		flashMessageElement.classList.add('detail__flashMessage--hidden');
 	});
 }
