@@ -18,7 +18,7 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-task-listing": "^1.1.0",
     "gulp-uglify": "^3.0.2",
-    "patch-package": "^6.2.2",
+    "patch-package": "^8.0.0",
     "postinstall-prepare": "^2.0.0",
     "sass": "^1.42.1",
     "tsify": "^5.0.2",
