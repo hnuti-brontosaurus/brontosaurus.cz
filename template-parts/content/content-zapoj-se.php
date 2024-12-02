@@ -284,15 +284,15 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 
 			<ul class="hb-ta-c" style="list-style-type: none">
 				<li><strong>Praha:</strong>
-					Rostislav Konůpka,
-					<a href="tel:+420722561150" rel="noopener noreferrer" target="_blank">722 561 150</a>,
+					Jakub Hájek,
+					<a href="tel:+420728344633" rel="noopener noreferrer" target="_blank">728 344 633</a>,
 					<a href="mailto:praha@brontosaurus.cz" rel="noopener noreferrer" target="_blank">praha@brontosaurus.cz</a>
 				</li>
 
 				<li><strong>Brno:</strong>
-					Tereza Opravilová,
-					<a href="tel:+420736720568" rel="noopener noreferrer" target="_blank">736 720 568</a>,
-					<a href="mailto:akce-priroda@brontosaurus.cz" rel="noopener noreferrer" target="_blank">akce-priroda@brontosaurus.cz</a>
+					Hana Rosová,
+					<a href="tel:+420734392735" rel="noopener noreferrer" target="_blank">734 392 735</a>,
+					<a href="mailto:hnuti@brontosaurus.cz" rel="noopener noreferrer" target="_blank">hnuti@brontosaurus.cz</a>
 				</li>
 
 				<li><strong>Podluží:</strong>
