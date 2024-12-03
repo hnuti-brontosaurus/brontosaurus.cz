@@ -6,6 +6,7 @@ import taskList from 'gulp-task-listing';
 import {paths} from './gulp/constants.js';
 import buildImages from './gulp/build-images.js';
 import buildScripts from './gulp/build-scripts.js';
+import copyScripts from './gulp/copy-scripts.js';
 import buildStyles from './gulp/build-styles.js';
 import buildWebfonts from './gulp/build-webfonts.js';
 import {getSourcePathFromPathObject} from './gulp/utils.js';
@@ -16,27 +17,43 @@ import {getSourcePathFromPathObject} from './gulp/utils.js';
 const buildScriptsTask = (cb) => {
 	buildScripts(cb, [
 		{
-			distFileName: 'index.js',
-			distPath: paths.scripts.detail.dist, // folder to save the compiled js file into
-			sourceFileName: 'index.js',
-			sourcePath: paths.scripts.detail.src,
-		},
-		{
 			distFileName: 'administrativeUnitsMap.js',
 			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
 			sourceFileName: 'index.ts',
 			sourcePath: paths.scripts.global.src + '/administrativeUnitsMap',
 		},
 		{
-			distFileName: 'editor.js',
-			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
-			sourceFileName: 'editor.js',
-			sourcePath: paths.scripts.global.src,
-		},
-		{
 			distFileName: 'expandable.js',
 			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
 			sourceFileName: 'expandable.ts',
+			sourcePath: paths.scripts.global.src,
+		},
+		{
+			distFileName: 'references.js',
+			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
+			sourceFileName: 'index.ts',
+			sourcePath: paths.scripts.global.src + '/references',
+		},
+	]);
+};
+
+gulp.task('build:scripts', gulp.series(buildScriptsTask));
+gulp.task('watch:scripts', gulp.series(buildScriptsTask, () => {
+	gulp.watch(getSourcePathFromPathObject(paths.scripts).map((path) => path + '/**/*.ts'), gulp.series(buildScriptsTask));
+}));
+
+const copyScriptsTask = (cb) => {
+	copyScripts(cb, [
+		{
+			distFileName: 'index.js',
+			distPath: paths.scripts.detail.dist, // folder to save the compiled js file into
+			sourceFileName: 'index.js',
+			sourcePath: paths.scripts.detail.src,
+		},
+		{
+			distFileName: 'editor.js',
+			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
+			sourceFileName: 'editor.js',
 			sourcePath: paths.scripts.global.src,
 		},
 		{
@@ -57,18 +74,12 @@ const buildScriptsTask = (cb) => {
 			sourceFileName: 'menuHandler.js',
 			sourcePath: paths.scripts.global.src,
 		},
-		{
-			distFileName: 'references.js',
-			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
-			sourceFileName: 'index.ts',
-			sourcePath: paths.scripts.global.src + '/references',
-		},
 	]);
 };
 
-gulp.task('build:scripts', gulp.series(buildScriptsTask));
-gulp.task('watch:scripts', gulp.series(buildScriptsTask, () => {
-	gulp.watch(getSourcePathFromPathObject(paths.scripts).map((path) => path + '/**/*.{ts,js}'), gulp.series(buildScriptsTask));
+gulp.task('copy:scripts', gulp.series(copyScriptsTask));
+gulp.task('watch:copyScripts', gulp.series(copyScriptsTask, () => {
+	gulp.watch(getSourcePathFromPathObject(paths.scripts).map((path) => path + '/**/*.js'), gulp.series(copyScriptsTask));
 }));
 
 
@@ -134,10 +145,14 @@ gulp.task('watch:images', gulp.series(buildImagesTask, () => {
 
 // HELPERS
 
+// todo: finish USER in docker, maybe yarn will be then available for www-data
+// todo: then try these things
+
 gulp.task('help', taskList);
 
 gulp.task('watch', gulp.parallel(
 	'watch:scripts',
+	'watch:copyScripts',
 	'watch:styles',
 	'watch:webfonts',
 	'watch:images',
@@ -145,6 +160,7 @@ gulp.task('watch', gulp.parallel(
 
 gulp.task('build', gulp.parallel(
 	'build:scripts',
+	'copy:scripts',
 	'build:styles',
 	'build:webfonts',
 	'build:images',
