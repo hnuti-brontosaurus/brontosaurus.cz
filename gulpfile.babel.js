@@ -23,12 +23,6 @@ const buildScriptsTask = (cb) => {
 			sourcePath: paths.scripts.global.src + '/administrativeUnitsMap',
 		},
 		{
-			distFileName: 'expandable.js',
-			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
-			sourceFileName: 'expandable.ts',
-			sourcePath: paths.scripts.global.src,
-		},
-		{
 			distFileName: 'references.js',
 			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
 			sourceFileName: 'index.ts',
@@ -54,6 +48,12 @@ const copyScriptsTask = (cb) => {
 			distFileName: 'editor.js',
 			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
 			sourceFileName: 'editor.js',
+			sourcePath: paths.scripts.global.src,
+		},
+		{
+			distFileName: 'expandable.js',
+			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
+			sourceFileName: 'expandable.js',
 			sourcePath: paths.scripts.global.src,
 		},
 		{

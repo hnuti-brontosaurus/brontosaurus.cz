@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', () =>
-	document.querySelectorAll<HTMLElement>('.hb-expandable').forEach(rootEl =>
+	document.querySelectorAll('.hb-expandable').forEach(rootEl =>
 		initializeExpandable(rootEl)));
 
-const initializeExpandable = (rootEl: HTMLElement) => {
-	const togglerEl = rootEl.querySelector<HTMLElement>('[data-hb-expandable-toggler]');
+const initializeExpandable = (rootEl) => {
+	const togglerEl = rootEl.querySelector('[data-hb-expandable-toggler]');
 	if (togglerEl === null) {
 		throw new Error('Toggler element is not set. Check that you have "data-hb-expandable-toggler" attribute set on your toggling button');
 	}
 
-	const contentEl = rootEl.querySelector<HTMLElement>('[data-hb-expandable-content]');
+	const contentEl = rootEl.querySelector('[data-hb-expandable-content]');
 	if (contentEl === null) {
 		throw new Error('Expanding content element is not set. Check that you have "data-hb-expandable-content" attribute set on element you want to expand');
 	}
@@ -18,12 +18,7 @@ const initializeExpandable = (rootEl: HTMLElement) => {
 	initializeToggler(togglerEl, root);
 }
 
-interface RootApi {
-	toggleExpanded: () => void,
-	removeResizeListener: () => void,
-}
-
-const initializeRoot = (el: HTMLElement, content: ContentApi): RootApi => {
+const initializeRoot = (el, content) => {
 	const ExpandedSelector = 'hb-expandable--expanded';
 
 	const shouldExpandOnStart = () => !! el.dataset.hbExpandableExpanded
@@ -52,7 +47,7 @@ const initializeRoot = (el: HTMLElement, content: ContentApi): RootApi => {
 	};
 }
 
-const initializeToggler = (el: HTMLElement, root: RootApi) => {
+const initializeToggler = (el, root) => {
 	const onClick = () => {
 		root.toggleExpanded();
 
@@ -66,15 +61,10 @@ const initializeToggler = (el: HTMLElement, root: RootApi) => {
 	el.addEventListener('click', onClick);
 }
 
-interface ContentApi {
-	updateHeight: () => void,
-	removeHeight: () => void,
-}
-
-const initializeContent = (el: HTMLElement): ContentApi => {
-	const countRealHeightOf = (el: HTMLElement): number => {
-		const paddingTop = parseInt(window.getComputedStyle(el).paddingTop!); // there should be always something; parseInt() strips `px` from the end of the string and removes floating stuff as well
-		const paddingBottom = parseInt(window.getComputedStyle(el).paddingBottom!); // there should be always something; parseInt() strips `px` from the end of the string and removes floating stuff as well
+const initializeContent = (el) => {
+	const countRealHeightOf = (el) => {
+		const paddingTop = parseInt(window.getComputedStyle(el).paddingTop); // there should be always something; parseInt() strips `px` from the end of the string and removes floating stuff as well
+		const paddingBottom = parseInt(window.getComputedStyle(el).paddingBottom); // there should be always something; parseInt() strips `px` from the end of the string and removes floating stuff as well
 		return el.scrollHeight + paddingTop + paddingBottom;
 	}
 
