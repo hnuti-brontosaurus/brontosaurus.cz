@@ -1,19 +1,12 @@
 .prilezitost {
-	&__noResults {
-		margin-bottom: calc(var(--hb-vr-base) * 4);
-	}
-
 	h1 {
 		margin-block-end: 0;
 		line-height: 1.1;
 	}
 
-	&__heading {
-		margin-inline-end: calc(var(--hb-vr-base) * 0.5);
-	}
 	&__labels {
 		vertical-align: middle;
-		margin-inline-start: calc(var(--hb-vr-base) * -0.25);
+		margin-inline-start: -0.25rlh;
 		justify-content: center;
 
 		@media ($typography-breakpoint-small-until) {
@@ -31,7 +24,7 @@
 	}
 
 	&__top {
-		margin-block-start: var(--hb-vr-base);
+		margin-block-start: 1rlh;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -44,14 +37,14 @@
 		}
 		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
 			flex-direction: row;
-			gap: var(--hb-vr-base);
+			gap: 1rlh;
 			align-items: center;
 		}
 		@media ($typography-breakpoint-small-until) {
 			max-width: 30rem;
 		}
 		@media ($typography-breakpoint-large-from) {
-			margin-block-start: calc(var(--hb-vr-base) * 2);
+			margin-block-start: 2rlh;
 			max-width: 35rem;
 			min-height: 15rem;
 			margin-inline: auto;
@@ -84,7 +77,7 @@
 	}
 
 	&__basic {
-		padding: var(--hb-vr-base);
+		padding: 1rlh;
 
 		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
 			order: -1;
@@ -95,7 +88,7 @@
 		@media ($header-breakpoint-navigationHiddenToVisible-hidden-until), ($typography-breakpoint-large-from) {
 			display: grid;
 			grid-template-columns: auto auto;
-			gap: calc(var(--hb-vr-base) * 0.5) calc(var(--hb-vr-base) * 1);
+			gap: 0.5rlh 1rlh;
 		}
 
 		dt {
@@ -103,7 +96,7 @@
 
 			@media ($header-breakpoint-navigationHiddenToVisible-visible-from) and ($typography-breakpoint-small-until) {
 				&:not(:first-child) {
-					margin-block-start: calc(var(--hb-vr-base) * 0.5);
+					margin-block-start: 0.5rlh;
 				}
 			}
 			@media ($header-breakpoint-navigationHiddenToVisible-hidden-until), ($typography-breakpoint-large-from) {
@@ -113,7 +106,7 @@
 	}
 
 	section {
-		margin-block-start: calc(var(--hb-vr-base) * 2);
+		margin-block-start: 2rlh;
 
 		@media ($detail-breakpoint-large-from) {
 			max-width: 60ch;
@@ -125,7 +118,7 @@
 	}
 
 	p:not(:last-child) {
-		margin-block-end: calc(var(--hb-vr-base) * 0.5);
+		margin-block-end: 0.5rlh;
 	}
 
 	address {
@@ -134,8 +127,8 @@
 
 	&__contact {
 		background-color: var(--hb-colors-tinge);
-		padding: calc(var(--hb-vr-base));
-		margin-inline: calc(var(--hb-vr-base) * -1) !important; // overwrite more generic rule from above
+		padding: 1rlh;
+		margin-inline: -1rlh !important; // overwrite more generic rule from above
 
 		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
 			border-radius: 2rem;
@@ -147,7 +140,7 @@
 		@media ($typography-breakpoint-large-from) {
 			flex-direction: column;
 			text-align: center;
-			padding-block: calc(var(--hb-vr-base) * 2);
+			padding-block: 2rlh;
 		}
 
 		dt {
@@ -161,7 +154,7 @@
 
 		dd {
 			&:not(:last-child) {
-				margin-block-end: calc(var(--hb-vr-base) * 0.25);
+				margin-block-end: 0.25rlh;
 			}
 		}
 	}
@@ -169,7 +162,7 @@
 	&__phone {
 		display: inline-flex;
 		align-items: center;
-		gap: calc(var(--hb-vr-base) * 0.25);
+		gap: 0.25rlh;
 
 		&::before {
 			content: "";

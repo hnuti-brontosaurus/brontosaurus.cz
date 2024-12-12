@@ -1,10 +1,10 @@
 .newsletter {
 	background-color: lighten($colors-tinge, 3);
-	padding: vr-unit(2) vr-unit(1);
+	padding: 2rlh 1rlh;
 	text-align: center;
 
 	&__heading {
-		margin-bottom: vr-unit(1);
+		margin-block-end: 1rlh;
 	}
 
 	// note that selectors below highly depend on code generated on Ecomail side
@@ -29,7 +29,7 @@
 			flex-direction: row;
 			justify-content: center;
 			align-items: center;
-			gap: vr-unit(0.5);
+			gap: 0.5rlh;
 			flex-wrap: wrap;
 		}
 		.ec-v-form-input {
@@ -46,7 +46,7 @@
 			font-size: 1.6em !important;
 			font-family: $fonts-delm !important;
 			font-weight: $fonts-delm-weight-regular !important;
-			padding: vr-unit(0.5) vr-unit(1) calc(#{vr-unit(0.5)} - 7px) !important;
+			padding: 0.5rlh 1rlh calc(0.5rlh - 7px) !important;
 		}
 		input[type=email] {
 			text-align: left;
@@ -54,7 +54,7 @@
 		input[type=submit],
 		button[type=submit] {
 			text-transform: uppercase !important;
-			padding-right: vr-unit(2) !important;
+			padding-inline-end: 2rlh !important;
 
 			svg circle {
 				stroke: white;
@@ -82,7 +82,7 @@
 	}
 
 	&__socials {
-		padding-top: vr-unit(1);
+		padding-block-start: 1rlh;
 	}
 
 	&__instagramLink,

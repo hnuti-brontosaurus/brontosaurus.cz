@@ -8,31 +8,29 @@
 	* + p,
 	* + figure,
 	* + .wp-block-columns {
-		margin-block-start: vr-unit(1);
+		margin-block-start: 1rlh;
 	}
 
 	.wp-block-columns {
 		display: grid;
-		grid-gap: vr-unit(1);
+		grid-gap: 1rlh;
 		grid-template-columns: 1fr;
 		justify-content: center;
 		max-width: 28rem;
 
 		@media (min-width: 40.001em) and ($typography-breakpoint-small-until) {
-			margin-left: -#{vr-unit(1)};
-			margin-right: -#{vr-unit(1)};
-			max-width: calc(28rem + #{vr-unit(2)});
+			margin-inline: -1rlh;
+			max-width: calc(28rem + 2rlh);
 		}
 		@media ($typography-breakpoint-large-from) {
 			grid-template-columns: 1fr 1fr;
-			margin-left: auto;
-			margin-right: auto;
+			margin-inline: auto;
 			max-width: 40rem;
 		}
 
 		.wp-block-column {
 			grid-column-start: span 2;
-			margin-left: revert;
+			margin-inline-start: revert;
 
 			@media ($typography-breakpoint-large-from) {
 				grid-column-start: span 1;

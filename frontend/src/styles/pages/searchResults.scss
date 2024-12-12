@@ -1,17 +1,15 @@
 .searchResults {
 	&__form-wrapper {
-		margin-bottom: vr-unit(0.5);
-		margin-left: -#{vr-unit(2)};
-		margin-right: -#{vr-unit(2)};
-		padding: vr-unit(1) vr-unit(2);
+		margin-block-end: 0.5rlh;
+		margin-inline: -2rlh;
+		padding: 1rlh 2rlh;
 		background-color: $colors-tinge;
 	}
 
 	&__form,
 	&__results {
 		max-width: 28rem;
-		margin-left: auto;
-		margin-right: auto;
+		margin-inline: auto;
 	}
 
 
@@ -26,15 +24,15 @@
 	}
 
 	.gs-webResult.gs-result {
-		padding: vr-unit(1) !important;
+		padding: 1rlh !important;
 		border: 1px solid $colors-tinge !important;
 		border-radius: 2em !important;
 		box-shadow: 1px 4px 5px $colors-tinge !important;
 
 		a.gs-title,
 		.gs-snippet {
-			padding-left: 0 !important;
-			padding-right: 0 !important;
+			padding-inline-start: 0 !important;
+			padding-inline-end: 0 !important;
 			font-family: $fonts-delm !important;
 			font-weight: $fonts-delm-weight-regular !important;
 		}
@@ -72,7 +70,7 @@
 		}
 
 		.gs-image-box {
-			margin-right: #{vr-unit(0.25)};
+			margin-inline-end: 0.25rlh;
 		}
 
 		.gs-snippet {

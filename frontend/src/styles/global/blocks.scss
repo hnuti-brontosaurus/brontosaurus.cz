@@ -33,7 +33,7 @@
 	&::after {
 		content:"";
 		display: block;
-		margin-top: -3px;
+		margin-block-start: -3px;
 		inline-size: 3rem;
 		block-size: 1px;
 		background-color: var(--hb-colors-emphasizing);

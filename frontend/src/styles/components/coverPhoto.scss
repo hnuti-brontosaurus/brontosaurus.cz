@@ -2,8 +2,7 @@
 	display: none; // hide by default, enable in particular case
 	min-height: var(--coverPhoto-height);
 	max-width: 75em;
-	margin-left: auto;
-	margin-right: auto;
+	margin-inline: auto;
 
 	--coverPhoto-height: 10em;
 
@@ -12,12 +11,10 @@
 	}
 	@media (min-width: 75.001em) {
 		border-radius: 2em;
-		margin-left: vr-unit(1);
-		margin-right: vr-unit(1);
+		margin-inline: 1rlh;
 	}
 	@media (min-width: 115.001em) {
-		margin-left: auto;
-		margin-right: auto;
+		margin-inline: auto;
 	}
 
 
@@ -140,14 +137,14 @@
 		}
 		&::after {
 			display: block;
-			top: vr-unit(1);
+			top: 1rlh;
 			position: absolute;
 			color: #fff;
 			font-size: 1.4em;
 			font-weight: bold;
 
 			@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-				top: vr-unit(3);
+				top: 3rlh;
 				font-size: 1.7em;
 			}
 		}
@@ -180,11 +177,11 @@
 		&::after {
 			content: "Dobrý pocit z\00a0nových informací";
 			max-width: 6em;
-			left: vr-unit(1);
+			left: 1rlh;
 
 			@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
 				max-width: 7em;
-				left: vr-unit(2);
+				left: 2rlh;
 			}
 		}
 	}
@@ -218,11 +215,11 @@
 		}
 		&::after {
 			content: "Dobrý pocit sdílený s\00a0přáteli";
-			left: vr-unit(1);
+			left: 1rlh;
 			max-width: 6em;
 
 			@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-				left: vr-unit(2);
+				left: 2rlh;
 			}
 		}
 	}
@@ -255,10 +252,10 @@
 		&::after {
 			content: "Dobrý pocit pro\00a0 děti";
 			max-width: 6em;
-			left: vr-unit(1);
+			left: 1rlh;
 
 			@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-				left: vr-unit(2);
+				left: 2rlh;
 			}
 		}
 	}
@@ -286,14 +283,14 @@
 	&--voluntary,
 	&--firsttime {
 		&::after {
-			right: vr-unit(1);
+			right: 1rlh;
 			text-align: right;
 			max-width: 6em;
 			font-size: 1.2em;
 
 			@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-				top: vr-unit(2);
-				right: vr-unit(2);
+				top: 2rlh;
+				right: 2rlh;
 				max-width: 6em;
 				font-size: 1.5em;
 			}
@@ -337,14 +334,14 @@
 
 		&::after {
 			content: "Dobrý pocit z\00a0maličkostí";
-			right: vr-unit(1);
-			top: vr-unit(2);
+			right: 1rlh;
+			top: 2rlh;
 			max-width: 6em;
 			text-align: right;
 
 			@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-				top: vr-unit(3);
-				right: vr-unit(2);
+				top: 3rlh;
+				right: 2rlh;
 			}
 		}
 	}

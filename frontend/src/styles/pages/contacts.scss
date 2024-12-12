@@ -1,12 +1,6 @@
 .contacts {
-	&__introduction {
-		@include block-text();
-	}
-
 	&__box {
 		max-inline-size: 35rem;
-		margin-inline: auto;
-		margin-block-end: 1rlh;
 		display: grid;
 		grid-template-areas:
 			"map"
@@ -14,7 +8,6 @@
 			"openingHours";
 		grid-template-columns: 100%;
 		grid-template-rows: 30vh auto auto;
-		border-radius: 2em;
 		overflow: hidden;
 
 		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
@@ -28,16 +21,12 @@
 
 	&__boxInner {
 		grid-area: contacts;
-		font-style: normal;
-		background-color: $colors-tinge;
-		padding: 2rlh;
 		font-size: 0.9em;
+		font-style: normal;
 	}
 
 	&__map {
 		grid-area: map;
-		inline-size: 100%;
-		block-size: 100%;
 	}
 
 	&__boxItem {
@@ -74,51 +63,21 @@
 		}
 	}
 
-	&__subheading {
-		@include screenreaders-only();
-	}
-
-	&__phoneNumber {
-		display: block;
-	}
-
 	&__openingHours {
 		grid-area: openingHours;
-		background-color: $colors-tinge;
-		padding: 1rlh 2rlh 2rlh;
 	}
 	&__openingDays {
 		font-size: 0.9em;
 		line-height: 1.2;
-
-		span {
-			font-weight: bold;
-		}
 	}
 
 	&__invoicing,
 	&__accounts {
-		@include block-text();
 		font-size: 0.85em;
-	}
-
-	&__people {
-		max-inline-size: 40rem;
-		margin: 0 auto 2rlh;
-
-		@media ($typography-breakpoint-small-until) {
-			clear: right;
-		}
-		@media ($typography-breakpoint-large-from) {
-			display: flex;
-			justify-content: space-between;
-			flex-direction: row;
-		}
 	}
 
 	&__imageWrapper {
 		@media ($typography-breakpoint-small-until) {
-			float: right;
 			max-inline-size: 33vw;
 			margin-inline-start: 0.5rlh;
 
@@ -140,20 +99,11 @@
 
 	&__image {
 		border-radius: 23% / 25%;
-		margin-block-end: 0.5rlh;
-		max-inline-size: 100%;
-
-		@media ($typography-breakpoint-large-from) {
-			margin-block-end: 0;
-		}
 	}
 
 	&__description {
 		@media ($typography-breakpoint-large-from) {
 			flex-basis: 47%;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
 		}
 	}
 
@@ -164,8 +114,6 @@
 	}
 
 	&__mail {
-		padding-inline-start: 1rlh;
-
 		&::before {
 			display: block;
 			content: "";

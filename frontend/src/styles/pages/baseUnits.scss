@@ -1,30 +1,11 @@
 .baseUnits {
-	max-width: 40rem;
-	margin-left: auto;
-	margin-right: auto;
-
-	&__list {
-		list-style-type: none;
-	}
-
-	&__unit {
-		&:not(:last-child) {
-			margin-bottom: vr-unit(2);
-		}
-	}
-
-	&__unitName {
-		text-align: left !important;
-	}
-
 	&__contact {
-		margin-left: -0.2rem;
+		margin-inline-start: -0.2rem;
 	}
 
 	&__address,
 	&__website,
 	&__emailAddress {
-		padding-left: vr-unit(1);
 		position: relative;
 
 		&::before {

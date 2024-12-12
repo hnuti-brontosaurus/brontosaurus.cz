@@ -2,7 +2,7 @@
 
 {block content}
 <main class="future" role="main">
-	<h1 class="future-heading">
+	<h1 class="hb-ta-c hb-mbe-4">
 		Co se&nbsp;děje u&nbsp;Brontosaurů?
 	</h1>
 
@@ -13,12 +13,12 @@
 			Zkuste&nbsp;to prosím za&nbsp;chvilku znovu.
 		</div>
 	{else}
-		<div class="future-events events" n:inner-foreach="$months as $month">
-			<h2 class="future-events-heading">
+		<div class="events" n:inner-foreach="$months as $month">
+			<h2 class="hb-ta-c hb-tt-u hb-mbe-4">
 				{$month->monthNumber|convertMonthNumberToName}
 			</h2>
 
-			<div class="future-events-list hb-eventList">
+			<div class="future__eventList hb-eventList">
 				{include '../components/eventList.latte', eventCollection => $month->events, inFutureView => TRUE}
 			</div>
 		</div>

@@ -11,27 +11,12 @@ $highschool-breakpoint-contactPerson-oneToTwoColumns: 30em;
 }
 
 .highschool {
-	&__introduction {
-		@include block-text();
-		margin-bottom: vr-unit(2);
-	}
-
-	&__blocks {
-		margin-bottom: vr-unit(2);
-
-		@media ($typography-breakpoint-large-from) {
-			max-width: 40rem;
-			margin-left: auto;
-			margin-right: auto;
-		}
-	}
-
 	&__block {
 		&:not(:last-child) {
-			margin-bottom: vr-unit(1);
+			margin-block-end: 1rlh;
 
 			@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-				margin-bottom: vr-unit(2);
+				margin-block-end: 2rlh;
 			}
 		}
 	}
@@ -42,14 +27,13 @@ $highschool-breakpoint-contactPerson-oneToTwoColumns: 30em;
 
 	&__price {
 		font-weight: bold;
-		padding-top: vr-unit(1);
+		padding-block-start: 1rlh;
 	}
 
 	&__callToAction {
 		max-width: 28rem;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: vr-unit(1);
+		margin-inline: auto;
+		margin-block-end: 1rlh;
 
 		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
 			text-align: center;
@@ -58,8 +42,7 @@ $highschool-breakpoint-contactPerson-oneToTwoColumns: 30em;
 
 	&__contactPerson {
 		max-width: 28rem;
-		margin-left: auto;
-		margin-right: auto;
+		margin-inline: auto;
 		display: flex;
 		flex-direction: column;
 		flex-wrap: wrap;
@@ -76,7 +59,7 @@ $highschool-breakpoint-contactPerson-oneToTwoColumns: 30em;
 	&__contactPersonImage {
 		max-width: 7rem;
 		border-radius: 23% / 25%;
-		margin-right: vr-unit(1);
+		margin-inline-end: 1rlh;
 
 		@include highschool-breakpoint-contactPerson-oneColumn-until () {
 			order: 1;
@@ -88,7 +71,7 @@ $highschool-breakpoint-contactPerson-oneToTwoColumns: 30em;
 		flex-direction: column;
 
 		@include highschool-breakpoint-contactPerson-oneColumn-until () {
-			margin-bottom: vr-unit(0.5);
+			margin-block-end: 0.5rlh;
 		}
 	}
 

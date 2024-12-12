@@ -16,8 +16,7 @@
 		display: flex;
 		width: 80vw; // take 80 % of viewport (to have some space for close button)
 		max-width: 28rem; // but respect an upper limit
-		margin-left: auto;
-		margin-right: auto;
+		margin-inline: auto;
 		position: relative; // because of absolutely positioned close button element
 	}
 
@@ -37,16 +36,16 @@
 		}
 
 		.gsib_a {
-			padding-left: 15px !important;
-			padding-bottom: 0 !important;
+			padding-inline-start: 15px !important;
+			padding-block-end: 0 !important;
 		}
 
 		.gsst_b {
-			padding-top: 4px !important;
+			padding-block-start: 4px !important;
 		}
 
 		.gsst_a {
-			padding-right: 10px !important;
+			padding-inline-end: 10px !important;
 		}
 
 		table.gsc-input {
@@ -57,7 +56,7 @@
 			> tbody > tr {
 				display: flex !important;
 				align-items: center !important;
-				gap: vr-unit(0.25) !important;
+				gap: 0.25rlh !important;
 
 				> td.gsc-input {
 					flex-grow: 1 !important;
@@ -88,7 +87,7 @@
 			@extend .button;
 			@extend .button--primary;
 			border-radius: 2em !important;
-			padding: vr-unit(0.5) vr-unit(1) calc(#{vr-unit(0.5)} - 0.35em) !important;
+			padding: 0.5rlg 1rlh calc(0.5rlh - 0.35em) !important;
 			font-size: 1.6em !important;
 			height: 100% !important;
 
@@ -105,10 +104,10 @@
 
 	&__closeButton {
 		position: absolute;
-		right: -#{vr-unit(2)};
+		right: -2rlh;
 		top: 50%;
 		transform: translateY(-50%);
-		padding: vr-unit(1);
+		padding: 1rlh;
 		cursor: pointer;
 		border: none;
 		background-color: transparent;

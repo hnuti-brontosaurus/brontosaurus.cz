@@ -1,7 +1,7 @@
 {layout $layoutPath}
 
 {block content}
-<main class="homepage" role="main">
+<main class="homepage hb-mbns-5" role="main">
 	{if $banner !== null}
 	{var $tag = $banner->link !== null ? 'a' : 'div'}
 	<{$tag} class="hb-block-banner hb-mbs-2 hb-mbe-5" {if $banner->link !== null}href="{$banner->link}" rel="noopener"{/if} style="--hb-block-banner-background-url: url({$banner->image|noescape})">
@@ -16,20 +16,20 @@
 	</{$tag}>
 	{/if}
 
-	<h1 n:class="'homepage-heading', $banner === null ? 'hb-mbs-4'">
+	<h1 n:class="$banner === null ? 'hb-mbs-4', 'hb-ta-c', 'hb-mbe-3'">
 		Dobrovolnické a zážitkové akce
 	</h1>
 
-	<p class="homepage-text">
+	<p class="hb-block-text hb-ta-c hb-mi-auto hb-mbe-4">
 		Pojeď na víkendovou nebo prázdninovou akci vstříc novým zážitkům a přátelstvím.
 		Vyraz s námi pomáhat přírodě a památkám u nás i v zahraničí.
 	</p>
 
-	<div class="homepage__featured">
+	<div class="hb-mbe-4">
 		{include '../components/eventList.latte', eventCollection => $eventCollection, smaller => true}
 	</div>
 
-	<div class="homepage__links">
+	<div class="hb-d-f hb-fd-r hb-jc-c hb-ji-c hb-ai-c hb-g-4 hb-mbe-5">
 		<a class="action action--primary action--paw" href="{$voluntaryPageLink}#obsah">
 			zobrazit další
 		</a>
@@ -41,20 +41,20 @@
 </main>
 
 <aside>
-	<div class="homepage-related">
+	<div class="hb-mbe-5">
 		{include '../components/related.latte', excludeVoluntary => TRUE, headingText => 'A&nbsp;to není všechno&hellip;'}
 	</div>
 
-	<section class="homepage-references">
-		<h1 class="homepage-references-heading">
+	<section>
+		<h1 class="hb-mbe-3">
 			Seznamte&nbsp;se s&nbsp;Brontosaurem
 		</h1>
 
-		<div class="homepage-subheading">
+		<div class="homepage__subheading">
 			*&nbsp;1974
 		</div>
 
-		<div class="homepage-references-carousel">
+		<div class="hb-mbe-4">
 			{include '../components/references.latte', link => $aboutCrossroadPageLink}
 		</div>
 

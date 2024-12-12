@@ -33,13 +33,13 @@ try {
 <main role="main">
 	<article class="prilezitost">
 		<?php if ($hasBeenUnableToLoad): ?>
-			<div class="prilezitost__noResults noResults">
+			<div class="noResults hb-mbe-7">
 				Promiňte, zrovna&nbsp;nám vypadl systém, kde&nbsp;máme uloženy všechny informace o&nbsp;plánovaných akcích.
 				Zkuste&nbsp;to prosím za&nbsp;chvilku znovu.
 			</div>
 		<?php else: ?>
 			<h1>
-				<span class="prilezitost__heading"><?php echo $opportunity->getName(); ?></span>
+				<span class="hb-mie-3"><?php echo $opportunity->getName(); ?></span>
 
 				<span class="prilezitost__labels eventLabels">
 					<span class="prilezitost__label eventLabels__item">

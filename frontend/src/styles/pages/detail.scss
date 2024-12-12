@@ -5,44 +5,17 @@ $detail-breakpoint-large-from: "min-width: " + ($detail-breakpoint-mediumToLarge
 .detail {
 	@media ($photogallery-breakpoint-full-from) {
 		max-width: 25em;
-		margin-left: auto;
-		margin-right: auto;
+		margin-inline: auto;
 	}
 	@media ($detail-breakpoint-large-from) {
 		max-width: 40em;
 	}
 
 
-	&__noResults {
-		margin-bottom: vr-unit(4);
-	}
-
-
-	&__heading {
-		margin-bottom: calc(var(--hb-vr-base) * -0.5) !important; // overwrite `.content h1` rule
-		font-variant-caps: small-caps;
-		text-align: center;
-	}
-
-	&__tags {
-		display: flex;
-		justify-content: center;
-	}
-
-
 	// BASIC INFORMATION
 
 	&__top {
-		margin-block-start: calc(var(--hb-vr-base) * 1);
-		display: flex;
-		flex-direction: column;
-		margin-bottom: vr-unit(2);
-		border-radius: 2em;
-		background-color: $colors-tinge;
-
 		@media ($detail-breakpoint-large-from) {
-			flex-direction: row;
-			align-items: center;
 			min-height: 18em;
 		}
 	}
@@ -101,8 +74,6 @@ $detail-breakpoint-large-from: "min-width: " + ($detail-breakpoint-mediumToLarge
 		position: absolute;
 		bottom: 0;
 		right: 0;
-		padding: 0 vr-unit(0.5) vr-unit(0.5);
-		text-align: center;
 	}
 
 	&__basicInformation-wrapper {
@@ -111,7 +82,6 @@ $detail-breakpoint-large-from: "min-width: " + ($detail-breakpoint-mediumToLarge
 
 	&__basicInformation {
 		display: table;
-		margin: vr-unit(1) auto;
 	}
 	&__basicInformation-item {
 		display: table-row;
@@ -121,32 +91,18 @@ $detail-breakpoint-large-from: "min-width: " + ($detail-breakpoint-mediumToLarge
 		display: table-cell;
 		vertical-align: top;
 	}
-	&__basicInformation-label {
-		padding-left: vr-unit(1);
-		padding-right: vr-unit(1);
-		padding-bottom: vr-unit(0.25);
-		font-weight: bold;
-		text-align: right;
-	}
-	&__basicInformation-value {
-		padding-right: vr-unit(1);
-	}
+
 	&__basicInformation-mapLink {
 		background-image: url("../images/icon-link-external-alt.svg");
 		background-position: right 0.2em;
 		background-size: auto 13px;
 		background-repeat: no-repeat;
-		padding-right: calc(13px + #{vr-unit(0.25)});
-	}
-
-	&__basicInformation-priceNoFee {
-		font-style: italic;
+		padding-inline-end: calc(13px + 0.25rlh);
 	}
 
 
 	&__firstTimeAttendeesInformation {
-		padding: vr-unit(1) vr-unit(1) calc(#{vr-unit(1)} - 0.15rem);
-		text-align: center;
+		padding-block-end: calc(1rlh - 0.15rem);
 
 		@media ($detail-breakpoint-medium-until) {
 			border-bottom-right-radius: 2em;
@@ -154,106 +110,20 @@ $detail-breakpoint-large-from: "min-width: " + ($detail-breakpoint-mediumToLarge
 			background-color: $colors-tinge;
 		}
 		@media ($detail-breakpoint-large-from) {
-			margin-bottom: vr-unit(0.5);
-			padding-top: vr-unit(0.5);
+			margin-block-end: 0.5rlh;
+			padding-block-start: 0.5rlh !important;
 		}
 	}
 
-	&__registrationLink {
-		margin-bottom: vr-unit(2);
+	&__data {
+		margin-block-end: 0.75rlh;
 	}
 
-
-	// EXPANDED INFORMATION
-
-	&-program,
-	&-information,
-	&-work,
-	&-example-text,
-	&-team,
-	&-contact,
-	&-promo {
-		max-width: 55ch;
-		margin-left: auto;
-		margin-right: auto;
+	&__website {
+		background-image: url("../images/icon-link-external-alt.svg");
+		background-position: right 0.2em;
+		background-size: auto 10px;
+		background-repeat: no-repeat;
+		padding-inline-end: calc(10px + 0.25rlh);
 	}
-
-	&-program,
-	&-information,
-	&-work,
-	&-team,
-	&-promo {
-		&-paragraph {
-			&:not(:last-child) {
-				margin-bottom: vr-unit(0.5);
-			}
-		}
-	}
-
-	&-program,
-	&-information,
-	&-work,
-	&-team {
-		margin-bottom: vr-unit(1);
-	}
-
-	&-information {
-		&-paragraph {
-			&-link {
-				color: $colors-emphasizing;
-			}
-		}
-
-		&-list {
-			list-style-type: none;
-		}
-	}
-
-	&-example {
-		margin-bottom: vr-unit(1);
-
-		&-text {
-			margin-bottom: vr-unit(0.5);
-		}
-	}
-
-	&-contact {
-		margin-bottom: vr-unit(2);
-
-		&-wrapperButton {
-			text-align: center;
-			margin-bottom: vr-unit(0.5);
-		}
-		&-button {
-			margin-bottom: 0;
-		}
-
-		&-data {
-			margin-bottom: vr-unit(0.75);
-
-			&-website {
-				background-image: url("../images/icon-link-external-alt.svg");
-				background-position: right 0.2em;
-				background-size: auto 10px;
-				background-repeat: no-repeat;
-				padding-right: calc(10px + #{vr-unit(0.25)});
-			}
-		}
-	}
-
-	&-registrationLink-wrapper {
-		margin-bottom: vr-unit(3);
-	}
-
-	&-promo {
-		&-moreLink {
-			margin-top: vr-unit(1);
-		}
-	}
-}
-
-.detail-promo {
-	max-width: 60ch;
-	margin-left: auto;
-	margin-right: auto;
 }

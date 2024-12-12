@@ -1,23 +1,22 @@
 .zapoj-se {
-	padding-bottom: vr-unit(3);
+	padding-block-end: 3rlh;
 
 	&__filters {
-		margin-block-end: vr-unit(1);
+		margin-block-end: 1rlh;
 	}
 
 	&__opportunities {
-		margin-block-end: vr-unit(4);
+		margin-block-end: 4rlh;
 	}
 
 	&__map {
-		margin-block-start: vr-unit(3);
+		margin-block-start: 3rlh;
 		max-width: 40rem;
-		margin-left: auto;
-		margin-right: auto;
-		margin-block-end: vr-unit(2);
+		margin-inline: auto;
+		margin-block-end: 2rlh;
 
 		h2 {
-			margin-block-end: vr-unit(1);
+			margin-block-end: 1rlh;
 		}
 	}
 }
