@@ -1,7 +1,7 @@
 .content {
-	padding: vr-unit(0.5) vr-unit(1) vr-unit(2);
+	padding: 0.5rlh 1rlh 2rlh;
 	.coverPhoto + & {
-		padding-block-start: vr-unit(2);
+		padding-block-start: 2rlh;
 	}
 
 	color: transparentize($colors-text, 0.2);
@@ -10,13 +10,12 @@
 		color: transparentize($colors-text, 0.2);
 
 		&:hover {
-			color: $colors-emphasizing; // same as in defaults
+			color: var(--hb-colors-emphasizing); // same as in defaults
 		}
 	}
 
 	@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-		padding-left: vr-unit(2);
-		padding-right: vr-unit(2);
+		padding-inline: 2rlh;
 	}
 
 	h1 {
@@ -25,8 +24,8 @@
 
 	h2 {
 		font-size: 1.25em;
-		font-weight: $fonts-delm-weight-bold;
-		margin-bottom: vr-unit(0.5);
+		font-weight: 700;
+		margin-block-end: 0.5rlh;
 
 		@media ($typography-breakpoint-large-from) {
 			font-size: 1.5em;
@@ -36,8 +35,8 @@
 
 	h3 {
 		font-size: 1.1em;
-		font-weight: $fonts-delm-weight-regular; // @todo or bold?
-		margin-bottom: vr-unit(0.5);
+		font-weight: 300; // @todo or bold?
+		margin-block-end: 0.5rlh;
 	}
 
 	&__dynamic {

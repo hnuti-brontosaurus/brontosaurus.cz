@@ -1,10 +1,10 @@
 .announcement {
-	padding: vr-unit(0.5) vr-unit(1);
-	background-color: $colors-emphasizing;
+	padding: 0.5rlh 1rlh;
+	background-color: var(--hb-colors-emphasizing);
 	text-align: center;
 
 	&,
 	a {
-		color: $colors-default-background;
+		color: var(--hb-colors-default-background);
 	}
 }

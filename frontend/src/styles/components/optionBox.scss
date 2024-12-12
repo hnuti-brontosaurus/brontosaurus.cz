@@ -3,7 +3,7 @@
 	flex-direction: column;
 	justify-content: space-between;
 	overflow: hidden; // prevent child image overflow given border radius
-	background-color: $colors-tinge;
+	background-color: var(--hb-colors-tinge);
 	border-radius: 2em;
 	text-decoration: none;
 
@@ -12,10 +12,10 @@
 	}
 
 	&__text {
-		padding: vr-unit(1);
+		padding: 1rlh;
 
 		@media ($description-breakpoint-twoColumns-from) {
-			padding: vr-unit(1.5) vr-unit(2);
+			padding: 1.5rlh 2rlh;
 		}
 	}
 

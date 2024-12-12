@@ -1,18 +1,18 @@
 .filters {
 	&.hb-expandable .hb-expandable__toggler {
-		transition: margin-bottom 200ms 50ms ease-in-out;
+		transition: margin-block-end 200ms 50ms ease-in-out;
 
 		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
 			display: none;
 		}
 	}
 	&.hb-expandable--expanded .hb-expandable__toggler {
-		margin-block-end: calc(var(--hb-vr-base) * 0.5);
+		margin-block-end: 0.5rlh;
 	}
 
 	&__list {
 		display: flex;
-		gap: calc(var(--hb-vr-base) * 0.25);
+		gap: 0.25rlh;
 		flex-wrap: wrap;
 		justify-content: center;
 		text-align: center;
@@ -29,16 +29,16 @@
 
 	&__link {
 		display: inline-block;
-		background-color: $colors-links;
+		background-color: var(--hb-colors-links);
 		text-decoration: none;
 
 		&--selected {
-			background-color: $colors-emphasizing !important;
-			color: $colors-default-background !important;
+			background-color: var(--hb-colors-emphasizing) !important;
+			color: var(--hb-colors-default-background) !important;
 		}
 
 		&:active {
-			color: $colors-tinge;
+			color: var(--hb-colors-tinge);
 		}
 	}
 }

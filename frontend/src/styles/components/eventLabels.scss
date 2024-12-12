@@ -3,18 +3,18 @@
 	justify-content: flex-end;
 	align-items: center;
 	flex-wrap: wrap;
-	gap: calc(var(--hb-vr-base) * 0.25);
+	gap: 0.25rlh;
 	font-size: 0.9em;
 
 	&__item {
-		padding: calc(var(--hb-vr-base) * 0.25) calc(var(--hb-vr-base) * 0.5) calc(#{vr-unit(0.25)} - 0.15em);
+		padding: 0.25rlh 0.5rlh calc(0.25rlh - 0.15em);
 		background-color: transparentize($colors-default-background, 0.1);
 		background-repeat: no-repeat;
 		border-radius: 2em;
 
 		&--type {
-			padding-left: calc(var(--hb-vr-base) * 0.5 + 1.25em);
-			background-position: calc(var(--hb-vr-base) * 0.5) center;
+			padding-inline-start: calc(0.5rlh + 1.25em);
+			background-position: 0.5rlh center;
 			background-size: auto 1em;
 		}
 		&--nature {
@@ -22,7 +22,7 @@
 		}
 		&--sights {
 			background-image: url("../images/icon-castle.svg");
-			background-position-x: calc(var(--hb-vr-base) * 0.5 + 0.1em);
+			background-position-x: calc(0.5rlh + 0.1em);
 		}
 	}
 }

@@ -5,7 +5,7 @@
 	<section>
 		<h1>
 			Adoptuj Brontosaura
-			<span class="supportOverview__headingAmendment">a nech za sebou viditelnou stopu!</span>
+			<span class="supportOverview__headingAmendment hb-d-b">a nech za sebou viditelnou stopu!</span>
 		</h1>
 
 		<div class="hb-block-text hb-mbe-3">
@@ -31,7 +31,7 @@
 
 		<div class="references__list" data-references-slides>
 			<div class="references__list-item" n:foreach="$whatWeDo as $item">
-				<div class="hb-option hb-option--imageFirst">
+				<div class="hb-option hb-option--imageFirst hb-jc-fs">
 					<div class="hb-option__text">
 						<div class="hb-option__heading hb-fs-l hb-fw-b hb-mbe-2">
 							{$item->title}
@@ -40,11 +40,11 @@
 						<p class="hb-option__description hb-mbe-2" n:foreach="$item->text as $text">{$text}</p>
 					</div>
 
-					<div class="hb-option__image" style="--hb-option-image: url('{$item->image}')">
+					<div class="hb-option__image hb-br-unset" style="--hb-option-image: url('{$item->image}')">
 
 					</div>
 
-					<div class="hb-option__button" style="align-self: center; margin-block-end: var(--hb-vr-base)">
+					<div class="hb-option__button" style="align-self: center; margin-block-end: 1rlh">
 						<a class="action action--primary" href="https://www.darujme.cz/darovat/525?frequency=monthly&amount={$item->price}&widget=1203034" rel="noopener" target="_blank">
 							<span>Přispět {$item->price} Kč / měs</span>
 						</a>
@@ -60,12 +60,12 @@
 
 	<div class="hb-spacer-5 hb-lg-spacer-6"></div>
 
-	<section class="supportOverview__thanks">
+	<section class="supportOverview__thanks hb-mi-auto">
 		<h1>
 			Co dokážeme s tvou podporou za jeden rok?
 		</h1>
 
-		<ul>
+		<ul class="hb-lst-n hb-jc-c hb-lg-ji-c hb-lg-mi-auto">
 			<li class="icon-tree">postaráme se o 1 500 ptačích budek a vysadíme a opečujeme stovky stromů</li>
 			<li class="icon-people">umožníme 2 200 mladým lidem pomáhat přírodním a historickým památkám</li>
 			<li class="icon-earth">odpracujeme 120 000 dobrovolnických hodin a pomůžeme na 90 místech</li>

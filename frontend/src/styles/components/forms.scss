@@ -26,10 +26,10 @@ form {
 	input[type=email],
 	input[type=tel],
 	textarea {
-		border: 1px solid $colors-emphasizing;
+		border: 1px solid var(--hb-colors-emphasizing);
 		border-radius: 6px;
-		padding: 15px vr-unit(0.5) 2px;
-		background: $form-linear-gradient, $colors-default-background;
+		padding: 15px 0.5rlh 2px;
+		background: $form-linear-gradient, var(--hb-colors-default-background);
 	}
 
 	input[type=text],
@@ -45,7 +45,7 @@ form {
 	input[type=tel]:focus,
 	select:focus,
 	textarea:focus {
-		box-shadow: 0 0 4px $colors-emphasizing;
+		box-shadow: 0 0 4px var(--hb-colors-emphasizing);
 	}
 
 	// radio lists and checkboxes
@@ -63,8 +63,8 @@ form {
 			content: "";
 			height: 20px;
 			width: 20px;
-			border: 2px solid $colors-emphasizing;
-			margin-right: vr-unit(0.5);
+			border: 2px solid var(--hb-colors-emphasizing);
+			margin-inline-end: 0.5rlh;
 			flex-shrink: 0;
 			border-radius: 3px;
 			background: $form-linear-gradient;
@@ -102,10 +102,10 @@ form {
 			border-radius: 50%;
 			height: 20px;
 			width: 20px;
-			border: 2px solid $colors-emphasizing;
+			border: 2px solid var(--hb-colors-emphasizing);
 			flex-shrink: 0;
 			display: inline-block;
-			margin-right: vr-unit(0.5);
+			margin-inline-end: 0.5rlh;
 			transition: box-shadow 100ms ease-out;
 		}
 	}
@@ -117,7 +117,7 @@ form {
 			flex-shrink: 0;
 			width: 12px;
 			height: 12px;
-			background-color: $colors-emphasizing;
+			background-color: var(--hb-colors-emphasizing);
 			border-radius: 50%;
 			position: absolute;
 			top: 4px;
@@ -129,7 +129,7 @@ form {
 	input[type=checkbox]:focus + label,
 	input[type=radio]:focus + label {
 		&::before {
-			box-shadow: 0 0 4px $colors-emphasizing;
+			box-shadow: 0 0 4px var(--hb-colors-emphasizing);
 		}
 	}
 

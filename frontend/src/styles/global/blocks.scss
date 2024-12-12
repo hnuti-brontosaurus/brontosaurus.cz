@@ -1,6 +1,6 @@
 @mixin heading-first-level () {
 	font-size: 1.7em;
-	font-weight: $fonts-delm-weight-bold;
+	font-weight: 700;
 	margin-block-end: 0.5rlh;
 
 	@media ($typography-breakpoint-small-until) {
@@ -33,7 +33,7 @@
 	&::after {
 		content:"";
 		display: block;
-		margin-top: -3px;
+		margin-block-start: -3px;
 		inline-size: 3rem;
 		block-size: 1px;
 		background-color: var(--hb-colors-emphasizing);
@@ -43,5 +43,55 @@
 	}
 	&::after {
 		margin-inline-start: 0.5rlh;
+	}
+}
+
+@mixin hb-content() {
+	ol,
+	p,
+	ul {
+		@include block-text();
+	}
+
+	* + p,
+	* + figure,
+	* + .wp-block-columns {
+		margin-block-start: 1rlh;
+	}
+
+	.wp-block-columns {
+		display: grid;
+		grid-gap: 1rlh;
+		grid-template-columns: 1fr;
+		justify-content: center;
+		max-width: 28rem;
+
+		@media (min-width: 40.001em) and ($typography-breakpoint-small-until) {
+			margin-inline: -1rlh;
+			max-width: calc(28rem + 2rlh);
+		}
+		@media ($typography-breakpoint-large-from) {
+			grid-template-columns: 1fr 1fr;
+			margin-inline: auto;
+			max-width: 40rem;
+		}
+
+		.wp-block-column {
+			grid-column-start: span 2;
+			margin-inline-start: revert;
+
+			@media ($typography-breakpoint-large-from) {
+				grid-column-start: span 1;
+			}
+		}
+	}
+
+	// see editor.js for image styles
+	.wp-block-image {
+		&:not(.is-style-sharp) {
+			img {
+				border-radius: 2em;
+			}
+		}
 	}
 }

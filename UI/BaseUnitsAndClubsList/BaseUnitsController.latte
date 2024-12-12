@@ -2,7 +2,7 @@
 
 {block content}
 <main role="main">
-	<article class="baseUnits">
+	<article class="baseUnits hb-mw-40 hb-mi-auto">
 		<h1>
 			Seznam základních článků a klubů
 		</h1>
@@ -14,22 +14,22 @@
 			</div>
 
 		{else}
-			<ul class="baseUnits__list">
-				<li class="baseUnits__unit" n:foreach="$units as $unit">
-					<h2 class="baseUnits__unitName">{$unit->name}</h2>
+			<ul class="hb-lst-n">
+				<li n:class=" ! $iterator->last ? 'hb-mbe-5'" n:foreach="$units as $unit">
+					<h2 class="hb-ta-l">{$unit->name}</h2>
 
 					<div class="baseUnits__contact">
-						<a class="baseUnits__address" href="https://mapy.cz/?q={$unit->address}" rel="noopener noreferrer" target="_blank">
+						<a class="baseUnits__address hb-pis-4" href="https://mapy.cz/?q={$unit->address}" rel="noopener noreferrer" target="_blank">
 							{$unit->address}
 						</a>
 					</div>
 
 					<div class="baseUnits__contact" n:if="$unit->website">
-						<a class="baseUnits__website" href="{$unit->website}" rel="noopener noreferrer" target="_blank">{$unit->website}</a>
+						<a class="baseUnits__website hb-pis-4" href="{$unit->website}" rel="noopener noreferrer" target="_blank">{$unit->website}</a>
 					</div>
 
 					<div class="baseUnits__contact" n:if="$unit->emailAddress">
-						<a class="baseUnits__emailAddress" href="mailto:{$unit->emailAddress}" rel="noopener noreferrer" target="_blank">{$unit->emailAddress}</a>
+						<a class="baseUnits__emailAddress hb-pis-4" href="mailto:{$unit->emailAddress}" rel="noopener noreferrer" target="_blank">{$unit->emailAddress}</a>
 					</div>
 				</li>
 			</ul>

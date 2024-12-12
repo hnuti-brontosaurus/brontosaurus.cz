@@ -15,8 +15,8 @@
 
 	&__button {
 		position: absolute;
-		inset-block-start: calc(50% - var(--hb-vr-base) * 1);
-		padding: calc(var(--hb-vr-base) * 1);
+		inset-block-start: calc(50% - 1rlh);
+		padding: 1rlh;
 		background-image: url("../images/icon-arrow-right.svg");
 		background-position: center center;
 		background-size: auto 1.5em;
@@ -26,7 +26,7 @@
 		transition: opacity 200ms ease-in-out;
 
 		&--previous {
-			inset-inline-start: calc(var(--hb-vr-base) * -1);
+			inset-inline-start: -1rlh;
 			transform: rotateY(200grad);
 
 			&:active {
@@ -35,7 +35,7 @@
 		}
 
 		&--next {
-			inset-inline-end: calc(var(--hb-vr-base) * -1);
+			inset-inline-end: -1rlh;
 		}
 
 		&--hidden {
@@ -77,7 +77,7 @@
 
 
 	&__dots {
-		margin-block-start: calc(var(--hb-vr-base) * 0.5);
+		margin-block-start: 0.5rlh;
 		display: flex;
 		justify-content: center;
 		gap: 0.2rem;

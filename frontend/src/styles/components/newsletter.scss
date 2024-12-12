@@ -1,10 +1,10 @@
 .newsletter {
 	background-color: lighten($colors-tinge, 3);
-	padding: vr-unit(2) vr-unit(1);
+	padding: 2rlh 1rlh;
 	text-align: center;
 
 	&__heading {
-		margin-bottom: vr-unit(1);
+		margin-block-end: 1rlh;
 	}
 
 	// note that selectors below highly depend on code generated on Ecomail side
@@ -29,7 +29,7 @@
 			flex-direction: row;
 			justify-content: center;
 			align-items: center;
-			gap: vr-unit(0.5);
+			gap: 0.5rlh;
 			flex-wrap: wrap;
 		}
 		.ec-v-form-input {
@@ -44,9 +44,9 @@
 		button[type=submit] {
 			border-radius: 2em !important;
 			font-size: 1.6em !important;
-			font-family: $fonts-delm !important;
-			font-weight: $fonts-delm-weight-regular !important;
-			padding: vr-unit(0.5) vr-unit(1) calc(#{vr-unit(0.5)} - 7px) !important;
+			font-family: "Delm" !important;
+			font-weight: 300 !important;
+			padding: 0.5rlh 1rlh calc(0.5rlh - 7px) !important;
 		}
 		input[type=email] {
 			text-align: left;
@@ -54,7 +54,7 @@
 		input[type=submit],
 		button[type=submit] {
 			text-transform: uppercase !important;
-			padding-right: vr-unit(2) !important;
+			padding-inline-end: 2rlh !important;
 
 			svg circle {
 				stroke: white;
@@ -72,7 +72,7 @@
 	.ec-v-form-text p, // if there is no span from ecomail
 	.ec-v-form-text span // if there is span from ecomail
 	{
-		font-family: $fonts-delm !important;
+		font-family: "Delm" !important;
 		font-size: 1rem !important;
 	}
 
@@ -82,7 +82,7 @@
 	}
 
 	&__socials {
-		padding-top: vr-unit(1);
+		padding-block-start: 1rlh;
 	}
 
 	&__instagramLink,
@@ -94,11 +94,11 @@
 		padding: 1em;
 		border-radius: 2em;
 		text-decoration: none;
-		background-color: $colors-tinge;
+		background-color: var(--hb-colors-tinge);
 		transition: background-color 200ms linear;
 
 		&:hover {
-			background-color: $colors-emphasizing;
+			background-color: var(--hb-colors-emphasizing);
 		}
 	}
 	&__facebookLink {
@@ -107,12 +107,12 @@
 			position: absolute;
 			top: 25%;
 			left: 41%;
-			color: $colors-emphasizing;
+			color: var(--hb-colors-emphasizing);
 			transition: color 200ms linear;
 		}
 
 		&:hover::before {
-			color: $colors-default-background;
+			color: var(--hb-colors-default-background);
 		}
 	}
 
@@ -121,7 +121,7 @@
 		&::before {
 			content: "";
 			transition: background-color 200ms linear;
-			background-color: $colors-emphasizing;
+			background-color: var(--hb-colors-emphasizing);
 			padding: 1em;
 			position: absolute;
 			left: 0;
@@ -132,7 +132,7 @@
 		}
 
 		&:hover::before {
-			background-color: $colors-default-background;
+			background-color: var(--hb-colors-default-background);
 		}
 	}
 

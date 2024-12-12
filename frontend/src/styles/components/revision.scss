@@ -1,7 +1,7 @@
 del.revision {
 	position: relative;
 	background-color: #fbdbdb;
-	padding: vr-unit(0.5);
+	padding: 0.5rlh;
 
 	&::before {
 		content: attr(data-revision-text);
@@ -11,7 +11,7 @@ del.revision {
 		top: -3.2em;
 		left: 60%;
 		text-decoration: none;
-		padding: vr-unit(0.5) vr-unit(0.5) calc(#{vr-unit(0.5)} - 0.15em);
+		padding: 0.5rlh 0.5rlh calc(0.5rlh - 0.15em);
 		border-radius: 2em;
 		white-space: nowrap;
 		font-size: 0.85em;
@@ -31,7 +31,7 @@ del.revision {
 ins.revision {
 	position: relative;
 	background-color: #dbfbdb;
-	padding: vr-unit(0.5);
+	padding: 0.5rlh;
 	text-decoration: none;
 
 	&::before {
@@ -42,7 +42,7 @@ ins.revision {
 		top: -3.2em;
 		left: 60%;
 		text-decoration: none;
-		padding: vr-unit(0.5) vr-unit(0.5) calc(#{vr-unit(0.5)} - 0.15em);
+		padding: 0.5rlh 0.5rlh calc(0.5rlh - 0.15em);
 		border-radius: 2em;
 		white-space: nowrap;
 		font-size: 0.85em;

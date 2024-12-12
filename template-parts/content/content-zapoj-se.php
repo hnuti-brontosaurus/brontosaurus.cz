@@ -120,11 +120,11 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 	</a>
 <?php } ?>
 
-<main class="zapoj-se" role="main" id="obsah">
+<main class="hb-pbe-6" role="main" id="obsah">
 	<section>
 		<h1>Aktuální příležitosti</h1>
 
-		<div class="zapoj-se__filters filters hb-expandable" <?php if ($isAnySelected): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
+		<div class="filters hb-expandable hb-mbe-4" <?php if ($isAnySelected): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
 			<button class="hb-expandable__toggler button button--customization" type="button" aria-hidden="true" data-hb-expandable-toggler>
 				Zobrazit pouze
 			</button>
@@ -156,7 +156,7 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 			</ul>
 		</div>
 
-		<div class="zapoj-se__opportunities hb-eventList">
+		<div class="hb-eventList hb-mbe-7">
 			<?php if ($hasBeenUnableToLoad): ?>
 				<div class="hb-eventList__noResults noResults">
 					Promiň, zrovna&nbsp;nám vypadl systém, kde&nbsp;máme uloženy všechny informace o&nbsp;příležitostech.
@@ -273,8 +273,8 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 			</div>
 		</div>
 
-		<div class="zapoj-se__map">
-			<h2>Chceš se zapojit? Ozvi se nám!</h2>
+		<div class="hb-mbs-6 hb-mw-40 hb-mi-auto hb-mbe-5">
+			<h2 class="hb-mbe-4">Chceš se zapojit? Ozvi se nám!</h2>
 
 			<?php $hb_latte->render(__DIR__ . '/../../UI/components/administrativeUnitsMap.latte', $params); ?>
 		</div>

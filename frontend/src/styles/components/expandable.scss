@@ -4,13 +4,13 @@
 		margin-inline: auto;
 		position: relative;
 		padding-inline-start: 0.75em;
-		padding-inline-end: calc(#{vr-unit(1)} + #{vr-unit(0.25)});
+		padding-inline-end: calc(1rlh + 0.25rlh);
 
 		&::after {
 			content: "";
 			position: absolute;
-			top: #{vr-unit(0.5)};
-			right: #{vr-unit(0.5)};
+			top: 0.5rlh;
+			right: 0.5rlh;
 			display: inline-block;
 			width: 11px; // fine-tuned value
 			height: 7px; // fine-tuned value

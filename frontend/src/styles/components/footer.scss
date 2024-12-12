@@ -4,23 +4,23 @@ $footer-breakpoint-fullSize-from: "min-width: " + ($footer-breakpoint-fullSize +
 
 
 .footer-wrapper {
-	background-color: $colors-tinge;
+	background-color: var(--hb-colors-tinge);
 	position: relative;
-	padding: vr-unit(2) vr-unit(1);
+	padding: 2rlh 1rlh;
 }
 .footer {
 	max-width: 28em;
 	margin-inline: auto;
 
 	&-navigation {
-		margin-bottom: vr-unit(1);
+		margin-block-end: 1rlh;
 
 		@media ($footer-breakpoint-fullSize-from) {
 			display: flex;
 			justify-content: space-between;
 			align-items: flex-start;
-			column-gap: vr-unit(0.5);
-			margin-bottom: vr-unit(2);
+			column-gap: 0.5rlh;
+			margin-block-end: 2rlh;
 		}
 
 		.menu,
@@ -35,18 +35,18 @@ $footer-breakpoint-fullSize-from: "min-width: " + ($footer-breakpoint-fullSize +
 				&-link {
 					display: inline-block;
 					padding: 0.3em 0 0.15em;
-					color: $colors-text;
+					color: var(--hb-colors-text);
 					text-decoration: none;
 					transition: color 200ms linear;
 
 					&:hover {
-						color: $colors-emphasizing;
+						color: var(--hb-colors-emphasizing);
 					}
 				}
 				&.current-menu-item > a,
 				&.active > a,
 				&-link--active {
-					color: $colors-default-background !important; // overwrite default hover behaviour
+					color: var(--hb-colors-default-background) !important; // overwrite default hover behaviour
 					position: relative;
 					isolation: isolate;
 
@@ -54,11 +54,11 @@ $footer-breakpoint-fullSize-from: "min-width: " + ($footer-breakpoint-fullSize +
 						content: "";
 						position: absolute;
 						z-index: -1;
-						background-color: $colors-emphasizing;
-						width: calc(100% + #{vr-unit(1)});
+						background-color: var(--hb-colors-emphasizing);
+						width: calc(100% + 1rlh);
 						height: 100%;
 						border-radius: 2em;
-						transform: translate(calc(#{vr-unit(0.5)} * -1), -0.3em);
+						transform: translate(-0.5rlh, -0.3em);
 						transition: background-color 200ms linear;
 					}
 					&:hover::before {
@@ -73,12 +73,12 @@ $footer-breakpoint-fullSize-from: "min-width: " + ($footer-breakpoint-fullSize +
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: vr-unit(0.5);
+		gap: 0.5rlh;
 
 		@media ($footer-breakpoint-fullSize-from) {
 			flex-direction: row;
 			justify-content: space-between;
-			gap: vr-unit(1);
+			gap: 1rlh;
 		}
 	}
 

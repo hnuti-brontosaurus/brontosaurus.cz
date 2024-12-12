@@ -1,6 +1,6 @@
 .brontographics {
     &__shape {
-        fill: $colors-emphasizing;
+        fill: var(--hb-colors-emphasizing);
         cursor: pointer;
         transition: fill 200ms linear;
 
@@ -10,7 +10,7 @@
     }
 
     &__label {
-        fill: $colors-text;
+        fill: var(--hb-colors-text);
         font-size: 1.2em;
         opacity: 0;
         pointer-events: none;
