@@ -1,6 +1,3 @@
-{layout $layoutPath}
-
-{block content}
 <main role="main">
 	<article>
 		<h1>
@@ -48,7 +45,7 @@
 			co vzít s sebou a jak se na místo dopravit.
 		</p>
 
-		<a class="hero button--secondary-wrapper hb-mb-4 hb-lg-mbe-6" href="{$voluntaryPageLink}?{$filtersKey}=jedu-poprve#obsah" style="--hero-background-image-url: url('{$themePathRelative|noescape}/frontend/dist/images/box-firstTime.jpg')">
+		<a class="hero button--secondary-wrapper hb-mb-4 hb-lg-mbe-6" href="/dobrovolnicke-akce?jen=jedu-poprve#obsah" style="--hero-background-image-url: url('https://brontosaurus.cz/wp-content/uploads/2024/12/box-firstTime-scaled.jpg')">
 			<div class="button button--secondary">Vybrat si dobrovolnickou akci</div>
 		</a>
 
@@ -82,7 +79,7 @@
 		</ul>
 
 		<div class="hb-ta-c">
-			<a class="button button--primary" href="{$voluntaryPageLink}?{$filtersKey}=jedu-poprve#obsah">
+			<a class="button button--primary" href="/dobrovolnicke-akce?jen=jedu-poprve#obsah">
 				Vybrat si akci
 			</a>
 		</div>

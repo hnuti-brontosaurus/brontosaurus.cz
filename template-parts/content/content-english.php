@@ -1,6 +1,9 @@
-{layout $layoutPath}
+<?php declare(strict_types = 1);
 
-{block content}
+/** @var Container $hb_container defined in functions.php */
+
+?>
+
 <main role="main">
 	<article class="english">
 		<h1>

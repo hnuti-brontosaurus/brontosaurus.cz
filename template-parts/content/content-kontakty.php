@@ -1,6 +1,29 @@
-{layout $layoutPath}
+<?php declare(strict_types = 1);
 
-{block content}
+$posts = get_posts(['post_type' => 'contacts', 'numberposts' => -1]);
+
+/** @var array<stdClass{name: string, hasPhoto: bool, photo: ?string, role: string, about: string, emailAddresses: string[]}> $contacts */
+$contacts = array_map(function (WP_Post $post) {
+    $thumbnail = get_the_post_thumbnail_url($post);
+    $thumbnail = $thumbnail === false ? null : $thumbnail; // convert false to null which makes more sense
+
+    $emailAddresses = explode("\n", get_post_meta($post->ID, 'contacts_email', single: true));
+    if ($emailAddresses === false || $emailAddresses[0] === '') {
+        $emailAddresses = [];
+    }
+
+    return (object) [
+        'name' => $post->post_title,
+        'hasPhoto' => $thumbnail !== null,
+        'photo' => $thumbnail,
+        'role' => get_post_meta($post->ID, 'contacts_role', single: true),
+        'about' => get_post_meta($post->ID, 'contacts_about', single: true),
+        'emailAddresses' => $emailAddresses,
+    ];
+}, $posts);
+
+?>
+
 <main role="main">
 	<h1>
 		Kontakty na&nbsp;Hnutí Brontosaurus
@@ -14,7 +37,7 @@
 			</p>
 
 			<p>
-				V&nbsp;různých městech také působí: <a href="{$aboutStructurePageLink}#mapa-zakladni-clanky">články</a>, <a href="{$aboutStructurePageLink}#mapa-kluby">kluby</a> a&nbsp;<a href="{$aboutStructurePageLink}#mapa-regionalni-centra">regionální centra</a>.
+				V&nbsp;různých městech také působí: <a href="/o-brontosaurovi/hnuti-brontosaurus#mapa-zakladni-clanky">články</a>, <a href="/o-brontosaurovi/hnuti-brontosaurus#mapa-kluby">kluby</a> a&nbsp;<a href="/o-brontosaurovi/hnuti-brontosaurus#mapa-regionalni-centra">regionální centra</a>.
 			</p>
 		</div>
 
@@ -103,30 +126,36 @@
 				Naši lidé
 			</h2>
 
-			<div class="[ hb-lg-d-f hb-lg-fd-r hb-lg-jc-sb ] [ hb-sm-c-r ] hb-mw-40 hb-mi-auto hb-mbe-5" n:foreach="$contacts as $contact">
+            <?php foreach ($contacts as $contact): ?>
+			<div class="[ hb-lg-d-f hb-lg-fd-r hb-lg-jc-sb ] [ hb-sm-c-r ] hb-mw-40 hb-mi-auto hb-mbe-5">
 				<div class="contacts__imageWrapper hb-sm-f-r">
-					<img class="contacts__image hb-mw-full hb-mbe-3 hb-lg-mbe-0" src="{$contact->photo}" alt="" n:if="$contact->hasPhoto">
+                    <?php if ($contact->hasPhoto): ?>
+					<img class="contacts__image hb-mw-full hb-mbe-3 hb-lg-mbe-0" src="<?php echo $contact->photo ?>" alt="">
+                    <?php endif; ?>
 				</div>
 
 				<div class="contacts__description hb-lg-d-f hb-lg-fd-c hb-lg-jc-c">
 					<div class="hb-mbe-3">
-						<span class="hb-fw-b">{$contact->name}</span>
+						<span class="hb-fw-b"><?php echo $contact->name ?></span>
 						<br>
-						{$contact->role}
+						<?php echo $contact->role ?>
 					</div>
 
 					<div class="contacts__about hb-mbe-3">
-						{$contact->about}
+						<?php echo $contact->about ?>
 					</div>
 
-					{if count($contact->emailAddresses) > 0}
-					<div class="contacts__mail hb-pis-4" n:inner-foreach="$contact->emailAddresses as $emailAddress">
-						<a href="mailto:{$emailAddress}" target="_blank">{$emailAddress}</a>
-						{sep}<br>{/sep}
+					<?php if (count($contact->emailAddresses) > 0): ?>
+					<div class="contacts__mail hb-pis-4">
+                        <?php foreach ($contact->emailAddresses as $index => $emailAddress): ?>
+                        <?php if ($index > 0): ?><br><?php endif; ?>
+						<a href="mailto:<?php echo $emailAddress ?>" target="_blank"><?php echo $emailAddress ?></a>
+                        <?php endforeach; ?>
 					</div>
-					{/if}
+					<?php endif; ?>
 				</div>
 			</div>
+            <?php endforeach; ?>
 		</div>
 	</div>
 </main>

@@ -1,6 +1,3 @@
-{layout $layoutPath}
-
-{block content}
 <main role="main">
 	<article class="highschool">
 		<h1 class="highschool__heading">
@@ -13,13 +10,13 @@
 			Programy nabízíme i v angličtině.
 		</p>
 
-		<div class="hb-lg-mw-40 hb-lg-mi-auto hb-mbe5">
+		<div class="hb-lg-mw-40 hb-lg-mi-auto hb-mbe-5">
 			<div class="highschool__block">
 				<h2 class="highschool__block-heading">
 					Klimatická změna a my
 				</h2>
 
-				<div class="presentationBox presentationBox--thirdsLayout" style="--presentationBox-background-image-url: url('{$themePathRelative|noescape}/frontend/dist/images/highschools-climateChange.jpg')">
+				<div class="presentationBox presentationBox--thirdsLayout" style="--presentationBox-background-image-url: url('https://brontosaurus.cz/wp-content/uploads/2024/12/highschools-climateChange-scaled.jpg')">
 					<p class="presentationBox__text">
 						Výukový program je zaměřen na dopady změn klimatu v krajině a možnou roli jednotlivců / skupin obyvatel vedoucí k jejich zmírnění.
 					</p>
@@ -46,7 +43,7 @@
 					Terénní programy – být dobrovolníkem
 				</h2>
 
-				<div class="presentationBox presentationBox--thirdsLayout presentationBox--textOnRight" style="--presentationBox-background-image-url: url('{$themePathRelative|noescape}/frontend/dist/images/highschools-outdoor.jpg')">
+				<div class="presentationBox presentationBox--thirdsLayout presentationBox--textOnRight" style="--presentationBox-background-image-url: url('https://brontosaurus.cz/wp-content/uploads/2024/12/highschools-outdoor.jpg')">
 					<p class="presentationBox__text">
 						Oživte školní výuku. V okolí vaší školy vybereme vhodnou přírodní lokalitu a zajistíme zde
 						možnost smysluplné dobrovolnické činnosti. <strong>Seznámíme studenty s konkrétním místem
@@ -72,7 +69,7 @@
 					Dobrovolnictví je IN
 				</h2>
 
-				<div class="presentationBox presentationBox--thirdsLayout" style="--presentationBox-background-image-url: url('{$themePathRelative|noescape}/frontend/dist/images/highschools-in.jpg')">
+				<div class="presentationBox presentationBox--thirdsLayout" style="--presentationBox-background-image-url: url('https://brontosaurus.cz/wp-content/uploads/2024/12/highschools-in-scaled.jpg')">
 					<p class="presentationBox__text">
 						Aktivně seznámíme žáky s dobrovolnictvím v České republice i v zahraničí. Při interaktivním
 						programu zjistí, <strong>v čem spočívá pomoc dobrovolníků</strong>, jaká jsou její pozitiva
@@ -97,7 +94,7 @@
 					Biodiverzita doma i ve světě
 				</h2>
 
-				<div class="presentationBox presentationBox--thirdsLayout presentationBox--textOnRight" style="--presentationBox-background-image-url: url('{$themePathRelative|noescape}/frontend/dist/images/highschools-biodiversity.jpg')">
+				<div class="presentationBox presentationBox--thirdsLayout presentationBox--textOnRight" style="--presentationBox-background-image-url: url('https://brontosaurus.cz/wp-content/uploads/2024/12/highschools-biodiversity-scaled.jpg')">
 					<p class="presentationBox__text">
 						<strong>Jaký je význam druhové rozmanitosti pro život na Zemi?</strong> Odborní lektoři
 						budou společně se studenty diskutovat o příčinách jejího úbytku, důsledcích a možných řešeních.
@@ -116,7 +113,7 @@
 					Stromy pro život
 				</h2>
 
-				<div class="presentationBox presentationBox--thirdsLayout" style="--presentationBox-background-image-url: url('{$themePathRelative|noescape}/frontend/dist/images/highschools-planting.jpg')">
+				<div class="presentationBox presentationBox--thirdsLayout" style="--presentationBox-background-image-url: url('https://brontosaurus.cz/wp-content/uploads/2024/12/highschools-planting-scaled.jpg')">
 					<p class="presentationBox__text">
 						Výukový program vede k <strong>uvědomění významu stromů především ve městech</strong>.
 						Společně se studenty si důkladně objasníme funkce stromů pro člověka i krajinu a jejich
@@ -138,7 +135,7 @@
 		</p>
 
 		<div class="highschool__contactPerson">
-			<img alt="" class="highschool__contactPersonImage" src="{$themePath}/frontend/dist/images/karin-backova.png">
+			<img alt="" class="highschool__contactPersonImage" src="https://brontosaurus.cz/wp-content/uploads/2022/01/7.png">
 
 			<div class="highschool__contactPersonInformation">
 				<span class="highschool__contactPersonName">
