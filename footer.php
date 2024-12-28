@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php
 
 namespace HnutiBrontosaurus\Theme;
 
@@ -12,36 +12,36 @@ $hb_currentPost = get_post();
 	<ul class="sponsors-list">
 		<li class="sponsors-list-item sponsors-list-item--msmt">
 			<a href="http://www.msmt.cz" target="_blank">
-				<img src="<?php echo get_template_directory_uri(); ?>/frontend/dist/images/ministerstvo-skolstvi.png" alt="Ministerstvo školství, mládeže a tělovýchovy" class="sponsors-list-item-image">
+				<img src="https://brontosaurus.cz/wp-content/uploads/2024/12/ministerstvo-skolstvi.png" alt="Ministerstvo školství, mládeže a tělovýchovy" class="sponsors-list-item-image">
 			</a>
 		</li>
 
 		<li class="sponsors-list-item">
 			<a href="http://www.erasmusprogramme.com" target="_blank">
-				<img src="<?php echo get_template_directory_uri(); ?>/frontend/dist/images/spolufinancovano-eu.png" alt="Spolufinancováno Evropskou unií" class="sponsors-list-item-image">
+				<img src="https://brontosaurus.cz/wp-content/uploads/2024/12/spolufinancovano-eu.png" alt="Spolufinancováno Evropskou unií" class="sponsors-list-item-image">
 			</a>
 		</li>
 
 		<li class="sponsors-list-item sponsors-list-item--mv">
 			<a href="https://www.mvcr.cz" target="_blank">
-				<img src="<?php echo get_template_directory_uri(); ?>/frontend/dist/images/ministerstvo-vnitra.png" alt="Ministerstvo vnitra České republiky" class="sponsors-list-item-image">
+				<img src="https://brontosaurus.cz/wp-content/uploads/2024/12/ministerstvo-vnitra.png" alt="Ministerstvo vnitra České republiky" class="sponsors-list-item-image">
 			</a>
 		</li>
 
 		<li class="sponsors-list-item sponsors-list-item--mzp">
 			<a href="https://www.mzp.cz" target="_blank">
-				<img src="<?php echo get_template_directory_uri(); ?>/frontend/dist/images/ministerstvo-zivotniho-prostredi.png" alt="Ministerstvo životního prostředí" class="sponsors-list-item-image">
+				<img src="https://brontosaurus.cz/wp-content/uploads/2024/12/ministerstvo-zivotniho-prostredi.png" alt="Ministerstvo životního prostředí" class="sponsors-list-item-image">
 			</a>
 		</li>
 
 		<li class="sponsors-list-item">
 			<a href="https://www.sfzp.cz" target="_blank">
-				<img src="<?php echo get_template_directory_uri(); ?>/frontend/dist/images/statni-fond.png" alt="Státní fond životního prostředí České republiky" class="sponsors-list-item-image">
+				<img src="https://brontosaurus.cz/wp-content/uploads/2024/12/statni-fond.png" alt="Státní fond životního prostředí České republiky" class="sponsors-list-item-image">
 			</a>
 		</li>
 	</ul>
 
-	Děkujeme za&nbsp;podporu <a class="sponsors-link" href="<?php echo getLinkFor('nasi-partneri') ?>">všem našim partnerům</a>.
+	Děkujeme za&nbsp;podporu <a class="sponsors-link" href="/nasi-partneri">všem našim partnerům</a>.
 </aside>
 <?php endif; ?>
 
@@ -100,7 +100,7 @@ $hb_currentPost = get_post();
 			<div class="footer__searchForm searchForm__gcseRoot">
 				<div
 					class="gcse-searchbox-only"
-					data-resultsUrl="<?php echo getLinkFor('vysledky-vyhledavani'); ?>"
+					data-resultsUrl="/vysledky-vyhledavani"
 					data-queryParameterName="q"
 					data-enableAutoComplete="false"
 				></div>

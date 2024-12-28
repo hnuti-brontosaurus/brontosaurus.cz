@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php
 
 namespace HnutiBrontosaurus\Theme;
 
@@ -21,6 +21,15 @@ final class Assets
 		);
 	}
 
+	public static function staticScript(string $name, WP_Theme $theme): void
+	{
+		wp_enqueue_script(
+			handle: 'hb-' . $name,
+			src: self::src($name, self::STATIC_JS_PATTERN, $theme),
+			ver: self::ver($name, self::STATIC_JS_PATTERN, $theme),
+		);
+	}
+
 	public static function style(string $name, WP_Theme $theme): void
 	{
 		wp_enqueue_style(
@@ -32,6 +41,7 @@ final class Assets
 
 	private const CSS_PATTERN = '%s/frontend/dist/css/%s.css';
 	private const JS_PATTERN = '%s/frontend/dist/js/%s.js';
+	private const STATIC_JS_PATTERN = '%s/scripts/%s.js';
 
 	private static function src(string $for, string $pattern, WP_Theme $theme): string
 	{

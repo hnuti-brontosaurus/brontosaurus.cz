@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+echo "Deployment is turned off in this branch"
+exit 1
+
 # Assuming this script is run from repository root directory.
 if [ ! -e "deploy/deploy.sh" ]; then
 	echo "You have to run this script from the repository root directory!"

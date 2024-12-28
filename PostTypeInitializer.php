@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php
 
 namespace HnutiBrontosaurus\Theme;
 
@@ -56,7 +56,7 @@ final class PostTypeInitializer
 				'Místo',
 				function (WP_Post $post) {
 					?>
-					<div style="margin-bottom: 1em;">
+					<div style="margin-block-end: 1em;">
 						<input type="text" name="pribehy-nadseni_location" required><?php echo esc_attr(get_post_meta($post->ID, 'pribehy-nadseni_location', true)); ?></input>
 					</div>
 					<?php
@@ -101,17 +101,17 @@ final class PostTypeInitializer
 				'Kontakt',
 				function (WP_Post $post) {
 					?>
-					<div style="margin-bottom: 1em;">
+					<div style="margin-block-end: 1em;">
 						<label for="contacts_role" class="required">Funkce</label><br>
 						<textarea name="contacts_role" cols=60" rows="3" id="contacts_role"><?php echo esc_attr(get_post_meta($post->ID, 'contacts_role', true)); ?></textarea>
 					</div>
 
-					<div style="margin-bottom: 1em;">
+					<div style="margin-block-end: 1em;">
 						<label for="contacts_about" class="required">Povídání</label><br>
 						<textarea name="contacts_about" cols="60" rows="5" id="contacts_about"><?php echo esc_attr(get_post_meta($post->ID, 'contacts_about', true)); ?></textarea>
 					</div>
 
-					<div style="margin-bottom: 1em;">
+					<div style="margin-block-end: 1em;">
 						<label for="contacts_email" class="required">E-mail</label><br>
 						<textarea name="contacts_email" cols=60" rows="3" id="contacts_email"><?php echo esc_attr(get_post_meta($post->ID, 'contacts_email', true)); ?></textarea>
 						<br>

@@ -1,6 +1,3 @@
-import {paths} from "./constants.js";
-
-
 /**
  *
  * @param paths Expects paths.[type] object from ./constants.js

@@ -2,8 +2,7 @@
 	display: none; // hide by default, enable in particular case
 	min-height: var(--coverPhoto-height);
 	max-width: 75em;
-	margin-left: auto;
-	margin-right: auto;
+	margin-inline: auto;
 
 	--coverPhoto-height: 10em;
 
@@ -12,21 +11,19 @@
 	}
 	@media (min-width: 75.001em) {
 		border-radius: 2em;
-		margin-left: vr-unit(1);
-		margin-right: vr-unit(1);
+		margin-inline: 1rlh;
 	}
 	@media (min-width: 115.001em) {
-		margin-left: auto;
-		margin-right: auto;
+		margin-inline: auto;
 	}
 
 
 	// first list these cover photos with no text over
 
-	&--aboutcrossroad,
-	&--abouthighlights {
+	&--o-brontosaurovi,
+	&--nase-uspechy {
 		display: block;
-		background-image: url("../images/hlavicka-o-brontosauru.jpg");
+		background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-o-brontosauru-scaled.jpg");
 		background-position: 54% -17em;
 		background-size: 42em;
 
@@ -42,7 +39,7 @@
 
 	&--english {
 		display: block;
-		background-image: url("../images/hlavicka-anglicka.jpg");
+		background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-anglicka.jpg");
 		background-position: 25% -5em;
 		background-size: 35em;
 
@@ -56,9 +53,9 @@
 		}
 	}
 
-	&--contacts {
+	&--kontakty {
 		display: block;
-		background-image: url("../images/hlavicka-kontakty.jpg");
+		background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-kontakty.jpg");
 		background-position: left top;
 		background-size: 41em;
 
@@ -71,9 +68,9 @@
 		}
 	}
 
-	&--highschool {
+	&--programy-pro-stredni-skoly {
 		display: block;
-		background-image: url("../images/hlavicka-stredni-skoly.jpg");
+		background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-stredni-skoly-scaled.jpg");
 		background-position: center -3em;
 		background-size: 50em;
 
@@ -86,9 +83,9 @@
 		}
 	}
 
-	&--partners {
+	&--nasi-partneri {
 		display: block;
-		background-image: url("../images/hlavicka-nasi-partneri.jpg");
+		background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-nasi-partneri-scaled.jpg");
 		background-position: left -4.2em;
 		background-size: 30em;
 
@@ -102,9 +99,9 @@
 		}
 	}
 
-	&--aboutstructure {
+	&--hnuti-brontosaurus {
 		display: block;
-		background-image: url("../images/hlavicka-struktura-organizace.jpg");
+		background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-struktura-organizace-2.jpg");
 		background-position: right -2em;
 		background-size: 30em;
 
@@ -121,12 +118,11 @@
 
 	// then these which have text over
 
-	&--voluntary,
-	&--courses,
-	&--meetups,
-	&--forchildren,
-	&--firsttime,
-	&--supportoverview {
+	&--dobrovolnicke-akce,
+	&--kurzy-a-prednasky,
+	&--setkavani-a-kluby,
+	&--pro-deti,
+	&--jedu-poprve {
 		display: block;
 		position: relative;
 
@@ -135,19 +131,19 @@
 			top: 0;
 			height: 100%;
 			position: absolute;
-			background-color: $colors-emphasizing;
+			background-color: var(--hb-colors-emphasizing);
 			width: 10em;
 		}
 		&::after {
 			display: block;
-			top: vr-unit(1);
+			top: 1rlh;
 			position: absolute;
 			color: #fff;
 			font-size: 1.4em;
 			font-weight: bold;
 
 			@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-				top: vr-unit(3);
+				top: 3rlh;
 				font-size: 1.7em;
 			}
 		}
@@ -155,8 +151,8 @@
 
 	// left-sided bubbles
 
-	&--courses {
-		background-image: url("../images/hlavicka-kurzy-a-prednasky.jpg");
+	&--kurzy-a-prednasky {
+		background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-kurzy-a-prednasky.jpg");
 		background-size: 55em;
 		background-position: center calc(100% + 11em);
 
@@ -180,17 +176,17 @@
 		&::after {
 			content: "Dobrý pocit z\00a0nových informací";
 			max-width: 6em;
-			left: vr-unit(1);
+			left: 1rlh;
 
 			@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
 				max-width: 7em;
-				left: vr-unit(2);
+				left: 2rlh;
 			}
 		}
 	}
 
-	&--meetups {
-		background-image: url("../images/hlavicka-setkavani-a-kluby.jpg");
+	&--setkavani-a-kluby {
+		background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-setkavani-a-kluby.jpg");
 		background-size: 40em;
 		background-position: center -10em;
 
@@ -218,17 +214,17 @@
 		}
 		&::after {
 			content: "Dobrý pocit sdílený s\00a0přáteli";
-			left: vr-unit(1);
+			left: 1rlh;
 			max-width: 6em;
 
 			@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-				left: vr-unit(2);
+				left: 2rlh;
 			}
 		}
 	}
 
-	&--forchildren {
-		background-image: url("../images/hlavicka-proDeti.jpg");
+	&--pro-deti {
+		background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-proDeti.jpg");
 		background-position: 75% -1em;
 		background-size: 35em;
 
@@ -255,10 +251,10 @@
 		&::after {
 			content: "Dobrý pocit pro\00a0 děti";
 			max-width: 6em;
-			left: vr-unit(1);
+			left: 1rlh;
 
 			@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-				left: vr-unit(2);
+				left: 2rlh;
 			}
 		}
 	}
@@ -266,9 +262,8 @@
 
 	// right-sided bubbles
 
-	&--voluntary,
-	&--firsttime,
-	&--supportoverview {
+	&--dobrovolnicke-akce,
+	&--jedu-poprve {
 		&::before {
 			clip-path: circle(66% at 66% 24%);
 			right: 0;
@@ -283,26 +278,26 @@
 		}
 	}
 
-	&--voluntary,
-	&--firsttime {
+	&--dobrovolnicke-akce,
+	&--jedu-poprve {
 		&::after {
-			right: vr-unit(1);
+			right: 1rlh;
 			text-align: right;
 			max-width: 6em;
 			font-size: 1.2em;
 
 			@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-				top: vr-unit(2);
-				right: vr-unit(2);
+				top: 2rlh;
+				right: 2rlh;
 				max-width: 6em;
 				font-size: 1.5em;
 			}
 		}
 	}
 
-	&--voluntary,
-	&--firsttime {
-		background-image: url("../images/hlavicka-dobrovolnickeAkce.jpg"); // @todo: cover photo will be changed
+	&--dobrovolnicke-akce,
+	&--jedu-poprve {
+		background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-dobrovolnickeAkce.jpg"); // @todo: cover photo will be changed
 		background-position: calc(100% + 2px) -3.7em; // +2px because of the image white border
 		background-size: 42em;
 
@@ -318,34 +313,6 @@
 
 		&::after {
 			content: "Dobrý pocit kořeněný dobrodružstvím";
-		}
-	}
-
-	&--supportoverview {
-		background-image: url("../images/hlavicka-moznost-podpory.jpg");
-		background-position: 35% -11em;
-		background-size: 35em;
-
-		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-			background-position: center -19em;
-			background-size: 55em;
-		}
-		@media (min-width: 68.001em) {
-			background-position: center -29em;
-			background-size: 75em;
-		}
-
-		&::after {
-			content: "Dobrý pocit z\00a0maličkostí";
-			right: vr-unit(1);
-			top: vr-unit(2);
-			max-width: 6em;
-			text-align: right;
-
-			@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-				top: vr-unit(3);
-				right: vr-unit(2);
-			}
 		}
 	}
 }

@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php
 
 namespace HnutiBrontosaurus\Theme;
 
@@ -44,7 +44,7 @@ $hb_pageClassSelector = $hb_currentPost !== null ? $hb_currentPost->post_name : 
 				<div class="searchForm__gcseRoot">
 					<div
 						class="gcse-searchbox-only"
-						data-resultsUrl="<?php echo getLinkFor('vysledky-vyhledavani'); ?>"
+						data-resultsUrl="/vysledky-vyhledavani"
 						data-queryParameterName="q"
 						data-enableAutoComplete="false"
 					></div>
@@ -64,7 +64,7 @@ $hb_pageClassSelector = $hb_currentPost !== null ? $hb_currentPost->post_name : 
 
 		<header class="header" id="header" role="banner">
 			<a class="header-logo" href="<?php echo get_home_url(); ?>">
-				<img src="<?php echo get_template_directory_uri(); ?>/frontend/dist/images/logo-hb-full.png" alt="Hnutí Brontosaurus">
+				<img src="<?php echo get_template_directory_uri(); ?>/images/logo-hb-full.png" alt="Hnutí Brontosaurus">
 			</a>
 
 			<a class="header-toggleNavigationLink" href="#navigace" id="header-toggleNavigationLink">
@@ -81,7 +81,7 @@ $hb_pageClassSelector = $hb_currentPost !== null ? $hb_currentPost->post_name : 
 						</span>
 					</a>
 				<?php else: ?>
-					<a class="header-mainNavigation-languageLink" href="<?php echo getLinkFor('english'); ?>" title="English" aria-label="English" data-label="English">
+					<a class="header-mainNavigation-languageLink" href="/english" title="English" aria-label="English" data-label="English">
 						<span class="header-mainNavigation-languageLink-label">
 							English
 						</span>
@@ -96,7 +96,7 @@ $hb_pageClassSelector = $hb_currentPost !== null ? $hb_currentPost->post_name : 
 				<?php // TODO add rel="noopener noreferrer" target="_blank" to external links ?>
 			</nav>
 
-			<a class="header-futureEventsLink<?php echo $hb_currentPost?->post_name === 'co-se-chysta' ? ' header-futureEventsLink--active' : ''; ?>" href="<?php echo getLinkFor('co-se-chysta'); ?>" title="Co se chystá">
+			<a class="header-futureEventsLink<?php echo $hb_currentPost?->post_name === 'co-se-chysta' ? ' header-futureEventsLink--active' : ''; ?>" href="/co-se-chysta" title="Co se chystá">
 				<span class="header-futureEventsLink-text">
 					Co se chystá
 				</span>
@@ -108,7 +108,7 @@ $hb_pageClassSelector = $hb_currentPost !== null ? $hb_currentPost->post_name : 
 		</header>
 	</div>
 
-	<?php if ($hb_pageClassSelector !== 'zapoj-se'): ?>
+	<?php if (!in_array($hb_pageClassSelector, ['zapoj-se', 'podpor-nas'])): ?>
 	<div class="coverPhoto<?php echo $hb_pageClassSelector !== '' ? ' coverPhoto--' . $hb_pageClassSelector : ''; ?>"></div>
 	<?php endif; ?>
 

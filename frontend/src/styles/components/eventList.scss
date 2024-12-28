@@ -1,15 +1,7 @@
-$events-breakpoint-oneColumnToTwoColumns: $header-breakpoint-navigationHiddenToVisible + 5em;
-$events-breakpoint-oneColumn-until: "max-width: " + $events-breakpoint-oneColumnToTwoColumns;
-$events-breakpoint-twoColumns-from: "min-width: " + ($events-breakpoint-oneColumnToTwoColumns + 0.001);
-
-$events-breakpoint-TwoToThreeColumns: 73em;
-$events-breakpoint-twoColumns-until: "max-width: " + $events-breakpoint-TwoToThreeColumns;
-$events-breakpoint-threeColumns-from: "min-width: " + ($events-breakpoint-TwoToThreeColumns + 0.001);
-
 .hb-eventList {
 	&__grid {
 		display: grid;
-		gap: calc(var(--hb-vr-base) * 1);
+		gap: 1rlh;
 		grid-template-columns: 1fr;
 		max-width: 19rem;
 		margin-inline: auto;
@@ -18,8 +10,8 @@ $events-breakpoint-threeColumns-from: "min-width: " + ($events-breakpoint-TwoToT
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 			max-width: 38rem;
-			margin-inline: calc(var(--hb-vr-base) * -1);
-			padding-inline: calc(var(--hb-vr-base) * 1);
+			margin-inline: -1rlh;
+			padding-inline: 1rlh;
 		}
 		@media (min-width: 47.001em) {
 			margin-inline: auto;
@@ -31,7 +23,7 @@ $events-breakpoint-threeColumns-from: "min-width: " + ($events-breakpoint-TwoToT
 		}
 	}
 	&__grid:not(:first-child) { // &__grid ~ &__grid doesn't work with `display: contents`
-		margin-block-start: calc(var(--hb-vr-base) * 1);
+		margin-block-start: 1rlh;
 	}
 	&--smaller &__grid {
 		@media ($events-breakpoint-threeColumns-from) {
@@ -48,8 +40,8 @@ $events-breakpoint-threeColumns-from: "min-width: " + ($events-breakpoint-TwoToT
 	}
 
 	&__noResults {
-		margin-block-start: calc(var(--hb-vr-base) * 3);
-		margin-block-end: calc(var(--hb-vr-base) * 5);
+		margin-block-start: 3rlh;
+		margin-block-end: 5rlh;
 
 		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
 			text-align: center;
@@ -57,7 +49,7 @@ $events-breakpoint-threeColumns-from: "min-width: " + ($events-breakpoint-TwoToT
 	}
 
 	&__moreLink {
-		margin-block-start: calc(var(--hb-vr-base) * 1);
+		margin-block-start: 1rlh;
 		display: block;
 		margin-inline: auto;
 	}

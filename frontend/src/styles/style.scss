@@ -1,27 +1,16 @@
-// globals
-
-@import "global/webfonts";
-@import "global/reset";
-@import "global/settings";
-@import "global/helpers";
-@import "global/blocks";
-@import "mixins/content";
-@import "global/defaults";
+@import "common";
 @import "utils";
 
 
 // blocks
 @import "blocks/banner";
+@import "blocks/block";
 @import "blocks/buttons";
-@import "blocks/text";
 
 
 // components
 
-@import "../../../node_modules/glightbox/dist/css/glightbox";
-
 @import "components/action";
-@import "components/announcement";
 @import "components/brontographics";
 @import "components/footer";
 @import "components/forms";
@@ -58,29 +47,4 @@
 @import "components/sponsors";
 @import "components/screenreaders-only";
 
-//pages
-@import "pages/about-crossroad";
-@import "pages/about-successes";
-@import "pages/baseUnits";
-@import "pages/contacts";
-@import "pages/detail";
-@import "pages/english";
-@import "pages/error404";
-@import "pages/firstTime";
-@import "pages/forchildren";
-@import "pages/future";
-@import "pages/highschool";
-@import "pages/about-structure"; // @todo: refactor so that it does not use highschool breakpoints
-@import "pages/homepage";
-@import "pages/news";
-@import "pages/voluntary";
-@import "pages/partners";
-@import "pages/courses";
-@import "pages/meetups";
-@import "pages/preview";
-@import "pages/prilezitost";
-@import "pages/rentals";
-@import "pages/searchResults";
-@import "pages/support-overview";
-@import "pages/newVersionAnnouncement";
-@import "pages/zapoj-se";
+@import "pages";

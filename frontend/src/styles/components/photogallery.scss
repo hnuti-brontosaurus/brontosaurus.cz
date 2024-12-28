@@ -1,7 +1,3 @@
-$photogallery-breakpoint-twoPhotosToFull: 30em;
-$photogallery-breakpoint-twoPhotos-until: "max-width: " + $photogallery-breakpoint-twoPhotosToFull;
-$photogallery-breakpoint-full-from: "min-width: " + ($photogallery-breakpoint-twoPhotosToFull + 0.001);
-
 .photogallery {
 	display: flex;
 	flex-wrap: wrap;
@@ -15,7 +11,7 @@ $photogallery-breakpoint-full-from: "min-width: " + ($photogallery-breakpoint-tw
 	}
 
 	&__item {
-		margin-bottom: vr-unit(0.25);
+		margin-block-end: 0.25rlh;
 
 		@media ($photogallery-breakpoint-twoPhotos-until) {
 			&:not(:nth-child(1)):not(:nth-child(2)) {
@@ -27,7 +23,7 @@ $photogallery-breakpoint-full-from: "min-width: " + ($photogallery-breakpoint-tw
 		}
 		@media ($photogallery-breakpoint-full-from) {
 			flex-basis: 31%;
-			margin-right: vr-unit(0.25);
+			margin-inline-end: 0.25rlh;
 		}
 	}
 

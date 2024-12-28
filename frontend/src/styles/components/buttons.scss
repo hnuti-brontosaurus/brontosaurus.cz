@@ -1,10 +1,6 @@
-$buttons-secondary-breakpoint-rightBottomBubbleToCenteredButton: 39em;
-$buttons-secondary-breakpoint-rightBottomBubble-until: "max-width: " + $buttons-secondary-breakpoint-rightBottomBubbleToCenteredButton;
-$buttons-secondary-breakpoint-centeredButton-from: "min-width: " + ($buttons-secondary-breakpoint-rightBottomBubbleToCenteredButton + 0.001);
-
 @mixin buttons-primary-hoverEffect () {
 	background-color: darken($colors-emphasizing, 10);
-	color: $colors-default-background;
+	color: var(--hb-colors-default-background);
 }
 
 // @todo: move to .action
@@ -21,8 +17,8 @@ $buttons-secondary-breakpoint-centeredButton-from: "min-width: " + ($buttons-sec
 
 	&--primary,
 	&--secondary {
-		padding-top: calc(#{vr-unit(0.5)} + 0.25em);
-		padding-bottom: vr-unit(0.5);
+		padding-block-start: calc(0.5rlh + 0.25em);
+		padding-block-end: 0.5rlh;
 	}
 
 
@@ -30,18 +26,18 @@ $buttons-secondary-breakpoint-centeredButton-from: "min-width: " + ($buttons-sec
 	// @todo: rename to action
 
 	&--primary {
-		background-color: $colors-emphasizing;
+		background-color: var(--hb-colors-emphasizing);
 		border: none; // ?
-		color: $colors-default-background !important; // overwrite global link style
-		padding-left: vr-unit(1);
-		padding-right: calc(#{vr-unit(1)} + 5px);
+		color: var(--hb-colors-default-background) !important; // overwrite global link style
+		padding-inline-start: 1rlh;
+		padding-inline-end: calc(1rlh + 5px);
 		position: relative;
 		text-transform: uppercase;
-		//box-shadow: 4px 2px 8px 0 $colors-default-background; // or 0 0 10px 3px
+		//box-shadow: 4px 2px 8px 0 var(--hb-colors-default-background); // or 0 0 10px 3px
 
 		@media (min-width: 23.001em) {
-			padding-left: vr-unit(2);
-			padding-right: calc(#{vr-unit(2)} + 5px);
+			padding-inline-start: 2rlh;
+			padding-inline-end: calc(2rlh + 5px);
 		}
 
 		&:hover {
@@ -57,7 +53,7 @@ $buttons-secondary-breakpoint-centeredButton-from: "min-width: " + ($buttons-sec
 				top: calc(50% - 9px);
 				width: 10px;
 				height: 17px;
-				background-image: url("../images/icon-arrow.svg");
+				background-image: url("../../../images/icons/icon-arrow.svg");
 				background-repeat: no-repeat;
 				background-size: auto 100%;
 			}
@@ -76,7 +72,7 @@ $buttons-secondary-breakpoint-centeredButton-from: "min-width: " + ($buttons-sec
 	&--secondary {
 		display: block;
 		position: absolute;
-		bottom: vr-unit(1);
+		bottom: 1rlh;
 		max-width: 8em;
 		z-index: 0;
 		text-decoration: none;
@@ -86,26 +82,26 @@ $buttons-secondary-breakpoint-centeredButton-from: "min-width: " + ($buttons-sec
 
 		@media ($buttons-secondary-breakpoint-rightBottomBubble-until) {
 			text-align: right;
-			right: vr-unit(1);
+			right: 1rlh;
 		}
 		@media ($buttons-secondary-breakpoint-centeredButton-from) {
 			max-width: 20em;
 			left: 50%; transform: translateX(-50%); // center absolutely positioned element
 			white-space: nowrap; // avoid line breaks (when `left: 50%` hits right border of an element, it causes line break)
-			padding: vr-unit(0.5) vr-unit(1) calc(#{vr-unit(0.5)} - 0.3em);
+			padding: 0.5rlh 1rlh calc(0.5rlh - 0.3em);
 			border-radius: 2em;
 		}
 
 		&::before {
-			background-image: url("../images/icon-smallPaw.svg");
+			background-image: url("../../../images/icons/icon-smallPaw.svg");
 			background-position: left top;
 			background-size: 100% auto;
 			background-repeat: no-repeat;
 			content: "";
 			display: inline-block;
 			height: 22px;
-			margin-bottom: -0.1em;
-			margin-right: 10px;
+			margin-block-end: -0.1em;
+			margin-inline-end: 10px;
 			width: 20px;
 		}
 		&::after {
@@ -134,10 +130,10 @@ $buttons-secondary-breakpoint-centeredButton-from: "min-width: " + ($buttons-sec
 	}
 	&--secondary-wrapper:hover {
 		.button--secondary {
-			color: $colors-default-background;
+			color: var(--hb-colors-default-background);
 
 			&::after {
-				background-color: $colors-emphasizing;
+				background-color: var(--hb-colors-emphasizing);
 			}
 		}
 	}
@@ -146,10 +142,10 @@ $buttons-secondary-breakpoint-centeredButton-from: "min-width: " + ($buttons-sec
 	// used for customization buttons like event filters
 
 	&--customization {
-		padding: 0.3em vr-unit(1) 0.15em;
+		padding: 0.3em 1rlh 0.15em;
 		border: none;
-		background-color: $colors-tinge;
-		color: $colors-text;
+		background-color: var(--hb-colors-tinge);
+		color: var(--hb-colors-text);
 		cursor: pointer;
 
 		&:hover,

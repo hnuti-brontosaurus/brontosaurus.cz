@@ -1,24 +1,15 @@
-$related-breakpoint-oneColumnToTwoColumns: $header-breakpoint-navigationHiddenToVisible;
-$related-breakpoint-oneColumn-until: "max-width: " + $related-breakpoint-oneColumnToTwoColumns;
-$related-breakpoint-twoColumns-from: "min-width: " + ($related-breakpoint-oneColumnToTwoColumns + 0.001);
-
-$related-breakpoint-roundedPhoto: 53em;
-$related-breakpoint-roundedPhoto-untilHidden: "max-width: " + $related-breakpoint-roundedPhoto;
-$related-breakpoint-roundedPhoto-whenVisible: "min-width: " + ($related-breakpoint-roundedPhoto + 0.001);
-
 aside .related {
 	max-width: 40rem;
-	margin-left: auto;
-	margin-right: auto;
+	margin-inline: auto;
 
 	&-heading {
-		margin-bottom: vr-unit(1);
+		margin-block-end: 1rlh;
 	}
 
 	&-list {
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-gap: vr-unit(1);
+		grid-gap: 1rlh;
 		justify-content: center;
 
 		@media ($related-breakpoint-twoColumns-from) {
@@ -29,7 +20,7 @@ aside .related {
 			border-radius: 2em;
 			overflow: hidden;
 			display: block;
-			padding: vr-unit(1) vr-unit(1) vr-unit(2);
+			padding: 1rlh 1rlh 2rlh;
 			position: relative;
 			text-decoration: none;
 			z-index: 0;
@@ -42,9 +33,9 @@ aside .related {
 					"link";
 				grid-template-columns: 1fr;
 				align-items: center;
-				grid-row-gap: vr-unit(1);
-				grid-column-gap: vr-unit(0.5);
-				padding: vr-unit(1);
+				grid-row-gap: 1rlh;
+				grid-column-gap: 0.5rlh;
+				padding: 1rlh;
 			}
 			@media ($related-breakpoint-roundedPhoto-whenVisible) {
 				grid-template-areas:
@@ -72,11 +63,11 @@ aside .related {
 
 			&-heading {
 				@media ($related-breakpoint-oneColumn-until) {
-					margin-bottom: vr-unit(1);
+					margin-block-end: 1rlh;
 				}
 				@media ($related-breakpoint-twoColumns-from) {
 					grid-area: heading;
-					margin-bottom: 0;
+					margin-block-end: 0;
 				}
 			}
 
@@ -84,7 +75,7 @@ aside .related {
 				list-style: none;
 
 				@media ($related-breakpoint-oneColumn-until) {
-					margin-bottom: vr-unit(2);
+					margin-block-end: 2rlh;
 				}
 				@media ($related-breakpoint-twoColumns-from) {
 					grid-area: list;
@@ -108,9 +99,9 @@ aside .related {
 					display: none;
 				}
 				@media ($related-breakpoint-oneColumn-until) {
-					top: vr-unit(3);
+					top: 3rlh;
 					position: absolute;
-					right: vr-unit(0.5);
+					right: 0.5rlh;
 					z-index: 1;
 				}
 				@media ($related-breakpoint-twoColumns-from) {
@@ -123,7 +114,7 @@ aside .related {
 				z-index: -1;
 
 				&::after {
-					background-color: $colors-tinge;
+					background-color: var(--hb-colors-tinge);
 				}
 
 				@media ($related-breakpoint-twoColumns-from) {
@@ -138,102 +129,102 @@ aside .related {
 			}
 
 			&--courses {
-				background-image: url("../images/hlavicka-kurzy-a-prednasky.jpg");
+				background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-kurzy-a-prednasky.jpg");
 				background-position: right top;
 				background-size: 30em;
 
 				&-roundedPhoto {
-					background-image: url("../images/hlavicka-kurzy-a-prednasky.jpg");
+					background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-kurzy-a-prednasky.jpg");
 					background-position-x: 50%;
 					background-position-y: 28%;
 				}
 			}
 
 			&--meetups {
-				background-image: url("../images/hlavicka-setkavani-a-kluby.jpg");
+				background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-setkavani-a-kluby.jpg");
 				background-size: 25em;
 
 				&-roundedPhoto {
-					background-image: url("../images/hlavicka-setkavani-a-kluby.jpg");
+					background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-setkavani-a-kluby.jpg");
 					background-position-x: 97%;
 					background-position-y: 17%;
 				}
 			}
 
 			&--donation {
-				background-image: url("../images/hlavicka-moznost-podpory.jpg");
+				background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-moznost-podpory-scaled.jpg");
 				background-size: 22em;
 
 				&-roundedPhoto {
-					background-image: url("../images/hlavicka-moznost-podpory.jpg");
+					background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-moznost-podpory-scaled.jpg");
 					background-position-x: 13%;
 					background-position-y: 81%;
 				}
 			}
 
 			&--children {
-				background-image: url("../images/hlavicka-proDeti.jpg");
+				background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-proDeti.jpg");
 				background-position: right center;
 				background-size: 36em;
 
 				&-roundedPhoto {
-					background-image: url("../images/hlavicka-proDeti.jpg");
+					background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-proDeti.jpg");
 					background-position: 94% 59%;
 					background-size: 21rem;
 				}
 			}
 
 			&--voluntary {
-				background-image: url("../images/hlavicka-dobrovolnickeAkce.jpg");
+				background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-dobrovolnickeAkce.jpg");
 				background-position: calc(100% + 8em) -7em;
 				background-size: 45em;
 
 				&-roundedPhoto {
-					background-image: url("../images/hlavicka-dobrovolnickeAkce.jpg");
+					background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-dobrovolnickeAkce.jpg");
 					background-position: -5.5em -0.6em;
 				}
 			}
 
 			&--events {
-				background-image: url("../images/related-events.jpg");
+				background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/related-events-scaled.jpg");
 				background-position: calc(100% + 8em) -7em;
 				background-size: 45em;
 
 				&-roundedPhoto {
-					background-image: url("../images/related-events.jpg");
+					background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/related-events-scaled.jpg");
 					background-position: -5.5em -0.6em;
 				}
 			}
 
 			&--mozek {
-				background-image: url("../images/related-mozek.jpg");
+				background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/related-mozek.jpg");
 				background-position: calc(100% + 8em) -7em;
 				background-size: 45em;
 
 				&-roundedPhoto {
-					background-image: url("../images/related-mozek.jpg");
+					background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/related-mozek.jpg");
 					background-position: -5.5em -0.6em;
 				}
 			}
 
 			&--podpor-nas {
-				background-image: url("../images/related-podpor-nas.jpg");
+				background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/related-podpor-nas-scaled.jpg");
 				background-position: calc(100% + 8em) -7em;
 				background-size: 45em;
 
 				&-roundedPhoto {
-					background-image: url("../images/related-podpor-nas.jpg");
+					background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/related-podpor-nas-scaled.jpg");
 					background-position: -3.4em -1.1e;
 				}
 			}
 
 			&--eshop {
-				background-image: url("../images/related-eshop.jpg");
+				background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/related-eshop.jpg");
 				background-position: calc(100% + 8em) -7em;
 				background-size: 45em;
 
 				&-roundedPhoto {
-					background-image: url("../images/related-eshop.jpg");
+					background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/related-eshop.jpg");
 					background-position: -3.3em -1.7em;
 				}
 			}

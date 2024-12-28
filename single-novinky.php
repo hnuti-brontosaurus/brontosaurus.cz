@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php
 
 namespace HnutiBrontosaurus\Theme;
 
@@ -23,19 +23,19 @@ $article = NewsPost::from($post);
 
 ?>
 <main role="main">
-	<article class="news news--single">
-		<h1 class="news__item-heading">
+	<article class="news news--single hb-mi-auto">
+		<h1 class="news__item-heading hb-mbe-0">
 			<?php echo $article->title ?>
 		</h1>
 
-		<time class="news__item-date">
+		<time class="news__item-date hb-d-b hb-mbe-4 hb-ta-c hb-text-framing">
 			<?php echo $article->date->format($dateForHumans) ?>
 		</time>
 
 		<div class="news__item-content">
 			<?php if ($article->hasCoverImage): ?>
 				<div class="news__item-coverImage">
-					<img alt="" src="<?php echo $article->coverImage ?>">
+					<img class="hb-br" alt="" src="<?php echo $article->coverImage ?>">
 				</div>
 			<?php endif; ?>
 
@@ -44,7 +44,7 @@ $article = NewsPost::from($post);
 			</div>
 		</div>
 
-		<div class="news__clear"></div>
+		<div class="hb-c-r"></div>
 	</article>
 </main>
 <?php

@@ -9,11 +9,9 @@ import * as sassPackage from 'sass';
 const sass = gulpSass(sassPackage);
 import sourcemaps from 'gulp-sourcemaps';
 
-import {ENV_PRODUCTION} from './constants.js';
-
 
 export default (cb, files) => {
-	const isProduction = (process.env.NODE_ENV === ENV_PRODUCTION);
+	const isProduction = (process.env.NODE_ENV === 'production');
 
 	for (let i in files) {
 		let file = files[i];
