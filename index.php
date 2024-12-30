@@ -21,7 +21,6 @@ use function set_query_var;
 
 /** @var Container $hb_container defined in functions.php */
 
-
 (function (?WP_Post $post, Container $hb_container) {
 	// latte
 	$latte = $hb_container->getLatte();
