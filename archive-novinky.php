@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php
 
 namespace HnutiBrontosaurus\Theme;
 
@@ -19,15 +19,14 @@ get_header();
 
 $dateForHumans = $hb_container->getDateFormatForHuman();
 
-?>
-<main role="main">
-	<article class="news">
+?><main role="main">
+	<article class="news hb-mi-auto">
 		<h1>
-			Co&nbsp;je nového
+			Co je nového
 		</h1>
 
 		<?php if (have_posts()): ?>
-			<ul class="news__list">
+			<ul class="hb-lst-n">
 				<?php while(have_posts()): ?>
 					<?php
 						the_post();
@@ -35,20 +34,20 @@ $dateForHumans = $hb_container->getDateFormatForHuman();
 						if ($post === null) break;
 						$article = NewsPost::from($post);
 					?>
-					<li class="news__item">
-						<a class="news__link" href="<?php echo get_permalink($article->id) ?>">
-							<h2 class="news__item-heading">
+					<li class="hb-mbe-5 hb-c-r">
+						<a class="hb-td-n" href="<?php echo get_permalink($article->id) ?>">
+							<h2 class="news__item-heading hb-ta-l hb-mbe-0">
 								<?php echo $article->title ?>
 							</h2>
 
-							<time class="news__item-date">
+							<time class="news__item-date hb-d-b hb-mbe-2 hb-text-framing">
 								<?php echo $article->date->format($dateForHumans) ?>
 							</time>
 
 							<div class="news__item-content">
 								<?php if ($article->hasCoverImage): ?>
 								<div class="news__item-coverImage">
-									<img alt="" src="<?php echo $article->coverImage ?>">
+									<img class="hb-br" alt="" src="<?php echo $article->coverImage ?>">
 								</div>
 								<?php endif; ?>
 
@@ -56,7 +55,7 @@ $dateForHumans = $hb_container->getDateFormatForHuman();
 									<?php echo $article->perex ?>
 								</div>
 
-								<div class="news__item-moreLink">
+								<div class="news__item-moreLink hb-mbs-3 hb-text-framing">
 									číst dále&hellip;
 								</div>
 							</div>
@@ -74,9 +73,9 @@ $dateForHumans = $hb_container->getDateFormatForHuman();
 				]);
 			?>
 
-			<div class="news__clear"></div>
+			<div class="hb-c-r"></div>
 		<?php else: ?>
-			<div class="news__list news__list--empty">
+			<div class="hb-lg-ta-c">
 				Momentálně tu nic nemáme&hellip;
 			</div>
 		<?php endif; ?>

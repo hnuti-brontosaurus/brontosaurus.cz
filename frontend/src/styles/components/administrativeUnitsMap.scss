@@ -1,76 +1,70 @@
-.administrativeUnitsMap {
-	&__filters {
-		display: flex;
-		flex-wrap: wrap;
-		font-size: 0.9em;
-		list-style-type: none;
+@use "../imports/settings";
 
-		@media ($typography-breakpoint-large-from) {
-			margin-bottom: vr-unit(0.5);
-		}
-	}
-	&__filter {
-		margin-bottom: 0.3em;
-
-		&:not(:last-child) {
-			margin-right: 0.3em;
-		}
-	}
-	&__filterLink {
-		&--icon {
-			background-size: 0.7em;
-			background-position: vr-unit(0.5) center;
-			background-repeat: no-repeat;
-			padding-left: calc(#{vr-unit(1)} + 0.4em);
-		}
-
-		&--office {
-			background-image: url("../images/icon-marker-office.svg");
-		}
-		&--regional {
-			background-image: url("../images/icon-marker-regional.svg");
-		}
-		&--base {
-			background-image: url("../images/icon-marker-base.svg");
-		}
-		&--club {
-			background-image: url("../images/icon-marker-club.svg");
-		}
-		&--children {
-			background-image: url("../images/icon-marker-children.svg");
-		}
-	}
-	&__filter--active &__filterLink {
-		background-color: $colors-emphasizing;
-		color: $colors-default-background !important;
-	}
-
-	&__map {
-		height: 20em;
-		max-height: 100vh;
-		margin-left: -#{vr-unit(1)};
-		margin-right: -#{vr-unit(1)};
-
-		img {
-			max-width: initial;
-		}
-	}
-	&__infoWindow {
-		display: flex;
-		gap: calc(var(--hb-vr-base) * 0.5);
-	}
-	&__infoWindowImageContainer {
-		flex-basis: 12rem;
-		flex-shrink: 0;
-	}
-	&__infoWindowImage {
-		max-width: 100% !important;
-		object-fit: cover;
-		height: 100%;
-	}
-	&__infoWindowDescription {
-		margin-block-start: calc(var(--hb-vr-base) * 0.25);
+.administrativeUnitsMap__filters {
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 0.9em;
+	list-style-type: none;
+}
+@media (settings.$typography-breakpoint-large-from) {
+	.administrativeUnitsMap__filters {
+		margin-block-end: 0.5rlh;
 	}
 }
+.administrativeUnitsMap__filter {
+	margin-block-end: 0.3em;
+}
+.administrativeUnitsMap__filter:not(:last-child) {
+	margin-inline-end: 0.3em;
+}
+.administrativeUnitsMap__filterLink--icon {
+	background-size: 0.7em;
+	background-position: 0.5rlh center;
+	background-repeat: no-repeat;
+	padding-inline-start: calc(1rlh + 0.4em);
+}
 
+.administrativeUnitsMap__filterLink--office {
+	background-image: url("../../../images/icons/icon-marker-office.svg");
+}
+.administrativeUnitsMap__filterLink--regional {
+	background-image: url("../../../images/icons/icon-marker-regional.svg");
+}
+.administrativeUnitsMap__filterLink--base {
+	background-image: url("../../../images/icons/icon-marker-base.svg");
+}
+.administrativeUnitsMap__filterLink--club {
+	background-image: url("../../../images/icons/icon-marker-club.svg");
+}
+.administrativeUnitsMap__filterLink--children {
+	background-image: url("../../../images/icons/icon-marker-children.svg");
+}
+.administrativeUnitsMap__filter--active .administrativeUnitsMap__filterLink {
+	background-color: var(--hb-colors-emphasizing);
+	color: var(--hb-colors-default-background) !important;
+}
 
+.administrativeUnitsMap__map {
+	height: 20em;
+	max-height: 100vh;
+	margin-inline: -1rlh;
+}
+.administrativeUnitsMap__map img {
+	max-width: initial;
+}
+.administrativeUnitsMap__infoWindow {
+	display: flex;
+	gap: 0.5rlh;
+}
+.administrativeUnitsMap__infoWindowImageContainer {
+	flex-basis: 12rem;
+	flex-shrink: 0;
+}
+.administrativeUnitsMap__infoWindowImage {
+	max-width: 100% !important;
+	object-fit: cover;
+	height: 100%;
+}
+.administrativeUnitsMap__infoWindowDescription {
+	margin-block-start: 0.25rlh;
+}

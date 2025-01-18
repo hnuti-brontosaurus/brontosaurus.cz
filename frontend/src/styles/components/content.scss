@@ -1,46 +1,64 @@
+@use "sass:color";
+@use "../imports/hb-content-mixin";
+@use "../imports/settings";
+
 .content {
-	padding: vr-unit(0.5) vr-unit(1) vr-unit(2);
-	.coverPhoto + & {
-		padding-block-start: vr-unit(2);
+	padding: 0.5rlh 1rlh 2rlh;
+	color: color.adjust(settings.$colors-text, $alpha: -0.2);
+}
+@media (settings.$header-breakpoint-navigationHiddenToVisible-visible-from) {
+	.content {
+		padding-inline: 2rlh;
 	}
+}
 
-	color: transparentize($colors-text, 0.2);
-
-	a {
-		color: transparentize($colors-text, 0.2);
-
-		&:hover {
-			color: $colors-emphasizing; // same as in defaults
-		}
+.coverPhoto + .content {
+	padding-block-start: 2rlh;
+}
+.content a {
+	color: color.adjust(settings.$colors-text, $alpha: -0.2);
+}
+.content a:hover {
+	color: var(--hb-colors-emphasizing); // same as in defaults
+}
+.content h1,
+.content .hb-block-heading {
+	font-size: 1.7em;
+	font-weight: 700;
+	margin-block-end: 0.5rlh;
+}
+@media (settings.$typography-breakpoint-small-until) {
+	.content h1,
+	.content .hb-block-heading {
+		line-height: 1;
 	}
-
-	@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-		padding-left: vr-unit(2);
-		padding-right: vr-unit(2);
+}
+@media (settings.$typography-breakpoint-large-from) {
+	.content h1,
+	.content .hb-block-heading {
+		font-size: 2.5em;
+		text-align: center;
+		margin-block-end: 1rlh;
 	}
+}
 
-	h1 {
-		@include heading-first-level();
+.content h2 {
+	font-size: 1.25em;
+	font-weight: 700;
+	margin-block-end: 0.5rlh;
+
+	@media (settings.$typography-breakpoint-large-from) {
+		font-size: 1.5em;
+		text-align: center;
 	}
+}
 
-	h2 {
-		font-size: 1.25em;
-		font-weight: $fonts-delm-weight-bold;
-		margin-bottom: vr-unit(0.5);
+.content h3 {
+	font-size: 1.1em;
+	font-weight: 300; // @todo or bold?
+	margin-block-end: 0.5rlh;
+}
 
-		@media ($typography-breakpoint-large-from) {
-			font-size: 1.5em;
-			text-align: center;
-		}
-	}
-
-	h3 {
-		font-size: 1.1em;
-		font-weight: $fonts-delm-weight-regular; // @todo or bold?
-		margin-bottom: vr-unit(0.5);
-	}
-
-	&__dynamic {
-		@include hb-content();
-	}
+.content__dynamic {
+	@include hb-content-mixin.hb-content();
 }

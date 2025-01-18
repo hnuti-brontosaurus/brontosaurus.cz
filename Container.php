@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php
 
 namespace HnutiBrontosaurus\Theme;
 
@@ -8,7 +8,6 @@ use Grifart\GeocodingClient\Providers\MapyCz\MapyCzProvider;
 use HnutiBrontosaurus\BisClient\BisClient;
 use HnutiBrontosaurus\BisClient\BisClientFactory;
 use HnutiBrontosaurus\Theme\CoordinatesResolver\CoordinatesResolver;
-use HnutiBrontosaurus\Theme\UI\Base\BaseFactory;
 use Latte\Engine;
 use function is_dir;
 use function mkdir;
@@ -23,25 +22,9 @@ final class Container
 	) {}
 
 
-	private ?ApplicationUrlTemplate $applicationUrlTemplate = null;
-	public function getApplicationUrlTemplate(): ApplicationUrlTemplate
+	public function getConfiguration(): Configuration
 	{
-		if ($this->applicationUrlTemplate !== null) {
-			return $this->applicationUrlTemplate;
-		}
-
-		return $this->applicationUrlTemplate = ApplicationUrlTemplate::from($this->configuration->get('bis:applicationUrlTemplate'));
-	}
-
-
-	private ?BaseFactory $baseFactory = null;
-	public function getBaseFactory(): BaseFactory
-	{
-		if ($this->baseFactory !== null) {
-			return $this->baseFactory;
-		}
-
-		return $this->baseFactory = new BaseFactory($this->getEnableTracking());
+		return $this->configuration;
 	}
 
 
@@ -94,23 +77,6 @@ final class Container
 	public function getEnableTracking(): bool
 	{
 		return $this->configuration->get('enableTracking');
-	}
-
-
-	private ?Engine $latte = null;
-	public function getLatte(): Engine
-	{
-		if ($this->latte !== null) {
-			return $this->latte;
-		}
-
-		$cachePath = __DIR__ . '/temp/cache/latte';
-		self::createDirectoryIfNeeded($cachePath);
-
-		$latte = new Engine();
-		$latte->setTempDirectory($cachePath);
-
-		return $this->latte = $latte;
 	}
 
 

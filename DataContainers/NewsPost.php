@@ -1,10 +1,9 @@
-<?php declare(strict_types = 1);
+<?php
 
 namespace HnutiBrontosaurus\Theme\DataContainers;
 
 use DateTimeImmutable;
-use HnutiBrontosaurus\Theme\UI\PropertyHandler;
-use HnutiBrontosaurus\Theme\UI\Utils;
+use HnutiBrontosaurus\Theme\PropertyHandler;
 use function get_the_post_thumbnail_url;
 
 
@@ -41,11 +40,11 @@ final class NewsPost
 
 		return new self(
 			$post->ID,
-			Utils::handleNonBreakingSpaces($post->post_title),
+			hb_handleNonBreakingSpaces($post->post_title),
 			$post->post_name,
 			DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $post->post_date),
-			Utils::handleNonBreakingSpaces($post->post_excerpt),
-			Utils::handleNonBreakingSpaces($post->post_content),
+			hb_handleNonBreakingSpaces($post->post_excerpt),
+			hb_handleNonBreakingSpaces($post->post_content),
 			$thumbnail !== null,
 			$thumbnail,
 		);

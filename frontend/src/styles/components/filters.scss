@@ -1,44 +1,44 @@
-.filters {
-	&.hb-expandable .hb-expandable__toggler {
-		transition: margin-bottom 200ms 50ms ease-in-out;
+@use "../imports/settings";
 
-		@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-			display: none;
-		}
+.filters .hb-expandable__toggler {
+	transition: margin-block-end 200ms 50ms ease-in-out;
+}
+@media (settings.$header-breakpoint-navigationHiddenToVisible-visible-from) {
+	.filters .hb-expandable__toggler {
+		display: none;
 	}
-	&.hb-expandable--expanded .hb-expandable__toggler {
-		margin-block-end: calc(var(--hb-vr-base) * 0.5);
+}
+.filters.hb-expandable--expanded .hb-expandable__toggler {
+	margin-block-end: 0.5rlh;
+}
+
+.filters__list {
+	display: flex;
+	gap: 0.25rlh;
+	flex-wrap: wrap;
+	justify-content: center;
+	text-align: center;
+	list-style: none;
+}
+@media (settings.$header-breakpoint-navigationHiddenToVisible-hidden-until) {
+	.filters__list {
+		overflow: hidden;
+		overflow-anchor: none;
+		transition: max-height 200ms ease-in-out;
+		--height: 0;
+		max-height: var(--height);
 	}
+}
 
-	&__list {
-		display: flex;
-		gap: calc(var(--hb-vr-base) * 0.25);
-		flex-wrap: wrap;
-		justify-content: center;
-		text-align: center;
-		list-style: none;
-
-		@media ($header-breakpoint-navigationHiddenToVisible-hidden-until) {
-			overflow: hidden;
-			overflow-anchor: none;
-			transition: max-height 200ms ease-in-out;
-			--height: 0;
-			max-height: var(--height);
-		}
-	}
-
-	&__link {
-		display: inline-block;
-		background-color: $colors-links;
-		text-decoration: none;
-
-		&--selected {
-			background-color: $colors-emphasizing !important;
-			color: $colors-default-background !important;
-		}
-
-		&:active {
-			color: $colors-tinge;
-		}
-	}
+.filters__link {
+	display: inline-block;
+	background-color: var(--hb-colors-links);
+	text-decoration: none;
+}
+.filters__link--selected {
+	background-color: var(--hb-colors-emphasizing) !important;
+	color: var(--hb-colors-default-background) !important;
+}
+.filters__link:active {
+	color: var(--hb-colors-tinge);
 }

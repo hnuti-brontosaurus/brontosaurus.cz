@@ -4,7 +4,6 @@ import {OverlappingMarkerSpiderfier} from 'ts-overlapping-marker-spiderfier';
 import {OrganizationalUnit} from './types';
 
 export default class Map {
-	private readonly iconsPath: string;
 	map: google.maps.Map;
 	mapLayers: google.maps.MVCObject;
 	infoWindow: InfoWindow;
@@ -14,8 +13,6 @@ export default class Map {
 
 	public constructor(mapElement: HTMLElement)
 	{
-		this.iconsPath = mapElement.dataset.themepath! + '/frontend/dist/images'; // should be present
-
 		// Maps Google map to place where we want display our map
 		this.map = new google.maps.Map(mapElement);
 
@@ -62,7 +59,7 @@ export default class Map {
 			position: {lat: unit.lat, lng: unit.lng},
 			map: this.map,
 			title: resolveUnitTitle(unit),
-			icon: `${this.iconsPath}/${resolveIconFileName(unit)}`,
+			icon: `https://brontosaurus.cz/wp-content/uploads/2024/12/${resolveIconFileName(unit)}`,
 		});
 
 		// Bind marker.map to the specific slug property of unitTypesLayers which is set and unset below [1]

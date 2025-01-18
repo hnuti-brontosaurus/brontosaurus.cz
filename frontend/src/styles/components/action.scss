@@ -1,60 +1,57 @@
-.action {
-	// Primary action, so called "CTA".
-	&--primary {
-		display: inline-flex;
-		align-items: center;
-		gap: calc(var(--hb-vr-base) * 0.25);
-		border-radius: 2em;
-		text-decoration: none;
-		transition:
-			background-color 200ms ease-in-out,
-			color 200ms ease-in-out;
+@use "sass:color";
+@use "../imports/settings";
 
-		padding:
-			calc(var(--hb-vr-base) * 0.25)
-			calc(var(--hb-vr-base) * 0.5)
-			calc(var(--hb-vr-base) * 0.25 - 0.15rem);
+// Primary action, so called "CTA".
+.action--primary {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.25rlh;
+	border-radius: 2em;
+	text-decoration: none;
+	transition:
+		background-color 200ms ease-in-out,
+		color 200ms ease-in-out;
 
-		background-color: var(--hb-colors-emphasizing);
-		color: var(--hb-colors-default-background) !important; // overwrite global link style
+	padding:
+		0.25rlh
+		0.5rlh
+		calc(0.25rlh - 0.15rem);
 
-		&:hover {
-			background-color: #{darken($colors-emphasizing, 10)};
-			color: inherit;
-		}
-	}
-	&--primary#{&}--paw {
-		&::before {
-			content: "";
-			display: block;
-			height: 0.7em;
-			aspect-ratio: 1;
-			transform: translateY(calc(-0.15em / 2));
-			background-color: white;
-			mask-image: url("../images/icon-smallPaw.svg");
-			mask-size: auto 100%;
-			mask-position: center center;
-			mask-repeat: no-repeat;
-		}
-	}
+	background-color: var(--hb-colors-emphasizing);
+	color: var(--hb-colors-default-background) !important; // overwrite global link style
+}
+.action--primary:hover {
+	background-color: #{color.adjust(settings.$colors-emphasizing, $lightness: -10%)};
+	color: inherit;
+}
+.action--primary.action--paw::before {
+	content: "";
+	display: block;
+	height: 0.7em;
+	aspect-ratio: 1;
+	transform: translateY(calc(-0.15em / 2));
+	background-color: white;
+	mask-image: url("../../../images/icons/icon-smallPaw.svg");
+	mask-size: auto 100%;
+	mask-position: center center;
+	mask-repeat: no-repeat;
+}
 
-	// When there are more possibilities to interact with.
-	&--possible {} // @todo: will be moved from .button--secondary
+// When there are more possibilities to interact with.
+.action--possible {} // @todo: will be moved from .button--secondary
 
-	// An additional action when you want to allow user to see more information about primary action's content.
-	&--ulterior {
-		display: block;
-		max-width: max-content;
-		margin-left: auto;
-		margin-right: auto;
+// An additional action when you want to allow user to see more information about primary action's content.
+.action--ulterior {
+	display: block;
+	max-width: max-content;
+	margin-inline: auto;
 
-		--iconSize: 0.8em;
-		background-image: url("../images/icon-smallPaw.svg");
-		padding-left: calc(var(--iconSize) + #{vr-unit(0.25)});
-		background-size: auto var(--iconSize);
-		background-position: left 0.15em;
-		background-repeat: no-repeat;
+	--iconSize: 0.8em;
+	background-image: url("../../../images/icons/icon-smallPaw.svg");
+	padding-inline-start: calc(var(--iconSize) + 0.25rlh);
+	background-size: auto var(--iconSize);
+	background-position: left 0.15em;
+	background-repeat: no-repeat;
 
-		text-decoration: underline;
-	}
+	text-decoration: underline;
 }

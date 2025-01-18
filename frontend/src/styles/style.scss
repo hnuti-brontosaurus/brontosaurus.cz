@@ -1,86 +1,49 @@
-// globals
-
-@import "global/webfonts";
-@import "global/reset";
-@import "global/settings";
-@import "global/helpers";
-@import "global/blocks";
-@import "mixins/content";
-@import "global/defaults";
-@import "utils";
+@use "common";
 
 
 // blocks
-@import "blocks/banner";
-@import "blocks/buttons";
-@import "blocks/text";
+@use "imports/hb-blocks";
+@use "imports/wp-blocks";
 
 
 // components
 
-@import "../../../node_modules/glightbox/dist/css/glightbox";
+@use "components/action";
+@use "components/brontographics";
+@use "components/footer";
+@use "components/header";
+@use "components/hero"; // must be below header
+@use "components/coverPhoto"; // must be below header
+@use "components/buttons" as buttons2;
+@use "components/administrativeUnitsMap"; // must be after button
+@use "components/filters"; // must be below header and button
+@use "components/content";
+@use "components/event";
+@use "components/events";
+@use "components/eventLabels";
+@use "components/eventList";
+@use "components/eventTag";
+@use "components/expandable";
+@use "components/description";
+@use "components/icon";
+@use "components/list";
+@use "components/message";
+@use "components/newsletter";
+@use "components/noResults";
+@use "components/optionBox";
+@use "components/pagination";
+@use "components/partners-grid";
+@use "components/photogallery";
+@use "components/presentationBox";
+@use "components/quotation";
+@use "components/references";
+@use "components/registration";
+@use "components/related";
+@use "components/revision";
+@use "components/searchForm";
+@use "components/sponsors";
+@use "components/screenreaders-only";
 
-@import "components/action";
-@import "components/announcement";
-@import "components/brontographics";
-@import "components/footer";
-@import "components/forms";
-@import "components/header";
-@import "components/hero"; // must be below header
-@import "components/coverPhoto"; // must be below header
-@import "components/buttons";
-@import "components/administrativeUnitsMap"; // must be after button
-@import "components/filters"; // must be below header and button
-@import "components/content";
-@import "components/event";
-@import "components/events";
-@import "components/eventLabels";
-@import "components/eventList";
-@import "components/eventTag";
-@import "components/expandable";
-@import "components/description";
-@import "components/icon";
-@import "components/list";
-@import "components/message";
-@import "components/newsletter";
-@import "components/noResults";
-@import "components/optionBox";
-@import "components/pagination";
-@import "components/partners-grid";
-@import "components/photogallery";
-@import "components/presentationBox";
-@import "components/quotation";
-@import "components/references";
-@import "components/registration";
-@import "components/related";
-@import "components/revision";
-@import "components/searchForm";
-@import "components/sponsors";
-@import "components/screenreaders-only";
+@use "pages";
 
-//pages
-@import "pages/about-crossroad";
-@import "pages/about-successes";
-@import "pages/baseUnits";
-@import "pages/contacts";
-@import "pages/detail";
-@import "pages/english";
-@import "pages/error404";
-@import "pages/firstTime";
-@import "pages/forchildren";
-@import "pages/future";
-@import "pages/highschool";
-@import "pages/about-structure"; // @todo: refactor so that it does not use highschool breakpoints
-@import "pages/homepage";
-@import "pages/news";
-@import "pages/voluntary";
-@import "pages/partners";
-@import "pages/courses";
-@import "pages/meetups";
-@import "pages/preview";
-@import "pages/prilezitost";
-@import "pages/rentals";
-@import "pages/searchResults";
-@import "pages/support-overview";
-@import "pages/newVersionAnnouncement";
-@import "pages/zapoj-se";
+@use "utils";

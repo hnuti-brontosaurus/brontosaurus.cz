@@ -4,125 +4,114 @@
 	height: 100%;
 	display: flex;
 	z-index: 1;
-	background-color: $colors-default-background;
+	background-color: var(--hb-colors-default-background);
+}
 
-	&--hidden {
-		max-height: 0;
-		overflow: hidden;
-		pointer-events: none;
+.searchForm--hidden {
+	max-height: 0;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.searchForm__innerWrapper {
+	display: flex;
+	width: 80vw; // take 80 % of viewport (to have some space for close button)
+	max-width: 28rem; // but respect an upper limit
+	margin-inline: auto;
+	position: relative; // because of absolutely positioned close button element
+}
+
+.searchForm__gcseRoot {
+	flex-grow: 1; // take full width of parent
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.searchForm__gcseRoot > div {
+	flex-basis: 30rem !important;
+}
+
+.searchForm__gcseRoot .gsc-input-box {
+	height: 3em !important;
+	border-radius: 2em !important;
+}
+
+.searchForm__gcseRoot .gsib_a {
+	padding-inline-start: 15px !important;
+	padding-block-end: 0 !important;
+}
+
+.searchForm__gcseRoot .gsst_b {
+	padding-block-start: 4px !important;
+}
+
+.searchForm__gcseRoot .gsst_a {
+	padding-inline-end: 10px !important;
+}
+
+.searchForm__gcseRoot table.gsc-input {
+	height: 100% !important;
+}
+
+.searchForm__gcseRoot .gsc-search-box > tbody > tr {
+	display: flex !important;
+	align-items: center !important;
+	gap: 0.25rlh !important;
+}
+.searchForm__gcseRoot .gsc-search-box > tbody > tr > td.gsc-input {
+	flex-grow: 1 !important;
+}
+.searchForm__gcseRoot .gsc-search-box > tbody > tr > td.gsc-search-button {
+	flex-basis: 9em !important; // fallback
+	flex-basis: max-content !important; // better but not so supported
+}
+
+.searchForm__gcseRoot input.gsc-input {
+	background: none !important;
+	font-size: 1.6em !important;
+	text-indent: initial !important;
+}
+.searchForm__gcseRoot input.gsc-input::placeholder {
+	font-size: 0.9em !important;
+}
+.searchForm__gcseRoot input.gsc-input:focus {
+	box-shadow: none !important;
+}
+
+.searchForm__gcseRoot button.gsc-search-button {
+	border-radius: 2em !important;
+	padding: 0.5rlh 1rlh calc(0.5rlh - 0.35em) !important;
+	font-size: 1.6em !important;
+	height: 100% !important;
+}
+.searchForm__gcseRoot button.gsc-search-button > svg {
+	width: 16px !important;
+	height: 16px !important;
+}
+.searchForm__gcseRoot button.gsc-search-button::after {
+	display: none !important;
+}
+
+.searchForm__closeButton {
+	position: absolute;
+	right: -2rlh;
+	top: 50%;
+	transform: translateY(-50%);
+	padding: 1rlh;
+	cursor: pointer;
+	border: none;
+	background-color: transparent;
+	background-image: url("../../../images/icons/icon-close-black.svg");
+	background-position: center;
+	background-size: 0.71em;
+	background-repeat: no-repeat;
+}
+@media (max-width: 30em) {
+	.searchForm__closeButton {
+		right: -2em; // closer to form on small resolutions
 	}
-
-	&__innerWrapper {
-		display: flex;
-		width: 80vw; // take 80 % of viewport (to have some space for close button)
-		max-width: 28rem; // but respect an upper limit
-		margin-left: auto;
-		margin-right: auto;
-		position: relative; // because of absolutely positioned close button element
-	}
-
-	&__gcseRoot {
-		flex-grow: 1; // take full width of parent
-		display: flex;
-		justify-content: center;
-		align-items: center;
-
-		> div {
-			flex-basis: 30rem !important;
-		}
-
-		.gsc-input-box {
-			height: 3em !important;
-			border-radius: 2em !important;
-		}
-
-		.gsib_a {
-			padding-left: 15px !important;
-			padding-bottom: 0 !important;
-		}
-
-		.gsst_b {
-			padding-top: 4px !important;
-		}
-
-		.gsst_a {
-			padding-right: 10px !important;
-		}
-
-		table.gsc-input {
-			height: 100% !important;
-		}
-
-		.gsc-search-box {
-			> tbody > tr {
-				display: flex !important;
-				align-items: center !important;
-				gap: vr-unit(0.25) !important;
-
-				> td.gsc-input {
-					flex-grow: 1 !important;
-				}
-
-				> td.gsc-search-button {
-					flex-basis: 9em !important; // fallback
-					flex-basis: max-content !important; // better but not so supported
-				}
-			}
-		}
-
-		input.gsc-input {
-			background: none !important;
-			font-size: 1.6em !important;
-			text-indent: initial !important;
-
-			&::placeholder {
-				font-size: 0.9em !important;
-			}
-
-			&:focus {
-				box-shadow: none !important;
-			}
-		}
-
-		button.gsc-search-button {
-			@extend .button;
-			@extend .button--primary;
-			border-radius: 2em !important;
-			padding: vr-unit(0.5) vr-unit(1) calc(#{vr-unit(0.5)} - 0.35em) !important;
-			font-size: 1.6em !important;
-			height: 100% !important;
-
-			> svg {
-				width: 16px !important;
-				height: 16px !important;
-			}
-
-			&::after {
-				display: none !important;
-			}
-		}
-	}
-
-	&__closeButton {
-		position: absolute;
-		right: -#{vr-unit(2)};
-		top: 50%;
-		transform: translateY(-50%);
-		padding: vr-unit(1);
-		cursor: pointer;
-		border: none;
-		background-color: transparent;
-		background-image: url("../images/icon-close-black.svg");
-		background-position: center;
-		background-size: 0.71em;
-		background-repeat: no-repeat;
-
-		@media (max-width: 30em) {
-			right: -2em; // closer to form on small resolutions
-		}
-
-		&::after {
-			display: none;
-		}
-	}
+}
+.searchForm__closeButton::after {
+	display: none;
 }

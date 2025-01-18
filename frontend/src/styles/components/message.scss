@@ -1,8 +1,11 @@
+@use "sass:color";
+@use "../imports/settings";
+
 .hb-message {
 	max-width: max-content;
 	margin-inline: auto;
-	padding: calc(var(--hb-vr-base)) calc(var(--hb-vr-base) * 2);
-	background-color: transparentize($colors-emphasizing, 0.9);
+	padding: 1rlh 2rlh;
+	background-color: color.adjust(settings.$colors-emphasizing, $alpha: -0.9);
 	border-radius: 2em;
 	text-align: center;
 }

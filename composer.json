@@ -7,7 +7,6 @@
 	"require": {
 		"grifart/geocoding-client": "^0.2.0",
 		"hnuti-brontosaurus/php-bis-api-client": "^4.0.0-beta",
-		"latte/latte": "^3.0",
 		"nette/neon": "^3.2",
 		"nette/utils": "^4.0",
 		"sentry/sdk": "^3.1",

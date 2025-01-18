@@ -1,9 +1,11 @@
+@use "sass:color";
+@use "../imports/settings";
+
 .icon {
-	fill: $colors-emphasizing;
+	fill: var(--hb-colors-emphasizing);
 	fill-opacity: 1;
 	transition: fill 100ms linear;
-
-	&:hover {
-		fill: darken($colors-emphasizing, 10);
-	}
+}
+.icon:hover {
+	fill: color.adjust(settings.$colors-emphasizing, $lightness: -10%);
 }

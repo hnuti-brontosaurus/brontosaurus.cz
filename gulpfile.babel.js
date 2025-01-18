@@ -3,12 +3,14 @@
 import gulp from 'gulp';
 import taskList from 'gulp-task-listing';
 
-import {paths} from './gulp/constants.js';
-import buildImages from './gulp/build-images.js';
 import buildScripts from './gulp/build-scripts.js';
 import buildStyles from './gulp/build-styles.js';
-import buildWebfonts from './gulp/build-webfonts.js';
 import {getSourcePathFromPathObject} from './gulp/utils.js';
+
+const paths = {
+	scripts: { global: { dist: 'frontend/dist/js', src: 'frontend/src/scripts' } },
+	styles: { global: { dist: 'frontend/dist/css', src: 'frontend/src/styles' } },
+};
 
 
 // SCRIPTS
@@ -16,46 +18,10 @@ import {getSourcePathFromPathObject} from './gulp/utils.js';
 const buildScriptsTask = (cb) => {
 	buildScripts(cb, [
 		{
-			distFileName: 'index.js',
-			distPath: paths.scripts.detail.dist, // folder to save the compiled js file into
-			sourceFileName: 'index.ts',
-			sourcePath: paths.scripts.detail.src,
-		},
-		{
 			distFileName: 'administrativeUnitsMap.js',
 			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
 			sourceFileName: 'index.ts',
 			sourcePath: paths.scripts.global.src + '/administrativeUnitsMap',
-		},
-		{
-			distFileName: 'editor.js',
-			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
-			sourceFileName: 'editor.js',
-			sourcePath: paths.scripts.global.src,
-		},
-		{
-			distFileName: 'expandable.js',
-			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
-			sourceFileName: 'expandable.ts',
-			sourcePath: paths.scripts.global.src,
-		},
-		{
-			distFileName: 'lazyLoad.js',
-			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
-			sourceFileName: 'lazyLoad.ts',
-			sourcePath: paths.scripts.global.src,
-		},
-		{
-			distFileName: 'lightbox.js',
-			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
-			sourceFileName: 'lightbox.ts',
-			sourcePath: paths.scripts.global.src,
-		},
-		{
-			distFileName: 'menuHandler.js',
-			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
-			sourceFileName: 'menuHandler.ts',
-			sourcePath: paths.scripts.global.src,
 		},
 		{
 			distFileName: 'references.js',
@@ -68,7 +34,7 @@ const buildScriptsTask = (cb) => {
 
 gulp.task('build:scripts', gulp.series(buildScriptsTask));
 gulp.task('watch:scripts', gulp.series(buildScriptsTask, () => {
-	gulp.watch(getSourcePathFromPathObject(paths.scripts).map((path) => path + '/**/*.{ts,js}'), gulp.series(buildScriptsTask));
+	gulp.watch(getSourcePathFromPathObject(paths.scripts).map((path) => path + '/**/*.ts'), gulp.series(buildScriptsTask));
 }));
 
 
@@ -100,54 +66,21 @@ gulp.task('watch:styles', gulp.series(buildStylesTask, () => {
 }));
 
 
-// WEBFONTS
-
-const buildWebfontsTask = () => {
-	return buildWebfonts(
-		{
-			distPath: paths.webfonts.global.dist,
-			sourcePath: paths.webfonts.global.src,
-		},
-	);
-};
-
-gulp.task('build:webfonts', gulp.series(buildWebfontsTask));
-gulp.task('watch:webfonts', gulp.series(buildWebfontsTask, () => {
-	gulp.watch(getSourcePathFromPathObject(paths.webfonts).map((path) => path + '/*'), gulp.series(buildWebfontsTask));
-}));
-
-
-// IMAGES
-
-const buildImagesTask = (cb) => {
-	return buildImages(cb, [
-		paths.images.global,
-		// paths.images.rentals,
-	]);
-};
-
-gulp.task('build:images', gulp.series(buildImagesTask));
-gulp.task('watch:images', gulp.series(buildImagesTask, () => {
-	gulp.watch(getSourcePathFromPathObject(paths.images).map((path) => path + '/**/*.{gif,ico,jpg,jpeg,png,svg}'), gulp.series(buildImagesTask)); // @todo: add custom
-}));
-
-
 // HELPERS
+
+// todo: finish USER in docker, maybe yarn will be then available for www-data
+// todo: then try these things
 
 gulp.task('help', taskList);
 
 gulp.task('watch', gulp.parallel(
 	'watch:scripts',
 	'watch:styles',
-	'watch:webfonts',
-	'watch:images',
 ));
 
 gulp.task('build', gulp.parallel(
 	'build:scripts',
 	'build:styles',
-	'build:webfonts',
-	'build:images',
 ));
 
 gulp.task('default', gulp.series('build'));

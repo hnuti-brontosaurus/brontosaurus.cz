@@ -1,38 +1,38 @@
+@use "../imports/settings";
+
 .list {
 	max-width: 20rem;
 	list-style-type: none;
-
-	@media ($typography-breakpoint-large-from) {
-		margin-left: auto;
-		margin-right: auto;
+}
+@media (settings.$typography-breakpoint-large-from) {
+	.list {
+		margin-inline: auto;
 	}
+}
 
-	&:not(&--noBackground) {
-		@media ($typography-breakpoint-large-from) {
-			background-color: $colors-tinge;
-			border-radius: 2em;
-			padding: vr-unit(1) vr-unit(3);
-			max-width: calc(28em + #{vr-unit(6)});
-		}
+@media (settings.$typography-breakpoint-large-from) {
+	.list:not(.list--noBackground) {
+		background-color: var(--hb-colors-tinge);
+		border-radius: 2em;
+		padding: 1rlh 3rlh;
+		max-width: calc(28em + 6rlh);
 	}
+}
 
-	&__item {
-		&:not(:last-child) {
-			margin-bottom: vr-unit(0.5);
-		}
+.list__item:not(:last-child) {
+	margin-block-end: 0.5rlh;
+}
 
-		&::before {
-			content: "→️";
-			font-size: 0.65em;
-			position: absolute;
-			margin-left: -1.5em;
-			margin-top: 0.2em;
+.list__item::before {
+	content: "→️";
+	font-size: 0.65em;
+	position: absolute;
+	margin-inline-start: -1.5em;
+	margin-block-start: 0.2em;
 
-			@media ($typography-breakpoint-large-from) {
-				margin-left: -#{vr-unit(1)};
-				font-size: 0.75em;
-				margin-top: 0.15em;
-			}
-		}
+	@media (settings.$typography-breakpoint-large-from) {
+		margin-inline-start: -1rlh;
+		font-size: 0.75em;
+		margin-block-start: 0.15em;
 	}
 }

@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php
 
 namespace HnutiBrontosaurus\Theme;
 
@@ -44,7 +44,7 @@ $hb_pageClassSelector = $hb_currentPost !== null ? $hb_currentPost->post_name : 
 				<div class="searchForm__gcseRoot">
 					<div
 						class="gcse-searchbox-only"
-						data-resultsUrl="<?php echo getLinkFor('vysledky-vyhledavani'); ?>"
+						data-resultsUrl="/vysledky-vyhledavani"
 						data-queryParameterName="q"
 						data-enableAutoComplete="false"
 					></div>
@@ -52,7 +52,9 @@ $hb_pageClassSelector = $hb_currentPost !== null ? $hb_currentPost->post_name : 
 					<script type="text/javascript">
 						window.addEventListener('load', function () {
 							document.getElementById('gsc-i-id1').placeholder = 'Prohledat tento web';
-							document.getElementById('___gcse_0').querySelector('button.gsc-search-button').innerHTML = 'Hledat';
+							const searchButtonEl = document.getElementById('___gcse_0').querySelector('button.gsc-search-button');
+							searchButtonEl.classList.add('button', 'button--primary');
+							searchButtonEl.innerHTML = 'Hledat';
 						});
 					</script>
 				</div>
@@ -63,26 +65,26 @@ $hb_pageClassSelector = $hb_currentPost !== null ? $hb_currentPost->post_name : 
 		<?php endif; ?>
 
 		<header class="header" id="header" role="banner">
-			<a class="header-logo" href="<?php echo get_home_url(); ?>">
-				<img src="<?php echo get_template_directory_uri(); ?>/frontend/dist/images/logo-hb-full.png" alt="Hnutí Brontosaurus">
+			<a class="header__logo" href="<?php echo get_home_url(); ?>">
+				<img src="<?php echo get_template_directory_uri(); ?>/images/logo-hb-full.png" alt="Hnutí Brontosaurus">
 			</a>
 
-			<a class="header-toggleNavigationLink" href="#navigace" id="header-toggleNavigationLink">
-				<svg class="header-toggleNavigationLink-image" viewBox="0 0 78 50" xmlns="http://www.w3.org/2000/svg" aria-label="Přejít na navigaci">
+			<a class="header__toggleNavigationLink" href="#navigace" id="header-toggleNavigationLink">
+				<svg viewBox="0 0 78 50" xmlns="http://www.w3.org/2000/svg" aria-label="Přejít na navigaci">
 					<path fill="#000000" d="M0,0 h78 v8 h-78Z M0,21 h78 v8 h-78Z M0,42 h78 v8 h-78Z"></path>
 				</svg>
 			</a>
 
 			<nav class="header-mainNavigation" role="navigation">
 				<?php if($hb_currentPost?->post_name === 'english'): ?>
-					<a class="header-mainNavigation-languageLink header-mainNavigation-languageLink--active" href="<?php echo get_home_url(); ?>" title="Česky" aria-label="Česky" data-label="Česky">
-						<span class="header-mainNavigation-languageLink-label">
+					<a class="header-mainNavigation__languageLink header-mainNavigation__languageLink--active" href="<?php echo get_home_url(); ?>" title="Česky" aria-label="Česky" data-label="Česky">
+						<span class="header-mainNavigation__languageLinkLabel">
 							Česky
 						</span>
 					</a>
 				<?php else: ?>
-					<a class="header-mainNavigation-languageLink" href="<?php echo getLinkFor('english'); ?>" title="English" aria-label="English" data-label="English">
-						<span class="header-mainNavigation-languageLink-label">
+					<a class="header-mainNavigation__languageLink" href="/english" title="English" aria-label="English" data-label="English">
+						<span class="header-mainNavigation__languageLinkLabel">
 							English
 						</span>
 					</a>
@@ -96,19 +98,19 @@ $hb_pageClassSelector = $hb_currentPost !== null ? $hb_currentPost->post_name : 
 				<?php // TODO add rel="noopener noreferrer" target="_blank" to external links ?>
 			</nav>
 
-			<a class="header-futureEventsLink<?php echo $hb_currentPost?->post_name === 'co-se-chysta' ? ' header-futureEventsLink--active' : ''; ?>" href="<?php echo getLinkFor('co-se-chysta'); ?>" title="Co se chystá">
-				<span class="header-futureEventsLink-text">
+			<a class="header__futureEventsLink<?php echo $hb_currentPost?->post_name === 'co-se-chysta' ? ' header__futureEventsLink--active' : ''; ?>" href="/co-se-chysta" title="Co se chystá">
+				<span class="header__futureEventsLinkText">
 					Co se chystá
 				</span>
 			</a>
 
 			<?php if ( ! $hb_isOnSearchResultsPage): ?>
-			<a class="header-searchBarToggler" href="#navigace" id="searchBarToggler" title="Vyhledávání"></a>
+			<a class="header__searchBarToggler" href="#navigace" id="searchBarToggler" title="Vyhledávání"></a>
 			<?php endif; ?>
 		</header>
 	</div>
 
-	<?php if ($hb_pageClassSelector !== 'zapoj-se'): ?>
+	<?php if (!in_array($hb_pageClassSelector, ['zapoj-se', 'podpor-nas', 'co-se-chysta'])): ?>
 	<div class="coverPhoto<?php echo $hb_pageClassSelector !== '' ? ' coverPhoto--' . $hb_pageClassSelector : ''; ?>"></div>
 	<?php endif; ?>
 

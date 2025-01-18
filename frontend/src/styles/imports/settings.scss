@@ -1,0 +1,86 @@
+$colors-default-background: #ffffff;
+$colors-emphasizing: #00a651;
+$colors-text: #000000;
+$colors-tinge: #f0f3f2;
+
+$typography-breakpoint: 60em;
+$typography-breakpoint-small-until: "max-width: " + $typography-breakpoint;
+$typography-breakpoint-large-from: "min-width: " + ($typography-breakpoint + 0.001);
+
+$header-breakpoint-navigationHiddenToVisible: 39em;
+@mixin header-navigation-collapsed-until() {
+	@media ($header-breakpoint-navigationHiddenToVisible-hidden-until) {
+		@content;
+	}
+}
+@mixin header-navigation-expanded-from() {
+	@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
+		@content;
+	}
+}
+
+$buttons-secondary-breakpoint-rightBottomBubbleToCenteredButton: 39em;
+$buttons-secondary-breakpoint-rightBottomBubble-until: "max-width: " + $buttons-secondary-breakpoint-rightBottomBubbleToCenteredButton;
+$buttons-secondary-breakpoint-centeredButton-from: "min-width: " + ($buttons-secondary-breakpoint-rightBottomBubbleToCenteredButton + 0.001);
+
+$hb-banner-breakpoint: 30em;
+@mixin hb-banner-vertical-until() {
+	@media (max-width: $hb-banner-breakpoint) {
+		@content;
+	}
+}
+@mixin hb-banner-horizontal-from() {
+	@media (min-width: ($hb-banner-breakpoint + 0.001em)) {
+		@content;
+	}
+}
+
+$description-breakpoint-oneColumnToTwoColumns: 40em;
+$description-breakpoint-oneColumn-until: "max-width: " + $description-breakpoint-oneColumnToTwoColumns;
+$description-breakpoint-twoColumns-from: "min-width: " + ($description-breakpoint-oneColumnToTwoColumns + 0.001);
+
+$events-breakpoint-oneColumnToTwoColumns: $header-breakpoint-navigationHiddenToVisible + 5em;
+$events-breakpoint-oneColumn-until: "max-width: " + $events-breakpoint-oneColumnToTwoColumns;
+$events-breakpoint-twoColumns-from: "min-width: " + ($events-breakpoint-oneColumnToTwoColumns + 0.001);
+
+$events-breakpoint-TwoToThreeColumns: 73em;
+$events-breakpoint-twoColumns-until: "max-width: " + $events-breakpoint-TwoToThreeColumns;
+$events-breakpoint-threeColumns-from: "min-width: " + ($events-breakpoint-TwoToThreeColumns + 0.001);
+
+$header-breakpoint-navigationHiddenToVisible-hidden-until: "max-width: " + $header-breakpoint-navigationHiddenToVisible;
+$header-breakpoint-navigationHiddenToVisible-visible-from: "min-width: " + ($header-breakpoint-navigationHiddenToVisible + 0.001);
+
+$footer-breakpoint-fullSize: 39em; // like $header-breakpoint-navigationHiddenToVisible
+$footer-breakpoint-fullSize-until: "max-width: " + $footer-breakpoint-fullSize;
+$footer-breakpoint-fullSize-from: "min-width: " + ($footer-breakpoint-fullSize + 0.001);
+
+$photogallery-breakpoint-twoPhotosToFull: 30em;
+$photogallery-breakpoint-twoPhotos-until: "max-width: " + $photogallery-breakpoint-twoPhotosToFull;
+$photogallery-breakpoint-full-from: "min-width: " + ($photogallery-breakpoint-twoPhotosToFull + 0.001);
+
+$related-breakpoint-oneColumnToTwoColumns: $header-breakpoint-navigationHiddenToVisible;
+$related-breakpoint-oneColumn-until: "max-width: " + $related-breakpoint-oneColumnToTwoColumns;
+$related-breakpoint-twoColumns-from: "min-width: " + ($related-breakpoint-oneColumnToTwoColumns + 0.001);
+
+$related-breakpoint-roundedPhoto: 53em;
+$related-breakpoint-roundedPhoto-untilHidden: "max-width: " + $related-breakpoint-roundedPhoto;
+$related-breakpoint-roundedPhoto-whenVisible: "min-width: " + ($related-breakpoint-roundedPhoto + 0.001);
+
+$detail-breakpoint-mediumToLarge: 50em;
+$detail-breakpoint-medium-until: "max-width: " + $detail-breakpoint-mediumToLarge;
+$detail-breakpoint-large-from: "min-width: " + ($detail-breakpoint-mediumToLarge + 0.001);
+
+$highschool-breakpoint-contactPerson-oneToTwoColumns: 30em;
+@mixin highschool-breakpoint-contactPerson-oneColumn-until () {
+	@media (max-width: $highschool-breakpoint-contactPerson-oneToTwoColumns) {
+		@content;
+	}
+}
+@mixin highschool-breakpoint-contactPerson-twoColumns-from () {
+	@media (min-width: ($highschool-breakpoint-contactPerson-oneToTwoColumns + 0.001)) {
+		@content;
+	}
+}
+
+$default-breakpoint-oneColumnToTwoColumns: 45em;
+$default-breakpoint-oneColumn-until: "max-width: " + $default-breakpoint-oneColumnToTwoColumns;

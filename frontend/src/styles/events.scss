@@ -1,15 +1,10 @@
-@import "global/reset";
-@import "global/settings";
-@import "global/helpers";
-@import "global/blocks";
-@import "mixins/content";
-@import "global/defaults";
+@use "common";
 
-@import "components/header";
+@use "components/header";
 
-@import "components/eventLabels";
-@import "components/event";
-@import "components/eventList";
+@use "components/eventLabels";
+@use "components/event";
+@use "components/eventList";
 
 .wp-block-hb-events {
 	max-width: unset;

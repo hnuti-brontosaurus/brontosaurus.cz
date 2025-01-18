@@ -10,8 +10,6 @@
     "gulp-autoprefixer": "^8.0.0",
     "gulp-flatten": "^0.4.0",
     "gulp-if": "^3.0.0",
-    "gulp-image": "^6.3.1",
-    "gulp-image-resize": "^0.13.1",
     "gulp-plumber": "^1.2.1",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.0.0",
@@ -28,13 +26,9 @@
   },
   "dependencies": {
     "@types/googlemaps": "^3.43.3",
-    "@types/headroom": "^0.12.0",
-    "glightbox": "~3.2.0",
-    "headroom.js": "^0.12.0",
     "load-google-maps-api": "^2.0.2",
     "sanitize.css": "^12.0.1",
-    "ts-overlapping-marker-spiderfier": "^1.0.3",
-    "vanilla-lazyload": "^17.3.1"
+    "ts-overlapping-marker-spiderfier": "^1.0.3"
   },
   "scripts": {
     "build": "gulp build",

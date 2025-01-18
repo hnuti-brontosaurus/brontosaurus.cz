@@ -1,147 +1,149 @@
+@use "../imports/settings";
+
 .optionBox {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	overflow: hidden; // prevent child image overflow given border radius
-	background-color: $colors-tinge;
+	background-color: var(--hb-colors-tinge);
 	border-radius: 2em;
 	text-decoration: none;
+}
+.optionBox:hover {
+	color: inherit !important;
+}
 
-	&:hover {
-		color: inherit !important;
+.optionBox__text {
+	padding: 1rlh;
+}
+@media (settings.$description-breakpoint-twoColumns-from) {
+	.optionBox__text {
+		padding: 1.5rlh 2rlh;
 	}
+}
 
-	&__text {
-		padding: vr-unit(1);
-
-		@media ($description-breakpoint-twoColumns-from) {
-			padding: vr-unit(1.5) vr-unit(2);
-		}
+.optionBox__heading {
+	font-weight: bold;
+}
+@media (settings.$typography-breakpoint-large-from) {
+	.optionBox__heading {
+		text-align: center;
 	}
+}
 
-	&__heading {
-		font-weight: bold;
+.optionBox__image {
+	background-position: center top;
+	background-size: cover;
+	background-repeat: no-repeat;
+	border-radius: 0 0 2em 2em;
+	display: flex;
+	flex-direction: column;
+	height: 13em;
+	justify-content: flex-end;
+	overflow: hidden;
+	position: relative;
+}
 
-		@media ($typography-breakpoint-large-from) {
-			text-align: center;
-		}
-	}
+// voluntary modifiers
 
-	&__image {
-		background-position: center top;
-		background-size: cover;
-		background-repeat: no-repeat;
-		border-radius: 0 0 2em 2em;
-		display: flex;
-		flex-direction: column;
-		height: 13em;
-		justify-content: flex-end;
-		overflow: hidden;
-		position: relative;
+.optionBox__image--voluntary-firstTime {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/voluntary-firstTime.jpg");
+	background-position-y: 36%;
+}
 
+.optionBox__image--voluntary-weekendEvents {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/voluntary-weekendEvents.jpg");
+	background-position-y: 62%;
+}
 
-		// voluntary modifiers
+.optionBox__image--voluntary-oneDayEvents {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/voluntary-oneDayEvents-scaled.jpg");
+	background-position-y: 58%;
+}
 
-		&--voluntary-firstTime {
-			background-image: url("../images/voluntary-firstTime.jpg");
-			background-position-y: 36%;
-		}
+.optionBox__image--voluntary-holidayEvents {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/voluntary-holidayEvents.jpg");
+}
 
-		&--voluntary-weekendEvents {
-			background-image: url("../images/voluntary-weekendEvents.jpg");
-			background-position-y: 62%;
-		}
+.optionBox__image--voluntary-nature {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/voluntary-nature.jpg");
+}
 
-		&--voluntary-oneDayEvents {
-			background-image: url("../images/voluntary-oneDayEvents.jpg");
-			background-position-y: 58%;
-		}
-
-		&--voluntary-holidayEvents {
-			background-image: url("../images/voluntary-holidayEvents.jpg");
-		}
-
-		&--voluntary-nature {
-			background-image: url("../images/voluntary-nature.jpg");
-		}
-
-		&--voluntary-sights {
-			background-image: url("../images/voluntary-sights.jpg");
-		}
+.optionBox__image--voluntary-sights {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/voluntary-sights-scaled.jpg");
+}
 
 
-		// courses modifiers
+// courses modifiers
 
-		&--courses-organizing {
-			background-image: url("../images/courses-organizing.jpg");
-			background-position-y: 41%;
-		}
+.optionBox__image--courses-organizing {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/courses-organizing.jpg");
+	background-position-y: 41%;
+}
 
-		&--courses-thematic {
-			background-image: url("../images/courses-thematic.jpg");
-			background-position-y: 96%;
-			background-size: 144%;
-		}
-
-
-		// meetups modifiers
-
-		&--meetups {
-			background-image: url("../images/meetups.jpg");
-			background-position-y: 20%;
-		}
+.optionBox__image--courses-thematic {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/courses-thematic-2.jpg");
+	background-position-y: 96%;
+	background-size: 144%;
+}
 
 
-		// for children modifiers
+// meetups modifiers
 
-		&--forChildren-camps {
-			background-image: url("../images/forChildren-camps.jpg");
-		}
-
-		&--forChildren-units {
-			background-image: url("../images/forChildren-units.jpg");
-			background-position-y: 85%;
-		}
-
-		&--forChildren-events {
-			background-image: url("../images/forChildren-events.jpg");
-			background-position-y: 100%;
-		}
-
-		&--forChildren-eventsWithParents {
-			background-image: url("../images/forChildren-eventsWithParents.jpg");
-			background-position-y: 22%;
-		}
+.optionBox__image--meetups {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/meetups-scaled.jpg");
+	background-position-y: 20%;
+}
 
 
-		// support overview modifiers
+// for children modifiers
 
-		&--supportOverview-presents {
-			background-image: url("../images/supportOverview-presents.jpg");
-			background-size: cover;
-		}
+.optionBox__image--forChildren-camps {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/forChildren-camps.jpg");
+}
 
-		&--supportOverview-adoption {
-			background-image: url("../images/supportOverview-adoption.jpg");
-			background-size: cover;
-			background-position: center center;
-		}
+.optionBox__image--forChildren-units {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/forChildren-units.jpg");
+	background-position-y: 85%;
+}
+
+.optionBox__image--forChildren-events {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/forChildren-events.jpg");
+	background-position-y: 100%;
+}
+
+.optionBox__image--forChildren-eventsWithParents {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/forChildren-eventsWithParents.jpg");
+	background-position-y: 22%;
+}
 
 
-		// zapoj se
+// support overview modifiers
 
-		&--organizovani {
-			background-image: url("../images/zapoj-se-organizovani.jpg");
-		}
-		&--spoluprace {
-			background-image: url("../images/zapoj-se-spoluprace.jpg");
-			background-position-y: bottom;
-		}
-		&--clenstvi {
-			background-image: url("../images/zapoj-se-clenstvi.jpg");
-		}
-		&--zalozeni-clanku {
-			background-image: url("../images/zapoj-se-zalozeni-clanku.jpg");
-		}
-	}
+.optionBox__image--supportOverview-presents {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/supportOverview-presents.jpg");
+	background-size: cover;
+}
+
+.optionBox__image--supportOverview-adoption {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/supportOverview-adoption.jpg");
+	background-size: cover;
+	background-position: center center;
+}
+
+
+// zapoj se
+
+.optionBox__image--organizovani {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/zapoj-se-organizovani-scaled.jpg");
+}
+.optionBox__image--spoluprace {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/zapoj-se-spoluprace-scaled.jpg");
+	background-position-y: bottom;
+}
+.optionBox__image--clenstvi {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/zapoj-se-clenstvi.jpg");
+}
+.optionBox__image--zalozeni-clanku {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/zapoj-se-zalozeni-clanku-scaled.jpg");
 }

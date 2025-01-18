@@ -1,9 +1,4 @@
-@import "global/webfonts";
-@import "global/reset";
-@import "global/settings";
-@import "global/helpers";
-@import "global/blocks";
-@import "mixins/content";
-@import "global/defaults";
+@use "common";
+@use "imports/hb-content-mixin";
 
-@include hb-content();
+@include hb-content-mixin.hb-content();
