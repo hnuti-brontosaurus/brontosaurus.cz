@@ -47,7 +47,7 @@ $contacts = array_map(function (WP_Post $post) {
 			</h2>
 
 			<div class="contacts__box hb-mi-auto hb-mbe-4 hb-br">
-				<iframe class="contacts__map hb-is-100 hb-bs-100" src="https://api.mapy.cz/frame?params=%7B%22x%22%3A16.623003057444357%2C%22y%22%3A49.20103202242354%2C%22base%22%3A%221%22%2C%22layers%22%3A%5B%5D%2C%22zoom%22%3A17%2C%22url%22%3A%22https%3A%2F%2Fmapy.cz%2Fs%2F38BYR%22%2C%22mark%22%3A%7B%22x%22%3A%2216.623003057444357%22%2C%22y%22%3A%2249.20103202242354%22%2C%22title%22%3A%22ulice%20Hv%C4%9Bzdov%C3%A1%20306%2F10%2C%20Brno%22%7D%2C%22overview%22%3Afalse%7D&amp;lang=cs" style="border:none" frameBorder="0"></iframe>
+				<iframe class="contacts__map hb-is-100 hb-bs-100" src="https://frame.mapy.cz/s/karunuveku" style="border:none" frameborder="0"></iframe>
 
 				<address class="contacts__boxInner hb-p-5 hb-bg-tinge">
 					<div class="contacts__boxItem contacts__boxItem--address hb-mbe-3">
@@ -55,8 +55,8 @@ $contacts = array_map(function (WP_Post $post) {
 							Kontaktní adresa
 						</h3>
 
-						<a href="https://mapy.cz/s/38BYR" target="_blank" aria-labelledby="contacts-address">
-							Hvězdová 10, Brno, 602 00
+						<a href="https://mapy.cz/s/kavuvehele" target="_blank" aria-labelledby="contacts-address">
+							Cejl 35, Brno, 602 00
 						</a>
 					</div>
 
