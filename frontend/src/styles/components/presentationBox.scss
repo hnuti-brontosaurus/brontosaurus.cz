@@ -1,5 +1,8 @@
+@use "sass:color";
+@use "../imports/settings";
+
 @mixin presentationBox-breakpoint-textOnSide-from() {
-	@media (min-width: 50.001em) {
+	@media (settings.$detail-breakpoint-large-from) {
 		@content;
 	}
 }
@@ -7,110 +10,115 @@
 .presentationBox {
 	position: relative;
 	min-block-size: 18rem;
-	padding: calc(var(--hb-vr-base) * 8) calc(var(--hb-vr-base) * 1) calc(var(--hb-vr-base) * 1);
-	margin-inline: calc(var(--hb-vr-base) * -1);
+	padding: 8rlh 1rlh 1rlh;
+	margin-inline: -1rlh;
 	background-color: var(--hb-colors-tinge);
 	overflow: hidden; // prevent background-image to go out of set border-radius
-
-	@include header-navigation-expanded-from() {
-		margin-inline: calc(var(--hb-vr-base) * -2);
+}
+@include settings.header-navigation-expanded-from() {
+	.presentationBox {
+		margin-inline: -2rlh;
 	}
-	@include presentationBox-breakpoint-textOnSide-from() {
+}
+@include presentationBox-breakpoint-textOnSide-from() {
+	.presentationBox {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		padding: calc(var(--hb-vr-base) * 2);
+		padding: 2rlh;
 		margin-inline: auto;
 		border-radius: 2em;
 		background-color: transparent;
 	}
+}
 
-	&::before {
+.presentationBox::before {
+	content: "";
+	position: absolute;
+	inset-block-start: 0;
+	inset-inline-start: 0;
+	display: block;
+	inline-size: 100%;
+	block-size: 7rlh; // we need it in line height unit as we use padding-block-start on the text below
+	background-image: var(--presentationBox-background-image-url);
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+@include presentationBox-breakpoint-textOnSide-from() {
+	.presentationBox::before {
+		inset-inline-start: 50%;
+		inline-size: 50%;
+		block-size: 100%;
+		z-index: -1;
+	}
+}
+@include presentationBox-breakpoint-textOnSide-from() {
+	.presentationBox--thirdsLayout::before {
+		inline-size: 40%;
+		inset-inline-start: 60%;
+	}
+}
+@include presentationBox-breakpoint-textOnSide-from() {
+	.presentationBox--textOnRight::before {
+		inset-inline-start: 0;
+	}
+}
+
+.presentationBox::after {
+	inset-inline-start: 0;
+}
+@include presentationBox-breakpoint-textOnSide-from() {
+	.presentationBox::after {
 		content: "";
+		display: block;
+		inline-size: 50%;
+		block-size: 100%;
 		position: absolute;
 		inset-block-start: 0;
-		inset-inline-start: 0;
-		display: block;
-		inline-size: 100%;
-		block-size: calc(var(--hb-vr-base) * 7); // we need it in line height unit as we use padding-top on the text below
-		background-image: var(--presentationBox-background-image-url);
-		background-size: cover;
-		background-position: center center;
-		background-repeat: no-repeat;
-
-		@include presentationBox-breakpoint-textOnSide-from() {
-			inset-inline-start: 50%;
-			inline-size: 50%;
-			block-size: 100%;
-			z-index: -1;
-		}
+		z-index: -1;
+		background-color: color.adjust(settings.$colors-tinge, $alpha: -0.1);
 	}
-	&--thirdsLayout::before {
-		@include presentationBox-breakpoint-textOnSide-from() {
-			inline-size: 40%;
-			inset-inline-start: 60%;
-		}
+}
+@include presentationBox-breakpoint-textOnSide-from() {
+	.presentationBox--thirdsLayout::after {
+		inline-size: 60%;
 	}
-	&--textOnRight::before {
-		@include presentationBox-breakpoint-textOnSide-from() {
-			inset-inline-start: 0;
-		}
-	}
-
-	&::after {
-		inset-inline-start: 0;
-
-		@include presentationBox-breakpoint-textOnSide-from() {
-			content: "";
-			display: block;
-			inline-size: 50%;
-			block-size: 100%;
-			position: absolute;
-			inset-block-start: 0;
-			z-index: -1;
-			background-color: transparentize($colors-tinge, 0.1);
-		}
-	}
-	&--thirdsLayout::after {
-		@include presentationBox-breakpoint-textOnSide-from() {
-			inline-size: 60%;
-		}
-	}
-	&--textOnRight::after {
-		inset-inline-start: initial;
-		inset-inline-end: 0;
-	}
+}
+.presentationBox--textOnRight::after {
+	inset-inline-start: initial;
+	inset-inline-end: 0;
+}
 
 
-	&__text {
-		margin: 0;
+.presentationBox__text {
+	margin: 0;
+}
+@include presentationBox-breakpoint-textOnSide-from() {
+	.presentationBox__text {
+		max-inline-size: calc(50% - 2rlh);
+	}
+}
+.presentationBox__text:not(:last-child) {
+	margin-block-end: 0.5rlh;
+}
+@include presentationBox-breakpoint-textOnSide-from() {
+	.presentationBox--thirdsLayout .presentationBox__text {
+		max-inline-size: calc(60% - 2rlh);
+	}
+}
+@include presentationBox-breakpoint-textOnSide-from() {
+	.presentationBox--textOnRight .presentationBox__text {
+		margin-inline-start: calc(50% + 2rlh);
+	}
+}
+@include presentationBox-breakpoint-textOnSide-from() {
+	.presentationBox--thirdsLayout.presentationBox--textOnRight .presentationBox__text {
+		margin-inline-start: calc(40% + 2rlh - 0.5rem); // constant 0.5rem so it has vr offset from left
+	}
+}
 
-		@include presentationBox-breakpoint-textOnSide-from() {
-			max-inline-size: calc(50% - (var(--hb-vr-base) * 2));
-		}
 
-		&:not(:last-child) {
-			margin-block-end: calc(var(--hb-vr-base) * 0.5);
-		}
-	}
-	&--thirdsLayout &__text {
-		@include presentationBox-breakpoint-textOnSide-from() {
-			max-inline-size: calc(60% - (var(--hb-vr-base) * 2));
-		}
-	}
-	&--textOnRight &__text {
-		@include presentationBox-breakpoint-textOnSide-from() {
-			margin-inline-start: calc(50% + (var(--hb-vr-base) * 2));
-		}
-	}
-	&--thirdsLayout#{&}--textOnRight &__text {
-		@include presentationBox-breakpoint-textOnSide-from() {
-			margin-inline-start: calc(40% + (var(--hb-vr-base) * 2) - 0.5rem); // constant 0.5rem so it has vr offset from left
-		}
-	}
-
-
-	&__quotation {
-		margin-block-end: calc(var(--hb-vr-base) * 1);
-	}
+.presentationBox__quotation {
+	margin-block-end: 1rlh;
 }

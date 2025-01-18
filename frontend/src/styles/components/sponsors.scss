@@ -1,38 +1,35 @@
 .sponsors {
-	border-top: 2px solid $colors-tinge;
-	padding: vr-unit(2) vr-unit(1);
+	border-top: 2px solid var(--hb-colors-tinge);
+	padding: 2rlh 1rlh;
 	text-align: center;
+}
 
-	&-list {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, 8em);
-		grid-row-gap: vr-unit(2);
-		grid-column-gap: vr-unit(1);
-		align-items: center;
-		justify-items: center; // center items relatively to their grid cell
-		justify-content: center; // center items as a block relatively to the grid container
-		max-width: 72rem;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: vr-unit(2);
-		list-style-type: none;
-		filter: grayscale(100%);
+.sponsors-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 8em);
+	grid-row-gap: 2rlh;
+	grid-column-gap: 1rlh;
+	align-items: center;
+	justify-items: center; // center items relatively to their grid cell
+	justify-content: center; // center items as a block relatively to the grid container
+	max-width: 72rem;
+	margin-inline: auto;
+	margin-block-end: 2rlh;
+	list-style-type: none;
+	filter: grayscale(100%);
 
-		&-item {
-			&--msmt {
-				max-width: 5.6em;
-			}
-			&--mv {
-				max-width: 7.9em;
-			}
-			&--mzp {
-				max-width: 8.2em;
-			}
-		}
+	.sponsors-list-item--msmt {
+		max-width: 5.6em;
 	}
-
-	&-link {
-		font-size: 0.9em;
-		color: #555;
+	.sponsors-list-item--mv {
+		max-width: 7.9em;
 	}
+	.sponsors-list-item--mzp {
+		max-width: 8.2em;
+	}
+}
+
+.sponsors-link {
+	font-size: 0.9em;
+	color: #555;
 }

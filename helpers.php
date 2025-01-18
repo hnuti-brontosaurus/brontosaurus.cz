@@ -1,26 +1,7 @@
-<?php declare(strict_types = 1);
-
-namespace HnutiBrontosaurus\Theme;
-
+<?php
 
 use Brick\DateTime\LocalDate;
 use HnutiBrontosaurus\BisClient\Opportunity\Category;
-use function get_permalink;
-use function get_posts;
-use function reset;
-
-
-function getLinkFor(string $slug): string
-{
-	$posts = get_posts(['name' => $slug, 'post_type' => 'page', 'posts_per_page' => 1]);
-	$post = reset($posts);
-	if ($post === false) {
-		throw new \RuntimeException("$slug does not exist");
-	}
-
-	return get_permalink($post->ID);
-}
-
 
 function hb_dateSpan(LocalDate $start, LocalDate $end, string $dateFormat): string
 {
@@ -36,7 +17,7 @@ function hb_dateSpan(LocalDate $start, LocalDate $end, string $dateFormat): stri
 	$inSameMonth = $start->format('n') === $end->format('n');
 	$inSameYear = $start->format('Y') === $end->format('Y');
 
-	$dateSpan_fromPart = $start->format(\sprintf('j.%s%s',
+	$dateSpan_fromPart = $start->format(sprintf('j.%s%s',
 		( ! $inSameMonth || ! $inSameYear) ? ' n.' : '',
 		( ! $inSameYear) ? ' Y' : ''
 	));
@@ -47,7 +28,7 @@ function hb_dateSpan(LocalDate $start, LocalDate $end, string $dateFormat): stri
 		$optionalSpace = ' ';
 	}
 
-	return $dateSpan_fromPart . \sprintf('%s–%s', $optionalSpace, $optionalSpace) . $dateSpan_untilPart;
+	return $dateSpan_fromPart . sprintf('%s–%s', $optionalSpace, $optionalSpace) . $dateSpan_untilPart;
 }
 
 
@@ -58,4 +39,32 @@ function hb_opportunityCategoryToString(Category $category): string
 		Category::COLLABORATION() => 'spolupráce',
 		Category::LOCATION_HELP() => 'pomoc lokalitě',
 	};
+}
+
+
+/**
+ * Inspired with https://zlml.cz/vlna-na-webu
+ */
+function hb_handleNonBreakingSpaces(string $input): string
+{
+	return preg_replace('/(\s)([ksvzaiou])\s/i', "$1$2\xc2\xa0", $input); // \xc2\xa0 is a non breaking space
+}
+
+
+function hb_strip_tags(string $input): string
+{
+	$s = strip_tags($input);
+	$s = html_entity_decode($s, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+	return $s;
+}
+
+
+function hb_truncate(string $string, int $maxLength, string $suffix = '…')
+{
+	// doesn't need truncation
+	if (strlen($string) <= $maxLength) {
+		return $string;
+	}
+
+	return substr($string, 0, $maxLength - strlen($suffix)) . $suffix;
 }

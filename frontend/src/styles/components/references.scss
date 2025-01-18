@@ -2,102 +2,99 @@
 	position: relative;
 	max-inline-size: 40rem;
 	margin-inline: auto;
+}
 
-	&__link {
-		position: relative;
-		display: block;
-		text-decoration: none;
+.references__link {
+	position: relative;
+	display: block;
+	text-decoration: none;
+}
+.references__link:hover {
+	color: inherit !important;
+}
 
-		&:hover {
-			color: inherit !important;
-		}
+.references__button {
+	position: absolute;
+	inset-block-start: calc(50% - 1rlh);
+	padding: 1rlh;
+	background-image: url("../../../images/icons/icon-arrow-right.svg");
+	background-position: center center;
+	background-size: auto 1.5em;
+	background-repeat: no-repeat;
+	z-index: 3;
+	opacity: 1;
+	transition: opacity 200ms ease-in-out;
+}
+.references__button--previous {
+	inset-inline-start: -1rlh;
+	transform: rotateY(200grad);
+}
+.references__button--previous:active {
+	transform: translate(1px, 1px) rotateY(200grad); // join transform style from button and here
+}
+.references__button--next {
+	inset-inline-end: -1rlh;
+}
+.references__button--hidden {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.references__list {
+	--carouselPosition: 0;
+	list-style-type: none;
+	display: flex;
+	overflow: hidden;
+	border-radius: 2em;
+}
+.references--thirds .references__list {
+	gap: 0.5rlh; // maybe could be directly in .references__list
+}
+
+.references__list-item {
+	flex-shrink: 0;
+	flex-basis: 100%;
+	transform: translateX(calc(var(--carouselPosition) * -100%));
+	transition: transform 200ms ease-in-out;
+	margin-inline: initial;
+	display: flex; /* stretch to full height */
+}
+.references--thirds .references__list-item { // todo turn into something like data-max-steps=[number] with support up to 4?
+	flex-basis: 100%;
+	transform: translateX(calc(var(--carouselPosition) * -100% - 0.5rlh * var(--carouselPosition))); // maybe could be directly in .references__list-item
+}
+@media (min-width: 45.001em) {
+	.references--thirds .references__list-item {
+		flex-basis: 50%;
 	}
-
-	&__button {
-		position: absolute;
-		inset-block-start: calc(50% - var(--hb-vr-base) * 1);
-		padding: calc(var(--hb-vr-base) * 1);
-		background-image: url("../images/icon-arrow-right.svg");
-		background-position: center center;
-		background-size: auto 1.5em;
-		background-repeat: no-repeat;
-		z-index: 3;
-		opacity: 1;
-		transition: opacity 200ms ease-in-out;
-
-		&--previous {
-			inset-inline-start: calc(var(--hb-vr-base) * -1);
-			transform: rotateY(200grad);
-
-			&:active {
-				transform: translate(1px, 1px) rotateY(200grad); // join transform style from button and here
-			}
-		}
-
-		&--next {
-			inset-inline-end: calc(var(--hb-vr-base) * -1);
-		}
-
-		&--hidden {
-			opacity: 0;
-			pointer-events: none;
-		}
+}
+@media (min-width: 60.001em) {
+	.references--thirds .references__list-item {
+		flex-basis: 33%;
 	}
-
-	&__list {
-		--carouselPosition: 0;
-		list-style-type: none;
-		display: flex;
-		overflow: hidden;
-		border-radius: 2em;
-	}
-	&--thirds &__list {
-		gap: 0.5rlh; // maybe could be directly in &__list
-	}
-
-	&__list-item {
-		flex-shrink: 0;
-		flex-basis: 100%;
-		transform: translateX(calc(var(--carouselPosition) * -100%));
-		transition: transform 200ms ease-in-out;
-		margin-inline: initial;
-		display: flex; /* stretch to full height */
-	}
-	&--thirds &__list-item { // todo turn into something like data-max-steps=[number] with support up to 4?
-		flex-basis: 100%;
-		transform: translateX(calc(var(--carouselPosition) * -100% - 0.5rlh * var(--carouselPosition))); // maybe could be directly in &__list-item
-
-		@media (min-width: 45.001em) {
-			flex-basis: 50%;
-		}
-		@media (min-width: 60.001em) {
-			flex-basis: 33%;
-		}
-	}
+}
 
 
-	&__dots {
-		margin-block-start: calc(var(--hb-vr-base) * 0.5);
-		display: flex;
-		justify-content: center;
-		gap: 0.2rem;
-	}
-	&__dot {
-		display: block;
-		padding: 0.1rem;
-		cursor: pointer;
-
-		&::before {
-			content: "";
-			display: block;
-			--references-dot-visual-size: 0.4rem;
-			inline-size: var(--references-dot-visual-size);
-			block-size: var(--references-dot-visual-size);
-			background-color: var(--hb-colors-links);
-			border-radius: 50%;
-		}
-		&--active::before {
-			background-color: var(--hb-colors-text);
-		}
-	}
+.references__dots {
+	margin-block-start: 0.5rlh;
+	display: flex;
+	justify-content: center;
+	gap: 0.2rem;
+}
+.references__dot {
+	display: block;
+	padding: 0.1rem;
+	cursor: pointer;
+}
+.references__dot::before {
+	content: "";
+	display: block;
+	--references-dot-visual-size: 0.4rem;
+	inline-size: var(--references-dot-visual-size);
+	block-size: var(--references-dot-visual-size);
+	background-color: var(--hb-colors-links);
+	border-radius: 50%;
+}
+.references__dot--active::before {
+	background-color: var(--hb-colors-text);
 }

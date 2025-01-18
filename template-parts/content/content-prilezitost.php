@@ -1,11 +1,9 @@
-<?php declare(strict_types = 1);
+<?php
 
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\OpportunityNotFound;
 use HnutiBrontosaurus\Theme\Container;
 use HnutiBrontosaurus\Theme\Rewrites\Opportunity;
-use function HnutiBrontosaurus\Theme\hb_dateSpan;
-use function HnutiBrontosaurus\Theme\hb_opportunityCategoryToString;
 
 
 /** @var Container $hb_container defined in functions.php */
@@ -20,9 +18,8 @@ try {
 	$opportunity = $hb_bisApiClient->getOpportunity($opportunityId);
 
 } catch (OpportunityNotFound) {
-	$hb_base = $hb_container->getBaseFactory()->create(null);
-	$hb_latte = $hb_container->getLatte();
-	$hb_latte->render(__DIR__ . '/../../UI/Error/ErrorController.404.latte', $hb_base->getLayoutVariables('error404'));
+	get_template_part('template-parts/content/content', 'error');
+	get_footer();
 	exit;
 
 } catch (ConnectionToBisFailed) {
@@ -33,13 +30,13 @@ try {
 <main role="main">
 	<article class="prilezitost">
 		<?php if ($hasBeenUnableToLoad): ?>
-			<div class="prilezitost__noResults noResults">
-				Promiňte, zrovna&nbsp;nám vypadl systém, kde&nbsp;máme uloženy všechny informace o&nbsp;plánovaných akcích.
-				Zkuste&nbsp;to prosím za&nbsp;chvilku znovu.
+			<div class="noResults hb-mbe-7">
+				Promiňte, zrovna nám vypadl systém, kde máme uloženy všechny informace o plánovaných akcích.
+				Zkuste to prosím za chvilku znovu.
 			</div>
 		<?php else: ?>
 			<h1>
-				<span class="prilezitost__heading"><?php echo $opportunity->getName(); ?></span>
+				<span class="hb-mie-3"><?php echo $opportunity->getName(); ?></span>
 
 				<span class="prilezitost__labels eventLabels">
 					<span class="prilezitost__label eventLabels__item">

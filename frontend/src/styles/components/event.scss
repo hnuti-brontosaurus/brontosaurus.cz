@@ -1,127 +1,129 @@
+@use "../imports/settings";
+
 .hb-event {
 	border-radius: 15px;
 	display: block;
 	width: 100%;
 	margin: 0 auto;
-	padding-block-end: calc(var(--hb-vr-base) * 1);
+	padding-block-end: 1rlh;
 	text-decoration: none;
-	box-shadow: 0 0 12px 0 $colors-framing;
+	box-shadow: 0 0 12px 0 var(--hb-colors-framing);
 	transition: box-shadow 100ms ease-out;
+}
+.hb-event:hover {
+	color: inherit !important; // don't use link color for whole card
+	box-shadow: 0 0 17px 2px var(--hb-colors-framing);
+}
 
-	&:hover {
-		color: inherit !important; // don't use link color for whole card
-		box-shadow: 0 0 17px 2px $colors-framing;
-	}
+.hb-event__imageWrapper {
+	margin-block-end: 1rlh;
+	position: relative;
+	text-align: center;
+}
+.hb-event--full .hb-event__imageWrapper {
+	opacity: 0.5;
+}
+.hb-event__image {
+	background-color: var(--hb-colors-tinge);
+	border-radius: 15px 15px 0 0;
+	width: 100%;
+	height: 13rem; // intentionally just `height` as we want to have high images
+	object-fit: cover;
+}
+.hb-event__image--noThumbnail {
+	object-fit: none;
+}
+.hb-event--smaller .hb-event__image {
+	height: 9rem;
+}
 
-	&__imageWrapper {
-		margin-block-end: calc(var(--hb-vr-base) * 1);
-		position: relative;
-		text-align: center;
-	}
-	&--full &__imageWrapper {
-		opacity: 0.5;
-	}
-	&__image {
-		background-color: $colors-tinge;
-		border-radius: 15px 15px 0 0;
-		width: 100%;
-		height: 13rem; // intentionally just `height` as we want to have high images
-		object-fit: cover;
+.hb-event__labels {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	padding: 0 0.5rlh 0.25rlh;
+	border-bottom: 2px solid var(--hb-colors-emphasizing);
+}
 
-		&--noThumbnail {
-			object-fit: none;
-		}
-	}
-	&--smaller &__image {
-		height: 9rem;
-	}
+.hb-event__full {
+	display: block;
+	margin-block: -1rlh 0.5rlh;
+	padding: 0.25rlh 1rlh calc(0.25rlh - 0.15em);
+	background-color: var(--hb-colors-tinge);
+	color: var(--hb-colors-text);
+	font-size: 0.9rem;
+	text-align: center;
+}
 
-	&__labels {
-		position: absolute;
-		right: 0;
-		bottom: 0;
-		width: 100%;
-		padding: 0 calc(var(--hb-vr-base) * 0.5) calc(var(--hb-vr-base) * 0.25);
-		border-bottom: 2px solid $colors-emphasizing;
-	}
+.hb-event__header {
+	margin-block-end: 0.5rlh;
+	padding-inline: 1rlh;
+}
 
-	&__full {
-		display: block;
-		margin-block: calc(var(--hb-vr-base) * -1) calc(var(--hb-vr-base) * 0.5);
-		padding: calc(var(--hb-vr-base) * 0.25) calc(var(--hb-vr-base) * 1) calc(calc(var(--hb-vr-base) * 0.25) - 0.15em);
-		background-color: var(--hb-colors-tinge);
-		color: var(--hb-colors-text);
-		font-size: 0.9rem;
-		text-align: center;
-	}
+.hb-event__heading {
+	color: var(--hb-colors-emphasizing);
+	font-variant-caps: small-caps;
+	font-size: 1.5em;
+	line-height: 1;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	column-gap: 0.5rlh;
+	margin-block-end: -0.1em;
+}
+.hb-event--full .hb-event__header {
+	opacity: 0.6;
+}
 
-	&__header {
-		margin-block-end: calc(var(--hb-vr-base) * 0.5);
-		padding-inline: calc(var(--hb-vr-base) * 1);
-	}
+.hb-event__tag {
+	transform: translateY(-2px);
+}
 
-	&__heading {
-		color: $colors-emphasizing;
-		font-variant-caps: small-caps;
-		font-size: 1.5em;
-		line-height: 1;
-		display: flex;
-		align-items: center;
-		flex-wrap: wrap;
-		column-gap: calc(var(--hb-vr-base) * 0.5);
-		margin-block-end: -0.1em;
-	}
-	&--full &__header {
-		opacity: 0.6;
-	}
+.hb-event__meta {
+	margin-block-start: 0.125rlh;
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 0.8em;
+	opacity: 0.8;
+}
+.hb-event__tags + .hb-event__meta {
+	margin-block-start: 0.5rlh;
+}
 
-	&__tag {
-		transform: translateY(-2px);
+.hb-event__date {
+	margin-inline-end: 0.5rlh;
+	padding-inline-start: 0.85rem;
+	background-image: url("../../../images/icons/icon-datetime.svg");
+	background-position: left top;
+	background-size: auto 14px; // px so that the icon is not rendered blurry...
+	background-repeat: no-repeat;
+}
+@media (settings.$typography-breakpoint-large-from) {
+	.hb-event__date {
+		background-size: auto 16px; // ...but the we have to set new size when font becomes larger
+		background-position-y: 0.1em;
 	}
+}
 
-	&__meta {
-		margin-block-start: calc(var(--hb-vr-base) * 0.125);
-		display: flex;
-		flex-wrap: wrap;
-		font-size: 0.8em;
-		opacity: 0.8;
+.hb-event__place {
+	padding-inline-start: 0.9em;
+	background-image: url("../../../images/icons/icon-place.svg");
+	background-position: left top;
+	background-size: auto 15px; // px so that the icon is not rendered blurry...
+	background-repeat: no-repeat;
+}
+@media (settings.$typography-breakpoint-large-from) {
+	.hb-event__place {
+		background-size: auto 17px; // ...but the we have to set new size when font becomes larger
+		background-position-y: 0.1em;
 	}
-	&__tags + &__meta {
-		margin-block-start: calc(var(--hb-vr-base) * 0.5);
-	}
+}
 
-	&__date {
-		margin-inline-end: calc(var(--hb-vr-base) * 0.5);
-		padding-inline-start: 0.85rem;
-		background-image: url("../images/icon-datetime.svg");
-		background-position: left top;
-		background-size: auto 14px; // px so that the icon is not rendered blurry...
-		background-repeat: no-repeat;
-
-		@media ($typography-breakpoint-large-from) {
-			background-size: auto 16px; // ...but the we have to set new size when font becomes larger
-			background-position-y: 0.1em;
-		}
-	}
-
-	&__place {
-		padding-inline-start: 0.9em;
-		background-image: url("../images/icon-place.svg");
-		background-position: left top;
-		background-size: auto 15px; // px so that the icon is not rendered blurry...
-		background-repeat: no-repeat;
-
-		@media ($typography-breakpoint-large-from) {
-			background-size: auto 17px; // ...but the we have to set new size when font becomes larger
-			background-position-y: 0.1em;
-		}
-	}
-
-	&__excerpt {
-		padding-inline: calc(var(--hb-vr-base) * 1);
-		font-size: 0.9em;
-	}
-	&--full &__excerpt {
-		opacity: 0.7;
-	}
+.hb-event__excerpt {
+	padding-inline: 1rlh;
+	font-size: 0.9em;
+}
+.hb-event--full .hb-event__excerpt {
+	opacity: 0.7;
 }

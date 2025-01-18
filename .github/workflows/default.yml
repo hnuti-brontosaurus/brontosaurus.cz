@@ -91,20 +91,18 @@ jobs:
                         -i "config/*" \
                         -i "CoordinatesResolver/*" \
                         -i "DataContainers/*" \
+                        -i "Filters/*" \
                         -i "frontend/*" \
                         -x "frontend/src/*" \
                         -i "hb-events/*" \
                         -x "hb-events/src/*" \
+                        -i "images/*" \
                         -i "log/*" \
                         -i "Rewrites/*" \
+                        -i "scripts/*" \
                         -i "template-parts/*" \
-                        -i "UI/*" \
-                        -x "UI/AboutStructure/assets/src/*" \
-                        -x "UI/Contacts/assets/src/*" \
-                        -x "UI/Event/assets/src/*" \
-                        -x "UI/Rentals/assets/src/*" \
                         -i "vendor/*" \
-                        -i "ApplicationUrlTemplate.php" \
+                        -i "webfonts/*" \
                         -i "Assets.php" \
                         -i "archive-novinky.php" \
                         -i "bootstrap.php" \
@@ -120,6 +118,7 @@ jobs:
                         -i "homepage-banner.php" \
                         -i "index.php" \
                         -i "PostTypeInitializer.php" \
+                        -i "PropertyHandler.php" \
                         -i "screenshot.png" \
                         -i "single-novinky.php" \
                         -i "style.css"

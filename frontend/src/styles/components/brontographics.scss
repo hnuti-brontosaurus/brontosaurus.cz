@@ -1,24 +1,24 @@
-.brontographics {
-    &__shape {
-        fill: $colors-emphasizing;
-        cursor: pointer;
-        transition: fill 200ms linear;
+@use "sass:color";
+@use "../imports/settings";
 
-        &:hover {
-            fill: darken($colors-emphasizing, 10);
-        }
-    }
+.brontographics__shape {
+    fill: var(--hb-colors-emphasizing);
+    cursor: pointer;
+    transition: fill 200ms linear;
+}
+.brontographics__shape:hover {
+    fill: color.adjust(settings.$colors-emphasizing, $lightness: -10%);
+}
 
-    &__label {
-        fill: $colors-text;
-        font-size: 1.2em;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 200ms 100ms linear;
-    }
+.brontographics__label {
+    fill: var(--hb-colors-text);
+    font-size: 1.2em;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 200ms 100ms linear;
+}
 
-    &__shape:hover + &__label {
-        opacity: 1;
-        pointer-events: auto;
-    }
+.brontographics__shape:hover + .brontographics__label {
+    opacity: 1;
+    pointer-events: auto;
 }

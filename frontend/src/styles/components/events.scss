@@ -1,9 +1,7 @@
-.hb-events {
-	&__heading {
-		text-align: center;
-	}
+.hb-events__heading {
+	text-align: center;
+}
 
-	&__filters {
-		margin-block-end: calc(var(--hb-vr-base) * 1);
-	}
+.hb-events__filters {
+	margin-block-end: 1rlh;
 }

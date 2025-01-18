@@ -1,28 +1,29 @@
+@use "sass:color";
+@use "../imports/settings";
+
 .eventLabels {
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
 	flex-wrap: wrap;
-	gap: calc(var(--hb-vr-base) * 0.25);
+	gap: 0.25rlh;
 	font-size: 0.9em;
-
-	&__item {
-		padding: calc(var(--hb-vr-base) * 0.25) calc(var(--hb-vr-base) * 0.5) calc(#{vr-unit(0.25)} - 0.15em);
-		background-color: transparentize($colors-default-background, 0.1);
-		background-repeat: no-repeat;
-		border-radius: 2em;
-
-		&--type {
-			padding-left: calc(var(--hb-vr-base) * 0.5 + 1.25em);
-			background-position: calc(var(--hb-vr-base) * 0.5) center;
-			background-size: auto 1em;
-		}
-		&--nature {
-			background-image: url("../images/icon-nature.svg");
-		}
-		&--sights {
-			background-image: url("../images/icon-castle.svg");
-			background-position-x: calc(var(--hb-vr-base) * 0.5 + 0.1em);
-		}
-	}
+}
+.eventLabels__item {
+	padding: 0.25rlh 0.5rlh calc(0.25rlh - 0.15em);
+	background-color: color.adjust(settings.$colors-default-background, $alpha: -0.1);
+	background-repeat: no-repeat;
+	border-radius: 2em;
+}
+.eventLabels__item--type {
+	padding-inline-start: calc(0.5rlh + 1.25em);
+	background-position: 0.5rlh center;
+	background-size: auto 1em;
+}
+.eventLabels__item--nature {
+	background-image: url("../../../images/icons/icon-nature.svg");
+}
+.eventLabels__item--sights {
+	background-image: url("../../../images/icons/icon-castle.svg");
+	background-position-x: calc(0.5rlh + 0.1em);
 }

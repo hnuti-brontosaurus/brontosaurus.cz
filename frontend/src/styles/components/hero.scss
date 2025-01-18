@@ -1,16 +1,21 @@
+@use "../imports/settings";
+
 .hero {
 	min-height: 19em;
 	max-width: 40rem;
+	background-image: var(--hero-background-image-url);
 	background-position: center top;
+	background-repeat: no-repeat;
 	background-size: cover;
 	border-radius: 2em;
-
-	@media ($header-breakpoint-navigationHiddenToVisible-visible-from) {
-		margin-left: -#{vr-unit(1)};
-		margin-right: -#{vr-unit(1)};
+}
+@media (settings.$header-breakpoint-navigationHiddenToVisible-visible-from) {
+	.hero {
+		margin-inline: -1rlh;
 	}
-	@media ($typography-breakpoint-large-from) {
-		margin-left: auto;
-		margin-right: auto;
+}
+@media (settings.$typography-breakpoint-large-from) {
+	.hero {
+		margin-inline: auto;
 	}
 }

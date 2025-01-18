@@ -1,58 +1,61 @@
-$description-breakpoint-oneColumnToTwoColumns: 40em;
-$description-breakpoint-oneColumn-until: "max-width: " + $description-breakpoint-oneColumnToTwoColumns;
-$description-breakpoint-twoColumns-from: "min-width: " + ($description-breakpoint-oneColumnToTwoColumns + 0.001);
+@use "../imports/settings";
 
-.description {
-	&-text {
-		@include block-text();
-		margin-bottom: vr-unit(0.5);
-		text-align: left;
-
-		@media ($description-breakpoint-twoColumns-from) {
-			margin-bottom: vr-unit(1);
-		}
-		@media ($typography-breakpoint-large-from) {
-			margin-left: auto;
-			margin-right: auto;
-		}
+.description__text {
+	max-inline-size: 28rem;
+	margin-block-end: 0.5rlh;
+	text-align: left;
+}
+@media (settings.$typography-breakpoint-large-from) {
+	.description__text {
+		margin-inline: auto;
 	}
+}
+@media (settings.$description-breakpoint-twoColumns-from) {
+	.description__text {
+		margin-block-end: 1rlh;
+	}
+}
+@media (settings.$typography-breakpoint-large-from) {
+	.description__text {
+		margin-inline: auto;
+	}
+}
 
-	&-list {
-		display: grid;
-		grid-gap: vr-unit(1);
-		grid-template-columns: 1fr;
-		justify-content: center;
-		max-width: 28rem;
+.description__list {
+	display: grid;
+	grid-gap: 1rlh;
+	grid-template-columns: 1fr;
+	justify-content: center;
+	max-width: 28rem;
+}
+@media (settings.$description-breakpoint-twoColumns-from) and (settings.$typography-breakpoint-small-until) {
+	.description__list {
+		margin-inline: -1rlh;
+		max-width: calc(28rem + 2rlh);
+	}
+}
+@media (settings.$typography-breakpoint-large-from) {
+	.description__list {
+		grid-template-columns: 1fr 1fr;
+		max-width: 40rem;
+		margin-inline: auto;
+	}
+}
 
-		@media ($description-breakpoint-twoColumns-from) and ($typography-breakpoint-small-until) {
-			margin-left: -#{vr-unit(1)};
-			margin-right: -#{vr-unit(1)};
-			max-width: calc(28rem + #{vr-unit(2)});
-		}
-		@media ($typography-breakpoint-large-from) {
-			grid-template-columns: 1fr 1fr;
-			margin-left: auto;
-			margin-right: auto;
-			max-width: 40rem;
-		}
-
-		&-item {
-			grid-column-start: span 2;
-
-			@media ($typography-breakpoint-large-from) {
-				grid-column-start: span 1;
-			}
-
-			&--fullWidth {
-				grid-column-start: span 2;
-			}
-			&--fullWidth &-text {
-				@media ($typography-breakpoint-large-from) {
-					max-width: 28rem; // rem unit as we want to keep with context
-					margin-left: auto;
-					margin-right: auto;
-				}
-			}
-		}
+.description__item {
+	grid-column-start: span 2;
+}
+@media (settings.$typography-breakpoint-large-from) {
+	.description__item {
+		grid-column-start: span 1;
+	}
+}
+.description__item--fullWidth {
+	grid-column-start: span 2;
+}
+@media (settings.$typography-breakpoint-large-from) {
+	.description__item--fullWidth .description__itemText {
+		max-width: 28rem; // rem unit as we want to keep with context
+		margin-inline: auto;
 	}
 }

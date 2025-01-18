@@ -1,112 +1,106 @@
-$footer-breakpoint-fullSize: 39em; // like $header-breakpoint-navigationHiddenToVisible
-$footer-breakpoint-fullSize-until: "max-width: " + $footer-breakpoint-fullSize;
-$footer-breakpoint-fullSize-from: "min-width: " + ($footer-breakpoint-fullSize + 0.001);
-
+@use "sass:color";
+@use "../imports/settings";
 
 .footer-wrapper {
-	background-color: $colors-tinge;
+	background-color: var(--hb-colors-tinge);
 	position: relative;
-	padding: vr-unit(2) vr-unit(1);
+	padding: 2rlh 1rlh;
 }
 .footer {
 	max-width: 28em;
 	margin-inline: auto;
-
-	&-navigation {
-		margin-bottom: vr-unit(1);
-
-		@media ($footer-breakpoint-fullSize-from) {
-			display: flex;
-			justify-content: space-between;
-			align-items: flex-start;
-			column-gap: vr-unit(0.5);
-			margin-bottom: vr-unit(2);
-		}
-
-		.menu,
-		&-main {
-			& > .menu-item,
-			&-item {
-				@media ($footer-breakpoint-fullSize-until) {
-					text-align: center;
-				}
-
-				& > a,
-				&-link {
-					display: inline-block;
-					padding: 0.3em 0 0.15em;
-					color: $colors-text;
-					text-decoration: none;
-					transition: color 200ms linear;
-
-					&:hover {
-						color: $colors-emphasizing;
-					}
-				}
-				&.current-menu-item > a,
-				&.active > a,
-				&-link--active {
-					color: $colors-default-background !important; // overwrite default hover behaviour
-					position: relative;
-					isolation: isolate;
-
-					&::before {
-						content: "";
-						position: absolute;
-						z-index: -1;
-						background-color: $colors-emphasizing;
-						width: calc(100% + #{vr-unit(1)});
-						height: 100%;
-						border-radius: 2em;
-						transform: translate(calc(#{vr-unit(0.5)} * -1), -0.3em);
-						transition: background-color 200ms linear;
-					}
-					&:hover::before {
-						background-color: darken($colors-emphasizing, 10);
-					}
-				}
-			}
-		}
-	}
-
-	&__bottom {
+}
+.footer__navigation {
+	margin-block-end: 1rlh;
+}
+@media (settings.$footer-breakpoint-fullSize-from) {
+	.footer__navigation {
 		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: vr-unit(0.5);
-
-		@media ($footer-breakpoint-fullSize-from) {
-			flex-direction: row;
-			justify-content: space-between;
-			gap: vr-unit(1);
-		}
+		justify-content: space-between;
+		align-items: flex-start;
+		column-gap: 0.5rlh;
+		margin-block-end: 2rlh;
 	}
-
-	&__logo,
-	&__searchForm {
-		@media ($footer-breakpoint-fullSize-from) {
-			flex-basis: 50%;
-		}
+}
+@media (settings.$footer-breakpoint-fullSize-until) {
+	.footer__navigation .menu > .menu-item {
+		text-align: center;
 	}
+}
+.footer__navigation .menu > .menu-item > a {
+	display: inline-block;
+	padding: 0.3em 0 0.15em;
+	color: var(--hb-colors-text);
+	text-decoration: none;
+	transition: color 200ms linear;
+}
+.footer__navigation .menu > .menu-item > a:hover {
+	color: var(--hb-colors-emphasizing);
+}
+.footer__navigation .menu > .menu-item.current-menu-item > a,
+.footer__navigation .menu > .menu-item.active > a {
+	color: var(--hb-colors-default-background) !important; // overwrite default hover behaviour
+	position: relative;
+	isolation: isolate;
+}
+.footer__navigation .menu > .menu-item.current-menu-item > a::before,
+.footer__navigation .menu > .menu-item.active > a::before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	background-color: var(--hb-colors-emphasizing);
+	width: calc(100% + 1rlh);
+	height: 100%;
+	border-radius: 2em;
+	transform: translate(-0.5rlh, -0.3em);
+	transition: background-color 200ms linear;
+}
+.footer__navigation .menu > .menu-item.current-menu-item > a:hover::before,
+.footer__navigation .menu > .menu-item.active > a:hover::before {
+	background-color: color.adjust(settings.$colors-emphasizing, $lightness: -10%);
+}
 
-	&__logo {
-		display: block;
-		max-height: 3rem;
-		aspect-ratio: 4/1;
-		background-image: url("../images/logo-hb-full.png");
-		background-size: auto 100%;
-		background-position: center center;
-		background-repeat: no-repeat;
-
-		@media ($footer-breakpoint-fullSize-until) {
-			width: 100%;
-		}
-		@media ($footer-breakpoint-fullSize-from) {
-			background-position-x: left;
-		}
+.footer__bottom {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rlh;
+}
+@media (settings.$footer-breakpoint-fullSize-from) {
+	.footer__bottom {
+		flex-direction: row;
+		justify-content: space-between;
+		gap: 1rlh;
 	}
+}
 
-	&__searchForm {
-		max-inline-size: 20rem;
+@media (settings.$footer-breakpoint-fullSize-from) {
+	.footer__logo,
+	.footer__searchForm {
+		flex-basis: 50%;
 	}
+}
+
+.footer__logo {
+	display: block;
+	max-height: 3rem;
+	aspect-ratio: 4/1;
+	background-image: url("../../../images/logo-hb-full.png");
+	background-size: auto 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+@media (settings.$footer-breakpoint-fullSize-until) {
+	.footer__logo {
+		width: 100%;
+	}
+}
+@media (settings.$footer-breakpoint-fullSize-from) {
+	.footer__logo {
+		background-position-x: left;
+	}
+}
+
+.footer__searchForm {
+	max-inline-size: 20rem;
 }

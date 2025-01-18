@@ -1,242 +1,240 @@
-$related-breakpoint-oneColumnToTwoColumns: $header-breakpoint-navigationHiddenToVisible;
-$related-breakpoint-oneColumn-until: "max-width: " + $related-breakpoint-oneColumnToTwoColumns;
-$related-breakpoint-twoColumns-from: "min-width: " + ($related-breakpoint-oneColumnToTwoColumns + 0.001);
-
-$related-breakpoint-roundedPhoto: 53em;
-$related-breakpoint-roundedPhoto-untilHidden: "max-width: " + $related-breakpoint-roundedPhoto;
-$related-breakpoint-roundedPhoto-whenVisible: "min-width: " + ($related-breakpoint-roundedPhoto + 0.001);
+@use "sass:color";
+@use "../imports/settings";
 
 aside .related {
 	max-width: 40rem;
-	margin-left: auto;
-	margin-right: auto;
+	margin-inline: auto;
+}
 
-	&-heading {
-		margin-bottom: vr-unit(1);
+aside .related-heading {
+	margin-block-end: 1rlh;
+}
+
+aside .related-list {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-gap: 1rlh;
+	justify-content: center;
+}
+@media (settings.$related-breakpoint-twoColumns-from) {
+	aside .related-list {
+		grid-template-columns: 1fr 1fr;
 	}
+}
 
-	&-list {
+aside .related-list-item {
+	border-radius: 2em;
+	overflow: hidden;
+	display: block;
+	padding: 1rlh 1rlh 2rlh;
+	position: relative;
+	text-decoration: none;
+	z-index: 0;
+}
+@media (settings.$related-breakpoint-twoColumns-from) {
+	aside .related-list-item {
 		display: grid;
+		grid-template-areas:
+			"heading"
+			"list"
+			"link";
 		grid-template-columns: 1fr;
-		grid-gap: vr-unit(1);
-		justify-content: center;
-
-		@media ($related-breakpoint-twoColumns-from) {
-			grid-template-columns: 1fr 1fr;
-		}
-
-		&-item {
-			border-radius: 2em;
-			overflow: hidden;
-			display: block;
-			padding: vr-unit(1) vr-unit(1) vr-unit(2);
-			position: relative;
-			text-decoration: none;
-			z-index: 0;
-
-			@media ($related-breakpoint-twoColumns-from) {
-				display: grid;
-				grid-template-areas:
-					"heading"
-					"list"
-					"link";
-				grid-template-columns: 1fr;
-				align-items: center;
-				grid-row-gap: vr-unit(1);
-				grid-column-gap: vr-unit(0.5);
-				padding: vr-unit(1);
-			}
-			@media ($related-breakpoint-roundedPhoto-whenVisible) {
-				grid-template-areas:
-					"heading heading"
-					"list photo"
-					"link link";
-				grid-template-columns: 2fr 1fr;
-			}
-
-			&:hover {
-				color: inherit;
-			}
-
-			&::before {
-				content: "";
-				background-color: transparentize($colors-tinge, 0.1);
-				position: absolute;
-				width: 100%;
-				height: 100%;
-				top: 0;
-				left: 0;
-				display: block;
-				z-index: -1;
-			}
-
-			&-heading {
-				@media ($related-breakpoint-oneColumn-until) {
-					margin-bottom: vr-unit(1);
-				}
-				@media ($related-breakpoint-twoColumns-from) {
-					grid-area: heading;
-					margin-bottom: 0;
-				}
-			}
-
-			&-list {
-				list-style: none;
-
-				@media ($related-breakpoint-oneColumn-until) {
-					margin-bottom: vr-unit(2);
-				}
-				@media ($related-breakpoint-twoColumns-from) {
-					grid-area: list;
-				}
-
-				li:nth-child(3) {
-					@media (max-width: 30em) {
-						max-width: 8em;
-					}
-				}
-			}
-
-			&-roundedPhoto {
-				background-size: 250%;
-				border-radius: 50%; // fallback for Edge for `clip-path`
-				clip-path: circle(50%);
-				height: 5em;
-				width: 5em;
-
-				@media ($related-breakpoint-roundedPhoto-untilHidden) {
-					display: none;
-				}
-				@media ($related-breakpoint-oneColumn-until) {
-					top: vr-unit(3);
-					position: absolute;
-					right: vr-unit(0.5);
-					z-index: 1;
-				}
-				@media ($related-breakpoint-twoColumns-from) {
-					grid-area: photo;
-					justify-self: end;
-				}
-			}
-
-			&-moreLink {
-				z-index: -1;
-
-				&::after {
-					background-color: $colors-tinge;
-				}
-
-				@media ($related-breakpoint-twoColumns-from) {
-					grid-area: link;
-					justify-self: center;
-					position: relative;
-					left: unset;
-					bottom: unset;
-					transform: unset;
-					white-space: unset;
-				}
-			}
-
-			&--courses {
-				background-image: url("../images/hlavicka-kurzy-a-prednasky.jpg");
-				background-position: right top;
-				background-size: 30em;
-
-				&-roundedPhoto {
-					background-image: url("../images/hlavicka-kurzy-a-prednasky.jpg");
-					background-position-x: 50%;
-					background-position-y: 28%;
-				}
-			}
-
-			&--meetups {
-				background-image: url("../images/hlavicka-setkavani-a-kluby.jpg");
-				background-size: 25em;
-
-				&-roundedPhoto {
-					background-image: url("../images/hlavicka-setkavani-a-kluby.jpg");
-					background-position-x: 97%;
-					background-position-y: 17%;
-				}
-			}
-
-			&--donation {
-				background-image: url("../images/hlavicka-moznost-podpory.jpg");
-				background-size: 22em;
-
-				&-roundedPhoto {
-					background-image: url("../images/hlavicka-moznost-podpory.jpg");
-					background-position-x: 13%;
-					background-position-y: 81%;
-				}
-			}
-
-			&--children {
-				background-image: url("../images/hlavicka-proDeti.jpg");
-				background-position: right center;
-				background-size: 36em;
-
-				&-roundedPhoto {
-					background-image: url("../images/hlavicka-proDeti.jpg");
-					background-position: 94% 59%;
-					background-size: 21rem;
-				}
-			}
-
-			&--voluntary {
-				background-image: url("../images/hlavicka-dobrovolnickeAkce.jpg");
-				background-position: calc(100% + 8em) -7em;
-				background-size: 45em;
-
-				&-roundedPhoto {
-					background-image: url("../images/hlavicka-dobrovolnickeAkce.jpg");
-					background-position: -5.5em -0.6em;
-				}
-			}
-
-			&--events {
-				background-image: url("../images/related-events.jpg");
-				background-position: calc(100% + 8em) -7em;
-				background-size: 45em;
-
-				&-roundedPhoto {
-					background-image: url("../images/related-events.jpg");
-					background-position: -5.5em -0.6em;
-				}
-			}
-
-			&--mozek {
-				background-image: url("../images/related-mozek.jpg");
-				background-position: calc(100% + 8em) -7em;
-				background-size: 45em;
-
-				&-roundedPhoto {
-					background-image: url("../images/related-mozek.jpg");
-					background-position: -5.5em -0.6em;
-				}
-			}
-
-			&--podpor-nas {
-				background-image: url("../images/related-podpor-nas.jpg");
-				background-position: calc(100% + 8em) -7em;
-				background-size: 45em;
-
-				&-roundedPhoto {
-					background-image: url("../images/related-podpor-nas.jpg");
-					background-position: -3.4em -1.1e;
-				}
-			}
-
-			&--eshop {
-				background-image: url("../images/related-eshop.jpg");
-				background-position: calc(100% + 8em) -7em;
-				background-size: 45em;
-
-				&-roundedPhoto {
-					background-image: url("../images/related-eshop.jpg");
-					background-position: -3.3em -1.7em;
-				}
-			}
-		}
+		align-items: center;
+		grid-row-gap: 1rlh;
+		grid-column-gap: 0.5rlh;
+		padding: 1rlh;
 	}
+}
+@media (settings.$related-breakpoint-roundedPhoto-whenVisible) {
+	aside .related-list-item {
+		grid-template-areas:
+			"heading heading"
+			"list photo"
+			"link link";
+		grid-template-columns: 2fr 1fr;
+	}
+}
+
+aside .related-list-item:hover {
+	color: inherit;
+}
+
+aside .related-list-item::before {
+	content: "";
+	background-color: color.adjust(settings.$colors-tinge, $alpha: -0.1);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	display: block;
+	z-index: -1;
+}
+
+@media (settings.$related-breakpoint-oneColumn-until) {
+	aside .related-list-item-heading {
+		margin-block-end: 1rlh;
+	}
+}
+@media (settings.$related-breakpoint-twoColumns-from) {
+	aside .related-list-item-heading {
+		grid-area: heading;
+		margin-block-end: 0;
+	}
+}
+
+aside .related-list-item-list {
+	list-style: none;
+}
+@media (settings.$related-breakpoint-oneColumn-until) {
+	aside .related-list-item-list {
+		margin-block-end: 2rlh;
+	}
+}
+@media (settings.$related-breakpoint-twoColumns-from) {
+	aside .related-list-item-list {
+		grid-area: list;
+	}
+}
+@media (max-width: 30em) {
+	aside .related-list-item-list li:nth-child(3) {
+		max-width: 8em;
+	}
+}
+
+aside .related-list-item-roundedPhoto {
+	background-size: 250%;
+	border-radius: 50%; // fallback for Edge for `clip-path`
+	clip-path: circle(50%);
+	height: 5em;
+	width: 5em;
+}
+@media (settings.$related-breakpoint-roundedPhoto-untilHidden) {
+	aside .related-list-item-roundedPhoto {
+		display: none;
+	}
+}
+@media (settings.$related-breakpoint-oneColumn-until) {
+	aside .related-list-item-roundedPhoto {
+		top: 3rlh;
+		position: absolute;
+		right: 0.5rlh;
+		z-index: 1;
+	}
+}
+@media (settings.$related-breakpoint-twoColumns-from) {
+	aside .related-list-item-roundedPhoto {
+		grid-area: photo;
+		justify-self: end;
+	}
+}
+
+aside .related-list-item-moreLink {
+	z-index: -1;
+}
+@media (settings.$related-breakpoint-twoColumns-from) {
+	aside .related-list-item-moreLink {
+		grid-area: link;
+		justify-self: center;
+		position: relative;
+		left: unset;
+		bottom: unset;
+		transform: unset;
+		white-space: unset;
+	}
+}
+aside .related-list-item-moreLink::after {
+	background-color: var(--hb-colors-tinge);
+}
+
+aside .related-list-item--courses {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-kurzy-a-prednasky.jpg");
+	background-position: right top;
+	background-size: 30em;
+}
+aside .related-list-item--courses-roundedPhoto {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-kurzy-a-prednasky.jpg");
+	background-position-x: 50%;
+	background-position-y: 28%;
+}
+
+aside .related-list-item--meetups {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-setkavani-a-kluby.jpg");
+	background-size: 25em;
+}
+aside .related-list-item--meetups-roundedPhoto {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-setkavani-a-kluby.jpg");
+	background-position-x: 97%;
+	background-position-y: 17%;
+}
+
+aside .related-list-item--donation {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-moznost-podpory-scaled.jpg");
+	background-size: 22em;
+}
+aside .related-list-item--donation-roundedPhoto {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-moznost-podpory-scaled.jpg");
+	background-position-x: 13%;
+	background-position-y: 81%;
+}
+
+aside .related-list-item--children {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-proDeti.jpg");
+	background-position: right center;
+	background-size: 36em;
+}
+aside .related-list-item--children-roundedPhoto {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-proDeti.jpg");
+	background-position: 94% 59%;
+	background-size: 21rem;
+}
+
+aside .related-list-item--voluntary {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-dobrovolnickeAkce.jpg");
+	background-position: calc(100% + 8em) -7em;
+	background-size: 45em;
+}
+aside .related-list-item--voluntary-roundedPhoto {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/hlavicka-dobrovolnickeAkce.jpg");
+	background-position: -5.5em -0.6em;
+}
+
+aside .related-list-item--events {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/related-events-scaled.jpg");
+	background-position: calc(100% + 8em) -7em;
+	background-size: 45em;
+}
+aside .related-list-item--events-roundedPhoto {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/related-events-scaled.jpg");
+	background-position: -5.5em -0.6em;
+}
+
+aside .related-list-item--mozek {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/related-mozek.jpg");
+	background-position: calc(100% + 8em) -7em;
+	background-size: 45em;
+}
+aside .related-list-item--mozek-roundedPhoto {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/related-mozek.jpg");
+	background-position: -5.5em -0.6em;
+}
+
+aside .related-list-item--podpor-nas {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/related-podpor-nas-scaled.jpg");
+	background-position: calc(100% + 8em) -7em;
+	background-size: 45em;
+}
+aside .related-list-item--podpor-nas-roundedPhoto {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/related-podpor-nas-scaled.jpg");
+	background-position: -3.4em -1.1e;
+}
+
+aside .related-list-item--eshop {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/related-eshop.jpg");
+	background-position: calc(100% + 8em) -7em;
+	background-size: 45em;
+}
+aside .related-list-item--eshop-roundedPhoto {
+	background-image: url("https://brontosaurus.cz/wp-content/uploads/2024/12/related-eshop.jpg");
+	background-position: -3.3em -1.7em;
 }

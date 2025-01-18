@@ -1,60 +1,56 @@
 del.revision {
 	position: relative;
 	background-color: #fbdbdb;
-	padding: vr-unit(0.5);
-
-	&::before {
-		content: attr(data-revision-text);
-		position: absolute;
-		background-color: #d40303;
-		color: #fff;
-		top: -3.2em;
-		left: 60%;
-		text-decoration: none;
-		padding: vr-unit(0.5) vr-unit(0.5) calc(#{vr-unit(0.5)} - 0.15em);
-		border-radius: 2em;
-		white-space: nowrap;
-		font-size: 0.85em;
-	}
-
-	&::after {
-		content: "";
-		display: block;
-		position: absolute;
-		border: 15px solid transparent;
-		top: -0.5em;
-		border-top-color: #d40303;
-		left: calc(60% + 1.3em);
-	}
+	padding: 0.5rlh;
+}
+del.revision::before {
+	content: attr(data-revision-text);
+	position: absolute;
+	background-color: #d40303;
+	color: #fff;
+	top: -3.2em;
+	left: 60%;
+	text-decoration: none;
+	padding: 0.5rlh 0.5rlh calc(0.5rlh - 0.15em);
+	border-radius: 2em;
+	white-space: nowrap;
+	font-size: 0.85em;
+}
+del.revision::after {
+	content: "";
+	display: block;
+	position: absolute;
+	border: 15px solid transparent;
+	top: -0.5em;
+	border-top-color: #d40303;
+	left: calc(60% + 1.3em);
 }
 
 ins.revision {
 	position: relative;
 	background-color: #dbfbdb;
-	padding: vr-unit(0.5);
+	padding: 0.5rlh;
 	text-decoration: none;
-
-	&::before {
-		content: attr(data-revision-text);
-		position: absolute;
-		background-color: #38c935;
-		color: #fff;
-		top: -3.2em;
-		left: 60%;
-		text-decoration: none;
-		padding: vr-unit(0.5) vr-unit(0.5) calc(#{vr-unit(0.5)} - 0.15em);
-		border-radius: 2em;
-		white-space: nowrap;
-		font-size: 0.85em;
-	}
-
-	&::after {
-		content: "";
-		display: block;
-		position: absolute;
-		border: 15px solid transparent;
-		top: -0.5em;
-		border-top-color: #38c935;
-		left: calc(60% + 1.3em);
-	}
+}
+ins.revision::before {
+	content: attr(data-revision-text);
+	position: absolute;
+	background-color: #38c935;
+	color: #fff;
+	top: -3.2em;
+	left: 60%;
+	text-decoration: none;
+	padding: 0.5rlh 0.5rlh calc(0.5rlh - 0.15em);
+	border-radius: 2em;
+	white-space: nowrap;
+	font-size: 0.85em;
+}
+ins.revision::after {
+	content: "";
+	display: block;
+	position: absolute;
+	border: 15px solid transparent;
+	top: -0.5em;
+	border-top-color: #38c935;
+	left: calc(60% + 1.3em);
 }
