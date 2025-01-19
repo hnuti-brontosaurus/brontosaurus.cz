@@ -46,7 +46,7 @@
 				Konferenční místnost Hnutí Brontosaurus
 			</h2>
 
-			<a class="rentals__mapLink hb-d-b hb-mw-mc hb-lg-mi-auto hb-mbe-3" href="https://mapy.cz/s/3tfmR" rel="noopener noreferrer" target="_blank">
+			<a class="rentals__mapLink [ hb-d-b hb-mw-mc hb-lg-mi-auto hb-mbe-3 ] hb-fs-xs" href="https://mapy.cz/s/3tfmR" rel="noopener noreferrer" target="_blank">
 				Hvězdová 306/10, 602 00 Brno
 			</a>
 
@@ -208,7 +208,7 @@
 				Ekologické volnočasové centrum Švýcárna
 			</h2>
 
-			<a class="rentals__mapLink hb-d-b hb-mw-mc hb-lg-mi-auto hb-mbe-3" href="https://mapy.cz/s/3tira" rel="noopener noreferrer" target="_blank">
+			<a class="rentals__mapLink [ hb-d-b hb-mw-mc hb-lg-mi-auto hb-mbe-3 ] hb-fs-xs" href="https://mapy.cz/s/3tira" rel="noopener noreferrer" target="_blank">
 				Josefovská 459, 679 04 Adamov
 			</a>
 
@@ -319,7 +319,7 @@
 				Horská chata Smrčník
 			</h2>
 
-			<a class="rentals__mapLink hb-d-b hb-mw-mc hb-lg-mi-auto hb-mbe-3" href="https://mapy.cz/s/3tiqH" rel="noopener noreferrer" target="_blank">
+			<a class="rentals__mapLink [ hb-d-b hb-mw-mc hb-lg-mi-auto hb-mbe-3 ] hb-fs-xs" href="https://mapy.cz/s/3tiqH" rel="noopener noreferrer" target="_blank">
 				Lipová-lázně 327, 790 61 Lipová-lázně
 			</a>
 
@@ -430,7 +430,7 @@
 				Chata Kristýna v Bílých Karpatech
 			</h2>
 
-			<a class="rentals__mapLink hb-d-b hb-mw-mc hb-lg-mi-auto hb-mbe-3" href="https://mapy.cz/s/3tirE" rel="noopener noreferrer" target="_blank">
+			<a class="rentals__mapLink [ hb-d-b hb-mw-mc hb-lg-mi-auto hb-mbe-3 ] hb-fs-xs" href="https://mapy.cz/s/3tirE" rel="noopener noreferrer" target="_blank">
 				696 74 Javorník nad Veličkou
 			</a>
 

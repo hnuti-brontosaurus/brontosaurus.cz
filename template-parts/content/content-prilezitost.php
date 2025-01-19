@@ -115,7 +115,7 @@ try {
 			<!--section 6-->
 			<section>
 				<h2>Komu se ozvat?</h2>
-				<address>
+				<address class="hb-fst-n">
 					<dl class="prilezitost__contact">
 						<dt>Kontaktní osoba:</dt>
 						<dd><?php echo $opportunity->getContactPerson()->getName(); ?></dd>

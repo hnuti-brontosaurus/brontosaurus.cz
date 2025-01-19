@@ -49,7 +49,7 @@ $contacts = array_map(function (WP_Post $post) {
 			<div class="contacts__box hb-mi-auto hb-mbe-5 hb-br">
 				<iframe class="contacts__map hb-is-100 hb-bs-100" src="https://frame.mapy.cz/s/karunuveku" style="border:none" frameborder="0"></iframe>
 
-				<address class="contacts__boxInner hb-p-5 hb-bg-tinge">
+				<address class="contacts__boxInner hb-p-5 hb-fs-s hb-fst-n hb-bg-tinge">
 					<div class="contacts__boxItem contacts__boxItem--address hb-mbe-3">
 						<h3 class="screenreaders-only" id="contacts-address">
 							Kontaktní adresa
@@ -125,13 +125,13 @@ $contacts = array_map(function (WP_Post $post) {
 				<a class="contacts__otherLink hb-fs-xs" href="mailto:predsedkyne@brontosaurus.cz" rel="noopener">predsedkyne@brontosaurus.cz</a>
 			</div>
 
-			<div class="contacts__invoicing hb-block-text">
+			<div class="hb-block-text hb-fs-xs">
 				IČ: 0040 8328<br>
 				Zápis je provedený v obchodním registru
 				pod sp. zn. L 346 vedený u Krajského soudu v Brně.
 			</div>
 
-			<div class="contacts__accounts hb-block-text">
+			<div class="hb-block-text hb-fs-xs">
 				ID datové schránky: h7id376<br>
 				transparentní účet: <a href="https://ib.fio.cz/ib/transparent?a=2100070590" rel="noopener noreferrer" target="_blank">2100070590/2010</a><br>
 				transparentní účet pro příjem darů – Adopce brontosaura: <a href="https://ib.fio.cz/ib/transparent?a=2600217667" rel="noopener noreferrer" target="_blank">2600217667/2010</a>

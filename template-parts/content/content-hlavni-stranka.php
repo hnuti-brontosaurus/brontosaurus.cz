@@ -98,7 +98,7 @@ $hb_banner = hb_banner();
 			zobrazit další
 		</a>
 
-		<a class="action action--link-secondary-sm" href="/dobrovolnicke-akce#co-zazijes-na-dobrovolnicke-akci">
+		<a class="action hb-d-ib hb-fs-xs hb-td-u" href="/dobrovolnicke-akce#co-zazijes-na-dobrovolnicke-akci">
 			více informací o akcích
 		</a>
 	</div>

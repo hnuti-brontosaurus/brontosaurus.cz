@@ -72,7 +72,7 @@ $filters = CoursesFiltersDC::from('jen', $selectedFilter);
 	</div>
 
 	<?php if ($filters->isOrganizingSelected): ?>
-	<p class="eventsPage__info hb-mbns-3 hb-ta-c hb-mbe-5">
+	<p class="eventsPage__info hb-mbns-3 hb-fs-xs hb-ta-c hb-mbe-5">
 		👉 Na této stránce je přehled aktuálně vypsaných kurzů. Pro více informací či další kurzy
 		<a href="https://organizator.brontosaurus.cz" rel="noopener">klikni zde</a>.
 	</p>
