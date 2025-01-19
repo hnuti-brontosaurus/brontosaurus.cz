@@ -46,7 +46,7 @@ $contacts = array_map(function (WP_Post $post) {
 				Ústředí Hnutí Brontosaurus
 			</h2>
 
-			<div class="contacts__box hb-mi-auto hb-mbe-4 hb-br">
+			<div class="contacts__box hb-mi-auto hb-mbe-5 hb-br">
 				<iframe class="contacts__map hb-is-100 hb-bs-100" src="https://frame.mapy.cz/s/karunuveku" style="border:none" frameborder="0"></iframe>
 
 				<address class="contacts__boxInner hb-p-5 hb-bg-tinge">
@@ -106,6 +106,23 @@ $contacts = array_map(function (WP_Post $post) {
 						V případě potřeby osobního jednání nás <span class="hb-fw-b">kontaktujte na uvedených telefonech</span>.
 					</div>
 				</div>
+			</div>
+
+			<div class="hb-block-text hb-fs-s hb-mbe-4">
+				<strong>Kontrolní a revizní komise HB</strong><br>
+				<span class="hb-fs-xs">kontakt pro podněty, připomínky či případné stížnosti k akcím nebo činnosti HB a jeho pobočných spolků</span><br>
+				<a class="contacts__otherLink hb-fs-xs" href="mailto:krk@brontosaurus.cz" rel="noopener">krk@brontosaurus.cz</a>
+			</div>
+
+			<div class="hb-block-text hb-fs-s hb-mbe-4">
+				<strong>Výkonný výbor HB</strong><br>
+				<span class="hb-fs-xs">kontakt pro náměty a dotazy pro volený řídící orgán</span><br>
+				<a class="contacts__otherLink hb-fs-xs" href="mailto:vv@brontosaurus.cz" rel="noopener">vv@brontosaurus.cz</a>
+			</div>
+
+			<div class="hb-block-text hb-fs-s hb-mbe-5">
+				<strong>Předsedkyně HB – Alena Konečná</strong><br>
+				<a class="contacts__otherLink hb-fs-xs" href="mailto:predsedkyne@brontosaurus.cz" rel="noopener">predsedkyne@brontosaurus.cz</a>
 			</div>
 
 			<div class="contacts__invoicing hb-block-text">
