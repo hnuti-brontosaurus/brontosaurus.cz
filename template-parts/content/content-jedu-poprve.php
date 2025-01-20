@@ -79,7 +79,7 @@
 		</ul>
 
 		<div class="hb-ta-c">
-			<a class="button button--primary" href="/dobrovolnicke-akce?jen=jedu-poprve#obsah">
+			<a class="action action--primary action--lg" href="/dobrovolnicke-akce?jen=jedu-poprve#obsah">
 				Vybrat si akci
 			</a>
 		</div>

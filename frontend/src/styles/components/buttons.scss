@@ -1,11 +1,6 @@
 @use "sass:color";
 @use "../imports/settings";
 
-@mixin buttons-primary-hoverEffect () {
-	background-color: color.adjust(settings.$colors-emphasizing, $lightness: -10%);
-	color: var(--hb-colors-default-background);
-}
-
 // @todo: move to .action
 .button {
 
@@ -18,48 +13,9 @@
 		color 200ms ease-in-out;
 }
 
-.button--primary,
 .button--secondary {
 	padding-block-start: calc(0.5rlh + 0.25em);
 	padding-block-end: 0.5rlh;
-}
-
-
-// used for call to action buttons/links - these should lead you to a concrete destination
-// @todo: rename to action
-
-.button--primary {
-	background-color: var(--hb-colors-emphasizing);
-	border: none; // ?
-	color: var(--hb-colors-default-background) !important; // overwrite global link style
-	padding-inline-start: 1rlh;
-	padding-inline-end: calc(1rlh + 5px);
-	position: relative;
-	text-transform: uppercase;
-	//box-shadow: 4px 2px 8px 0 var(--hb-colors-default-background); // or 0 0 10px 3px
-}
-@media (min-width: 23.001em) {
-	.button--primary {
-		padding-inline-start: 2rlh;
-		padding-inline-end: calc(2rlh + 5px);
-	}
-}
-.button--primary:hover {
-	@include buttons-primary-hoverEffect();
-}
-@media (min-width: 20.001em) {
-	.button--primary::after {
-		content: "";
-		display: inline-block;
-		position: absolute;
-		right: 25px;
-		top: calc(50% - 9px);
-		width: 10px;
-		height: 17px;
-		background-image: url("../../../images/icons/icon-arrow.svg");
-		background-repeat: no-repeat;
-		background-size: auto 100%;
-	}
 }
 
 

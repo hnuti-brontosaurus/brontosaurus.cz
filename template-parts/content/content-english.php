@@ -46,7 +46,7 @@
 
 		<div class="english__card hb-p-4">
 			<div>
-				<a class="button button--primary hb-tt-n" href="mailto:international@brontosaurus.cz">
+				<a class="action action--primary action--lg hb-tt-n" href="mailto:international@brontosaurus.cz">
 					international@brontosaurus.cz
 				</a>
 			</div>

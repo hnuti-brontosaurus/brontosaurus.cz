@@ -77,7 +77,7 @@ $hb_currentPost = get_post();
 			}
 
 			runWhenAvailable('.ec-v-form-submit button', (el) => {
-				el.classList.add('button', 'button--primary');
+				el.classList.add('action', 'action--primary', 'action--lg');
 			});
 		</script>
 	</div>
@@ -130,7 +130,7 @@ $hb_currentPost = get_post();
 					window.addEventListener('load', function () {
 						document.getElementById('gsc-i-id2').placeholder = 'Prohledat web';
 						const searchButtonEl = document.getElementById('___gcse_1').querySelector('button.gsc-search-button');
-						searchButtonEl.classList.add('button', 'button--primary');
+						searchButtonEl.classList.add('action', 'action--primary', 'action--lg');
 						searchButtonEl.innerHTML = 'Hledat';
 					});
 				</script>

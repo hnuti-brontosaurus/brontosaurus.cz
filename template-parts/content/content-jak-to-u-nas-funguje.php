@@ -32,7 +32,7 @@
 			</li>
 		</ul>
 
-		<a class="button button--primary [ hb-d-b hb-mi-auto hb-mw-mc ]" href="/dobrovolnicke-akce">
+		<a class="[ action action--primary action--lg ] [ hb-d-b hb-mi-auto hb-mw-mc ]" href="/dobrovolnicke-akce">
 			Chci na akci
 		</a>
 	</article>

@@ -132,7 +132,7 @@ function hb_detail_application(EventDC $event, string $applicationUrlTemplate)
 ?>
 <?php if ($event->isRegistrationRequired): ?>
 	<a
-		class="registration__actionButton button button--primary"
+		class="registration__actionButton action action--primary action--lg"
 		href="<?php echo $url ?>"
 		rel="noopener"
 	>

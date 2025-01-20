@@ -272,7 +272,7 @@ $references = [
 				<strong>Podpoř brontosauří tradici i v dalších 50 letech! Děkujeme.</strong>
 			</div>
 
-			<a class="button button--primary" href="https://www.darujme.cz/darovat/525?frequency=monthly&amount=500&widget=1203034" rel="noopener noreferrer" target="_blank">
+			<a class="action action--primary action--lg" href="https://www.darujme.cz/darovat/525?frequency=monthly&amount=500&widget=1203034" rel="noopener noreferrer" target="_blank">
 				Chci podpořit Brontosaura
 			</a>
 		</div>
