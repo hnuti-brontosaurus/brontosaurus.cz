@@ -8,40 +8,40 @@ $hb_currentPost = get_post();
 </div>
 
 <?php if ($hb_currentPost?->post_name !== 'nasi-partneri'): ?>
-<aside class="sponsors">
-	<ul class="sponsors-list">
-		<li class="sponsors-list-item sponsors-list-item--msmt">
+<aside class="sponsors hb-pi-4 hb-pb-5 hb-ta-c">
+	<ul class="sponsors__list [ hb-d-g hb-rg-5 hb-cg-4 hb-ji-c hb-jc-c hb-ai-c ] [ hb-mi-auto hb-mbe-5 ] hb-lst-n">
+		<li class="sponsors__item sponsors__item--msmt">
 			<a href="http://www.msmt.cz" target="_blank">
-				<img src="https://brontosaurus.cz/wp-content/uploads/2024/12/ministerstvo-skolstvi.png" alt="Ministerstvo školství, mládeže a tělovýchovy" class="sponsors-list-item-image">
+				<img src="https://brontosaurus.cz/wp-content/uploads/2024/12/ministerstvo-skolstvi.png" alt="Ministerstvo školství, mládeže a tělovýchovy" class="sponsors__item-image">
 			</a>
 		</li>
 
-		<li class="sponsors-list-item">
+		<li class="sponsors__item">
 			<a href="http://www.erasmusprogramme.com" target="_blank">
-				<img src="https://brontosaurus.cz/wp-content/uploads/2024/12/spolufinancovano-eu.png" alt="Spolufinancováno Evropskou unií" class="sponsors-list-item-image">
+				<img src="https://brontosaurus.cz/wp-content/uploads/2024/12/spolufinancovano-eu.png" alt="Spolufinancováno Evropskou unií" class="sponsors__item-image">
 			</a>
 		</li>
 
-		<li class="sponsors-list-item sponsors-list-item--mv">
+		<li class="sponsors__item sponsors__item--mv">
 			<a href="https://www.mvcr.cz" target="_blank">
-				<img src="https://brontosaurus.cz/wp-content/uploads/2024/12/ministerstvo-vnitra.png" alt="Ministerstvo vnitra České republiky" class="sponsors-list-item-image">
+				<img src="https://brontosaurus.cz/wp-content/uploads/2024/12/ministerstvo-vnitra.png" alt="Ministerstvo vnitra České republiky" class="sponsors__item-image">
 			</a>
 		</li>
 
-		<li class="sponsors-list-item sponsors-list-item--mzp">
+		<li class="sponsors__item sponsors__item--mzp">
 			<a href="https://www.mzp.cz" target="_blank">
-				<img src="https://brontosaurus.cz/wp-content/uploads/2024/12/ministerstvo-zivotniho-prostredi.png" alt="Ministerstvo životního prostředí" class="sponsors-list-item-image">
+				<img src="https://brontosaurus.cz/wp-content/uploads/2024/12/ministerstvo-zivotniho-prostredi.png" alt="Ministerstvo životního prostředí" class="sponsors__item-image">
 			</a>
 		</li>
 
-		<li class="sponsors-list-item">
+		<li class="sponsors__item">
 			<a href="https://www.sfzp.cz" target="_blank">
-				<img src="https://brontosaurus.cz/wp-content/uploads/2024/12/statni-fond.png" alt="Státní fond životního prostředí České republiky" class="sponsors-list-item-image">
+				<img src="https://brontosaurus.cz/wp-content/uploads/2024/12/statni-fond.png" alt="Státní fond životního prostředí České republiky" class="sponsors__item-image">
 			</a>
 		</li>
 	</ul>
 
-	Děkujeme za podporu <a class="sponsors-link" href="/nasi-partneri">všem našim partnerům</a>.
+	<span class="hb-fs-s">Děkujeme za podporu <a href="/nasi-partneri">všem našim partnerům</a>.</span>
 </aside>
 <?php endif; ?>
 

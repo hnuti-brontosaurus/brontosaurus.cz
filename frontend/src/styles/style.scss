@@ -8,6 +8,7 @@
 
 // components
 
+@use "components/components";
 @use "components/action";
 @use "components/brontographics";
 @use "components/footer";
@@ -41,7 +42,6 @@
 @use "components/related";
 @use "components/revision";
 @use "components/searchForm";
-@use "components/sponsors";
 @use "components/screenreaders-only";
 
 @use "pages";
