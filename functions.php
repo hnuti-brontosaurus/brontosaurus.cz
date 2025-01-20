@@ -520,7 +520,7 @@ function hb_eventLabels(array $labels)
 ?>
 <div class="eventLabels">
 <?php foreach ($labels as $label): ?>
-	<div class="eventLabels__item<?php if ($label->hasSelectorModifier): ?> eventLabels__item--type eventLabels__item--<?php echo $label->hasSelectorModifier; endif; ?>">
+	<div class="eventLabels__item<?php if ($label->hasSelectorModifier): ?> eventLabels__item--type eventLabels__item--<?php echo $label->selectorModifier; endif; ?>">
 		<?php echo $label->label ?>
 	</div>
 <?php endforeach; ?>
