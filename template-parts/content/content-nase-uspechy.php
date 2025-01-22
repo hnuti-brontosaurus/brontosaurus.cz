@@ -70,7 +70,7 @@ $stories = array_map(function (WP_Post $post) {
 		<div class="hb-eventList hb-mbe-4">
 			<div class="hb-eventList__grid">
 				<?php 
-				$counter = 0;
+				$counter = 1;
 				foreach ($stories as $story) {
                 	hb_story($story);
 					if ($displayOnLoad !== null && $counter === $displayOnLoad) {
@@ -87,10 +87,10 @@ $stories = array_map(function (WP_Post $post) {
 					</button>
 
 					<div class="hb-eventList__grid hb-eventList__grid--collapse" data-hb-expandable-content>
-						$counter = 0;
 						<?php 
+						$counter = 1;
 						foreach ($stories as $story) {
-							if ($iterator->counter <= $displayOnLoad) {
+							if ($counter <= $displayOnLoad) {
 								$counter++;
 								continue;
 							}
