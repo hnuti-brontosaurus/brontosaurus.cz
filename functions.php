@@ -86,8 +86,8 @@ require_once __DIR__ . '/homepage-banner.php';
 		Assets::staticScript('lazyLoad', $theme);
 		Assets::staticScript('menuHandler', $theme);
 		Assets::staticScript('lightbox', $theme);
+		Assets::staticScript('administrativeUnitsMap', $theme);
 		Assets::script('references', $theme);
-		Assets::script('administrativeUnitsMap', $theme);
 		Assets::style('style', $theme);
 	});
 
@@ -149,7 +149,7 @@ function hb_administrative_units_map(string $administrationUnitsInJson, bool $ha
 
 	<div class="administrativeUnitsMap__map"
 			id="map"
-			data-organizationalUnits='<?php echo $administrationUnitsInJson ?>'
+			data-administrativeUnits='<?php echo $administrationUnitsInJson ?>'
 	></div>
 <?php endif; ?>
 </div>
