@@ -160,11 +160,7 @@ function hb_detail_application(EventDC $event, string $applicationUrlTemplate)
 
             <?php if ($event->tags): ?>
 			<div class="hb-d-f hb-jc-c">
-                <?php foreach ($event->tags as $tag): ?>
-				<span class="detail__tag eventTag">
-					<?php echo $tag ?>
-				</span>
-                <?php endforeach; ?>
+                <?php hb_tags($event->tags, 'detail__tag') ?>
 			</div>
             <?php endif; ?>
 

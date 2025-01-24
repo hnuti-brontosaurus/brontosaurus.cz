@@ -484,11 +484,7 @@ function hb_event(EventDC $event, bool $lazyLoading = true, bool $smaller = fals
 
 		<?php if ($event->tags): ?>
 		<div class="hb-event__tags">
-			<?php foreach ($event->tags as $tag): ?>
-			<span class="hb-event__tag eventTag">
-				<?php echo $tag ?>
-			</span>
-			<?php endforeach; ?>
+			<?php hb_tags($event->tags, 'hb-event__tag') ?>
 		</div>
 		<?php endif; ?>
 
@@ -526,4 +522,17 @@ function hb_eventLabels(array $labels)
 <?php endforeach; ?>
 </div>
 <?php
+}
+
+
+/** @param string[] $tags */
+function hb_tags(array $tags, ?string $className)
+{
+	foreach ($tags as $tag):
+	?>
+	<span class="<?php echo $className !== null ? $className + ' ' : ''; ?>eventTag">
+		<?php echo $tag ?>
+	</span>
+	<?php
+	endforeach; 
 }
