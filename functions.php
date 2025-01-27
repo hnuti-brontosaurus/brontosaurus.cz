@@ -530,7 +530,7 @@ function hb_tags(array $tags, ?string $className)
 {
 	foreach ($tags as $tag):
 	?>
-	<span class="<?php echo $className !== null ? $className + ' ' : ''; ?>eventTag">
+	<span class="<?php echo $className !== null ? $className . ' ' : ''; ?>eventTag">
 		<?php echo $tag ?>
 	</span>
 	<?php
