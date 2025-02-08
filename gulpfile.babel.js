@@ -3,33 +3,27 @@
 import gulp from 'gulp';
 import taskList from 'gulp-task-listing';
 
-import buildScripts from './gulp/build-scripts.js';
-import buildStyles from './gulp/build-styles.js';
-import {getSourcePathFromPathObject} from './gulp/utils.js';
+import buildStyles from './gulp.build-styles.js';
 
 const paths = {
-	scripts: { global: { dist: 'frontend/dist/js', src: 'frontend/src/scripts' } },
 	styles: { global: { dist: 'frontend/dist/css', src: 'frontend/src/styles' } },
 };
 
+/**
+ *
+ * @param paths Expects paths.[type] object from ./constants.js
+ * @returns {Array}
+ */
+export const getSourcePathFromPathObject = (paths) => {
+	let sourcePaths = [];
+	for (let type in paths) {
+		const location = paths[type];
+		sourcePaths.push(location.src);
+	}
 
-// SCRIPTS
-
-const buildScriptsTask = (cb) => {
-	buildScripts(cb, [
-		{
-			distFileName: 'references.js',
-			distPath: paths.scripts.global.dist, // folder to save the compiled js file into
-			sourceFileName: 'index.ts',
-			sourcePath: paths.scripts.global.src + '/references',
-		},
-	]);
+	return sourcePaths;
 };
 
-gulp.task('build:scripts', gulp.series(buildScriptsTask));
-gulp.task('watch:scripts', gulp.series(buildScriptsTask, () => {
-	gulp.watch(getSourcePathFromPathObject(paths.scripts).map((path) => path + '/**/*.ts'), gulp.series(buildScriptsTask));
-}));
 
 
 // STYLES
@@ -68,12 +62,10 @@ gulp.task('watch:styles', gulp.series(buildStylesTask, () => {
 gulp.task('help', taskList);
 
 gulp.task('watch', gulp.parallel(
-	'watch:scripts',
 	'watch:styles',
 ));
 
 gulp.task('build', gulp.parallel(
-	'build:scripts',
 	'build:styles',
 ));
 

@@ -87,7 +87,7 @@ require_once __DIR__ . '/homepage-banner.php';
 		Assets::staticScript('menuHandler', $theme);
 		Assets::staticScript('lightbox', $theme);
 		Assets::staticScript('administrativeUnitsMap', $theme);
-		Assets::script('references', $theme);
+		Assets::staticScript('references', $theme);
 		Assets::style('style', $theme);
 	});
 
