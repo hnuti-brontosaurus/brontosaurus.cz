@@ -16,9 +16,6 @@ jobs:
             -   name: Install deps
                 run: composer install --ansi
 
-#            -   name: Run phpstan
-#                run: composer phpstan
-
             -   name: Upload artifact
                 uses: actions/upload-artifact@v4
                 with:
