@@ -16,8 +16,6 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-task-listing": "^1.1.0",
     "gulp-uglify": "^3.0.2",
-    "patch-package": "^8.0.0",
-    "postinstall-prepare": "^2.0.0",
     "sass": "^1.42.1",
     "tsify": "^5.0.2",
     "typescript": "^4.1.5",
@@ -25,10 +23,7 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
-    "@types/googlemaps": "^3.43.3",
-    "load-google-maps-api": "^2.0.2",
-    "sanitize.css": "^12.0.1",
-    "ts-overlapping-marker-spiderfier": "^1.0.3"
+    "sanitize.css": "^12.0.1"
   },
   "scripts": {
     "build": "gulp build",
