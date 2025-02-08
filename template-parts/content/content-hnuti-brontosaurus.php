@@ -167,7 +167,7 @@ $administrationUnitsInJson = json_encode($administrationUnits);
 			<div class="about__presentationBox presentationBox presentationBox--textOnRight hb-mw-40 hb-lg-mi-auto hb-mb-4 [ hb-lg-d-f hb-lg-fd-c hb-lg-jc-c ]" style="--presentationBox-background-image-url: url('https://brontosaurus.cz/wp-content/uploads/2024/12/baseUnit.jpg')">
 				<p class="presentationBox__text">
 					<b>Na jakoukoliv brontosauří akci může přijet kdokoliv</b>, pokud se však budeš chtít zapojit více
-					a třeba i nějakou akci také pomáhat pořádat, můžeš se přidat k některému ze základních článků (<a id="hb-mbe-4 hb-lg-mbe-5-base-link" href="#mapa-zakladni-clanky">mapa</a>,
+					a třeba i nějakou akci také pomáhat pořádat, můžeš se přidat k některému ze základních článků (<a href="#mapa-zakladni-clanky">mapa</a>,
 					<a href="/o-brontosaurovi/hnuti-brontosaurus/zakladni-clanky-a-kluby">seznam</a>).
 				</p>
 			</div>
