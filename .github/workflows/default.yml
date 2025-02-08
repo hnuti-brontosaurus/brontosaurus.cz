@@ -32,9 +32,6 @@ jobs:
                 with:
                     node-version: 18.x
 
-            -   name: Install external deps
-                run: sudo apt-get update && sudo apt-get install -y pngquant imagemagick
-
             -   name: Install deps
                 uses: borales/actions-yarn@v5
                 with:
@@ -58,10 +55,6 @@ jobs:
                 with:
                     name: frontend-deps
                     path: |
-                        UI/AboutStructure/assets/dist
-                        UI/Contacts/assets/dist
-                        UI/Event/assets/dist
-                        UI/Rentals/assets/dist
                         frontend/dist
                         hb-events/build
 
@@ -100,8 +93,8 @@ jobs:
                         -i "template-parts/*" \
                         -i "vendor/*" \
                         -i "webfonts/*" \
-                        -i "Assets.php" \
                         -i "archive-novinky.php" \
+                        -i "Assets.php" \
                         -i "bootstrap.php" \
                         -i "composer.json" \
                         -i "composer.lock" \
