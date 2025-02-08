@@ -8,22 +8,21 @@ jedné šablony pro Wordpress.
 
 Brontoweb byl původně z důvodu rychlého zveřejnění nové verze nakódován
 víceméně staticky (vyjma komunikace s BISem), redakční systém jako takový
-se používá relativně málo. Vize však je postupně přesunout veškerý obsah
+se používá spíše méně. Vize je přesunout veškerý obsah
 do Wordpressu tak, aby byl administrovatelný, ale zároveň se nedaly rozbít
 základní designové koncepty webu.
 
-Aktuálnímu statickému stavu odpovídá i samotný kód, který je napsán spíš jako MVC aplikace
-než šablona pro Wordpress. To se v budoucnu rovněž změní.
+Statický kód je momentálně napsán jako template parts.
 
 
 ## Vývoj
 
 Šablona je vyvíjena standardními webovými jazyky – HTML+CSS+JS pro frontend, PHP pro backend.
-Každá vrstva obsahuje různé nástroje pro usnadnění práce vývojáře.
+Některé vrstvy obsahují nástroje pro usnadnění práce vývojáře.
 
 ### Backend
 
-Šablona využívá knihovny třetích stran. Pro správu těchto knihoven je použit Composer (světový standard pro správu knihoven v PHP), který umožňuje snadnou správu a aktualizaci tzv. závislostí. Composer je ke stažení [zde](https://getcomposer.org/) a po jeho instalaci lze používat standardně přes příkazovou řádku (viz [Instalace](#Instalace)).
+Šablona využívá pár knihoven třetích stran. Pro správu těchto knihoven je použit Composer (světový standard pro správu knihoven v PHP), který umožňuje snadnou správu a aktualizaci tzv. závislostí. Composer je ke stažení [zde](https://getcomposer.org/) a po jeho instalaci lze používat standardně přes příkazovou řádku (viz [Instalace](#Instalace)).
 
 ### Frontend
 
@@ -34,13 +33,13 @@ Frontend se v šabloně skládá z pěti různých zdrojů:
 - obrázky
 - fonty
 
-Šablony se zpracovávají PHP skriptem a vypisují na výstup. K usnadnění práce s nimi se používá šablonovací systém [Latte](https://latte.nette.org/).
+Šablony se zpracovávají PHP skriptem a vypisují na výstup.
 
 Styly jsou psány jazykem SCSS, tedy před použitím v prohlížeči se musí vždy přeložit preprocesorem SASS. Použití preprocesoru usnadňuje psaní CSS – např. použití proměnných pro opakované hodnoty (`$var: 20rem`), řetězení opakujících se slov v selektorech (`&__item`) etc.
 
-Skripty jsou psány v Typescriptu (typovaný JS), musí se tedy taky přeložit. Typovaný kód snižuje jeho chybovost, zlepšuje čitelnost a umožní odhalit chyby ještě před nasazením webu.
+Skripty jsou psány standardně v Javascriptu a jsou ve složce `scripts`.
 
-Obrázky se jen minifikují, aby neměly zbytečně velkou velikost.
+Obrázky se nahrávají na produkční verzi Brontowebu a odtud se linkují.
 
 S fonty se nic nedělá.
 
@@ -72,3 +71,5 @@ yarn dev
 # typicky součást buildu v CI
 NODE_ENV=production yarn build
 ```
+
+> Poznámka: build přes gulp se v současnosti týká už jen stylů, pro zbytek zdrojů již není potřeba jej pouštět.
