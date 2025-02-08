@@ -3,8 +3,5 @@ parameters:
         url: https://bis.brontosaurus.cz
         applicationUrlTemplate: "https://bis.brontosaurus.cz/akce/{id}/prihlasit?next={returnUrl}"
 
-    sentry:
-        dsn:
-
     debugMode: false
     enableTracking: false

@@ -80,14 +80,6 @@ final class Container
 	}
 
 
-	public function getSentryDsn(): ?string
-	{
-		return $this->configuration->has('sentry:dsn') && ($dsn = $this->configuration->get('sentry:dsn')) !== ''
-			? $dsn
-			: null;
-	}
-
-
 	private static function createDirectoryIfNeeded(string $path): void
 	{
 		if (is_dir($path)) {

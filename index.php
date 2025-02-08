@@ -12,7 +12,6 @@ use function get_template_part;
 use function ob_end_clean;
 use function ob_get_contents;
 use function ob_start;
-use function Sentry\init as initializeSentry;
 use function set_query_var;
 
 
@@ -26,11 +25,6 @@ use function set_query_var;
 	Debugger::enable( ! $hb_container->getDebugMode());
 
 	// app
-
-	$dsn = $hb_container->getSentryDsn();
-	if ($dsn !== null) {
-		initializeSentry(['dsn' => $dsn]);
-	}
 
 	set_query_var('hb_enableTracking', $hb_container->getEnableTracking()); // temporary pass setting to template (better solution is to use WP database to store these things)
 	set_query_var('hb_container', $hb_container); // query vars are exported with extract() in template parts
