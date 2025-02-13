@@ -7,5 +7,5 @@
 	transition: fill 100ms linear;
 }
 .icon:hover {
-	fill: color.adjust(settings.$colors-emphasizing, $lightness: -10%);
+	fill: var(--hb-colors-emphasizing-darken);
 }

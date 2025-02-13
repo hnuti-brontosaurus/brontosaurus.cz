@@ -2,7 +2,7 @@
 @use "../imports/settings";
 
 .newsletter {
-	background-color: color.adjust(settings.$colors-tinge, $lightness: 3%);
+	background-color: var(--hb-colors-light-grey-background);
 	padding: 2rlh 1rlh;
 	text-align: center;
 }

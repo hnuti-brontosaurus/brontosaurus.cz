@@ -12,7 +12,7 @@
 		color 200ms ease-in-out;
 }
 .action--primary:hover {
-	background-color: #{color.adjust(settings.$colors-emphasizing, $lightness: -10%)};
+	background-color: var(--hb-colors-emphasizing-darken);
 	color: inherit;
 }
 .action--primary:not(.action--lg) {

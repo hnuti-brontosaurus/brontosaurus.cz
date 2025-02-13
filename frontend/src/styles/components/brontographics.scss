@@ -7,7 +7,7 @@
     transition: fill 200ms linear;
 }
 .brontographics__shape:hover {
-    fill: color.adjust(settings.$colors-emphasizing, $lightness: -10%);
+    fill: var(--hb-colors-emphasizing-darken);
 }
 
 .brontographics__label {

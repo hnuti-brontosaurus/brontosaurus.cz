@@ -57,7 +57,7 @@
 }
 .footer__navigation .menu > .menu-item.current-menu-item > a:hover::before,
 .footer__navigation .menu > .menu-item.active > a:hover::before {
-	background-color: color.adjust(settings.$colors-emphasizing, $lightness: -10%);
+	background-color: var(--hb-colors-emphasizing-darken);
 }
 
 .footer__bottom {

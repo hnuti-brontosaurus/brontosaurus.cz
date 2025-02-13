@@ -5,7 +5,7 @@
 	max-width: max-content;
 	margin-inline: auto;
 	padding: 1rlh 2rlh;
-	background-color: color.adjust(settings.$colors-emphasizing, $alpha: -0.9);
+	background-color: color-mix(in srgb, var(--hb-colors-emphasizing) 10%, transparent);
 	border-radius: 2em;
 	text-align: center;
 }

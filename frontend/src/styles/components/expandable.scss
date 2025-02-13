@@ -26,7 +26,7 @@
 	background-color: transparent; // overwrite button style
 }
 .hb-expandable--expanded .hb-expandable__toggler:hover {
-	background-color: color.adjust(settings.$colors-tinge, $lightness: -10%);
+	background-color: var(--hb-colors-tinge-darken);
 }
 .hb-expandable--expanded .hb-expandable__toggler::after {
 	transform: rotate(180deg);

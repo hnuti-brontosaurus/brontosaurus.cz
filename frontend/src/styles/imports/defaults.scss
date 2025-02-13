@@ -28,11 +28,14 @@
 
 
 :root {
-	--hb-colors-default-background: #{settings.$colors-default-background};
-	--hb-colors-emphasizing: #{settings.$colors-emphasizing};
+	--hb-colors-default-background: #ffffff;
+	--hb-colors-light-grey-background: #f9faf9; /* tinge - lightness: 3% */
+	--hb-colors-emphasizing: #00a651;
+	--hb-colors-emphasizing-darken: #007338; /* lightness: -10% */
 	--hb-colors-framing: #b3b3b3;
-	--hb-colors-text: #{settings.$colors-text};
-	--hb-colors-tinge: #{settings.$colors-tinge};
+	--hb-colors-text: #000000;
+	--hb-colors-tinge: #f0f3f2;
+	--hb-colors-tinge-darken: #d4dcd9; /* lightness: -10% */
 	--hb-colors-links: #e6e6e6;
 	--hb-colors-error: #a60000;
 

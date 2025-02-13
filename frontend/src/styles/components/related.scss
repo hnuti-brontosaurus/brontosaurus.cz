@@ -61,7 +61,7 @@ aside .related-list-item:hover {
 
 aside .related-list-item::before {
 	content: "";
-	background-color: color.adjust(settings.$colors-tinge, $alpha: -0.1);
+	background-color: color-mix(in srgb, var(--hb-colors-tinge) 90%, transparent);
 	position: absolute;
 	width: 100%;
 	height: 100%;

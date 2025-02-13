@@ -67,7 +67,7 @@
 }
 .button--secondary::after {
 	content: "";
-	background-color: color.adjust(settings.$colors-default-background, $alpha: -0.2);
+	background-color: color-mix(in srgb, var(--hb-colors-default-background) 80%, transparent);
 	width: 13em;
 	height: 13em;
 	position: absolute;
@@ -83,7 +83,7 @@
 }
 @media (settings.$buttons-secondary-breakpoint-centeredButton-from) {
 	.button--secondary::after {
-		background-color: color.adjust(settings.$colors-default-background, $alpha: -0.1);
+		background-color: color-mix(in srgb, var(--hb-colors-default-background) 90%, transparent);
 		width: 100%;
 		height: 100%;
 		top: 0;
@@ -110,7 +110,7 @@
 }
 .button--customization:hover,
 .button--customization:active {
-	background-color: color.adjust(settings.$colors-tinge, $lightness: -10%);
+	background-color: var(--hb-colors-tinge-darken);
 	color: initial !important; // overwrite `.content a` style
 }
 .button--customization:active {

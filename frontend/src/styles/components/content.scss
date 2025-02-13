@@ -4,7 +4,7 @@
 
 .content {
 	padding: 0.5rlh 1rlh 2rlh;
-	color: color.adjust(settings.$colors-text, $alpha: -0.2);
+	color: color-mix(in srgb, var(--hb-colors-text) 80%, transparent);
 }
 @media (settings.$header-breakpoint-navigationHiddenToVisible-visible-from) {
 	.content {
@@ -16,7 +16,7 @@
 	padding-block-start: 2rlh;
 }
 .content a {
-	color: color.adjust(settings.$colors-text, $alpha: -0.2);
+	color: color-mix(in srgb, var(--hb-colors-text) 80%, transparent);
 }
 .content a:hover {
 	color: var(--hb-colors-emphasizing); // same as in defaults

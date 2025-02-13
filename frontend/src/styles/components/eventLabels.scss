@@ -11,7 +11,7 @@
 }
 .eventLabels__item {
 	padding: 0.25rlh 0.5rlh calc(0.25rlh - 0.15em);
-	background-color: color.adjust(settings.$colors-default-background, $alpha: -0.1);
+	background-color: color-mix(in srgb, var(--hb-colors-default-background) 90%, transparent);
 	background-repeat: no-repeat;
 	border-radius: 2em;
 }
