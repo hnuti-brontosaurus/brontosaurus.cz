@@ -9,7 +9,7 @@ $whatWeDo = [
             'Sázíme stromořadí, oživujeme polní krajinu, staráme se o mokřady, budujeme lužní park Krče. Chceme s dobrovolníky a dobrovolnicemi obnovit další místa po celé ČR. Podpoř nás v tom.',
         ],
         'image' => 'https://brontosaurus.cz/wp-content/uploads/2024/12/adopce-krajina-scaled.jpg',
-        'price' => 2000,
+        'price' => 100,
     ],
     (object) [
         'title' => 'Pro památky',
@@ -18,7 +18,7 @@ $whatWeDo = [
             'Chceme v tom pokračovat a opravovat i méně známé památky u nás i u krajanů v Banátu. Podpoř nás, ať můžeme pomáhat na dalších lokalitách.',
         ],
         'image' => 'https://brontosaurus.cz/wp-content/uploads/2024/12/adopce-pamatky-scaled.jpg',
-        'price' => 1000,
+        'price' => 250,
     ],
     (object) [
         'title' => 'Chráníme vše živé',
@@ -27,7 +27,7 @@ $whatWeDo = [
             'Budujeme úkryty, vyvěšujeme budky i netopýrníky, vysazujeme květnaté louky, staráme se o migrující žáby. Podpoř nás při tvorbě prostředí plného ptačího zpěvu a hmyzího bzukotu.',
         ],
         'image' => 'https://brontosaurus.cz/wp-content/uploads/2024/12/adopce-zivot-scaled.jpg',
-        'price' => 600,
+        'price' => 350,
     ],
     (object) [
         'title' => 'Práce na chráněných územích',
@@ -36,7 +36,7 @@ $whatWeDo = [
             'Snažíme se přispět k jejich zachování. Péčí o orchidejové louky, udržováním stepních společenstev či bojem s invazními druhy. Podpoř zapojení dalších mladých lidí do těchto aktivit!',
         ],
         'image' => 'https://brontosaurus.cz/wp-content/uploads/2024/12/adopce-uzemi-scaled.jpg',
-        'price' => 200,
+        'price' => 500,
     ],
     (object) [
         'title' => 'Pro další generace',
@@ -45,7 +45,7 @@ $whatWeDo = [
             'Na výukových programech v přírodě jim ukazujeme, jak mohou životní prostředí chránit. Podpoř aktivity pro mládež, která se chce podílet na naší budoucnosti.',
         ],
         'image' => 'https://brontosaurus.cz/wp-content/uploads/2024/12/adopce-generace-scaled.jpg',
-        'price' => 100,
+        'price' => 1000,
     ],
 ];
 
