@@ -121,10 +121,6 @@ $administrationUnitsInJson = json_encode($administrationUnits);
 			<p class="about__text hb-block-text">
 				Činnost Hnutí Brontosaurus řídí Výkonný výbor volený Valnou hromadou Hnutí Brontosaurus a Rada Hnutí Brontosaurus. Předsedkyní Hnutí Brontosausaurus je Alena Konečná, místopředsedkyněmi jsou Rozálie Jandová a Daniela Syrovátková. Kontrolní činnost vykonává Kontrolní a revizní komise, její předsedou je Martin Polášek.
 			</p>
-
-			<p class="about__text hb-block-text">
-				Činnost Hnutí Brontosaurus se řídí našimi <a href="https://mozek.brontosaurus.cz/index.php/cely-mozek/dokumenty/stanovy" target="_blank">stanovami a programovými cíli</a>. Stěžejními hodnotami naší činnosti jsou smysluplnost, přátelství a otevřenost, seberozvoj a předávání zkušeností, ohleduplnost, odpovědnost a vztah k přírodě, dobrovolnictví, hrdost, radost a hravost.
-			</p>
 		</div>
 
 		<div class="hb-mbe-4 hb-lg-mbe-5" id="regionalni-centra">
