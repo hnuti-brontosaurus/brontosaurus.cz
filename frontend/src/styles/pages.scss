@@ -952,6 +952,15 @@
 	background-image: url("../../../images/icons/icon-hand.svg");
 }
 
+.supportOverview__supporters svg {
+	display: block;
+	inline-size: 100%;
+	max-inline-size: 50rem;
+	margin-inline: auto;
+	min-block-size: 70vh;
+	max-block-size: 90vh;
+}
+
 .supportOverview .hb-option--imageFirst .hb-option__image {
 	order: -1;
 }
