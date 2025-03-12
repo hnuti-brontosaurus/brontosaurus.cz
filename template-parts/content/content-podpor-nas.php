@@ -269,7 +269,7 @@ $references = [
 	<section>
 		<div class="hb-block-text hb-ta-c">
 			<div class="hb-mbe-3">
-				<strong>Podpoř brontosauří tradici i v dalších 50 letech! Děkujeme.</strong>
+				<strong>Podpoř brontosauří tradici i ty v dalších 50 letech! Děkujeme.</strong>
 			</div>
 
 			<a class="action action--primary action--lg" href="https://www.darujme.cz/darovat/525?frequency=monthly&amount=500&widget=1203034" rel="noopener noreferrer" target="_blank">

@@ -19,7 +19,10 @@
 */
 
 document.addEventListener('DOMContentLoaded', async function () {
-    const map = await initializeMap();
+    const mapEl = document.getElementById("map");
+    if (mapEl === null) return;
+
+    const map = await initializeMap(mapEl);
     const filters = initializeFilters(map);
 
     const getSelectedFilter = () =>{
@@ -52,12 +55,11 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 /* MAP */
 
-async function initializeMap()
+async function initializeMap(mapEl)
 {
     const { Map, Data } = await google.maps.importLibrary("maps");
     const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
 
-    const mapEl = document.getElementById("map");
     const administrativeUnits = JSON.parse(mapEl.getAttribute('data-administrativeUnits'));
 
     const map = new Map(mapEl, {
