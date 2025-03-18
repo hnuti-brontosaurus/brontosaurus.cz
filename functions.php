@@ -55,6 +55,26 @@ require_once __DIR__ . '/homepage-banner.php';
 		flush_rewrite_rules();
 	});
 
+	add_action('wp_head', function () use ($container) {
+		if (is_singular()) {
+			$bisClient = $container->getBisClient();
+			$dateFormatForHuman = $container->getDateFormatForHuman();
+			$dateFormatForRobot = $container->getDateFormatForRobot();
+
+			global $post;
+			if ($post->post_name !== 'akce') return;
+
+			$eventId = (int) get_query_var('eventId');
+			try {
+				$event = $bisClient->getEvent($eventId);
+				$eventDC = new EventDC($event, $dateFormatForHuman, $dateFormatForRobot);
+				hb_akce_meta($eventDC);
+			}
+			catch (EventNotFound) {}
+			catch (ConnectionToBisFailed) {}
+		}
+	});
+
 	add_action('after_setup_theme', function () {
 		add_theme_support('post-thumbnails');
 		add_theme_support('title-tag');
@@ -98,6 +118,26 @@ require_once __DIR__ . '/homepage-banner.php';
 
 })($hb_container, wp_get_theme());
 
+
+function hb_akce_meta(EventDC $event) { ?>
+	<?php if ($event): ?>
+	<meta property="og:locale" content="cs_CZ">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="<?php echo $event->title ?> – Hnutí Brontosaurus">
+	<meta property="og:description" content="<?php echo hb_truncate(htmlspecialchars(strip_tags($event->invitation->introduction)), 150) ?>">
+	<meta property="og:url" content="<?php echo $event->link ?>">
+	<meta property="og:site_name" content="Hnutí Brontosaurus">
+	<?php if ($event->hasCoverPhoto): ?>
+	<meta property="og:image" content="<?php echo $event->coverPhotoPath ?>">
+	<?php endif; ?>
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="<?php echo $event->title ?> – Hnutí Brontosaurus">
+	<meta name="twitter:description" content="<?php hb_truncate(htmlspecialchars(strip_tags($event->invitation->introduction)), 150) ?>">
+	<?php if ($event->hasCoverPhoto): ?>
+	<meta name="twitter:image" content="<?php echo $event->coverPhotoPath ?>">
+	<?php endif; ?>
+	<?php endif; ?>
+<?php }
 
 function hb_administrative_units_map(string $administrationUnitsInJson, bool $hasBeenUnableToLoad)
 {
