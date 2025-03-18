@@ -8,7 +8,7 @@
 }
 
 .registration__actionButton {
-	display: block;
+	display: block !important;
 	margin-inline: auto;
 	max-width: 9em; // fallback
 	max-width: max-content;
