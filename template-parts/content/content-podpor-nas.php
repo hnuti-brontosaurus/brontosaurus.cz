@@ -270,9 +270,9 @@ endif;
 		</div>
 	</section>
 
+    <?php if ( ! HB_IS_ON_PRODUCTION): ?>
     <div class="hb-spacer-4 hb-lg-spacer-5"></div>
 
-    <?php if ( ! HB_IS_ON_PRODUCTION): ?>
     <section class="supportOverview__supporters">
         <h2>Podpořili</h2>
         <svg class="hb-mbns-4"></svg>
