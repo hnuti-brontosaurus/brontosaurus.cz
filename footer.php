@@ -139,5 +139,6 @@ $hb_currentPost = get_post();
 	</footer>
 </div>
 </div>
+<?php if ( ! HB_IS_ON_PRODUCTION): ?>dev<?php endif; ?>
 </body>
 </html>
