@@ -113,6 +113,12 @@ $references = [
     ],
 ];
 
+if ( ! HB_IS_ON_PRODUCTION):
+$supporters = ['Petra Arcimovičová', 'Katerina Bartonkova', 'Přemysl Bejda', 'Tereza Blešová', 'Kateřina Böhmová', 'Ctibor Brančík', 'Miroslav Brandejs', 'Kvetoslav Bravenec', 'Jana Brožová', 'Zuzana Brzobohatá (Zula)', 'Michal Břežný', 'Jana Budišová', 'Ingrid Búziová', 'Marie Černá', 'Jan Černý', 'Pavel Černý (Pajas)', 'Jakub Daníček', 'Martin Děrgel', 'David Dočekal', 'Tomáš Domes', 'Tereza Dvořáková', 'Jaroslav Dytrych', 'Josef Ferenc', 'Zdeněk Frélich', 'Ivan Gronský', 'David Hajda', 'Petr Hájek', 'Jan Halla', 'Jaroslav Hamáček', 'Světla Hanke Jarošová', 'Petr Havel', 'Pavel Heimlich', 'Josef Hladký (Pepa)', 'Daniel Hlinomaz', 'Tomáš Hubínek', 'Lucie Hustáková', 'Vladimir Chvátil', 'Kamil Chytka', 'Radka Jarušková', 'Pavla Jiroušková', 'Petr Kabelík', 'Lukáš Karas', 'Eva Kávová', 'Martin Kempa', 'Nikola Klimesova', 'Petra Klimšová', 'Marta Klobásková', 'Karolína Koliášová', 'Jana Konečná', 'Ján Kostka', 'Pavel Kozlovský', 'Josef Krahulec', 'Vlastimil Krátký', 'Kateřina Kratochvílová', 'Leona Křivánková', 'Jan Kubata', 'Martina Lilingová', 'Věra Loskotová', 'Jan Lukša', 'Milada Maděřičová', 'Ondřej Marada', 'Lucie Matysová', 'Míra Míkovec', 'Martin Mráz', 'Luboš Mrázek', 'Václav Najzar', 'Někdo Něčí', 'Martin Nekula', 'Leoš Nergl', 'Tomáš Nouza', 'Matěj Novák', 'František Novotný', 'Hanka Ondráková', 'Ivana Opravilová', 'Jan Paleček', 'Martin Perlík', 'Tomáš Peterek', 'Viktor Plaček', 'Jiří Podhorský', 'Alena Podlipná', 'František Prinz', 'Zbyněk Prokop', 'Tomas Protivinsky', 'Vít Průša', 'Jakub Rajtmajer', 'Michal Reinöhl', 'Robin Roček', 'Josef Rýpar', 'Zora Rýparová (Bedla)', 'Marie Salajková', 'Kristýna Schönová', 'Milan Skála', 'Vojta Skara', 'Marek Slaný', 'Zora Smerigová', 'Veronika Smolíková', 'Jan Soustek', 'Jan Stránský', 'Kristina Studená (Kristi)', 'Michal Svec', 'Kristýna Svítilová', 'Jarmila Svobodová', 'Alexandra Synková', 'Daniela Syrovátková', 'Martin Šerák (Sherry)', 'Jiří Šindelář', 'Jana Šlitrová', 'Petra Štefančinová', 'David Šuráň', 'Michal Švarný (Švára)', 'Miroslav Tichý', 'Dalimil Toman (Cody)', 'Jozef Tóth', 'Michal Truhlář', 'Michal Urban', 'Renata Urminská', 'Uživatel - Celé jméno', 'Martin Václavík', 'Eva Vidmanová', 'Martina Vítková', 'Jan Volf', 'Tomáš Vrabec (Basty)', 'Daniela Vymětalová', 'Michal Wágner', 'Jana Zajíčková', 'Tomáš Zelenka', 'Jana Zemánková', 'Kateřina Zímová'];
+$keys = array_rand($supporters, 50);
+$supporters = array_map(fn($key) => $supporters[$key], $keys);
+endif;
+
 ?><main class="supportOverview b-mbe-6 hb-lg-mbe-7" role="main">
 	<section>
 		<h1>
@@ -264,6 +270,15 @@ $references = [
 		</div>
 	</section>
 
+    <div class="hb-spacer-4 hb-lg-spacer-5"></div>
+
+    <?php if ( ! HB_IS_ON_PRODUCTION): ?>
+    <section class="supportOverview__supporters">
+        <h2>Podpořili</h2>
+        <svg class="hb-mbns-4"></svg>
+    </section>
+    <?php endif; ?>
+
 	<div class="hb-spacer-5 hb-lg-spacer-6"></div>
 
 	<section>
@@ -278,3 +293,52 @@ $references = [
 		</div>
 	</section>
 </main>
+
+<?php if ( ! HB_IS_ON_PRODUCTION): ?>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-cloud/build/d3.layout.cloud.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const svgEl = document.querySelector(".supportOverview__supporters svg");
+    const names = <?php echo json_encode($supporters) ?>;
+
+    // Define a logarithmic scale for font sizes
+    const logScale = d3.scaleLog().domain([1, names.length]).range([15, 25]);
+
+    // Assign controlled font sizes using log scale
+    const wordData = names.map((name, i) => ({
+        text: name,
+        size: logScale(i + 1) // Avoid log(0) issue
+    }));
+
+    const orientations = [0]; // Allowed angles
+    const svg = d3.select(svgEl),
+        width = Math.floor(svgEl.getBoundingClientRect().width),
+        height = Math.floor(svgEl.getBoundingClientRect().height);
+
+    const layout = d3.layout.cloud()
+        .spiral("archimedean") // Rounded layout
+        .size([width, height])
+        .words(wordData)
+        .rotate(() => orientations[Math.floor(Math.random() * orientations.length)]) // Pick from allowed angles
+        .fontSize(d => d.size)
+        .on("end", draw);
+
+    layout.start();
+
+    function draw(words) {
+        svg.append("g")
+            .attr("transform", `translate(${width / 2},${height / 2})`)
+            .selectAll("text")
+            .data(words)
+            .enter().append("text")
+            .style("font-size", d => d.size + "px")
+            .style("fill", (d, i) => d3.schemeTableau10[i % 10])
+            .attr("text-anchor", "middle")
+            .attr("transform", d => `translate(${d.x},${d.y}) rotate(${d.rotate})`)
+            .text(d => d.text);
+    }
+});
+</script>
+<?php endif; ?>
