@@ -123,11 +123,11 @@ function hb_akce_meta(EventDC $event) { ?>
 	<?php if ($event): ?>
 	<meta property="og:locale" content="cs_CZ">
 	<meta property="og:type" content="website">
-	<meta property="og:title" content="<?php echo $event->title ?> – Hnutí Brontosaurus">
+	<meta property="og:title" content="<?php echo $event->title ?>">
 	<?php if ( HB_IS_ON_PRODUCTION): ?>
 	<meta property="og:description" content="<?php echo hb_truncate(htmlspecialchars(strip_tags($event->invitation->introduction)), 150) ?>">
 	<?php else: ?>
-	<meta property="og:description" content="<?php echo $event->dateSpan ?>, <?php echo $event->place->name ?>">
+	<meta property="og:description" content="📅 <?php echo $event->dateSpan ?> 🌍 <?php echo $event->place->name ?>">
 	<?php endif; ?>
 	<meta property="og:url" content="<?php echo $event->link ?>">
 	<meta property="og:site_name" content="Hnutí Brontosaurus">
@@ -135,11 +135,11 @@ function hb_akce_meta(EventDC $event) { ?>
 	<meta property="og:image" content="<?php echo $event->coverPhotoPath ?>">
 	<?php endif; ?>
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:title" content="<?php echo $event->title ?> – Hnutí Brontosaurus">
+	<meta name="twitter:title" content="<?php echo $event->title ?>">
 	<?php if ( HB_IS_ON_PRODUCTION): ?>
 	<meta name="twitter:description" content="<?php hb_truncate(htmlspecialchars(strip_tags($event->invitation->introduction)), 150) ?>">
 	<?php else: ?>
-	<meta name="twitter:description" content="<?php echo $event->dateSpan ?>, <?php echo $event->place->name ?>">
+	<meta name="twitter:description" content="📅 <?php echo $event->dateSpan ?> 🌍 <?php echo $event->place->name ?>">
 	<?php endif; ?>
 	<?php if ($event->hasCoverPhoto): ?>
 	<meta name="twitter:image" content="<?php echo $event->coverPhotoPath ?>">
