@@ -250,9 +250,11 @@ function hb_references(?string $link = null)
 						<?php echo $reference->name ?>
 					</div>
 
+					<?php if ($reference->role !== null): ?>
 					<div class="hb-fs-xs hb-mbns-2">
 					<?php echo $reference->role ?>
 					</div>
+					<?php endif; ?>
 				</div>
 
 				<div class="hb-fs-s presentationBox__text presentationBox__quotation"><?php echo $reference->quote ?></div>
