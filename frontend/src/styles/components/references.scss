@@ -58,6 +58,7 @@
 	transition: transform 200ms ease-in-out;
 	margin-inline: initial;
 	display: flex; /* stretch to full height */
+	flex-direction: column;
 }
 .references--thirds .references__list-item { // todo turn into something like data-max-steps=[number] with support up to 4?
 	flex-basis: 100%;
