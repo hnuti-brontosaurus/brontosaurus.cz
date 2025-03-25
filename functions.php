@@ -207,6 +207,32 @@ function hb_administrative_units_map(string $administrationUnitsInJson, bool $ha
 
 function hb_references(?string $link = null)
 {
+	$references = [
+		(object) [
+			'name' => 'doc. Mgr. Bohuslav Binka, Ph.D.',
+			'role' => 'vedoucí katedry environmentálních studií MU',
+			'quote' => 'Hnutí Brontosaurus pro mě vždy bylo spojené se slovy mládí, příroda, pomoc, zábava, letní tábor, smysl, fajn. A to je kombinace, která prostě láká. Ať láká i další generace tak, jako lákala tu moji.',
+			'image' => 'https://brontosaurus.cz/wp-content/uploads/2024/12/aboutCrossroad-references-bohuslav-binka.jpg',
+		],
+		(object) [
+			'name' => 'Dalajláma',
+			'role' => 'tibetský duchovní vůdce',
+			'quote' => 'Jsem opravdu šťastný, že jsme s vámi z České republiky navázali takto výjimečný vztah, čehož si velmi cením.',
+			'image' => 'https://brontosaurus.cz/wp-content/uploads/2024/12/aboutCrossroad-references-dalajlama.jpg',
+		],
+		(object) [
+			'name' => 'Ladislav Tesař',
+			'role' => 'starosta Českého Sela, krajanské obce v Srbsku',
+			'quote' => 'S Brontosaury spolupracujeme velmi rádi. Ceníme si jejich pomoci s péčí o obec i naše drobné památky. Když přijedou, vždy to tady velmi ožije a ve vsi je na čas veseleji. Doufám, že budou přijíždět i v dalších letech.',
+			'image' => 'https://brontosaurus.cz/wp-content/uploads/2024/12/aboutCrossroad-references-ladislav-tesar.jpg',
+		],
+		(object) [
+			'name' => 'Jaroslav Pavlíček',
+			'role' => 'český polárník, cestovatel a spisovatel',
+			'quote' => 'Brontosaurům fandím, protože jejich akce, stejně jako pobyt v drsné přírodě, člověka výborně připraví na skutečný, ne virtuální život. Navíc umí i z dobrovolnictví udělat zábavu a vždy je za nimi vidět kus práce.',
+			'image' => 'https://brontosaurus.cz/wp-content/uploads/2024/12/aboutCrossroad-references-jaroslav-pavlicek.jpg',
+		],
+	];
 ?>
 <div class="references" data-references>
 	<button class="references__button references__button--previous button button--customization" data-references-button="previous" type="button" aria-hidden="true"></button>
@@ -214,61 +240,27 @@ function hb_references(?string $link = null)
 
 	<?php if ($link !== null): ?><a class="references__link" href="<?php echo $link ?>"><?php endif; ?>
 		<ul class="references__list" data-references-slides style="--carouselPosition: 1">
-			<li class="references__list-item presentationBox" style="--presentationBox-background-image-url: url('https://brontosaurus.cz/wp-content/uploads/2024/12/aboutCrossroad-references-bohuslav-binka.jpg')">
+			<?php
+			$i = 0;
+			foreach ($references as $reference):
+			?>
+			<li class="references__list-item presentationBox<?php if ($i % 2 === 1): ?> presentationBox--textOnRight<?php endif; ?>" style="--presentationBox-background-image-url: url('<?php echo $reference->image; ?>')">
 				<div class="presentationBox__text">
 					<div class="hb-fs-l hb-fw-b">
-						doc. Mgr. Bohuslav Binka, Ph.D.
+						<?php echo $reference->name ?>
 					</div>
 
 					<div class="hb-fs-xs hb-mbns-2">
-						vedoucí katedry environmentálních studií MU
+					<?php echo $reference->role ?>
 					</div>
 				</div>
 
-				<div class="hb-fs-s presentationBox__text presentationBox__quotation quotation">Hnutí Brontosaurus pro mě vždy bylo spojené se slovy mládí, příroda, pomoc, zábava, letní tábor, smysl, fajn. A to je kombinace, která prostě láká. Ať láká i další generace tak, jako lákala tu moji.</div>
+				<div class="hb-fs-s presentationBox__text presentationBox__quotation quotation"><?php echo $reference->quote ?></div>
 			</li>
-
-			<li class="references__list-item presentationBox presentationBox--textOnRight" style="--presentationBox-background-image-url: url('https://brontosaurus.cz/wp-content/uploads/2024/12/aboutCrossroad-references-dalajlama.jpg')">
-				<div class="presentationBox__text">
-					<div class="hb-fs-l hb-fw-b">
-						Dalajláma
-					</div>
-
-					<div class="hb-fs-xs hb-mbns-2">
-						tibetský duchovní vůdce
-					</div>
-				</div>
-
-				<div class="hb-fs-s presentationBox__text presentationBox__quotation quotation">Jsem opravdu šťastný, že jsme s vámi z České republiky navázali takto výjimečný vztah, čehož si velmi cením.</div>
-			</li>
-
-			<li class="references__list-item presentationBox" style="--presentationBox-background-image-url: url('https://brontosaurus.cz/wp-content/uploads/2024/12/aboutCrossroad-references-ladislav-tesar.jpg')">
-				<div class="presentationBox__text">
-					<div class="hb-fs-l hb-fw-b">
-						Ladislav Tesař
-					</div>
-
-					<div class="hb-fs-xs hb-mbns-2">
-						starosta Českého Sela, krajanské obce v Srbsku
-					</div>
-				</div>
-
-				<div class="hb-fs-s presentationBox__text presentationBox__quotation quotation">S Brontosaury spolupracujeme velmi rádi. Ceníme si jejich pomoci s péčí o obec i naše drobné památky. Když přijedou, vždy to tady velmi ožije a ve vsi je na čas veseleji. Doufám, že budou přijíždět i v dalších letech.</div>
-			</li>
-
-			<li class="references__list-item presentationBox presentationBox--textOnRight" style="--presentationBox-background-image-url: url('https://brontosaurus.cz/wp-content/uploads/2024/12/aboutCrossroad-references-jaroslav-pavlicek.jpg')">
-				<div class="presentationBox__text">
-					<div class="hb-fs-l hb-fw-b">
-						Jaroslav Pavlíček
-					</div>
-
-					<div class="hb-fs-xs hb-mbns-2">
-						český polárník, cestovatel a spisovatel
-					</div>
-				</div>
-
-				<div class="hb-fs-s presentationBox__text presentationBox__quotation quotation">Brontosaurům fandím, protože jejich akce, stejně jako pobyt v drsné přírodě, člověka výborně připraví na skutečný, ne virtuální život. Navíc umí i z dobrovolnictví udělat zábavu a vždy je za nimi vidět kus práce.</div>
-			</li>
+			<?php
+			$i++;
+			endforeach;
+			?>
 		</ul>
 	</a>
 </div>
