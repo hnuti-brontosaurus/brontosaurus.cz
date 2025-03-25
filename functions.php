@@ -255,7 +255,7 @@ function hb_references(?string $link = null)
 					</div>
 				</div>
 
-				<div class="hb-fs-s presentationBox__text presentationBox__quotation quotation"><?php echo $reference->quote ?></div>
+				<div class="hb-fs-s presentationBox__text presentationBox__quotation"><?php echo $reference->quote ?></div>
 			</li>
 			<?php
 			$i++;

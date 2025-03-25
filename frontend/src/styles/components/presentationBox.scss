@@ -122,3 +122,20 @@
 .presentationBox__quotation {
 	margin-block-end: 1rlh;
 }
+.presentationBox__quotation::before {
+	content: "";
+	position: absolute;
+	inset-inline-end: calc(50% + 1rlh);
+	inset-block-start: 0.5rlh;
+	mask-image: url("../../../images/icons/icon-quote.svg");
+	display: block;
+	aspect-ratio: 5/6;
+	inline-size: 1.7rem;
+	background-color: var(--hb-colors-text);
+	mask-position: center;
+	mask-size: auto 100%;
+	opacity: 0.1;
+}
+.presentationBox--textOnRight .presentationBox__quotation::before {
+	inset-inline-end: 1rlh;
+}

@@ -263,7 +263,7 @@ endif;
 						</div>
 					</div>
 
-					<div class="hb-fs-s presentationBox__text presentationBox__quotation quotation"><?php echo $item->quotation ?></div>
+					<div class="hb-fs-s presentationBox__text presentationBox__quotation"><?php echo $item->quotation ?></div>
 				</li>
                 <?php $counter++; endforeach; ?>
 			</ul>
