@@ -127,7 +127,7 @@ endif;
 		</h1>
 
 		<div class="hb-block-text hb-mbe-3">
-			<span class="quotation">Vůně ohně, kytara a sladký spánek ve spacáku
+			<span class="hb-fst-i">Vůně ohně, kytara a sladký spánek ve spacáku
 				po dni naplněném kamarádstvím a péčí o přírodu.</span>
 			To bychom přáli zažít každému.
 		</div>
