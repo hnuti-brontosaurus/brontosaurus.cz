@@ -109,14 +109,14 @@ function hb_detail_application(EventDC $event, string $applicationUrlTemplate)
 ?>
 <?php if ($event->isRegistrationRequired): ?>
 	<a
-		class="registration__actionButton action action--primary action--lg"
+		class="hb-registration__actionButton hb-action hb-action--primary hb-action--lg"
 		href="<?php echo $url ?>"
 		rel="noopener"
 	>
 		Chci jet
 	</a>
 <?php else: ?>
-	<p class="registration__text">
+	<p class="hb-registration__text">
 		Na tuto akci není třeba se hlásit, stačí přijít. 😉
 	</p>
 <?php endif; ?>
@@ -266,7 +266,7 @@ function hb_detail_application(EventDC $event, string $applicationUrlTemplate)
 			</div>
 
 			<div class="hb-mbe-5">
-				<div class="registration">
+				<div class="hb-registration">
 					<?php if ($event->isPast): ?>
 						<p class="hb-message">
 							<strong>Tato akce již proběhla.</strong><br>
@@ -415,7 +415,7 @@ function hb_detail_application(EventDC $event, string $applicationUrlTemplate)
 
             <?php if ( ! $event->isPast && ! $event->isFull): ?>
 			<div class="hb-mbe-6">
-				<div class="registration">
+				<div class="hb-registration">
                     <?php hb_detail_application($event, $hb_applicationUrlTemplate) ?>
 				</div>
 			</div>
@@ -444,7 +444,7 @@ function hb_detail_application(EventDC $event, string $applicationUrlTemplate)
 			každému úplně nový svět.
 		</p>
 
-		<a class="hb-mbs-4 action action--ulterior" href="/o-brontosaurovi">více o Brontosaurovi</a>
+		<a class="hb-mbs-4 hb-action hb-action--ulterior" href="/o-brontosaurovi">více o Brontosaurovi</a>
 	</section>
 </aside>
 

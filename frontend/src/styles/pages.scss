@@ -1,6 +1,7 @@
+@use "components/eventList";
 @use "components/presentationBox";
-@use "imports/hb-content-mixin";
-@use "imports/settings";
+@use "components/photogallery";
+@use "settings";
 
 /* ABOUT */
 
@@ -23,9 +24,6 @@
 	.about__graphics {
 		display: none;
 	}
-}
-.about__text:not(:last-child) {
-	margin-block-end: 0.5rlh;
 }
 @include presentationBox.presentationBox-breakpoint-textOnSide-from() {
 	.about__presentationBox {
@@ -201,7 +199,7 @@
 
 /* DETAIL */
 
-@media (settings.$photogallery-breakpoint-full-from) {
+@media (photogallery.$photogallery-breakpoint-full-from) {
 	.detail {
 		max-width: 25em;
 		margin-inline: auto;
@@ -361,7 +359,7 @@
 
 /* EVENTS PAGE */
 
-@media (settings.$events-breakpoint-oneColumn-until) {
+@media (eventList.$events-breakpoint-oneColumn-until) {
 	.eventsPage__info {
 		max-width: 16rem;
 		margin-inline: auto;
@@ -382,6 +380,18 @@
 
 
 /* HIGHSCHOOL */
+
+$highschool-breakpoint-contactPerson-oneToTwoColumns: 30em;
+@mixin highschool-breakpoint-contactPerson-oneColumn-until () {
+	@media (max-width: $highschool-breakpoint-contactPerson-oneToTwoColumns) {
+		@content;
+	}
+}
+@mixin highschool-breakpoint-contactPerson-twoColumns-from () {
+	@media (min-width: ($highschool-breakpoint-contactPerson-oneToTwoColumns + 0.001)) {
+		@content;
+	}
+}
 
 .highschool__block:not(:last-child) {
 	margin-block-end: 1rlh;
@@ -419,7 +429,7 @@
 	flex-direction: column;
 	flex-wrap: wrap;
 }
-@include settings.highschool-breakpoint-contactPerson-twoColumns-from () {
+@include highschool-breakpoint-contactPerson-twoColumns-from () {
 	.highschool__contactPerson {
 		flex-direction: row;
 		align-items: center;
@@ -436,7 +446,7 @@
 	border-radius: 23% / 25%;
 	margin-inline-end: 1rlh;
 }
-@include settings.highschool-breakpoint-contactPerson-oneColumn-until () {
+@include highschool-breakpoint-contactPerson-oneColumn-until () {
 	.highschool__contactPersonImage {
 		order: 1;
 	}
@@ -446,7 +456,7 @@
 	display: flex;
 	flex-direction: column;
 }
-@include settings.highschool-breakpoint-contactPerson-oneColumn-until () {
+@include highschool-breakpoint-contactPerson-oneColumn-until () {
 	.highschool__contactPersonInformation {
 		margin-block-end: 0.5rlh;
 	}
@@ -517,9 +527,6 @@
 	margin-block-start: -0.5em;
 }
 
-.news__item-content {
-	@include hb-content-mixin.hb-content();
-}
 @media (settings.$header-breakpoint-navigationHiddenToVisible-hidden-until) {
 	.news__item-content {
 		display: flex;

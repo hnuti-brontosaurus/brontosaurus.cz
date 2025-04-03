@@ -1,5 +1,5 @@
 @use "sass:color";
-@use "../imports/settings";
+@use "../settings";
 
 @mixin presentationBox-breakpoint-textOnSide-from() {
 	@media (settings.$detail-breakpoint-large-from) {

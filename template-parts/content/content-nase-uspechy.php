@@ -125,7 +125,7 @@ $stories = array_map(function (WP_Post $post) {
 				Adoptuj Brontosaura a podpoř naši péči přírodu a památky.
 			</p>
 
-			<a class="[ action action--primary action--lg ][ hb-d-b hb-mw-mc hb-mi-auto ]" href="/podpor-nas">Chci adoptovat Brontosaura</a>
+			<a class="[ hb-action hb-action--primary hb-action--lg ][ hb-d-b hb-mw-mc hb-mi-auto ]" href="/podpor-nas">Chci adoptovat Brontosaura</a>
 		</div>
 	</article>
 </main>

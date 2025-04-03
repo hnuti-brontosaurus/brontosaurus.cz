@@ -35,7 +35,7 @@ use function set_query_var;
 		if ($post->post_content !== '') {
 			// todo use the_post() instead, but it did not work in current flow (with the controller things probably)
 			echo '<h1>'.$post->post_title.'</h1>';
-			echo '<div class="content__dynamic">' . apply_filters('the_content', $post->post_content) . '</div>';
+			echo '<div class="hb-wp-content">' . apply_filters('the_content', $post->post_content) . '</div>';
 			$result = null;
 		} else {
 			$result = get_template_part('template-parts/content/content', $post->post_name);

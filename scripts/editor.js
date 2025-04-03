@@ -1,5 +1,15 @@
 const {createHigherOrderComponent} = wp.compose;
 const {addFilter} = wp.hooks;
+const {subscribe, select} = wp.data;
+
+const unsubscribe = subscribe(() => {
+	const editor = select('core/block-editor');
+	if (  ! editor || editor.getBlocks().length === 0) return;
+    const editorEl = document.querySelector('.editor-styles-wrapper');
+	if (editorEl === null) return;
+	editorEl.classList.add('hb-wp-content');
+    unsubscribe();
+});
 
 addFilter('blocks.registerBlockType', 'hb/theme/imageRoundedCorners', (settings, name) => {
 	/**

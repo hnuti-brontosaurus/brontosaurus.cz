@@ -1,4 +1,4 @@
-@use "../imports/settings";
+@use "../settings";
 
 // this is a workaround as WP grid block currently can't set anything beside column min size
 // once more complex configuration is supported, this can be removed
@@ -22,6 +22,6 @@
 		grid-column-end: span 3;
 	}
 }
-.partners-grid.is-layout-grid :where(.content__dynamic *+p, .content__dynamic *+figure, .content__dynamic *+.wp-block-columns) {
+.partners-grid.is-layout-grid :where(.hb-wp-content *+p, .hb-wp-content *+figure, .hb-wp-content *+.wp-block-columns) {
 	margin-block-start: unset;
 }

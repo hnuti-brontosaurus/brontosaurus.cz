@@ -70,8 +70,8 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 				<img alt="" class="hb-event__image" src="<?php echo $opportunity->getImage()->getMediumSizePath(); ?>">
 			</noscript>
 
-			<div class="hb-event__labels eventLabels">
-				<div class="eventLabels__item">
+			<div class="hb-event__labels hb-eventLabels">
+				<div class="hb-eventLabels__item">
 					<?php echo hb_opportunityCategoryToString($opportunity->getCategory()); ?>
 				</div>
 			</div>
@@ -201,7 +201,7 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 						</p>
 					</div>
 
-					<div class="optionBox__image optionBox__image--organizovani">
+					<div class="optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/zapoj-se-organizovani-scaled.jpg');">
 						<div class="button button--secondary">Více info</div>
 					</div>
 				</a>
@@ -219,7 +219,7 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 						</p>
 					</div>
 
-					<div class="optionBox__image optionBox__image--spoluprace">
+					<div class="optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/zapoj-se-spoluprace-scaled.jpg'); --hb-optionBox-y-offset: bottom;">
 						<div class="button button--secondary">Více info</div>
 					</div>
 				</a>
@@ -235,7 +235,7 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 						</p>
 					</div>
 
-					<div class="optionBox__image optionBox__image--clenstvi">
+					<div class="optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/zapoj-se-clenstvi.jpg');">
 						<div class="button button--secondary">Více info</div>
 					</div>
 				</a>
@@ -251,7 +251,7 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 						</p>
 					</div>
 
-					<div class="optionBox__image optionBox__image--zalozeni-clanku">
+					<div class="optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/zapoj-se-zalozeni-clanku-scaled.jpg');">
 						<div class="button button--secondary">Více info</div>
 					</div>
 				</a>

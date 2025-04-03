@@ -1,4 +1,9 @@
-@use "../imports/settings";
+@use "../settings";
+
+$events-breakpoint-oneColumnToTwoColumns: settings.$header-breakpoint-navigationHiddenToVisible + 5em;
+$events-breakpoint-oneColumn-until: "max-width: " + $events-breakpoint-oneColumnToTwoColumns;
+$events-breakpoint-twoColumns-from: "min-width: " + ($events-breakpoint-oneColumnToTwoColumns + 0.001);
+$events-breakpoint-threeColumns-from: "min-width: 73.001em";
 
 .hb-eventList__grid {
 	display: grid;
@@ -7,7 +12,7 @@
 	max-width: 19rem;
 	margin-inline: auto;
 }
-@media (settings.$events-breakpoint-twoColumns-from) {
+@media ($events-breakpoint-twoColumns-from) {
 	.hb-eventList__grid {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -22,7 +27,7 @@
 	}
 }
 
-@media (settings.$events-breakpoint-threeColumns-from) {
+@media ($events-breakpoint-threeColumns-from) {
 	.hb-eventList__grid {
 		grid-template-columns: 1fr 1fr 1fr;
 		max-width: 62em;
@@ -31,7 +36,7 @@
 .hb-eventList__grid:not(:first-child) { // .hb-eventList__grid ~ .hb-eventList__grid doesn't work with `display: contents`
 	margin-block-start: 1rlh;
 }
-@media (settings.$events-breakpoint-threeColumns-from) {
+@media ($events-breakpoint-threeColumns-from) {
 	.hb-eventList--smaller .hb-eventList__grid {
 		max-width: 50em;
 	}

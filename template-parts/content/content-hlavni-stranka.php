@@ -73,7 +73,7 @@ $hb_banner = hb_banner();
 			<div class="hb-block-banner__text hb-mbs-3">
 				<div class="hb-fs-xl hb-mbe-2 hb-fw-b"><?php echo $hb_banner->heading ?></div>
 				<?php if ($hb_banner->subheading !== null): ?><div class="hb-mbe-2"><?php echo $hb_banner->subheading ?></div><?php endif; ?>
-				<span class="hb-block-banner__button hb-block-banner__button--standalone action action--primary action--paw">více info</span>
+				<span class="hb-block-banner__button hb-block-banner__button--standalone hb-action hb-action--primary hb-action--paw">více info</span>
 				<span class="hb-block-banner__button hb-block-banner__button--inline hb-fs-xs" aria-hidden="true">více info »</span>
 			</div>
 		</div>
@@ -94,7 +94,7 @@ $hb_banner = hb_banner();
 	</div>
 
 	<div class="hb-d-f hb-fd-r hb-jc-c hb-ji-c hb-ai-c hb-g-4 hb-mbe-5">
-		<a class="action action--primary action--paw" href="/dobrovolnicke-akce#obsah">
+		<a class="hb-action hb-action--primary hb-action--paw" href="/dobrovolnicke-akce#obsah">
 			zobrazit další
 		</a>
 
@@ -122,7 +122,7 @@ $hb_banner = hb_banner();
             <?php hb_references(link: '/o-brontosaurovi') ?>
 		</div>
 
-		<a class="action action--ulterior" href="/o-brontosaurovi">
+		<a class="hb-action hb-action--ulterior" href="/o-brontosaurovi">
 			více o Hnutí Brontosaurus
 		</a>
 	</section>

@@ -25,12 +25,12 @@ try {
     $eventCollection = EventCollectionDC::unableToLoad($hb_dateFormatHuman, $hb_dateFormatRobot);
 }
 
-?><main class="hb-events hb-mbe-6" role="main" id="obsah">
-	<h1 class="hb-events__heading">
+?><main class="hb-mbe-6" role="main" id="obsah">
+	<h1 class="hb-ta-c">
 		Setkávejte se s přáteli
 	</h1>
 
-	<h2 class="screenreaders-only">
+	<h2 class="hb-sr-only">
 		Seznam akcí
 	</h2>
 

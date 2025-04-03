@@ -1,6 +1,6 @@
 <main role="main">
 	<article>
-		<h1 class="screenreaders-only">
+		<h1 class="hb-sr-only">
 			O Hnutí Brontosaurus
 		</h1>
 
@@ -18,7 +18,7 @@
 			Činnost Hnutí Brontosaurus se řídí našimi <a href="https://mozek.brontosaurus.cz/index.php/cely-mozek/dokumenty/stanovy" target="_blank">stanovami a programovými cíli</a>. Stěžejními hodnotami naší činnosti jsou smysluplnost, přátelství a otevřenost, seberozvoj a předávání zkušeností, ohleduplnost, odpovědnost a vztah k přírodě, dobrovolnictví, hrdost, radost a hravost.
 		</p>
 
-		<a class="hb-mbe-4 action action--ulterior" href="/o-brontosaurovi/jak-to-u-nas-funguje">
+		<a class="hb-mbe-4 hb-action hb-action--ulterior" href="/o-brontosaurovi/jak-to-u-nas-funguje">
 			Jak to u nás funguje?
 		</a>
 

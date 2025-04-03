@@ -59,16 +59,16 @@ if ($eventCollection === null) {
 
 $filters = VoluntaryFiltersDC::from('jen', $selectedFilter);
 
-?><main class="hb-events hb-mbe-6" role="main" id="obsah">
-	<h1 class="hb-events__heading">
+?><main class="hb-mbe-6" role="main" id="obsah">
+	<h1 class="hb-ta-c">
 		Zážitkové a dobrovolnické akce
 	</h1>
 
-	<h2 class="screenreaders-only">
+	<h2 class="hb-sr-only">
 		Seznam akcí
 	</h2>
 
-	<div class="hb-events__filters filters hb-expandable"<?php if ($filters->isAnySelected): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
+	<div class="filters hb-expandable hb-mbe-4"<?php if ($filters->isAnySelected): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
 		<button class="hb-expandable__toggler button button--customization" type="button" aria-hidden="true" data-hb-expandable-toggler>
 			Zobrazit pouze
 		</button>
@@ -152,12 +152,12 @@ $filters = VoluntaryFiltersDC::from('jen', $selectedFilter);
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--voluntary-firstTime">
+				<div class="optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/voluntary-firstTime.jpg'); --hb-optionBox-y-offset: 36%;">
 					<div class="button button--secondary">Najít akci</div>
 				</div>
 			</a>
 
-			<a class="description__item--fullWidth hb-js-c action action--ulterior" href="/jedu-poprve">
+			<a class="description__item--fullWidth hb-js-c hb-action hb-action--ulterior" href="/jedu-poprve">
 				Co čekat, když jedu poprvé?
 			</a>
 
@@ -175,7 +175,7 @@ $filters = VoluntaryFiltersDC::from('jen', $selectedFilter);
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--voluntary-weekendEvents">
+				<div class="optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/voluntary-weekendEvents.jpg'); --hb-optionBox-y-offset: 62%;">
                     <div class="button button--secondary">Najít akci</div>
 				</div>
 			</a>
@@ -196,7 +196,7 @@ $filters = VoluntaryFiltersDC::from('jen', $selectedFilter);
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--voluntary-oneDayEvents">
+				<div class="optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/voluntary-oneDayEvents-scaled.jpg'); --hb-optionBox-y-offset: 58%;">
                     <div class="button button--secondary">Najít akci</div>
 				</div>
 			</a>
@@ -217,7 +217,7 @@ $filters = VoluntaryFiltersDC::from('jen', $selectedFilter);
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--voluntary-holidayEvents">
+				<div class="optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/voluntary-holidayEvents.jpg');">
                     <div class="button button--secondary">Najít akci</div>
 				</div>
 			</a>
@@ -238,7 +238,7 @@ $filters = VoluntaryFiltersDC::from('jen', $selectedFilter);
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--voluntary-nature">
+				<div class="optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/voluntary-nature.jpg');">
                     <div class="button button--secondary">Akce pomáhající přírodě</div>
 				</div>
 			</a>
@@ -259,7 +259,7 @@ $filters = VoluntaryFiltersDC::from('jen', $selectedFilter);
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--voluntary-sights">
+				<div class="optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/voluntary-sights-scaled.jpg');">
                     <div class="button button--secondary">Akce pomáhající památkám</div>
 				</div>
 			</a>

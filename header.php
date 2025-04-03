@@ -60,7 +60,7 @@ $hb_pageClassSelector = $hb_currentPost !== null ? $hb_currentPost->post_name : 
 						window.addEventListener('load', function () {
 							document.getElementById('gsc-i-id1').placeholder = 'Prohledat tento web';
 							const searchButtonEl = document.getElementById('___gcse_0').querySelector('button.gsc-search-button');
-							searchButtonEl.classList.add('action', 'action--primary', 'action--lg');
+							searchButtonEl.classList.add('hb-action', 'hb-action--primary', 'hb-action--lg');
 							searchButtonEl.innerHTML = 'Hledat';
 						});
 					</script>

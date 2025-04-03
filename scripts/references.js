@@ -1,8 +1,8 @@
 const selectors = {
-	BUTTON_HIDDEN: 'references__button--hidden',
-	DOTS: 'references__dots',
-	DOT: 'references__dot',
-	DOT_ACTIVE: 'references__dot--active',
+	BUTTON_HIDDEN: 'hb-references__button--hidden',
+	DOTS: 'hb-references__dots',
+	DOT: 'hb-references__dot',
+	DOT_ACTIVE: 'hb-references__dot--active',
 }
 
 document.addEventListener('DOMContentLoaded', () =>
