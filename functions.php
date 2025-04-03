@@ -275,7 +275,7 @@ function hb_references(?string $link = null)
 		];
 	endif;
 ?>
-<div class="references" data-references>
+<div class="references" data-references data-references-infinite data-references-autoplay>
 	<button class="references__button references__button--previous button button--customization" data-references-button="previous" type="button" aria-hidden="true"></button>
 	<button class="references__button references__button--next button button--customization" data-references-button="next" type="button" aria-hidden="true"></button>
 
