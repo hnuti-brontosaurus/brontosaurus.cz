@@ -1,5 +1,9 @@
 @use "sass:color";
-@use "../imports/settings";
+@use "../settings";
+
+$footer-breakpoint-fullSize: settings.$header-breakpoint-navigationHiddenToVisible;
+$footer-breakpoint-fullSize-until: "max-width: " + $footer-breakpoint-fullSize;
+$footer-breakpoint-fullSize-from: "min-width: " + ($footer-breakpoint-fullSize + 0.001);
 
 .footer-wrapper {
 	background-color: var(--hb-colors-tinge);
@@ -13,7 +17,7 @@
 .footer__navigation {
 	margin-block-end: 1rlh;
 }
-@media (settings.$footer-breakpoint-fullSize-from) {
+@media ($footer-breakpoint-fullSize-from) {
 	.footer__navigation {
 		display: flex;
 		justify-content: space-between;
@@ -22,7 +26,7 @@
 		margin-block-end: 2rlh;
 	}
 }
-@media (settings.$footer-breakpoint-fullSize-until) {
+@media ($footer-breakpoint-fullSize-until) {
 	.footer__navigation .menu > .menu-item {
 		text-align: center;
 	}
@@ -66,7 +70,7 @@
 	align-items: center;
 	gap: 0.5rlh;
 }
-@media (settings.$footer-breakpoint-fullSize-from) {
+@media ($footer-breakpoint-fullSize-from) {
 	.footer__bottom {
 		flex-direction: row;
 		justify-content: space-between;
@@ -74,7 +78,7 @@
 	}
 }
 
-@media (settings.$footer-breakpoint-fullSize-from) {
+@media ($footer-breakpoint-fullSize-from) {
 	.footer__logo,
 	.footer__searchForm {
 		flex-basis: 50%;
@@ -90,12 +94,12 @@
 	background-position: center center;
 	background-repeat: no-repeat;
 }
-@media (settings.$footer-breakpoint-fullSize-until) {
+@media ($footer-breakpoint-fullSize-until) {
 	.footer__logo {
 		width: 100%;
 	}
 }
-@media (settings.$footer-breakpoint-fullSize-from) {
+@media ($footer-breakpoint-fullSize-from) {
 	.footer__logo {
 		background-position-x: left;
 	}

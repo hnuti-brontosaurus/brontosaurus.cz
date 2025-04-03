@@ -32,7 +32,7 @@ $article = NewsPost::from($post);
 			<?php echo $article->date->format($dateForHumans) ?>
 		</time>
 
-		<div class="news__item-content">
+		<div class="news__item-content hb-wp-content">
 			<?php if ($article->hasCoverImage): ?>
 				<div class="news__item-coverImage">
 					<img class="hb-br" alt="" src="<?php echo $article->coverImage ?>">

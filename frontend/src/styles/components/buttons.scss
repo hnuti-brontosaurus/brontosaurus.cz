@@ -1,7 +1,10 @@
 @use "sass:color";
-@use "../imports/settings";
 
-// @todo: move to .action
+$buttons-secondary-breakpoint-rightBottomBubbleToCenteredButton: 39em;
+$buttons-secondary-breakpoint-rightBottomBubble-until: "max-width: " + $buttons-secondary-breakpoint-rightBottomBubbleToCenteredButton;
+$buttons-secondary-breakpoint-centeredButton-from: "min-width: " + ($buttons-secondary-breakpoint-rightBottomBubbleToCenteredButton + 0.001);
+
+// @todo: move to .hb-action
 .button {
 
 	// shared styles for all button types
@@ -38,13 +41,13 @@
 	transition: color 200ms ease-in-out;
 	hyphens: auto;
 }
-@media (settings.$buttons-secondary-breakpoint-rightBottomBubble-until) {
+@media ($buttons-secondary-breakpoint-rightBottomBubble-until) {
 	.button--secondary {
 		text-align: right;
 		right: 1rlh;
 	}
 }
-@media (settings.$buttons-secondary-breakpoint-centeredButton-from) {
+@media ($buttons-secondary-breakpoint-centeredButton-from) {
 	.button--secondary {
 		max-width: 20em;
 		left: 50%; transform: translateX(-50%); // center absolutely positioned element
@@ -76,12 +79,12 @@
 	z-index: -1;
 	transition: background-color 200ms ease-in-out;
 }
-@media (settings.$buttons-secondary-breakpoint-rightBottomBubble-until) {
+@media ($buttons-secondary-breakpoint-rightBottomBubble-until) {
 	.button--secondary::after {
 		right: -4em;
 	}
 }
-@media (settings.$buttons-secondary-breakpoint-centeredButton-from) {
+@media ($buttons-secondary-breakpoint-centeredButton-from) {
 	.button--secondary::after {
 		background-color: color-mix(in srgb, var(--hb-colors-default-background) 90%, transparent);
 		width: 100%;

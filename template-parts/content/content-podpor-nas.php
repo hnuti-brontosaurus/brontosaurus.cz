@@ -143,13 +143,13 @@ endif;
 
 	<div class="hb-spacer-2 hb-lg-spacer-3"></div>
 
-	<section class="references references--thirds" data-references data-references-no-dots data-references-infinite style="max-inline-size: 50rem">
-		<button class="references__button references__button--previous button button--customization" data-references-button="previous" type="button" aria-hidden="true"></button>
-		<button class="references__button references__button--next button button--customization" data-references-button="next" type="button" aria-hidden="true"></button>
+	<section class="hb-references hb-references--thirds" data-references data-references-no-dots data-references-infinite style="max-inline-size: 50rem">
+		<button class="hb-references__button hb-references__button--previous button button--customization" data-references-button="previous" type="button" aria-hidden="true"></button>
+		<button class="hb-references__button hb-references__button--next button button--customization" data-references-button="next" type="button" aria-hidden="true"></button>
 
-		<div class="references__list" data-references-slides>
+		<div class="hb-references__list" data-references-slides>
             <?php foreach ($whatWeDo as $item): ?>
-			<div class="references__list-item">
+			<div class="hb-references__list-item">
 				<div class="hb-option hb-option--imageFirst hb-jc-fs">
 					<div class="hb-option__text">
 						<div class="hb-option__heading hb-fs-l hb-fw-b hb-mbe-2">
@@ -166,7 +166,7 @@ endif;
 					</div>
 
 					<div class="hb-option__button" style="align-self: center; margin-block-end: 1rlh">
-						<a class="action action--primary" href="https://www.darujme.cz/darovat/525?frequency=monthly&amount=<?php echo $item->price ?>&widget=1203034" rel="noopener" target="_blank">
+						<a class="hb-action hb-action--primary" href="https://www.darujme.cz/darovat/525?frequency=monthly&amount=<?php echo $item->price ?>&widget=1203034" rel="noopener" target="_blank">
 							<span>Přispět <?php echo $item->price ?> Kč / měs</span>
 						</a>
 					</div>
@@ -177,7 +177,7 @@ endif;
 
 		<div class="hb-spacer-3 hb-lg-spacer-4"></div>
 
-		<a class="action action--ulterior" href="https://www.darujme.cz/projekt/525" rel="noopener" target="_blank">chci darovat jednorázově</a>
+		<a class="hb-action hb-action--ulterior" href="https://www.darujme.cz/projekt/525" rel="noopener" target="_blank">chci darovat jednorázově</a>
 	</section>
 
 	<div class="hb-spacer-5 hb-lg-spacer-6"></div>
@@ -229,7 +229,7 @@ endif;
 			</div>
 		</div>
 
-		<a class="action action--ulterior" href="/o-brontosaurovi/nase-uspechy?vsechny">
+		<a class="hb-action hb-action--ulterior" href="/o-brontosaurovi/nase-uspechy?vsechny">
 			zobrazit další
 		</a>
 	</section>
@@ -241,16 +241,16 @@ endif;
 			Proč adoptuji Brontosaura?
 		</h1>
 
-		<div class="references" data-references data-references-infinite>
-			<button class="references__button references__button--previous button button--customization" data-references-button="previous" type="button" aria-hidden="true"></button>
-			<button class="references__button references__button--next button button--customization" data-references-button="next" type="button" aria-hidden="true"></button>
+		<div class="hb-references" data-references data-references-infinite>
+			<button class="hb-references__button hb-references__button--previous button button--customization" data-references-button="previous" type="button" aria-hidden="true"></button>
+			<button class="hb-references__button hb-references__button--next button button--customization" data-references-button="next" type="button" aria-hidden="true"></button>
 
-			<ul class="references__list" data-references-slides>
+			<ul class="hb-references__list" data-references-slides>
                 <?php
                 $counter = 1;
                 foreach ($references as $item):
                 ?>
-				<li class="references__list-item presentationBox<?php if ($counter % 2 === 0): ?> presentationBox--textOnRight<?php endif; ?>" 
+				<li class="hb-references__list-item presentationBox<?php if ($counter % 2 === 0): ?> presentationBox--textOnRight<?php endif; ?>" 
                     style="--presentationBox-background-image-url: url('<?php echo $item->image ?>')"
 				>
 					<div class="presentationBox__text">
@@ -287,7 +287,7 @@ endif;
 				<strong>Podpoř brontosauří tradici i ty v dalších 50 letech! Děkujeme.</strong>
 			</div>
 
-			<a class="action action--primary action--lg" href="https://www.darujme.cz/darovat/525?frequency=monthly&amount=500&widget=1203034" rel="noopener noreferrer" target="_blank">
+			<a class="hb-action hb-action--primary hb-action--lg" href="https://www.darujme.cz/darovat/525?frequency=monthly&amount=500&widget=1203034" rel="noopener noreferrer" target="_blank">
 				Chci podpořit Brontosaura
 			</a>
 		</div>

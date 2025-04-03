@@ -1,4 +1,16 @@
-@use "settings";
+@use "../settings";
+
+$hb-banner-breakpoint: 30em;
+@mixin hb-banner-vertical-until() {
+	@media (max-width: $hb-banner-breakpoint) {
+		@content;
+	}
+}
+@mixin hb-banner-horizontal-from() {
+	@media (min-width: ($hb-banner-breakpoint + 0.001em)) {
+		@content;
+	}
+}
 
 
 /* BLOCK */
@@ -43,7 +55,7 @@
 		block-size: 18rlh;
 	}
 }
-@include settings.hb-banner-horizontal-from() {
+@include hb-banner-horizontal-from() {
 	.hb-block-banner {
 		block-size: 11rlh;
 	}
@@ -62,7 +74,7 @@
 	--hb-block-banner-size-circle: 6rlh;
 	clip-path: circle(var(--hb-block-banner-size-circle) at 50% 0rlh);
 }
-@include settings.hb-banner-horizontal-from() {
+@include hb-banner-horizontal-from() {
 	.hb-block-banner::before {
 		clip-path: circle(var(--hb-block-banner-size-circle) at 4rlh 2rlh);
 	}
@@ -82,7 +94,7 @@
 	background-repeat: no-repeat;
 	background-position: center center;
 }
-@include settings.hb-banner-horizontal-from() {
+@include hb-banner-horizontal-from() {
 	.hb-block-banner::after {
 		max-inline-size: var(--hb-block-banner-size);
 	}
@@ -95,7 +107,7 @@
 	inset-inline-start: 0;
 	inset-block-start: 0;
 }
-@include settings.hb-banner-vertical-until() {
+@include hb-banner-vertical-until() {
 	.hb-block-banner__textContainer {
 		inline-size: 100%;
 	}
@@ -106,7 +118,7 @@
 	max-inline-size: 13rem;
 	margin-inline: auto;
 }
-@include settings.hb-banner-vertical-until() {
+@include hb-banner-vertical-until() {
 	.hb-block-banner__text {
 		text-align: center;
 		margin-block-start: unset;
@@ -118,7 +130,7 @@
 .hb-block-banner__action {
 	z-index: 1;
 }
-@include settings.hb-banner-vertical-until() {
+@include hb-banner-vertical-until() {
 	.hb-block-banner__action {
 		align-self: flex-end;
 		margin-inline-end: 1rlh;
@@ -130,12 +142,12 @@
 	inset-inline-start: 50%;
 	transform: translateX(-50%);
 }
-@include settings.hb-banner-horizontal-from() {
+@include hb-banner-horizontal-from() {
 	.hb-block-banner__button--standalone {
 		display: none;
 	}
 }
-@include settings.hb-banner-vertical-until() {
+@include hb-banner-vertical-until() {
 	.hb-block-banner__button--inline {
 		display: none;
 	}

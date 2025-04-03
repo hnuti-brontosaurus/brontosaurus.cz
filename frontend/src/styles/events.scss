@@ -1,8 +1,8 @@
-@use "common";
+@use "../../../node_modules/sanitize.css/sanitize";
+@use "defaults";
 
 @use "components/header";
 
-@use "components/eventLabels";
 @use "components/event";
 @use "components/eventList";
 

@@ -39,7 +39,17 @@ final class Assets
 		);
 	}
 
+	public static function staticStyle(string $name, WP_Theme $theme): void
+	{
+		wp_enqueue_style(
+			handle: 'hb-' . $name,
+			src: self::src($name, self::STATIC_CSS_PATTERN, $theme),
+			ver: self::ver($name, self::STATIC_CSS_PATTERN, $theme),
+		);
+	}
+
 	private const CSS_PATTERN = '%s/frontend/dist/css/%s.css';
+	private const STATIC_CSS_PATTERN = '%s/styles/%s.css';
 	private const JS_PATTERN = '%s/frontend/dist/js/%s.js';
 	private const STATIC_JS_PATTERN = '%s/scripts/%s.js';
 

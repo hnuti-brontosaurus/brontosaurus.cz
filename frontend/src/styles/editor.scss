@@ -1,4 +1,4 @@
-@use "common";
-@use "imports/hb-content-mixin";
+@use "../../../node_modules/sanitize.css/sanitize";
+@use "defaults";
 
-@include hb-content-mixin.hb-content();
+@use "components/wp-content";

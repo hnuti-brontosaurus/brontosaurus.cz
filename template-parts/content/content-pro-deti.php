@@ -30,8 +30,8 @@ try {
 
 $filters = ForChildrenFiltersDC::from('jen', $selectedFilter);
 
-?><main class="hb-events hb-mbe-6" role="main" id="obsah">
-	<h1 class="hb-events__heading">
+?><main class="hb-mbe-6" role="main" id="obsah">
+	<h1 class="hb-ta-c">
 		Akce pro děti i rodiče
 	</h1>
 
@@ -41,11 +41,11 @@ $filters = ForChildrenFiltersDC::from('jen', $selectedFilter);
 		</a>
 	</div>
 
-	<h2 class="screenreaders-only">
+	<h2 class="hb-sr-only">
 		Akce pro děti a rodiče s dětmi
 	</h2>
 
-	<div class="hb-events__filters filters hb-expandable"<?php if ($filters->isAnySelected): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
+	<div class="filters hb-expandable hb-mbe-4"<?php if ($filters->isAnySelected): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
 		<button class="hb-expandable__toggler button button--customization" type="button" aria-hidden="true" data-hb-expandable-toggler>
 			Zobrazit pouze
 		</button>
@@ -106,7 +106,7 @@ $filters = ForChildrenFiltersDC::from('jen', $selectedFilter);
 		<div class="description__list">
 			<a class="description__item optionBox button--secondary-wrapper" href="/pro-deti?jen=detske-tabory#obsah">
 				<div class="description__itemText optionBox__text">
-					<h2 class="optionBox__heading">
+					<h2>
 						Tábory pro děti
 					</h2>
 
@@ -116,14 +116,14 @@ $filters = ForChildrenFiltersDC::from('jen', $selectedFilter);
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--forChildren-camps">
+				<div class="optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/forChildren-camps.jpg');">
 					<div class="button button--secondary">Najít tábor</div>
 				</div>
 			</a>
 
 			<a class="description__item optionBox button--secondary-wrapper" href="/pro-deti?jen=detske-oddily#obsah">
 				<div class="description__itemText optionBox__text">
-					<h2 class="optionBox__heading">
+					<h2>
 						Dětské oddíly
 					</h2>
 
@@ -133,14 +133,14 @@ $filters = ForChildrenFiltersDC::from('jen', $selectedFilter);
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--forChildren-units">
+				<div class="optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/forChildren-units.jpg'); --hb-optionBox-y-offset: 85%;">
 					<div class="button button--secondary">Seznam dětských oddílů</div>
 				</div>
 			</a>
 
 			<a class="description__item optionBox button--secondary-wrapper" href="/pro-deti?jen=akce-pro-deti#obsah">
 				<div class="description__itemText optionBox__text">
-					<h2 class="optionBox__heading">
+					<h2>
 						Akce pro děti
 					</h2>
 
@@ -152,14 +152,14 @@ $filters = ForChildrenFiltersDC::from('jen', $selectedFilter);
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--forChildren-events">
+				<div class="optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/forChildren-events.jpg'); --hb-optionBox-y-offset: 100%;">
 					<div class="button button--secondary">Najít akci pro děti</div>
 				</div>
 			</a>
 
 			<a class="description__item optionBox button--secondary-wrapper" href="/pro-deti?jen=akce-pro-rodice-s-detmi#obsah">
 				<div class="description__itemText optionBox__text">
-					<h2 class="optionBox__heading">
+					<h2>
 						Akce pro rodiče s dětmi
 					</h2>
 
@@ -170,7 +170,7 @@ $filters = ForChildrenFiltersDC::from('jen', $selectedFilter);
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--forChildren-eventsWithParents">
+				<div class="optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/forChildren-eventsWithParents.jpg'); --hb-optionBox-y-offset: 22%;">
 					<div class="button button--secondary">Najít akci pro rodiče s dětmi</div>
 				</div>
 			</a>

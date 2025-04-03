@@ -70,8 +70,8 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 				<img alt="" class="hb-event__image" src="<?php echo $opportunity->getImage()->getMediumSizePath(); ?>">
 			</noscript>
 
-			<div class="hb-event__labels eventLabels">
-				<div class="eventLabels__item">
+			<div class="hb-event__labels hb-eventLabels">
+				<div class="hb-eventLabels__item">
 					<?php echo hb_opportunityCategoryToString($opportunity->getCategory()); ?>
 				</div>
 			</div>
@@ -189,7 +189,7 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 			<div class="description__list">
 				<a class="description__item optionBox button--secondary-wrapper" href="/zapoj-se/organizovani">
 					<div class="description__itemText optionBox__text">
-						<h2 class="optionBox__heading">
+						<h2>
 							Chci organizovat akce
 						</h2>
 
@@ -201,14 +201,14 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 						</p>
 					</div>
 
-					<div class="optionBox__image optionBox__image--organizovani">
+					<div class="optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/zapoj-se-organizovani-scaled.jpg');">
 						<div class="button button--secondary">Více info</div>
 					</div>
 				</a>
 
 				<a class="description__item optionBox button--secondary-wrapper" href="/zapoj-se/spoluprace">
 					<div class="description__itemText optionBox__text">
-						<h2 class="optionBox__heading">
+						<h2>
 							Chci spolupracovat
 						</h2>
 
@@ -219,14 +219,14 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 						</p>
 					</div>
 
-					<div class="optionBox__image optionBox__image--spoluprace">
+					<div class="optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/zapoj-se-spoluprace-scaled.jpg'); --hb-optionBox-y-offset: bottom;">
 						<div class="button button--secondary">Více info</div>
 					</div>
 				</a>
 
 				<a class="description__item optionBox button--secondary-wrapper" href="/zapoj-se/clenstvi">
 					<div class="description__itemText optionBox__text">
-						<h2 class="optionBox__heading">
+						<h2>
 							Chci se stát členem
 						</h2>
 
@@ -235,14 +235,14 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 						</p>
 					</div>
 
-					<div class="optionBox__image optionBox__image--clenstvi">
+					<div class="optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/zapoj-se-clenstvi.jpg');">
 						<div class="button button--secondary">Více info</div>
 					</div>
 				</a>
 
 				<a class="description__item optionBox button--secondary-wrapper" href="https://mozek.brontosaurus.cz/index.php/cely-mozek/provoz-clanku-klubu-rc/zakladame-zc-rc-klub" rel="noopener" target="_blank">
 					<div class="description__itemText optionBox__text">
-						<h2 class="optionBox__heading">
+						<h2>
 							Chci založit článek, klub či oddíl
 						</h2>
 
@@ -251,7 +251,7 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 						</p>
 					</div>
 
-					<div class="optionBox__image optionBox__image--zalozeni-clanku">
+					<div class="optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/zapoj-se-zalozeni-clanku-scaled.jpg');">
 						<div class="button button--secondary">Více info</div>
 					</div>
 				</a>

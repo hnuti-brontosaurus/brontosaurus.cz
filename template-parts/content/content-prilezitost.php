@@ -38,8 +38,8 @@ try {
 			<h1>
 				<span class="hb-mie-3"><?php echo $opportunity->getName(); ?></span>
 
-				<span class="prilezitost__labels eventLabels">
-					<span class="prilezitost__label eventLabels__item">
+				<span class="prilezitost__labels hb-eventLabels">
+					<span class="prilezitost__label hb-eventLabels__item">
 						<?php echo hb_opportunityCategoryToString($opportunity->getCategory()); ?>
 					</span>
 				</span>
