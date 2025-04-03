@@ -21,11 +21,11 @@
 					</a>
 				</li>
 
-				<li class="list__item">
+				<?php /*<li class="list__item">
 					<a href="#ekologicke-volnocasove-centrum-svycarna">
 						Ekologické volnočasové centrum Švýcárna
 					</a>
-				</li>
+				</li> */ ?>
 
 				<li class="list__item">
 					<a href="#horska-chata-smrcnik">
@@ -203,6 +203,7 @@
 			</div>
 		</div>
 
+		<?php /*
 		<div class="hb-mbe-5 hb-lg-mbe-6" id="ekologicke-volnocasove-centrum-svycarna">
 			<h2>
 				Ekologické volnočasové centrum Švýcárna
@@ -313,6 +314,7 @@
 				</address>
 			</div>
 		</div>
+		*/ ?>
 
 		<div class="hb-mbe-5 hb-lg-mbe-6" id="horska-chata-smrcnik">
 			<h2>
