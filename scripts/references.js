@@ -182,26 +182,15 @@ class Position {
 	getLastPosition()
 	{
 		/**
-		 * slides	at once		last position
+		 * example:
+		 * slides	at once		last position (we always want to render whole group)
 		 * 5		1			4
 		 * 5		2			3
 		 * 5		3			2
+		 * 5		4			1
+		 * 5		5			0
 		 */
-		const number = this.elementsInView.count();
-		// todo make an expression instead of hardcoding
-		switch (number) {
-			case 1:
-				return 4;
-
-			case 2:
-				return 3;
-
-			case 3:
-				return 2;
-
-			default:
-				throw new Error('Unsupported count of slides displayed at once');
-		}
+		return this.slidesCount - this.elementsInView.count();
 	}
 }
 
