@@ -216,13 +216,13 @@ function hb_references(?string $link = null)
 		],
 		(object) [
 			'name' => 'Jan Dusík',
-			'role' => 'zástupce pro klimatickou politiku | Evropská komise',
+			'role' => 'zástupce pro klimatickou politiku v Evropské komisi',
 			'quote' => 'S Hnutím Brontosaurus jsem začal svou cestu k ochraně životního prostředí – spoluzakládal jsem dětský oddíl v Plzni, organizoval akce ke Dni Země a založil Ekologický právní servis. Účastnil jsem se akcí, vedl kancelář i koordinoval zahraniční vztahy. Na hnutí si vážím jeho nadšení a schopnosti inspirovat mladé lidi k ochraně přírody a budování přátelství.',
 			'image' => 'https://brontosaurus.cz/wp-content/uploads/2025/03/jan-dusik.jpg',
 		],
 		(object) [
 			'name' => 'Petra Kolínská',
-			'role' => 'ředitelka | Zelený kruh',
+			'role' => 'ředitelka Zeleného kruhu',
 			'quote' => 'Pro mne představuje Hnutí Brontosaurus unikátní propojení ochrany přírody a budování otevřené a přátelské pospolitosti různorodých lidí. Brontosaurus je dokladem, že je mezi námi mnoho lidí, kteří mají odvahu a vůli měnit svět kolem sebe dobrovolnou prací. A velkou inspirací je pro mne jejich výdrž – rozvíjet něco padesát let není jen tak.',
 			'image' => 'https://brontosaurus.cz/wp-content/uploads/2025/03/petra-kolinska.jpg',
 		],
@@ -234,7 +234,7 @@ function hb_references(?string $link = null)
 		],
 		(object) [
 			'name' => 'Jiří Čevela',
-			'role' => 'frontman | Circus Problem',
+			'role' => 'frontman Circus Problem',
 			'quote' => 'Hnutí Brontosaurus podporuji, protože ekologie je cool. Fandím vám, jste banda super cvoků, podobně jako my z CIRCUS PROBLEM. Od mládí se s vámi kámoším a jsem rád, že jsem mohl být součástí vašeho příběhu a péče o přírodu. Držím vám palce!',
 			'image' => 'https://brontosaurus.cz/wp-content/uploads/2025/03/circus-problem.jpg',
 		],
