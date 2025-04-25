@@ -117,8 +117,15 @@ $hb_pageClassSelector = $hb_currentPost !== null ? $hb_currentPost->post_name : 
 		</header>
 	</div>
 
-	<?php if (!in_array($hb_pageClassSelector, ['zapoj-se', 'podpor-nas', 'co-se-chysta'])): ?>
-	<div class="coverPhoto<?php echo $hb_pageClassSelector !== '' ? ' coverPhoto--' . $hb_pageClassSelector : ''; ?>"></div>
+	<?php
+	if ($hb_currentPost !== null):
+		$hb_cover_photo_image_id = get_post_meta( $hb_currentPost->ID, 'hb_cover_photo_image_id', true );
+		$hb_cover_photo_image_external_url = get_post_meta( $hb_currentPost->ID, 'hb_cover_photo_image_external_url', true );
+		$hb_cover_photo_image = !! $hb_cover_photo_image_id ? wp_get_attachment_url( $hb_cover_photo_image_id ) : $hb_cover_photo_image_external_url;
+		if ( !! $hb_cover_photo_image ):
+	?>
+			<div class="hb-coverPhoto" style="--hb-coverPhoto-image: url('<?php echo $hb_cover_photo_image ?>');"></div>
+		<?php endif; ?>
 	<?php endif; ?>
 
 	<div class="content">

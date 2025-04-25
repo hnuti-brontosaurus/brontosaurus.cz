@@ -8,7 +8,6 @@
 @use "components/footer";
 @use "components/header";
 @use "components/hero"; // must be below header
-@use "components/coverPhoto"; // must be below header
 @use "components/buttons" as buttons2;
 @use "components/administrativeUnitsMap"; // must be after button
 @use "components/filters"; // must be below header and button

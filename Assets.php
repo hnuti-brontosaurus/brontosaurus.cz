@@ -21,12 +21,13 @@ final class Assets
 		);
 	}
 
-	public static function staticScript(string $name, WP_Theme $theme): void
+	public static function staticScript(string $name, WP_Theme $theme, array $deps = []): void
 	{
 		wp_enqueue_script(
 			handle: 'hb-' . $name,
 			src: self::src($name, self::STATIC_JS_PATTERN, $theme),
 			ver: self::ver($name, self::STATIC_JS_PATTERN, $theme),
+			deps: $deps,
 		);
 	}
 

@@ -104,6 +104,34 @@
 }
 
 
+.hb-coverPhoto {
+	display: block;
+	max-width: 75em;
+	aspect-ratio: 4 / 1;
+	margin-inline: auto;
+	background-image: var(--hb-coverPhoto-image);
+	background-position: center center;
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+}
+@media (max-width: 39em) { /* $header-breakpoint-navigationHiddenToVisible */
+	.hb-coverPhoto {
+		display: none;
+	}
+}
+@media (min-width: 75.001em) {
+	.hb-coverPhoto {
+		border-radius: 2em;
+		margin-inline: 1rlh;
+	}
+}
+@media (min-width: 115.001em) {
+	.hb-coverPhoto {
+		margin-inline: auto;
+	}
+}
+
+
 .hb-eventLabels {
 	display: flex;
 	justify-content: flex-end;

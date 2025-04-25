@@ -2,6 +2,7 @@
 
 use HnutiBrontosaurus\Theme\Assets;
 use HnutiBrontosaurus\Theme\Container;
+use HnutiBrontosaurus\Theme\Meta;
 use HnutiBrontosaurus\Theme\PostTypeInitializer;
 use HnutiBrontosaurus\Theme\Rewrites\Event;
 use HnutiBrontosaurus\Theme\Rewrites\Opportunity;
@@ -32,6 +33,8 @@ require_once __DIR__ . '/homepage-banner.php';
 		PostTypeInitializer::novinky();
 		PostTypeInitializer::pribehyNadseni();
 		PostTypeInitializer::kontakty();
+
+		Meta::coverPhoto();
 
 		register_nav_menus([
 			'header' => __('Hlavička'),
@@ -116,6 +119,18 @@ require_once __DIR__ . '/homepage-banner.php';
 		Assets::staticScript('editor', $theme);
 		Assets::style('editor', $theme);
 		Assets::staticStyle('components', $theme);
+
+		Assets::staticScript('hb-cover-photo-panel', $theme, [
+			'wp-plugins',
+			'wp-edit-post',
+			'wp-element',
+			'wp-compose',
+			'wp-components',
+			'wp-data',
+			'wp-editor',
+			'wp-block-editor',
+			'wp-core-data',
+		]);
 	});
 
 })($hb_container, wp_get_theme());
