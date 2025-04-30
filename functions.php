@@ -113,9 +113,10 @@ require_once __DIR__ . '/homepage-banner.php';
 		Assets::staticScript('lightbox', $theme);
 		Assets::staticScript('administrativeUnitsMap', $theme);
 		Assets::staticScript('references', $theme);
-		Assets::style('style', $theme);
 
 		Assets::staticStyle('fonts', $theme);
+		Assets::staticStyle('utils', $theme);
+		Assets::style('style', $theme);
 		Assets::staticStyle('components', $theme);
 	});
 
