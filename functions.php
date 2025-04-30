@@ -99,6 +99,8 @@ require_once __DIR__ . '/homepage-banner.php';
 			src: "https://unpkg.com/glightbox@3.2.0/dist/js/glightbox.min.js",
 			ver: null,
 		);
+
+		Assets::sanitizecss();
 		wp_enqueue_style(
 			handle: "hb-unpkg-glightbox",
 			src: "https://unpkg.com/glightbox@3.2.0/dist/css/glightbox.min.css",
@@ -119,6 +121,8 @@ require_once __DIR__ . '/homepage-banner.php';
 
 	add_action('enqueue_block_editor_assets', function () use ($theme) {
 		Assets::staticScript('editor', $theme);
+
+		Assets::sanitizecss();
 		Assets::style('editor', $theme);
 
 		Assets::staticStyle('fonts', $theme);

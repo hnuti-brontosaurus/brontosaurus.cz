@@ -65,4 +65,14 @@ final class Assets
 		return filemtime($path);
 	}
 
+
+	public static function sanitizecss(): void
+	{
+		wp_enqueue_style(
+			handle: "hb-unpkg-sanitize",
+			src: "https://unpkg.com/sanitize.css@12.0.1/sanitize.css",
+			ver: null,
+		);
+	}
+
 }
