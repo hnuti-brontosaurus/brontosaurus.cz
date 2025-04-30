@@ -1,6 +1,3 @@
-@use "settings";
-
-
 :root {
 	--hb-colors-default-background: #ffffff;
 	--hb-colors-light-grey-background: #f9faf9; /* tinge - lightness: 3% */
@@ -18,8 +15,9 @@
 	font-size: 130%;
 	font-weight: 300;
 	line-height: 1.3;
-
-	@media (settings.$typography-breakpoint-large-from) {
+}
+@media (min-width: 60.001em) { /* $typography-breakpoint-large-from */
+	:root {
 		font-size: 140%;
 	}
 }
@@ -29,7 +27,7 @@ html {
 }
 
 
-// FORMS
+/* FORMS */
 
 input,
 button {
@@ -43,7 +41,7 @@ form button {
 }
 
 
-// MARGINS & PADDINGS RESET
+/* MARGINS & PADDINGS RESET */
 
 h1,
 h2,
@@ -59,7 +57,7 @@ ul {
 }
 
 
-// MISCELLANEOUS
+/* MISCELLANEOUS */
 
 img,
 svg {

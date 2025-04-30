@@ -115,6 +115,7 @@ require_once __DIR__ . '/homepage-banner.php';
 		Assets::staticScript('references', $theme);
 
 		Assets::staticStyle('fonts', $theme);
+		Assets::staticStyle('defaults', $theme);
 		Assets::staticStyle('utils', $theme);
 		Assets::style('style', $theme);
 		Assets::staticStyle('components', $theme);
@@ -127,6 +128,7 @@ require_once __DIR__ . '/homepage-banner.php';
 		Assets::style('editor', $theme);
 
 		Assets::staticStyle('fonts', $theme);
+		Assets::staticStyle('defaults', $theme);
 		Assets::staticStyle('components', $theme);
 
 		Assets::staticScript('hb-cover-photo-panel', $theme, [
