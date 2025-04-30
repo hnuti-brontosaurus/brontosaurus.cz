@@ -112,12 +112,16 @@ require_once __DIR__ . '/homepage-banner.php';
 		Assets::staticScript('administrativeUnitsMap', $theme);
 		Assets::staticScript('references', $theme);
 		Assets::style('style', $theme);
+
+		Assets::staticStyle('fonts', $theme);
 		Assets::staticStyle('components', $theme);
 	});
 
 	add_action('enqueue_block_editor_assets', function () use ($theme) {
 		Assets::staticScript('editor', $theme);
 		Assets::style('editor', $theme);
+
+		Assets::staticStyle('fonts', $theme);
 		Assets::staticStyle('components', $theme);
 
 		Assets::staticScript('hb-cover-photo-panel', $theme, [
