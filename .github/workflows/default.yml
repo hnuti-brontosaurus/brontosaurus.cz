@@ -90,6 +90,7 @@ jobs:
                         -i "log/*" \
                         -i "Rewrites/*" \
                         -i "scripts/*" \
+                        -i "styles/*" \
                         -i "template-parts/*" \
                         -i "vendor/*" \
                         -i "webfonts/*" \
