@@ -141,7 +141,7 @@ function hb_detail_application(EventDC $event, string $applicationUrlTemplate)
 			</div>
             <?php endif; ?>
 
-			<div class="detail__top hb-mbs-4 hb-d-f hb-fd-c hb-lg-fd-r hb-lg-ai-c hb-br hb-bg-tinge hb-mbe-5">
+			<div class="detail__top hb-mbs-4 hb-d-f hb-lg-ai-c hb-br hb-bg-tinge hb-mbe-5">
 				<div class="detail__labels-wrapper">
 					<?php if ($event->hasCoverPhoto): ?>
 						<a class="detail__coverImage-wrapper" href="<?php echo $event->coverPhotoPath ?>">

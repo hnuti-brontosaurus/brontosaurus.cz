@@ -214,9 +214,13 @@
 
 // BASIC INFORMATION
 
+.detail__top {
+	flex-direction: column;
+}
 @media (settings.$detail-breakpoint-large-from) {
 	.detail__top {
 		min-height: 18em;
+		flex-direction: row;
 	}
 }
 
