@@ -51,7 +51,7 @@ $contacts = array_map(function (WP_Post $post) {
 
 				<address class="contacts__boxInner hb-p-5 hb-fs-s hb-fst-n hb-bg-tinge">
 					<div class="contacts__boxItem contacts__boxItem--address hb-mbe-3">
-						<h3 class="screenreaders-only" id="contacts-address">
+						<h3 class="hb-sr-only" id="contacts-address">
 							Kontaktní adresa
 						</h3>
 
@@ -61,7 +61,7 @@ $contacts = array_map(function (WP_Post $post) {
 					</div>
 
 					<div class="contacts__boxItem contacts__boxItem--phone hb-mbe-3">
-						<h3 class="screenreaders-only" id="contacts-phone">
+						<h3 class="hb-sr-only" id="contacts-phone">
 							Telefon
 						</h3>
 
@@ -79,7 +79,7 @@ $contacts = array_map(function (WP_Post $post) {
 					</div>
 
 					<div class="contacts__boxItem contacts__boxItem--email hb-mbe-3">
-						<h3 class="screenreaders-only" id="contacts-email">
+						<h3 class="hb-sr-only" id="contacts-email">
 							E&ndash;mail
 						</h3>
 

@@ -30,16 +30,16 @@ try {
 
 $filters = CoursesFiltersDC::from('jen', $selectedFilter);
 
-?><main class="hb-events hb-mbe-6" role="main" id="obsah">
-	<h1 class="hb-events__heading">
+?><main class="hb-mbe-6" role="main" id="obsah">
+	<h1 class="hb-ta-c">
 		Vzdělávací kurzy a přednášky
 	</h1>
 
-	<h2 class="screenreaders-only">
+	<h2 class="hb-sr-only">
 		Seznam akcí
 	</h2>
 
-	<div class="hb-events__filters filters hb-expandable"<?php if ($filters->isAnySelected): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
+	<div class="filters hb-expandable hb-mbe-4"<?php if ($filters->isAnySelected): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
 		<button class="hb-expandable__toggler button button--customization" type="button" aria-hidden="true" data-hb-expandable-toggler>
 			Zobrazit pouze
 		</button>
@@ -98,31 +98,31 @@ $filters = CoursesFiltersDC::from('jen', $selectedFilter);
 		</p>
 
 		<div class="description__list">
-			<a class="description__item optionBox button--secondary-wrapper" href="/kurzy-a-prednasky?jen=prednasky#obsah">
-				<div class="description__itemText optionBox__text">
-					<h2 class="optionBox__heading">
+			<a class="description__item hb-optionBox button--secondary-wrapper" href="/kurzy-a-prednasky?jen=prednasky#obsah">
+				<div class="description__itemText hb-optionBox__text">
+					<h2>
 						Přednášky
 					</h2>
 
-					<p class="optionBox__description">
+					<p class="hb-optionBox__description">
 						Pravidelně zveme odborníky, cestovatele, lektory i další zajímavé osobnosti.
 						Přednáší u nás na témata životní prostředí, dobrovolnictví, cestování, kultura či osobnostní rozvoj.
 						Přijďte si poslechnout a debatovat.
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--meetups">
+				<div class="hb-optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/meetups-scaled.jpg'); --hb-optionBox-y-offset: 20%;">
 					<div class="button button--secondary">Najít přednášky</div>
 				</div>
 			</a>
 
-			<a class="description__item optionBox button--secondary-wrapper" href="/kurzy-a-prednasky?jen=organizatorske-kurzy#obsah">
-				<div class="description__itemText optionBox__text">
-					<h2 class="optionBox__heading">
+			<a class="description__item hb-optionBox button--secondary-wrapper" href="/kurzy-a-prednasky?jen=organizatorske-kurzy#obsah">
+				<div class="description__itemText hb-optionBox__text">
+					<h2>
 						Organizátorské kurzy
 					</h2>
 
-					<p class="optionBox__description">
+					<p class="hb-optionBox__description">
 						Ne každému stačí se akcí jenom zúčastnit. Pokud
 						máš chuť uspořádat brontosauří akci nebo se naučit
 						mnoho užitečných dovedností pro pořádání svých
@@ -130,25 +130,25 @@ $filters = CoursesFiltersDC::from('jen', $selectedFilter);
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--courses-organizing">
+				<div class="hb-optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/courses-organizing.jpg'); --hb-optionBox-y-offset: 41%;">
 					<div class="button button--secondary">Najít organizátorský kurz</div>
 				</div>
 			</a>
 
-			<a class="description__item optionBox button--secondary-wrapper" href="/kurzy-a-prednasky?jen=tematicke-kurzy#obsah">
-				<div class="description__itemText optionBox__text">
-					<h2 class="optionBox__heading">
+			<a class="description__item hb-optionBox button--secondary-wrapper" href="/kurzy-a-prednasky?jen=tematicke-kurzy#obsah">
+				<div class="description__itemText hb-optionBox__text">
+					<h2>
 						Tématické kurzy
 					</h2>
 
-					<p class="optionBox__description">
+					<p class="hb-optionBox__description">
 						Na brontosauřím ústředí a někdy i na zajímavých
 						místech po celé republice se můžeš zúčastnit
 						mnoha kurzů. Někdy se lze i něco přiučit na klubech v Praze i v Brně!
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--courses-thematic">
+				<div class="hb-optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/courses-thematic-2.jpg'); --hb-optionBox-y-offset: 96%; --hb-optionBox-size: 144%;">
 					<div class="button button--secondary">Najít tématický kurz</div>
 				</div>
 			</a>

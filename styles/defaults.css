@@ -1,32 +1,3 @@
-@use "settings";
-
-
-@font-face {
-	font-family: "Delm";
-	font-style: normal;
-	font-weight: 300;
-
-	src: url("../../../webfonts/webfont-DelmLight.eot");
-	src: url("../../../webfonts/webfont-DelmLight.eot?#iefix") format("embedded-opentype"),
-		url("../../../webfonts/webfont-DelmLight.woff2") format("woff2"),
-		url("../../../webfonts/webfont-DelmLight.woff") format("woff"),
-		url("../../../webfonts/webfont-DelmLight.ttf") format("truetype"),
-		url("../../../webfonts/webfont-DelmLight.svg#DelmLight") format("svg");
-}
-@font-face {
-	font-family: "Delm";
-	font-style: normal;
-	font-weight: 700;
-
-	src: url("../../../webfonts/webfont-Delm.eot");
-	src: url("../../../webfonts/webfont-Delm.eot?#iefix") format("embedded-opentype"),
-		url("../../../webfonts/webfont-Delm.woff2") format("woff2"),
-		url("../../../webfonts/webfont-Delm.woff") format("woff"),
-		url("../../../webfonts/webfont-Delm.ttf") format("truetype"),
-		url("../../../webfonts/webfont-Delm.svg#Delm") format("svg");
-}
-
-
 :root {
 	--hb-colors-default-background: #ffffff;
 	--hb-colors-light-grey-background: #f9faf9; /* tinge - lightness: 3% */
@@ -44,8 +15,9 @@
 	font-size: 130%;
 	font-weight: 300;
 	line-height: 1.3;
-
-	@media (settings.$typography-breakpoint-large-from) {
+}
+@media (min-width: 60.001em) { /* $typography-breakpoint-large-from */
+	:root {
 		font-size: 140%;
 	}
 }
@@ -55,7 +27,7 @@ html {
 }
 
 
-// FORMS
+/* FORMS */
 
 input,
 button {
@@ -69,7 +41,7 @@ form button {
 }
 
 
-// MARGINS & PADDINGS RESET
+/* MARGINS & PADDINGS RESET */
 
 h1,
 h2,
@@ -85,7 +57,7 @@ ul {
 }
 
 
-// MISCELLANEOUS
+/* MISCELLANEOUS */
 
 img,
 svg {

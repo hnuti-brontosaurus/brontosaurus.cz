@@ -70,8 +70,8 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 				<img alt="" class="hb-event__image" src="<?php echo $opportunity->getImage()->getMediumSizePath(); ?>">
 			</noscript>
 
-			<div class="hb-event__labels eventLabels">
-				<div class="eventLabels__item">
+			<div class="hb-event__labels hb-eventLabels">
+				<div class="hb-eventLabels__item">
 					<?php echo hb_opportunityCategoryToString($opportunity->getCategory()); ?>
 				</div>
 			</div>
@@ -187,13 +187,13 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 
 		<div class="description">
 			<div class="description__list">
-				<a class="description__item optionBox button--secondary-wrapper" href="/zapoj-se/organizovani">
-					<div class="description__itemText optionBox__text">
-						<h2 class="optionBox__heading">
+				<a class="description__item hb-optionBox button--secondary-wrapper" href="/zapoj-se/organizovani">
+					<div class="description__itemText hb-optionBox__text">
+						<h2>
 							Chci organizovat akce
 						</h2>
 
-						<p class="optionBox__description">
+						<p class="hb-optionBox__description">
 							Zapoj se do organizování akcí, naber zkušenosti
 							na organizátorských kurzech nebo získej podporu v podobě
 							mentoringu, propagace, financí, online nástrojů či výběru
@@ -201,57 +201,57 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 						</p>
 					</div>
 
-					<div class="optionBox__image optionBox__image--organizovani">
+					<div class="hb-optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/zapoj-se-organizovani-scaled.jpg');">
 						<div class="button button--secondary">Více info</div>
 					</div>
 				</a>
 
-				<a class="description__item optionBox button--secondary-wrapper" href="/zapoj-se/spoluprace">
-					<div class="description__itemText optionBox__text">
-						<h2 class="optionBox__heading">
+				<a class="description__item hb-optionBox button--secondary-wrapper" href="/zapoj-se/spoluprace">
+					<div class="description__itemText hb-optionBox__text">
+						<h2>
 							Chci spolupracovat
 						</h2>
 
-						<p class="optionBox__description">
+						<p class="hb-optionBox__description">
 							Začni s námi spolupracovat na péči o přírodu,
 							pořádání Ekostanů, činnosti dětských oddílů či organizaci soutěží.
 							Zapoj se jako dobrovolník, lektor či patron budkování - dle tvých možností.
 						</p>
 					</div>
 
-					<div class="optionBox__image optionBox__image--spoluprace">
+					<div class="hb-optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/zapoj-se-spoluprace-scaled.jpg'); --hb-optionBox-y-offset: bottom;">
 						<div class="button button--secondary">Více info</div>
 					</div>
 				</a>
 
-				<a class="description__item optionBox button--secondary-wrapper" href="/zapoj-se/clenstvi">
-					<div class="description__itemText optionBox__text">
-						<h2 class="optionBox__heading">
+				<a class="description__item hb-optionBox button--secondary-wrapper" href="/zapoj-se/clenstvi">
+					<div class="description__itemText hb-optionBox__text">
+						<h2>
 							Chci se stát členem
 						</h2>
 
-						<p class="optionBox__description">
+						<p class="hb-optionBox__description">
 							Členství v Hnutí Brontosaurus ti přinese spoustu skvělých výhod a zároveň podpoříš naši činnost a péči o přírodu a památky.
 						</p>
 					</div>
 
-					<div class="optionBox__image optionBox__image--clenstvi">
+					<div class="hb-optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/zapoj-se-clenstvi.jpg');">
 						<div class="button button--secondary">Více info</div>
 					</div>
 				</a>
 
-				<a class="description__item optionBox button--secondary-wrapper" href="https://mozek.brontosaurus.cz/index.php/cely-mozek/provoz-clanku-klubu-rc/zakladame-zc-rc-klub" rel="noopener" target="_blank">
-					<div class="description__itemText optionBox__text">
-						<h2 class="optionBox__heading">
+				<a class="description__item hb-optionBox button--secondary-wrapper" href="https://mozek.brontosaurus.cz/index.php/cely-mozek/provoz-clanku-klubu-rc/zakladame-zc-rc-klub" rel="noopener" target="_blank">
+					<div class="description__itemText hb-optionBox__text">
+						<h2>
 							Chci založit článek, klub či oddíl
 						</h2>
 
-						<p class="optionBox__description">
+						<p class="hb-optionBox__description">
 							Našim základním článkům, klubům a dětským oddílům zajišťujeme finanční a marketingovou podporu, pojištění, slevy a mnoho dalších výhod.
 						</p>
 					</div>
 
-					<div class="optionBox__image optionBox__image--zalozeni-clanku">
+					<div class="hb-optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/zapoj-se-zalozeni-clanku-scaled.jpg');">
 						<div class="button button--secondary">Více info</div>
 					</div>
 				</a>

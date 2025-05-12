@@ -90,6 +90,7 @@ jobs:
                         -i "log/*" \
                         -i "Rewrites/*" \
                         -i "scripts/*" \
+                        -i "styles/*" \
                         -i "template-parts/*" \
                         -i "vendor/*" \
                         -i "webfonts/*" \
@@ -107,6 +108,7 @@ jobs:
                         -i "helpers.php" \
                         -i "homepage-banner.php" \
                         -i "index.php" \
+                        -i "Meta.php" \
                         -i "PostTypeInitializer.php" \
                         -i "PropertyHandler.php" \
                         -i "screenshot.png" \

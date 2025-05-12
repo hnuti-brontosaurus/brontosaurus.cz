@@ -2,6 +2,7 @@
 
 use HnutiBrontosaurus\Theme\Assets;
 use HnutiBrontosaurus\Theme\Container;
+use HnutiBrontosaurus\Theme\Meta;
 use HnutiBrontosaurus\Theme\PostTypeInitializer;
 use HnutiBrontosaurus\Theme\Rewrites\Event;
 use HnutiBrontosaurus\Theme\Rewrites\Opportunity;
@@ -32,6 +33,8 @@ require_once __DIR__ . '/homepage-banner.php';
 		PostTypeInitializer::novinky();
 		PostTypeInitializer::pribehyNadseni();
 		PostTypeInitializer::kontakty();
+
+		Meta::coverPhoto();
 
 		register_nav_menus([
 			'header' => __('Hlavička'),
@@ -96,6 +99,8 @@ require_once __DIR__ . '/homepage-banner.php';
 			src: "https://unpkg.com/glightbox@3.2.0/dist/js/glightbox.min.js",
 			ver: null,
 		);
+
+		Assets::sanitizecss();
 		wp_enqueue_style(
 			handle: "hb-unpkg-glightbox",
 			src: "https://unpkg.com/glightbox@3.2.0/dist/css/glightbox.min.css",
@@ -108,12 +113,35 @@ require_once __DIR__ . '/homepage-banner.php';
 		Assets::staticScript('lightbox', $theme);
 		Assets::staticScript('administrativeUnitsMap', $theme);
 		Assets::staticScript('references', $theme);
+
+		Assets::staticStyle('fonts', $theme);
+		Assets::staticStyle('defaults', $theme);
+		Assets::staticStyle('utils', $theme);
 		Assets::style('style', $theme);
+		Assets::staticStyle('components', $theme);
 	});
 
 	add_action('enqueue_block_editor_assets', function () use ($theme) {
 		Assets::staticScript('editor', $theme);
+
+		Assets::sanitizecss();
 		Assets::style('editor', $theme);
+
+		Assets::staticStyle('fonts', $theme);
+		Assets::staticStyle('defaults', $theme);
+		Assets::staticStyle('components', $theme);
+
+		Assets::staticScript('hb-cover-photo-panel', $theme, [
+			'wp-plugins',
+			'wp-edit-post',
+			'wp-element',
+			'wp-compose',
+			'wp-components',
+			'wp-data',
+			'wp-editor',
+			'wp-block-editor',
+			'wp-core-data',
+		]);
 	});
 
 })($hb_container, wp_get_theme());
@@ -270,17 +298,17 @@ function hb_references(?string $link = null)
 		],
 	];
 ?>
-<div class="references" data-references data-references-infinite data-references-autoplay>
-	<button class="references__button references__button--previous button button--customization" data-references-button="previous" type="button" aria-hidden="true"></button>
-	<button class="references__button references__button--next button button--customization" data-references-button="next" type="button" aria-hidden="true"></button>
+<div class="hb-references" data-references data-references-infinite data-references-autoplay>
+	<button class="hb-references__button hb-references__button--previous button button--customization" data-references-button="previous" type="button" aria-hidden="true"></button>
+	<button class="hb-references__button hb-references__button--next button button--customization" data-references-button="next" type="button" aria-hidden="true"></button>
 
-	<?php if ($link !== null): ?><a class="references__link" href="<?php echo $link ?>"><?php endif; ?>
-		<ul class="references__list" data-references-slides>
+	<?php if ($link !== null): ?><a class="hb-references__link" href="<?php echo $link ?>"><?php endif; ?>
+		<ul class="hb-references__list" data-references-slides>
 			<?php
 			$i = 0;
 			foreach ($references as $reference):
 			?>
-			<li class="references__list-item presentationBox<?php if ($i % 2 === 1): ?> presentationBox--textOnRight<?php endif; ?>" style="--presentationBox-background-image-url: url('<?php echo $reference->image; ?>')">
+			<li class="hb-references__list-item presentationBox<?php if ($i % 2 === 1): ?> presentationBox--textOnRight<?php endif; ?>" style="--presentationBox-background-image-url: url('<?php echo $reference->image; ?>')">
 				<div class="presentationBox__text">
 					<div class="hb-fs-l hb-fw-b">
 						<?php echo $reference->name ?>
@@ -590,9 +618,9 @@ function hb_event(EventDC $event, bool $lazyLoading = true, bool $smaller = fals
 function hb_eventLabels(array $labels)
 {
 ?>
-<div class="eventLabels">
+<div class="hb-eventLabels">
 <?php foreach ($labels as $label): ?>
-	<div class="eventLabels__item<?php if ($label->hasSelectorModifier): ?> eventLabels__item--type eventLabels__item--<?php echo $label->selectorModifier; endif; ?>">
+	<div class="hb-eventLabels__item<?php if ($label->hasSelectorModifier): ?> hb-eventLabels__item--type hb-eventLabels__item--<?php echo $label->selectorModifier; endif; ?>">
 		<?php echo $label->label ?>
 	</div>
 <?php endforeach; ?>
@@ -606,7 +634,7 @@ function hb_tags(array $tags, ?string $className)
 {
 	foreach ($tags as $tag):
 	?>
-	<span class="<?php echo $className !== null ? $className . ' ' : ''; ?>eventTag">
+	<span class="<?php echo $className !== null ? $className . ' ' : ''; ?>hb-tag">
 		<?php echo $tag ?>
 	</span>
 	<?php

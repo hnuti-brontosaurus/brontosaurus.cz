@@ -1,10 +1,8 @@
-@use "imports/settings";
-
 /* text align */
 .hb-ta-l { text-align: left !important; }
 .hb-ta-c { text-align: center; }
 .hb-ta-r { text-align: right; }
-@media (settings.$typography-breakpoint-large-from) {
+@media (min-width: 60.001em) { /* $typography-breakpoint-large-from */
 	.hb-lg-ta-l { text-align: left; }
 	.hb-lg-ta-c { text-align: center; }
 	.hb-lg-ta-r { text-align: right; }
@@ -47,7 +45,7 @@
 .hb-d-ib { display: inline-block; }
 .hb-d-f { display: flex; }
 .hb-d-g { display: grid; }
-@media (settings.$typography-breakpoint-large-from) {
+@media (min-width: 60.001em) { /* $typography-breakpoint-large-from */
 	.hb-lg-d-b { display: block; }
 	.hb-lg-d-ib { display: inline-block; }
 	.hb-lg-d-f { display: flex; }
@@ -104,7 +102,7 @@
 .hb-cg-7 { column-gap: 4rlh; }
 .hb-cg-8 { column-gap: 5rlh; }
 .hb-cg-9 { column-gap: 6rlh; }
-@media (settings.$typography-breakpoint-large-from) {
+@media (min-width: 60.001em) { /* $typography-breakpoint-large-from */
 	.hb-lg-fd-c { flex-direction: column; }
 	.hb-lg-fd-r { flex-direction: row; }
 	.hb-lg-jc-fs { justify-content: flex-start; }
@@ -158,14 +156,14 @@
 .hb-c-l { clear: left; }
 .hb-c-r { clear: right; }
 .hb-c-b { clear: both; }
-@media (settings.$typography-breakpoint-small-until) {
+@media (max-width: 60em) { /* $typography-breakpoint-small-until */
 	.hb-sm-f-l { float: left; }
 	.hb-sm-f-r { float: right; }
 	.hb-sm-c-l { clear: left; }
 	.hb-sm-c-r { clear: right; }
 	.hb-sm-c-b { clear: both; }
 }
-@media (settings.$typography-breakpoint-large-from) {
+@media (min-width: 60.001em) { /* $typography-breakpoint-large-from */
 	.hb-lg-f-l { float: left; }
 	.hb-lg-f-r { float: right; }
 	.hb-lg-c-l { clear: left; }
@@ -176,16 +174,16 @@
 /* sizes */
 .hb-is-100 { inline-size: 100%; }
 .hb-mw-mc { max-width: max-content; }
-// todo revise sizes
+/* todo revise sizes */
 .hb-mw-28 { max-width: 28rem; }
 .hb-mw-40 { max-width: 40rem; }
 .hb-mw-50 { max-width: 50rem; }
 .hb-mw-55ch { max-width: 55ch; }
 .hb-mw-60ch { max-width: 60ch; }
 .hb-mw-full { max-width: 100%; }
-@media (settings.$typography-breakpoint-large-from) {
+@media (min-width: 60.001em) { /* $typography-breakpoint-large-from */
 	.hb-lg-mw-mc { max-width: max-content; }
-	// todo revise sizes
+	/* todo revise sizes */
 	.hb-lg-mw-28 { max-width: 28rem; }
 	.hb-lg-mw-40 { max-width: 40rem; }
 	.hb-lg-mw-50 { max-width: 50rem; }
@@ -240,7 +238,7 @@
 .hb-mi-7 { margin-inline: 4rlh; }
 .hb-mi-8 { margin-inline: 5rlh; }
 .hb-mi-9 { margin-inline: 6rlh; }
-@media (settings.$typography-breakpoint-large-from) {
+@media (min-width: 60.001em) { /* $typography-breakpoint-large-from */
 	.hb-lg-mi-auto { margin-inline: auto; }
 	.hb-lg-mi-0 { margin-inline: 0; }
 	.hb-lg-mi-1 { margin-inline: 0.125rlh; }
@@ -345,7 +343,7 @@
 .hb-mbne-7 { margin-block-end: -4rlh; }
 .hb-mbne-8 { margin-block-end: -5rlh; }
 .hb-mbne-9 { margin-block-end: -6rlh; }
-@media (settings.$typography-breakpoint-large-from) {
+@media (min-width: 60.001em) { /* $typography-breakpoint-large-from */
 	.hb-lg-mbe-auto { margin-block-end: auto; }
 	.hb-lg-mbe-0 { margin-block-end: 0; }
 	.hb-lg-mbe-1 { margin-block-end: 0.125rlh; }
@@ -383,7 +381,7 @@
 .hb-pi-7 { padding-inline: 4rlh; }
 .hb-pi-8 { padding-inline: 5rlh; }
 .hb-pi-9 { padding-inline: 6rlh; }
-@media (settings.$typography-breakpoint-large-from) {
+@media (min-width: 60.001em) { /* $typography-breakpoint-large-from */
 	.hb-lg-pi-auto { padding-inline: auto; }
 	.hb-lg-pi-0 { padding-inline: 0; }
 	.hb-lg-pi-1 { padding-inline: 0.125rlh; }
@@ -409,7 +407,7 @@
 .hb-pis-7 { padding-inline-start: 4rlh; }
 .hb-pis-8 { padding-inline-start: 5rlh; }
 .hb-pis-9 { padding-inline-start: 6rlh; }
-@media (settings.$typography-breakpoint-large-from) {
+@media (min-width: 60.001em) { /* $typography-breakpoint-large-from */
 	.hb-lg-pis-auto { padding-inline-start: auto; }
 	.hb-lg-pis-0 { padding-inline-start: 0; }
 	.hb-lg-pis-1 { padding-inline-start: 0.125rlh; }
@@ -483,7 +481,7 @@
 .hb-pbe-7 { padding-block-end: 4rlh; }
 .hb-pbe-8 { padding-block-end: 5rlh; }
 .hb-pbe-9 { padding-block-end: 6rlh; }
-@media (settings.$typography-breakpoint-large-from) {
+@media (min-width: 60.001em) { /* $typography-breakpoint-large-from */
 	.hb-lg-pbe-auto { padding-block-end: auto; }
 	.hb-lg-pbe-0 { padding-block-end: 0; }
 	.hb-lg-pbe-1 { padding-block-end: 0.125rlh; }
@@ -508,7 +506,7 @@
 .hb-spacer-7 { height: 4rlh; }
 .hb-spacer-8 { height: 5rlh; }
 .hb-spacer-9 { height: 6rlh; }
-@media (settings.$typography-breakpoint-large-from) {
+@media (min-width: 60.001em) { /* $typography-breakpoint-large-from */
 	.hb-lg-spacer-0 { height: 0; }
 	.hb-lg-spacer-1 { height: 0.125rlh; }
 	.hb-lg-spacer-2 { height: 0.25rlh; }

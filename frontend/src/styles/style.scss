@@ -1,48 +1,26 @@
-@use "common";
-
-
-// blocks
-@use "imports/hb-blocks";
-@use "imports/wp-blocks";
-
-
 // components
 
-@use "components/components";
-@use "components/action";
-@use "components/brontographics";
+@use "components/hb-blocks";
 @use "components/footer";
 @use "components/header";
 @use "components/hero"; // must be below header
-@use "components/coverPhoto"; // must be below header
 @use "components/buttons" as buttons2;
 @use "components/administrativeUnitsMap"; // must be after button
 @use "components/filters"; // must be below header and button
 @use "components/content";
 @use "components/event";
-@use "components/events";
-@use "components/eventLabels";
 @use "components/eventList";
-@use "components/eventTag";
-@use "components/expandable";
 @use "components/description";
-@use "components/icon";
 @use "components/list";
-@use "components/message";
-@use "components/newsletter";
 @use "components/noResults";
-@use "components/optionBox";
 @use "components/pagination";
 @use "components/partners-grid";
 @use "components/photogallery";
 @use "components/presentationBox";
-@use "components/references";
-@use "components/registration";
 @use "components/related";
 @use "components/revision";
 @use "components/searchForm";
-@use "components/screenreaders-only";
+@use "components/wp-blocks";
+@use "components/wp-content";
 
 @use "pages";
-
-@use "utils";

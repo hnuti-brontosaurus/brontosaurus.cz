@@ -1,4 +1,6 @@
-@use "../imports/settings";
+$photogallery-breakpoint-twoPhotosToFull: 30em;
+$photogallery-breakpoint-twoPhotos-until: "max-width: " + $photogallery-breakpoint-twoPhotosToFull;
+$photogallery-breakpoint-full-from: "min-width: " + ($photogallery-breakpoint-twoPhotosToFull + 0.001);
 
 .photogallery {
 	display: flex;
@@ -8,7 +10,7 @@
 	align-items: flex-start;
 	list-style-type: none;
 }
-@media (settings.$photogallery-breakpoint-twoPhotos-until) {
+@media ($photogallery-breakpoint-twoPhotos-until) {
 	.photogallery {
 		flex-direction: column;
 	}
@@ -17,7 +19,7 @@
 .photogallery__item {
 	margin-block-end: 0.25rlh;
 }
-@media (settings.$photogallery-breakpoint-twoPhotos-until) {
+@media ($photogallery-breakpoint-twoPhotos-until) {
 	.photogallery__item:not(:nth-child(1)):not(:nth-child(2)) {
 		max-height: 0;
 		max-width: 0;
@@ -25,7 +27,7 @@
 		position: absolute;
 	}
 }
-@media (settings.$photogallery-breakpoint-full-from) {
+@media ($photogallery-breakpoint-full-from) {
 	.photogallery__item {
 		flex-basis: 31%;
 		margin-inline-end: 0.25rlh;
@@ -39,7 +41,7 @@
 .photogallery__image {
 	border-radius: 20px;
 }
-@media (settings.$photogallery-breakpoint-full-from) {
+@media ($photogallery-breakpoint-full-from) {
 	.photogallery__image {
 		object-fit: cover;
 		height: 9.6em;

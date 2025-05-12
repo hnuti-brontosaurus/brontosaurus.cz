@@ -21,12 +21,13 @@ final class Assets
 		);
 	}
 
-	public static function staticScript(string $name, WP_Theme $theme): void
+	public static function staticScript(string $name, WP_Theme $theme, array $deps = []): void
 	{
 		wp_enqueue_script(
 			handle: 'hb-' . $name,
 			src: self::src($name, self::STATIC_JS_PATTERN, $theme),
 			ver: self::ver($name, self::STATIC_JS_PATTERN, $theme),
+			deps: $deps,
 		);
 	}
 
@@ -39,7 +40,17 @@ final class Assets
 		);
 	}
 
+	public static function staticStyle(string $name, WP_Theme $theme): void
+	{
+		wp_enqueue_style(
+			handle: 'hb-' . $name,
+			src: self::src($name, self::STATIC_CSS_PATTERN, $theme),
+			ver: self::ver($name, self::STATIC_CSS_PATTERN, $theme),
+		);
+	}
+
 	private const CSS_PATTERN = '%s/frontend/dist/css/%s.css';
+	private const STATIC_CSS_PATTERN = '%s/styles/%s.css';
 	private const JS_PATTERN = '%s/frontend/dist/js/%s.js';
 	private const STATIC_JS_PATTERN = '%s/scripts/%s.js';
 
@@ -52,6 +63,16 @@ final class Assets
 	{
 		$path = sprintf($pattern, $theme->get_template_directory(), $for);
 		return filemtime($path);
+	}
+
+
+	public static function sanitizecss(): void
+	{
+		wp_enqueue_style(
+			handle: "hb-unpkg-sanitize",
+			src: "https://unpkg.com/sanitize.css@12.0.1/sanitize.css",
+			ver: null,
+		);
 	}
 
 }

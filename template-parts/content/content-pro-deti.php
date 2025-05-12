@@ -30,8 +30,8 @@ try {
 
 $filters = ForChildrenFiltersDC::from('jen', $selectedFilter);
 
-?><main class="hb-events hb-mbe-6" role="main" id="obsah">
-	<h1 class="hb-events__heading">
+?><main class="hb-mbe-6" role="main" id="obsah">
+	<h1 class="hb-ta-c">
 		Akce pro děti i rodiče
 	</h1>
 
@@ -41,11 +41,11 @@ $filters = ForChildrenFiltersDC::from('jen', $selectedFilter);
 		</a>
 	</div>
 
-	<h2 class="screenreaders-only">
+	<h2 class="hb-sr-only">
 		Akce pro děti a rodiče s dětmi
 	</h2>
 
-	<div class="hb-events__filters filters hb-expandable"<?php if ($filters->isAnySelected): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
+	<div class="filters hb-expandable hb-mbe-4"<?php if ($filters->isAnySelected): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
 		<button class="hb-expandable__toggler button button--customization" type="button" aria-hidden="true" data-hb-expandable-toggler>
 			Zobrazit pouze
 		</button>
@@ -104,47 +104,47 @@ $filters = ForChildrenFiltersDC::from('jen', $selectedFilter);
 		</p>
 
 		<div class="description__list">
-			<a class="description__item optionBox button--secondary-wrapper" href="/pro-deti?jen=detske-tabory#obsah">
-				<div class="description__itemText optionBox__text">
-					<h2 class="optionBox__heading">
+			<a class="description__item hb-optionBox button--secondary-wrapper" href="/pro-deti?jen=detske-tabory#obsah">
+				<div class="description__itemText hb-optionBox__text">
+					<h2>
 						Tábory pro děti
 					</h2>
 
-					<p class="optionBox__description">
+					<p class="hb-optionBox__description">
 						Brontosauří tábory pro děti se vyznačují silným příběhem,
 						rozmanitostí aktivit a výchovou dětí k přírodě a pečování o ni.
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--forChildren-camps">
+				<div class="hb-optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/forChildren-camps.jpg');">
 					<div class="button button--secondary">Najít tábor</div>
 				</div>
 			</a>
 
-			<a class="description__item optionBox button--secondary-wrapper" href="/pro-deti?jen=detske-oddily#obsah">
-				<div class="description__itemText optionBox__text">
-					<h2 class="optionBox__heading">
+			<a class="description__item hb-optionBox button--secondary-wrapper" href="/pro-deti?jen=detske-oddily#obsah">
+				<div class="description__itemText hb-optionBox__text">
+					<h2>
 						Dětské oddíly
 					</h2>
 
-					<p class="optionBox__description">
+					<p class="hb-optionBox__description">
 						Brontosauří dětské oddíly se pravidelně scházejí v klubovně
 						i na výletech do přírody. Oddíly vedou proškolení organizátoři.
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--forChildren-units">
+				<div class="hb-optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/forChildren-units.jpg'); --hb-optionBox-y-offset: 85%;">
 					<div class="button button--secondary">Seznam dětských oddílů</div>
 				</div>
 			</a>
 
-			<a class="description__item optionBox button--secondary-wrapper" href="/pro-deti?jen=akce-pro-deti#obsah">
-				<div class="description__itemText optionBox__text">
-					<h2 class="optionBox__heading">
+			<a class="description__item hb-optionBox button--secondary-wrapper" href="/pro-deti?jen=akce-pro-deti#obsah">
+				<div class="description__itemText hb-optionBox__text">
+					<h2>
 						Akce pro děti
 					</h2>
 
-					<p class="optionBox__description">
+					<p class="hb-optionBox__description">
 						Hnutí Brontosaurus nezapomíná ani na ty nejmenší, a proto pořádáme dobrodružné výpravy a pobyty v přírodě,
 						nejrůznější akce pro veřejnost a samozřejmě také letní tábory.
 						Díky spojení zážitků s ekologickou výchovou se nám
@@ -152,25 +152,25 @@ $filters = ForChildrenFiltersDC::from('jen', $selectedFilter);
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--forChildren-events">
+				<div class="hb-optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/forChildren-events.jpg'); --hb-optionBox-y-offset: 100%;">
 					<div class="button button--secondary">Najít akci pro děti</div>
 				</div>
 			</a>
 
-			<a class="description__item optionBox button--secondary-wrapper" href="/pro-deti?jen=akce-pro-rodice-s-detmi#obsah">
-				<div class="description__itemText optionBox__text">
-					<h2 class="optionBox__heading">
+			<a class="description__item hb-optionBox button--secondary-wrapper" href="/pro-deti?jen=akce-pro-rodice-s-detmi#obsah">
+				<div class="description__itemText hb-optionBox__text">
+					<h2>
 						Akce pro rodiče s dětmi
 					</h2>
 
-					<p class="optionBox__description">
+					<p class="hb-optionBox__description">
 						Pro aktivní rodiče, kteří nechtějí strávit dovolenou
 						s dětmi vyvalováním se u moře, pořádá Brontosaurus tábory
 						pro rodiče s dětmi, kde se zážitkový program a pohoda střídá s dobrovolnickou pomocí.
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--forChildren-eventsWithParents">
+				<div class="hb-optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/forChildren-eventsWithParents.jpg'); --hb-optionBox-y-offset: 22%;">
 					<div class="button button--secondary">Najít akci pro rodiče s dětmi</div>
 				</div>
 			</a>

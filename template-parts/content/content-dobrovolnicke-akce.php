@@ -59,16 +59,16 @@ if ($eventCollection === null) {
 
 $filters = VoluntaryFiltersDC::from('jen', $selectedFilter);
 
-?><main class="hb-events hb-mbe-6" role="main" id="obsah">
-	<h1 class="hb-events__heading">
+?><main class="hb-mbe-6" role="main" id="obsah">
+	<h1 class="hb-ta-c">
 		Zážitkové a dobrovolnické akce
 	</h1>
 
-	<h2 class="screenreaders-only">
+	<h2 class="hb-sr-only">
 		Seznam akcí
 	</h2>
 
-	<div class="hb-events__filters filters hb-expandable"<?php if ($filters->isAnySelected): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
+	<div class="filters hb-expandable hb-mbe-4"<?php if ($filters->isAnySelected): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
 		<button class="hb-expandable__toggler button button--customization" type="button" aria-hidden="true" data-hb-expandable-toggler>
 			Zobrazit pouze
 		</button>
@@ -138,13 +138,13 @@ $filters = VoluntaryFiltersDC::from('jen', $selectedFilter);
 		</p>
 
 		<div class="description__list">
-			<a class="description__item description__item--fullWidth optionBox button--secondary-wrapper" href="/dobrovolnicke-akce?jen=jedu-poprve#obsah">
-				<div class="description__itemText optionBox__text">
-					<h2 class="optionBox__heading">
+			<a class="description__item description__item--fullWidth hb-optionBox button--secondary-wrapper" href="/dobrovolnicke-akce?jen=jedu-poprve#obsah">
+				<div class="description__itemText hb-optionBox__text">
+					<h2>
 						Jedu poprvé
 					</h2>
 
-					<p class="optionBox__description">
+					<p class="hb-optionBox__description">
 						Podívej se na nabídku akcí zvláště vhodných pro ty, co s námi chtějí jet poprvé. Akce se konají
 						v přírodních lokalitách nebo na hradech a zámcích. Bývají na nich převážně mladí lidé ve věku 15&ndash;22 let.
 						Na akci je zajištěn program, součástí je vždy dobrovolnická pomoc dané lokalitě. Zabezpečeno je po celou dobu také
@@ -152,22 +152,22 @@ $filters = VoluntaryFiltersDC::from('jen', $selectedFilter);
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--voluntary-firstTime">
+				<div class="hb-optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/voluntary-firstTime.jpg'); --hb-optionBox-y-offset: 36%;">
 					<div class="button button--secondary">Najít akci</div>
 				</div>
 			</a>
 
-			<a class="description__item--fullWidth hb-js-c action action--ulterior" href="/jedu-poprve">
+			<a class="description__item--fullWidth hb-js-c hb-action hb-action--ulterior" href="/jedu-poprve">
 				Co čekat, když jedu poprvé?
 			</a>
 
-			<a class="description__item optionBox button--secondary-wrapper" href="/dobrovolnicke-akce?jen=vikendovky#obsah">
-				<div class="description__itemText optionBox__text">
-					<h2 class="optionBox__heading">
+			<a class="description__item hb-optionBox button--secondary-wrapper" href="/dobrovolnicke-akce?jen=vikendovky#obsah">
+				<div class="description__itemText hb-optionBox__text">
+					<h2>
 						Víkendovky
 					</h2>
 
-					<p class="optionBox__description">
+					<p class="hb-optionBox__description">
 						Víkendové akce typicky probíhají na jaře a na podzim. Ať jde o kosení orchidejových luk, věšení
 						a údržba ptačích budek nebo opravu hradní zdi,
 						čeká tě spousta zábavy, nových přátelství a zážitků
@@ -175,18 +175,18 @@ $filters = VoluntaryFiltersDC::from('jen', $selectedFilter);
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--voluntary-weekendEvents">
+				<div class="hb-optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/voluntary-weekendEvents.jpg'); --hb-optionBox-y-offset: 62%;">
                     <div class="button button--secondary">Najít akci</div>
 				</div>
 			</a>
 
-			<a class="description__item optionBox button--secondary-wrapper" href="/dobrovolnicke-akce?jen=jednodenni#obsah">
-				<div class="description__itemText optionBox__text">
-					<h2 class="optionBox__heading">
+			<a class="description__item hb-optionBox button--secondary-wrapper" href="/dobrovolnicke-akce?jen=jednodenni#obsah">
+				<div class="description__itemText hb-optionBox__text">
+					<h2>
 						Jednodenní akce
 					</h2>
 
-					<p class="optionBox__description">
+					<p class="hb-optionBox__description">
 						Ne všechny brontosauří akce trvají více dní.
 						Občas pořádáme jednodenní akce, při kterých
 						třeba věšíme ptačí budky, potkáváme se po úspěšné
@@ -196,18 +196,18 @@ $filters = VoluntaryFiltersDC::from('jen', $selectedFilter);
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--voluntary-oneDayEvents">
+				<div class="hb-optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/voluntary-oneDayEvents-scaled.jpg'); --hb-optionBox-y-offset: 58%;">
                     <div class="button button--secondary">Najít akci</div>
 				</div>
 			</a>
 
-			<a class="description__item description__item--fullWidth optionBox button--secondary-wrapper" href="/dobrovolnicke-akce?jen=prazdninove#obsah">
-				<div class="description__itemText optionBox__text">
-					<h2 class="optionBox__heading">
+			<a class="description__item description__item--fullWidth hb-optionBox button--secondary-wrapper" href="/dobrovolnicke-akce?jen=prazdninove#obsah">
+				<div class="description__itemText hb-optionBox__text">
+					<h2>
 						Prázdninové akce
 					</h2>
 
-					<p class="optionBox__description">
+					<p class="hb-optionBox__description">
 						Prázdninové akce se nejčastěji konají během
 						letních prázdnin a jsou to vlastně takové tábory
 						pro mladé dospěláky spojené s dobrovolnickou
@@ -217,18 +217,18 @@ $filters = VoluntaryFiltersDC::from('jen', $selectedFilter);
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--voluntary-holidayEvents">
+				<div class="hb-optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/voluntary-holidayEvents.jpg');">
                     <div class="button button--secondary">Najít akci</div>
 				</div>
 			</a>
 
-			<a class="description__item optionBox button--secondary-wrapper" href="/dobrovolnicke-akce?jen=priroda#obsah">
-				<div class="description__itemText optionBox__text">
-					<h2 class="optionBox__heading">
+			<a class="description__item hb-optionBox button--secondary-wrapper" href="/dobrovolnicke-akce?jen=priroda#obsah">
+				<div class="description__itemText hb-optionBox__text">
+					<h2>
 						Příroda
 					</h2>
 
-					<p class="optionBox__description">
+					<p class="hb-optionBox__description">
 						Pojď s námi pomáhat vzácným rostlinám i živočichům,
 						podívat se na nádherná místa po celé
 						republice, pohladit si lišku na záchranné stanici,
@@ -238,18 +238,18 @@ $filters = VoluntaryFiltersDC::from('jen', $selectedFilter);
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--voluntary-nature">
+				<div class="hb-optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/voluntary-nature.jpg');">
                     <div class="button button--secondary">Akce pomáhající přírodě</div>
 				</div>
 			</a>
 
-			<a class="description__item optionBox button--secondary-wrapper" href="/dobrovolnicke-akce?jen=pamatky#obsah">
-				<div class="description__itemText optionBox__text">
-					<h2 class="optionBox__heading">
+			<a class="description__item hb-optionBox button--secondary-wrapper" href="/dobrovolnicke-akce?jen=pamatky#obsah">
+				<div class="description__itemText hb-optionBox__text">
+					<h2>
 						Památky
 					</h2>
 
-					<p class="optionBox__description">
+					<p class="hb-optionBox__description">
 						Cítíš se doma na starobylých hradech nebo v pokoji
 						vily z první republiky? Podívej se na místa,
 						která jsou normálním návštěvníkům zapovězena a vyzkoušej si,
@@ -259,7 +259,7 @@ $filters = VoluntaryFiltersDC::from('jen', $selectedFilter);
 					</p>
 				</div>
 
-				<div class="optionBox__image optionBox__image--voluntary-sights">
+				<div class="hb-optionBox__image" style="--hb-optionBox-image: url('https://brontosaurus.cz/wp-content/uploads/2024/12/voluntary-sights-scaled.jpg');">
                     <div class="button button--secondary">Akce pomáhající památkám</div>
 				</div>
 			</a>
