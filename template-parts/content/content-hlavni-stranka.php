@@ -68,7 +68,7 @@ $hb_banner = hb_banner();
     if ($hb_banner !== null):
     $hb_banner_tag = $hb_banner->link !== null ? 'a' : 'div';
     ?>
-	<<?php echo $hb_banner_tag ?> class="hb-block-banner hb-mbs-2 hb-mbe-5" <?php if ($hb_banner->link !== null): ?>href="<?php echo $hb_banner->link ?>" rel="noopener"<?php endif; ?> style="--hb-block-banner-background-url: url('<?php echo $hb_banner->image ?>')">
+	<<?php echo $hb_banner_tag ?> class="hb-block-banner hb-mbs-5 hb-pbs-2 hb-mbe-5" <?php if ($hb_banner->link !== null): ?>href="<?php echo $hb_banner->link ?>" rel="noopener"<?php endif; ?> style="--hb-block-banner-background-url: url('<?php echo $hb_banner->image ?>')">
 		<div class="hb-block-banner__textContainer">
 			<div class="hb-block-banner__text hb-mbs-3">
 				<div class="hb-fs-xl hb-mbe-2 hb-fw-b"><?php echo $hb_banner->heading ?></div>
