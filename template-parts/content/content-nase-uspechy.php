@@ -106,11 +106,10 @@ $stories = array_map(function (WP_Post $post) {
 			Tyto příběhy jsou jen malým dílem obrovského úsilí o zdravé životní prostředí,
 			respekt k přírodě a udržitelný život. Mohou nás však inspirovat k aktivitě
 			a přinášet naději a důvěru v budoucnost.
-
+			Stáhni si <a href="https://mozek.brontosaurus.cz/attachments/article/1229/P%C5%99%C3%ADb%C4%9Bhy%20nad%C5%A1en%C3%AD%2050_%20Hnut%C3%AD%20Brontosaurus.pdf" rel="noopener noreferrer" target="_blank">booklet výběru českých</a>
+			a <a href="https://mozek.brontosaurus.cz/attachments/article/1229/Pr%C3%ADbehy%20nad%C5%A1enia_%20Strom%20%C5%BEivota.pdf" rel="noopener noreferrer" target="_blank">slovenských</a> příběhů.
 			Koukni na další příběhy ve videích níže nebo si je poslechni v našem
 			<a href="https://open.spotify.com/show/2FUTJzuAiTbYlTVXSsmT5F?si=d60021af65914673" rel="noopener noreferrer" target="_blank">podcastu Příběhy nadšení</a>.
-			Nastartujme společně <a href="https://dalsich50.cz" rel="noopener noreferrer" target="_blank">Dalších 50 let</a>
-			péče o přírodu, památky a lidi s Brontosaurem!
 		</p>
 
 		<div class="hb-mw-50 [ hb-d-f hb-fd-c hb-lg-fd-r hb-g-4 hb-lg-g-3 ][ hb-mi-auto hb-mbs-6 hb-mbe-5 hb-lg-mbe-4 ]">
