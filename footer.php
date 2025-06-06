@@ -45,7 +45,7 @@ $hb_currentPost = get_post();
 </aside>
 <?php endif; ?>
 
-<div class="hb-newsletter">
+<div class="hb-newsletter" id="newsletter">
 	<h2 class="hb-newsletter__heading">
 		Chceš zůstat v kontaktu?
 	</h2>
