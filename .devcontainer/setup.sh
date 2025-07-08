@@ -6,9 +6,9 @@ WORKSPACE_DIR="/workspaces/$THEME_NAME"
 
 echo "Setting up WordPress with your theme: $THEME_NAME"
 
-# Install Apache, MySQL, and PHP extensions
+# Install Apache and MariaDB (MySQL alternative)
 sudo apt-get update
-sudo apt-get install -y apache2 mysql-server
+sudo apt-get install -y apache2 mariadb-server
 
 # Add PHP repository and install PHP with Apache module
 sudo apt-get install -y software-properties-common
@@ -20,8 +20,8 @@ sudo apt-get install -y php8.1 libapache2-mod-php8.1 php8.1-mysqli php8.1-mysql 
 sudo a2enmod rewrite
 sudo service apache2 start
 
-# Configure MySQL
-sudo service mysql start
+# Configure MariaDB (MySQL alternative)
+sudo service mariadb start
 sudo mysql -e "CREATE DATABASE wordpress;"
 sudo mysql -e "CREATE USER 'wpuser'@'localhost' IDENTIFIED BY 'password';"
 sudo mysql -e "GRANT ALL PRIVILEGES ON wordpress.* TO 'wpuser'@'localhost';"
@@ -82,7 +82,7 @@ sudo a2enmod php8.1
 
 # Start services
 sudo service apache2 restart
-sudo service mysql restart
+sudo service mariadb restart
 
 # Install WP-CLI for easier WordPress management
 cd /tmp
