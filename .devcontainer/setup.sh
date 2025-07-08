@@ -8,7 +8,13 @@ echo "Setting up WordPress with your theme: $THEME_NAME"
 
 # Install Apache, MySQL, and PHP extensions
 sudo apt-get update
-sudo apt-get install -y apache2 mysql-server php-mysqli php-mysql php-curl php-gd php-mbstring php-xml php-zip
+sudo apt-get install -y apache2 mysql-server
+
+# Add PHP repository and install MySQL extensions
+sudo apt-get install -y software-properties-common
+sudo add-apt-repository ppa:ondrej/php -y
+sudo apt-get update
+sudo apt-get install -y php8.1-mysqli php8.1-mysql php8.1-curl php8.1-gd php8.1-mbstring php8.1-xml php8.1-zip
 
 # Configure Apache
 sudo a2enmod rewrite
