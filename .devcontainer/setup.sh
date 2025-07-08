@@ -10,11 +10,11 @@ echo "Setting up WordPress with your theme: $THEME_NAME"
 sudo apt-get update
 sudo apt-get install -y apache2 mysql-server
 
-# Add PHP repository and install MySQL extensions
+# Add PHP repository and install PHP with Apache module
 sudo apt-get install -y software-properties-common
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt-get update
-sudo apt-get install -y php8.1-mysqli php8.1-mysql php8.1-curl php8.1-gd php8.1-mbstring php8.1-xml php8.1-zip
+sudo apt-get install -y php8.1 libapache2-mod-php8.1 php8.1-mysqli php8.1-mysql php8.1-curl php8.1-gd php8.1-mbstring php8.1-xml php8.1-zip
 
 # Configure Apache
 sudo a2enmod rewrite
@@ -75,13 +75,14 @@ sudo tee /etc/apache2/sites-available/000-default.conf > /dev/null <<EOF
 </VirtualHost>
 EOF
 
+# Enable PHP extensions and Apache PHP module
+sudo phpenmod mysqli
+sudo phpenmod mysql
+sudo a2enmod php8.1
+
 # Start services
 sudo service apache2 restart
 sudo service mysql restart
-
-# Enable PHP extensions
-sudo phpenmod mysqli
-sudo phpenmod mysql
 
 # Install WP-CLI for easier WordPress management
 cd /tmp
