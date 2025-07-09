@@ -2,98 +2,92 @@
 
 # Get the current workspace name (your theme name)
 THEME_NAME=$(basename $PWD)
-WORKSPACE_DIR="/workspaces/$THEME_NAME"
 
-echo "Setting up WordPress with your theme: $THEME_NAME"
+echo "Setting up WordPress with Docker for theme: $THEME_NAME"
 
-# Install Apache and MariaDB (MySQL alternative)
-sudo apt-get update
-sudo apt-get install -y apache2 mariadb-server
+# Create docker-compose.yml
+cat > docker-compose.yml << EOF
+version: '3.8'
 
-# Add PHP repository and install PHP with Apache module
-sudo apt-get install -y software-properties-common
-sudo add-apt-repository ppa:ondrej/php -y
-sudo apt-get update
-sudo apt-get install -y php8.1 libapache2-mod-php8.1 php8.1-mysqli php8.1-mysql php8.1-curl php8.1-gd php8.1-mbstring php8.1-xml php8.1-zip
+services:
+  wordpress:
+    image: wordpress:latest
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DEBUG: 1
+    volumes:
+      - .:/var/www/html/wp-content/themes/$THEME_NAME
+      - wordpress_data:/var/www/html
+    depends_on:
+      - mysql
 
-# Configure Apache
-sudo a2enmod rewrite
-sudo service apache2 start
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+      MYSQL_ROOT_PASSWORD: rootpassword
+    volumes:
+      - mysql_data:/var/lib/mysql
 
-# Configure MariaDB (MySQL alternative)
-sudo service mariadb start
-sudo mysql -e "CREATE DATABASE wordpress;"
-sudo mysql -e "CREATE USER 'wpuser'@'localhost' IDENTIFIED BY 'password';"
-sudo mysql -e "GRANT ALL PRIVILEGES ON wordpress.* TO 'wpuser'@'localhost';"
-sudo mysql -e "FLUSH PRIVILEGES;"
-
-# Download and setup WordPress
-cd /tmp
-wget https://wordpress.org/latest.tar.gz
-tar -xzf latest.tar.gz
-sudo cp -r wordpress/* /var/www/html/
-sudo chown -R www-data:www-data /var/www/html/
-sudo chmod -R 755 /var/www/html/
-
-# Create wp-config.php with proper debug settings
-sudo cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
-sudo sed -i "s/database_name_here/wordpress/" /var/www/html/wp-config.php
-sudo sed -i "s/username_here/wpuser/" /var/www/html/wp-config.php
-sudo sed -i "s/password_here/password/" /var/www/html/wp-config.php
-
-# Add debug settings only if they don't exist
-if ! grep -q "WP_DEBUG" /var/www/html/wp-config.php; then
-    sudo sed -i "/\/\*.*stop editing.*\*\//i\\
-define('WP_DEBUG', true);\\
-define('WP_DEBUG_LOG', true);\\
-define('WP_DEBUG_DISPLAY', false);\\
-" /var/www/html/wp-config.php
-fi
-
-# Remove default themes to avoid confusion
-sudo rm -rf /var/www/html/wp-content/themes/twenty*
-
-# Create symlink so your current repository becomes the active theme
-sudo ln -s $WORKSPACE_DIR /var/www/html/wp-content/themes/$THEME_NAME
-
-# Set proper permissions
-sudo chown -R www-data:www-data /var/www/html/wp-content/themes/$THEME_NAME
-sudo chmod -R 755 $WORKSPACE_DIR
-
-# Configure Apache to serve WordPress
-sudo tee /etc/apache2/sites-available/000-default.conf > /dev/null <<EOF
-<VirtualHost *:80>
-    DocumentRoot /var/www/html
-    
-    <Directory /var/www/html>
-        AllowOverride All
-        Require all granted
-    </Directory>
-    
-    ErrorLog \${APACHE_LOG_DIR}/error.log
-    CustomLog \${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
+volumes:
+  wordpress_data:
+  mysql_data:
 EOF
 
-# Enable PHP extensions and Apache PHP module
-sudo phpenmod mysqli
-sudo phpenmod mysql
-sudo a2enmod php8.1
+# Start WordPress and MySQL containers
+docker-compose up -d
 
-# Start services
-sudo service apache2 restart
-sudo service mariadb restart
+# Wait for containers to be ready
+echo "Waiting for WordPress to be ready..."
+sleep 30
 
-# Install WP-CLI for easier WordPress management
-cd /tmp
-wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+# Install WP-CLI in WordPress container
+docker-compose exec wordpress bash -c "
+curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 chmod +x wp-cli.phar
-sudo mv wp-cli.phar /usr/local/bin/wp
+mv wp-cli.phar /usr/local/bin/wp
+"
+
+# Install and configure WordPress
+docker-compose exec wordpress wp core install \
+  --url="http://localhost:8080" \
+  --title="Theme Development Site" \
+  --admin_user="admin" \
+  --admin_password="password" \
+  --admin_email="admin@example.com" \
+  --allow-root
+
+# Activate your theme
+docker-compose exec wordpress wp theme activate $THEME_NAME --allow-root
+
+# Install development plugins
+docker-compose exec wordpress wp plugin install query-monitor --activate --allow-root
+
+# Create sample content
+docker-compose exec wordpress wp post create \
+  --post_title="Welcome to Your Theme" \
+  --post_content="This is a sample post to test your theme." \
+  --post_status=publish \
+  --allow-root
 
 echo "WordPress setup complete!"
-echo "Access your site at: http://localhost:8080"
-echo "Your theme '$THEME_NAME' is now active in WordPress"
-echo "All theme files in this repository are live - edit and refresh to see changes!"
-
-# Run theme activation script
-bash .devcontainer/activate-theme.sh
+echo "Site: http://localhost:8080"
+echo "Admin: http://localhost:8080/wp-admin"
+echo "Username: admin"
+echo "Password: password"
+echo ""
+echo "Your theme '$THEME_NAME' is now active!"
+echo "Edit files in this directory and refresh to see changes."
+echo ""
+echo "Useful commands:"
+echo "  docker-compose logs -f wordpress  # View WordPress logs"
+echo "  docker-compose exec wordpress wp ... # Run WP-CLI commands"
+echo "  docker-compose restart            # Restart services"
+echo "  docker-compose down              # Stop services"
