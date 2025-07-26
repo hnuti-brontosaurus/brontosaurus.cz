@@ -5,7 +5,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      no_cache: true
     volumes:
       - ../:/workspaces/${localWorkspaceFolderBasename}:cached
       - /workspaces/${localWorkspaceFolderBasename}/node_modules
