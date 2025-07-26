@@ -10,8 +10,9 @@ if ! pgrep apache2 > /dev/null; then
 fi
 
 # Check if we're in the workspace directory and have the necessary files
-if [ -d "/workspace" ] && [ -f "/workspace/package.json" ]; then
-    cd /workspace
+WORKSPACE_DIR="/workspaces/${CODESPACE_NAME:-$(basename $(pwd))}"
+if [ -d "${WORKSPACE_DIR}" ] && [ -f "${WORKSPACE_DIR}/package.json" ]; then
+    cd "${WORKSPACE_DIR}"
     
     # Install/update dependencies if needed
     if [ ! -d "node_modules" ] || [ "package.json" -nt "node_modules" ]; then

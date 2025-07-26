@@ -2,7 +2,7 @@
   "name": "Brontosaurus WordPress Theme Development",
   "dockerComposeFile": "docker-compose.yml",
   "service": "wordpress-dev",
-  "workspaceFolder": "/workspace",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   
   "features": {
     "ghcr.io/devcontainers/features/node:1": {

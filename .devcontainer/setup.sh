@@ -17,7 +17,7 @@ sudo chown -R www-data:www-data /var/www/html/wp-content
 
 # Symlink the current workspace to the theme directory
 echo "🔗 Linking theme to WordPress..."
-sudo ln -sf /workspace /var/www/html/wp-content/themes/brontosaurus
+sudo ln -sf /workspaces/${CODESPACE_NAME:-$(basename $(pwd))} /var/www/html/wp-content/themes/brontosaurus
 
 # Install WordPress if not already installed
 if ! wp core is-installed --path=/var/www/html --allow-root; then
@@ -37,23 +37,24 @@ echo "🎨 Activating Brontosaurus theme..."
 wp theme activate brontosaurus --path=/var/www/html --allow-root
 
 # Install backend dependencies (Composer)
-if [ -f "/workspace/composer.json" ]; then
+WORKSPACE_DIR="/workspaces/${CODESPACE_NAME:-$(basename $(pwd))}"
+if [ -f "${WORKSPACE_DIR}/composer.json" ]; then
     echo "📦 Installing PHP dependencies..."
-    cd /workspace
+    cd "${WORKSPACE_DIR}"
     composer install --no-dev --optimize-autoloader
 fi
 
 # Install frontend dependencies (Yarn)
-if [ -f "/workspace/package.json" ]; then
+if [ -f "${WORKSPACE_DIR}/package.json" ]; then
     echo "📦 Installing Node.js dependencies..."
-    cd /workspace
+    cd "${WORKSPACE_DIR}"
     yarn install
 fi
 
 # Set proper permissions
 echo "🔐 Setting proper permissions..."
 sudo chown -R www-data:www-data /var/www/html
-sudo chown -R www-data:www-data /workspace
+sudo chown -R www-data:www-data "${WORKSPACE_DIR}"
 
 # Create a sample post with the theme
 echo "📝 Creating sample content..."
@@ -70,5 +71,5 @@ echo "👤 Admin Login: http://localhost:8080/wp-admin (admin/admin)"
 echo "🗄️  phpMyAdmin: http://localhost:8081"
 echo ""
 echo "🛠️  To start development:"
-echo "   cd /workspace && yarn dev"
+echo "   cd ${WORKSPACE_DIR} && yarn dev"
 echo ""

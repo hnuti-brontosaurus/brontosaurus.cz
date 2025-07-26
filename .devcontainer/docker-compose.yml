@@ -6,8 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ../:/workspace:cached
-      - /workspace/node_modules
+      - ../:/workspaces/${localWorkspaceFolderBasename}:cached
+      - /workspaces/${localWorkspaceFolderBasename}/node_modules
       - wp-content:/var/www/html/wp-content
     ports:
       - "8080:80"
