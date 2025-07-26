@@ -38,5 +38,5 @@ COPY apache-vhost.conf /etc/apache2/sites-available/000-default.conf
 
 WORKDIR /workspaces
 
-# Switch to www-data user AFTER devcontainer features are installed
-USER www-data
+# DO NOT switch users here - let devcontainer features run as root
+# The remoteUser setting in devcontainer.json will handle the user switch
