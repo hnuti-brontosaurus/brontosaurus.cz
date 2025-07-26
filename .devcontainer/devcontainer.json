@@ -8,21 +8,11 @@
     "vscode": {
       "extensions": [
         "bmewburn.vscode-intelephense-client",
-        "bradlc.vscode-tailwindcss",
         "ms-vscode.vscode-json",
-        "esbenp.prettier-vscode",
-        "formulahendry.auto-rename-tag",
-        "ms-vscode.vscode-typescript-next",
-        "rangav.vscode-thunder-client"
+        "esbenp.prettier-vscode"
       ],
       "settings": {
-        "php.validate.executablePath": "/usr/local/bin/php",
-        "intelephense.files.maxSize": 5000000,
-        "editor.formatOnSave": true,
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "[php]": {
-          "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
-        }
+        "editor.formatOnSave": true
       }
     }
   },
@@ -32,15 +22,10 @@
     "8080": {
       "label": "WordPress Site",
       "onAutoForward": "openBrowser"
-    },
-    "3000": {
-      "label": "Gulp Dev Server",
-      "onAutoForward": "silent"
     }
   },
 
   "postCreateCommand": ".devcontainer/setup.sh",
-  "postStartCommand": ".devcontainer/start-services.sh",
 
   "remoteUser": "www-data"
 }
