@@ -12,7 +12,17 @@ RUN apt-get update && apt-get install -y \
     less \
     procps \
     sudo \
+    gnupg \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
+
+# Install Node.js 18 and Yarn
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs \
+    && npm install -g yarn
+
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install WP-CLI
 RUN curl -O https://raw.githubusercontent.com/wp-cli/wp-cli/v2.8.1/wp-cli.phar \
@@ -38,5 +48,5 @@ COPY apache-vhost.conf /etc/apache2/sites-available/000-default.conf
 
 WORKDIR /workspaces
 
-# DO NOT switch users here - let devcontainer features run as root
-# The remoteUser setting in devcontainer.json will handle the user switch
+# Switch to www-data user for development
+USER www-data
