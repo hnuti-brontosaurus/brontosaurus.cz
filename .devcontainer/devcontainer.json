@@ -6,7 +6,9 @@
   
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
-      "version": "18"
+      "version": "18",
+      "nodeGypDependencies": true,
+      "installYarnUsingApt": true
     },
     "ghcr.io/devcontainers/features/php:1": {
       "version": "8.2",
@@ -52,6 +54,5 @@
   "postCreateCommand": ".devcontainer/setup.sh",
   "postStartCommand": ".devcontainer/start-services.sh",
 
-  "remoteUser": "www-data",
-  "containerUser": "www-data"
+  "remoteUser": "www-data"
 }
