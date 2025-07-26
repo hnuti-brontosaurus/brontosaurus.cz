@@ -3,6 +3,18 @@
   "dockerComposeFile": "docker-compose.yml",
   "service": "wordpress-dev",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18",
+      "nodeGypDependencies": true,
+      "installYarnUsingApt": true
+    },
+    "ghcr.io/devcontainers/features/php:1": {
+      "version": "8.2",
+      "installComposer": true
+    }
+  },
 
   "customizations": {
     "vscode": {
