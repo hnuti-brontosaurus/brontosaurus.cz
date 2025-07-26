@@ -1,93 +1,74 @@
 #!/bin/bash
+set -e
 
-# Get the current workspace name (your theme name)
-THEME_NAME=$(basename $PWD)
+echo "🚀 Setting up Brontosaurus WordPress development environment..."
 
-echo "Setting up WordPress with Docker for theme: $THEME_NAME"
+# Wait for database to be ready
+echo "⏳ Waiting for database..."
+while ! nc -z db 3306; do
+  sleep 1
+done
+sleep 5
 
-# Create docker-compose.yml
-cat > docker-compose.yml << EOF
-version: '3.8'
+# Create the themes directory structure
+echo "📁 Setting up WordPress directory structure..."
+sudo mkdir -p /var/www/html/wp-content/themes/brontosaurus
+sudo chown -R www-data:www-data /var/www/html/wp-content
 
-services:
-  wordpress:
-    image: wordpress:latest
-    ports:
-      - "8080:80"
-    environment:
-      WORDPRESS_DB_HOST: mysql
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DB_NAME: wordpress
-      WORDPRESS_DEBUG: 1
-    volumes:
-      - .:/var/www/html/wp-content/themes/$THEME_NAME
-      - wordpress_data:/var/www/html
-    depends_on:
-      - mysql
+# Symlink the current workspace to the theme directory
+echo "🔗 Linking theme to WordPress..."
+sudo ln -sf /workspace /var/www/html/wp-content/themes/brontosaurus
 
-  mysql:
-    image: mysql:8.0
-    environment:
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
-      MYSQL_ROOT_PASSWORD: rootpassword
-    volumes:
-      - mysql_data:/var/lib/mysql
+# Install WordPress if not already installed
+if ! wp core is-installed --path=/var/www/html --allow-root; then
+    echo "📦 Installing WordPress..."
+    wp core install \
+        --path=/var/www/html \
+        --url=http://localhost:8080 \
+        --title="Brontosaurus Development Site" \
+        --admin_user=admin \
+        --admin_password=admin \
+        --admin_email=admin@brontosaurus.cz \
+        --allow-root
+fi
 
-volumes:
-  wordpress_data:
-  mysql_data:
-EOF
+# Activate the Brontosaurus theme
+echo "🎨 Activating Brontosaurus theme..."
+wp theme activate brontosaurus --path=/var/www/html --allow-root
 
-# Start WordPress and MySQL containers
-docker-compose up -d
+# Install backend dependencies (Composer)
+if [ -f "/workspace/composer.json" ]; then
+    echo "📦 Installing PHP dependencies..."
+    cd /workspace
+    composer install --no-dev --optimize-autoloader
+fi
 
-# Wait for containers to be ready
-echo "Waiting for WordPress to be ready..."
-sleep 30
+# Install frontend dependencies (Yarn)
+if [ -f "/workspace/package.json" ]; then
+    echo "📦 Installing Node.js dependencies..."
+    cd /workspace
+    yarn install
+fi
 
-# Install WP-CLI in WordPress container
-docker-compose exec wordpress bash -c "
-curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-chmod +x wp-cli.phar
-mv wp-cli.phar /usr/local/bin/wp
-"
+# Set proper permissions
+echo "🔐 Setting proper permissions..."
+sudo chown -R www-data:www-data /var/www/html
+sudo chown -R www-data:www-data /workspace
 
-# Install and configure WordPress
-docker-compose exec wordpress wp core install \
-  --url="http://localhost:8080" \
-  --title="Theme Development Site" \
-  --admin_user="admin" \
-  --admin_password="password" \
-  --admin_email="admin@example.com" \
-  --allow-root
+# Create a sample post with the theme
+echo "📝 Creating sample content..."
+wp post create --post_title="Welcome to Brontosaurus Development" \
+    --post_content="This is your Brontosaurus theme development environment. You can edit the theme files and see changes instantly!" \
+    --post_status=publish \
+    --path=/var/www/html \
+    --allow-root
 
-# Activate your theme
-docker-compose exec wordpress wp theme activate $THEME_NAME --allow-root
-
-# Install development plugins
-docker-compose exec wordpress wp plugin install query-monitor --activate --allow-root
-
-# Create sample content
-docker-compose exec wordpress wp post create \
-  --post_title="Welcome to Your Theme" \
-  --post_content="This is a sample post to test your theme." \
-  --post_status=publish \
-  --allow-root
-
-echo "WordPress setup complete!"
-echo "Site: http://localhost:8080"
-echo "Admin: http://localhost:8080/wp-admin"
-echo "Username: admin"
-echo "Password: password"
+echo "✅ Setup complete!"
 echo ""
-echo "Your theme '$THEME_NAME' is now active!"
-echo "Edit files in this directory and refresh to see changes."
+echo "🌐 WordPress Site: http://localhost:8080"
+echo "👤 Admin Login: http://localhost:8080/wp-admin (admin/admin)"
+echo "🗄️  phpMyAdmin: http://localhost:8081"
 echo ""
-echo "Useful commands:"
-echo "  docker-compose logs -f wordpress  # View WordPress logs"
-echo "  docker-compose exec wordpress wp ... # Run WP-CLI commands"
-echo "  docker-compose restart            # Restart services"
-echo "  docker-compose down              # Stop services"
+echo "🛠️  To start development:"
+echo "   cd /workspace && yarn dev"
+echo ""
