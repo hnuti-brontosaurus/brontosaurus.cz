@@ -118,7 +118,12 @@ $hb_banner = hb_banner();
 			* 1974
 		</div>
 
+		<div class="homepage__video hb-mi-auto hb-mbe-5">
+			<iframe class="hb-d-b hb-is-100 hb-ar-169 hb-br" src="https://www.youtube.com/embed/ksdnd8Bft1Q" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		</div>
+
 		<div class="hb-mbe-4">
+			<h2>Řekli o nás</h2>
             <?php hb_references(link: '/o-brontosaurovi') ?>
 		</div>
 
