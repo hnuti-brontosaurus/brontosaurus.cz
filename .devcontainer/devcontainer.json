@@ -4,6 +4,9 @@
   "service": "devcontainer",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
+  "postCreateCommand": "bash /workspaces/${localWorkspaceFolderBasename}/.devcontainer/init.sh",
+
+
   "features": {},
   "customizations": {},
 

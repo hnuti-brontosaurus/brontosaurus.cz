@@ -7,14 +7,8 @@ FROM mcr.microsoft.com/devcontainers/php:1-8.2-bullseye
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN chmod +x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp
-RUN wp core download --path=/var/www/html
 
-RUN wp core install \
-    --path=/var/www/html \
-    --url=http://localhost:8080 \
-    --title="Hnutí Brontosaurus" \
-    --admin_user=admin \
-    --admin_password=test \
-    --admin_email=admin@localhost \
-    --skip-email \
-    --locale=cs_CZ
+RUN echo "memory_limit = 512M" >> /usr/local/etc/php/conf.d/memory-limit.ini
+
+RUN wp core download --path=/var/www/html --allow-root
+RUN chown -R www-data:www-data /var/www/html
