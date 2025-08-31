@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/devcontainers/php:1-8.2-bullseye
 
-# node js
-#RUN nvm install 20
+RUN apt-get update && apt-get install -y default-mysql-client && rm -rf /var/lib/apt/lists/*
+RUN docker-php-ext-install mysqli pdo_mysql
 
 # wp cli
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar

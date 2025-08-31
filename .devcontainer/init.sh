@@ -38,7 +38,7 @@ if ! sudo -u www-data wp core is-installed --path=/var/www/html 2>/dev/null; the
         --title="Hnutí Brontosaurus" \
         --admin_user=admin \
         --admin_password=test \
-        --admin_email=admin@localhost \
+        --admin_email=admin@example.com \
         --skip-email \
         --locale=cs_CZ
     
