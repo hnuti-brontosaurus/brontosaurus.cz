@@ -1,42 +1,20 @@
-FROM wordpress:6.4-apache
+FROM mcr.microsoft.com/devcontainers/php:1-8.2-bullseye
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    git \
-    unzip \
-    zip \
-    curl \
-    wget \
-    netcat-traditional \
-    vim \
-    less \
-    procps \
-    sudo \
-    && rm -rf /var/lib/apt/lists/*
+# node js
+#RUN nvm install 20
 
-# Install WP-CLI
-RUN curl -O https://raw.githubusercontent.com/wp-cli/wp-cli/v2.8.1/wp-cli.phar \
-    && chmod +x wp-cli.phar \
-    && mv wp-cli.phar /usr/local/bin/wp
+# wp cli
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN chmod +x wp-cli.phar
+RUN mv wp-cli.phar /usr/local/bin/wp
+RUN wp core download --path=/var/www/html
 
-# Enable Apache modules
-RUN a2enmod rewrite headers
-
-# Set proper permissions for www-data user and add to sudo
-RUN usermod -u 1000 www-data && groupmod -g 1000 www-data \
-    && usermod -aG sudo www-data \
-    && echo "www-data ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-
-# Create workspace directory
-RUN mkdir -p /workspaces && chown -R www-data:www-data /workspaces
-
-# Custom WordPress configuration
-COPY wp-config-extra.php /usr/local/etc/php/conf.d/
-
-# Custom Apache configuration
-COPY apache-vhost.conf /etc/apache2/sites-available/000-default.conf
-
-WORKDIR /workspaces
-
-# DO NOT switch users here - let devcontainer features run as root
-# The remoteUser setting in devcontainer.json will handle the user switch
+RUN wp core install \
+    --path=/var/www/html \
+    --url=http://localhost:8080 \
+    --title="Hnutí Brontosaurus" \
+    --admin_user=admin \
+    --admin_password=test \
+    --admin_email=admin@localhost \
+    --skip-email \
+    --locale=cs_CZ

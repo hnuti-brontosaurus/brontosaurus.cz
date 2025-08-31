@@ -1,67 +1,29 @@
 version: '3.8'
-
 services:
-  wordpress-dev:
-    build:
+  devcontainer:
+    build: 
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ../:/workspaces/${localWorkspaceFolderBasename}:cached
-      - /workspaces/${localWorkspaceFolderBasename}/node_modules
-      - wp-content:/var/www/html/wp-content
-    ports:
-      - "8080:80"
-      - "3000:3000"
-    environment:
-      WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DB_NAME: wordpress
-      WORDPRESS_DEBUG: 1
-      WORDPRESS_CONFIG_EXTRA: |
-        define('WP_DEBUG_LOG', true);
-        define('WP_DEBUG_DISPLAY', false);
-        define('SCRIPT_DEBUG', true);
-    depends_on:
-      - db
-    command: >
-      bash -c "
-        # Wait for database
-        while ! nc -z db 3306; do sleep 1; done
-        
-        # Start Apache in background
-        apache2-foreground &
-        
-        # Wait for WordPress to be ready
-        sleep 10
-        
-        # Keep container running
-        tail -f /dev/null
-      "
+      - ../..:/workspaces:cached
+    network_mode: service:database
 
-  db:
-    image: mysql:8.0
-    environment:
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
-      MYSQL_ROOT_PASSWORD: rootpassword
+  database:
+    image: mariadb:latest
     volumes:
-      - db_data:/var/lib/mysql
-    ports:
-      - "3306:3306"
+      - database:/var/lib/mysql
+    environment:
+      MARIADB_DATABASE: "wordpress"
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "yes"
+      MARIADB_ROOT_PASSWORD: ""
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    environment:
-      PMA_HOST: db
-      PMA_USER: wordpress
-      PMA_PASSWORD: wordpress
+    image: phpmyadmin
+    restart: always
     ports:
-      - "8081:80"
-    depends_on:
-      - db
+      - 8081:80
+    environment:
+      - PMA_ARBITRARY=1
 
 volumes:
-  db_data:
-  wp-content:
+  database:

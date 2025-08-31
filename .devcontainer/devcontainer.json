@@ -1,58 +1,17 @@
 {
-  "name": "Brontosaurus WordPress Theme Development",
+  "name": "HB Codespaces",
   "dockerComposeFile": "docker-compose.yml",
-  "service": "wordpress-dev",
+  "service": "devcontainer",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-  
-  "features": {
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "18",
-      "nodeGypDependencies": true,
-      "installYarnUsingApt": true
-    },
-    "ghcr.io/devcontainers/features/php:1": {
-      "version": "8.2",
-      "installComposer": true
-    }
-  },
 
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "bmewburn.vscode-intelephense-client",
-        "bradlc.vscode-tailwindcss",
-        "ms-vscode.vscode-json",
-        "esbenp.prettier-vscode",
-        "formulahendry.auto-rename-tag",
-        "ms-vscode.vscode-typescript-next",
-        "rangav.vscode-thunder-client"
-      ],
-      "settings": {
-        "php.validate.executablePath": "/usr/local/bin/php",
-        "intelephense.files.maxSize": 5000000,
-        "editor.formatOnSave": true,
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "[php]": {
-          "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
-        }
-      }
-    }
-  },
+  "features": {},
+  "customizations": {},
 
-  "forwardPorts": [8080, 3000],
+  "forwardPorts": [8080],
   "portsAttributes": {
     "8080": {
-      "label": "WordPress Site",
+      "label": "HB",
       "onAutoForward": "openBrowser"
-    },
-    "3000": {
-      "label": "Gulp Dev Server",
-      "onAutoForward": "silent"
     }
-  },
-
-  "postCreateCommand": ".devcontainer/setup.sh",
-  "postStartCommand": ".devcontainer/start-services.sh",
-
-  "remoteUser": "www-data"
+  }
 }
