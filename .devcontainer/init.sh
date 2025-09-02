@@ -34,7 +34,7 @@ if ! sudo -u www-data wp core is-installed --path=/var/www/html 2>/dev/null; the
     # Install WordPress
     sudo -u www-data wp core install \
         --path=/var/www/html \
-        --url=http://localhost:8080 \
+        --url=https://${CODESPACE_NAME}-8080.app.github.dev \
         --title="Hnutí Brontosaurus" \
         --admin_user=admin \
         --admin_password=test \
