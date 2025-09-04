@@ -46,27 +46,15 @@
 				Konferenční místnost Hnutí Brontosaurus
 			</h2>
 
-			<a class="rentals__mapLink [ hb-d-b hb-mw-mc hb-lg-mi-auto hb-mbe-3 ] hb-fs-xs" href="https://mapy.cz/s/3tfmR" rel="noopener noreferrer" target="_blank">
-				Hvězdová 306/10, 602 00 Brno
+			<a class="rentals__mapLink [ hb-d-b hb-mw-mc hb-lg-mi-auto hb-mbe-3 ] hb-fs-xs" href="https://mapy.com/s/lozejuboga" rel="noopener noreferrer" target="_blank">
+				Cejl 460/35, 602 00 Brno
 			</a>
 
 			<p class="rentals__subsection hb-block-text hb-mbe-4">
-				Komerčním i neziskovým organizacím nabízíme naši zasedací místnost.
-				Je vhodná i pro větší skupiny do 20 lidí.
-				Sousedí s vybavenou kuchyňkou a sociálním zařízením.
-				Příjemné prostory se nachází ve zrekonstruované části budovy.
+				Komerčním i neziskovým organizacím nabízíme k využití volnou kapacitu naší zasedací místnosti. 
+				Zasedací místnost má kapacitu cca 30–40 lidí. Součástí je i možnost využití vybavené kuchyňky. 
+				K dispozici je promítací technika, wifi a flipchart – zapůjčení příslušenství je zahrnuto v ceně pronájmu.
 			</p>
-
-			<div class="rentals__subsection hb-block-text hb-mbe-4">
-				<h3 class="rentals__subsection-heading hb-fw-b hb-mbe-3">
-					Vybavení
-				</h3>
-
-				<p>
-					Nabízíme magnetický flipchart, bezdrátové připojení k internetu
-					i zapůjčení prezentační techniky (notebook, dataprojektor).
-				</p>
-			</div>
 
 			<div class="rentals__subsection hb-block-text hb-mbe-4">
 				<h3 class="rentals__subsection-heading hb-fw-b hb-mbe-3">
@@ -76,41 +64,31 @@
 				<table class="rentals__table hb-mbe-3">
 					<tr>
 						<td>
-							Do 2 hodin
+							½ dne
 						</td>
 
 						<td>
-							400 Kč
-						</td>
-					</tr>
-
-					<tr>
-						<td>
-							Každá další hodina
-						</td>
-
-						<td>
-							80 Kč
+							1 500 Kč
 						</td>
 					</tr>
 
 					<tr>
 						<td>
-							Celodenní pronájem
+							1 den
 						</td>
 
 						<td>
-							800 Kč
+							3 000 Kč
 						</td>
 					</tr>
 
 					<tr>
 						<td>
-							Víkendový pronájem
+							víkend
 						</td>
 
 						<td>
-							1 500 Kč
+							7000 Kč
 						</td>
 					</tr>
 				</table>
@@ -120,59 +98,31 @@
 
 			<div class="rentals__subsection hb-block-text hb-mbe-4">
 				<h3 class="rentals__subsection-heading hb-fw-b hb-mbe-3">
-					Zapůjčení příslušenství
-				</h3>
-
-				<table class="rentals__table hb-mbe-3">
-					<tr>
-						<td>
-							Data&shy;projektor
-						</td>
-
-						<td>
-							100 Kč/hod, 600 Kč za den
-						</td>
-					</tr>
-
-					<tr>
-						<td>
-							Notebook
-						</td>
-
-						<td>
-							70 Kč/hod, 400 Kč za den
-						</td>
-					</tr>
-
-					<tr>
-						<td>
-							Data&shy;projektor + notebook
-						</td>
-
-						<td>
-							150 Kč/hod, 800 Kč za den
-						</td>
-					</tr>
-				</table>
-
-				Neziskovým organizacím poskytujeme slevu až 50 % z ceny.
-			</div>
-
-			<div class="rentals__subsection hb-block-text hb-mbe-4">
-				<h3 class="rentals__subsection-heading hb-fw-b hb-mbe-3">
 					Fotogalerie
 				</h3>
 
 				<ul class="photogallery hb-jc-s">
 					<li class="photogallery__item">
-						<a class="photogallery__link" href="https://brontosaurus.cz/wp-content/uploads/2024/12/konferencni-mistnost-hb-01-scaled.jpg" data-glightbox data-gallery="gallery-01">
-							<img alt="" class="photogallery__image" src="https://brontosaurus.cz/wp-content/uploads/2024/12/konferencni-mistnost-hb-01-scaled.jpg">
+						<a class="photogallery__link" href="https://brontosaurus.cz/wp-content/uploads/2025/09/20250415_170643-scaled.jpg" data-glightbox data-gallery="gallery-01">
+							<img alt="" class="photogallery__image" src="https://brontosaurus.cz/wp-content/uploads/2025/09/20250415_170643-scaled.jpg">
 						</a>
 					</li>
 
 					<li class="photogallery__item">
-						<a class="photogallery__link" href="https://brontosaurus.cz/wp-content/uploads/2024/12/konferencni-mistnost-hb-02-scaled.jpg" data-glightbox data-gallery="gallery-01">
-							<img alt="" class="photogallery__image" src="https://brontosaurus.cz/wp-content/uploads/2024/12/konferencni-mistnost-hb-02-scaled.jpg">
+						<a class="photogallery__link" href="https://brontosaurus.cz/wp-content/uploads/2025/09/20250529_174351-scaled.jpg" data-glightbox data-gallery="gallery-01">
+							<img alt="" class="photogallery__image" src="https://brontosaurus.cz/wp-content/uploads/2025/09/20250529_174351-scaled.jpg">
+						</a>
+					</li>
+
+					<li class="photogallery__item">
+						<a class="photogallery__link" href="https://brontosaurus.cz/wp-content/uploads/2025/09/20250415_170708-scaled.jpg" data-glightbox data-gallery="gallery-01">
+							<img alt="" class="photogallery__image" src="https://brontosaurus.cz/wp-content/uploads/2025/09/20250415_170708-scaled.jpg">
+						</a>
+					</li>
+
+					<li class="photogallery__item">
+						<a class="photogallery__link" href="https://brontosaurus.cz/wp-content/uploads/2025/09/20250529_174329-scaled.jpg" data-glightbox data-gallery="gallery-01">
+							<img alt="" class="photogallery__image" src="https://brontosaurus.cz/wp-content/uploads/2025/09/20250529_174329-scaled.jpg">
 						</a>
 					</li>
 				</ul>
@@ -183,9 +133,9 @@
 					Místo
 				</h3>
 
-				Hvězdová 306/10,<br>
+				Cejl 460/35,<br>
 				602 00, Brno<br>
-				<a href="https://mapy.cz/s/3tfmR" rel="noopener noreferrer" target="_blank">
+				<a href="https://mapy.com/s/lozejuboga" rel="noopener noreferrer" target="_blank">
 					Ukázat na mapě
 				</a>
 			</div>
@@ -196,7 +146,7 @@
 				</h3>
 
 				<address class="hb-fst-n">
-					Veronika Vlačuhová<br>
+					Hana Rosová<br>
 					telefon: <a href="tel:+420734392735" rel="noopener noreferrer" target="_blank">734 392 735</a><br>
 					email: <a href="mailto:hnuti@brontosaurus.cz" rel="noopener noreferrer" target="_blank">hnuti@brontosaurus.cz</a>
 				</address>
