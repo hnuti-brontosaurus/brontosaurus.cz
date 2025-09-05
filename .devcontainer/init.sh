@@ -49,7 +49,7 @@ fi
 
 # Start Apache
 echo "Starting Apache..."
-sudo service apache2 start
+sudo apache2ctl -D FOREGROUND
 echo "Apache started!"
 
 echo "WordPress initialization finished!"
