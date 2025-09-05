@@ -47,4 +47,9 @@ else
     echo "WordPress is already installed, skipping installation."
 fi
 
+# Start Apache
+echo "Starting Apache..."
+sudo service apache2 start
+echo "Apache started!"
+
 echo "WordPress initialization finished!"
