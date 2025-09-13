@@ -4,9 +4,10 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
+    ports:
+      - 8080:80
     volumes:
       - ../..:/workspaces:cached
-    network_mode: service:database
 
   database:
     image: mariadb:latest

@@ -3,8 +3,6 @@ FROM mcr.microsoft.com/devcontainers/php:1-8.2-bullseye
 RUN apt-get update && apt-get install -y default-mysql-client && rm -rf /var/lib/apt/lists/*
 RUN docker-php-ext-install mysqli pdo_mysql
 
-RUN sed -i 's/<VirtualHost \*:80>/<VirtualHost *:8080>/' /etc/apache2/sites-available/000-default.conf
-
 # wp cli
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN chmod +x wp-cli.phar

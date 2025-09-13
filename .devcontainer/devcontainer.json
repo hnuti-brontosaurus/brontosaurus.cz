@@ -10,11 +10,5 @@
   "features": {},
   "customizations": {},
 
-  "forwardPorts": [8080],
-  "portsAttributes": {
-    "8080": {
-      "label": "HB",
-      "onAutoForward": "openBrowser"
-    }
-  }
+  "forwardPorts": [8080]
 }
