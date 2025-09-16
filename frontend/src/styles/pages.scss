@@ -75,7 +75,7 @@
 	grid-template-areas:
 		"map"
 		"contacts"
-		"openingHours";
+		"visits";
 	grid-template-columns: 100%;
 	grid-template-rows: 30vh auto auto;
 	overflow: hidden;
@@ -84,7 +84,7 @@
 	.contacts__box {
 		grid-template-areas:
 			"map contacts"
-			"map openingHours";
+			"map visits";
 		grid-template-columns: 50% 50%;
 		grid-template-rows: 50% 50%;
 	}
@@ -122,10 +122,8 @@
 	block-size: 20px;
 }
 
-.contacts__openingHours {
-	grid-area: openingHours;
-}
-.contacts__openingDays {
+.contacts__visits {
+	grid-area: visits;
 	font-size: 0.9em;
 	line-height: 1.2;
 }

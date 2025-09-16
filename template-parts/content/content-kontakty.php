@@ -68,14 +68,6 @@ $contacts = array_map(function (WP_Post $post) {
 						<div aria-labelledby="contacts-phone">
 							<a class="hb-d-b" href="tel:+420734392735" target="_blank">+420 734 392 735</a>
 						</div>
-
-						<div class="hb-fs-xxs">
-							mimo úřední hodiny:
-							<ul class="hb-mis-3">
-								<li><a href="tel:+420737034230" target="_blank">+420 737 034 230</a> – finance, projekty</li>
-								<li><a href="tel:+420605763112" target="_blank">+420 605 763 112</a> – média, partneři, spolupráce a ostatní</li>
-							</ul>
-						</div>
 					</div>
 
 					<div class="contacts__boxItem contacts__boxItem--email hb-mbe-3">
@@ -86,25 +78,11 @@ $contacts = array_map(function (WP_Post $post) {
 						<a href="mailto:hnuti@brontosaurus.cz" target="_blank" aria-labelledby="contacts-email">
 							hnuti@brontosaurus.cz
 						</a>
-						<div class="hb-fs-xxs">obecný informační mail</div>
-						<a href="mailto:dalimil.toman@brontosaurus.cz" target="_blank">
-							dalimil.toman@brontosaurus.cz
-						</a>
-						<div class="hb-fs-xxs">média, partneři, spolupráce</div>
 					</div>
 				</address>
 
-				<div class="contacts__openingHours [ hb-pbs-4 hb-pi-5 hb-pbe-5 ] hb-bg-tinge">
-					<h3>
-						Kdy jsme v kanceláři
-
-						<div class="hb-fs-xs">(úřední hodiny)</div>
-					</h3>
-
-					<div class="contacts__openingDays">
-						<span class="hb-fw-b">Aktuálně stěhujeme</span> naši kancelář na novou lokalitu, její adresa a otevírací hodiny budou brzy zveřejněny.
-						V případě potřeby osobního jednání nás <span class="hb-fw-b">kontaktujte na uvedených telefonech</span>.
-					</div>
+				<div class="contacts__visits [ hb-pbs-3 hb-pi-5 hb-pbe-5 ] hb-bg-tinge">
+					Návštěvy a osobní schůzky vítáme po předchozí domluvě.
 				</div>
 			</div>
 
