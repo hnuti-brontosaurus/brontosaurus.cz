@@ -268,6 +268,12 @@ endif;
                 <?php $counter++; endforeach; ?>
 			</ul>
 		</div>
+
+        <?php if ( ! HB_IS_ON_PRODUCTION): ?>
+        <a class="hb-action hb-action--ulterior" href="#">
+			zobrazit další
+		</a>
+        <?php endif; ?>
 	</section>
 
     <?php if ( ! HB_IS_ON_PRODUCTION): ?>
