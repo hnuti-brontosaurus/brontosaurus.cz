@@ -81,7 +81,7 @@ $contacts = array_map(function (WP_Post $post) {
 					</div>
 				</address>
 
-				<div class="contacts__visits [ hb-pbs-3 hb-pi-5 hb-pbe-5 ] hb-bg-tinge">
+				<div class="contacts__visits [ hb-pbs-3 hb-pi-5 hb-pbe-5 ] hb-fs-xs hb-bg-tinge">
 					Návštěvy a osobní schůzky vítáme po předchozí domluvě.
 				</div>
 			</div>
