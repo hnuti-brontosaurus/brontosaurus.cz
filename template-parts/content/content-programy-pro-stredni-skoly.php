@@ -5,9 +5,9 @@
 		</h1>
 
 		<p class="hb-block-text hb-mbe-5">
-			Vytváříme programy pro třídní kolektivy, ve kterých studenty učíme o propojenosti ekosystému i výhodách
-			a příležitostech k dobrovolničení. Pomáháme mladým rozvíjet jejich soft-skills a další klíčové kompetence.
-			Programy nabízíme i v angličtině.
+			Vytváříme programy pro třídní kolektivy, ve kterých studenty učíme o propojenosti ekosystému i o výhodách 
+			a příležitostech k dobrovolničení. Pomáháme mladým rozvíjet jejich klíčové kompetence, přičemž programy nabízíme 
+			také v angličtině. Kvalitu našich aktivit potvrzuje získaný <a href="https://brontosaurus.cz/novinky/hnuti-brontosaurus-ziskalo-certifikat-kvality-v-environmentalni-vychove/">certifikát environmentální výchovy</a>.
 		</p>
 
 		<div class="hb-lg-mw-40 hb-lg-mi-auto hb-mbe-5">
