@@ -279,7 +279,8 @@ endif;
     <div class="hb-spacer-1 hb-lg-spacer-2"></div>
 
     <?php if ( ! HB_IS_ON_PRODUCTION): ?>
-    <section class="supportOverview__supporters hb-references hb-references--thirds hb-br" data-hb-expandable-content data-references data-references-no-dots data-references-infinite>
+    <div class="supportOverview__supportersExpandableContent" data-hb-expandable-content>
+    <section class="supportOverview__supporters hb-references hb-references--thirds hb-br" data-references data-references-no-dots data-references-infinite>
 		<button class="hb-references__button hb-references__button--previous button button--customization" data-references-button="previous" type="button" aria-hidden="true"></button>
 		<button class="hb-references__button hb-references__button--next button button--customization" data-references-button="next" type="button" aria-hidden="true"></button>
 
@@ -299,6 +300,7 @@ endif;
             <?php endforeach; ?>
         </div>
 	</section>
+    </div>
     <?php endif; ?>
 
 	<div class="hb-spacer-5 hb-lg-spacer-6"></div>
