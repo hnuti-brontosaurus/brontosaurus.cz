@@ -280,7 +280,7 @@ endif;
 
     <?php if ( ! HB_IS_ON_PRODUCTION): ?>
     <div class="supportOverview__supportersExpandableContent" data-hb-expandable-content>
-    <section class="supportOverview__supporters hb-references hb-references--thirds hb-br" data-references data-references-no-dots data-references-infinite>
+    <section class="supportOverview__supporters hb-references hb-references--thirds hb-br" data-references data-references-no-dots>
 		<button class="hb-references__button hb-references__button--previous button button--customization" data-references-button="previous" type="button" aria-hidden="true"></button>
 		<button class="hb-references__button hb-references__button--next button button--customization" data-references-button="next" type="button" aria-hidden="true"></button>
 
