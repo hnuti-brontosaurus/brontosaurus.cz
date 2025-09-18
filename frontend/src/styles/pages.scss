@@ -965,6 +965,12 @@ $highschool-breakpoint-contactPerson-oneToTwoColumns: 30em;
 	--height: 0;
 	max-height: var(--height);
 }
+@media (settings.$typography-breakpoint-small-until) {
+	.supportOverview__supportersExpandableContent {
+		margin-inline: -1rlh;
+		padding-inline: 1rlh;
+	}
+}
 .supportOverview__supporters {
 	display: block;
 	inline-size: 100%;
