@@ -119,7 +119,7 @@ shuffle($supporters);
 $supporters = array_chunk($supporters, length: 10);
 endif;
 
-?><main class="supportOverview b-mbe-6 hb-lg-mbe-7" role="main">
+?><main class="supportOverview hb-expandable b-mbe-6 hb-lg-mbe-7" role="main">
 	<section>
 		<h1>
 			Adoptuj Brontosaura
@@ -270,14 +270,14 @@ endif;
 		</div>
 
         <?php if ( ! HB_IS_ON_PRODUCTION): ?>
-        <a class="supportOverview__supportersToggler hb-expandable__toggler button button--customization hb-mw-mc hb-mbs-4" href="#">
+        <button class="supportOverview__supportersToggler hb-expandable__toggler button button--customization hb-mw-mc hb-mbs-4" data-hb-expandable-toggler>
 			zobrazit další
-		</a>
+		</button>
         <?php endif; ?>
 	</section>
 
     <?php if ( ! HB_IS_ON_PRODUCTION): ?>
-    <section class="supportOverview__supporters hb-references hb-references--thirds hb-br" data-references data-references-no-dots data-references-infinite>
+    <section class="supportOverview__supporters hb-references hb-references--thirds hb-br" data-hb-expandable-content data-references data-references-no-dots data-references-infinite>
 		<button class="hb-references__button hb-references__button--previous button button--customization" data-references-button="previous" type="button" aria-hidden="true"></button>
 		<button class="hb-references__button hb-references__button--next button button--customization" data-references-button="next" type="button" aria-hidden="true"></button>
 
