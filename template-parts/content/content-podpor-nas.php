@@ -270,20 +270,16 @@ endif;
 		</div>
 
         <?php if ( ! HB_IS_ON_PRODUCTION): ?>
-        <a class="hb-action hb-action--ulterior hb-mbs-4" href="#">
+        <a class="supportOverview__supportersToggler hb-expandable__toggler button button--customization hb-mw-mc hb-mbs-4" href="#">
 			zobrazit další
 		</a>
         <?php endif; ?>
 	</section>
 
     <?php if ( ! HB_IS_ON_PRODUCTION): ?>
-    <div class="hb-spacer-4 hb-lg-spacer-5"></div>
-
-    <section class="supportOverview__supporters hb-references hb-references--thirds" data-references data-references-no-dots data-references-infinite style="max-inline-size: 50rem">
+    <section class="supportOverview__supporters hb-references hb-references--thirds hb-br" data-references data-references-no-dots data-references-infinite>
 		<button class="hb-references__button hb-references__button--previous button button--customization" data-references-button="previous" type="button" aria-hidden="true"></button>
 		<button class="hb-references__button hb-references__button--next button button--customization" data-references-button="next" type="button" aria-hidden="true"></button>
-
-        <h2>Podpořili</h2>
 
 		<div class="hb-references__list" data-references-slides>
             <?php foreach ($supporters as $group): ?>
