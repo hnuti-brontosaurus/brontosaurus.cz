@@ -972,6 +972,9 @@ $highschool-breakpoint-contactPerson-oneToTwoColumns: 30em;
 	--height: 0;
 	max-height: var(--height);
 }
+.supportOverview__supporters ul {
+	list-style-type: none;
+}
 
 .supportOverview .hb-option--imageFirst .hb-option__image {
 	order: -1;
