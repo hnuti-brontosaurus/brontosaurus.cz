@@ -270,11 +270,13 @@ endif;
 		</div>
 
         <?php if ( ! HB_IS_ON_PRODUCTION): ?>
-        <button class="supportOverview__supportersToggler hb-expandable__toggler button button--customization hb-mw-mc hb-mbs-4" data-hb-expandable-toggler>
+        <button class="hb-expandable__toggler button button--customization hb-mw-mc hb-mbs-4" data-hb-expandable-toggler>
 			zobrazit další
 		</button>
         <?php endif; ?>
 	</section>
+
+    <div class="hb-spacer-1 hb-lg-spacer-2"></div>
 
     <?php if ( ! HB_IS_ON_PRODUCTION): ?>
     <section class="supportOverview__supporters hb-references hb-references--thirds hb-br" data-hb-expandable-content data-references data-references-no-dots data-references-infinite>

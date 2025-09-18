@@ -959,18 +959,18 @@ $highschool-breakpoint-contactPerson-oneToTwoColumns: 30em;
 	background-image: url("../../../images/icons/icon-hand.svg");
 }
 
-.supportOverview__supportersToggler {
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
-	border-top-left-radius: 1rem;
-	border-top-right-radius: 1rem;
-}
 .supportOverview__supporters {
 	display: block;
 	inline-size: 100%;
 	max-inline-size: 50rem !important;
 	margin-inline: auto;
 	background-color: var(--hb-colors-tinge);
+
+	/* expandable */
+	overflow: hidden;
+    transition: max-height 200ms ease-in-out;
+	--height: 0;
+	max-height: var(--height);
 }
 
 .supportOverview .hb-option--imageFirst .hb-option__image {
