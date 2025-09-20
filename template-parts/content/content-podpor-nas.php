@@ -113,11 +113,9 @@ $references = [
     ],
 ];
 
-if ( ! HB_IS_ON_PRODUCTION):
 $supporters = ['Petra Arcimovičová', 'Katerina Bartonkova', 'Přemysl Bejda', 'Tereza Blešová', 'Kateřina Böhmová', 'Ctibor Brančík', 'Miroslav Brandejs', 'Kvetoslav Bravenec', 'Jana Brožová', 'Zuzana Brzobohatá (Zula)', 'Michal Břežný', 'Jana Budišová', 'Ingrid Búziová', 'Marie Černá', 'Jan Černý', 'Pavel Černý (Pajas)', 'Jakub Daníček', 'Martin Děrgel', 'David Dočekal', 'Tomáš Domes', 'Tereza Dvořáková', 'Jaroslav Dytrych', 'Josef Ferenc', 'Zdeněk Frélich', 'Ivan Gronský', 'David Hajda', 'Petr Hájek', 'Jan Halla', 'Jaroslav Hamáček', 'Světla Hanke Jarošová', 'Petr Havel', 'Pavel Heimlich', 'Josef Hladký (Pepa)', 'Daniel Hlinomaz', 'Tomáš Hubínek', 'Lucie Hustáková', 'Vladimir Chvátil', 'Kamil Chytka', 'Radka Jarušková', 'Pavla Jiroušková', 'Petr Kabelík', 'Lukáš Karas', 'Eva Kávová', 'Martin Kempa', 'Nikola Klimesova', 'Petra Klimšová', 'Marta Klobásková', 'Karolína Koliášová', 'Jana Konečná', 'Ján Kostka', 'Pavel Kozlovský', 'Josef Krahulec', 'Vlastimil Krátký', 'Kateřina Kratochvílová', 'Leona Křivánková', 'Jan Kubata', 'Martina Lilingová', 'Věra Loskotová', 'Jan Lukša', 'Milada Maděřičová', 'Ondřej Marada', 'Lucie Matysová', 'Míra Míkovec', 'Martin Mráz', 'Luboš Mrázek', 'Václav Najzar', 'Martin Nekula', 'Leoš Nergl', 'Tomáš Nouza', 'Matěj Novák', 'František Novotný', 'Hanka Ondráková', 'Ivana Opravilová', 'Jan Paleček', 'Martin Perlík', 'Tomáš Peterek', 'Viktor Plaček', 'Jiří Podhorský', 'Alena Podlipná', 'František Prinz', 'Zbyněk Prokop', 'Tomas Protivinsky', 'Vít Průša', 'Jakub Rajtmajer', 'Michal Reinöhl', 'Robin Roček', 'Josef Rýpar', 'Zora Rýparová (Bedla)', 'Marie Salajková', 'Kristýna Schönová', 'Milan Skála', 'Vojta Skara', 'Marek Slaný', 'Zora Smerigová', 'Veronika Smolíková', 'Jan Soustek', 'Jan Stránský', 'Kristina Studená (Kristi)', 'Michal Svec', 'Kristýna Svítilová', 'Jarmila Svobodová', 'Alexandra Synková', 'Daniela Syrovátková', 'Martin Šerák (Sherry)', 'Jiří Šindelář', 'Jana Šlitrová', 'Petra Štefančinová', 'David Šuráň', 'Michal Švarný (Švára)', 'Miroslav Tichý', 'Dalimil Toman (Cody)', 'Jozef Tóth', 'Michal Truhlář', 'Michal Urban', 'Renata Urminská', 'Martin Václavík', 'Eva Vidmanová', 'Martina Vítková', 'Jan Volf', 'Tomáš Vrabec (Basty)', 'Daniela Vymětalová', 'Michal Wágner', 'Jana Zajíčková', 'Tomáš Zelenka', 'Jana Zemánková', 'Kateřina Zímová'];
 shuffle($supporters);
 $supporters = array_chunk($supporters, length: 10);
-endif;
 
 ?><main class="supportOverview hb-expandable b-mbe-6 hb-lg-mbe-7" role="main">
 	<section>
@@ -269,7 +267,7 @@ endif;
 			</ul>
 		</div>
 
-        <?php if ( ! HB_IS_ON_PRODUCTION): ?>
+        <?php if ($supporters): ?>
         <button class="hb-expandable__toggler button button--customization hb-mw-mc hb-mbs-4" data-hb-expandable-toggler>
 			zobrazit další
 		</button>
@@ -278,7 +276,7 @@ endif;
 
     <div class="hb-spacer-1 hb-lg-spacer-2"></div>
 
-    <?php if ( ! HB_IS_ON_PRODUCTION): ?>
+    <?php if ($supporters): ?>
     <div class="supportOverview__supportersExpandableContent" data-hb-expandable-content>
     <section class="supportOverview__supporters hb-references hb-references--thirds hb-br" data-references data-references-no-dots>
 		<button class="hb-references__button hb-references__button--previous button button--customization" data-references-button="previous" type="button" aria-hidden="true"></button>
