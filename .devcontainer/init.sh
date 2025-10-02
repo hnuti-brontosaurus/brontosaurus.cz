@@ -47,23 +47,33 @@ else
     echo "WordPress is already installed, skipping installation."
 fi
 
-# Create .htaccess with environment-based URL handling
-if [ ! -z "$CODESPACE_NAME" ] && [ ! -z "$GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN" ]; then
-    cat > /var/www/html/.htaccess << 'EOF'
-# BEGIN WordPress
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-RewriteBase /
-RewriteRule ^index\.php$ - [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.php [L]
-</IfModule>
-# END WordPress
-EOF
-    chown www-data:www-data /var/www/html/.htaccess
+# Create mu-plugins directory if it doesn't exist
+echo "Setting up mu-plugins..."
+if [ ! -d "/var/www/html/wp-content/mu-plugins" ]; then
+    sudo mkdir -p /var/www/html/wp-content/mu-plugins
+    echo "mu-plugins directory created!"
 fi
+
+# Create the Codespaces URL handler plugin
+sudo cat > /var/www/html/wp-content/mu-plugins/codespaces-urls.php << 'EOF'
+<?php
+/**
+ * Plugin Name: Codespaces URL Handler
+ * Description: Automatically handles URLs for GitHub Codespaces environment
+ * Version: 1.0
+ * Author: Auto-generated
+ */
+
+if (isset($_SERVER['HTTP_HOST']) && strpos($_SERVER['HTTP_HOST'], 'app.github.dev') !== false) {
+    $codespace_url = 'https://' . $_SERVER['HTTP_HOST'];
+    define('WP_HOME', $codespace_url);
+    define('WP_SITEURL', $codespace_url);
+}
+EOF
+
+# Set proper permissions
+sudo chown www-data:www-data /var/www/html/wp-content/mu-plugins/codespaces-urls.php
+echo "Codespaces URL handler plugin created!"
 
 # Start Apache
 echo "Starting Apache..."
