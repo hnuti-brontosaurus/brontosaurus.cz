@@ -50,29 +50,18 @@ fi
 # Create mu-plugins directory if it doesn't exist
 echo "Setting up mu-plugins..."
 if [ ! -d "/var/www/html/wp-content/mu-plugins" ]; then
-    sudo mkdir -p /var/www/html/wp-content/mu-plugins
+#    sudo mkdir -p /var/www/html/wp-content/mu-plugins
     echo "mu-plugins directory created!"
 fi
 
-# Create the Codespaces URL handler plugin
-sudo cat > /var/www/html/wp-content/mu-plugins/codespaces-urls.php << 'EOF'
-<?php
-/**
- * Plugin Name: Codespaces URL Handler
- * Description: Automatically handles URLs for GitHub Codespaces environment
- * Version: 1.0
- * Author: Auto-generated
- */
+# Get the workspace folder path (find the actual workspace directory)
+#WORKSPACE_DIR=$(find /workspaces -maxdepth 1 -mindepth 1 -type d | head -n 1)
 
-if (isset($_SERVER['HTTP_HOST']) && strpos($_SERVER['HTTP_HOST'], 'app.github.dev') !== false) {
-    $codespace_url = 'https://' . $_SERVER['HTTP_HOST'];
-    define('WP_HOME', $codespace_url);
-    define('WP_SITEURL', $codespace_url);
-}
-EOF
+# Copy the Codespaces URL handler plugin
+#sudo cp "$WORKSPACE_DIR/.devcontainer/mu-codespaces-urls.php" /var/www/html/wp-content/mu-plugins/codespaces-urls.php
 
 # Set proper permissions
-sudo chown www-data:www-data /var/www/html/wp-content/mu-plugins/codespaces-urls.php
+#sudo chown www-data:www-data /var/www/html/wp-content/mu-plugins/codespaces-urls.php
 echo "Codespaces URL handler plugin created!"
 
 # Start Apache
