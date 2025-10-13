@@ -77,8 +77,9 @@ require_once __DIR__ . '/homepage-banner.php';
 				catch (ConnectionToBisFailed) {}
 			}
 			elseif ($post->post_name === 'prilezitost') {
-				/*$opportunityId = (int) get_query_var('opportunityId');
-				try {
+				$opportunityId = (int) get_query_var('opportunityId');
+				echo "aaa".$opportunityId."bbb";
+				/*try {
 					$opportunity = $bisClient->getOpportunity($opportunityId);
 					$opportunityDC = new OpportunityDC($opportunity);
 					//hb_prilezitost_meta($opportunityDC);
