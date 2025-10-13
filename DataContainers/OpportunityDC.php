@@ -17,14 +17,15 @@ final /*readonly*/ class OpportunityDC
 		$this->title = hb_handleNonBreakingSpaces($opportunity->getName());
 		echo "aaa";
 		$this->introduction = (string) $opportunity->getIntroduction();
-
+echo "bbb";
 		$this->link = sprintf('%s/%s/%d/', // todo: use rather WP routing somehow
 			rtrim(get_site_url(), '/'),
 			'prilezitost',
 			$opportunity->getId(),
 		);
-
+echo "ccc";
 		$this->coverPhotoPath = $coverPhotoPath->getImage()->getMediumSizePath(); // todo small?
+		echo "ddd";
 	}
 
 }
