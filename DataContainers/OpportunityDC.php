@@ -15,6 +15,7 @@ final /*readonly*/ class OpportunityDC
 	public function __construct(Opportunity $opportunity)
 	{
 		$this->title = hb_handleNonBreakingSpaces($opportunity->getName());
+		echo "aaa";
 		$this->introduction = (string) $opportunity->getIntroduction();
 
 		$this->link = sprintf('%s/%s/%d/', // todo: use rather WP routing somehow
