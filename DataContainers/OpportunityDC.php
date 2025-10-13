@@ -16,7 +16,7 @@ final /*readonly*/ class OpportunityDC
 	{
 		$this->title = hb_handleNonBreakingSpaces($opportunity->getName());
 
-		$this->introduction = (string) $opportunity->getIntroduction();
+		$this->introduction = hb_handleNonBreakingSpaces((string) $opportunity->getIntroduction());
 
 		$this->link = sprintf('%s/%s/%d/', // todo: use rather WP routing somehow
 			rtrim(get_site_url(), '/'),
