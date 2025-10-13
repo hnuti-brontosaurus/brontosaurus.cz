@@ -80,11 +80,8 @@ require_once __DIR__ . '/homepage-banner.php';
 				$opportunityId = (int) get_query_var('opportunityId');
 				try {
 					$opportunity = $bisClient->getOpportunity($opportunityId);
-					echo "abcd";
-					var_dump($opportunity);
 					$opportunityDC = new OpportunityDC($opportunity);
-					echo "efgh";
-					//hb_prilezitost_meta($opportunityDC);
+					hb_prilezitost_meta($opportunityDC);
 				}
 				catch (OpportunityNotFound) {}
 				catch (ConnectionToBisFailed) {}
