@@ -194,15 +194,11 @@ function hb_prilezitost_meta(OpportunityDC $opportunity) { ?>
 	<meta property="og:description" content="<?php echo hb_truncate(htmlspecialchars(strip_tags($opportunity->introduction)), 150) ?>">
 	<meta property="og:url" content="<?php echo $opportunity->link ?>">
 	<meta property="og:site_name" content="Hnutí Brontosaurus">
-	<?php if ($opportunity->hasCoverPhoto): ?>
 	<meta property="og:image" content="<?php echo $opportunity->coverPhotoPath ?>">
-	<?php endif; ?>
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:title" content="<?php echo $opportunity->title ?>">
 	<meta name="twitter:description" content="<?php hb_truncate(htmlspecialchars(strip_tags($opportunity->introduction)), 150) ?>">
-	<?php if ($opportunity->hasCoverPhoto): ?>
 	<meta name="twitter:image" content="<?php echo $opportunity->coverPhotoPath ?>">
-	<?php endif; ?>
 	<?php endif; ?>
 <?php }
 
