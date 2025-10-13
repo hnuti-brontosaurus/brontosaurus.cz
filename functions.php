@@ -78,14 +78,15 @@ require_once __DIR__ . '/homepage-banner.php';
 			}
 			elseif ($post->post_name === 'prilezitost') {
 				$opportunityId = (int) get_query_var('opportunityId');
-				echo "aaa".$opportunityId."bbb";
-				/*try {
+				try {
+					echo "abcd";
 					$opportunity = $bisClient->getOpportunity($opportunityId);
-					$opportunityDC = new OpportunityDC($opportunity);
+					echo "efgh";
+					//$opportunityDC = new OpportunityDC($opportunity);
 					//hb_prilezitost_meta($opportunityDC);
 				}
 				catch (OpportunityNotFound) {}
-				catch (ConnectionToBisFailed) {}*/
+				catch (ConnectionToBisFailed) {}
 			}
 		}
 	});
