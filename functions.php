@@ -8,6 +8,7 @@ use HnutiBrontosaurus\Theme\Rewrites\Event;
 use HnutiBrontosaurus\Theme\Rewrites\Opportunity;
 use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollectionDC;
 use HnutiBrontosaurus\Theme\DataContainers\Events\EventDC;
+use HnutiBrontosaurus\Theme\DataContainers\OpportunityDC;
 use Nette\Utils\Strings;
 
 /** @var Container $hb_container */
@@ -65,16 +66,26 @@ require_once __DIR__ . '/homepage-banner.php';
 			$dateFormatForRobot = $container->getDateFormatForRobot();
 
 			global $post;
-			if ($post->post_name !== 'akce') return;
-
-			$eventId = (int) get_query_var('eventId');
-			try {
-				$event = $bisClient->getEvent($eventId);
-				$eventDC = new EventDC($event, $dateFormatForHuman, $dateFormatForRobot);
-				hb_akce_meta($eventDC);
+			if ($post->post_name === 'akce') {
+				$eventId = (int) get_query_var('eventId');
+				try {
+					$event = $bisClient->getEvent($eventId);
+					$eventDC = new EventDC($event, $dateFormatForHuman, $dateFormatForRobot);
+					hb_akce_meta($eventDC);
+				}
+				catch (EventNotFound) {}
+				catch (ConnectionToBisFailed) {}
 			}
-			catch (EventNotFound) {}
-			catch (ConnectionToBisFailed) {}
+			elseif ($post->post_name === 'prilezitost') {
+				$opportunityId = (int) get_query_var('opportunityId');
+				try {
+					$opportunity = $bisClient->getOpportunity($opportunityId);
+					$opportunityDC = new OpportunityDC($opportunity);
+					hb_prilezitost_meta($opportunityDC);
+				}
+				catch (OpportunityNotFound) {}
+				catch (ConnectionToBisFailed) {}
+			}
 		}
 	});
 
@@ -171,6 +182,26 @@ function hb_akce_meta(EventDC $event) { ?>
 	<?php endif; ?>
 	<?php if ($event->hasCoverPhoto): ?>
 	<meta name="twitter:image" content="<?php echo $event->coverPhotoPath ?>">
+	<?php endif; ?>
+	<?php endif; ?>
+<?php }
+
+function hb_prilezitost_meta(OpportunityDC $opportunity) { ?>
+	<?php if ($opportunity): ?>
+	<meta property="og:locale" content="cs_CZ">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="<?php echo $opportunity->title ?>">
+	<meta property="og:description" content="<?php echo hb_truncate(htmlspecialchars(strip_tags($opportunity->introduction)), 150) ?>">
+	<meta property="og:url" content="<?php echo $opportunity->link ?>">
+	<meta property="og:site_name" content="Hnutí Brontosaurus">
+	<?php if ($opportunity->hasCoverPhoto): ?>
+	<meta property="og:image" content="<?php echo $opportunity->coverPhotoPath ?>">
+	<?php endif; ?>
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="<?php echo $opportunity->title ?>">
+	<meta name="twitter:description" content="<?php hb_truncate(htmlspecialchars(strip_tags($opportunity->introduction)), 150) ?>">
+	<?php if ($opportunity->hasCoverPhoto): ?>
+	<meta name="twitter:image" content="<?php echo $opportunity->coverPhotoPath ?>">
 	<?php endif; ?>
 	<?php endif; ?>
 <?php }
