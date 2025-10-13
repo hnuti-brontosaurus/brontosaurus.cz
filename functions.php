@@ -81,7 +81,7 @@ require_once __DIR__ . '/homepage-banner.php';
 				try {
 					$opportunity = $bisClient->getOpportunity($opportunityId);
 					$opportunityDC = new OpportunityDC($opportunity);
-					hb_prilezitost_meta($opportunityDC);
+					//hb_prilezitost_meta($opportunityDC);
 				}
 				catch (OpportunityNotFound) {}
 				catch (ConnectionToBisFailed) {}
