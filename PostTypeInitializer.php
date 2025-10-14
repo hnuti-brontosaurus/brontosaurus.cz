@@ -49,6 +49,7 @@ final class PostTypeInitializer
 			'show_in_rest' => true,
 			'supports' => ['title', 'editor', 'excerpt', 'thumbnail'],
 			'hierarchical' => false,
+			'taxonomies' => ['category'],
 		]);
 		add_action('add_meta_boxes', function () {
 			add_meta_box(
