@@ -62,9 +62,9 @@ function hb_strip_tags(string $input): string
 function hb_truncate(string $string, int $maxLength, string $suffix = '…')
 {
 	// doesn't need truncation
-	if (strlen($string) <= $maxLength) {
+	if (mb_strlen($string) <= $maxLength) {
 		return $string;
 	}
 
-	return substr($string, 0, $maxLength - strlen($suffix)) . $suffix;
+	return mb_substr($string, 0, $maxLength - mb_strlen($suffix)) . $suffix;
 }
