@@ -1,4 +1,8 @@
-<?php function hb_story(stdClass $story) { ?>
+<?php 
+
+use HnutiBrontosaurus\Theme\DataContainers\StoriesFiltersDC;
+
+function hb_story(stdClass $story) { ?>
 <a class="hb-event" href="<?php echo $story->link ?>">
 	<div class="hb-event__imageWrapper">
 		<img alt="" class="hb-event__image<?php if ( ! $story->hasThumbnail): ?> hb-event__image--noThumbnail<?php endif; ?>" data-src="<?php if ($story->hasThumbnail): ?><?php echo $story->thumbnail ?><?php else: ?>https://brontosaurus.cz/wp-content/uploads/2024/12/logo-hb-brontosaurus.svg<?php endif; ?>">
@@ -27,6 +31,17 @@
 	</div>
 </a>
 <?php }
+
+$categories = get_terms([
+    'taxonomy' => 'kategorie-pribehu',
+    'hide_empty' => false, // Include categories with no posts
+]);
+
+// todo: use some WP way of obtaining param
+$selectedFilter = filter_input( INPUT_GET, 'jen' ) ?? null;
+$selectedFilter = $selectedFilter !== null && $selectedFilter !== '' ? htmlspecialchars($selectedFilter) : null;
+var_dump($categories);
+$filters = StoriesFiltersDC::from($categories, 'jen', $selectedFilter);
 
 // todo: use some WP way of obtaining param
 $all = filter_input( INPUT_GET, 'vsechny' ) ?? null;
@@ -66,6 +81,28 @@ $stories = array_map(function (WP_Post $post) {
 			oprav hradů, úklidů koryt řek, kosení chráněných luk nebo čištění studánek.
 			U příležitosti výročí půlstoletí Brontosaura představujeme vybrané příběhy úspěšných dobrovolnických projektů.
 		</p>
+
+		<div class="filters hb-expandable hb-mbe-4"<?php if ($filters->isAnySelected): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
+			<button class="hb-expandable__toggler button button--customization" type="button" aria-hidden="true" data-hb-expandable-toggler>
+				Zobrazit pouze
+			</button>
+
+			<ul class="filters__list" data-hb-expandable-content>
+				<li class="filters__item">
+					<a class="filters__link<?php if ( ! $filters->isAnySelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="#obsah">
+						vše
+					</a>
+				</li>
+
+				<?php foreach ($filters->get() as $filter): ?>
+				<li class="filters__item">
+					<a class="filters__link<?php if ($filter->isSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="?jen=<?php echo $filter->slug ?>#obsah">
+						<?php echo $filter->label ?>
+					</a>
+				</li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
 
 		<div class="hb-eventList hb-mbe-4">
 			<div class="hb-eventList__grid">
