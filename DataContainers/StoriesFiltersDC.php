@@ -34,4 +34,9 @@ final /* readonly */ class StoriesFiltersDC
 		);
 	}
 
+	public function get(): array
+	{
+		return $this->filters;
+	}
+
 }
