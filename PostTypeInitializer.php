@@ -49,7 +49,18 @@ final class PostTypeInitializer
 			'show_in_rest' => true,
 			'supports' => ['title', 'editor', 'excerpt', 'thumbnail'],
 			'hierarchical' => false,
-			'taxonomies' => ['category'],
+		]);
+		register_taxonomy('kategorie-pribehu', 'pribehy-nadseni', [
+			'labels' => [
+				'name' => 'Kategorie',
+				'singular_name' => 'Kategorie',
+				'all_items' => 'Všechny kategorie',
+			],
+			'hierarchical' => true,
+			'public' => true,
+			'show_ui' => true,
+			'show_in_rest' => true,
+			'show_admin_column' => true,
 		]);
 		add_action('add_meta_boxes', function () {
 			add_meta_box(
