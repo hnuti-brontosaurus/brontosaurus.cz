@@ -61,7 +61,6 @@ final class PostTypeInitializer
 			'show_ui' => true,
 			'show_in_rest' => true,
 			'show_admin_column' => true,
-			'meta_box_cb' => 'post_categories_meta_box',
 		]);
 		add_action('add_meta_boxes', function () {
 			add_meta_box(
