@@ -25,7 +25,7 @@ final /* readonly */ class StoriesFiltersDC
 	{
 		return new static(
 			array_map(($filter) => [
-				'label' => $filter->title,
+				'label' => $filter->name,
 				'slug' => $filter->slug,
 				'isSelected' => $filter->slug === $selectedFilter,
 			], $filters),
