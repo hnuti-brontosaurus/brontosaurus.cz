@@ -49,6 +49,7 @@ final class PostTypeInitializer
 			'show_in_rest' => true,
 			'supports' => ['title', 'editor', 'excerpt', 'thumbnail'],
 			'hierarchical' => false,
+			'taxonomies' => ['category'],
 		]);
 		register_taxonomy('kategorie-pribehu', 'pribehy-nadseni', [
 			'labels' => [
