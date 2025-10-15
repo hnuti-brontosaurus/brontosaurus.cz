@@ -23,17 +23,15 @@ final /* readonly */ class StoriesFiltersDC
 
 	public static function from(array $filters, string $key, ?string $selectedFilter = null): self
 	{
-		var_dump("aaaaa");
-		return new self([], "");
-		/*return new self(
-			array_map(($filter) => [
+		return new self(
+			array_map(static fn ($filter) => [
 				'label' => $filter->name,
 				'slug' => $filter->slug,
 				'isSelected' => $filter->slug === $selectedFilter,
 			], $filters),
 			$key, 
 			$selectedFilter,
-		);*/
+		);
 	}
 
 	public function get(): array
