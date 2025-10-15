@@ -73,6 +73,7 @@ $stories = array_map(function (WP_Post $post) {
 		? $customs['pribehy-nadseni_location'][0]
 		: null;
 
+	$categories = get_the_terms($post->ID, 'kategorie-pribehu');
 	return (object) [
 		'title' => $post->post_title,
 		'location' => $location,
@@ -80,7 +81,7 @@ $stories = array_map(function (WP_Post $post) {
 		'hasThumbnail' => $thumbnail !== null,
 		'thumbnail' => $thumbnail,
 		'link' => get_page_link($post),
-		'labels' => array_map(static fn($category) => new Label(mb_strtolower($category->name)), get_the_terms($post->ID, 'kategorie-pribehu') ?? []),
+		'labels' => $categories ? array_map(static fn($category) => new Label(mb_strtolower($category->name)), $categories) : [],
 	];
 }, $posts);
 
