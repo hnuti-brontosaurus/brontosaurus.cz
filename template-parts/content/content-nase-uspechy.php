@@ -145,6 +145,12 @@ $stories = array_map(function (WP_Post $post) {
 						?>
 					</div>
 				</div>
+
+			<?php else: ?>
+			<div class="hb-eventList__noResults noResults">
+				V této kategorii žádné příběhy nemáme, zkus zvolit jinou…
+			</div>
+
 			<?php endif; ?>
 		</div>
 
