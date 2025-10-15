@@ -36,7 +36,6 @@ $categories = get_terms([
     'taxonomy' => 'kategorie-pribehu',
     'hide_empty' => false, // Include categories with no posts
 ]);
-var_dump($categories);
 
 // todo: use some WP way of obtaining param
 $selectedFilter = filter_input( INPUT_GET, 'jen' ) ?? null;
@@ -81,7 +80,7 @@ $stories = array_map(function (WP_Post $post) {
 			oprav hradů, úklidů koryt řek, kosení chráněných luk nebo čištění studánek.
 			U příležitosti výročí půlstoletí Brontosaura představujeme vybrané příběhy úspěšných dobrovolnických projektů.
 		</p>
-<?php /*
+
 		<div class="filters hb-expandable hb-mbe-4"<?php if ($filters->isAnySelected): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
 			<button class="hb-expandable__toggler button button--customization" type="button" aria-hidden="true" data-hb-expandable-toggler>
 				Zobrazit pouze
@@ -103,7 +102,7 @@ $stories = array_map(function (WP_Post $post) {
 				<?php endforeach; ?>
 			</ul>
 		</div>
-*/ ?>
+
 		<div class="hb-eventList hb-mbe-4">
 			<div class="hb-eventList__grid">
 				<?php 
