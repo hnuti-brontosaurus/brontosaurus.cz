@@ -88,7 +88,7 @@ $stories = array_map(function (WP_Post $post) {
 
 			<ul class="filters__list" data-hb-expandable-content>
 				<li class="filters__item">
-					<a class="filters__link<?php if ( ! $filters->isAnySelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="#obsah">
+					<a class="filters__link<?php if ( ! $filters->isAnySelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="?#obsah">
 						vše
 					</a>
 				</li>
