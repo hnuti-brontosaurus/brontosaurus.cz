@@ -12,6 +12,16 @@ $hb_bisApiClient = $hb_container->getBisClient();
 $hb_dateFormatForHuman = $hb_container->getDateFormatForHuman();
 $hb_dateFormatForRobot = $hb_container->getDateFormatForRobot();
 
+// fix rank math tags
+// remove generated meta data on this page, see https://support.rankmath.com/ticket/is-there-anyway-to-disable-or-remove-specific-meta-from-posts/
+// https://rankmath.com/kb/filters-hooks-api-developer/#change-the-title
+add_filter('rank_math/frontend/title', static fn($title) => null);
+// https://rankmath.com/kb/filters-hooks-api-developer/#remove-opengraph-tags
+add_action('rank_math/head', function () {
+    remove_all_actions('rank_math/opengraph/facebook');
+    remove_all_actions('rank_math/opengraph/twitter');
+});
+
 try {
 	$hasBeenUnableToLoad = false;
 	$opportunityId = (int) get_query_var(Opportunity::HB_OPPORTUNITY_ID);
