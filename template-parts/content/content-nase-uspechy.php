@@ -80,7 +80,7 @@ $stories = array_map(function (WP_Post $post) {
 		'hasThumbnail' => $thumbnail !== null,
 		'thumbnail' => $thumbnail,
 		'link' => get_page_link($post),
-		'labels' => array_map(static fn($category) => new Label(mb_strtolower($category->name)), get_the_terms($post->ID, 'kategorie-pribehu')),
+		'labels' => array_map(static fn($category) => new Label(mb_strtolower($category->name)), get_the_terms($post->ID, 'kategorie-pribehu') ?? []),
 	];
 }, $posts);
 
