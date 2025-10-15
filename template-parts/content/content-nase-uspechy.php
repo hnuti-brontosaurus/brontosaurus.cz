@@ -46,7 +46,17 @@ $filters = StoriesFiltersDC::from($categories, 'jen', $selectedFilter);
 $all = filter_input( INPUT_GET, 'vsechny' ) ?? null;
 $shouldListAll = $all === '';
 
-$posts = get_posts(['post_type' => 'pribehy-nadseni', 'numberposts' => -1]);
+$params = ['post_type' => 'pribehy-nadseni', 'numberposts' => -1];
+if ($selectedFilter !== null) {
+    $params['tax_query'] = [
+        [
+            'taxonomy' => 'kategorie-pribehu',
+            'field' => 'slug',
+            'terms' => $selectedFilter,
+        ],
+    ];
+}
+$posts = get_posts($params);
 
 $displayOnLoad = $shouldListAll ? null : 3;
 $stories = array_map(function (WP_Post $post) {
