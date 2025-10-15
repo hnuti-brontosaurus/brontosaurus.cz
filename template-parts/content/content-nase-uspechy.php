@@ -98,6 +98,10 @@ $stories = array_map(function (WP_Post $post) {
 			U příležitosti výročí půlstoletí Brontosaura představujeme vybrané příběhy úspěšných dobrovolnických projektů.
 		</p>
 
+		<?php
+			$filtersList = $filters->get();
+			if (count($filtersList) > 0):
+		?>
 		<div class="filters hb-expandable hb-mbe-4"<?php if ($filters->isAnySelected): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
 			<button class="hb-expandable__toggler button button--customization" type="button" aria-hidden="true" data-hb-expandable-toggler>
 				Zobrazit pouze
@@ -110,7 +114,7 @@ $stories = array_map(function (WP_Post $post) {
 					</a>
 				</li>
 
-				<?php foreach ($filters->get() as $filter): ?>
+				<?php foreach ($filtersList as $filter): ?>
 				<li class="filters__item">
 					<a class="filters__link<?php if ($filter->isSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="?jen=<?php echo $filter->slug ?>#obsah">
 						<?php echo $filter->label ?>
@@ -119,6 +123,7 @@ $stories = array_map(function (WP_Post $post) {
 				<?php endforeach; ?>
 			</ul>
 		</div>
+		<?php endif; ?>
 
 		<div class="hb-eventList hb-mbe-4">
 			<?php if (count($stories)): ?>
