@@ -27,6 +27,12 @@ try {
 	$opportunityId = (int) get_query_var(Opportunity::HB_OPPORTUNITY_ID);
 	$opportunity = $hb_bisApiClient->getOpportunity($opportunityId);
 
+	// add event name to title tag (source https://stackoverflow.com/a/62410632/3668474)
+    add_filter(
+        'document_title_parts',
+        fn(array $title) => array_merge($title, ['title' => $opportunity->getName()]),
+    );
+
 } catch (OpportunityNotFound) {
 	get_template_part('template-parts/content/content', 'error');
 	get_footer();
