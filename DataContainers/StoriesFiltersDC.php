@@ -21,9 +21,11 @@ final /* readonly */ class StoriesFiltersDC
 		$this->isAnySelected = $selectedFilter !== null;
 	}
 
-	public static function from(array $filters, string $key, ?string $selectedFilter = null): static
+	public static function from(array $filters, string $key, ?string $selectedFilter = null): self
 	{
-		return new static(
+		var_dump("aaaaa");
+		return new self([], "");
+		/*return new self(
 			array_map(($filter) => [
 				'label' => $filter->name,
 				'slug' => $filter->slug,
@@ -31,7 +33,7 @@ final /* readonly */ class StoriesFiltersDC
 			], $filters),
 			$key, 
 			$selectedFilter,
-		);
+		);*/
 	}
 
 	public function get(): array
