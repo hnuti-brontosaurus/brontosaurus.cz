@@ -1,4 +1,9 @@
-<?php function hb_story(stdClass $story) { ?>
+<?php 
+
+use HnutiBrontosaurus\Theme\DataContainers\StoriesFiltersDC;
+use HnutiBrontosaurus\Theme\DataContainers\Events\Label;
+
+function hb_story(stdClass $story) { ?>
 <a class="hb-event" href="<?php echo $story->link ?>">
 	<div class="hb-event__imageWrapper">
 		<img alt="" class="hb-event__image<?php if ( ! $story->hasThumbnail): ?> hb-event__image--noThumbnail<?php endif; ?>" data-src="<?php if ($story->hasThumbnail): ?><?php echo $story->thumbnail ?><?php else: ?>https://brontosaurus.cz/wp-content/uploads/2024/12/logo-hb-brontosaurus.svg<?php endif; ?>">
@@ -6,6 +11,10 @@
 		<noscript>
 			<img alt="" class="hb-event__image<?php if ( ! $story->hasThumbnail): ?> hb-event__image--noThumbnail<?php endif; ?>" src="<?php if ($story->hasThumbnail): ?><?php echo $story->thumbnail ?><?php else: ?>https://brontosaurus.cz/wp-content/uploads/2024/12/logo-hb-brontosaurus.svg<?php endif; ?>">
 		</noscript>
+
+		<div class="hb-event__labels">
+			<?php hb_eventLabels($story->labels) ?>
+		</div>
 	</div>
 
 	<header class="hb-event__header">
@@ -28,11 +37,31 @@
 </a>
 <?php }
 
+$categories = get_terms([
+    'taxonomy' => 'kategorie-pribehu',
+    'hide_empty' => false, // Include categories with no posts
+]);
+
+// todo: use some WP way of obtaining param
+$selectedFilter = filter_input( INPUT_GET, 'jen' ) ?? null;
+$selectedFilter = $selectedFilter !== null && $selectedFilter !== '' ? htmlspecialchars($selectedFilter) : null;
+$filters = StoriesFiltersDC::from($categories, 'jen', $selectedFilter);
+
 // todo: use some WP way of obtaining param
 $all = filter_input( INPUT_GET, 'vsechny' ) ?? null;
 $shouldListAll = $all === '';
 
-$posts = get_posts(['post_type' => 'pribehy-nadseni', 'numberposts' => -1]);
+$params = ['post_type' => 'pribehy-nadseni', 'numberposts' => -1];
+if ($selectedFilter !== null) {
+    $params['tax_query'] = [
+        [
+            'taxonomy' => 'kategorie-pribehu',
+            'field' => 'slug',
+            'terms' => $selectedFilter,
+        ],
+    ];
+}
+$posts = get_posts($params);
 
 $displayOnLoad = $shouldListAll ? null : 3;
 $stories = array_map(function (WP_Post $post) {
@@ -44,6 +73,7 @@ $stories = array_map(function (WP_Post $post) {
 		? $customs['pribehy-nadseni_location'][0]
 		: null;
 
+	$categories = get_the_terms($post->ID, 'kategorie-pribehu');
 	return (object) [
 		'title' => $post->post_title,
 		'location' => $location,
@@ -51,6 +81,7 @@ $stories = array_map(function (WP_Post $post) {
 		'hasThumbnail' => $thumbnail !== null,
 		'thumbnail' => $thumbnail,
 		'link' => get_page_link($post),
+		'labels' => $categories ? array_map(static fn($category) => new Label(mb_strtolower($category->name)), $categories) : [],
 	];
 }, $posts);
 
@@ -67,17 +98,45 @@ $stories = array_map(function (WP_Post $post) {
 			U příležitosti výročí půlstoletí Brontosaura představujeme vybrané příběhy úspěšných dobrovolnických projektů.
 		</p>
 
+		<?php
+			$filtersList = $filters->get();
+			if (count($filtersList) > 0):
+		?>
+		<div class="filters hb-expandable hb-mbe-4"<?php if ($filters->isAnySelected): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
+			<button class="hb-expandable__toggler button button--customization" type="button" aria-hidden="true" data-hb-expandable-toggler>
+				Zobrazit pouze
+			</button>
+
+			<ul class="filters__list" data-hb-expandable-content>
+				<li class="filters__item">
+					<a class="filters__link<?php if ( ! $filters->isAnySelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="?#obsah">
+						vše
+					</a>
+				</li>
+
+				<?php foreach ($filtersList as $filter): ?>
+				<li class="filters__item">
+					<a class="filters__link<?php if ($filter->isSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="?jen=<?php echo $filter->slug ?>#obsah">
+						<?php echo $filter->label ?>
+					</a>
+				</li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+		<?php endif; ?>
+
 		<div class="hb-eventList hb-mbe-4">
+			<?php if (count($stories)): ?>
 			<div class="hb-eventList__grid">
 				<?php 
 				$counter = 1;
 				foreach ($stories as $story) {
-                	hb_story($story);
+					hb_story($story);
 					if ($displayOnLoad !== null && $counter === $displayOnLoad) {
 						break;
 					}
 					$counter++;
-				} 
+				}
 				?>
 			</div>
 			<?php if ($displayOnLoad !== null && count($stories) > $displayOnLoad): ?>
@@ -99,6 +158,12 @@ $stories = array_map(function (WP_Post $post) {
 						?>
 					</div>
 				</div>
+			<?php endif; ?>
+
+			<?php else: ?>
+			<div class="hb-eventList__noResults noResults">
+				V této kategorii nemáme žádné příběhy, zkus zvolit jinou…
+			</div>
 			<?php endif; ?>
 		</div>
 
