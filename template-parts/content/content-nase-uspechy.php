@@ -120,16 +120,17 @@ $stories = array_map(function (WP_Post $post) {
 		</div>
 
 		<div class="hb-eventList hb-mbe-4">
+			<?php if (count($stories)): ?>
 			<div class="hb-eventList__grid">
 				<?php 
 				$counter = 1;
 				foreach ($stories as $story) {
-                	hb_story($story);
+					hb_story($story);
 					if ($displayOnLoad !== null && $counter === $displayOnLoad) {
 						break;
 					}
 					$counter++;
-				} 
+				}
 				?>
 			</div>
 			<?php if ($displayOnLoad !== null && count($stories) > $displayOnLoad): ?>
@@ -151,12 +152,12 @@ $stories = array_map(function (WP_Post $post) {
 						?>
 					</div>
 				</div>
+			<?php endif; ?>
 
 			<?php else: ?>
 			<div class="hb-eventList__noResults noResults">
-				V této kategorii žádné příběhy nemáme, zkus zvolit jinou…
+				V této kategorii nemáme žádné příběhy, zkus zvolit jinou…
 			</div>
-
 			<?php endif; ?>
 		</div>
 
