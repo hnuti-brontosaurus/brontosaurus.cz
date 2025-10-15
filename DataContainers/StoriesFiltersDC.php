@@ -25,7 +25,7 @@ final /* readonly */ class StoriesFiltersDC
 	{
 		return new self(
 			array_map(static fn ($filter) => (object) [
-				'label' => $filter->name,
+				'label' => mb_strtolower($filter->name),
 				'slug' => $filter->slug,
 				'isSelected' => $filter->slug === $selectedFilter,
 			], $filters),
