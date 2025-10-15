@@ -24,7 +24,7 @@ final /* readonly */ class StoriesFiltersDC
 	public static function from(array $filters, string $key, ?string $selectedFilter = null): self
 	{
 		return new self(
-			array_map(static fn ($filter) => [
+			array_map(static fn ($filter) => (object) [
 				'label' => $filter->name,
 				'slug' => $filter->slug,
 				'isSelected' => $filter->slug === $selectedFilter,
