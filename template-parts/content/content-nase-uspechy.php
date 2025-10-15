@@ -1,6 +1,7 @@
 <?php 
 
 use HnutiBrontosaurus\Theme\DataContainers\StoriesFiltersDC;
+use HnutiBrontosaurus\Theme\DataContainers\Events\Label;
 
 function hb_story(stdClass $story) { ?>
 <a class="hb-event" href="<?php echo $story->link ?>">
@@ -10,6 +11,10 @@ function hb_story(stdClass $story) { ?>
 		<noscript>
 			<img alt="" class="hb-event__image<?php if ( ! $story->hasThumbnail): ?> hb-event__image--noThumbnail<?php endif; ?>" src="<?php if ($story->hasThumbnail): ?><?php echo $story->thumbnail ?><?php else: ?>https://brontosaurus.cz/wp-content/uploads/2024/12/logo-hb-brontosaurus.svg<?php endif; ?>">
 		</noscript>
+
+		<div class="hb-event__labels">
+			<?php hb_eventLabels($story->labels) ?>
+		</div>
 	</div>
 
 	<header class="hb-event__header">
@@ -75,6 +80,7 @@ $stories = array_map(function (WP_Post $post) {
 		'hasThumbnail' => $thumbnail !== null,
 		'thumbnail' => $thumbnail,
 		'link' => get_page_link($post),
+		'labels' => array_map(static fn($category) => new Label($category->name), get_the_terms($post->ID, 'kategorie-pribehu')),
 	];
 }, $posts);
 
