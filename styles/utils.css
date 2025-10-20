@@ -151,6 +151,18 @@
 	.hb-lg-cg-9 { column-gap: 6rlh; }
 }
 
+/* grid */
+.hb-gc-1 { grid-template-columns: repeat(1, 1fr); }
+.hb-gc-2 { grid-template-columns: repeat(2, 1fr); }
+.hb-gc-3 { grid-template-columns: repeat(3, 1fr); } 
+.hb-gc-4 { grid-template-columns: repeat(4, 1fr); }
+@media (min-width: 60.001em) { /* $typography-breakpoint-large-from */
+	.hb-lg-gc-1 { grid-template-columns: repeat(1, 1fr); }
+	.hb-lg-gc-2 { grid-template-columns: repeat(2, 1fr); }
+	.hb-lg-gc-3 { grid-template-columns: repeat(3, 1fr); } 
+	.hb-lg-gc-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
 .hb-f-l { float: left; }
 .hb-f-r { float: right; }
 .hb-c-l { clear: left; }
