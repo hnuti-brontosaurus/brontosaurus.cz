@@ -179,8 +179,9 @@ $stories = array_map(function (WP_Post $post) {
 
 		<div class="hb-mw-50 [ hb-d-g hb-gc-1 hb-lg-gc-2 hb-fd-c hb-lg-fd-r hb-g-4 hb-lg-g-3 ][ hb-mi-auto hb-mbs-6 hb-mbe-5 hb-lg-mbe-4 ]">
 			<iframe class="hb-d-b hb-is-100 hb-ar-169 hb-br" src="https://www.youtube.com/embed/6RCZ2E5S9qo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 			<iframe class="hb-d-b hb-is-100 hb-ar-169 hb-br" src="https://www.youtube.com/embed/DM-BiimluBw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<iframe class="hb-d-b hb-is-100 hb-ar-169 hb-br" src="https://www.youtube.com/embed/EKbb8V5lXfo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<iframe class="hb-d-b hb-is-100 hb-ar-169 hb-br" src="https://www.youtube.com/embed/muyLPdjY8L8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 		</div>
 
 		<div class="hb-ta-c hb-mbe-5">
