@@ -162,7 +162,7 @@ function hb_meta_socials_description(string $text) {
 	$text = strip_tags($text);
 	$text = html_entity_decode($text);
 	$text = htmlspecialchars($text);
-	$text = str_replace("\n", " ", $text);
+	$text = str_replace("\\n", " ", $text);
 	return hb_truncate($text, 150);
 }
 
