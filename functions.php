@@ -160,15 +160,11 @@ require_once __DIR__ . '/homepage-banner.php';
 
 function hb_meta_socials_description(string $text) {
 	$text = strip_tags($text);
-	var_dump($text);
 	$text = html_entity_decode($text);
-	var_dump($text);
 	$text = htmlspecialchars($text);
-	var_dump($text);
-	$text = str_replace(["\n", "\\n", '\n', "<br>", "\t", "\\t", "\r", "\\r"], " ", $text);
-	var_dump($text);
+	$text = str_replace(["\r\n", "\r", "\n"], " ", $text);
+	$text = preg_replace("/\s+/", " ", $text);
 	$text = hb_truncate($text, 150);
-	var_dump($text);
 	return $text;
 }
 
