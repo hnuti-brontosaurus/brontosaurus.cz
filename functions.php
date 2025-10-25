@@ -158,13 +158,20 @@ require_once __DIR__ . '/homepage-banner.php';
 })($hb_container, wp_get_theme());
 
 
+function hb_meta_socials_description(string $text) {
+	$text = strip_tags($text);
+	//$text = html_entity_decode($text);
+	$text = htmlspecialchars($text);
+	return hb_truncate($text, 150);
+}
+
 function hb_akce_meta(EventDC $event) { ?>
 	<?php if ($event): ?>
 	<meta property="og:locale" content="cs_CZ">
 	<meta property="og:type" content="website">
 	<meta property="og:title" content="<?php echo $event->title ?>">
 	<?php if ( HB_IS_ON_PRODUCTION): ?>
-	<meta property="og:description" content="<?php echo hb_truncate(htmlspecialchars(strip_tags($event->invitation->introduction)), 150) ?>">
+	<meta property="og:description" content="<?php echo hb_meta_socials_description($event->invitation->introduction) ?>">
 	<?php else: ?>
 	<meta property="og:description" content="📅 <?php echo $event->dateSpan ?> 🌍 <?php echo $event->place->name ?>">
 	<?php endif; ?>
@@ -176,7 +183,7 @@ function hb_akce_meta(EventDC $event) { ?>
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:title" content="<?php echo $event->title ?>">
 	<?php if ( HB_IS_ON_PRODUCTION): ?>
-	<meta name="twitter:description" content="<?php hb_truncate(htmlspecialchars(strip_tags($event->invitation->introduction)), 150) ?>">
+	<meta name="twitter:description" content="<?php echo hb_meta_socials_description($event->invitation->introduction) ?>">
 	<?php else: ?>
 	<meta name="twitter:description" content="📅 <?php echo $event->dateSpan ?> 🌍 <?php echo $event->place->name ?>">
 	<?php endif; ?>
@@ -191,13 +198,13 @@ function hb_prilezitost_meta(OpportunityDC $opportunity) { ?>
 	<meta property="og:locale" content="cs_CZ">
 	<meta property="og:type" content="website">
 	<meta property="og:title" content="<?php echo $opportunity->title ?>">
-	<meta property="og:description" content="<?php echo hb_truncate(htmlspecialchars(strip_tags($opportunity->introduction)), 150) ?>">
+	<meta property="og:description" content="<?php echo hb_meta_socials_description($opportunity->introduction) ?>">
 	<meta property="og:url" content="<?php echo $opportunity->link ?>">
 	<meta property="og:site_name" content="Hnutí Brontosaurus">
 	<meta property="og:image" content="<?php echo $opportunity->coverPhotoPath ?>">
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:title" content="<?php echo $opportunity->title ?>">
-	<meta name="twitter:description" content="<?php hb_truncate(htmlspecialchars(strip_tags($opportunity->introduction)), 150) ?>">
+	<meta name="twitter:description" content="<?php echo hb_meta_socials_description($opportunity->introduction) ?>">
 	<meta name="twitter:image" content="<?php echo $opportunity->coverPhotoPath ?>">
 	<?php endif; ?>
 <?php }
