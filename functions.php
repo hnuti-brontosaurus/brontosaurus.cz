@@ -165,7 +165,7 @@ function hb_meta_socials_description(string $text) {
 	var_dump($text);
 	$text = htmlspecialchars($text);
 	var_dump($text);
-	$text = str_replace("\\n", " ", $text);
+	$text = str_replace("\n", " ", $text);
 	var_dump($text);
 	$text = hb_truncate($text, 150);
 	var_dump($text);
