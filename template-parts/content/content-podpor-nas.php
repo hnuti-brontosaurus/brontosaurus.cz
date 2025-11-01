@@ -120,7 +120,7 @@ $supporters = array_chunk($supporters, length: 10);
 ?><main class="supportOverview hb-expandable b-mbe-6 hb-lg-mbe-7" role="main">
 	<section>
 		<h1>
-			Adoptuj Brontosaura
+			Podpoř Brontosaura
 			<span class="supportOverview__headingAmendment hb-d-b">a nech za sebou viditelnou stopu!</span>
 		</h1>
 
@@ -236,7 +236,7 @@ $supporters = array_chunk($supporters, length: 10);
 
 	<section>
 		<h1>
-			Proč adoptuji Brontosaura?
+			Proč podporuji Brontosaura?
 		</h1>
 
 		<div class="hb-references" data-references data-references-infinite>
