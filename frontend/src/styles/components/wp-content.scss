@@ -54,3 +54,8 @@
 .hb-wp-content .wp-block-image:not(.is-style-sharp) img {
 	border-radius: 2em;
 }
+
+.hb-wp-content .wp-block-embed-spotify {
+	max-inline-size: 20rem;
+	margin-inline: auto;
+} 
