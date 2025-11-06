@@ -82,6 +82,10 @@ $hb_currentPost = get_post();
 		</script>
 	</div>
 
+	<div class="hb-mbs-3">
+		<a class="hb-action hb-action--ulterior" href="/newsletter">předchozí newslettery</a>
+	</div>
+
 	<div class="hb-newsletter__socials">
 		<a class="hb-newsletter__instagramLink" href="https://www.instagram.com/hnutibrontosaurus" rel="noopener noreferrer" target="_blank" aria-label="Instagram Hnutí Brontosaurus"></a>
 		<a class="hb-newsletter__facebookLink" href="https://www.facebook.com/hnutibrontosaurus" rel="noopener noreferrer" target="_blank" aria-label="Facebook Hnutí Brontosaurus"></a>
