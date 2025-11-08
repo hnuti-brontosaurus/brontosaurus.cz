@@ -3,15 +3,6 @@
 /** @var array<stdClass{title: string, text: string[], image: string}> $whatWeDo */
 $whatWeDo = [
     (object) [
-        'title' => 'Za živou krajinu',
-        'text' => [
-            'Chceme, aby naše krajina čelící suchu a ztrátě pestrosti byla zdravá a odolala změnám klimatu.',
-            'Sázíme stromořadí, oživujeme polní krajinu, staráme se o mokřady, budujeme lužní park Krče. Chceme s dobrovolníky a dobrovolnicemi obnovit další místa po celé ČR. Podpoř nás v tom.',
-        ],
-        'image' => 'https://brontosaurus.cz/wp-content/uploads/2024/12/adopce-krajina-scaled.jpg',
-        'price' => 100,
-    ],
-    (object) [
         'title' => 'Pro památky',
         'text' => [
             'Pečujeme o desítky historických památek tvořících naše kulturní dědictví, například o hrad Lukov. Probouzíme o ně zájem u mladých lidí i veřejnosti.',
@@ -46,6 +37,15 @@ $whatWeDo = [
         ],
         'image' => 'https://brontosaurus.cz/wp-content/uploads/2024/12/adopce-generace-scaled.jpg',
         'price' => 1000,
+    ],
+    (object) [
+        'title' => 'Za živou krajinu',
+        'text' => [
+            'Chceme, aby naše krajina čelící suchu a ztrátě pestrosti byla zdravá a odolala změnám klimatu.',
+            'Sázíme stromořadí, oživujeme polní krajinu, staráme se o mokřady, budujeme lužní park Krče. Chceme s dobrovolníky a dobrovolnicemi obnovit další místa po celé ČR. Podpoř nás v tom.',
+        ],
+        'image' => 'https://brontosaurus.cz/wp-content/uploads/2024/12/adopce-krajina-scaled.jpg',
+        'price' => 100,
     ],
 ];
 
