@@ -94,6 +94,12 @@ $references = [
         'image' => 'https://brontosaurus.cz/wp-content/uploads/2024/12/supportOverview-supporters-perlik.jpg',
     ],
     (object) [
+        'name' => 'Honza Křivonožka',
+        'role' => 'kamnář',
+        'quotation' => 'Podporuju Hnutí Brontosaurus, protože mi jejich akce pomohly najít řemeslo i práci snů a rozjet vlastní podnikání.',
+        'image' => 'https://brontosaurus.cz/wp-content/uploads/2025/11/foj1411-1.jpeg',
+    ],
+    (object) [
         'name' => 'Pepa Hladký',
         'role' => 'cestovatel, vodák a organizátor akcí',
         'quotation' => 'Když jsem se stal organizátorem brontosauřích táborů a víkendovek, uvědomil jsem si, kolik je za tím tvrdé dřiny. Proto jej chci podporovat.',
