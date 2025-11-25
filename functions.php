@@ -667,3 +667,50 @@ function hb_tags(array $tags, ?string $className)
 	<?php
 	endforeach; 
 }
+
+
+
+// redirects listing
+add_shortcode('rankmath_redirects', function () {
+    global $wpdb;
+
+    // Z tabulky redirections si vezmeme ID a stav + typ redirectu
+    $table_main = $wpdb->prefix . 'rank_math_redirections';
+    $table_cache = $wpdb->prefix . 'rank_math_redirections_cache';
+
+    // h.status = 1 → aktivní
+    // h.header typu 301/302 atd. nám nevadí
+    // h.match_type = 'exact' → NENÍ regexp
+    $redirects = $wpdb->get_results("
+        SELECT c.src, c.url_to
+        FROM $table_cache c
+        JOIN $table_main h ON h.id = c.redirection_id
+        WHERE h.status = 1
+          AND h.match_type = 'exact'
+        ORDER BY c.src ASC
+    ");
+
+    if (empty($redirects)) {
+        return "<p>Žádné odpovídající přesměrování nebylo nalezeno.</p>";
+    }
+
+    $out = "<table>
+                <tr>
+                    <th>Zdrojová URL</th>
+                    <th>Cílová URL</th>
+                </tr>";
+
+    foreach ($redirects as $r) {
+        $src = esc_html($r->src);
+        $to  = esc_url($r->url_to);
+
+        $out .= "<tr>
+                    <td>{$src}</td>
+                    <td><a href=\"{$to}\" target=\"_blank\">{$to}</a></td>
+                 </tr>";
+    }
+
+    $out .= "</table>";
+
+    return $out;
+});
