@@ -38,7 +38,7 @@
 
 /* border radius */
 .hb-br { border-radius: 2em; }
-.hb-br-unset { border-radius: unset; }
+.hb-br-unset { border-radius: unset !important; } /* because of podpor-nas */
 
 /* display */
 .hb-d-b { display: block; }
