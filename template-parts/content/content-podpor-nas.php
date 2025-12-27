@@ -150,22 +150,22 @@ $references = [
 		<div class="hb-references__list" data-references-slides>
             <?php foreach ($whatWeDo as $item): ?>
 			<div class="hb-references__list-item">
-				<div class="hb-option hb-option--imageFirst hb-jc-fs">
-					<div class="hb-option__text">
-						<div class="hb-option__heading hb-fs-l hb-fw-b hb-mbe-2">
+				<div class="hb-optionBox hb-optionBox--imageFirst hb-jc-fs">
+					<div class="hb-optionBox__text">
+						<div class="hb-optionBox__heading hb-fs-l hb-fw-b hb-mbe-2">
                         <?php echo $item->title ?>
 						</div>
 
                         <?php foreach ($item->text as $text): ?>
-						<p class="hb-option__description hb-mbe-2"><?php echo $text ?></p>
+						<p class="hb-optionBox__description hb-mbe-2"><?php echo $text ?></p>
                         <?php endforeach; ?>
 					</div>
 
-					<div class="hb-option__image hb-br-unset" style="--hb-option-image: url('<?php echo $item->image ?>')">
+					<div class="hb-optionBox__image hb-br-unset" style="--hb-optionBox-image: url('<?php echo $item->image ?>')">
 
 					</div>
 
-					<div class="hb-option__button" style="align-self: center; margin-block-end: 1rlh">
+					<div class="hb-optionBox__button" style="align-self: center; margin-block-end: 1rlh">
 						<a class="hb-action hb-action--primary" href="https://www.darujme.cz/darovat/525?frequency=monthly&amount=<?php echo $item->price ?>&widget=1203034" rel="noopener" target="_blank">
 							<span>Přispět <?php echo $item->price ?> Kč / měs</span>
 						</a>
