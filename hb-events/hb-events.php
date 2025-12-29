@@ -24,7 +24,7 @@ function hb_events(Container $container)
 
             } catch (ConnectionToBisFailed $e) {
                 Debugger::log($e);
-                return "";
+                return "error loading events from BIS";
             }
 
             ob_start();
