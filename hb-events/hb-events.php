@@ -1,6 +1,9 @@
 <?php
 
+use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
+use HnutiBrontosaurus\BisClient\Event\Tag;
 use HnutiBrontosaurus\Theme\Container;
+use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollectionDC;   
 
 function hb_events(Container $container)
 {
