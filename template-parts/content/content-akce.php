@@ -3,10 +3,8 @@
 use HnutiBrontosaurus\BisClient\BisClient;
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\EventNotFound;
-use HnutiBrontosaurus\BisClient\Event\Response\Event;
 use HnutiBrontosaurus\Theme\Container;
 use HnutiBrontosaurus\Theme\NotFound;
-use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\DataContainers\Events\EventDC;
 use Latte\Engine;
 use Nette\Utils\Strings;

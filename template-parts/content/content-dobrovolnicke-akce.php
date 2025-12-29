@@ -6,7 +6,6 @@ use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
 use HnutiBrontosaurus\Theme\Container;
 use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollectionDC;
-use HnutiBrontosaurus\Theme\DataContainers\Events\EventDC;
 use HnutiBrontosaurus\Theme\DataContainers\VoluntaryFiltersDC;
 use HnutiBrontosaurus\Theme\Filters\VoluntaryFilters;
 use Tracy\Debugger;
