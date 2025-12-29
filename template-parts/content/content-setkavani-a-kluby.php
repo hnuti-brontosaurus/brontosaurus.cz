@@ -5,6 +5,7 @@ use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 use HnutiBrontosaurus\Theme\Container;
 use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollectionDC;
 use HnutiBrontosaurus\Theme\Filters\MeetupsFilters;
+use Tracy\Debugger;
 
 /** @var Container $hb_container defined in functions.php */
 $hb_bisApiClient = $hb_container->getBisClient();
@@ -22,8 +23,9 @@ try {
     $events = $hb_bisApiClient->getEvents($params);
     $eventCollection = new EventCollectionDC($events, $hb_dateFormatHuman, $hb_dateFormatRobot);
 
-} catch (ConnectionToBisFailed) {
+} catch (ConnectionToBisFailed $e) {
     $eventCollection = EventCollectionDC::unableToLoad($hb_dateFormatHuman, $hb_dateFormatRobot);
+	Debugger::log($e);
 }
 
 ?><main class="hb-mbe-6" role="main" id="obsah">

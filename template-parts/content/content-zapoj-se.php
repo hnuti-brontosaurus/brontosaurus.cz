@@ -8,6 +8,7 @@ use HnutiBrontosaurus\Theme\CannotResolveCoordinates;
 use HnutiBrontosaurus\Theme\Container;
 use HnutiBrontosaurus\Theme\DataContainers\Structure\AdministrationUnit;
 use Nette\Utils\Strings;
+use Tracy\Debugger;
 
 /** @var Container $hb_container defined in functions.php */
 
@@ -53,8 +54,9 @@ try {
 		}
 	}
 
-} catch (ConnectionToBisFailed) {
+} catch (ConnectionToBisFailed $e) {
 	$hasBeenUnableToLoad = true;
+	Debugger::log($e);
 }
 
 $administrationUnitsInJson = json_encode($administrationUnits);

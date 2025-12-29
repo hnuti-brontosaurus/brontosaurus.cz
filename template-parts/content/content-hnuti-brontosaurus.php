@@ -25,8 +25,9 @@ try {
         }
     }
 
-} catch (ConnectionToBisFailed) {
+} catch (ConnectionToBisFailed $e) {
     $hasBeenUnableToLoad = true;
+	Debugger::log($e);
 }
 
 $administrationUnitsInJson = json_encode($administrationUnits);

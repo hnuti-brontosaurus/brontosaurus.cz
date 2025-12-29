@@ -1,9 +1,11 @@
 <?php
 
+use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 use HnutiBrontosaurus\BisClient\Event\Tag;
 use HnutiBrontosaurus\Theme\Container;
-use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollectionDC;   
+use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollectionDC;
+use Tracy\Debugger;
 
 function hb_events(Container $container)
 {
@@ -17,7 +19,13 @@ function hb_events(Container $container)
                 $params->setTag(Tag::fromScalar($selected));
             }
 
-            $events = $bisClient->getEvents($params);
+            try {
+                $events = $bisClient->getEvents($params);
+
+            } catch (ConnectionToBisFailed $e) {
+                Debugger::log($e);
+                return "";
+            }
 
             ob_start();
             hb_eventList(new EventCollectionDC(

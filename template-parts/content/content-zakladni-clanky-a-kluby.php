@@ -5,6 +5,7 @@ use HnutiBrontosaurus\BisClient\BisClient;
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\Theme\Container;
 use HnutiBrontosaurus\Theme\DataContainers\OrganizationalUnitDC;
+use Tracy\Debugger;
 
 /** @var Container $hb_container defined in functions.php */
 $hb_bisApiClient = $hb_container->getBisClient();
@@ -29,8 +30,9 @@ try {
         $units,
     );
 
-} catch (ConnectionToBisFailed) {
+} catch (ConnectionToBisFailed $e) {
     $hasBeenUnableToLoad = true;
+	Debugger::log($e);
 }
 
 ?><main role="main">

@@ -8,6 +8,7 @@ use HnutiBrontosaurus\BisClient\Event\Response\Event;
 use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollectionDC;
 use HnutiBrontosaurus\Theme\Container;
 use HnutiBrontosaurus\Theme\Filters\VoluntaryFilters;
+use Tracy\Debugger;
 
 /** @var Container $hb_container defined in functions.php */
 
@@ -57,8 +58,9 @@ try {
 
     $eventCollection = new EventCollectionDC($events, $hb_dateFormatForHuman, $hb_dateFormatForRobot);
 
-} catch (ConnectionToBisFailed) {
+} catch (ConnectionToBisFailed $e) {
     $eventCollection = EventCollectionDC::unableToLoad($hb_dateFormatForHuman, $hb_dateFormatForRobot);
+	Debugger::log($e);
 }
 
 $hb_banner = hb_banner();

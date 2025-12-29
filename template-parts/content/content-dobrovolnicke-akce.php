@@ -9,6 +9,7 @@ use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollectionDC;
 use HnutiBrontosaurus\Theme\DataContainers\Events\EventDC;
 use HnutiBrontosaurus\Theme\DataContainers\VoluntaryFiltersDC;
 use HnutiBrontosaurus\Theme\Filters\VoluntaryFilters;
+use Tracy\Debugger;
 
 /** @var Container $hb_container defined in functions.php */
 $hb_bisApiClient = $hb_container->getBisClient();
@@ -44,8 +45,9 @@ $events = [];
 try {
     $events = $hb_bisApiClient->getEvents($params);
 
-} catch (ConnectionToBisFailed) {
+} catch (ConnectionToBisFailed $e) {
     $eventCollection = EventCollectionDC::unableToLoad($hb_dateFormatHuman, $hb_dateFormatRobot);
+	Debugger::log($e);
 }
 
 if ($eventCollection === null) {

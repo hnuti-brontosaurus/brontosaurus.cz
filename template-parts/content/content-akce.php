@@ -10,6 +10,7 @@ use HnutiBrontosaurus\Theme\UI\Base\Base;
 use HnutiBrontosaurus\Theme\DataContainers\Events\EventDC;
 use Latte\Engine;
 use Nette\Utils\Strings;
+use Tracy\Debugger;
 
 /** @var Container $hb_container defined in functions.php */
 
@@ -93,9 +94,10 @@ try {
 } catch (EventNotFound) {
     throw new NotFound();
 
-} catch (ConnectionToBisFailed) {
+} catch (ConnectionToBisFailed $e) {
     $hasBeenUnableToLoad = true;
     $eventDC = null;
+	Debugger::log($e);
 }
 
 $event = $eventDC;

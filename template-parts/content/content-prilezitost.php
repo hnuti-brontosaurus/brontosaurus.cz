@@ -4,6 +4,7 @@ use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\OpportunityNotFound;
 use HnutiBrontosaurus\Theme\Container;
 use HnutiBrontosaurus\Theme\Rewrites\Opportunity;
+use Tracy\Debugger;
 
 
 /** @var Container $hb_container defined in functions.php */
@@ -38,8 +39,9 @@ try {
 	get_footer();
 	exit;
 
-} catch (ConnectionToBisFailed) {
+} catch (ConnectionToBisFailed $e) {
 	$hasBeenUnableToLoad = true;
+	Debugger::log($e);
 }
 ?>
 

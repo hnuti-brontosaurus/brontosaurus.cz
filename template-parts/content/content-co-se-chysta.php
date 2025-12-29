@@ -6,6 +6,7 @@ use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 use HnutiBrontosaurus\BisClient\Event\Request\Period;
 use HnutiBrontosaurus\Theme\Container;
 use HnutiBrontosaurus\Theme\DataContainers\MonthWrapperDC;
+use Tracy\Debugger;
 
 /** @var Container $hb_container defined in functions.php */
 $hb_bisApiClient = $hb_container->getBisClient();
@@ -69,9 +70,10 @@ try {
         $months[] = $currentMonthWrapperDC;
     }
 
-} catch (ConnectionToBisFailed) {
+} catch (ConnectionToBisFailed $e) {
     $months = [];
     $hasBeenUnableToLoad = true;
+    Debugger::log($e);
 }
 
 ?><main role="main">
