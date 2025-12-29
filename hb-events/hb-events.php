@@ -24,7 +24,7 @@ function hb_events(Container $container)
 
             } catch (ConnectionToBisFailed $e) {
                 Debugger::log($e);
-                return "error loading events from BIS";
+                return '<div class="noResults">Promiňte, zrovna nám vypadl systém, kde máme uloženy všechny informace o plánovaných akcích. Zkuste to prosím za chvilku znovu.</div>';
             }
 
             ob_start();
