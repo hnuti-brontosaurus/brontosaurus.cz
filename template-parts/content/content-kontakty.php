@@ -112,7 +112,7 @@ $contacts = array_map(function (WP_Post $post) {
 			<div class="hb-block-text hb-fs-xs">
 				ID datové schránky: h7id376<br>
 				transparentní účet: <a href="https://ib.fio.cz/ib/transparent?a=2100070590" rel="noopener noreferrer" target="_blank">2100070590/2010</a><br>
-				transparentní účet pro příjem darů – Adopce brontosaura: <a href="https://ib.fio.cz/ib/transparent?a=2600217667" rel="noopener noreferrer" target="_blank">2600217667/2010</a>
+				transparentní účet pro příjem darů: <a href="https://ib.fio.cz/ib/transparent?a=2600217667" rel="noopener noreferrer" target="_blank">2600217667/2010</a>
 			</div>
 		</div>
 
