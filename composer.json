@@ -3,7 +3,7 @@
 	"description": "WP theme for Hnutí Brontosaurus",
 	"require": {
 		"grifart/geocoding-client": "^0.2.0",
-		"hnuti-brontosaurus/php-bis-api-client": "^4.0.0-beta",
+		"hnuti-brontosaurus/php-bis-api-client": "^5.0.0-beta",
 		"nette/neon": "^3.2",
 		"nette/utils": "^4.0",
 		"tracy/tracy": "^2.8"
