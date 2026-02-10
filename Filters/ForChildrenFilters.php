@@ -11,7 +11,7 @@ use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 final class ForChildrenFilters
 {
 
-	const FILTER_CAMPS = 'detske-tabory';
+	const FILTER_CAMPS = 'detske-tabory-a-vypravy';
 	const FILTER_UNITS = 'detske-oddily';
 	const FILTER_EVENTS = 'akce-pro-deti';
 	const FILTER_EVENTS_WITH_PARENTS = 'akce-pro-rodice-s-detmi';
@@ -31,11 +31,12 @@ final class ForChildrenFilters
 		switch ($selectedFilter) {
 			case self::FILTER_CAMPS:
 				self::$parameters->setGroup(Group::CAMP());
+				self::$parameters->setCategory(Category::SECTION_EVENT());
 				self::allRelevantTargetGroups();
 				break;
 
 			case self::FILTER_UNITS:
-				self::$parameters->setCategory(Category::INTERNAL_SECTION_MEETING());
+				self::$parameters->setCategory(Category::SECTION_MEETING());
 				self::allRelevantTargetGroups();
 				break;
 

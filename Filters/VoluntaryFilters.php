@@ -84,7 +84,7 @@ final class VoluntaryFilters
 	{
 		self::$parameters->setCategories([
 			Category::VOLUNTEERING(),
-			Category::EXPERIENCE(),
+			Category::EXPERIENTAL(),
 		]);
 	}
 
