@@ -314,7 +314,7 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 					</li>
 
 					<li>
-						Setkávání a kluby
+						Setkávání
 					</li>
 				</ul>
 

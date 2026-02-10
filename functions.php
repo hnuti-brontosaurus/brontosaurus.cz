@@ -442,12 +442,13 @@ function hb_related(
 		<?php endif; ?>
 
 		<?php if ( ! $excludeMeetups): ?>
-		<a class="related-list-item related-list-item--meetups button--secondary-wrapper" href="/setkavani-a-kluby">
+		<a class="related-list-item related-list-item--meetups button--secondary-wrapper" href="/setkavani">
 			<h2 class="related-list-item-heading">
-				Setkávání a kluby
+				Setkávání
 			</h2>
 
 			<ul class="related-list-item-list">
+				<!-- TODO -->
 				<li>
 					Klubová setkání
 				</li>
