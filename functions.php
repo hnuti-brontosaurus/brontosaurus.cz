@@ -164,7 +164,7 @@ function hb_akce_meta(EventDC $event) { ?>
 	<meta property="og:type" content="website">
 	<meta property="og:title" content="<?php echo $event->title ?>">
 	<?php if ( HB_IS_ON_PRODUCTION): ?>
-	<meta property="og:description" content="<?php echo hb_truncate(htmlspecialchars(strip_tags(str_replace("<br>", " ", $event->invitation->introduction))), 150) ?>">
+	<meta property="og:description" content="<?php echo hb_truncate(htmlspecialchars(strip_tags(str_replace("</p><p>", "</p> <p>", $event->invitation->introduction))), 150) ?>">
 	<?php else: ?>
 	<meta property="og:description" content="📅 <?php echo $event->dateSpan ?> 🌍 <?php echo $event->place->name ?>">
 	<?php endif; ?>
@@ -176,7 +176,7 @@ function hb_akce_meta(EventDC $event) { ?>
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:title" content="<?php echo $event->title ?>">
 	<?php if ( HB_IS_ON_PRODUCTION): ?>
-	<meta name="twitter:description" content="<?php echo hb_truncate(htmlspecialchars(strip_tags(str_replace("<br>", " ", $event->invitation->introduction))), 150) ?>">
+	<meta name="twitter:description" content="<?php echo hb_truncate(htmlspecialchars(strip_tags(str_replace("</p><p>", "</p> <p>", $event->invitation->introduction))), 150) ?>">
 	<?php else: ?>
 	<meta name="twitter:description" content="📅 <?php echo $event->dateSpan ?> 🌍 <?php echo $event->place->name ?>">
 	<?php endif; ?>
