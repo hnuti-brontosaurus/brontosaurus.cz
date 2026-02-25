@@ -109,14 +109,14 @@ $stories = array_map(function (WP_Post $post) {
 
 			<ul class="filters__list" data-hb-expandable-content>
 				<li class="filters__item">
-					<a class="filters__link<?php if ( ! $filters->isAnySelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="?#obsah">
+					<a class="filters__link<?php if ( ! $filters->isAnySelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="?<?php echo isset($_GET['vsechny']) ? "vsechny" : ""; ?>#obsah">
 						vše
 					</a>
 				</li>
 
 				<?php foreach ($filtersList as $filter): ?>
 				<li class="filters__item">
-					<a class="filters__link<?php if ($filter->isSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="?jen=<?php echo $filter->slug ?>#obsah">
+					<a class="filters__link<?php if ($filter->isSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="?jen=<?php echo $filter->slug ?><?php echo isset($_GET['vsechny']) ? "&vsechny" : ""; ?>#obsah">
 						<?php echo $filter->label ?>
 					</a>
 				</li>
