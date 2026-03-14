@@ -6,9 +6,13 @@
 
   "postStartCommand": "bash /workspaces/${localWorkspaceFolderBasename}/.devcontainer/init.sh",
 
-
   "features": {},
   "customizations": {},
 
-  "forwardPorts": [8080,8081]
+  "forwardPorts": [8080, 8081],
+  "portsAttributes": {
+    "80": {
+      "onAutoForward": "ignore"
+    }
+  }
 }

@@ -3,6 +3,8 @@ set -e
 
 echo "Starting WordPress initialization..."
 
+WORKSPACE_DIR=$(find /workspaces -maxdepth 1 -mindepth 1 -type d | head -n 1)
+
 # Create wp-config.php first if it doesn't exist
 if [ ! -f "/var/www/html/wp-config.php" ]; then
     echo "Creating wp-config.php..."
@@ -47,26 +49,22 @@ else
     echo "WordPress is already installed, skipping installation."
 fi
 
-# Create mu-plugins directory if it doesn't exist
+# Always install the mu-plugin (even if WP was already installed)
 echo "Setting up mu-plugins..."
-if [ ! -d "/var/www/html/wp-content/mu-plugins" ]; then
-#    sudo mkdir -p /var/www/html/wp-content/mu-plugins
-    echo "mu-plugins directory created!"
+sudo mkdir -p /var/www/html/wp-content/mu-plugins
+sudo cp "$WORKSPACE_DIR/.devcontainer/mu-codespaces-urls.php" /var/www/html/wp-content/mu-plugins/codespaces-urls.php
+sudo chown www-data:www-data /var/www/html/wp-content/mu-plugins/codespaces-urls.php
+echo "Codespaces URL handler plugin installed!"
+
+# Update WordPress URLs to match the Codespaces environment
+if [ -n "$CODESPACE_NAME" ]; then
+    CODESPACE_URL="https://${CODESPACE_NAME}-8080.app.github.dev"
+    echo "Updating WordPress URLs to $CODESPACE_URL..."
+    sudo -u www-data wp option update siteurl "$CODESPACE_URL" --path=/var/www/html
+    sudo -u www-data wp option update home "$CODESPACE_URL" --path=/var/www/html
+    echo "URLs updated!"
 fi
-
-# Get the workspace folder path (find the actual workspace directory)
-#WORKSPACE_DIR=$(find /workspaces -maxdepth 1 -mindepth 1 -type d | head -n 1)
-
-# Copy the Codespaces URL handler plugin
-#sudo cp "$WORKSPACE_DIR/.devcontainer/mu-codespaces-urls.php" /var/www/html/wp-content/mu-plugins/codespaces-urls.php
-
-# Set proper permissions
-#sudo chown www-data:www-data /var/www/html/wp-content/mu-plugins/codespaces-urls.php
-echo "Codespaces URL handler plugin created!"
 
 # Start Apache
 echo "Starting Apache..."
 sudo apache2ctl -D FOREGROUND
-echo "Apache started!"
-
-echo "WordPress initialization finished!"
