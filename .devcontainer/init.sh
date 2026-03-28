@@ -81,6 +81,32 @@ else
     sudo -u www-data wp option update siteurl "$SITE_URL" --path=/var/www/html
 fi
 
+# Install theme dependencies and build
+echo "Installing theme dependencies..."
+cd /workspaces/brontosaurus.cz
+cp config/config.local.example.neon config/config.local.neon
+composer install
+yarn install
+yarn build
+echo "Theme dependencies installed and built!"
+
+# Symlink the repo as a WordPress theme
+THEME_SLUG="brontosaurus"
+THEME_TARGET="/var/www/html/wp-content/themes/$THEME_SLUG"
+if [ ! -e "$THEME_TARGET" ]; then
+    echo "Symlinking theme as $THEME_SLUG..."
+    sudo ln -s "/workspaces/brontosaurus.cz" "$THEME_TARGET"
+    sudo chown -h www-data:www-data "$THEME_TARGET"
+    echo "Theme symlinked!"
+else
+    echo "Theme symlink already exists"
+fi
+
+# Activate the theme
+echo "Activating theme..."
+sudo -u www-data wp theme activate "$THEME_SLUG" --path=/var/www/html
+echo "Theme activated!"
+
 # Start Apache
 echo "Starting Apache..."
 sudo apache2ctl -D FOREGROUND
