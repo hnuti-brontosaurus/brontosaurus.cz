@@ -33,22 +33,18 @@ jobs:
                     node-version: 18.x
 
             -   name: Install deps
-                uses: borales/actions-yarn@v5
-                with:
-                    cmd: install
+                run: npm ci
 
             -   name: Build deps
-                uses: borales/actions-yarn@v5
-                with:
-                    cmd: build
+                run: npm run build
                 env:
                     NODE_ENV: production
 
             -   name: Build hb-events
                 working-directory: ./hb-events
                 run: |
-                    yarn install
-                    yarn build
+                    npm ci
+                    npm run build
 
             -   name: Upload artifact
                 uses: actions/upload-artifact@v4
