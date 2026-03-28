@@ -86,8 +86,8 @@ echo "Installing theme dependencies..."
 cd /workspaces/brontosaurus.cz
 cp config/config.local.example.neon config/config.local.neon
 composer install
-yarn install
-yarn build
+npm i
+npm run build
 echo "Theme dependencies installed and built!"
 
 # Symlink the repo as a WordPress theme
