@@ -8,6 +8,10 @@ services:
       - 8080:80
     volumes:
       - ../..:/workspaces:cached
+    environment:
+      - CODESPACE_NAME=${CODESPACE_NAME}
+      - GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN=${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}
+      - CODESPACES=${CODESPACES}
 
   database:
     image: mariadb:latest

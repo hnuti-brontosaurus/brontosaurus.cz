@@ -3,9 +3,16 @@ set -e
 
 echo "Starting WordPress initialization..."
 
-WORKSPACE_DIR=$(find /workspaces -maxdepth 1 -mindepth 1 -type d | head -n 1)
+# Determine the site URL
+if [ -n "$CODESPACES" ] && [ -n "$CODESPACE_NAME" ] && [ -n "$GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN" ]; then
+    SITE_URL="https://${CODESPACE_NAME}-8080.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
+    echo "Codespaces detected! Site URL: $SITE_URL"
+else
+    SITE_URL="http://localhost:8080"
+    echo "Local environment. Site URL: $SITE_URL"
+fi
 
-# Create wp-config.php first if it doesn't exist
+# Create wp-config.php if it doesn't exist
 if [ ! -f "/var/www/html/wp-config.php" ]; then
     echo "Creating wp-config.php..."
     sudo -u www-data wp config create \
@@ -20,49 +27,58 @@ else
     echo "wp-config.php already exists"
 fi
 
-# Now wait for database to be ready
+# --- Codespaces URL handler setup ---
+# This MUST happen after wp config create, because that command
+# generates a fresh wp-config.php which would overwrite any earlier injection.
+
+# 1. Copy the PHP snippet into the WordPress root
+# Use the script's own location to find the .devcontainer directory
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+echo "Copying codespaces-urls.php from $SCRIPT_DIR..."
+sudo cp "$SCRIPT_DIR/codespaces-urls.php" /var/www/html/codespaces-urls.php
+sudo chown www-data:www-data /var/www/html/codespaces-urls.php
+echo "Codespaces URL handler copied!"
+
+# 2. Inject require_once into wp-config.php if not already present
+if ! grep -q "codespaces-urls.php" /var/www/html/wp-config.php; then
+    echo "Injecting require_once into wp-config.php..."
+    sudo sed -i '1 a\require_once __DIR__ . "/codespaces-urls.php";' /var/www/html/wp-config.php
+    echo "Injected!"
+else
+    echo "require_once already present in wp-config.php"
+fi
+
+# Verify injection
+echo "wp-config.php first 3 lines:"
+head -3 /var/www/html/wp-config.php
+
+# --- End Codespaces URL handler setup ---
+
+# Wait for database
 echo "Waiting for database connection..."
 until sudo -u www-data wp db check --path=/var/www/html 2>/dev/null; do
     echo "Database not ready, waiting..."
     sleep 3
 done
-
 echo "Database is ready!"
 
-# Check if WordPress is already installed
+# Install or update WordPress
 if ! sudo -u www-data wp core is-installed --path=/var/www/html 2>/dev/null; then
     echo "Installing WordPress..."
-    
-    # Install WordPress
     sudo -u www-data wp core install \
         --path=/var/www/html \
-        --url=http://localhost:8080/ \
+        --url="$SITE_URL" \
         --title="Hnutí Brontosaurus" \
         --admin_user=admin \
         --admin_password=test \
         --admin_email=admin@example.com \
         --skip-email \
         --locale=cs_CZ
-    
     echo "WordPress installation completed!"
 else
-    echo "WordPress is already installed, skipping installation."
-fi
-
-# Always install the mu-plugin (even if WP was already installed)
-echo "Setting up mu-plugins..."
-sudo mkdir -p /var/www/html/wp-content/mu-plugins
-sudo cp "$WORKSPACE_DIR/.devcontainer/mu-codespaces-urls.php" /var/www/html/wp-content/mu-plugins/codespaces-urls.php
-sudo chown www-data:www-data /var/www/html/wp-content/mu-plugins/codespaces-urls.php
-echo "Codespaces URL handler plugin installed!"
-
-# Update WordPress URLs to match the Codespaces environment
-if [ -n "$CODESPACE_NAME" ]; then
-    CODESPACE_URL="https://${CODESPACE_NAME}-8080.app.github.dev"
-    echo "Updating WordPress URLs to $CODESPACE_URL..."
-    sudo -u www-data wp option update siteurl "$CODESPACE_URL" --path=/var/www/html
-    sudo -u www-data wp option update home "$CODESPACE_URL" --path=/var/www/html
-    echo "URLs updated!"
+    echo "WordPress is already installed, updating URLs..."
+    sudo -u www-data wp option update home "$SITE_URL" --path=/var/www/html
+    sudo -u www-data wp option update siteurl "$SITE_URL" --path=/var/www/html
 fi
 
 # Start Apache
