@@ -28,18 +28,12 @@ else
 fi
 
 # --- Codespaces URL handler setup ---
-# This MUST happen after wp config create, because that command
-# generates a fresh wp-config.php which would overwrite any earlier injection.
-
-# 1. Copy the PHP snippet into the WordPress root
-# Use the script's own location to find the .devcontainer directory
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 echo "Copying codespaces-urls.php from $SCRIPT_DIR..."
 sudo cp "$SCRIPT_DIR/codespaces-urls.php" /var/www/html/codespaces-urls.php
 sudo chown www-data:www-data /var/www/html/codespaces-urls.php
 echo "Codespaces URL handler copied!"
 
-# 2. Inject require_once into wp-config.php if not already present
 if ! grep -q "codespaces-urls.php" /var/www/html/wp-config.php; then
     echo "Injecting require_once into wp-config.php..."
     sudo sed -i '1 a\require_once __DIR__ . "/codespaces-urls.php";' /var/www/html/wp-config.php
@@ -48,10 +42,8 @@ else
     echo "require_once already present in wp-config.php"
 fi
 
-# Verify injection
 echo "wp-config.php first 3 lines:"
 head -3 /var/www/html/wp-config.php
-
 # --- End Codespaces URL handler setup ---
 
 # Wait for database
@@ -81,7 +73,24 @@ else
     sudo -u www-data wp option update siteurl "$SITE_URL" --path=/var/www/html
 fi
 
-# fill with placeholder articles for hard-coded pages
+# Helper: create a page and return its ID
+# Usage: PAGE_ID=$(create_page "Title" "slug")
+create_page() {
+    local title="$1"
+    local slug="$2"
+    sudo -u www-data wp post create \
+        --post_type=page \
+        --post_title="$title" \
+        --post_name="$slug" \
+        --post_content="<p></p>" \
+        --post_status=publish \
+        --porcelain \
+        --path=/var/www/html
+}
+
+# Create pages and store their IDs in an associative array
+declare -A PAGE_IDS
+
 declare -a POSTS=(
     "Hlavní stránka:hlavni-stranka"
     "Dobrovolnické akce:dobrovolnicke-akce"
@@ -101,19 +110,26 @@ declare -a POSTS=(
     "English:english"
     "Jedu poprvé:jedu-poprve"
 )
+
 for post in "${POSTS[@]}"; do
     title="${post%:*}"
-    name="${post#*:}"
-    sudo -u www-data wp post create --post_type=page --post_title="$title" --post_name="$name" --post_content="<p></p>" --post_status=publish --path=/var/www/html
+    slug="${post#*:}"
+    id=$(create_page "$title" "$slug")
+    PAGE_IDS["$slug"]="$id"
+    echo "Created page '$title' (slug: $slug) with ID: $id"
 done
 
-# set homepage as the front page
-wp option update show_on_front page
-wp option update page_on_front 5
+# Now you can reference any page by slug, e.g.:
+# PAGE_IDS["hlavni-stranka"], PAGE_IDS["kontakty"], etc.
 
-# set permalinks to /%postname%
-wp rewrite structure '/%postname%/'
-wp rewrite flush
+# Set homepage as the front page
+sudo -u www-data wp option update show_on_front page --path=/var/www/html
+sudo -u www-data wp option update page_on_front "${PAGE_IDS["hlavni-stranka"]}" --path=/var/www/html
+echo "Front page set to: ${PAGE_IDS["hlavni-stranka"]}"
+
+# Set permalinks
+sudo -u www-data wp rewrite structure '/%postname%/' --path=/var/www/html
+sudo -u www-data wp rewrite flush --path=/var/www/html
 
 # Install theme dependencies and build
 echo "Installing theme dependencies..."
