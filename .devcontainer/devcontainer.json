@@ -1,0 +1,18 @@
+{
+  "name": "HB Codespaces",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "devcontainer",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+  "postStartCommand": "bash /workspaces/${localWorkspaceFolderBasename}/.devcontainer/init.sh",
+
+  "features": {},
+  "customizations": {},
+
+  "forwardPorts": [8080, 8081],
+  "portsAttributes": {
+    "80": {
+      "onAutoForward": "ignore"
+    }
+  }
+}
