@@ -1,6 +1,6 @@
 parameters:
     bis:
-        url: https://bis.brontosaurus.cz
+        url: https://bis.brontosaurus.cz/api
         applicationUrlTemplate: "https://bis.brontosaurus.cz/akce/{id}/prihlasit?next={returnUrl}"
 
     debugMode: false

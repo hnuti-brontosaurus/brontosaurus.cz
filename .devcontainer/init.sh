@@ -81,6 +81,40 @@ else
     sudo -u www-data wp option update siteurl "$SITE_URL" --path=/var/www/html
 fi
 
+# fill with placeholder articles for hard-coded pages
+declare -a POSTS=(
+    "Hlavní stránka:hlavni-stranka"
+    "Dobrovolnické akce:dobrovolnicke-akce"
+    "Kurzy a přednášky:kurzy-a-prednasky"
+    "Setkávání a kluby:setkavani-a-kluby"
+    "Pro děti:pro-deti"
+    "Zapoj se:zapoj-se"
+    "Podpoř nás:podpor-nas"
+    "O Brontosaurovi:o-brontosaurovi"
+    "Kontakty:kontakty"
+    "Co je nového:co-je-noveho"
+    "Co se chystá:co-se-chysta"
+    "Pro organizátory:pro-organizatory"
+    "Programy pro SŠ:programy-pro-stredni-skoly"
+    "Pronájmy:pronajmy"
+    "Newsletter:newsletter"
+    "English:english"
+    "Jedu poprvé:jedu-poprve"
+)
+for post in "${POSTS[@]}"; do
+    title="${post%:*}"
+    name="${post#*:}"
+    sudo -u www-data wp post create --post_type=page --post_title="$title" --post_name="$name" --post_content="<p></p>" --post_status=publish --path=/var/www/html
+done
+
+# set homepage as the front page
+wp option update show_on_front page
+wp option update page_on_front 5
+
+# set permalinks to /%postname%
+wp rewrite structure '/%postname%/'
+wp rewrite flush
+
 # Install theme dependencies and build
 echo "Installing theme dependencies..."
 cd /workspaces/brontosaurus.cz
