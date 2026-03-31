@@ -14,6 +14,9 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 RUN chmod +x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp
 
+RUN a2enmod rewrite
+RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+
 RUN echo "memory_limit = 512M" >> /usr/local/etc/php/conf.d/memory-limit.ini
 
 RUN echo "vscode ALL=(www-data) NOPASSWD: /usr/local/bin/wp" >> /etc/sudoers.d/wp-cli

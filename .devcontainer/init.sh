@@ -130,6 +130,20 @@ echo "Front page set to: ${PAGE_IDS["hlavni-stranka"]}"
 # Set permalinks
 sudo -u www-data wp rewrite structure '/%postname%/' --path=/var/www/html
 sudo -u www-data wp rewrite flush --path=/var/www/html
+# After the rewrite flush lines, add:
+sudo tee /var/www/html/.htaccess > /dev/null <<'EOF'
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress
+EOF
+sudo chown www-data:www-data /var/www/html/.htaccess
 
 # Install theme dependencies and build
 echo "Installing theme dependencies..."
