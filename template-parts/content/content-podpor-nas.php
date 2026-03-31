@@ -232,6 +232,11 @@ $references = [
 		<a class="hb-action hb-action--ulterior" href="/o-brontosaurovi/nase-uspechy?vsechny">
 			zobrazit další
 		</a>
+
+        <div class="hb-mw-50 [ hb-d-g hb-gc-1 hb-lg-gc-2 hb-fd-c hb-lg-fd-r hb-g-4 hb-lg-g-3 ][ hb-mi-auto hb-mbs-4 ]">
+			<iframe class="hb-d-b hb-is-100 hb-ar-169 hb-br" src="https://www.youtube.com/embed/DM-BiimluBw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<iframe class="hb-d-b hb-is-100 hb-ar-169 hb-br" src="https://www.youtube.com/embed/EKbb8V5lXfo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		</div>
 	</section>
 
 	<div class="hb-spacer-5 hb-lg-spacer-6"></div>
