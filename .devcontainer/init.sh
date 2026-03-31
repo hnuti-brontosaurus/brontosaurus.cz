@@ -73,19 +73,30 @@ else
     sudo -u www-data wp option update siteurl "$SITE_URL" --path=/var/www/html
 fi
 
-# Helper: create a page and return its ID
-# Usage: PAGE_ID=$(create_page "Title" "slug")
-create_page() {
+# Helper: create a page only if it doesn't exist (matched by slug)
+# Usage: PAGE_ID=$(create_or_get_page "Title" "slug")
+create_or_get_page() {
     local title="$1"
     local slug="$2"
-    sudo -u www-data wp post create \
+    local existing_id
+    existing_id=$(sudo -u www-data wp post list \
         --post_type=page \
-        --post_title="$title" \
-        --post_name="$slug" \
-        --post_content="<p></p>" \
-        --post_status=publish \
-        --porcelain \
-        --path=/var/www/html
+        --name="$slug" \
+        --field=ID \
+        --path=/var/www/html 2>/dev/null)
+
+    if [ -n "$existing_id" ]; then
+        echo "$existing_id"
+    else
+        sudo -u www-data wp post create \
+            --post_type=page \
+            --post_title="$title" \
+            --post_name="$slug" \
+            --post_content="<p></p>" \
+            --post_status=publish \
+            --porcelain \
+            --path=/var/www/html
+    fi
 }
 
 # Create pages and store their IDs in an associative array
@@ -114,9 +125,9 @@ declare -a POSTS=(
 for post in "${POSTS[@]}"; do
     title="${post%:*}"
     slug="${post#*:}"
-    id=$(create_page "$title" "$slug")
+    id=$(create_or_get_page "$title" "$slug")
     PAGE_IDS["$slug"]="$id"
-    echo "Created page '$title' (slug: $slug) with ID: $id"
+    echo "Page '$title' (slug: $slug) → ID: $id"
 done
 
 # Now you can reference any page by slug, e.g.:
