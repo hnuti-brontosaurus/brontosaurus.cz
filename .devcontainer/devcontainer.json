@@ -6,7 +6,11 @@
 
   "postStartCommand": "bash /workspaces/${localWorkspaceFolderBasename}/.devcontainer/init.sh",
 
-  "features": {},
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    }
+  },
   "customizations": {},
 
   "forwardPorts": [8080, 8081],
