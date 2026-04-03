@@ -54,20 +54,14 @@ $filters = CoursesFiltersDC::from('jen', $selectedFilter);
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isMeetupsSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-prednasky?jen=prednasky#obsah">
-					přednášky
-				</a>
-			</li>
-
-			<li class="filters__item">
 				<a class="filters__link<?php if ($filters->isOrganizingSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-prednasky?jen=organizatorske-kurzy#obsah">
 					organizátorské kurzy
 				</a>
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isThematicSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-prednasky?jen=tematicke-kurzy#obsah">
-					tématické kurzy
+				<a class="filters__link<?php if ($filters->isThematicSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-prednasky?jen=tematicke-kurzy-a-prednasky#obsah">
+					tématické kurzy a přednášky
 				</a>
 			</li>
 		</ul>
