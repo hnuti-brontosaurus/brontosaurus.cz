@@ -182,6 +182,144 @@ echo "Activating theme..."
 sudo -u www-data wp theme activate "$THEME_SLUG" --path=/var/www/html
 echo "Theme activated!"
 
+# Create WordPress menus
+echo "Creating WordPress menus..."
+
+# Temporarily disable set -e for menu operations to continue on errors
+set +e
+
+# Helper function to create menu and assign to location
+create_and_assign_menu() {
+    local menu_name="$1"
+    local location="$2"
+    local menu_id=""
+    
+    # Try to get existing menu ID by name - use simpler method
+    while IFS= read -r line; do
+        if [[ "$line" == *"$menu_name"* ]]; then
+            # Extract the term_id (first field in CSV)
+            menu_id=$(echo "$line" | cut -d',' -f2 | tr -d ' "')
+            break
+        fi
+    done < <(sudo -u www-data wp menu list --field=term_id,name --format=csv --path=/var/www/html 2>/dev/null)
+    
+    if [ -z "$menu_id" ]; then
+        # Menu doesn't exist, create it
+        echo "Creating menu: $menu_name"
+        menu_id=$(sudo -u www-data wp menu create "$menu_name" --porcelain --path=/var/www/html 2>/dev/null || echo "")
+        if [ -n "$menu_id" ]; then
+            echo "Menu '$menu_name' created with ID: $menu_id"
+        else
+            echo "ERROR: Failed to create menu '$menu_name'"
+            return 1
+        fi
+    else
+        echo "Menu '$menu_name' already exists with ID: $menu_id"
+    fi
+    
+    # Assign menu to location
+    if [ -n "$menu_id" ]; then
+        echo "Assigning menu '$menu_name' to location '$location'"
+        sudo -u www-data wp menu location assign "$menu_id" "$location" --path=/var/www/html 2>/dev/null || true
+    fi
+    
+    echo "$menu_id"
+}
+
+# Helper function to add pages to menu
+add_pages_to_menu() {
+    local menu_id="$1"
+    local menu_name="$2"
+    shift 2
+    local page_slugs=("$@")
+    
+    if [ -z "$menu_id" ]; then
+        echo "⚠ Skipping menu '$menu_name' - no valid menu ID"
+        return
+    fi
+    
+    echo "Adding pages to menu '$menu_name' (ID: $menu_id)..."
+    for slug in "${page_slugs[@]}"; do
+        # Look up page ID by slug directly from database
+        local page_id
+        page_id=$(sudo -u www-data wp post list --post_type=page --name="$slug" --field=ID --path=/var/www/html 2>/dev/null | grep -v '^$' | head -1)
+
+        if [ -n "$page_id" ]; then
+            sudo -u www-data wp menu item add-post "$menu_id" "$page_id" --path=/var/www/html >/dev/null 2>&1
+            if [ $? -eq 0 ]; then
+                echo "  ✓ Added page '$slug' (ID: $page_id)"
+            else
+                echo "  ✗ Failed to add page '$slug' (ID: $page_id)"
+            fi
+        else
+            echo "  ⚠ Page slug '$slug' not found"
+        fi
+    done
+}
+
+# Define page slugs for each menu
+declare -a HEADER_MENU_PAGES=(
+    "dobrovolnicke-akce"
+    "kurzy-a-prednasky"
+    "setkavani-a-kluby"
+    "pro-deti"
+    "zapoj-se"
+    "podpor-nas"
+    "o-brontosaurovi"
+    "kontakty"
+)
+
+declare -a FOOTER_LEFT_MENU_PAGES=(
+    "dobrovolnicke-akce"
+    "kurzy-a-prednasky"
+    "setkavani-a-kluby"
+    "pro-deti"
+    "zapoj-se"
+    "o-brontosaurovi"
+    "kontakty"
+)
+
+declare -a FOOTER_CENTER_MENU_PAGES=(
+    "co-je-noveho"
+    "co-se-chysta"
+    "pro-organizatory"
+    "programy-pro-stredni-skoly"
+    "pronajmy"
+)
+
+declare -a FOOTER_RIGHT_MENU_PAGES=(
+    "podpor-nas"
+    "newsletter"
+    "english"
+)
+
+# Create all four menus and get their IDs
+HEADER_MENU_ID=$(create_and_assign_menu "Hlavní navigace" "header" || echo "")
+FOOTER_LEFT_MENU_ID=$(create_and_assign_menu "Patička – vlevo" "footer-left" || echo "")
+FOOTER_CENTER_MENU_ID=$(create_and_assign_menu "Patička – uprostřed" "footer-center" || echo "")
+FOOTER_RIGHT_MENU_ID=$(create_and_assign_menu "Patička – vpravo" "footer-right" || echo "")
+
+# Debug: Show what menu IDs we got
+echo "Menu IDs: Header=$HEADER_MENU_ID, Footer-Left=$FOOTER_LEFT_MENU_ID, Footer-Center=$FOOTER_CENTER_MENU_ID, Footer-Right=$FOOTER_RIGHT_MENU_ID"
+
+# Verify we have valid menu IDs before proceeding
+if [ -z "$HEADER_MENU_ID" ] || [ -z "$FOOTER_LEFT_MENU_ID" ] || [ -z "$FOOTER_CENTER_MENU_ID" ] || [ -z "$FOOTER_RIGHT_MENU_ID" ]; then
+    echo "WARNING: Some menus failed to create. Attempting recovery..."
+    # List all menus to see current state
+    sudo -u www-data wp menu list --format=table --path=/var/www/html 2>/dev/null || true
+fi
+
+# Assign pages to menus
+add_pages_to_menu "$HEADER_MENU_ID" "Hlavní navigace" "${HEADER_MENU_PAGES[@]}"
+add_pages_to_menu "$FOOTER_LEFT_MENU_ID" "Patička – vlevo" "${FOOTER_LEFT_MENU_PAGES[@]}"
+add_pages_to_menu "$FOOTER_CENTER_MENU_ID" "Patička – uprostřed" "${FOOTER_CENTER_MENU_PAGES[@]}"
+add_pages_to_menu "$FOOTER_RIGHT_MENU_ID" "Patička – vpravo" "${FOOTER_RIGHT_MENU_PAGES[@]}"
+
+echo "WordPress menus created, assigned to locations, and populated with pages!"
+
+# Re-enable set -e for remaining operations
+set -e
+
 # Start Apache
 echo "Starting Apache..."
 sudo apache2ctl -D FOREGROUND
