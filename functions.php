@@ -448,7 +448,6 @@ function hb_related(
 			</h2>
 
 			<ul class="related-list-item-list">
-				<!-- TODO -->
 				<li>
 					Klubová setkání
 				</li>
