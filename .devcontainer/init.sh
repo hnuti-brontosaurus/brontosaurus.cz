@@ -92,7 +92,7 @@ create_or_get_page() {
             --post_type=page \
             --post_title="$title" \
             --post_name="$slug" \
-            --post_content="<p></p>" \
+            --post_content="" \
             --post_status=publish \
             --porcelain \
             --path=/var/www/html
