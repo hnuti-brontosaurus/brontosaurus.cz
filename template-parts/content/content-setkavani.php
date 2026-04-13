@@ -44,7 +44,7 @@ try {
 <aside>
 	<section class="description hb-mbe-5">
 		<h1>
-			Setkávání a kluby
+			Setkávání
 		</h1>
 
 		<p class="description__text">
