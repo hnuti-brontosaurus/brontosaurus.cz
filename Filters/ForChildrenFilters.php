@@ -31,7 +31,6 @@ final class ForChildrenFilters
 		switch ($selectedFilter) {
 			case self::FILTER_CAMPS:
 				self::$parameters->setGroup(Group::CAMP());
-				self::$parameters->setCategory(Category::SECTION_EVENT());
 				self::allRelevantTargetGroups();
 				break;
 
