@@ -44,15 +44,14 @@ try {
 <aside>
 	<section class="description hb-mbe-5">
 		<h1>
-			Setkávání a kluby
+			Setkávání
 		</h1>
 
 		<p class="description__text">
-			V Brně a Praze pořádáme kluby na různá témata. Připravujeme přednášky, workshopy,
-			ochutnávky jídel, sport či deskovky. V minulosti jsme třeba hráli frisbee, volejbal
-			nebo na kytary, cvičili acrojogu a vyráběli domácí kosmetiku. Nemusíš být členem
-			Hnutí Brontosaurus, moc rádi mezi sebe přivítáme nové lidi. Stačí si vybrat klub
-			a přijít mezi nás, o zbytek už se postaráme.
+			V Brně i Praze tvoříme prostor pro smysluplná setkávání. Potkat nás můžeš na našem Potáborovém festivalu 
+			i v eko-stanech na akcích jako Rock for People, TrutnOFF či brněnský Den Země. Společně tvoříme, diskutujeme 
+			a šíříme udržitelnost všude tam, kde to právě žije. Nemusíš být členem Hnutí Brontosaurus, abychom tě mezi sebou 
+			rádi přivítali. Stačí si vybrat v kalendáři a prostě přijít – o zbytek už se postaráme.
 		</p>
 	</section>
 
