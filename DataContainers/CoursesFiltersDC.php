@@ -9,7 +9,6 @@ use HnutiBrontosaurus\Theme\PropertyHandler;
 /**
  * @property-read string $key
  * @property-read bool $isAnySelected
- * @property-read bool $isMeetupsSelected
  * @property-read bool $isOrganizingSelected
  * @property-read bool $isThematicSelected
  */
@@ -19,7 +18,6 @@ final class CoursesFiltersDC
 
 	private string $key;
 	private bool $isAnySelected = false;
-	private bool $isMeetupsSelected = false;
 	private bool $isOrganizingSelected = false;
 	private bool $isThematicSelected = false;
 
@@ -35,10 +33,6 @@ final class CoursesFiltersDC
 		$this->isAnySelected = true;
 
 		switch ($selectedFilter) {
-			case CoursesFilters::FILTER_TALKS:
-				$this->isMeetupsSelected = true;
-				break;
-
 			case CoursesFilters::FILTER_ORGANIZING:
 				$this->isOrganizingSelected = true;
 				break;
