@@ -23,7 +23,7 @@ function hb_banner(): ?\stdCLass
     $image = get_option('homepage-banner_image');
     $link = get_option('homepage-banner_link');
 
-    if ($image === '') {
+    if (!$image || $image === '') {
         return null;
     }
 
