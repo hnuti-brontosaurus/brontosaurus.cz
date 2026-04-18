@@ -580,7 +580,7 @@ $highschool-breakpoint-contactPerson-oneToTwoColumns: 30em;
 .prilezitost__labels {
 	vertical-align: middle;
 	margin-inline-start: -0.25rlh;
-	justify-content: center;
+	justify-content: center !important;
 }
 @media (settings.$typography-breakpoint-small-until) {
 	.prilezitost__labels {
