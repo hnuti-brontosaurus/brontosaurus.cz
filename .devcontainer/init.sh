@@ -194,39 +194,35 @@ create_and_assign_menu() {
     local location="$2"
     local menu_id=""
     
-    # Try to get existing menu ID by name
     while IFS= read -r line; do
-        # Skip header row if present
         if [[ "$line" == term_id* ]]; then
             continue
         fi
         if [[ "$line" == *"$menu_name"* ]]; then
-            # Extract the term_id (first field in CSV)
             menu_id=$(echo "$line" | cut -d',' -f1 | tr -d ' "')
             break
         fi
     done < <(sudo -u www-data wp menu list --fields=term_id,name --format=csv --path=/var/www/html 2>/dev/null)
     
     if [ -z "$menu_id" ]; then
-        # Menu doesn't exist, create it
-        echo "Creating menu: $menu_name"
+        echo "Creating menu: $menu_name" >&2
         menu_id=$(sudo -u www-data wp menu create "$menu_name" --porcelain --path=/var/www/html 2>/dev/null || echo "")
         if [ -n "$menu_id" ]; then
-            echo "Menu '$menu_name' created with ID: $menu_id"
+            echo "Menu '$menu_name' created with ID: $menu_id" >&2
         else
-            echo "ERROR: Failed to create menu '$menu_name'"
+            echo "ERROR: Failed to create menu '$menu_name'" >&2
             return 1
         fi
     else
-        echo "Menu '$menu_name' already exists with ID: $menu_id"
+        echo "Menu '$menu_name' already exists with ID: $menu_id" >&2
     fi
     
-    # Assign menu to location
     if [ -n "$menu_id" ]; then
-        echo "Assigning menu '$menu_name' to location '$location'"
-        sudo -u www-data wp menu location assign "$menu_id" "$location" --path=/var/www/html 2>/dev/null || true
+        echo "Assigning menu '$menu_name' to location '$location'" >&2
+        sudo -u www-data wp menu location assign "$menu_id" "$location" --path=/var/www/html 2>/dev/null >&2 || true
     fi
     
+    # Only this line goes to stdout — the actual return value
     echo "$menu_id"
 }
 
@@ -246,7 +242,7 @@ add_pages_to_menu() {
 
     # Cache existing menu item object IDs for idempotency
     local existing_item_ids
-    existing_item_ids=$(sudo -u www-data wp menu item list --menu_id="$menu_id" --field=object_id --format=csv --path=/var/www/html 2>/dev/null | tr -d '"')
+    existing_item_ids=$(sudo -u www-data wp menu item list "$menu_id" --fields=object_id --format=csv --path=/var/www/html 2>/dev/null | tail -n +2)
 
     for slug in "${page_slugs[@]}"; do
         # Look up page ID by slug directly from database
@@ -258,12 +254,12 @@ add_pages_to_menu() {
             continue
         fi
 
-        if [[ ",${existing_item_ids}," == *",$page_id,"* ]]; then
-            echo "  · Page '$slug' (ID: $page_id) is already in menu"
+        if echo "$existing_item_ids" | grep -qx "$page_id"; then
+            echo "  · Page '$slug' (ID: $page_id) is already in menu" >&2
             continue
         fi
 
-        sudo -u www-data wp menu item add-post "$menu_id" "$page_id" --path=/var/www/html >/dev/null 2>&1
+        sudo -u www-data wp menu item add-post "$menu_id" "$page_id" --path=/var/www/html
         if [ $? -eq 0 ]; then
             echo "  ✓ Added page '$slug' (ID: $page_id)"
         else
