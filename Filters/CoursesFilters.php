@@ -24,7 +24,10 @@ final class CoursesFilters
 
 		switch ($selectedFilter) {
 			case self::FILTER_ORGANIZING:
-				$parameters->setCategory(Category::INTERNAL_EDUCATIONAL());
+				$parameters->setCategories([
+					Category::INTERNAL_EDUCATIONAL(),
+					Category::INTERNAL_EDUCATIONAL_FULL(),
+				]);
 				break;
 
 			case self::FILTER_THEMATIC:
