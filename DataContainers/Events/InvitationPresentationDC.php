@@ -2,7 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme\DataContainers\Events;
 
-use HnutiBrontosaurus\BisClient\Event\Response\Image;
+use HnutiBrontosaurus\BisClient\Response\Image;
 use HnutiBrontosaurus\Theme\PropertyHandler;
 
 
