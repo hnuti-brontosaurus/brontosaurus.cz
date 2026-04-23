@@ -3,10 +3,13 @@ set -e
 
 echo "Starting WordPress initialization..."
 
+IS_CODESPACES=0
+
 # Determine the site URL
 if [ -n "$CODESPACES" ] && [ -n "$CODESPACE_NAME" ] && [ -n "$GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN" ]; then
     SITE_URL="https://${CODESPACE_NAME}-8080.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
     echo "Codespaces detected! Site URL: $SITE_URL"
+    IS_CODESPACES=1
 else
     SITE_URL="http://localhost:8080"
     echo "Local environment. Site URL: $SITE_URL"
@@ -160,6 +163,12 @@ sudo chown www-data:www-data /var/www/html/.htaccess
 echo "Installing theme dependencies..."
 cd /workspaces/brontosaurus.cz
 cp config/config.local.example.neon config/config.local.neon
+
+if [ "$IS_CODESPACES" -eq 1 ]; then
+    sed -i 's/debugMode: false/debugMode: true/' config/config.local.neon
+    echo "Set debugMode to true in config/config.local.neon for Codespaces"
+fi
+
 composer install
 npm i
 npm run build
