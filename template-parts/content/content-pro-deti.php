@@ -60,8 +60,8 @@ $filters = ForChildrenFiltersDC::from('jen', $selectedFilter);
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isCampsSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/pro-deti?jen=detske-tabory#obsah">
-					dětské tábory
+				<a class="filters__link<?php if ($filters->isCampsSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/pro-deti?jen=detske-tabory-a-vypravy#obsah">
+					dětské tábory a výpravy
 				</a>
 			</li>
 

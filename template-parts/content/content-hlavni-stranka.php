@@ -42,7 +42,7 @@ try {
     VoluntaryFilters::apply(selectedFilter: null, parameters: $params);
 
     $params
-        ->setPeriod(Period::FUTURE_ONLY())
+        ->setPeriod(Period::FUTURE_ONLY)
         ->setLimit(6) // we need three, but because of post-filtering, we need to load more
         ->orderByStartDate();
     $events = $hb_bisApiClient->getEvents($params);

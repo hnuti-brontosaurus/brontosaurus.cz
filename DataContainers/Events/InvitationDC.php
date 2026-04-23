@@ -59,9 +59,9 @@ final class InvitationDC
 		$workHoursPerDay = $event->getPropagation()->getWorkingHours();
 
 		$foodLabels = [
-			Diet::MEAT()->toScalar() => 'ne-vegetariánská',
-			Diet::VEGETARIAN()->toScalar() => 'vegetariánská',
-			Diet::VEGAN()->toScalar() => 'veganská',
+			Diet::MEAT->value => 'ne-vegetariánská',
+			Diet::VEGETARIAN->value => 'vegetariánská',
+			Diet::VEGAN->value => 'veganská',
 		];
 
 		$text = $event->getPropagation()->getInvitationTextAboutUs();
@@ -76,7 +76,7 @@ final class InvitationDC
 			$accommodation !== null ? hb_handleNonBreakingSpaces($accommodation) : null,
 
 			\count($food) > 0,
-			\array_map(static fn(Diet $food): string => $foodLabels[$food->toScalar()], $food),
+			\array_map(static fn(Diet $food): string => $foodLabels[$food->value], $food),
 
 			$workDescription !== null,
 			$workDescription !== null ? hb_handleNonBreakingSpaces($workDescription) : null,

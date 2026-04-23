@@ -31,9 +31,9 @@ $applyFilter = static function (?string $filter): ?OpportunityParameters {
 
 	$params = new OpportunityParameters();
 	$category = match ($filter) {
-		'organizovani-akci' => Category::ORGANIZING(),
-		'spoluprace' => Category::COLLABORATION(),
-		'pomoc-lokalite' => Category::LOCATION_HELP(),
+		'organizovani-akci' => Category::ORGANIZING,
+		'spoluprace' => Category::COLLABORATION,
+		'pomoc-lokalite' => Category::LOCATION_HELP,
 	};
 	$params->setCategory($category);
 	return $params;

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b9d14463b75ae47053f4c0bbaba54a8b",
+    "content-hash": "a286bfa92a361df3893ae9be8940dc30",
     "packages": [
         {
             "name": "brick/date-time",
@@ -60,55 +60,6 @@
                 }
             ],
             "time": "2023-06-20T10:44:15+00:00"
-        },
-        {
-            "name": "grifart/enum",
-            "version": "0.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/grifart/enum.git",
-                "reference": "f4e6c3fc1d172ac959e135a39fa63323c4e377b1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/grifart/enum/zipball/f4e6c3fc1d172ac959e135a39fa63323c4e377b1",
-                "reference": "f4e6c3fc1d172ac959e135a39fa63323c4e377b1",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.0"
-            },
-            "require-dev": {
-                "grifart/phpstan-oneline": "^0.2.0",
-                "nette/tester": "^2.1.0",
-                "phpstan/phpstan": "^0.10.7",
-                "phpstan/phpstan-strict-rules": "^0.10.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Grifart\\Enum\\": "src"
-                },
-                "classmap": [
-                    "src/exceptions.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jan Kuchař",
-                    "email": "honza.kuchar@grifart.cz"
-                }
-            ],
-            "description": "Provides bullet proof enums with behaviours.",
-            "support": {
-                "issues": "https://github.com/grifart/enum/issues",
-                "source": "https://github.com/grifart/enum/tree/0.2.1"
-            },
-            "time": "2019-12-10T15:36:35+00:00"
         },
         {
             "name": "grifart/geocoding-client",
@@ -492,23 +443,22 @@
         },
         {
             "name": "hnuti-brontosaurus/php-bis-api-client",
-            "version": "4.0.0-beta.12",
+            "version": "5.0.0-beta.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnuti-brontosaurus/php-bis-api-client.git",
-                "reference": "09d9a3f20a2b264ecf607362f23eee548d28037b"
+                "reference": "a7cc109a53f6d8341b0240262c017c6b0e888cdf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnuti-brontosaurus/php-bis-api-client/zipball/09d9a3f20a2b264ecf607362f23eee548d28037b",
-                "reference": "09d9a3f20a2b264ecf607362f23eee548d28037b",
+                "url": "https://api.github.com/repos/hnuti-brontosaurus/php-bis-api-client/zipball/a7cc109a53f6d8341b0240262c017c6b0e888cdf",
+                "reference": "a7cc109a53f6d8341b0240262c017c6b0e888cdf",
                 "shasum": ""
             },
             "require": {
                 "brick/date-time": "^0.4.0",
-                "grifart/enum": "^0.2.1",
                 "guzzlehttp/guzzle": "^7.3",
-                "php": ">=8.0"
+                "php": ">=8.1"
             },
             "require-dev": {
                 "phpstan/phpstan": "^1.8",
@@ -530,16 +480,16 @@
             },
             "authors": [
                 {
-                    "name": "GRIFART, spol. s r.o.",
-                    "email": "grifart@grifart.cz"
+                    "name": "dakur",
+                    "email": "dev@kurowsti.cz"
                 }
             ],
             "description": "API client for Hnutí Brontosaurus IS written in PHP.",
             "support": {
-                "source": "https://github.com/hnuti-brontosaurus/php-bis-api-client/tree/4.0.0-beta.12",
+                "source": "https://github.com/hnuti-brontosaurus/php-bis-api-client/tree/5.0.0-beta.3",
                 "issues": "https://github.com/hnuti-brontosaurus/php-bis-api-client/issues"
             },
-            "time": "2024-07-16T19:19:16+00:00"
+            "time": "2026-04-23T10:22:13+00:00"
         },
         {
             "name": "nette/neon",
@@ -1053,7 +1003,7 @@
     "platform": {},
     "platform-dev": {},
     "platform-overrides": {
-        "php": "8.0.0"
+        "php": "8.2.0"
     },
     "plugin-api-version": "2.6.0"
 }

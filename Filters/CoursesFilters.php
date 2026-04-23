@@ -8,9 +8,8 @@ use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 
 final class CoursesFilters
 {
-	const FILTER_TALKS = 'prednasky';
 	const FILTER_ORGANIZING = 'organizatorske-kurzy';
-	const FILTER_THEMATIC = 'tematicke-kurzy';
+	const FILTER_THEMATIC = 'tematicke-kurzy-a-prednasky';
 
 	private static EventParameters $parameters;
 
@@ -24,19 +23,15 @@ final class CoursesFilters
 		}
 
 		switch ($selectedFilter) {
-			case self::FILTER_TALKS:
+			case self::FILTER_ORGANIZING:
 				$parameters->setCategories([
-					Category::EDUCATIONAL_LECTURE(),
-					Category::CLUB_LECTURE(),
+					Category::INTERNAL_EDUCATIONAL,
+					Category::INTERNAL_EDUCATIONAL_FULL,
 				]);
 				break;
 
-			case self::FILTER_ORGANIZING:
-				$parameters->setCategory(Category::EDUCATIONAL_OHB());
-				break;
-
 			case self::FILTER_THEMATIC:
-				$parameters->setCategory(Category::EDUCATIONAL_COURSE());
+				$parameters->setCategory(Category::PUBLIC_EDUCATIONAL);
 				break;
 		}
 	}
@@ -51,12 +46,9 @@ final class CoursesFilters
 	private static function allRelevantTypes(): void
 	{
 		self::$parameters->setCategories([
-			Category::EDUCATIONAL_LECTURE(),
-			Category::EDUCATIONAL_COURSE(),
-			Category::EDUCATIONAL_OHB(),
-			Category::EDUCATIONAL_EDUCATIONAL(),
-			Category::EDUCATIONAL_EDUCATIONAL_WITH_STAY(),
-			Category::CLUB_LECTURE(),
+			Category::INTERNAL_EDUCATIONAL,
+			Category::INTERNAL_EDUCATIONAL_FULL,
+			Category::PUBLIC_EDUCATIONAL,
 		]);
 	}
 

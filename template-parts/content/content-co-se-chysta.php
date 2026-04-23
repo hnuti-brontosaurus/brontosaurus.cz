@@ -39,7 +39,7 @@ function hb_convertMonthNumberToName(int $monthNumber): string
 
 $params = new EventParameters();
 $params->orderByStartDate();
-$params->setPeriod(Period::FUTURE_ONLY());
+$params->setPeriod(Period::FUTURE_ONLY);
 
 $hasBeenUnableToLoad = false;
 
