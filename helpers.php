@@ -35,9 +35,9 @@ function hb_dateSpan(LocalDate $start, LocalDate $end, string $dateFormat): stri
 function hb_opportunityCategoryToString(Category $category): string
 {
 	return match ($category) {
-		Category::ORGANIZING() => 'organizování akcí',
-		Category::COLLABORATION() => 'spolupráce',
-		Category::LOCATION_HELP() => 'pomoc lokalitě',
+		Category::ORGANIZING => 'organizování akcí',
+		Category::COLLABORATION => 'spolupráce',
+		Category::LOCATION_HELP => 'pomoc lokalitě',
 	};
 }
 

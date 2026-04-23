@@ -25,13 +25,13 @@ final class CoursesFilters
 		switch ($selectedFilter) {
 			case self::FILTER_ORGANIZING:
 				$parameters->setCategories([
-					Category::INTERNAL_EDUCATIONAL(),
-					Category::INTERNAL_EDUCATIONAL_FULL(),
+					Category::INTERNAL_EDUCATIONAL,
+					Category::INTERNAL_EDUCATIONAL_FULL,
 				]);
 				break;
 
 			case self::FILTER_THEMATIC:
-				$parameters->setCategory(Category::PUBLIC_EDUCATIONAL());
+				$parameters->setCategory(Category::PUBLIC_EDUCATIONAL);
 				break;
 		}
 	}
@@ -46,8 +46,9 @@ final class CoursesFilters
 	private static function allRelevantTypes(): void
 	{
 		self::$parameters->setCategories([
-			Category::INTERNAL_EDUCATIONAL(),
-			Category::PUBLIC_EDUCATIONAL(),
+			Category::INTERNAL_EDUCATIONAL,
+			Category::INTERNAL_EDUCATIONAL_FULL,
+			Category::PUBLIC_EDUCATIONAL,
 		]);
 	}
 

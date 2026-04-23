@@ -28,7 +28,7 @@ final class MeetupsFilters
 	private static function allRelevantTypes(): void
 	{
 		self::$parameters->setCategories([
-			Category::PRESENTATION(),
+			Category::PRESENTATION,
 		]);
 	}
 

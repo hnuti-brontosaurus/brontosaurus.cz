@@ -30,21 +30,21 @@ final class ForChildrenFilters
 
 		switch ($selectedFilter) {
 			case self::FILTER_CAMPS:
-				self::$parameters->setGroup(Group::CAMP());
+				self::$parameters->setGroup(Group::CAMP);
 				self::allRelevantTargetGroups();
 				break;
 
 			case self::FILTER_UNITS:
-				self::$parameters->setCategory(Category::SECTION_MEETING());
+				self::$parameters->setCategory(Category::SECTION_MEETING);
 				self::allRelevantTargetGroups();
 				break;
 
 			case self::FILTER_EVENTS:
-				self::$parameters->setIntendedFor(IntendedFor::KIDS());
+				self::$parameters->setIntendedFor(IntendedFor::KIDS);
 				break;
 
 			case self::FILTER_EVENTS_WITH_PARENTS:
-				self::$parameters->setIntendedFor(IntendedFor::PARENTS_WITH_KIDS());
+				self::$parameters->setIntendedFor(IntendedFor::PARENTS_WITH_KIDS);
 				break;
 		}
 	}
@@ -59,8 +59,8 @@ final class ForChildrenFilters
 	private static function allRelevantTargetGroups(): void
 	{
 		self::$parameters->setMultipleIntendedFor([
-			IntendedFor::KIDS(),
-			IntendedFor::PARENTS_WITH_KIDS(),
+			IntendedFor::KIDS,
+			IntendedFor::PARENTS_WITH_KIDS,
 		]);
 	}
 

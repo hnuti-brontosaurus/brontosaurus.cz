@@ -16,7 +16,7 @@ function hb_events(Container $container)
             $params = new EventParameters();
             $selected = $block_attributes['tags'] ?? null;
             if ($selected !== null && $selected !== '') {
-                $params->setTag(Tag::fromScalar($selected));
+                $params->setTag(Tag::from($selected));
             }
 
             try {

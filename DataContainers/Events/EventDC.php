@@ -78,7 +78,7 @@ final /*readonly*/ class EventDC
 		$this->isPast = $event->getEndDate()->isBefore(LocalDate::now(TimeZone::utc()));
 		$this->isFull = $event->getRegistration()->getIsEventFull();
 
-		$this->isForFirstTimeAttendees = $event->getIntendedFor()->equals(IntendedFor::FIRST_TIME_PARTICIPANT());
+		$this->isForFirstTimeAttendees = $event->getIntendedFor() === IntendedFor::FIRST_TIME_PARTICIPANT;
 
 		$this->invitation = InvitationDC::fromDTO($event);
 
@@ -92,18 +92,18 @@ final /*readonly*/ class EventDC
 		$this->relatedWebsite = $relatedWebsite;
 
 		$this->labels = [];
-		if ($event->getProgram() === Program::NATURE()) {
+		if ($event->getProgram() === Program::NATURE) {
 			$this->labels[] = new Label('akce příroda', 'nature');
 		}
-		if ($event->getProgram() === Program::MONUMENTS()) {
+		if ($event->getProgram() === Program::MONUMENTS) {
 			$this->labels[] = new Label('akce památky', 'sights');
 		}
 
 		$group = $event->getGroup();
-		if ($event->getProgram() === Program::HOLIDAYS_WITH_BRONTOSAURUS()) {
-			if ($event->getCategory() === Category::VOLUNTEERING()) {
+		if ($event->getProgram() === Program::HOLIDAYS_WITH_BRONTOSAURUS) {
+			if ($event->getCategory() === Category::VOLUNTEERING) {
 				$this->labels[] = new Label('dobrovolnická');
-			} elseif ($event->getCategory() === Category::EXPERIENCE()) {
+			} elseif ($event->getCategory() === Category::EXPERIENTAL) {
 				$this->labels[] = new Label('zážitková');
 			}
 
@@ -111,9 +111,9 @@ final /*readonly*/ class EventDC
 
 		} elseif ($event->getDuration() === 1) {
 			$this->labels[] = new Label('jednodenní');
-		} elseif ($group === Group::WEEKEND_EVENT()) {
+		} elseif ($group === Group::WEEKEND_EVENT) {
 			$this->labels[] = new Label('víkendovka');
-		} elseif ($group === Group::OTHER()) {
+		} elseif ($group === Group::OTHER) {
 			$this->labels[] = new Label('dlouhodobá');
 		}
 
