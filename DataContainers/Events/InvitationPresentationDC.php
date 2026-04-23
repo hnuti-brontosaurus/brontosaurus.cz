@@ -36,7 +36,7 @@ final class InvitationPresentationDC
 			$text !== null,
 			$text !== null ? hb_handleNonBreakingSpaces($text) : null,
 			\count($photos) > 0,
-			\array_map(fn(Image $photo): string => $photo->getMedium(), $photos),
+			\array_map(fn(Image $photo): string => $photo->getMediumSizePath(), $photos),
 		);
 	}
 
