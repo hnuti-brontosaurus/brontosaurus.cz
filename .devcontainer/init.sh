@@ -123,6 +123,7 @@ declare -a POSTS=(
     "Newsletter:newsletter"
     "English:english"
     "Jedu poprvé:jedu-poprve"
+    "Detail akce:akce"
 )
 
 for post in "${POSTS[@]}"; do
