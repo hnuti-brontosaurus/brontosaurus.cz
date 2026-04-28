@@ -39,7 +39,7 @@ final class EventDC
 	public readonly bool $hasRelatedWebsite;
 	public readonly ?string $relatedWebsite;
 	/** @var Label[] */
-	public readonly array $labels;
+	public /*get*/ array $labels;
 	/** @var string[] */
 	public readonly array $tags;
 
