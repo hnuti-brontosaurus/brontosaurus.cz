@@ -1,7 +1,7 @@
 <?php
 
+use HnutiBrontosaurus\BisClient\AdministrationUnit\Category;
 use HnutiBrontosaurus\BisClient\AdministrationUnit\Response\AdministrationUnit;
-use HnutiBrontosaurus\BisClient\BisClient;
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\Theme\Container;
 use HnutiBrontosaurus\Theme\DataContainers\OrganizationalUnitDC;
@@ -20,7 +20,7 @@ try {
     $units = array_filter(
         $units,
         static fn(AdministrationUnit $unit): bool
-            => $unit->isBaseUnit() || $unit->isClub()
+            => $unit->getCategory() === Category::BASIC_SECTION || $unit->getCategory() === Category::CLUB
     );
 
     // transfer DTOs to DCs

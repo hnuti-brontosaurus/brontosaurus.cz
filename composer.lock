@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4b7a59a347dfd94c88120b806bf74f9b",
+    "content-hash": "21559193371175c805eb155963ed6afe",
     "packages": [
         {
             "name": "brick/date-time",
@@ -388,16 +388,16 @@
         },
         {
             "name": "hnuti-brontosaurus/php-bis-api-client",
-            "version": "5.0.0",
+            "version": "5.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnuti-brontosaurus/php-bis-api-client.git",
-                "reference": "1d8e3c8f97f8810ec93ac6b41757e3d77c9b185c"
+                "reference": "83de4f8d3e84f2c99545458f2966687e7710ca5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnuti-brontosaurus/php-bis-api-client/zipball/1d8e3c8f97f8810ec93ac6b41757e3d77c9b185c",
-                "reference": "1d8e3c8f97f8810ec93ac6b41757e3d77c9b185c",
+                "url": "https://api.github.com/repos/hnuti-brontosaurus/php-bis-api-client/zipball/83de4f8d3e84f2c99545458f2966687e7710ca5e",
+                "reference": "83de4f8d3e84f2c99545458f2966687e7710ca5e",
                 "shasum": ""
             },
             "require": {
@@ -431,10 +431,10 @@
             ],
             "description": "API client for Hnutí Brontosaurus IS written in PHP.",
             "support": {
-                "source": "https://github.com/hnuti-brontosaurus/php-bis-api-client/tree/5.0.0",
+                "source": "https://github.com/hnuti-brontosaurus/php-bis-api-client/tree/5.0.1",
                 "issues": "https://github.com/hnuti-brontosaurus/php-bis-api-client/issues"
             },
-            "time": "2026-04-28T18:48:56+00:00"
+            "time": "2026-04-28T20:06:48+00:00"
         },
         {
             "name": "nette/neon",

@@ -2,6 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme\DataContainers\Structure;
 
+use HnutiBrontosaurus\BisClient\AdministrationUnit\Category;
 use HnutiBrontosaurus\BisClient\AdministrationUnit\Response\AdministrationUnit as AdministrationUnitFromClient;
 use HnutiBrontosaurus\BisClient\Response\Coordinates;
 
@@ -36,10 +37,10 @@ final class AdministrationUnit implements \JsonSerializable
 			chairman: $administrationUnit->getChairman(),
 			website: $administrationUnit->getWebsite(),
 			emailAddress: $administrationUnit->getEmail(),
-			isOfTypeClub: ! $administrationUnit->getIsForKids() && $administrationUnit->isClub(),
-			isOfTypeBase: ! $administrationUnit->getIsForKids() && $administrationUnit->isBaseUnit(),
-			isOfTypeRegional: ! $administrationUnit->getIsForKids() && $administrationUnit->isRegionalUnit(),
-			isOfTypeOffice: ! $administrationUnit->getIsForKids() && $administrationUnit->isOffice(),
+			isOfTypeClub: ! $administrationUnit->getIsForKids() && $administrationUnit->getCategory() === Category::CLUB,
+			isOfTypeBase: ! $administrationUnit->getIsForKids() && $administrationUnit->getCategory() === Category::BASIC_SECTION,
+			isOfTypeRegional: ! $administrationUnit->getIsForKids() && $administrationUnit->getCategory() === Category::REGIONAL_CENTER,
+			isOfTypeOffice: ! $administrationUnit->getIsForKids() && $administrationUnit->getCategory() === Category::HEADQUARTER,
 			isOfTypeChildren: $administrationUnit->getIsForKids(),
 		);
 	}
