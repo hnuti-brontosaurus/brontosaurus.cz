@@ -58,7 +58,7 @@ if ($eventCollection === null) {
     $eventCollection = new EventCollectionDC($events, $hb_dateFormatHuman, $hb_dateFormatRobot);
 }
 
-$filters = VoluntaryFiltersDC::from('jen', $selectedFilter);
+$filters = VoluntaryFiltersDC::from($selectedFilter);
 
 ?><main class="hb-mbe-6" role="main" id="obsah">
 	<h1 class="hb-ta-c">

@@ -4,26 +4,17 @@ namespace HnutiBrontosaurus\Theme\DataContainers;
 
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
 use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollectionDC;
-use HnutiBrontosaurus\Theme\PropertyHandler;
 
 
-/**
- * @property-read int $monthNumber
- * @property-read EventCollectionDC|null $events
- */
 final class MonthWrapperDC
 {
-	use PropertyHandler;
+
+	public /*get*/ ?EventCollectionDC $events = null;
 
 
-	private int $monthNumber;
-	private ?EventCollectionDC $events = null;
-
-
-	public function __construct(int $monthNumber)
-	{
-		$this->monthNumber = $monthNumber;
-	}
+	public function __construct(
+		public readonly int $monthNumber,
+	) {}
 
 
 	public function addEvent(Event $event, string $dateFormatHuman, string $dateFormatRobot): void

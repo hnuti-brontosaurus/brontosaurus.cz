@@ -2,28 +2,21 @@
 
 namespace HnutiBrontosaurus\Theme\DataContainers\Events;
 
+use ArrayIterator;
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
-use HnutiBrontosaurus\Theme\PropertyHandler;
+use IteratorAggregate;
+use function array_map;
+use function count;
 
 
-/**
- * @property-read bool $hasAny
- * @property-read bool $hasBeenUnableToLoad
- * @property-read int $count
- * @property-read EventDC[] $events
- */
-final class EventCollectionDC implements \IteratorAggregate
+final class EventCollectionDC implements IteratorAggregate
 {
-	use PropertyHandler;
 
-	private bool $hasAny = false;
-	private bool $hasBeenUnableToLoad = false; // this is used when BIS is not available
-	private int $count = 0;
+	public /*get*/ bool $hasAny = false;
+	public /*get*/ bool $hasBeenUnableToLoad = false; // this is used when BIS is not available
+	public /*get*/ int $count = 0;
 	/** @var EventDC[] */
-	private array $events = [];
-
-
-	// really private :-)
+	public /*get*/ array $events = [];
 
 	private string $dateFormatHuman;
 	private string $dateFormatRobot;
@@ -37,12 +30,12 @@ final class EventCollectionDC implements \IteratorAggregate
 		$this->dateFormatHuman = $dateFormatHuman;
 		$this->dateFormatRobot = $dateFormatRobot;
 
-		if ($events !== null && \count($events) > 0) {
-			$this->events = \array_map(function (Event $event) {
+		if ($events !== null && count($events) > 0) {
+			$this->events = array_map(function (Event $event) {
 				return new EventDC($event, $this->dateFormatHuman, $this->dateFormatRobot);
 			}, $events);
 			$this->hasAny = true;
-			$this->count = \count($events);
+			$this->count = count($events);
 		}
 	}
 
@@ -68,8 +61,8 @@ final class EventCollectionDC implements \IteratorAggregate
 	}
 
 
-	public function getIterator(): \ArrayIterator
+	public function getIterator(): ArrayIterator
 	{
-		return new \ArrayIterator($this->events);
+		return new ArrayIterator($this->events);
 	}
 }

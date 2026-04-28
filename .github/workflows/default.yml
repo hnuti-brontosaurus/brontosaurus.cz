@@ -105,7 +105,6 @@ jobs:
                         -i "index.php" \
                         -i "Meta.php" \
                         -i "PostTypeInitializer.php" \
-                        -i "PropertyHandler.php" \
                         -i "screenshot.png" \
                         -i "single-novinky.php" \
                         -i "style.css"

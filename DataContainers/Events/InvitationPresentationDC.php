@@ -3,27 +3,19 @@
 namespace HnutiBrontosaurus\Theme\DataContainers\Events;
 
 use HnutiBrontosaurus\BisClient\Response\Image;
-use HnutiBrontosaurus\Theme\PropertyHandler;
 
 
-/**
- * @property-read bool $hasText
- * @property-read string|null $text
- * @property-read bool $hasAnyPhotos
- * @property-read string[] $photos
- */
 final class InvitationPresentationDC
 {
-	use PropertyHandler;
 
 	/**
 	 * @param string[] $photos
 	 */
 	private function __construct(
-		private bool $hasText,
-		private ?string $text,
-		private bool $hasAnyPhotos,
-		private array $photos,
+		public readonly bool $hasText,
+		public readonly ?string $text,
+		public readonly bool $hasAnyPhotos,
+		public readonly array $photos,
 	) {}
 
 

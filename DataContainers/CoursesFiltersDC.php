@@ -3,28 +3,21 @@
 namespace HnutiBrontosaurus\Theme\DataContainers;
 
 use HnutiBrontosaurus\Theme\Filters\CoursesFilters;
-use HnutiBrontosaurus\Theme\PropertyHandler;
 
 
-/**
- * @property-read string $key
- * @property-read bool $isAnySelected
- * @property-read bool $isOrganizingSelected
- * @property-read bool $isThematicSelected
- */
 final class CoursesFiltersDC
 {
-	use PropertyHandler;
 
-	private string $key;
-	private bool $isAnySelected = false;
-	private bool $isOrganizingSelected = false;
-	private bool $isThematicSelected = false;
+	public readonly bool $isAnySelected;
+	public readonly bool $isOrganizingSelected;
+	public readonly bool $isThematicSelected;
 
 
-	private function __construct(string $key, ?string $selectedFilter = null)
+	private function __construct(?string $selectedFilter = null)
 	{
-		$this->key = $key;
+		$this->isAnySelected = false;
+		$this->isOrganizingSelected = false;
+		$this->isThematicSelected = false;
 
 		if ($selectedFilter === null) {
 			return;
@@ -48,9 +41,9 @@ final class CoursesFiltersDC
 	}
 
 
-	public static function from(string $key, ?string $selectedFilter = null): self
+	public static function from(?string $selectedFilter = null): self
 	{
-		return new self($key, $selectedFilter);
+		return new self($selectedFilter);
 	}
 
 }

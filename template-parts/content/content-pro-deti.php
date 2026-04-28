@@ -30,7 +30,7 @@ try {
 	Debugger::log($e);
 }
 
-$filters = ForChildrenFiltersDC::from('jen', $selectedFilter);
+$filters = ForChildrenFiltersDC::from($selectedFilter);
 
 ?><main class="hb-mbe-6" role="main" id="obsah">
 	<h1 class="hb-ta-c">

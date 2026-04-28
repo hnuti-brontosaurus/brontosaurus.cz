@@ -12,36 +12,36 @@ use HnutiBrontosaurus\BisClient\Event\Response\Event;
 use HnutiBrontosaurus\BisClient\Event\Response\Tag;
 
 
-final /*readonly*/ class EventDC
+final class EventDC
 {
-	public int $id;
-	public string $link;
-	public string $title;
-	public bool $hasCoverPhoto;
-	public ?string $coverPhotoPath;
-	public string $dateStartForRobots;
-	public bool $hasTimeStart;
-	public ?string $timeStart;
-	public string $dateSpan;
-	public PlaceDC $place;
-	public AgeDC $age;
-	public bool $isPaid;
-	public ?string $price;
-	public ContactDC $contact;
-	public bool $isPast;
-	public bool $isRegistrationRequired;
-	public bool $isFull;
-	public bool $isForFirstTimeAttendees;
-	public InvitationDC $invitation;
-	public bool $areOrganizersListed;
-	public ?string $organizers;
-	public ?string $organizerUnit;
-	public bool $hasRelatedWebsite;
-	public ?string $relatedWebsite;
+	public readonly int $id;
+	public readonly string $link;
+	public readonly string $title;
+	public readonly bool $hasCoverPhoto;
+	public readonly ?string $coverPhotoPath;
+	public readonly string $dateStartForRobots;
+	public readonly bool $hasTimeStart;
+	public readonly ?string $timeStart;
+	public readonly string $dateSpan;
+	public readonly PlaceDC $place;
+	public readonly AgeDC $age;
+	public readonly bool $isPaid;
+	public readonly ?string $price;
+	public readonly ContactDC $contact;
+	public readonly bool $isPast;
+	public readonly bool $isRegistrationRequired;
+	public readonly bool $isFull;
+	public readonly bool $isForFirstTimeAttendees;
+	public readonly InvitationDC $invitation;
+	public readonly bool $areOrganizersListed;
+	public readonly ?string $organizers;
+	public readonly ?string $organizerUnit;
+	public readonly bool $hasRelatedWebsite;
+	public readonly ?string $relatedWebsite;
 	/** @var Label[] */
-	public array $labels = [];
+	public readonly array $labels;
 	/** @var string[] */
-	public array $tags = [];
+	public readonly array $tags;
 
 
 	public function __construct(Event $event, string $dateFormatHuman, string $dateFormatRobot)

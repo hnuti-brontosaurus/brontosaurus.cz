@@ -3,22 +3,15 @@
 namespace HnutiBrontosaurus\Theme\DataContainers\Events;
 
 use HnutiBrontosaurus\BisClient\Response\Location;
-use HnutiBrontosaurus\Theme\PropertyHandler;
 
 
-/**
- * @property-read string $name
- * @property-read bool $areCoordinatesListed
- * @property-read string|null $coordinates
- */
 final class PlaceDC
 {
-	use PropertyHandler;
 
 	private function __construct(
-		private string $name,
-		private bool $areCoordinatesListed,
-		private ?string $coordinates,
+		public readonly string $name,
+		public readonly bool $areCoordinatesListed,
+		public readonly ?string $coordinates,
 	) {}
 
 

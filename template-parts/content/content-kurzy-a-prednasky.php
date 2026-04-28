@@ -30,7 +30,7 @@ try {
 	Debugger::log($e);
 }
 
-$filters = CoursesFiltersDC::from('jen', $selectedFilter);
+$filters = CoursesFiltersDC::from($selectedFilter);
 
 ?><main class="hb-mbe-6" role="main" id="obsah">
 	<h1 class="hb-ta-c">

@@ -4,17 +4,17 @@ namespace HnutiBrontosaurus\Theme\DataContainers;
 
 use function array_map;
 
-final /* readonly */ class StoriesFiltersDC
+final class StoriesFiltersDC
 {
 
-	public bool $isAnySelected = false;
+	public readonly bool $isAnySelected;
 	/** stdClass<{label: string, slug: string, isSelected: bool}>[] */
-	private array $filters = [];
+	private readonly array $filters;
 
 	private function __construct(array $filters, ?string $selectedFilter = null)
 	{
-		$this->filters = $filters;
 		$this->isAnySelected = $selectedFilter !== null;
+		$this->filters = $filters;
 	}
 
 	public static function from(array $filters, ?string $selectedFilter = null): self
@@ -29,6 +29,7 @@ final /* readonly */ class StoriesFiltersDC
 		);
 	}
 
+	/* helper method for better reading so that it's not $filters->filters */
 	public function get(): array
 	{
 		return $this->filters;

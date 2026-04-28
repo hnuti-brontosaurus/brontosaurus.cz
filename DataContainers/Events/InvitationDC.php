@@ -4,49 +4,29 @@ namespace HnutiBrontosaurus\Theme\DataContainers\Events;
 
 use HnutiBrontosaurus\BisClient\Event\Response\Diet;
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
-use HnutiBrontosaurus\BisClient\Event\Response\Food;
-use HnutiBrontosaurus\Theme\PropertyHandler;
 
 
-/**
- * @property-read string $introduction
- * @property-read string $organizationalInformation
- * @property-read bool $isAccommodationListed
- * @property-read string|null $accommodation
- * @property-read bool $isFoodListed
- * @property-read string[] $food
- * @property-read bool $isWorkDescriptionListed
- * @property-read string|null $workDescription
- * @property-read bool $areWorkHoursPerDayListed
- * @property-read int|null $workHoursPerDay
- * @property-read bool $areWorkDaysListed
- * @property-read int|null $workDays
- * @property-read bool $hasPresentation
- * @property-read InvitationPresentationDC|null $presentation
- */
 final class InvitationDC
 {
-	use PropertyHandler;
-
 
 	/**
 	 * @param string[] $food
 	 */
 	private function __construct(
-		private string $introduction,
-		private string $organizationalInformation,
-		private bool $isAccommodationListed,
-		private ?string $accommodation,
-		private bool $isFoodListed,
-		private array $food,
-		private bool $isWorkDescriptionListed,
-		private ?string $workDescription,
-		private bool $areWorkDaysListed,
-		private ?int $workDays,
-		private bool $areWorkHoursPerDayListed,
-		private ?int $workHoursPerDay,
-		private bool $hasPresentation,
-		private ?InvitationPresentationDC $presentation,
+		public readonly string $introduction,
+		public readonly string $organizationalInformation,
+		public readonly bool $isAccommodationListed,
+		public readonly ?string $accommodation,
+		public readonly bool $isFoodListed,
+		public readonly array $food,
+		public readonly bool $isWorkDescriptionListed,
+		public readonly ?string $workDescription,
+		public readonly bool $areWorkDaysListed,
+		public readonly ?int $workDays,
+		public readonly bool $areWorkHoursPerDayListed,
+		public readonly ?int $workHoursPerDay,
+		public readonly bool $hasPresentation,
+		public readonly ?InvitationPresentationDC $presentation,
 	) {}
 
 

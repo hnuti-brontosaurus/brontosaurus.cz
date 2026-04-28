@@ -3,35 +3,28 @@
 namespace HnutiBrontosaurus\Theme\DataContainers;
 
 use HnutiBrontosaurus\Theme\Filters\VoluntaryFilters;
-use HnutiBrontosaurus\Theme\PropertyHandler;
 
 
-/**
- * @property-read string $key
- * @property-read bool $isAnySelected
- * @property-read bool $isFirstTimeAttendeesSelected
- * @property-read bool $isWeekendEventsSelected
- * @property-read bool $isHolidayEventsSelected
- * @property-read bool $isOneDayEventsSelected
- * @property-read bool $isSightsSelected
- * @property-read bool $isNatureSelected
- */
 final class VoluntaryFiltersDC
 {
-	use PropertyHandler;
 
-	private string $key;
-	private bool $isAnySelected = false;
-	private bool $isFirstTimeAttendeesSelected = false;
-	private bool $isWeekendEventsSelected = false;
-	private bool $isOneDayEventsSelected = false;
-	private bool $isHolidayEventsSelected = false;
-	private bool $isNatureSelected = false;
-	private bool $isSightsSelected = false;
+	public readonly bool $isAnySelected;
+	public readonly bool $isFirstTimeAttendeesSelected;
+	public readonly bool $isWeekendEventsSelected;
+	public readonly bool $isOneDayEventsSelected;
+	public readonly bool $isHolidayEventsSelected;
+	public readonly bool $isNatureSelected;
+	public readonly bool $isSightsSelected;
 
-	private function __construct(string $key, ?string $selectedFilter = null)
+	private function __construct(?string $selectedFilter = null)
 	{
-		$this->key = $key;
+		$this->isAnySelected = false;
+		$this->isFirstTimeAttendeesSelected = false;
+		$this->isWeekendEventsSelected = false;
+		$this->isOneDayEventsSelected = false;
+		$this->isHolidayEventsSelected = false;
+		$this->isNatureSelected = false;
+		$this->isSightsSelected = false;
 
 		if ($selectedFilter === null) {
 			return;
@@ -70,9 +63,9 @@ final class VoluntaryFiltersDC
 		}
 	}
 
-	public static function from(string $key, ?string $selectedFilter = null): static
+	public static function from(?string $selectedFilter = null): static
 	{
-		return new static($key, $selectedFilter);
+		return new static($selectedFilter);
 	}
 
 }

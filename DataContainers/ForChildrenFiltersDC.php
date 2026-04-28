@@ -3,32 +3,25 @@
 namespace HnutiBrontosaurus\Theme\DataContainers;
 
 use HnutiBrontosaurus\Theme\Filters\ForChildrenFilters;
-use HnutiBrontosaurus\Theme\PropertyHandler;
 
 
-/**
- * @property-read string $key
- * @property-read bool $isAnySelected
- * @property-read bool $isCampsSelected
- * @property-read bool $isUnitsSelected
- * @property-read bool $isEventsSelected
- * @property-read bool $isEventsWithParentsSelected
- */
 final class ForChildrenFiltersDC
 {
-	use PropertyHandler;
 
-	private string $key;
-	private bool $isAnySelected = false;
-	private bool $isCampsSelected = false;
-	private bool $isUnitsSelected = false;
-	private bool $isEventsSelected = false;
-	private bool $isEventsWithParentsSelected = false;
+	public readonly bool $isAnySelected;
+	public readonly bool $isCampsSelected;
+	public readonly bool $isUnitsSelected;
+	public readonly bool $isEventsSelected;
+	public readonly bool $isEventsWithParentsSelected;
 
 
-	private function __construct(string $key, ?string $selectedFilter = null)
+	private function __construct(?string $selectedFilter = null)
 	{
-		$this->key = $key;
+		$this->isAnySelected = false;
+		$this->isCampsSelected = false;
+		$this->isUnitsSelected = false;
+		$this->isEventsSelected = false;
+		$this->isEventsWithParentsSelected = false;
 
 		if ($selectedFilter === null) {
 			return;
@@ -60,9 +53,9 @@ final class ForChildrenFiltersDC
 	}
 
 
-	public static function from(string $key, ?string $selectedFilter = null): self
+	public static function from(?string $selectedFilter = null): self
 	{
-		return new self($key, $selectedFilter);
+		return new self($selectedFilter);
 	}
 
 }

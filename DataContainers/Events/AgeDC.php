@@ -3,28 +3,18 @@
 namespace HnutiBrontosaurus\Theme\DataContainers\Events;
 
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
-use HnutiBrontosaurus\Theme\PropertyHandler;
 
 
-/**
- * @property-read bool $isListed
- * @property-read bool $isInterval
- * @property-read bool $isFromListed
- * @property-read int|null $from
- * @property-read bool $isUntilListed
- * @property-read int|null $until
- */
 final class AgeDC
 {
-	use PropertyHandler;
 
 	private function __construct(
-		private bool $isListed,
-		private bool $isInterval,
-		private bool $isFromListed,
-		private ?int $from,
-		private bool $isUntilListed,
-		private ?int $until,
+		public readonly bool $isListed,
+		public readonly bool $isInterval,
+		public readonly bool $isFromListed,
+		public readonly ?int $from,
+		public readonly bool $isUntilListed,
+		public readonly ?int $until,
 	) {}
 
 	public static function fromDTO(Event $event): self
