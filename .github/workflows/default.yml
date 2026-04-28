@@ -75,7 +75,6 @@ jobs:
                 run: |
                     zip -r brontosaurus-theme.zip . \
                         -i "config/*" \
-                        -i "CoordinatesResolver/*" \
                         -i "DataContainers/*" \
                         -i "Filters/*" \
                         -i "frontend/*" \

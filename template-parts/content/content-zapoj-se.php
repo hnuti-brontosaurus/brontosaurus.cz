@@ -4,7 +4,6 @@ use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\Opportunity\Category;
 use HnutiBrontosaurus\BisClient\Opportunity\Request\OpportunityParameters;
 use HnutiBrontosaurus\BisClient\Opportunity\Response\Opportunity;
-use HnutiBrontosaurus\Theme\CannotResolveCoordinates;
 use HnutiBrontosaurus\Theme\Container;
 use HnutiBrontosaurus\Theme\DataContainers\Structure\AdministrationUnit;
 use Nette\Utils\Strings;
@@ -13,7 +12,6 @@ use Tracy\Debugger;
 /** @var Container $hb_container defined in functions.php */
 
 $hb_bisApiClient = $hb_container->getBisClient();
-$hb_coordinatesResolver = $hb_container->getCoordinatesResolver();
 $hb_dateFormatHuman = $hb_container->getDateFormatForHuman();
 $hb_dateFormatRobot = $hb_container->getDateFormatForRobot();
 
@@ -46,12 +44,10 @@ try {
 	$opportunities = $hb_bisApiClient->getOpportunities($applyFilter($selectedFilter));
 
 	foreach ($hb_bisApiClient->getAdministrationUnits() as $administrationUnit) {
-		try {
-			$administrationUnits[] = AdministrationUnit::from($administrationUnit, $hb_coordinatesResolver);
-
-		} catch (CannotResolveCoordinates) {
-			continue; // in case of non-existing address just silently continue and ignore this unit
+		if ($administrationUnit->getCoordinates() === null) {
+			continue;
 		}
+		$administrationUnits[] = AdministrationUnit::from($administrationUnit);
 	}
 
 } catch (ConnectionToBisFailed $e) {

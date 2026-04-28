@@ -3,9 +3,7 @@
 namespace HnutiBrontosaurus\Theme\DataContainers\Structure;
 
 use HnutiBrontosaurus\BisClient\AdministrationUnit\Response\AdministrationUnit as AdministrationUnitFromClient;
-use HnutiBrontosaurus\Theme\CoordinatesResolver\Coordinates;
-use HnutiBrontosaurus\Theme\CoordinatesResolver\CoordinatesResolver;
-
+use HnutiBrontosaurus\BisClient\Response\Coordinates;
 
 final class AdministrationUnit implements \JsonSerializable
 {
@@ -27,16 +25,13 @@ final class AdministrationUnit implements \JsonSerializable
 	) {}
 
 
-	public static function from(
-		AdministrationUnitFromClient $administrationUnit,
-		CoordinatesResolver $coordinatesResolver,
-	): self
+	public static function from(AdministrationUnitFromClient $administrationUnit): self
 	{
 		return new self(
 			name: $administrationUnit->getName(),
 			description: $administrationUnit->getDescription(),
 			image: $administrationUnit->getImage()?->getMediumSizePath(),
-			coordinates: $coordinatesResolver->resolve($administrationUnit),
+			coordinates: $administrationUnit->getCoordinates(),
 			address: $administrationUnit->getAddress(),
 			chairman: $administrationUnit->getChairman(),
 			website: $administrationUnit->getWebsite(),

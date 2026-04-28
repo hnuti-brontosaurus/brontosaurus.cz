@@ -1,28 +1,23 @@
 <?php
 
-use HnutiBrontosaurus\Theme\CannotResolveCoordinates;
+use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\Theme\Container;
 use HnutiBrontosaurus\Theme\DataContainers\Structure\AdministrationUnit;
 use Tracy\Debugger;
-use Tracy\ILogger;
 
 /** @var Container $hb_container defined in functions.php */
 
 $hb_bisApiClient = $hb_container->getBisClient();
-$hb_coordinatesResolver = $hb_container->getCoordinatesResolver();
 
 $administrationUnits = [];
 $hasBeenUnableToLoad = false;
 
 try {
     foreach ($hb_bisApiClient->getAdministrationUnits() as $administrationUnit) {
-        try {
-            $administrationUnits[] = AdministrationUnit::from($administrationUnit, $hb_coordinatesResolver);
-
-        } catch (CannotResolveCoordinates $e) {
-            Debugger::log($e, ILogger::WARNING);
-            continue; // if can not resolve (e.g. non-existing address) just ignore this unit and continue
-        }
+		if ($administrationUnit->getCoordinates() === null) {
+			continue;
+		}
+		$administrationUnits[] = AdministrationUnit::from($administrationUnit);
     }
 
 } catch (ConnectionToBisFailed $e) {

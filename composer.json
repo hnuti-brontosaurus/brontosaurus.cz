@@ -2,7 +2,6 @@
 	"name": "hnuti-brontosaurus/wp-theme",
 	"description": "WP theme for Hnutí Brontosaurus",
 	"require": {
-		"grifart/geocoding-client": "^0.2.0",
 		"hnuti-brontosaurus/php-bis-api-client": "^5.0.0",
 		"nette/neon": "^3.2",
 		"nette/utils": "^4.0",
@@ -34,10 +33,6 @@
 		}
 	},
 	"repositories": [
-		{
-			"url": "https://github.com/grifart/geocoding-client.git",
-			"type": "vcs"
-		},
 		{
 			"url": "https://github.com/hnuti-brontosaurus/php-bis-api-client.git",
 			"type": "vcs"
