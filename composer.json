@@ -13,7 +13,7 @@
 		"szepeviktor/phpstan-wordpress": "^2.0"
 	},
 	"scripts": {
-		"phpstan": "phpstan analyze --no-progress --no-interaction -c phpstan.neon"
+		"phpstan": "phpstan analyze --no-progress --no-interaction --memory-limit=2G -c phpstan.neon"
 	},
 	"autoload": {
 		"psr-4": {

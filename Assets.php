@@ -59,10 +59,10 @@ final class Assets
 		return sprintf($pattern, $theme->get_template_directory_uri(), $for);
 	}
 
-	private static function ver(string $for, string $pattern, WP_Theme $theme): int
+	private static function ver(string $for, string $pattern, WP_Theme $theme): string
 	{
 		$path = sprintf($pattern, $theme->get_template_directory(), $for);
-		return filemtime($path);
+		return (string) filemtime($path);
 	}
 
 

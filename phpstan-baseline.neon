@@ -1,0 +1,43 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Parameter \#1 \$args of function wp_nav_menu expects array\{menu\?\: int\|string\|WP_Term, menu_class\?\: string, menu_id\?\: string, container\?\: string, container_class\?\: string, container_id\?\: string, container_aria_label\?\: string, fallback_cb\?\: \(callable\(\)\: mixed\)\|false, \.\.\.\}, array\{theme_location\: ''footer\-center'', container\: false, depth\: 1\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: footer.php
+
+		-
+			message: '#^Parameter \#1 \$args of function wp_nav_menu expects array\{menu\?\: int\|string\|WP_Term, menu_class\?\: string, menu_id\?\: string, container\?\: string, container_class\?\: string, container_id\?\: string, container_aria_label\?\: string, fallback_cb\?\: \(callable\(\)\: mixed\)\|false, \.\.\.\}, array\{theme_location\: ''footer\-left'', container\: false, depth\: 1\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: footer.php
+
+		-
+			message: '#^Parameter \#1 \$args of function wp_nav_menu expects array\{menu\?\: int\|string\|WP_Term, menu_class\?\: string, menu_id\?\: string, container\?\: string, container_class\?\: string, container_id\?\: string, container_aria_label\?\: string, fallback_cb\?\: \(callable\(\)\: mixed\)\|false, \.\.\.\}, array\{theme_location\: ''footer\-right'', container\: false, depth\: 1\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: footer.php
+
+		-
+			message: '#^Function hb_events not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: functions.php
+
+		-
+			message: '#^If condition is always true\.$#'
+			identifier: if.alwaysTrue
+			count: 2
+			path: functions.php
+
+		-
+			message: '#^Parameter \#1 \$args of function wp_nav_menu expects array\{menu\?\: int\|string\|WP_Term, menu_class\?\: string, menu_id\?\: string, container\?\: string, container_class\?\: string, container_id\?\: string, container_aria_label\?\: string, fallback_cb\?\: \(callable\(\)\: mixed\)\|false, \.\.\.\}, array\{theme_location\: ''header'', container\: false, depth\: 1\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: header.php
+
+		-
+			message: '#^Variable \$hb_enableTracking might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: header.php
