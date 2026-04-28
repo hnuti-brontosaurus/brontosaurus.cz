@@ -8,6 +8,13 @@
 		"nette/utils": "^4.0",
 		"tracy/tracy": "^2.8"
 	},
+	"require-dev": {
+		"phpstan/phpstan": "^2.0",
+		"szepeviktor/phpstan-wordpress": "^2.0"
+	},
+	"scripts": {
+		"phpstan": "phpstan analyze --no-progress --no-interaction -c phpstan.neon"
+	},
 	"autoload": {
 		"psr-4": {
 			"HnutiBrontosaurus\\Theme\\": ".",
