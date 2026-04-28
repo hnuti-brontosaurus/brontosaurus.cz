@@ -3,33 +3,21 @@
 namespace HnutiBrontosaurus\Theme\DataContainers;
 
 use DateTimeImmutable;
-use HnutiBrontosaurus\Theme\PropertyHandler;
 use function get_the_post_thumbnail_url;
 
 
-/**
- * @property-read int $id
- * @property-read string $title
- * @property-read string $slug
- * @property-read DateTimeImmutable $date
- * @property-read string|null $perex
- * @property-read string|null $content
- * @property-read bool $hasCoverImage
- * @property-read string|null $coverImage
- */
 final class NewsPost
 {
-	use PropertyHandler;
 
 	private function __construct(
-		private int $id,
-		private string $title,
-		private string $slug,
-		private DateTimeImmutable $date,
-		private ?string $perex,
-		private ?string $content,
-		private bool $hasCoverImage,
-		private ?string $coverImage,
+		public readonly int $id,
+		public readonly string $title,
+		public readonly string $slug,
+		public readonly DateTimeImmutable $date,
+		public readonly ?string $perex,
+		public readonly ?string $content,
+		public readonly bool $hasCoverImage,
+		public readonly ?string $coverImage,
 	) {}
 
 
