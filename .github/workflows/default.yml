@@ -147,7 +147,6 @@ jobs:
             -   name: Deploy
                 run: |
                     bash deploy/deploy.sh ${{ secrets.STAGING_REMOTE_USER_AND_HOST }}:${{ secrets.STAGING_REMOTE_PROJECT_DIR }}/wp-content/themes/brontosaurus-theme
-                    ssh ${{ secrets.STAGING_REMOTE_USER_AND_HOST }} "rm -rf ${{ secrets.STAGING_REMOTE_PROJECT_DIR }}/wp-content/themes/brontosaurus-theme/temp/cache"
 
     deploy_production:
         runs-on: ubuntu-latest
@@ -180,4 +179,3 @@ jobs:
             -   name: Deploy
                 run: |
                     bash deploy/deploy.sh ${{ secrets.PRODUCTION_REMOTE_USER_AND_HOST }}:${{ secrets.PRODUCTION_REMOTE_PROJECT_DIR }}/wp-content/themes/brontosaurus-theme
-                    ssh ${{ secrets.PRODUCTION_REMOTE_USER_AND_HOST }} "rm -rf ${{ secrets.PRODUCTION_REMOTE_PROJECT_DIR }}/wp-content/themes/brontosaurus-theme/temp/cache"
