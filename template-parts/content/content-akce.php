@@ -1,6 +1,5 @@
 <?php
 
-use HnutiBrontosaurus\BisClient\BisClient;
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\EventNotFound;
 use HnutiBrontosaurus\Theme\Container;

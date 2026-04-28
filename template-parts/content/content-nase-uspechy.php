@@ -45,7 +45,7 @@ $categories = get_terms([
 // todo: use some WP way of obtaining param
 $selectedFilter = filter_input( INPUT_GET, 'jen' ) ?? null;
 $selectedFilter = $selectedFilter !== null && $selectedFilter !== '' ? htmlspecialchars($selectedFilter) : null;
-$filters = StoriesFiltersDC::from($categories, 'jen', $selectedFilter);
+$filters = StoriesFiltersDC::from($categories, $selectedFilter);
 
 // todo: use some WP way of obtaining param
 $all = filter_input( INPUT_GET, 'vsechny' ) ?? null;

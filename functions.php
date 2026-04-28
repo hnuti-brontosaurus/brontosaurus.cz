@@ -1,5 +1,8 @@
 <?php
 
+use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
+use HnutiBrontosaurus\BisClient\EventNotFound;
+use HnutiBrontosaurus\BisClient\OpportunityNotFound;
 use HnutiBrontosaurus\Theme\Assets;
 use HnutiBrontosaurus\Theme\Container;
 use HnutiBrontosaurus\Theme\Meta;
