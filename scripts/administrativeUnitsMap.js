@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const getSelectedFilter = () =>{
         const hash = window.location.hash.substring(1);
 		return hash !== ''
-			? document.querySelector(`.administrativeUnitsMap__filters #${hash}`)
+			? document.querySelector(`.hb-administrativeUnitsMap__filters #${hash}`)
 			: null;
     }
 
@@ -148,13 +148,13 @@ function buildInfoWindow(unit)
 {
     const containerEl = document.createElement('div');
     containerEl.id = 'infowindow';
-    containerEl.classList.add('administrativeUnitsMap__infoWindow')
+    containerEl.classList.add('hb-administrativeUnitsMap__infoWindow')
 
     if (unit.image !== null) {
         const imageContainerEl = containerEl.appendChild(document.createElement('div'));
-        imageContainerEl.classList.add('administrativeUnitsMap__infoWindowImageContainer');
+        imageContainerEl.classList.add('hb-administrativeUnitsMap__infoWindowImageContainer');
         const imageEl = imageContainerEl.appendChild(document.createElement('img'));
-        imageEl.classList.add('administrativeUnitsMap__infoWindowImage');
+        imageEl.classList.add('hb-administrativeUnitsMap__infoWindowImage');
         imageEl.src = unit.image;
     }
 
@@ -178,7 +178,7 @@ function buildInfoWindow(unit)
 
     if (unit.description !== null) {
         const descriptionEl = contentEl.appendChild(document.createElement('p'));
-        descriptionEl.classList.add('administrativeUnitsMap__infoWindowDescription')
+        descriptionEl.classList.add('hb-administrativeUnitsMap__infoWindowDescription')
         descriptionEl.innerHTML += unit.description;
     }
 
@@ -244,9 +244,9 @@ function resolveUnitTypeSlug(unit)
 
 function initializeFilters({displayLayer})
 {
-    const ActiveFilterSelector = 'administrativeUnitsMap__filter--active';
+    const ActiveFilterSelector = 'hb-administrativeUnitsMap__filter--active';
 
-    const filters = document.querySelectorAll('.administrativeUnitsMap__filter');
+    const filters = document.querySelectorAll('.hb-administrativeUnitsMap__filter');
 
     const makeActive = (el) => {
 		filters.forEach(el => el.classList.remove(ActiveFilterSelector));

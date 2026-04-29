@@ -208,52 +208,52 @@ function hb_prilezitost_meta(OpportunityDC $opportunity) { ?>
 function hb_administrative_units_map(string $administrationUnitsInJson, bool $hasBeenUnableToLoad)
 {
 ?>
-<div class="administrativeUnitsMap">
+<div class="hb-administrativeUnitsMap">
 <?php if ($hasBeenUnableToLoad): ?>
 	<div class="noResults">
 		Promiňte, zrovna nám vypadl systém, kde máme uloženy všechny informace o našich článcích.
 		Zkuste to prosím za chvilku znovu.
 	</div>
 <?php else: ?>
-	<ul class="administrativeUnitsMap__filters" id="administrativeUnitsMap-filters">
-		<li class="administrativeUnitsMap__filter" id="mapa-vse">
-			<a class="administrativeUnitsMap__filterLink button button--customization" href="#mapa-vse">
+	<ul class="hb-administrativeUnitsMap__filters" id="administrativeUnitsMap-filters">
+		<li class="hb-administrativeUnitsMap__filter" id="mapa-vse">
+			<a class="hb-administrativeUnitsMap__filterLink button button--customization" href="#mapa-vse">
 				vše
 			</a>
 		</li>
 
-		<li class="administrativeUnitsMap__filter" id="mapa-ustredi" data-slug="office">
-			<a class="administrativeUnitsMap__filterLink administrativeUnitsMap__filterLink--icon administrativeUnitsMap__filterLink--office button button--customization" href="#mapa-ustredi">
+		<li class="hb-administrativeUnitsMap__filter" id="mapa-ustredi" data-slug="office">
+			<a class="hb-administrativeUnitsMap__filterLink hb-administrativeUnitsMap__filterLink--icon hb-administrativeUnitsMap__filterLink--office button button--customization" href="#mapa-ustredi">
 				ústředí
 			</a>
 		</li>
 
-		<li class="administrativeUnitsMap__filter" id="mapa-regionalni-centra" data-slug="regional">
-			<a class="administrativeUnitsMap__filterLink administrativeUnitsMap__filterLink--icon administrativeUnitsMap__filterLink--regional button button--customization" href="#mapa-regionalni-centra">
+		<li class="hb-administrativeUnitsMap__filter" id="mapa-regionalni-centra" data-slug="regional">
+			<a class="hb-administrativeUnitsMap__filterLink hb-administrativeUnitsMap__filterLink--icon hb-administrativeUnitsMap__filterLink--regional button button--customization" href="#mapa-regionalni-centra">
 				regionální centra
 			</a>
 		</li>
 
-		<li class="administrativeUnitsMap__filter" id="mapa-zakladni-clanky" data-slug="base">
-			<a class="administrativeUnitsMap__filterLink administrativeUnitsMap__filterLink--icon administrativeUnitsMap__filterLink--base button button--customization" href="#mapa-zakladni-clanky">
+		<li class="hb-administrativeUnitsMap__filter" id="mapa-zakladni-clanky" data-slug="base">
+			<a class="hb-administrativeUnitsMap__filterLink hb-administrativeUnitsMap__filterLink--icon hb-administrativeUnitsMap__filterLink--base button button--customization" href="#mapa-zakladni-clanky">
 				základní články
 			</a>
 		</li>
 
-		<li class="administrativeUnitsMap__filter" id="mapa-kluby" data-slug="club">
-			<a class="administrativeUnitsMap__filterLink administrativeUnitsMap__filterLink--icon administrativeUnitsMap__filterLink--club button button--customization" href="#mapa-kluby">
+		<li class="hb-administrativeUnitsMap__filter" id="mapa-kluby" data-slug="club">
+			<a class="hb-administrativeUnitsMap__filterLink hb-administrativeUnitsMap__filterLink--icon hb-administrativeUnitsMap__filterLink--club button button--customization" href="#mapa-kluby">
 				kluby
 			</a>
 		</li>
 
-		<li class="administrativeUnitsMap__filter" id="mapa-detske-oddily" data-slug="children">
-			<a class="administrativeUnitsMap__filterLink administrativeUnitsMap__filterLink--icon administrativeUnitsMap__filterLink--children button button--customization" href="#mapa-detske-oddily">
+		<li class="hb-administrativeUnitsMap__filter" id="mapa-detske-oddily" data-slug="children">
+			<a class="hb-administrativeUnitsMap__filterLink hb-administrativeUnitsMap__filterLink--icon hb-administrativeUnitsMap__filterLink--children button button--customization" href="#mapa-detske-oddily">
 				dětské oddíly BRĎO
 			</a>
 		</li>
 	</ul>
 
-	<div class="administrativeUnitsMap__map"
+	<div class="hb-administrativeUnitsMap__map"
 			id="map"
 			data-administrativeUnits='<?php echo $administrationUnitsInJson ?>'
 	></div>
