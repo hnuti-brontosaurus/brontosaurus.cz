@@ -131,6 +131,7 @@ require_once __DIR__ . '/homepage-banner.php';
 		Assets::staticStyle('fonts', $theme);
 		Assets::staticStyle('defaults', $theme);
 		Assets::staticStyle('utils', $theme);
+		Assets::staticStyle('customizations', $theme);
 		Assets::style('style', $theme);
 		Assets::staticStyle('components', $theme);
 	});
