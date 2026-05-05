@@ -65,6 +65,7 @@ jobs:
                 uses: actions/download-artifact@v4
                 with:
                     name: backend-deps
+                    path: vendor
 
             -   name: Download frontend artifact
                 uses: actions/download-artifact@v4
