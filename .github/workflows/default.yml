@@ -65,14 +65,12 @@ jobs:
                 uses: actions/download-artifact@v4
                 with:
                     name: backend-deps
+                    path: vendor
 
             -   name: Download frontend artifact
                 uses: actions/download-artifact@v4
                 with:
                     name: frontend-deps
-
-            -   name: Verify downloaded files
-                run: ls -la
 
             -   name: Pack files for release
                 run: |
