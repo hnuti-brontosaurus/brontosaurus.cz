@@ -8,64 +8,79 @@ use HnutiBrontosaurus\Theme\Filters\VoluntaryFilters;
 final class VoluntaryFiltersDC
 {
 
-	public readonly bool $isAnySelected;
-	public readonly bool $isFirstTimeAttendeesSelected;
-	public readonly bool $isWeekendEventsSelected;
-	public readonly bool $isOneDayEventsSelected;
-	public readonly bool $isHolidayEventsSelected;
-	public readonly bool $isNatureSelected;
-	public readonly bool $isSightsSelected;
+	private function __construct(
+		public readonly bool $isAnySelected,
+		public readonly bool $isFirstTimeAttendeesSelected,
+		public readonly bool $isWeekendEventsSelected,
+		public readonly bool $isOneDayEventsSelected,
+		public readonly bool $isHolidayEventsSelected,
+		public readonly bool $isNatureSelected,
+		public readonly bool $isSightsSelected,
+	) {}
 
-	private function __construct(?string $selectedFilter = null)
+	public static function from(?string $selectedFilter = null): self
 	{
-		$this->isAnySelected = false;
-		$this->isFirstTimeAttendeesSelected = false;
-		$this->isWeekendEventsSelected = false;
-		$this->isOneDayEventsSelected = false;
-		$this->isHolidayEventsSelected = false;
-		$this->isNatureSelected = false;
-		$this->isSightsSelected = false;
+		$isAnySelected = false;
+		$isFirstTimeAttendeesSelected = false;
+		$isWeekendEventsSelected = false;
+		$isOneDayEventsSelected = false;
+		$isHolidayEventsSelected = false;
+		$isNatureSelected = false;
+		$isSightsSelected = false;
 
 		if ($selectedFilter === null) {
-			return;
+			return new self(
+				$isAnySelected,
+				$isFirstTimeAttendeesSelected,
+				$isWeekendEventsSelected,
+				$isOneDayEventsSelected,
+				$isHolidayEventsSelected,
+				$isNatureSelected,
+				$isSightsSelected,
+			);
 		}
 
-		$this->isAnySelected = true;
+		$isAnySelected = true;
 
 		switch ($selectedFilter) {
 			case VoluntaryFilters::FILTER_FIRST_TIME:
-				$this->isFirstTimeAttendeesSelected = true;
+				$isFirstTimeAttendeesSelected = true;
 				break;
 
 			case VoluntaryFilters::FILTER_WEEKEND_EVENTS:
-				$this->isWeekendEventsSelected = true;
+				$isWeekendEventsSelected = true;
 				break;
 
 			case VoluntaryFilters::FILTER_ONE_DAY_EVENTS:
-				$this->isOneDayEventsSelected = true;
+				$isOneDayEventsSelected = true;
 				break;
 
 			case VoluntaryFilters::FILTER_HOLIDAY_EVENTS:
-				$this->isHolidayEventsSelected = true;
+				$isHolidayEventsSelected = true;
 				break;
 
 			case VoluntaryFilters::FILTER_NATURE:
-				$this->isNatureSelected = true;
+				$isNatureSelected = true;
 				break;
 
 			case VoluntaryFilters::FILTER_SIGHTS:
-				$this->isSightsSelected = true;
+				$isSightsSelected = true;
 				break;
 
 			default:
-				$this->isAnySelected = false;
+				$isAnySelected = false;
 				break;
 		}
-	}
 
-	public static function from(?string $selectedFilter = null): static
-	{
-		return new static($selectedFilter);
+		return new self(
+			$isAnySelected,
+			$isFirstTimeAttendeesSelected,
+			$isWeekendEventsSelected,
+			$isOneDayEventsSelected,
+			$isHolidayEventsSelected,
+			$isNatureSelected,
+			$isSightsSelected,
+		);
 	}
 
 }
