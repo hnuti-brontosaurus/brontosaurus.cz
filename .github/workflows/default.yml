@@ -71,6 +71,9 @@ jobs:
                 with:
                     name: frontend-deps
 
+            -   name: Verify downloaded files
+                run: ls -la
+
             -   name: Pack files for release
                 run: |
                     zip -r brontosaurus-theme.zip . \
