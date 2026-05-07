@@ -162,6 +162,11 @@ function buildInfoWindow(unit)
     const metaEl = contentEl.appendChild(document.createElement('div'));
 
     metaEl.innerHTML = `<strong>${resolveUnitTitle(unit)}</strong>`;
+
+    if (unit.parent !== null) {
+        metaEl.innerHTML += `<br>Spadá pod: ${unit.parent}`;
+    }
+
     metaEl.innerHTML += `<br>Adresa: ${unit.address}`;
 
     if (unit.chairman !== null) {

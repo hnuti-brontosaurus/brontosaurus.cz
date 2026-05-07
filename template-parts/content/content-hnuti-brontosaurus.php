@@ -2,7 +2,7 @@
 
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\Theme\Container;
-use HnutiBrontosaurus\Theme\DataContainers\Structure\AdministrationUnit;
+use HnutiBrontosaurus\Theme\DataContainers\Structure\AdministrationUnitsFlattener;
 use Tracy\Debugger;
 
 /** @var Container $hb_container defined in functions.php */
@@ -13,12 +13,7 @@ $administrationUnits = [];
 $hasBeenUnableToLoad = false;
 
 try {
-    foreach ($hb_bisApiClient->getAdministrationUnits() as $administrationUnit) {
-		if ($administrationUnit->getCoordinates() === null) {
-			continue;
-		}
-		$administrationUnits[] = AdministrationUnit::from($administrationUnit);
-    }
+	$administrationUnits = AdministrationUnitsFlattener::flatten($hb_bisApiClient->getAdministrationUnits());
 
 } catch (ConnectionToBisFailed $e) {
     $hasBeenUnableToLoad = true;

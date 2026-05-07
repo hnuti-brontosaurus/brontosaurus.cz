@@ -4,6 +4,7 @@ namespace HnutiBrontosaurus\Theme\DataContainers\Structure;
 
 use HnutiBrontosaurus\BisClient\AdministrationUnit\Category;
 use HnutiBrontosaurus\BisClient\AdministrationUnit\Response\AdministrationUnit as AdministrationUnitFromClient;
+use HnutiBrontosaurus\BisClient\AdministrationUnit\Response\SubUnit as SubUnitFromClient;
 use HnutiBrontosaurus\BisClient\Response\Coordinates;
 
 final class AdministrationUnit implements \JsonSerializable
@@ -11,6 +12,7 @@ final class AdministrationUnit implements \JsonSerializable
 
 	private function __construct(
 		private string $name,
+		private ?string $parent,
 		private ?string $description,
 		private ?string $image,
 		private Coordinates $coordinates,
@@ -26,10 +28,11 @@ final class AdministrationUnit implements \JsonSerializable
 	) {}
 
 
-	public static function from(AdministrationUnitFromClient $administrationUnit): self
+	public static function fromUnit(AdministrationUnitFromClient $administrationUnit): self
 	{
 		return new self(
 			name: $administrationUnit->getName(),
+			parent: null,
 			description: $administrationUnit->getDescription(),
 			image: $administrationUnit->getImage()?->getMediumSizePath(),
 			coordinates: $administrationUnit->getCoordinates(),
@@ -46,10 +49,32 @@ final class AdministrationUnit implements \JsonSerializable
 	}
 
 
+	public static function fromSubUnit(SubUnitFromClient $subUnit, string $parentName): self
+	{
+		return new self(
+			name: $subUnit->getName(),
+			parent: $parentName,
+			description: $subUnit->getDescription(),
+			image: null,
+			coordinates: $subUnit->getCoordinates(),
+			address: $subUnit->getAddress(),
+			chairman: $subUnit->getMainLeader(),
+			website: $subUnit->getWebsite(),
+			emailAddress: $subUnit->getEmail(),
+			isOfTypeClub: false,
+			isOfTypeBase: false,
+			isOfTypeRegional: false,
+			isOfTypeOffice: false,
+			isOfTypeChildren: true,
+		);
+	}
+
+
 	public function jsonSerialize(): array
 	{
 		return [
 			'name' => $this->name,
+			'parent' => $this->parent,
 			'description' => $this->description,
 			'image' => $this->image,
 			'lat' => $this->coordinates->getLatitude(),
