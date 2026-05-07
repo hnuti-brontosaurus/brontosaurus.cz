@@ -208,7 +208,7 @@ function resolveUnitTypeLabel(unit)
 			return 'regionální centrum';
 
 		case unit.isOfTypeOffice:
-			return 'ústředí';
+			return null; // included in the name itself
 
 		case unit.isOfTypeChildren:
 			return 'dětský oddíl';
