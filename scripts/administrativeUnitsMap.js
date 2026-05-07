@@ -161,7 +161,12 @@ function buildInfoWindow(unit)
     const contentEl = containerEl.appendChild(document.createElement('div'));
     const metaEl = contentEl.appendChild(document.createElement('div'));
 
-    metaEl.innerHTML = resolveUnitTitle(unit);
+    metaEl.innerHTML = `<strong>${resolveUnitTitle(unit)}</strong>`;
+
+    if (unit.parent !== null) {
+        metaEl.innerHTML += `<br>Spadá pod: ${unit.parent}`;
+    }
+
     metaEl.innerHTML += `<br>Adresa: ${unit.address}`;
 
     if (unit.chairman !== null) {
@@ -208,7 +213,7 @@ function resolveUnitTypeLabel(unit)
 			return 'regionální centrum';
 
 		case unit.isOfTypeOffice:
-			return 'ústředí';
+			return null; // included in the name itself
 
 		case unit.isOfTypeChildren:
 			return 'dětský oddíl';

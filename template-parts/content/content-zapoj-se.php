@@ -5,7 +5,7 @@ use HnutiBrontosaurus\BisClient\Opportunity\Category;
 use HnutiBrontosaurus\BisClient\Opportunity\Request\OpportunityParameters;
 use HnutiBrontosaurus\BisClient\Opportunity\Response\Opportunity;
 use HnutiBrontosaurus\Theme\Container;
-use HnutiBrontosaurus\Theme\DataContainers\Structure\AdministrationUnit;
+use HnutiBrontosaurus\Theme\DataContainers\Structure\AdministrationUnitsFlattener;
 use Nette\Utils\Strings;
 use Tracy\Debugger;
 
@@ -42,13 +42,7 @@ $administrationUnits = [];
 
 try {
 	$opportunities = $hb_bisApiClient->getOpportunities($applyFilter($selectedFilter));
-
-	foreach ($hb_bisApiClient->getAdministrationUnits() as $administrationUnit) {
-		if ($administrationUnit->getCoordinates() === null) {
-			continue;
-		}
-		$administrationUnits[] = AdministrationUnit::from($administrationUnit);
-	}
+	$administrationUnits = AdministrationUnitsFlattener::flatten($hb_bisApiClient->getAdministrationUnits());
 
 } catch (ConnectionToBisFailed $e) {
 	$hasBeenUnableToLoad = true;
