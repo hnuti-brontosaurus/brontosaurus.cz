@@ -16,7 +16,7 @@ final class AdministrationUnit implements \JsonSerializable
 		private ?string $description,
 		private ?string $image,
 		private Coordinates $coordinates,
-		private string $address,
+		private ?string $address,
 		private ?string $chairman,
 		private ?string $website,
 		private ?string $emailAddress,

@@ -167,7 +167,7 @@ function buildInfoWindow(unit)
         metaEl.innerHTML += `<br>Spadá pod: ${unit.parent}`;
     }
 
-    metaEl.innerHTML += `<br>Adresa: ${unit.address}`;
+    metaEl.innerHTML += `<br>Adresa: ${unit.address !== null ? unit.address : "neuvedena"}`;
 
     if (unit.chairman !== null) {
         metaEl.innerHTML += `<br>Předseda: ${unit.chairman}`;
