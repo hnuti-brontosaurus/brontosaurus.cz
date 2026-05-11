@@ -1,12 +1,9 @@
 <?php
 
-use Brick\DateTime\LocalDate;
 use HnutiBrontosaurus\BisClient\Opportunity\Category;
 
-function hb_dateSpan(LocalDate $start, LocalDate $end, string $dateFormat): string
+function hb_dateSpan(DateTimeImmutable $start, DateTimeImmutable $end, string $dateFormat): string
 {
-	$start = $start->toNativeDateTimeImmutable();
-	$end = $end->toNativeDateTimeImmutable();
 	$dateSpan_untilPart = $end->format($dateFormat);
 
 	$onlyOneDay = $start->format('j') === $end->format('j');

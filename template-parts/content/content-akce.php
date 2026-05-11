@@ -19,7 +19,6 @@ $hb_applicationUrlTemplate = $hb_container->getConfiguration()->get('bis:applica
 
 function hb_formatPhoneNumber(string $phoneNumber): string
 {
-	// todo use brick/phone instead?
 	switch (\mb_strlen($phoneNumber)) {
 		case 9: // 123456789
 			return \sprintf('%s %s %s', \mb_substr($phoneNumber, 0, 3), \mb_substr($phoneNumber, 3, 3), \mb_substr($phoneNumber, 6, 3));

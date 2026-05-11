@@ -2,8 +2,7 @@
 
 namespace HnutiBrontosaurus\Theme\DataContainers\Events;
 
-use Brick\DateTime\LocalDate;
-use Brick\DateTime\TimeZone;
+use DateTimeImmutable;
 use HnutiBrontosaurus\BisClient\Event\Category;
 use HnutiBrontosaurus\BisClient\Event\Group;
 use HnutiBrontosaurus\BisClient\Event\IntendedFor;
@@ -64,7 +63,7 @@ final class EventDC
 		$this->hasTimeStart = $timeStart !== null;
 		$this->timeStart = $timeStart?->toNativeDateTimeImmutable()->format('G:i');
 
-		$this->dateSpan = $this->getDateSpan($event->getStartDate(), $event->getEndDate(), $dateFormatHuman);
+		$this->dateSpan = $this->getDateSpan($event->getStartDate()->toNativeDateTimeImmutable(), $event->getEndDate()->toNativeDateTimeImmutable(), $dateFormatHuman);
 		$this->place = PlaceDC::fromDTO($event->getLocation());
 		$this->age = AgeDC::fromDTO($event);
 
@@ -75,7 +74,7 @@ final class EventDC
 		$this->contact = ContactDC::fromDTO($event->getPropagation()->getContactPerson());
 
 		$this->isRegistrationRequired = $event->getRegistration()->getIsRegistrationRequired();
-		$this->isPast = $event->getEndDate()->isBefore(LocalDate::now(TimeZone::utc()));
+		$this->isPast = $event->getEndDate()->toNativeDateTimeImmutable()->format('Y-m-d') < (new DateTimeImmutable())->format('Y-m-d');
 		$this->isFull = $event->getRegistration()->getIsEventFull();
 
 		$this->isForFirstTimeAttendees = $event->getIntendedFor() === IntendedFor::FIRST_TIME_PARTICIPANT;
@@ -121,10 +120,8 @@ final class EventDC
 	}
 
 
-	private function getDateSpan(LocalDate $dateFrom, LocalDate $dateUntil, string $dateFormatHuman): string
+	private function getDateSpan(DateTimeImmutable $dateFrom, DateTimeImmutable $dateUntil, string $dateFormatHuman): string
 	{
-		$dateFrom = $dateFrom->toNativeDateTimeImmutable();
-		$dateUntil = $dateUntil->toNativeDateTimeImmutable();
 		$dateSpan_untilPart = $dateUntil->format($dateFormatHuman);
 
 		$onlyOneDay = $dateFrom->format('j') === $dateUntil->format('j');

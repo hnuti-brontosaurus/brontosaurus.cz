@@ -72,7 +72,7 @@ try {
 					<dt>Datum</dt>
 					<dd>
 						<time datetime="<?php echo $opportunity->getStartDate()->toNativeDateTimeImmutable()->format($hb_dateFormatForRobot); ?>">
-							<?php echo hb_dateSpan($opportunity->getStartDate(), $opportunity->getEndDate(), $hb_dateFormatForHuman); ?>
+							<?php echo hb_dateSpan($opportunity->getStartDate()->toNativeDateTimeImmutable(), $opportunity->getEndDate()->toNativeDateTimeImmutable(), $hb_dateFormatForHuman); ?>
 						</time>
 					</dd>
 
