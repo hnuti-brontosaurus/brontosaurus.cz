@@ -97,7 +97,6 @@ jobs:
                         -i "composer.lock" \
                         -i "Configuration.php" \
                         -i "Container.php" \
-                        -i "exceptions.php" \
                         -i "footer.php" \
                         -i "functions.php" \
                         -i "header.php" \

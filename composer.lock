@@ -413,10 +413,7 @@
             "autoload": {
                 "psr-4": {
                     "HnutiBrontosaurus\\BisClient\\": "src/"
-                },
-                "classmap": [
-                    "src/exceptions.php"
-                ]
+                }
             },
             "scripts": {
                 "phpstan": [

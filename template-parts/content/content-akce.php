@@ -3,7 +3,6 @@
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\EventNotFound;
 use HnutiBrontosaurus\Theme\Container;
-use HnutiBrontosaurus\Theme\NotFound;
 use HnutiBrontosaurus\Theme\DataContainers\Events\EventDC;
 use Tracy\Debugger;
 use Tracy\ILogger;
@@ -87,7 +86,9 @@ try {
     );
 
 } catch (EventNotFound) {
-    throw new NotFound();
+    get_template_part('template-parts/content/content', 'error');
+	get_footer();
+	exit;
 
 } catch (ConnectionToBisFailed $e) {
     $hasBeenUnableToLoad = true;

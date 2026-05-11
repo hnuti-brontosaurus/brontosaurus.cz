@@ -18,10 +18,7 @@
 		"psr-4": {
 			"HnutiBrontosaurus\\Theme\\": ".",
 			"HnutiBrontosaurus\\Theme\\Events\\": "hb-events"
-		},
-		"classmap": [
-			"exceptions.php"
-		]
+		}
 	},
 	"config": {
 		"platform": {
