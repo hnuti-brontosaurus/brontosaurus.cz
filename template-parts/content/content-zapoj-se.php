@@ -75,8 +75,8 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 			</h4>
 
 			<div class="hb-event__meta">
-				<time class="hb-event__date" datetime="<?php echo $opportunity->getStartDate()->toDateTimeImmutable()->format($dateFormatForRobot) ?>">
-					<?php echo hb_dateSpan($opportunity->getStartDate(), $opportunity->getEndDate(), $dateFormatForHuman); ?>
+				<time class="hb-event__date" datetime="<?php echo $opportunity->getStartDate()->toNativeDateTimeImmutable()->format($dateFormatForRobot) ?>">
+					<?php echo hb_dateSpan($opportunity->getStartDate()->toNativeDateTimeImmutable(), $opportunity->getEndDate()->toNativeDateTimeImmutable(), $dateFormatForHuman); ?>
 				</time>
 
 				<span class="hb-event__place" title="Místo konání">
