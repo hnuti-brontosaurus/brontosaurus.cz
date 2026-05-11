@@ -5,8 +5,6 @@ use HnutiBrontosaurus\BisClient\EventNotFound;
 use HnutiBrontosaurus\Theme\Container;
 use HnutiBrontosaurus\Theme\NotFound;
 use HnutiBrontosaurus\Theme\DataContainers\Events\EventDC;
-use Latte\Engine;
-use Nette\Utils\Strings;
 use Tracy\Debugger;
 use Tracy\ILogger;
 
@@ -42,7 +40,7 @@ function hb_renderWebsiteUserFriendly(string $website): string {
     $hostname = parse_url($website, PHP_URL_HOST);
     $hostname = $hostname !== null ? $hostname : $website; // in case of passing "a.b.cz" to parse_url(), it fails to parse it for some reason, so just skip it
 
-    if (Strings::startsWith($hostname, 'www.')) {
+    if (str_starts_with($hostname, 'www.')) {
         $hostname = str_replace('www.', '', $hostname);
     }
 
