@@ -124,12 +124,12 @@ final class EventDC
 	{
 		$dateSpan_untilPart = $dateUntil->format($dateFormatHuman);
 
-		$onlyOneDay = $dateFrom->format('j') === $dateUntil->format('j');
+		$onlyOneDay = $dateFrom->format('Ymd') === $dateUntil->format('Ymd');
 		if ($onlyOneDay) {
 			return $dateSpan_untilPart;
 		}
 
-		$inSameMonth = $dateFrom->format('n') === $dateUntil->format('n');
+		$inSameMonth = $dateFrom->format('Ym') === $dateUntil->format('Ym');
 		$inSameYear = $dateFrom->format('Y') === $dateUntil->format('Y');
 
 		$dateSpan_fromPart = $dateFrom->format(sprintf('j.%s%s',
