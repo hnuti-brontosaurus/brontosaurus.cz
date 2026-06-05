@@ -98,9 +98,13 @@ $contacts = array_map(function (WP_Post $post) {
 				<a class="contacts__otherLink hb-fs-xs" href="mailto:vv@brontosaurus.cz" rel="noopener">vv@brontosaurus.cz</a>
 			</div>
 
-			<div class="hb-block-text hb-fs-s hb-mbe-5">
+			<div class="hb-block-text hb-fs-s hb-mbe-4">
 				<strong>Předsedkyně HB – Alena Konečná</strong><br>
 				<a class="contacts__otherLink hb-fs-xs" href="mailto:predsedkyne@brontosaurus.cz" rel="noopener">predsedkyne@brontosaurus.cz</a>
+			</div>
+
+			<div class="hb-block-text hb-fs-xs hb-mbe-4">
+				<a href="https://docs.google.com/forms/d/e/1FAIpQLSf0iDdyvMJp09wD-hk7tSJyFfEMkIER677nNavbKklteij8Qg/viewform" rel="noopener" target="_blank">schránka důvěry</a><br>
 			</div>
 
 			<div class="hb-block-text hb-fs-xs">
