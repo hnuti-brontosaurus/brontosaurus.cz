@@ -531,7 +531,7 @@ function hb_related(
 }
 
 
-function hb_eventList(EventCollectionDC $eventCollection, bool $lazyLoading = true, bool $inFutureView = false, bool $smaller = false)
+function hb_eventList(EventCollectionDC $eventCollection, bool $lazyLoading = true, bool $inFutureView = false, bool $smaller = false, bool $withEmphasizedStartDay = false)
 {
 ?>
 <div class="hb-eventList<?php if ($smaller): ?> hb-eventList--smaller<?php endif; ?>">
@@ -542,7 +542,7 @@ function hb_eventList(EventCollectionDC $eventCollection, bool $lazyLoading = tr
 		<?php
 		$counter = 1;
 		foreach ($eventCollection as $event) {
-			hb_event($event, lazyLoading: $lazyLoading, smaller: $smaller);
+			hb_event($event, lazyLoading: $lazyLoading, smaller: $smaller, withEmphasizedStartDay: $withEmphasizedStartDay);
 
 			if ( ! $inFutureView && $counter === $eventsDisplayedOnLoad) {
 				break;
@@ -568,7 +568,7 @@ function hb_eventList(EventCollectionDC $eventCollection, bool $lazyLoading = tr
 						continue;
 					}
 
-					hb_event($event, smaller: $smaller);
+					hb_event($event, smaller: $smaller, withEmphasizedStartDay: $withEmphasizedStartDay);
 				}
 				?>
 				</div>
@@ -591,10 +591,13 @@ function hb_eventList(EventCollectionDC $eventCollection, bool $lazyLoading = tr
 }
 
 
-function hb_event(EventDC $event, bool $lazyLoading = true, bool $smaller = false)
+function hb_event(EventDC $event, bool $lazyLoading = true, bool $smaller = false, bool $withEmphasizedStartDay = false)
 {
 ?>
 <a class="hb-event<?php if ($event->isFull): ?> hb-event--full<?php endif; ?><?php if ($smaller): ?> hb-event--smaller<?php endif; ?>" href="<?php echo $event->link ?>">
+	<?php if ($withEmphasizedStartDay): ?>
+		<div class="hb-event__day"><span><?php echo $event->startDay; ?></span></div>
+	<?php endif; ?>
 	<div class="hb-event__imageWrapper">
 		<img alt="" class="hb-event__image<?php if ( ! $event->hasCoverPhoto): ?> hb-event__image--noThumbnail<?php endif; ?>" <?php if ($lazyLoading): ?>data-<?php endif; ?>src="<?php if ($event->hasCoverPhoto): echo $event->coverPhotoPath; else: ?>https://brontosaurus.cz/wp-content/uploads/2024/12/logo-hb-brontosaurus.svg<?php endif; ?>">
 		<noscript>

@@ -21,6 +21,7 @@ final class EventDC
 	public readonly string $dateStartForRobots;
 	public readonly bool $hasTimeStart;
 	public readonly ?string $timeStart;
+	public readonly string $startDay;
 	public readonly string $dateSpan;
 	public readonly PlaceDC $place;
 	public readonly AgeDC $age;
@@ -62,6 +63,7 @@ final class EventDC
 		$timeStart = $event->getStartTime();
 		$this->hasTimeStart = $timeStart !== null;
 		$this->timeStart = $timeStart?->toNativeDateTimeImmutable()->format('G:i');
+		$this->startDay = $startDateNative->format('j');
 
 		$this->dateSpan = $this->getDateSpan($event->getStartDate()->toNativeDateTimeImmutable(), $event->getEndDate()->toNativeDateTimeImmutable(), $dateFormatHuman);
 		$this->place = PlaceDC::fromDTO($event->getLocation());

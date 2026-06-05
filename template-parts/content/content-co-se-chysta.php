@@ -98,7 +98,7 @@ try {
 			</h2>
 
 			<div class="hb-eventList<?php if ($counter < (count($months) - 1)): ?> hb-mbe-6<?php endif; ?>">
-                <?php hb_eventList($month->events, inFutureView: true) ?>
+                <?php hb_eventList($month->events, inFutureView: true, withEmphasizedStartDay: true) ?>
 			</div>
         <?php 
         $counter++;
