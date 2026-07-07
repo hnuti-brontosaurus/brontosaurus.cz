@@ -91,6 +91,7 @@ $hb_currentPost = get_post();
 		<a class="hb-newsletter__facebookLink" href="https://www.facebook.com/hnutibrontosaurus" rel="noopener noreferrer" target="_blank" aria-label="Facebook Hnutí Brontosaurus"></a>
 		<a class="hb-newsletter__youtubeLink" href="https://www.youtube.com/channel/UCiytQ5b-4GzZbYWDVMwNJ7A" rel="noopener noreferrer" target="_blank" aria-label="Youtube Hnutí Brontosaurus"></a>
 		<a class="hb-newsletter__spotifyLink" href="https://open.spotify.com/show/2FUTJzuAiTbYlTVXSsmT5F?si=d60021af65914673" rel="noopener noreferrer" target="_blank" aria-label="Spotify Příběhy nadšení Hnutí Brontosaurus"></a>
+		<a class="hb-newsletter__discordLink" href="https://brontosaurus.cz/discord" rel="noopener noreferrer" target="_blank" aria-label="Discord Hnutí Brontosaurus"></a>
 	</div>
 
 </div>
