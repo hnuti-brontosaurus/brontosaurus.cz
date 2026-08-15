@@ -47,31 +47,31 @@ $filters = CoursesFiltersDC::from($selectedFilter);
 
 		<ul class="filters__list" data-hb-expandable-content>
 			<li class="filters__item">
-				<a class="filters__link<?php if ( ! $filters->isAnySelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-prednasky#obsah">
+				<a class="filters__link<?php if ( ! $filters->isAnySelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-setkavani#obsah">
 					vše
 				</a>
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isExperientalSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-prednasky?jen=zazitkove#obsah">
+				<a class="filters__link<?php if ($filters->isExperientalSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-setkavani?jen=zazitkove#obsah">
 					zážitkové
 				</a>
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isEducationalSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-prednasky?jen=vzdelavaci#obsah">
+				<a class="filters__link<?php if ($filters->isEducationalSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-setkavani?jen=vzdelavaci#obsah">
 					vzdělávací
 				</a>
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isSingledaySelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-prednasky?jen=jednodenni#obsah">
+				<a class="filters__link<?php if ($filters->isSingledaySelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-setkavani?jen=jednodenni#obsah">
 					jednodenní
 				</a>
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isMultidaySelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-prednasky?jen=vicedenni#obsah">
+				<a class="filters__link<?php if ($filters->isMultidaySelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-setkavani?jen=vicedenni#obsah">
 					vícedenní
 				</a>
 			</li>
@@ -105,7 +105,7 @@ $filters = CoursesFiltersDC::from($selectedFilter);
 		</p>
 
 		<div class="description__list">
-			<a class="description__item hb-optionBox button--secondary-wrapper" href="/kurzy-a-prednasky?jen=prednasky#obsah">
+			<a class="description__item hb-optionBox button--secondary-wrapper" href="/kurzy-a-setkavani?jen=prednasky#obsah">
 				<div class="description__itemText hb-optionBox__text">
 					<h2>
 						Přednášky
@@ -123,7 +123,7 @@ $filters = CoursesFiltersDC::from($selectedFilter);
 				</div>
 			</a>
 
-			<a class="description__item hb-optionBox button--secondary-wrapper" href="/kurzy-a-prednasky?jen=organizatorske-kurzy#obsah">
+			<a class="description__item hb-optionBox button--secondary-wrapper" href="/kurzy-a-setkavani?jen=organizatorske-kurzy#obsah">
 				<div class="description__itemText hb-optionBox__text">
 					<h2>
 						Organizátorské kurzy
@@ -142,7 +142,7 @@ $filters = CoursesFiltersDC::from($selectedFilter);
 				</div>
 			</a>
 
-			<a class="description__item hb-optionBox button--secondary-wrapper" href="/kurzy-a-prednasky?jen=tematicke-kurzy#obsah">
+			<a class="description__item hb-optionBox button--secondary-wrapper" href="/kurzy-a-setkavani?jen=tematicke-kurzy#obsah">
 				<div class="description__itemText hb-optionBox__text">
 					<h2>
 						Tématické kurzy
