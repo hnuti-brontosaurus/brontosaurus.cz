@@ -82,10 +82,7 @@ final class VoluntaryFilters
 
 	private static function allRelevantTypes(): void
 	{
-		self::$parameters->setCategories([
-			Category::VOLUNTEERING,
-			Category::EXPERIENTAL,
-		]);
+		self::$parameters->setCategories([Category::VOLUNTEERING]);
 	}
 
 	private static function allRelevantPrograms(): void

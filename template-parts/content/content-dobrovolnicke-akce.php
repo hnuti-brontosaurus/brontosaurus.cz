@@ -1,6 +1,5 @@
 <?php
 
-use HnutiBrontosaurus\BisClient\BisClient;
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
@@ -62,7 +61,7 @@ $filters = VoluntaryFiltersDC::from($selectedFilter);
 
 ?><main class="hb-mbe-6" role="main" id="obsah">
 	<h1 class="hb-ta-c">
-		Zážitkové a dobrovolnické akce
+		Dobrovolnické akce
 	</h1>
 
 	<h2 class="hb-sr-only">
