@@ -1,6 +1,5 @@
 <?php
 
-use HnutiBrontosaurus\BisClient\BisClient;
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 use HnutiBrontosaurus\Theme\Container;
@@ -54,23 +53,35 @@ $filters = CoursesFiltersDC::from($selectedFilter);
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isOrganizingSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-prednasky?jen=organizatorske-kurzy#obsah">
-					organizátorské kurzy
+				<a class="filters__link<?php if ($filters->isExperientalSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-prednasky?jen=zazitkove#obsah">
+					zážitkové
 				</a>
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isThematicSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-prednasky?jen=tematicke-kurzy-a-prednasky#obsah">
-					tématické kurzy a přednášky
+				<a class="filters__link<?php if ($filters->isEducationalSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-prednasky?jen=vzdelavaci#obsah">
+					vzdělávací
+				</a>
+			</li>
+
+			<li class="filters__item">
+				<a class="filters__link<?php if ($filters->isSingledaySelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-prednasky?jen=jednodenni#obsah">
+					jednodenní
+				</a>
+			</li>
+
+			<li class="filters__item">
+				<a class="filters__link<?php if ($filters->isMultidaySelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-prednasky?jen=vicedenni#obsah">
+					vícedenní
 				</a>
 			</li>
 		</ul>
 	</div>
 
-	<?php if ($filters->isOrganizingSelected): ?>
+	<?php if ($filters->isEducationalSelected): ?>
 	<p class="eventsPage__info hb-mbns-3 hb-fs-xs hb-ta-c hb-mbe-5">
 		👉 Na této stránce je přehled aktuálně vypsaných kurzů. Pro více informací či další kurzy
-		<a href="https://organizator.brontosaurus.cz" rel="noopener">klikni zde</a>.
+		<a href="https://organizator.brontosaurus.cz" rel="noopener" target="_blank">klikni zde</a>.
 	</p>
 	<?php endif; ?>
 

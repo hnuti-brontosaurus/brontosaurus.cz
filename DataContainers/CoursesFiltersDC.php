@@ -10,33 +10,47 @@ final class CoursesFiltersDC
 
 	private function __construct(
 		public readonly bool $isAnySelected,
-		public readonly bool $isOrganizingSelected,
-		public readonly bool $isThematicSelected,
+		public readonly bool $isEducationalSelected,
+		public readonly bool $isExperientalSelected,
+		public readonly bool $isSingledaySelected,
+		public readonly bool $isMultidaySelected,
 	) {}
 
 	public static function from(?string $selectedFilter = null): self
 	{
 		$isAnySelected = false;
-		$isOrganizingSelected = false;
-		$isThematicSelected = false;
+		$isEducationalSelected = false;
+		$isExperientalSelected = false;
+		$isSingledaySelected = false;
+		$isMultidaySelected = false;
 
 		if ($selectedFilter === null) {
 			return new self(
 				$isAnySelected,
-				$isOrganizingSelected,
-				$isThematicSelected,
+				$isEducationalSelected,
+				$isExperientalSelected,
+				$isSingledaySelected,
+				$isMultidaySelected,
 			);
 		}
 
 		$isAnySelected = true;
 
 		switch ($selectedFilter) {
-			case CoursesFilters::FILTER_ORGANIZING:
-				$isOrganizingSelected = true;
+			case CoursesFilters::Educational:
+				$isEducationalSelected = true;
 				break;
 
-			case CoursesFilters::FILTER_THEMATIC:
-				$isThematicSelected = true;
+			case CoursesFilters::Experiental:
+				$isExperientalSelected = true;
+				break;
+
+			case CoursesFilters::Singleday:
+				$isSingledaySelected = true;
+				break;
+
+			case CoursesFilters::Multiday:
+				$isMultidaySelected = true;
 				break;
 
 			default:
@@ -46,8 +60,10 @@ final class CoursesFiltersDC
 
 		return new self(
 			$isAnySelected,
-			$isOrganizingSelected,
-			$isThematicSelected,
+			$isEducationalSelected,
+			$isExperientalSelected,
+			$isSingledaySelected,
+			$isMultidaySelected,
 		);
 	}
 
