@@ -25,5 +25,14 @@
       "contentSize": "40rem",
       "wideSize": "60rem"
     }
+  },
+  "styles": {
+    "blocks": {
+      "core/post-title": {
+        "typography": {
+          "textAlign": "center"
+        }
+      }
+    }
   }
 }
