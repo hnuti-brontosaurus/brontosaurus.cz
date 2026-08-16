@@ -57,6 +57,7 @@
   "styles": {
     "typography": {
       "fontFamily": "\"Delm Light\", sans-serif",
+      "fontSize": "var(--wp--preset--font-size--normal)",
       "lineHeight": "1.3"
     },
     "elements": {
