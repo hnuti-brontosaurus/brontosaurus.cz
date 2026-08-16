@@ -30,7 +30,8 @@
     "blocks": {
       "core/post-title": {
         "typography": {
-          "textAlign": "center"
+          "textAlign": "center",
+          "fontSize": "3.5rem"
         }
       }
     }
