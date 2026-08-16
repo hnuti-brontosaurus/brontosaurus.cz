@@ -68,6 +68,12 @@
       }
     },
     "blocks": {
+      "core/button": {
+        "color": {
+          "background": "var(--wp--preset--color--primary)",
+          "text": "#fff"
+        }
+      },
       "core/post-title": {
         "typography": {
           "textAlign": "center",
