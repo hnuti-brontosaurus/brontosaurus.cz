@@ -47,7 +47,14 @@
     },
     "spacing": {
       "customPadding": true,
-      "customUnits": [ "rem" ]
+      "customUnits": [ "rem" ],
+      "spacingSizes": [
+        { "slug": "x-small", "size": "0.325rem", "name": "Velmi malé" },
+        { "slug": "small", "size": "0.65rem", "name": "Malé" },
+        { "slug": "normal", "size": "1.3rem", "name": "Normální" },
+        { "slug": "large", "size": "2.6rem", "name": "Velké" },
+        { "slug": "x-large", "size": "3.9rem", "name": "Velmi velké" }
+      ]
     },
     "layout": {
       "contentSize": "40rem",
@@ -73,11 +80,21 @@
         "color": {
           "background": "var(--wp--preset--color--primary)",
           "text": "#fff"
-        },
+        }
+      },
+      "core/paragraph": {
         "spacing": {
           "padding": {
-            "left": "1.3rem",
-            "right": "1.3rem"
+            "left": "var(--wp--preset--spacing--normal)",
+            "right": "var(--wp--preset--spacing--normal)"
+          }
+        }
+      },
+      "core/heading": {
+        "spacing": {
+          "padding": {
+            "left": "var(--wp--preset--spacing--normal)",
+            "right": "var(--wp--preset--spacing--normal)"
           }
         }
       },
@@ -87,6 +104,12 @@
           "fontSize": "3.5rem",
           "fontFamily": "\"Delm\", sans-serif",
           "fontWeight": "700"
+        },
+        "spacing": {
+          "padding": {
+            "left": "var(--wp--preset--spacing--normal)",
+            "right": "var(--wp--preset--spacing--normal)"
+          }
         }
       }
     }
