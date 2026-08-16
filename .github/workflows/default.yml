@@ -1,5 +1,7 @@
 name: hb
-on: [push]
+on:
+    push:
+    workflow_dispatch:
 jobs:
     build_backend:
         runs-on: ubuntu-latest
@@ -117,7 +119,7 @@ jobs:
 
     deploy_staging:
         runs-on: ubuntu-latest
-        if: ${{ ! startsWith(github.ref_name, 'dependabot') }}
+        if: ${{ github.event_name == 'workflow_dispatch' && ! startsWith(github.ref_name, 'dependabot') }}
         needs: pack
         environment:
             name: staging
@@ -149,7 +151,7 @@ jobs:
 
     deploy_production:
         runs-on: ubuntu-latest
-        if: ${{ github.ref_name == 'main' }}
+        if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
         needs: pack
         environment:
             name: production
