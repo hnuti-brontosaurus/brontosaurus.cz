@@ -3,113 +3,20 @@ on:
     push:
     workflow_dispatch:
 jobs:
-    build_backend:
-        runs-on: ubuntu-latest
-        steps:
-            -   uses: actions/checkout@v4
-
-            -
-                uses: shivammathur/setup-php@v2
-                with:
-                    php-version: '8.0'
-                env:
-                    fail-fast: true
-
-            -   name: Install deps
-                run: composer install --no-dev --ansi
-
-            -   name: Upload artifact
-                uses: actions/upload-artifact@v4
-                with:
-                    name: backend-deps
-                    path: vendor
-
-    build_frontend:
-        runs-on: ubuntu-latest
-        steps:
-            -   uses: actions/checkout@v4
-
-            -
-                uses: actions/setup-node@v4
-                with:
-                    node-version: 18.x
-
-            -   name: Install deps
-                run: npm ci
-
-            -   name: Build deps
-                run: npm run build
-                env:
-                    NODE_ENV: production
-
-            -   name: Build hb-events
-                working-directory: ./hb-events
-                run: |
-                    npm ci
-                    npm run build
-
-            -   name: Upload artifact
-                uses: actions/upload-artifact@v4
-                with:
-                    name: frontend-deps
-                    path: |
-                        frontend/dist
-                        hb-events/build
-
     pack:
         runs-on: ubuntu-latest
-        needs:
-            - build_backend
-            - build_frontend
         steps:
             -   uses: actions/checkout@v4
-            -   name: Download backend artifact
-                uses: actions/download-artifact@v4
-                with:
-                    name: backend-deps
-                    path: vendor
-
-            -   name: Download frontend artifact
-                uses: actions/download-artifact@v4
-                with:
-                    name: frontend-deps
 
             -   name: Pack files for release
                 run: |
                     zip -r brontosaurus-theme.zip . \
-                        -i "config/*" \
-                        -i "DataContainers/*" \
-                        -i "Filters/*" \
-                        -i "frontend/*" \
-                        -x "frontend/src/*" \
-                        -i "hb-events/*" \
-                        -x "hb-events/src/*" \
-                        -i "images/*" \
-                        -i "log/*" \
-                        -i "Rewrites/*" \
-                        -i "scripts/*" \
-                        -i "styles/*" \
-                        -i "template-parts/*" \
-                        -i "vendor/*" \
-                        -i "webfonts/*" \
-                        -i "archive-novinky.php" \
-                        -i "Assets.php" \
-                        -i "bootstrap.php" \
-                        -i "composer.json" \
-                        -i "composer.lock" \
-                        -i "Configuration.php" \
-                        -i "Container.php" \
-                        -i "footer.php" \
+                        -i "parts/*" \
+                        -i "templates/*" \
                         -i "functions.php" \
-                        -i "header.php" \
-                        -i "helpers.php" \
-                        -i "homepage-banner.php" \
                         -i "index.php" \
-                        -i "Meta.php" \
-                        -i "PostTypeInitializer.php" \
-                        -i "screenshot.png" \
-                        -i "single-novinky.php" \
-                        -i "style.css"
+                        -i "style.css" \
+                        -i "theme.json"
 
             -   name: Upload artifact
                 uses: actions/upload-artifact@v4
@@ -148,35 +55,3 @@ jobs:
             -   name: Deploy
                 run: |
                     bash deploy/deploy.sh ${{ secrets.STAGING_REMOTE_USER_AND_HOST }}:${{ secrets.STAGING_REMOTE_PROJECT_DIR }}/wp-content/themes/brontosaurus-theme
-
-    deploy_production:
-        runs-on: ubuntu-latest
-        if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
-        needs: pack
-        environment:
-            name: production
-            url: https://brontosaurus.cz
-
-        steps:
-            -   uses: actions/checkout@v4
-
-            -   name: Download artifact
-                uses: actions/download-artifact@v4
-                with:
-                    name: deps
-
-            -   name: Extract files to deploy
-                run: |
-                    mkdir -p deploy/files
-                    unzip brontosaurus-theme.zip -d deploy/files
-
-            -   name: Set up SSH connection
-                run: |
-                    mkdir -p ~/.ssh
-                    echo "${{ secrets.SERVER_KEYSCAN }}" > ~/.ssh/known_hosts
-                    echo "${{ secrets.KEY_PRIVATE }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
-                    echo "${{ secrets.KEY_PUBLIC }}" > ~/.ssh/id_rsa.pub
-
-            -   name: Deploy
-                run: |
-                    bash deploy/deploy.sh ${{ secrets.PRODUCTION_REMOTE_USER_AND_HOST }}:${{ secrets.PRODUCTION_REMOTE_PROJECT_DIR }}/wp-content/themes/brontosaurus-theme

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 2,
+  "settings": {
+    "color": {
+      "custom": true,
+      "customGradient": true,
+      "palette": [
+        { "slug": "primary", "color": "#00a651", "name": "Primární" },
+        { "slug": "secondary", "color": "#f0f3f2", "name": "Pozadí" }
+      ]
+    },
+    "typography": {
+      "customFontSize": true,
+      "fontSizes": [
+        { "slug": "small", "size": "1.1rem", "name": "Malé" },
+        { "slug": "normal", "size": "1.4rem", "name": "Normální" }
+      ]
+    },
+    "spacing": {
+      "customPadding": true,
+      "customUnits": [ "rem" ]
+    },
+    "layout": {
+      "contentSize": "40rem",
+      "wideSize": "60rem"
+    }
+  }
+}
