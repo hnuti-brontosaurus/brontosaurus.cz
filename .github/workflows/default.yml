@@ -1,6 +1,8 @@
 name: hb
 on:
     push:
+        branches:
+            - fse
     workflow_dispatch:
 jobs:
     pack:
@@ -26,7 +28,7 @@ jobs:
 
     deploy_staging:
         runs-on: ubuntu-latest
-        if: ${{ github.event_name == 'workflow_dispatch' && ! startsWith(github.ref_name, 'dependabot') }}
+        if: ${{ github.ref_name == 'fse' && github.event_name == 'push' && ! startsWith(github.ref_name, 'dependabot') }}
         needs: pack
         environment:
             name: staging
