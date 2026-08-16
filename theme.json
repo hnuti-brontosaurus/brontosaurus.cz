@@ -73,6 +73,12 @@
         "color": {
           "background": "var(--wp--preset--color--primary)",
           "text": "#fff"
+        },
+        "spacing": {
+          "padding": {
+            "left": "1.3rem",
+            "right": "1.3rem"
+          }
         }
       },
       "core/post-title": {
