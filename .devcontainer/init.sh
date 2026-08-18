@@ -175,19 +175,21 @@ npm i
 npm run build
 echo "Theme dependencies installed and built!"
 
-# Symlink the repo as a WordPress theme
-THEME_SLUG="brontosaurus"
+# Symlink the theme from the workspace root so WordPress can use it.
+THEME_SOURCE="/workspaces/brontosaurus.cz"
+THEME_SLUG="brontosaurus-theme"
 THEME_TARGET="/var/www/html/wp-content/themes/$THEME_SLUG"
-if [ ! -e "$THEME_TARGET" ]; then
+
+if [ ! -e "$THEME_TARGET" ] && [ ! -L "$THEME_TARGET" ]; then
     echo "Symlinking theme as $THEME_SLUG..."
-    sudo ln -s "/workspaces/brontosaurus.cz" "$THEME_TARGET"
+    sudo ln -s "$THEME_SOURCE" "$THEME_TARGET"
     sudo chown -h www-data:www-data "$THEME_TARGET"
     echo "Theme symlinked!"
 else
-    echo "Theme symlink already exists"
+    echo "Theme already exists at $THEME_TARGET"
 fi
 
-# Activate the theme
+# Activate the theme by default.
 echo "Activating theme..."
 sudo -u www-data wp theme activate "$THEME_SLUG" --path=/var/www/html
 echo "Theme activated!"

@@ -1,37 +1,47 @@
-const {createHigherOrderComponent} = wp.compose;
-const {addFilter} = wp.hooks;
-const {subscribe, select} = wp.data;
+( function( wp ) {
+    console.log( 'Brontosaurus Editor Script Loaded' );
 
-const unsubscribe = subscribe(() => {
-	const editor = select('core/block-editor');
-	if (  ! editor || editor.getBlocks().length === 0) return;
-    const editorEl = document.querySelector('.editor-styles-wrapper');
-	if (editorEl === null) return;
-	editorEl.classList.add('hb-wp-content');
-    unsubscribe();
-});
+	const spacerHeight = 'var(--wp--preset--spacing--normal)';
 
-addFilter('blocks.registerBlockType', 'hb/theme/imageRoundedCorners', (settings, name) => {
-	/**
-	 * Rewrites styles for image – rounded by default, optionally can be sharp-edge (no rounding)
-	 *
-	 * resources:
-	 * - https://wordpress.stackexchange.com/questions/367124/how-to-add-extra-option-to-image-block-settings
-	 * - https://developer.wordpress.org/block-editor/reference-guides/block-api/block-styles/
-	 */
-	if (name === 'core/image') {
-		settings.styles = [
-			{
-				name: 'rounded',
-				label: 'Zaoblený',
-				isDefault: true,
-			},
-			{
-				name: 'sharp',
-				label: 'Bez zaoblení',
-			},
-		];
+	wp.hooks.addFilter(
+		'blocks.registerBlockType',
+		'brontosaurus/default-spacer-height',
+		function( settings, name ) {
+			if ( name === 'core/spacer' && settings.attributes && settings.attributes.height ) {
+				settings.attributes.height.default = spacerHeight;
+			}
+
+			return settings;
+		}
+	);
+
+	const editorStore = 'core/block-editor';
+	const knownBlockIds = new Set();
+
+	function flattenBlocks( blocks ) {
+		return blocks.reduce( function( allBlocks, block ) {
+			return allBlocks.concat( block, flattenBlocks( block.innerBlocks || [] ) );
+		}, [] );
 	}
 
-	return settings;
-});
+	function applySpacerDefault() {
+		const blocks = flattenBlocks( wp.data.select( editorStore ).getBlocks() );
+
+		blocks.forEach( function( block ) {
+			if ( knownBlockIds.has( block.clientId ) ) {
+				return;
+			}
+
+			knownBlockIds.add( block.clientId );
+
+			if ( block.name === 'core/spacer' ) {
+				wp.data.dispatch( editorStore ).updateBlockAttributes( block.clientId, {
+					height: spacerHeight,
+				} );
+			}
+		} );
+	}
+
+	applySpacerDefault();
+	wp.data.subscribe( applySpacerDefault );
+} )( window.wp );
