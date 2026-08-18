@@ -109,6 +109,11 @@
           }
         }
       },
+      "core/spacer": {
+        "dimensions": {
+          "minHeight": "var(--wp--preset--spacing--normal)"
+        }
+      },
       "core/post-title": {
         "typography": {
           "textAlign": "center",
