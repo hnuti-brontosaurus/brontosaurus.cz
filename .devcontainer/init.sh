@@ -177,7 +177,7 @@ echo "Theme dependencies installed and built!"
 
 # Symlink the theme from the workspace root so WordPress can use it.
 THEME_SOURCE="/workspaces/brontosaurus.cz"
-THEME_SLUG="brontosaurus"
+THEME_SLUG="brontosaurus-theme"
 THEME_TARGET="/var/www/html/wp-content/themes/$THEME_SLUG"
 
 if [ ! -e "$THEME_TARGET" ] && [ ! -L "$THEME_TARGET" ]; then
