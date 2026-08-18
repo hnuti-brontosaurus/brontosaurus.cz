@@ -46,6 +46,7 @@
       ]
     },
     "spacing": {
+      "customSpacingSize": false,
       "customPadding": true,
       "customUnits": [ "rem" ],
       "spacingSizes": [
