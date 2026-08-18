@@ -28,7 +28,7 @@ add_action( 'after_setup_theme', function() {
     add_theme_support( 'block-template-parts' );
 
     register_nav_menus( [
-        'header' => __( 'Hlavní navigace', 'brontosaurus-fse' ),
+        'header' => __( 'Hlavní navigace', 'brontosaurus' ),
     ] );
 } );
 
