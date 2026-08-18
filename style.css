@@ -10,3 +10,13 @@ Tested up to: 6.5
 Requires PHP: 7.4
 Text Domain: brontosaurus-fse
 */
+
+h2 {
+  text-align: left;
+}
+
+@media (min-width: 60rem) {
+  h2 {
+    text-align: center;
+  }
+}

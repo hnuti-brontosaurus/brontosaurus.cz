@@ -73,6 +73,16 @@
           "fontFamily": "\"Delm\", sans-serif",
           "fontWeight": "700"
         }
+      },
+      "h1": {
+        "typography": {
+          "textAlign": "center"
+        }
+      },
+      "h2": {
+        "typography": {
+          "textAlign": "left"
+        }
       }
     },
     "blocks": {
