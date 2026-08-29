@@ -160,21 +160,6 @@ RewriteRule . /index.php [L]
 EOF
 sudo chown www-data:www-data /var/www/html/.htaccess
 
-# Install theme dependencies and build
-echo "Installing theme dependencies..."
-cd /workspaces/brontosaurus.cz
-cp config/config.local.example.neon config/config.local.neon
-
-if [ "$IS_CODESPACES" -eq 1 ]; then
-    sed -i 's/debugMode: false/debugMode: true/' config/config.local.neon
-    echo "Set debugMode to true in config/config.local.neon for Codespaces"
-fi
-
-composer install
-npm i
-npm run build
-echo "Theme dependencies installed and built!"
-
 # Symlink the theme from the workspace root so WordPress can use it.
 THEME_SOURCE="/workspaces/brontosaurus.cz"
 THEME_SLUG="brontosaurus-theme"
