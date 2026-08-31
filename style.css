@@ -19,3 +19,8 @@ h2 {
     text-align: center;
   }
 }
+
+.wp-block-post-featured-image {
+  max-inline-size: 75rem;
+  margin-inline: auto;
+}

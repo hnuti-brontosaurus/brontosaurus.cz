@@ -109,9 +109,9 @@
           }
         }
       },
-      "core/spacer": {
-        "dimensions": {
-          "minHeight": "var(--wp--preset--spacing--normal)"
+      "core/post-featured-image": {
+        "border": {
+          "radius": "2.8rem"
         }
       },
       "core/post-title": {
@@ -126,6 +126,11 @@
             "left": "var(--wp--preset--spacing--normal)",
             "right": "var(--wp--preset--spacing--normal)"
           }
+        }
+      },
+      "core/spacer": {
+        "dimensions": {
+          "minHeight": "var(--wp--preset--spacing--normal)"
         }
       }
     }
