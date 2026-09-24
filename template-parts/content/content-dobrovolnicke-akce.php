@@ -1,12 +1,10 @@
 <?php
 
-use HnutiBrontosaurus\BisClient\BisClient;
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
 use HnutiBrontosaurus\Theme\Container;
 use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollectionDC;
-use HnutiBrontosaurus\Theme\DataContainers\VoluntaryFiltersDC;
 use HnutiBrontosaurus\Theme\Filters\VoluntaryFilters;
 use Tracy\Debugger;
 
@@ -58,61 +56,59 @@ if ($eventCollection === null) {
     $eventCollection = new EventCollectionDC($events, $hb_dateFormatHuman, $hb_dateFormatRobot);
 }
 
-$filters = VoluntaryFiltersDC::from($selectedFilter);
-
 ?><main class="hb-mbe-6" role="main" id="obsah">
 	<h1 class="hb-ta-c">
-		Zážitkové a dobrovolnické akce
+		Dobrovolnické akce
 	</h1>
 
 	<h2 class="hb-sr-only">
 		Seznam akcí
 	</h2>
 
-	<div class="filters hb-expandable hb-mbe-4"<?php if ($filters->isAnySelected): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
+	<div class="filters hb-expandable hb-mbe-4"<?php if ($selectedFilter !== null): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
 		<button class="hb-expandable__toggler button button--customization" type="button" aria-hidden="true" data-hb-expandable-toggler>
 			Zobrazit pouze
 		</button>
 
 		<ul class="filters__list" data-hb-expandable-content>
 			<li class="filters__item">
-				<a class="filters__link<?php if ( ! $filters->isAnySelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/dobrovolnicke-akce#obsah">
+				<a class="filters__link<?php if ($selectedFilter === null): ?> filters__link--selected<?php endif; ?> button button--customization" href="/dobrovolnicke-akce#obsah">
 					vše
 				</a>
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isFirstTimeAttendeesSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/dobrovolnicke-akce?jen=jedu-poprve#obsah">
+				<a class="filters__link<?php if ($selectedFilter === VoluntaryFilters::FILTER_FIRST_TIME): ?> filters__link--selected<?php endif; ?> button button--customization" href="/dobrovolnicke-akce?jen=jedu-poprve#obsah">
 					jedu poprvé
 				</a>
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isWeekendEventsSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/dobrovolnicke-akce?jen=vikendovky#obsah">
+				<a class="filters__link<?php if ($selectedFilter === VoluntaryFilters::FILTER_WEEKEND_EVENTS): ?> filters__link--selected<?php endif; ?> button button--customization" href="/dobrovolnicke-akce?jen=vikendovky#obsah">
 					víkendovky
 				</a>
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isOneDayEventsSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/dobrovolnicke-akce?jen=jednodenni#obsah">
+				<a class="filters__link<?php if ($selectedFilter === VoluntaryFilters::FILTER_ONE_DAY_EVENTS): ?> filters__link--selected<?php endif; ?> button button--customization" href="/dobrovolnicke-akce?jen=jednodenni#obsah">
 					jednodenní
 				</a>
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isHolidayEventsSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/dobrovolnicke-akce?jen=prazdninove#obsah">
+				<a class="filters__link<?php if ($selectedFilter === VoluntaryFilters::FILTER_HOLIDAY_EVENTS): ?> filters__link--selected<?php endif; ?> button button--customization" href="/dobrovolnicke-akce?jen=prazdninove#obsah">
 					prázdninové
 				</a>
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isNatureSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/dobrovolnicke-akce?jen=priroda#obsah">
+				<a class="filters__link<?php if ($selectedFilter === VoluntaryFilters::FILTER_NATURE): ?> filters__link--selected<?php endif; ?> button button--customization" href="/dobrovolnicke-akce?jen=priroda#obsah">
 					příroda
 				</a>
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isSightsSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/dobrovolnicke-akce?jen=pamatky#obsah">
+				<a class="filters__link<?php if ($selectedFilter === VoluntaryFilters::FILTER_SIGHTS): ?> filters__link--selected<?php endif; ?> button button--customization" href="/dobrovolnicke-akce?jen=pamatky#obsah">
 					památky
 				</a>
 			</li>

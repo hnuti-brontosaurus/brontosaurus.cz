@@ -108,8 +108,7 @@ declare -A PAGE_IDS
 declare -a POSTS=(
     "Hlavní stránka:hlavni-stranka"
     "Dobrovolnické akce:dobrovolnicke-akce"
-    "Kurzy a přednášky:kurzy-a-prednasky"
-    "Setkávání:setkavani"
+    "Kurzy a setkávání:kurzy-a-setkavani"
     "Pro děti:pro-deti"
     "Zapoj se:zapoj-se"
     "Podpoř nás:podpor-nas"
@@ -281,8 +280,7 @@ add_pages_to_menu() {
 # Define page slugs for each menu
 declare -a HEADER_MENU_PAGES=(
     "dobrovolnicke-akce"
-    "kurzy-a-prednasky"
-    "setkavani"
+    "kurzy-a-setkavani"
     "pro-deti"
     "zapoj-se"
     "podpor-nas"
@@ -292,8 +290,7 @@ declare -a HEADER_MENU_PAGES=(
 
 declare -a FOOTER_LEFT_MENU_PAGES=(
     "dobrovolnicke-akce"
-    "kurzy-a-prednasky"
-    "setkavani"
+    "kurzy-a-setkavani"
     "pro-deti"
     "zapoj-se"
     "o-brontosaurovi"

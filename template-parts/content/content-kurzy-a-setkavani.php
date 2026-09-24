@@ -1,11 +1,9 @@
 <?php
 
-use HnutiBrontosaurus\BisClient\BisClient;
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 use HnutiBrontosaurus\Theme\Container;
 use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollectionDC;
-use HnutiBrontosaurus\Theme\DataContainers\CoursesFiltersDC;
 use HnutiBrontosaurus\Theme\Filters\CoursesFilters;
 use Tracy\Debugger;
 
@@ -30,8 +28,6 @@ try {
 	Debugger::log($e);
 }
 
-$filters = CoursesFiltersDC::from($selectedFilter);
-
 ?><main class="hb-mbe-6" role="main" id="obsah">
 	<h1 class="hb-ta-c">
 		Vzdělávací kurzy a přednášky
@@ -41,36 +37,48 @@ $filters = CoursesFiltersDC::from($selectedFilter);
 		Seznam akcí
 	</h2>
 
-	<div class="filters hb-expandable hb-mbe-4"<?php if ($filters->isAnySelected): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
+	<div class="filters hb-expandable hb-mbe-4"<?php if ($selectedFilter !== null): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
 		<button class="hb-expandable__toggler button button--customization" type="button" aria-hidden="true" data-hb-expandable-toggler>
 			Zobrazit pouze
 		</button>
 
 		<ul class="filters__list" data-hb-expandable-content>
 			<li class="filters__item">
-				<a class="filters__link<?php if ( ! $filters->isAnySelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-prednasky#obsah">
+				<a class="filters__link<?php if ($selectedFilter === null): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-setkavani#obsah">
 					vše
 				</a>
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isOrganizingSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-prednasky?jen=organizatorske-kurzy#obsah">
-					organizátorské kurzy
+				<a class="filters__link<?php if ($selectedFilter === CoursesFilters::Experiental): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-setkavani?jen=zazitkove#obsah">
+					zážitkové
 				</a>
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isThematicSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-prednasky?jen=tematicke-kurzy-a-prednasky#obsah">
-					tématické kurzy a přednášky
+				<a class="filters__link<?php if ($selectedFilter === CoursesFilters::Educational): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-setkavani?jen=vzdelavaci#obsah">
+					vzdělávací
+				</a>
+			</li>
+
+			<li class="filters__item">
+				<a class="filters__link<?php if ($selectedFilter === CoursesFilters::Singleday): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-setkavani?jen=jednodenni#obsah">
+					jednodenní
+				</a>
+			</li>
+
+			<li class="filters__item">
+				<a class="filters__link<?php if ($selectedFilter === CoursesFilters::Multiday): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-setkavani?jen=vicedenni#obsah">
+					vícedenní
 				</a>
 			</li>
 		</ul>
 	</div>
 
-	<?php if ($filters->isOrganizingSelected): ?>
+	<?php if ($selectedFilter === CoursesFilters::Educational): ?>
 	<p class="eventsPage__info hb-mbns-3 hb-fs-xs hb-ta-c hb-mbe-5">
 		👉 Na této stránce je přehled aktuálně vypsaných kurzů. Pro více informací či další kurzy
-		<a href="https://organizator.brontosaurus.cz" rel="noopener">klikni zde</a>.
+		<a href="https://organizator.brontosaurus.cz" rel="noopener" target="_blank">klikni zde</a>.
 	</p>
 	<?php endif; ?>
 
@@ -94,7 +102,7 @@ $filters = CoursesFiltersDC::from($selectedFilter);
 		</p>
 
 		<div class="description__list">
-			<a class="description__item hb-optionBox button--secondary-wrapper" href="/kurzy-a-prednasky?jen=prednasky#obsah">
+			<a class="description__item hb-optionBox button--secondary-wrapper" href="/kurzy-a-setkavani?jen=prednasky#obsah">
 				<div class="description__itemText hb-optionBox__text">
 					<h2>
 						Přednášky
@@ -112,7 +120,7 @@ $filters = CoursesFiltersDC::from($selectedFilter);
 				</div>
 			</a>
 
-			<a class="description__item hb-optionBox button--secondary-wrapper" href="/kurzy-a-prednasky?jen=organizatorske-kurzy#obsah">
+			<a class="description__item hb-optionBox button--secondary-wrapper" href="/kurzy-a-setkavani?jen=organizatorske-kurzy#obsah">
 				<div class="description__itemText hb-optionBox__text">
 					<h2>
 						Organizátorské kurzy
@@ -131,7 +139,7 @@ $filters = CoursesFiltersDC::from($selectedFilter);
 				</div>
 			</a>
 
-			<a class="description__item hb-optionBox button--secondary-wrapper" href="/kurzy-a-prednasky?jen=tematicke-kurzy#obsah">
+			<a class="description__item hb-optionBox button--secondary-wrapper" href="/kurzy-a-setkavani?jen=tematicke-kurzy#obsah">
 				<div class="description__itemText hb-optionBox__text">
 					<h2>
 						Tématické kurzy
