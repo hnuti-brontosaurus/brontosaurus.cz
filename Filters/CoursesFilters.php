@@ -4,6 +4,7 @@ namespace HnutiBrontosaurus\Theme\Filters;
 
 use HnutiBrontosaurus\BisClient\Event\Category;
 use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
+use HnutiBrontosaurus\BisClient\Event\Request\Duration;
 
 
 final class CoursesFilters
@@ -39,10 +40,12 @@ final class CoursesFilters
 
 			case self::Singleday:
 				self::allRelevantTypes();
+				$parameters->setDuration(Duration::exactly(1));
 				break;
 
 			case self::Multiday:
 				self::allRelevantTypes();
+				$parameters->setDuration(Duration::moreThan(1));
 				break;
 		}
 	}
