@@ -5,7 +5,6 @@ use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 use HnutiBrontosaurus\Theme\Container;
 use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollectionDC;
-use HnutiBrontosaurus\Theme\DataContainers\ForChildrenFiltersDC;
 use HnutiBrontosaurus\Theme\Filters\ForChildrenFilters;
 use Tracy\Debugger;
 
@@ -30,8 +29,6 @@ try {
 	Debugger::log($e);
 }
 
-$filters = ForChildrenFiltersDC::from($selectedFilter);
-
 ?><main class="hb-mbe-6" role="main" id="obsah">
 	<h1 class="hb-ta-c">
 		Akce pro děti i rodiče
@@ -47,38 +44,38 @@ $filters = ForChildrenFiltersDC::from($selectedFilter);
 		Akce pro děti a rodiče s dětmi
 	</h2>
 
-	<div class="filters hb-expandable hb-mbe-4"<?php if ($filters->isAnySelected): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
+	<div class="filters hb-expandable hb-mbe-4"<?php if ($selectedFilter !== null): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
 		<button class="hb-expandable__toggler button button--customization" type="button" aria-hidden="true" data-hb-expandable-toggler>
 			Zobrazit pouze
 		</button>
 
 		<ul class="filters__list" data-hb-expandable-content>
 			<li class="filters__item">
-				<a class="filters__link<?php if ( ! $filters->isAnySelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/pro-deti#obsah">
+				<a class="filters__link<?php if ($selectedFilter === null): ?> filters__link--selected<?php endif; ?> button button--customization" href="/pro-deti#obsah">
 					vše
 				</a>
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isCampsSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/pro-deti?jen=detske-tabory-a-vypravy#obsah">
+				<a class="filters__link<?php if ($selectedFilter === ForChildrenFilters::FILTER_CAMPS): ?> filters__link--selected<?php endif; ?> button button--customization" href="/pro-deti?jen=detske-tabory-a-vypravy#obsah">
 					dětské tábory a výpravy
 				</a>
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isUnitsSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/pro-deti?jen=detske-oddily#obsah">
+				<a class="filters__link<?php if ($selectedFilter === ForChildrenFilters::FILTER_UNITS): ?> filters__link--selected<?php endif; ?> button button--customization" href="/pro-deti?jen=detske-oddily#obsah">
 					dětské oddíly
 				</a>
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isEventsSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/pro-deti?jen=akce-pro-deti#obsah">
+				<a class="filters__link<?php if ($selectedFilter === ForChildrenFilters::FILTER_EVENTS): ?> filters__link--selected<?php endif; ?> button button--customization" href="/pro-deti?jen=akce-pro-deti#obsah">
 					akce pro děti
 				</a>
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isEventsWithParentsSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/pro-deti?jen=akce-pro-rodice-s-detmi#obsah">
+				<a class="filters__link<?php if ($selectedFilter === ForChildrenFilters::FILTER_EVENTS_WITH_PARENTS): ?> filters__link--selected<?php endif; ?> button button--customization" href="/pro-deti?jen=akce-pro-rodice-s-detmi#obsah">
 					akce pro rodiče s dětmi
 				</a>
 			</li>

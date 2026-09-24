@@ -4,7 +4,6 @@ use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 use HnutiBrontosaurus\Theme\Container;
 use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollectionDC;
-use HnutiBrontosaurus\Theme\DataContainers\CoursesFiltersDC;
 use HnutiBrontosaurus\Theme\Filters\CoursesFilters;
 use Tracy\Debugger;
 
@@ -29,8 +28,6 @@ try {
 	Debugger::log($e);
 }
 
-$filters = CoursesFiltersDC::from($selectedFilter);
-
 ?><main class="hb-mbe-6" role="main" id="obsah">
 	<h1 class="hb-ta-c">
 		Vzdělávací kurzy a přednášky
@@ -40,45 +37,45 @@ $filters = CoursesFiltersDC::from($selectedFilter);
 		Seznam akcí
 	</h2>
 
-	<div class="filters hb-expandable hb-mbe-4"<?php if ($filters->isAnySelected): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
+	<div class="filters hb-expandable hb-mbe-4"<?php if ($selectedFilter !== null): ?> data-hb-expandable-expanded="1"<?php endif; ?>>
 		<button class="hb-expandable__toggler button button--customization" type="button" aria-hidden="true" data-hb-expandable-toggler>
 			Zobrazit pouze
 		</button>
 
 		<ul class="filters__list" data-hb-expandable-content>
 			<li class="filters__item">
-				<a class="filters__link<?php if ( ! $filters->isAnySelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-setkavani#obsah">
+				<a class="filters__link<?php if ($selectedFilter === null): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-setkavani#obsah">
 					vše
 				</a>
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isExperientalSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-setkavani?jen=zazitkove#obsah">
+				<a class="filters__link<?php if ($selectedFilter === CoursesFilters::Experiental): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-setkavani?jen=zazitkove#obsah">
 					zážitkové
 				</a>
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isEducationalSelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-setkavani?jen=vzdelavaci#obsah">
+				<a class="filters__link<?php if ($selectedFilter === CoursesFilters::Educational): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-setkavani?jen=vzdelavaci#obsah">
 					vzdělávací
 				</a>
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isSingledaySelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-setkavani?jen=jednodenni#obsah">
+				<a class="filters__link<?php if ($selectedFilter === CoursesFilters::Singleday): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-setkavani?jen=jednodenni#obsah">
 					jednodenní
 				</a>
 			</li>
 
 			<li class="filters__item">
-				<a class="filters__link<?php if ($filters->isMultidaySelected): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-setkavani?jen=vicedenni#obsah">
+				<a class="filters__link<?php if ($selectedFilter === CoursesFilters::Multiday): ?> filters__link--selected<?php endif; ?> button button--customization" href="/kurzy-a-setkavani?jen=vicedenni#obsah">
 					vícedenní
 				</a>
 			</li>
 		</ul>
 	</div>
 
-	<?php if ($filters->isEducationalSelected): ?>
+	<?php if ($selectedFilter === CoursesFilters::Educational): ?>
 	<p class="eventsPage__info hb-mbns-3 hb-fs-xs hb-ta-c hb-mbe-5">
 		👉 Na této stránce je přehled aktuálně vypsaných kurzů. Pro více informací či další kurzy
 		<a href="https://organizator.brontosaurus.cz" rel="noopener" target="_blank">klikni zde</a>.
