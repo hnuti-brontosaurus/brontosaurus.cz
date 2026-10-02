@@ -11,10 +11,10 @@ use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 final class ForChildrenFilters
 {
 
-	const FILTER_CAMPS = 'detske-tabory-a-vypravy';
-	const FILTER_UNITS = 'detske-oddily';
-	const FILTER_EVENTS = 'akce-pro-deti';
-	const FILTER_EVENTS_WITH_PARENTS = 'akce-pro-rodice-s-detmi';
+	public const string FILTER_CAMPS = 'detske-tabory-a-vypravy';
+	public const string FILTER_UNITS = 'detske-oddily';
+	public const string FILTER_EVENTS = 'akce-pro-deti';
+	public const string FILTER_EVENTS_WITH_PARENTS = 'akce-pro-rodice-s-detmi';
 
 
 	private static EventParameters $parameters;

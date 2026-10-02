@@ -9,10 +9,10 @@ use HnutiBrontosaurus\BisClient\Event\Request\Duration;
 
 final class CoursesFilters
 {
-	const Experiental = 'zazitkove';
-	const Educational = 'vzdelavaci';
-	const Singleday = 'jednodenni';
-	const Multiday = 'vicedenni';
+	public const string Experiental = 'zazitkove';
+	public const string Educational = 'vzdelavaci';
+	public const string Singleday = 'jednodenni';
+	public const string Multiday = 'vicedenni';
 
 	private static EventParameters $parameters;
 

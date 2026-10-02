@@ -12,12 +12,12 @@ use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 final class VoluntaryFilters
 {
 
-	const FILTER_FIRST_TIME = 'jedu-poprve';
-	const FILTER_WEEKEND_EVENTS = 'vikendovky';
-	const FILTER_ONE_DAY_EVENTS = 'jednodenni';
-	const FILTER_HOLIDAY_EVENTS = 'prazdninove';
-	const FILTER_NATURE = 'priroda';
-	const FILTER_SIGHTS = 'pamatky';
+	public const string FILTER_FIRST_TIME = 'jedu-poprve';
+	public const string FILTER_WEEKEND_EVENTS = 'vikendovky';
+	public const string FILTER_ONE_DAY_EVENTS = 'jednodenni';
+	public const string FILTER_HOLIDAY_EVENTS = 'prazdninove';
+	public const string FILTER_NATURE = 'priroda';
+	public const string FILTER_SIGHTS = 'pamatky';
 
 	private static EventParameters $parameters;
 
