@@ -7,7 +7,7 @@ use HnutiBrontosaurus\BisClient\AdministrationUnit\Response\AdministrationUnit a
 use HnutiBrontosaurus\BisClient\AdministrationUnit\Response\SubUnit as SubUnitFromClient;
 use HnutiBrontosaurus\BisClient\Response\Coordinates;
 
-final class AdministrationUnit implements \JsonSerializable
+final readonly class AdministrationUnit implements \JsonSerializable
 {
 
 	private function __construct(

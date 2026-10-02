@@ -5,14 +5,14 @@ namespace HnutiBrontosaurus\Theme\DataContainers;
 use HnutiBrontosaurus\BisClient\AdministrationUnit\Response\AdministrationUnit;
 
 
-final class OrganizationalUnitDC
+final readonly class OrganizationalUnitDC
 {
 
 	private function __construct(
-		public readonly string $name,
-		public readonly string $address,
-		public readonly ?string $website,
-		public readonly ?string $emailAddress,
+		public string $name,
+		public string $address,
+		public ?string $website,
+		public ?string $emailAddress,
 	) {}
 
 

@@ -5,16 +5,16 @@ namespace HnutiBrontosaurus\Theme\DataContainers\Events;
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
 
 
-final class AgeDC
+final readonly class AgeDC
 {
 
 	private function __construct(
-		public readonly bool $isListed,
-		public readonly bool $isInterval,
-		public readonly bool $isFromListed,
-		public readonly ?int $from,
-		public readonly bool $isUntilListed,
-		public readonly ?int $until,
+		public bool $isListed,
+		public bool $isInterval,
+		public bool $isFromListed,
+		public ?int $from,
+		public bool $isUntilListed,
+		public ?int $until,
 	) {}
 
 	public static function fromDTO(Event $event): self

@@ -5,12 +5,12 @@ namespace HnutiBrontosaurus\Theme\DataContainers;
 use HnutiBrontosaurus\BisClient\Opportunity\Response\Opportunity;
 
 
-final class OpportunityDC
+final readonly class OpportunityDC
 {
-	public readonly string $title;
-	public readonly string $introduction;
-	public readonly string $link;
-	public readonly string $coverPhotoPath;
+	public string $title;
+	public string $introduction;
+	public string $link;
+	public string $coverPhotoPath;
 
 	public function __construct(Opportunity $opportunity)
 	{

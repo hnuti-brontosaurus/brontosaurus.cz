@@ -5,13 +5,13 @@ namespace HnutiBrontosaurus\Theme\DataContainers\Events;
 use HnutiBrontosaurus\BisClient\Response\Location;
 
 
-final class PlaceDC
+final readonly class PlaceDC
 {
 
 	private function __construct(
-		public readonly string $name,
-		public readonly bool $areCoordinatesListed,
-		public readonly ?string $coordinates,
+		public string $name,
+		public bool $areCoordinatesListed,
+		public ?string $coordinates,
 	) {}
 
 

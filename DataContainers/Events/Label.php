@@ -3,14 +3,14 @@
 namespace HnutiBrontosaurus\Theme\DataContainers\Events;
 
 
-final class Label
+final readonly class Label
 {
 
-	public readonly bool $hasSelectorModifier;
+	public bool $hasSelectorModifier;
 
 	public function __construct(
-		public readonly string $label,
-		public readonly ?string $selectorModifier = null,
+		public string $label,
+		public ?string $selectorModifier = null,
 	)
 	{
 		$this->hasSelectorModifier = $this->selectorModifier !== null;

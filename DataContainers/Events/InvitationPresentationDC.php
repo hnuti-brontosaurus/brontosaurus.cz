@@ -5,17 +5,17 @@ namespace HnutiBrontosaurus\Theme\DataContainers\Events;
 use HnutiBrontosaurus\BisClient\Response\Image;
 
 
-final class InvitationPresentationDC
+final readonly class InvitationPresentationDC
 {
 
 	/**
 	 * @param string[] $photos
 	 */
 	private function __construct(
-		public readonly bool $hasText,
-		public readonly ?string $text,
-		public readonly bool $hasAnyPhotos,
-		public readonly array $photos,
+		public bool $hasText,
+		public ?string $text,
+		public bool $hasAnyPhotos,
+		public array $photos,
 	) {}
 
 

@@ -6,27 +6,27 @@ use HnutiBrontosaurus\BisClient\Event\Response\Diet;
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
 
 
-final class InvitationDC
+final readonly class InvitationDC
 {
 
 	/**
 	 * @param string[] $food
 	 */
 	private function __construct(
-		public readonly string $introduction,
-		public readonly string $organizationalInformation,
-		public readonly bool $isAccommodationListed,
-		public readonly ?string $accommodation,
-		public readonly bool $isFoodListed,
-		public readonly array $food,
-		public readonly bool $isWorkDescriptionListed,
-		public readonly ?string $workDescription,
-		public readonly bool $areWorkDaysListed,
-		public readonly ?int $workDays,
-		public readonly bool $areWorkHoursPerDayListed,
-		public readonly ?int $workHoursPerDay,
-		public readonly bool $hasPresentation,
-		public readonly ?InvitationPresentationDC $presentation,
+		public string $introduction,
+		public string $organizationalInformation,
+		public bool $isAccommodationListed,
+		public ?string $accommodation,
+		public bool $isFoodListed,
+		public array $food,
+		public bool $isWorkDescriptionListed,
+		public ?string $workDescription,
+		public bool $areWorkDaysListed,
+		public ?int $workDays,
+		public bool $areWorkHoursPerDayListed,
+		public ?int $workHoursPerDay,
+		public bool $hasPresentation,
+		public ?InvitationPresentationDC $presentation,
 	) {}
 
 

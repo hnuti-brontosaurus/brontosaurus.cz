@@ -6,18 +6,18 @@ use DateTimeImmutable;
 use function get_the_post_thumbnail_url;
 
 
-final class NewsPost
+final readonly class NewsPost
 {
 
 	private function __construct(
-		public readonly int $id,
-		public readonly string $title,
-		public readonly string $slug,
-		public readonly DateTimeImmutable $date,
-		public readonly ?string $perex,
-		public readonly ?string $content,
-		public readonly bool $hasCoverImage,
-		public readonly ?string $coverImage,
+		public int $id,
+		public string $title,
+		public string $slug,
+		public DateTimeImmutable $date,
+		public ?string $perex,
+		public ?string $content,
+		public bool $hasCoverImage,
+		public ?string $coverImage,
 	) {}
 
 
