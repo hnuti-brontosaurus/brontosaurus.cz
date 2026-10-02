@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/php:1-8.2-bullseye
+FROM mcr.microsoft.com/devcontainers/php:1-8.2-bookworm
 
 # Remove the broken Yarn repo that has an expired GPG key
 RUN rm -f /etc/apt/sources.list.d/yarn.list
