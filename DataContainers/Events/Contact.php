@@ -5,7 +5,7 @@ namespace HnutiBrontosaurus\Theme\DataContainers\Events;
 use HnutiBrontosaurus\BisClient\Response\ContactPerson;
 
 
-final readonly class ContactDC
+final readonly class Contact
 {
 
 	private function __construct(

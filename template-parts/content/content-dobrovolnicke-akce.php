@@ -4,7 +4,7 @@ use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
 use HnutiBrontosaurus\Theme\Container;
-use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollectionDC;
+use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollection;
 use HnutiBrontosaurus\Theme\Filters\VoluntaryFilters;
 use Tracy\Debugger;
 
@@ -43,7 +43,7 @@ try {
     $events = $hb_bisApiClient->getEvents($params);
 
 } catch (ConnectionToBisFailed $e) {
-    $eventCollection = EventCollectionDC::unableToLoad($hb_dateFormatHuman, $hb_dateFormatRobot);
+    $eventCollection = EventCollection::unableToLoad($hb_dateFormatHuman, $hb_dateFormatRobot);
 	Debugger::log($e);
 }
 
@@ -53,7 +53,7 @@ if ($eventCollection === null) {
         $events = hb_postFilter($events, $selectedFilter);
     }
 
-    $eventCollection = new EventCollectionDC($events, $hb_dateFormatHuman, $hb_dateFormatRobot);
+    $eventCollection = new EventCollection($events, $hb_dateFormatHuman, $hb_dateFormatRobot);
 }
 
 ?><main class="hb-mbe-6" role="main" id="obsah">

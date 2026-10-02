@@ -7,11 +7,11 @@ use HnutiBrontosaurus\BisClient\Event\Category;
 use HnutiBrontosaurus\BisClient\Event\Group;
 use HnutiBrontosaurus\BisClient\Event\IntendedFor;
 use HnutiBrontosaurus\BisClient\Event\Program;
-use HnutiBrontosaurus\BisClient\Event\Response\Event;
+use HnutiBrontosaurus\BisClient\Event\Response\Event as EventFromClient;
 use HnutiBrontosaurus\BisClient\Event\Response\Tag;
 
 
-final class EventDC
+final class Event
 {
 	public readonly int $id;
 	public readonly string $link;
@@ -22,16 +22,16 @@ final class EventDC
 	public readonly bool $hasTimeStart;
 	public readonly ?string $timeStart;
 	public readonly string $dateSpan;
-	public readonly PlaceDC $place;
-	public readonly AgeDC $age;
+	public readonly Place $place;
+	public readonly Age $age;
 	public readonly bool $isPaid;
 	public readonly ?string $price;
-	public readonly ContactDC $contact;
+	public readonly Contact $contact;
 	public readonly bool $isPast;
 	public readonly bool $isRegistrationRequired;
 	public readonly bool $isFull;
 	public readonly bool $isForFirstTimeAttendees;
-	public readonly InvitationDC $invitation;
+	public readonly Invitation $invitation;
 	public readonly bool $areOrganizersListed;
 	public readonly ?string $organizers;
 	public readonly ?string $organizerUnit;
@@ -43,7 +43,7 @@ final class EventDC
 	public readonly array $tags;
 
 
-	public function __construct(Event $event, string $dateFormatHuman, string $dateFormatRobot)
+	public function __construct(EventFromClient $event, string $dateFormatHuman, string $dateFormatRobot)
 	{
 		$this->id = $event->getId();
 		$this->link = sprintf('%s/%s/%d/', // todo: use rather WP routing somehow
@@ -64,14 +64,14 @@ final class EventDC
 		$this->timeStart = $timeStart?->toNativeDateTimeImmutable()->format('G:i');
 
 		$this->dateSpan = $this->getDateSpan($event->getStartDate()->toNativeDateTimeImmutable(), $event->getEndDate()->toNativeDateTimeImmutable(), $dateFormatHuman);
-		$this->place = PlaceDC::fromDTO($event->getLocation());
-		$this->age = AgeDC::fromDTO($event);
+		$this->place = Place::fromDTO($event->getLocation());
+		$this->age = Age::fromDTO($event);
 
 		$price = $event->getPropagation()->getCost();
 		$this->isPaid = $price !== '' && $price !== '0';
 		$this->price = $price;
 
-		$this->contact = ContactDC::fromDTO($event->getPropagation()->getContactPerson());
+		$this->contact = Contact::fromDTO($event->getPropagation()->getContactPerson());
 
 		$this->isRegistrationRequired = $event->getRegistration()->getIsRegistrationRequired();
 		$this->isPast = $event->getEndDate()->toNativeDateTimeImmutable()->format('Y-m-d') < (new DateTimeImmutable())->format('Y-m-d');
@@ -79,7 +79,7 @@ final class EventDC
 
 		$this->isForFirstTimeAttendees = $event->getIntendedFor() === IntendedFor::FIRST_TIME_PARTICIPANT;
 
-		$this->invitation = InvitationDC::fromDTO($event);
+		$this->invitation = Invitation::fromDTO($event);
 
 		$organizers = $event->getPropagation()->getOrganizers();
 		$this->areOrganizersListed = $organizers !== null;

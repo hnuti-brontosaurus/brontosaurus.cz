@@ -5,7 +5,7 @@ namespace HnutiBrontosaurus\Theme\DataContainers;
 use HnutiBrontosaurus\BisClient\AdministrationUnit\Response\AdministrationUnit;
 
 
-final readonly class OrganizationalUnitDC
+final readonly class OrganizationalUnit
 {
 
 	private function __construct(

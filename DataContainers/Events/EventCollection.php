@@ -3,19 +3,19 @@
 namespace HnutiBrontosaurus\Theme\DataContainers\Events;
 
 use ArrayIterator;
-use HnutiBrontosaurus\BisClient\Event\Response\Event;
+use HnutiBrontosaurus\BisClient\Event\Response\Event as EventFromClient;
 use IteratorAggregate;
 use function array_map;
 use function count;
 
 
-final class EventCollectionDC implements IteratorAggregate
+final class EventCollection implements IteratorAggregate
 {
 
 	public private(set) bool $hasAny = false;
 	public private(set) bool $hasBeenUnableToLoad = false; // this is used when BIS is not available
 	public private(set) int $count = 0;
-	/** @var EventDC[] */
+	/** @var Event[] */
 	public private(set) array $events = [];
 
 	private string $dateFormatHuman;
@@ -23,7 +23,7 @@ final class EventCollectionDC implements IteratorAggregate
 
 
 	/**
-	 * @param Event[] $events
+	 * @param EventFromClient[] $events
 	 */
 	public function __construct(?array $events, string $dateFormatHuman, string $dateFormatRobot)
 	{
@@ -31,8 +31,8 @@ final class EventCollectionDC implements IteratorAggregate
 		$this->dateFormatRobot = $dateFormatRobot;
 
 		if ($events !== null && count($events) > 0) {
-			$this->events = array_map(function (Event $event) {
-				return new EventDC($event, $this->dateFormatHuman, $this->dateFormatRobot);
+			$this->events = array_map(function (EventFromClient $event) {
+				return new Event($event, $this->dateFormatHuman, $this->dateFormatRobot);
 			}, $events);
 			$this->hasAny = true;
 			$this->count = count($events);
@@ -40,9 +40,9 @@ final class EventCollectionDC implements IteratorAggregate
 	}
 
 
-	public function add(Event $event): void
+	public function add(EventFromClient $event): void
 	{
-		$this->events[] = new EventDC($event, $this->dateFormatHuman, $this->dateFormatRobot);
+		$this->events[] = new Event($event, $this->dateFormatHuman, $this->dateFormatRobot);
 		$this->hasAny = true;
 		$this->count++;
 	}

@@ -5,7 +5,7 @@ namespace HnutiBrontosaurus\Theme\DataContainers\Events;
 use HnutiBrontosaurus\BisClient\Response\Image;
 
 
-final readonly class InvitationPresentationDC
+final readonly class InvitationPresentation
 {
 
 	/**

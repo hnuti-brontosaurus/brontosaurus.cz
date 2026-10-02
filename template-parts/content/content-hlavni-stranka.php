@@ -5,7 +5,7 @@ use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 use HnutiBrontosaurus\BisClient\Event\Request\Period;
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
-use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollectionDC;
+use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollection;
 use HnutiBrontosaurus\Theme\Container;
 use HnutiBrontosaurus\Theme\Filters\VoluntaryFilters;
 use Tracy\Debugger;
@@ -56,10 +56,10 @@ try {
     // keep only first three
     $events = array_slice($events, offset: 0, length: 3, preserve_keys: false);
 
-    $eventCollection = new EventCollectionDC($events, $hb_dateFormatForHuman, $hb_dateFormatForRobot);
+    $eventCollection = new EventCollection($events, $hb_dateFormatForHuman, $hb_dateFormatForRobot);
 
 } catch (ConnectionToBisFailed $e) {
-    $eventCollection = EventCollectionDC::unableToLoad($hb_dateFormatForHuman, $hb_dateFormatForRobot);
+    $eventCollection = EventCollection::unableToLoad($hb_dateFormatForHuman, $hb_dateFormatForRobot);
 	Debugger::log($e);
 }
 
@@ -134,4 +134,3 @@ $hb_banner = hb_banner();
 		</a>
 	</section>
 </aside>
-

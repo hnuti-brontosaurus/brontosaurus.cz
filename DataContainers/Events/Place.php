@@ -5,7 +5,7 @@ namespace HnutiBrontosaurus\Theme\DataContainers\Events;
 use HnutiBrontosaurus\BisClient\Response\Location;
 
 
-final readonly class PlaceDC
+final readonly class Place
 {
 
 	private function __construct(

@@ -3,7 +3,7 @@
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\EventNotFound;
 use HnutiBrontosaurus\Theme\Container;
-use HnutiBrontosaurus\Theme\DataContainers\Events\EventDC;
+use HnutiBrontosaurus\Theme\DataContainers\Events\Event as EventData;
 use Tracy\Debugger;
 use Tracy\ILogger;
 
@@ -77,7 +77,7 @@ add_action('rank_math/head', function () {
 try {
     $hasBeenUnableToLoad = false;
     $event = $hb_bisApiClient->getEvent($eventId);
-    $eventDC = new EventDC($event, $hb_dateFormatForHuman, $hb_dateFormatForRobot);
+    $eventData = new EventData($event, $hb_dateFormatForHuman, $hb_dateFormatForRobot);
 
     // add event name to title tag (source https://stackoverflow.com/a/62410632/3668474)
     add_filter(
@@ -92,13 +92,13 @@ try {
 
 } catch (ConnectionToBisFailed $e) {
     $hasBeenUnableToLoad = true;
-    $eventDC = null;
+    $eventData = null;
 	Debugger::log($e, ILogger::INFO);
 }
 
-$event = $eventDC;
+$event = $eventData;
 
-function hb_detail_application(EventDC $event, string $applicationUrlTemplate)
+function hb_detail_application(EventData $event, string $applicationUrlTemplate)
 {
 	$url = $applicationUrlTemplate;
 	$url = str_replace('{ID}', (string) $event->id, $url); // BC

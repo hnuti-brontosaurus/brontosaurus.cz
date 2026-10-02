@@ -2,17 +2,17 @@
 
 namespace HnutiBrontosaurus\Theme\DataContainers;
 
-use HnutiBrontosaurus\BisClient\Opportunity\Response\Opportunity;
+use HnutiBrontosaurus\BisClient\Opportunity\Response\Opportunity as OpportunityFromClient;
 
 
-final readonly class OpportunityDC
+final readonly class Opportunity
 {
 	public string $title;
 	public string $introduction;
 	public string $link;
 	public string $coverPhotoPath;
 
-	public function __construct(Opportunity $opportunity)
+	public function __construct(OpportunityFromClient $opportunity)
 	{
 		$this->title = hb_handleNonBreakingSpaces($opportunity->getName());
 

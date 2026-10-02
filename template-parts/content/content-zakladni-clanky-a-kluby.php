@@ -4,7 +4,7 @@ use HnutiBrontosaurus\BisClient\AdministrationUnit\Category;
 use HnutiBrontosaurus\BisClient\AdministrationUnit\Response\AdministrationUnit;
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\Theme\Container;
-use HnutiBrontosaurus\Theme\DataContainers\OrganizationalUnitDC;
+use HnutiBrontosaurus\Theme\DataContainers\OrganizationalUnit;
 use Tracy\Debugger;
 
 /** @var Container $hb_container defined in functions.php */
@@ -23,10 +23,10 @@ try {
             => $unit->getCategory() === Category::BASIC_SECTION || $unit->getCategory() === Category::CLUB
     );
 
-    // transfer DTOs to DCs
+    // transfer DTOs to theme objects
     $units = array_map(
-        static fn(AdministrationUnit $unit): OrganizationalUnitDC
-            => OrganizationalUnitDC::fromDTO($unit),
+        static fn(AdministrationUnit $unit): OrganizationalUnit
+            => OrganizationalUnit::fromDTO($unit),
         $units,
     );
 

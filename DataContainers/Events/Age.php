@@ -5,7 +5,7 @@ namespace HnutiBrontosaurus\Theme\DataContainers\Events;
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
 
 
-final readonly class AgeDC
+final readonly class Age
 {
 
 	private function __construct(

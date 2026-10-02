@@ -4,7 +4,7 @@ use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 use HnutiBrontosaurus\BisClient\Event\Tag;
 use HnutiBrontosaurus\Theme\Container;
-use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollectionDC;
+use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollection;
 use Tracy\Debugger;
 
 function hb_events(Container $container)
@@ -28,7 +28,7 @@ function hb_events(Container $container)
             }
 
             ob_start();
-            hb_eventList(new EventCollectionDC(
+            hb_eventList(new EventCollection(
                 $events,
                 $container->getDateFormatForHuman(),
                 $container->getDateFormatForRobot(),

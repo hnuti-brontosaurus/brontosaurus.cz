@@ -9,9 +9,9 @@ use HnutiBrontosaurus\Theme\Meta;
 use HnutiBrontosaurus\Theme\PostTypeInitializer;
 use HnutiBrontosaurus\Theme\Rewrites\Event;
 use HnutiBrontosaurus\Theme\Rewrites\Opportunity;
-use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollectionDC;
-use HnutiBrontosaurus\Theme\DataContainers\Events\EventDC;
-use HnutiBrontosaurus\Theme\DataContainers\OpportunityDC;
+use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollection;
+use HnutiBrontosaurus\Theme\DataContainers\Events\Event as EventData;
+use HnutiBrontosaurus\Theme\DataContainers\Opportunity as OpportunityData;
 use Nette\Utils\Strings;
 
 /** @var Container $hb_container */
@@ -73,8 +73,8 @@ require_once __DIR__ . '/homepage-banner.php';
 				$eventId = (int) get_query_var('eventId');
 				try {
 					$event = $bisClient->getEvent($eventId);
-					$eventDC = new EventDC($event, $dateFormatForHuman, $dateFormatForRobot);
-					hb_akce_meta($eventDC);
+					$eventData = new EventData($event, $dateFormatForHuman, $dateFormatForRobot);
+					hb_akce_meta($eventData);
 				}
 				catch (EventNotFound) {}
 				catch (ConnectionToBisFailed) {}
@@ -83,8 +83,8 @@ require_once __DIR__ . '/homepage-banner.php';
 				$opportunityId = (int) get_query_var('opportunityId');
 				try {
 					$opportunity = $bisClient->getOpportunity($opportunityId);
-					$opportunityDC = new OpportunityDC($opportunity);
-					hb_prilezitost_meta($opportunityDC);
+					$opportunityData = new OpportunityData($opportunity);
+					hb_prilezitost_meta($opportunityData);
 				}
 				catch (OpportunityNotFound) {}
 				catch (ConnectionToBisFailed) {}
@@ -162,7 +162,7 @@ require_once __DIR__ . '/homepage-banner.php';
 })($hb_container, wp_get_theme());
 
 
-function hb_akce_meta(EventDC $event) { ?>
+function hb_akce_meta(EventData $event) { ?>
 	<meta property="og:locale" content="cs_CZ">
 	<meta property="og:type" content="website">
 	<meta property="og:title" content="<?php echo $event->title ?>">
@@ -188,7 +188,7 @@ function hb_akce_meta(EventDC $event) { ?>
 	<?php endif; ?>
 <?php }
 
-function hb_prilezitost_meta(OpportunityDC $opportunity) { ?>
+function hb_prilezitost_meta(OpportunityData $opportunity) { ?>
 	<meta property="og:locale" content="cs_CZ">
 	<meta property="og:type" content="website">
 	<meta property="og:title" content="<?php echo $opportunity->title ?>">
@@ -527,7 +527,7 @@ function hb_related(
 }
 
 
-function hb_eventList(EventCollectionDC $eventCollection, bool $lazyLoading = true, bool $inFutureView = false, bool $smaller = false)
+function hb_eventList(EventCollection $eventCollection, bool $lazyLoading = true, bool $inFutureView = false, bool $smaller = false)
 {
 ?>
 <div class="hb-eventList<?php if ($smaller): ?> hb-eventList--smaller<?php endif; ?>">
@@ -587,7 +587,7 @@ function hb_eventList(EventCollectionDC $eventCollection, bool $lazyLoading = tr
 }
 
 
-function hb_event(EventDC $event, bool $lazyLoading = true, bool $smaller = false)
+function hb_event(EventData $event, bool $lazyLoading = true, bool $smaller = false)
 {
 ?>
 <a class="hb-event<?php if ($event->isFull): ?> hb-event--full<?php endif; ?><?php if ($smaller): ?> hb-event--smaller<?php endif; ?>" href="<?php echo $event->link ?>">

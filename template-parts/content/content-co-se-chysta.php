@@ -5,7 +5,7 @@ use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\Event\Request\EventParameters;
 use HnutiBrontosaurus\BisClient\Event\Request\Period;
 use HnutiBrontosaurus\Theme\Container;
-use HnutiBrontosaurus\Theme\DataContainers\MonthWrapperDC;
+use HnutiBrontosaurus\Theme\DataContainers\MonthWrapper;
 use Tracy\Debugger;
 
 /** @var Container $hb_container defined in functions.php */
@@ -48,26 +48,26 @@ try {
 
     // categorize events by month
     $months = [];
-    $currentMonthWrapperDC = null;
+    $currentMonth = null;
     $lastMonth = null;
 
     foreach ($events as $event) {
         $monthNumber = $event->getStartDate()->getMonth();
         if ($lastMonth === null || $lastMonth !== $monthNumber) {
-            if ($currentMonthWrapperDC !== null) {
-                $months[] = $currentMonthWrapperDC;
+            if ($currentMonth !== null) {
+                $months[] = $currentMonth;
             }
 
-            $currentMonthWrapperDC = new MonthWrapperDC($monthNumber);
+            $currentMonth = new MonthWrapper($monthNumber);
         }
 
-        \assert($currentMonthWrapperDC instanceof MonthWrapperDC);
-        $currentMonthWrapperDC->addEvent($event, $hb_dateFormatHuman, $hb_dateFormatRobot);
+        \assert($currentMonth instanceof MonthWrapper);
+        $currentMonth->addEvent($event, $hb_dateFormatHuman, $hb_dateFormatRobot);
 
         $lastMonth = $monthNumber;
     }
-    if ($currentMonthWrapperDC !== null) {
-        $months[] = $currentMonthWrapperDC;
+    if ($currentMonth !== null) {
+        $months[] = $currentMonth;
     }
 
 } catch (ConnectionToBisFailed $e) {

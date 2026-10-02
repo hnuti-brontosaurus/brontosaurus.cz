@@ -3,13 +3,13 @@
 namespace HnutiBrontosaurus\Theme\DataContainers;
 
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
-use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollectionDC;
+use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollection;
 
 
-final class MonthWrapperDC
+final class MonthWrapper
 {
 
-	public private(set) ?EventCollectionDC $events = null;
+	public private(set) ?EventCollection $events = null;
 
 
 	public function __construct(
@@ -20,7 +20,7 @@ final class MonthWrapperDC
 	public function addEvent(Event $event, string $dateFormatHuman, string $dateFormatRobot): void
 	{
 		if ($this->events === null) {
-			$this->events = new EventCollectionDC(NULL, $dateFormatHuman, $dateFormatRobot);
+			$this->events = new EventCollection(NULL, $dateFormatHuman, $dateFormatRobot);
 		}
 
 		$this->events->add($event);

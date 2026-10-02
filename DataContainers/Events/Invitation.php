@@ -6,7 +6,7 @@ use HnutiBrontosaurus\BisClient\Event\Response\Diet;
 use HnutiBrontosaurus\BisClient\Event\Response\Event;
 
 
-final readonly class InvitationDC
+final readonly class Invitation
 {
 
 	/**
@@ -26,7 +26,7 @@ final readonly class InvitationDC
 		public bool $areWorkHoursPerDayListed,
 		public ?int $workHoursPerDay,
 		public bool $hasPresentation,
-		public ?InvitationPresentationDC $presentation,
+		public ?InvitationPresentation $presentation,
 	) {}
 
 
@@ -65,7 +65,7 @@ final readonly class InvitationDC
 			$workHoursPerDay !== null,
 			$workHoursPerDay,
 			$hasPresentation,
-			$hasPresentation ? InvitationPresentationDC::fromDTO($text, $photos) : null,
+			$hasPresentation ? InvitationPresentation::fromDTO($text, $photos) : null,
 		);
 	}
 
