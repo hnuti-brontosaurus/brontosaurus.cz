@@ -163,7 +163,6 @@ require_once __DIR__ . '/homepage-banner.php';
 
 
 function hb_akce_meta(EventDC $event) { ?>
-	<?php if ($event): ?>
 	<meta property="og:locale" content="cs_CZ">
 	<meta property="og:type" content="website">
 	<meta property="og:title" content="<?php echo $event->title ?>">
@@ -187,11 +186,9 @@ function hb_akce_meta(EventDC $event) { ?>
 	<?php if ($event->hasCoverPhoto): ?>
 	<meta name="twitter:image" content="<?php echo $event->coverPhotoPath ?>">
 	<?php endif; ?>
-	<?php endif; ?>
 <?php }
 
 function hb_prilezitost_meta(OpportunityDC $opportunity) { ?>
-	<?php if ($opportunity): ?>
 	<meta property="og:locale" content="cs_CZ">
 	<meta property="og:type" content="website">
 	<meta property="og:title" content="<?php echo $opportunity->title ?>">
@@ -201,9 +198,8 @@ function hb_prilezitost_meta(OpportunityDC $opportunity) { ?>
 	<meta property="og:image" content="<?php echo $opportunity->coverPhotoPath ?>">
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:title" content="<?php echo $opportunity->title ?>">
-	<meta name="twitter:description" content="<?php hb_truncate(htmlspecialchars(strip_tags($opportunity->introduction)), 150) ?>">
+	<meta name="twitter:description" content="<?php echo hb_truncate(htmlspecialchars(strip_tags($opportunity->introduction)), 150) ?>">
 	<meta name="twitter:image" content="<?php echo $opportunity->coverPhotoPath ?>">
-	<?php endif; ?>
 <?php }
 
 function hb_administrative_units_map(string $administrationUnitsInJson, bool $hasBeenUnableToLoad)

@@ -9,3 +9,5 @@ parameters:
 		- hb-events/*
 		- template-parts/*
 		- vendor/*
+	scanFiles:
+		- hb-events/hb-events.php

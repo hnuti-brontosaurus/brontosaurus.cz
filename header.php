@@ -126,7 +126,7 @@ $hb_pageClassSelector = $hb_currentPost !== null ? $hb_currentPost->post_name : 
 
 				<?php wp_nav_menu([
 					'theme_location' => 'header',
-					'container' => false,
+					'container' => '',
 					'depth' => 1,
 				]); ?>
 				<?php // TODO add rel="noopener noreferrer" target="_blank" to external links ?>

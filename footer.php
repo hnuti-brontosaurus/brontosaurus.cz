@@ -104,19 +104,19 @@ $hb_currentPost = get_post();
 
 			<?php wp_nav_menu([
 				'theme_location' => 'footer-left',
-				'container' => false,
+				'container' => '',
 				'depth' => 1,
 			]); ?>
 
 			<?php wp_nav_menu([
 				'theme_location' => 'footer-center',
-				'container' => false,
+				'container' => '',
 				'depth' => 1,
 			]); ?>
 
 			<?php wp_nav_menu([
 				'theme_location' => 'footer-right',
-				'container' => false,
+				'container' => '',
 				'depth' => 1,
 			]); ?>
 		</nav>
