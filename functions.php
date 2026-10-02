@@ -581,7 +581,7 @@ function hb_eventList(EventCollectionDC $eventCollection, bool $lazyLoading = tr
 				Promiňte, zrovna nám vypadl systém, kde máme uloženy všechny informace o plánovaných akcích.
 				Zkuste to prosím za chvilku znovu.
 			<?php else: ?>
-				Zrovna tu žádné akce nemáme, ale zkus to později…
+				Tady zrovna žádné akce nechystáme, zkus to později.
 			<?php endif; ?>
 		</div>
 

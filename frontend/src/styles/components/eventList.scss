@@ -51,8 +51,8 @@ $events-breakpoint-threeColumns-from: "min-width: 73.001em";
 }
 
 .hb-eventList__noResults {
-	margin-block-start: 3rlh;
-	margin-block-end: 5rlh;
+	margin-block-start: 2rlh;
+	margin-block-end: 3rlh;
 }
 @media (settings.$header-breakpoint-navigationHiddenToVisible-visible-from) {
 	.hb-eventList__noResults {

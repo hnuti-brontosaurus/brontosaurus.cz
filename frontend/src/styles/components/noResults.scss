@@ -1,11 +1,16 @@
 @use "../settings";
 
 .noResults {
-	max-width: calc(28rem + 8rlh);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-inline-size: calc(28rem + 8rlh);
+	min-block-size: 10rem;
 	margin-inline: -1rlh;
 	padding: 1rlh;
-	font-style: italic;
-	background-color: #ddd;
+	font-weight: bold;
+	background-color: #fafafa;
+	border-radius: 2em;
 }
 @media (settings.$header-breakpoint-navigationHiddenToVisible-visible-from) {
 	.noResults {
