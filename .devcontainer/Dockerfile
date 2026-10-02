@@ -10,9 +10,10 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs
 
 # wp cli
-RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-RUN chmod +x wp-cli.phar
-RUN mv wp-cli.phar /usr/local/bin/wp
+RUN curl -fsSL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /usr/local/bin/wp-cli.phar \
+    && chmod +x /usr/local/bin/wp-cli.phar \
+    && printf '%s\n' '#!/bin/sh' 'exec php -d display_errors=stderr /usr/local/bin/wp-cli.phar "$@"' > /usr/local/bin/wp \
+    && chmod +x /usr/local/bin/wp
 
 RUN a2enmod rewrite
 RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf

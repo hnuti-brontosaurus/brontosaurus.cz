@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -eo pipefail
 
 echo "Starting WordPress initialization..."
 
@@ -88,18 +88,30 @@ create_or_get_page() {
         --field=ID \
         --path=/var/www/html 2>/dev/null)
 
-    if [ -n "$existing_id" ]; then
+    if [[ "$existing_id" =~ ^[0-9]+$ ]]; then
         echo "$existing_id"
-    else
-        sudo -u www-data wp post create \
-            --post_type=page \
-            --post_title="$title" \
-            --post_name="$slug" \
-            --post_content="" \
-            --post_status=publish \
-            --porcelain \
-            --path=/var/www/html
+        return
     fi
+
+    if [ -n "$existing_id" ]; then
+        echo "ERROR: Unexpected page lookup output for '$slug': $existing_id" >&2
+        return 1
+    fi
+
+    local created_id
+    created_id=$(sudo -u www-data wp post create \
+        --post_type=page \
+        --post_title="$title" \
+        --post_name="$slug" \
+        --post_content="" \
+        --post_status=publish \
+        --porcelain \
+        --path=/var/www/html)
+    if [[ ! "$created_id" =~ ^[0-9]+$ ]]; then
+        echo "ERROR: Failed to create page '$slug'; unexpected output: $created_id" >&2
+        return 1
+    fi
+    echo "$created_id"
 }
 
 # Create pages and store their IDs in an associative array
@@ -194,9 +206,6 @@ echo "Theme activated!"
 # Create WordPress menus
 echo "Creating WordPress menus..."
 
-# Temporarily disable set -e for menu operations to continue on errors
-set +e
-
 # Helper function to create menu and assign to location
 create_and_assign_menu() {
     local menu_name="$1"
@@ -216,7 +225,7 @@ create_and_assign_menu() {
     if [ -z "$menu_id" ]; then
         echo "Creating menu: $menu_name" >&2
         menu_id=$(sudo -u www-data wp menu create "$menu_name" --porcelain --path=/var/www/html 2>/dev/null || echo "")
-        if [ -n "$menu_id" ]; then
+        if [[ "$menu_id" =~ ^[0-9]+$ ]]; then
             echo "Menu '$menu_name' created with ID: $menu_id" >&2
         else
             echo "ERROR: Failed to create menu '$menu_name'" >&2
@@ -225,10 +234,16 @@ create_and_assign_menu() {
     else
         echo "Menu '$menu_name' already exists with ID: $menu_id" >&2
     fi
-    
-    if [ -n "$menu_id" ]; then
-        echo "Assigning menu '$menu_name' to location '$location'" >&2
-        sudo -u www-data wp menu location assign "$menu_id" "$location" --path=/var/www/html 2>/dev/null >&2 || true
+
+    if [[ ! "$menu_id" =~ ^[0-9]+$ ]]; then
+        echo "ERROR: Invalid menu ID for '$menu_name': $menu_id" >&2
+        return 1
+    fi
+
+    echo "Assigning menu '$menu_name' to location '$location'" >&2
+    if ! sudo -u www-data wp menu location assign "$menu_id" "$location" --path=/var/www/html 2>/dev/null >&2; then
+        echo "ERROR: Failed to assign menu '$menu_name' to location '$location'" >&2
+        return 1
     fi
     
     # Only this line goes to stdout — the actual return value
@@ -256,11 +271,15 @@ add_pages_to_menu() {
     for slug in "${page_slugs[@]}"; do
         # Look up page ID by slug directly from database
         local page_id
-        page_id=$(sudo -u www-data wp post list --post_type=page --name="$slug" --field=ID --path=/var/www/html 2>/dev/null | grep -v '^$' | head -1)
+        page_id=$(sudo -u www-data wp post list --post_type=page --name="$slug" --field=ID --path=/var/www/html 2>/dev/null)
 
         if [ -z "$page_id" ]; then
-            echo "  ⚠ Page slug '$slug' not found"
-            continue
+            echo "ERROR: Page slug '$slug' not found while populating menu '$menu_name'" >&2
+            return 1
+        fi
+        if [[ ! "$page_id" =~ ^[0-9]+$ ]]; then
+            echo "ERROR: Unexpected page ID for '$slug': $page_id" >&2
+            return 1
         fi
 
         if echo "$existing_item_ids" | grep -qx "$page_id"; then
@@ -268,11 +287,11 @@ add_pages_to_menu() {
             continue
         fi
 
-        sudo -u www-data wp menu item add-post "$menu_id" "$page_id" --path=/var/www/html
-        if [ $? -eq 0 ]; then
+        if sudo -u www-data wp menu item add-post "$menu_id" "$page_id" --path=/var/www/html; then
             echo "  ✓ Added page '$slug' (ID: $page_id)"
         else
-            echo "  ✗ Failed to add page '$slug' (ID: $page_id)"
+            echo "ERROR: Failed to add page '$slug' (ID: $page_id) to menu '$menu_name'" >&2
+            return 1
         fi
     done
 }
@@ -312,20 +331,13 @@ declare -a FOOTER_RIGHT_MENU_PAGES=(
 )
 
 # Create all four menus and get their IDs
-HEADER_MENU_ID=$(create_and_assign_menu "Hlavní navigace" "header" || echo "")
-FOOTER_LEFT_MENU_ID=$(create_and_assign_menu "Patička – vlevo" "footer-left" || echo "")
-FOOTER_CENTER_MENU_ID=$(create_and_assign_menu "Patička – uprostřed" "footer-center" || echo "")
-FOOTER_RIGHT_MENU_ID=$(create_and_assign_menu "Patička – vpravo" "footer-right" || echo "")
+HEADER_MENU_ID=$(create_and_assign_menu "Hlavní navigace" "header")
+FOOTER_LEFT_MENU_ID=$(create_and_assign_menu "Patička – vlevo" "footer-left")
+FOOTER_CENTER_MENU_ID=$(create_and_assign_menu "Patička – uprostřed" "footer-center")
+FOOTER_RIGHT_MENU_ID=$(create_and_assign_menu "Patička – vpravo" "footer-right")
 
 # Debug: Show what menu IDs we got
 echo "Menu IDs: Header=$HEADER_MENU_ID, Footer-Left=$FOOTER_LEFT_MENU_ID, Footer-Center=$FOOTER_CENTER_MENU_ID, Footer-Right=$FOOTER_RIGHT_MENU_ID"
-
-# Verify we have valid menu IDs before proceeding
-if [ -z "$HEADER_MENU_ID" ] || [ -z "$FOOTER_LEFT_MENU_ID" ] || [ -z "$FOOTER_CENTER_MENU_ID" ] || [ -z "$FOOTER_RIGHT_MENU_ID" ]; then
-    echo "WARNING: Some menus failed to create. Attempting recovery..."
-    # List all menus to see current state
-    sudo -u www-data wp menu list --format=table --path=/var/www/html 2>/dev/null || true
-fi
 
 # Assign pages to menus
 add_pages_to_menu "$HEADER_MENU_ID" "Hlavní navigace" "${HEADER_MENU_PAGES[@]}"
@@ -334,9 +346,6 @@ add_pages_to_menu "$FOOTER_CENTER_MENU_ID" "Patička – uprostřed" "${FOOTER_C
 add_pages_to_menu "$FOOTER_RIGHT_MENU_ID" "Patička – vpravo" "${FOOTER_RIGHT_MENU_PAGES[@]}"
 
 echo "WordPress menus created, assigned to locations, and populated with pages!"
-
-# Re-enable set -e for remaining operations
-set -e
 
 # Start Apache
 echo "Starting Apache..."
