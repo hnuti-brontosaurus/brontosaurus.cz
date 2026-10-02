@@ -3,7 +3,6 @@
 use HnutiBrontosaurus\BisClient\ConnectionToBisFailed;
 use HnutiBrontosaurus\BisClient\OpportunityNotFound;
 use HnutiBrontosaurus\Theme\Container;
-use HnutiBrontosaurus\Theme\Rewrites\Opportunity;
 use Tracy\Debugger;
 
 
@@ -25,7 +24,7 @@ add_action('rank_math/head', function () {
 
 try {
 	$hasBeenUnableToLoad = false;
-	$opportunityId = (int) get_query_var(Opportunity::HB_OPPORTUNITY_ID);
+	$opportunityId = (int) get_query_var('opportunityId');
 	$opportunity = $hb_bisApiClient->getOpportunity($opportunityId);
 
 	// add event name to title tag (source https://stackoverflow.com/a/62410632/3668474)

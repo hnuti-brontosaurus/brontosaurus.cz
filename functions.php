@@ -7,8 +7,6 @@ use HnutiBrontosaurus\Theme\Assets;
 use HnutiBrontosaurus\Theme\Container;
 use HnutiBrontosaurus\Theme\Meta;
 use HnutiBrontosaurus\Theme\PostTypeInitializer;
-use HnutiBrontosaurus\Theme\Rewrites\Event;
-use HnutiBrontosaurus\Theme\Rewrites\Opportunity;
 use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollection;
 use HnutiBrontosaurus\Theme\DataContainers\Events\Event as EventData;
 use HnutiBrontosaurus\Theme\DataContainers\Opportunity as OpportunityData;
@@ -31,8 +29,12 @@ require_once __DIR__ . '/homepage-banner.php';
 
 
 	add_action('init', function () use ($container) {
-		Event::rewriteRule();
-		Opportunity::rewriteRule();
+		add_rewrite_rule('^akce/([\d]+)', 'index.php?pagename=akce&eventId=$matches[1]', 'top');
+		add_rewrite_rule(
+			'^zapoj-se/prilezitost/([\d]+)',
+			'index.php?pagename=prilezitost&opportunityId=$matches[1]',
+			'top',
+		);
 
 		PostTypeInitializer::novinky();
 		PostTypeInitializer::pribehyNadseni();
@@ -50,15 +52,19 @@ require_once __DIR__ . '/homepage-banner.php';
 		hb_events($container);
 	});
 
-	add_filter('query_vars', function($vars) {
-		Event::queryVars($vars);
-		Opportunity::queryVars($vars);
+	add_filter('query_vars', function ($vars) {
+		$vars[] = 'eventId';
+		$vars[] = 'opportunityId';
 		return $vars;
 	});
 
 	add_action('after_switch_theme', function () {
-		Event::rewriteRule();
-		Opportunity::rewriteRule();
+		add_rewrite_rule('^akce/([\d]+)', 'index.php?pagename=akce&eventId=$matches[1]', 'top');
+		add_rewrite_rule(
+			'^zapoj-se/prilezitost/([\d]+)',
+			'index.php?pagename=prilezitost&opportunityId=$matches[1]',
+			'top',
+		);
 		flush_rewrite_rules();
 	});
 

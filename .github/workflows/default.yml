@@ -86,7 +86,6 @@ jobs:
                         -x "hb-events/src/*" \
                         -i "images/*" \
                         -i "log/*" \
-                        -i "Rewrites/*" \
                         -i "scripts/*" \
                         -i "styles/*" \
                         -i "template-parts/*" \
