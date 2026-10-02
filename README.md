@@ -1,75 +1,87 @@
-# Brontoweb
+# Brontosaurus WordPress Theme
 
-Tento repozitář obsahuje celé chování brontowebu.
-Web běží na redakčním systému Wordpress, takže veškerá logika i UI
-je uděláno formou rozšíření. Protože logika je relativně dost svázána
-s šablonou samotnou, je to také tak implementováno – pomocí
-jedné šablony pro Wordpress.
+Toto repozitář obsahuje WordPress šablonu pro web Hnutí Brontosaurus.
+Projekt je zaměřený na to, aby byl celý web spravovatelný v WordPressu, ale zároveň zachoval pevné grafické a obsahové koncepce designu.
 
-Brontoweb byl původně z důvodu rychlého zveřejnění nové verze nakódován
-víceméně staticky (vyjma komunikace s BISem), redakční systém jako takový
-se používá spíše méně. Vize je přesunout veškerý obsah
-do Wordpressu tak, aby byl administrovatelný, ale zároveň se nedaly rozbít
-základní designové koncepty webu.
+Repozitář není plný WordPress projekt od nuly — jde o samotnou šablonu a její logiku, která se ve vývoji připojuje k běžící WordPress instalaci.
 
-Statický kód je momentálně napsán jako template parts.
+## Co je v repozitáři
 
+- PHP šablony a funkce pro WordPress (`functions.php`, `header.php`, `footer.php`, `template-parts/`, atd.)
+- vlastní datové kontejnery a helpery (`DataContainers`, `Filters`, `Meta.php`, `Configuration.php`)
+- front-end zdroje v `frontend/src/styles` a build pipeline přes Gulp
+- konfigurace pro statickou analýzu typu PHPStan
+- setup pro vývoj v devcontaineru / Codespaces (`.devcontainer/`)
 
-## Vývoj
+## Technologie
 
-Šablona je vyvíjena standardními webovými jazyky – HTML+CSS+JS pro frontend, PHP pro backend.
-Některé vrstvy obsahují nástroje pro usnadnění práce vývojáře.
+- PHP + WordPress
+- Composer pro PHP závislosti
+- Node.js + npm pro frontend build
+- Gulp + Sass pro kompilaci stylů
 
-### Backend
+## Požadavky
 
-Šablona využívá pár knihoven třetích stran. Pro správu těchto knihoven je použit Composer (světový standard pro správu knihoven v PHP), který umožňuje snadnou správu a aktualizaci tzv. závislostí. Composer je ke stažení [zde](https://getcomposer.org/) a po jeho instalaci lze používat standardně přes příkazovou řádku (viz [Instalace](#Instalace)).
+Před vývojem je potřeba mít nainstalované:
 
-### Frontend
+- PHP (v projektu je nastaven platform constraint pro PHP 8.5)
+- Composer
+- Node.js a npm
 
-Frontend se v šabloně skládá z pěti různých zdrojů:
-- šablony
-- styly
-- skripty
-- obrázky
-- fonty
-
-Šablony se zpracovávají PHP skriptem a vypisují na výstup.
-
-Styly jsou psány jazykem SCSS, tedy před použitím v prohlížeči se musí vždy přeložit preprocesorem SASS. Použití preprocesoru usnadňuje psaní CSS – např. použití proměnných pro opakované hodnoty (`$var: 20rem`), řetězení opakujících se slov v selektorech (`&__item`) etc.
-
-Skripty jsou psány standardně v Javascriptu a jsou ve složce `scripts`.
-
-Obrázky se nahrávají na produkční verzi Brontowebu a odtud se linkují.
-
-S fonty se nic nedělá.
-
-Aby se nemusela každá sada zdrojů zpracovávat samostatně a ručně, využívá šablona nástroje Gulp, který umožňuje zpracovávat více úloh dohromady. Gulp pracuje podle konfigurace uložené v souboru `gulpfile.babel.js`. Gulp je de facto další javascriptový program, proto je potřeba mít nainstalovaný Node.js (program umožňující spouštět javascript jako aplikaci v terminálu) a yarn (správce balíčků pro Node.js).
-
-### Shrnutí
-
-Ve finále je třeba mít v počítači vždy dvojici interpreter+správce balíčků pro backend a pro frontend. Pro backend je to PHP+Composer, pro frontend Node.js+yarn.
-
-## Instalace
-
-Pro zprovozonění šablony pro vývoj je třeba šablonu umístit do adresáře `wp-content/themes/brontosaurus`, nainstalovat backend i frontend závislosti a potom šablonu ve WP aktivovat.
+## Rychlý start
 
 ```bash
-# nainstaluje všechny knihovny třetích stran pro backend
+# instalace PHP závislostí
 composer install
 
-# nainstaluje všechny balíčky třetích stran pro frontend (včetně Gulp)
-yarn install
+# instalace front-end závislostí
+npm install
 ```
+
+Pro lokální vývoj je vhodné připojit šablonu jako WordPress theme, například jako symlink v adresáři `wp-content/themes/brontosaurus`.
+
+## Frontend build
 
 ```bash
-# spustí úlohy v Gulpu pro vývojový režim –
-# při každé změně znovu zpracuje změněné zdroje,
-# aby byly vývojáři hned dostupné v prohlížeči
-yarn dev
+# watch mód – kompilace při změně souborů
+npm run dev
 
-# zpracuje zdroje do co nejefektivnější podoby pro nasazení na ostrý web
-# typicky součást buildu v CI
-NODE_ENV=production yarn build
+# produkční build
+npm run build
 ```
 
-> Poznámka: build přes gulp se v současnosti týká už jen stylů, pro zbytek zdrojů již není potřeba jej pouštět.
+V současnosti Gulp zpracovává zejména SCSS styly do výsledných CSS souborů v `frontend/dist/css`.
+
+## Vývojový setup
+
+V repozitáři je připraven devcontainer a inicializační skript `.devcontainer/init.sh`, který:
+
+- vytvoří WordPress konfiguraci
+- nainstaluje WordPress do `/var/www/html`
+- vytvoří základní stránky
+- nastaví homepage
+- nainstaluje závislosti projektu a spustí build
+- symlinkne repo jako theme `brontosaurus`
+
+Tento setup je vhodný pro lokální vývoj i pro GitHub Codespaces.
+
+## Statická analýza
+
+Pro PHPStan je definován script:
+
+```bash
+composer run phpstan
+```
+
+## Struktura důležitých souborů
+
+- `composer.json` – PHP dependencies a scripts
+- `package.json` – frontend dependencies a Gulp scripts
+- `gulpfile.babel.js` – konfigurace build procesu
+- `config/` – konfigurační soubory pro projekt
+- `frontend/src/styles/` – zdrojové SCSS soubory
+- `.devcontainer/init.sh` – bootstrap development prostředí
+
+## Poznámka
+
+Repozitář je určen pro vývoj webu Hnutí Brontosaurus a není samostatně běžící aplikací bez WordPress instalace.
