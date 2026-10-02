@@ -12,11 +12,11 @@ use function count;
 final class EventCollectionDC implements IteratorAggregate
 {
 
-	public /*get*/ bool $hasAny = false;
-	public /*get*/ bool $hasBeenUnableToLoad = false; // this is used when BIS is not available
-	public /*get*/ int $count = 0;
+	public private(set) bool $hasAny = false;
+	public private(set) bool $hasBeenUnableToLoad = false; // this is used when BIS is not available
+	public private(set) int $count = 0;
 	/** @var EventDC[] */
-	public /*get*/ array $events = [];
+	public private(set) array $events = [];
 
 	private string $dateFormatHuman;
 	private string $dateFormatRobot;

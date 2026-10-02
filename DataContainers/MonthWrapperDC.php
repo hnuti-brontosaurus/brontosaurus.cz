@@ -9,7 +9,7 @@ use HnutiBrontosaurus\Theme\DataContainers\Events\EventCollectionDC;
 final class MonthWrapperDC
 {
 
-	public /*get*/ ?EventCollectionDC $events = null;
+	public private(set) ?EventCollectionDC $events = null;
 
 
 	public function __construct(
