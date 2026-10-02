@@ -6,7 +6,7 @@ jobs:
     build_backend:
         runs-on: ubuntu-latest
         steps:
-            -   uses: actions/checkout@v4
+            -   uses: actions/checkout@v5
 
             -
                 uses: shivammathur/setup-php@v2
@@ -19,7 +19,7 @@ jobs:
                 run: composer install --no-dev --ansi
 
             -   name: Upload artifact
-                uses: actions/upload-artifact@v4
+                uses: actions/upload-artifact@v5
                 with:
                     name: backend-deps
                     path: vendor
@@ -27,7 +27,7 @@ jobs:
     build_frontend:
         runs-on: ubuntu-latest
         steps:
-            -   uses: actions/checkout@v4
+            -   uses: actions/checkout@v5
 
             -
                 uses: actions/setup-node@v4
@@ -49,7 +49,7 @@ jobs:
                     npm run build
 
             -   name: Upload artifact
-                uses: actions/upload-artifact@v4
+                uses: actions/upload-artifact@v5
                 with:
                     name: frontend-deps
                     path: |
@@ -62,15 +62,15 @@ jobs:
             - build_backend
             - build_frontend
         steps:
-            -   uses: actions/checkout@v4
+            -   uses: actions/checkout@v5
             -   name: Download backend artifact
-                uses: actions/download-artifact@v4
+                uses: actions/download-artifact@v5
                 with:
                     name: backend-deps
                     path: vendor
 
             -   name: Download frontend artifact
-                uses: actions/download-artifact@v4
+                uses: actions/download-artifact@v5
                 with:
                     name: frontend-deps
 
@@ -112,7 +112,7 @@ jobs:
                         -i "style.css"
 
             -   name: Upload artifact
-                uses: actions/upload-artifact@v4
+                uses: actions/upload-artifact@v5
                 with:
                     name: deps
                     path: brontosaurus-theme.zip
@@ -126,10 +126,10 @@ jobs:
             url: https://dev.brontosaurus.cz
 
         steps:
-            -   uses: actions/checkout@v4
+            -   uses: actions/checkout@v5
 
             -   name: Download artifact
-                uses: actions/download-artifact@v4
+                uses: actions/download-artifact@v5
                 with:
                     name: deps
 
@@ -158,10 +158,10 @@ jobs:
             url: https://brontosaurus.cz
 
         steps:
-            -   uses: actions/checkout@v4
+            -   uses: actions/checkout@v5
 
             -   name: Download artifact
-                uses: actions/download-artifact@v4
+                uses: actions/download-artifact@v5
                 with:
                     name: deps
 
