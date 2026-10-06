@@ -20,11 +20,11 @@ final readonly class Contact
 	public static function fromDTO(ContactPerson $contactPerson): self
 	{
 		return new self(
-			$contactPerson->getName() !== null,
-			$contactPerson->getName(),
-			$contactPerson->getEmailAddress(),
-			$contactPerson->getPhoneNumber() !== null,
-			$contactPerson->getPhoneNumber(),
+			$contactPerson->name !== null,
+			$contactPerson->name,
+			$contactPerson->emailAddress,
+			$contactPerson->phoneNumber !== null,
+			$contactPerson->phoneNumber,
 		);
 	}
 

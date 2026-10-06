@@ -28,7 +28,7 @@ final readonly class InvitationPresentation
 			$text !== null,
 			$text !== null ? hb_handleNonBreakingSpaces($text) : null,
 			\count($photos) > 0,
-			\array_map(fn(Image $photo): string => $photo->getMediumSizePath(), $photos),
+			\array_map(fn(Image $photo): string => $photo->mediumSizePath, $photos),
 		);
 	}
 

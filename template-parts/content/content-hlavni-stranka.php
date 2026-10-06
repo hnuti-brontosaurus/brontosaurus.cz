@@ -50,7 +50,7 @@ try {
     // post-filter: leave out full events
     $events = array_filter(
         $events,
-        static fn(Event $event) => ! $event->getRegistration()->getIsEventFull(),
+        static fn(Event $event) => ! $event->registration->isEventFull,
     );
 
     // keep only first three

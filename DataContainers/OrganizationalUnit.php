@@ -19,10 +19,10 @@ final readonly class OrganizationalUnit
 	public static function fromDTO(AdministrationUnit $organizationalUnit): self
 	{
 		return new self(
-			$organizationalUnit->getName(),
-			$organizationalUnit->getAddress(),
-			$organizationalUnit->getWebsite(),
-			$organizationalUnit->getEmail(),
+			$organizationalUnit->name,
+			$organizationalUnit->address,
+			$organizationalUnit->website,
+			$organizationalUnit->email,
 		);
 	}
 

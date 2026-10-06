@@ -17,12 +17,12 @@ final readonly class Place
 
 	public static function fromDTO(Location $place): self
 	{
-		$coordinates = $place->getCoordinates();
+		$coordinates = $place->coordinates;
 		return new self(
-			hb_handleNonBreakingSpaces($place->getName()),
+			hb_handleNonBreakingSpaces($place->name),
 			$coordinates !== null,
 			$coordinates !== null
-				? $coordinates->getLatitude() . ' ' . $coordinates->getLongitude() // e.g. 49.132456 16.123456
+				? $coordinates->latitude . ' ' . $coordinates->longitude // e.g. 49.132456 16.123456
 				: null,
 		);
 	}

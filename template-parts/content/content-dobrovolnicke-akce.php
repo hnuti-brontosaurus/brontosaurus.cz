@@ -22,7 +22,7 @@ function hb_postFilter(array $events, string $selectedFilter): array
     $filteredEvents = [];
 
     foreach ($events as $event) {
-        if ($selectedFilter === VoluntaryFilters::FILTER_ONE_DAY_EVENTS && $event->getDuration() === 1) {
+        if ($selectedFilter === VoluntaryFilters::FILTER_ONE_DAY_EVENTS && $event->duration === 1) {
             $filteredEvents[] = $event;
         }
     }

@@ -14,17 +14,17 @@ final readonly class Opportunity
 
 	public function __construct(OpportunityFromClient $opportunity)
 	{
-		$this->title = hb_handleNonBreakingSpaces($opportunity->getName());
+		$this->title = hb_handleNonBreakingSpaces($opportunity->name);
 
-		$this->introduction = hb_handleNonBreakingSpaces((string) $opportunity->getIntroduction());
+		$this->introduction = hb_handleNonBreakingSpaces((string) $opportunity->introduction);
 
 		$this->link = sprintf('%s/%s/%d/', // todo: use rather WP routing somehow
 			rtrim(get_site_url(), '/'),
 			'prilezitost',
-			$opportunity->getId(),
+			$opportunity->id,
 		);
 
-		$this->coverPhotoPath = $opportunity->getImage()->getMediumSizePath(); // todo small?
+		$this->coverPhotoPath = $opportunity->image->mediumSizePath; // todo small?
 	}
 
 }

@@ -17,8 +17,8 @@ final class AdministrationUnitsFlattener
 		$flattened = [];
 		foreach ($administrationUnits as $administrationUnit) {
 			$flattened[] = AdministrationUnit::fromUnit($administrationUnit);
-			foreach ($administrationUnit->getSubUnits() as $subUnit) {
-				$flattened[] = AdministrationUnit::fromSubUnit($subUnit, $administrationUnit->getName());
+			foreach ($administrationUnit->subUnits as $subUnit) {
+				$flattened[] = AdministrationUnit::fromSubUnit($subUnit, $administrationUnit->name);
 			}
 		}
 		return $flattened;

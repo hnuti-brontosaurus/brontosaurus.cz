@@ -19,9 +19,9 @@ final readonly class Age
 
 	public static function fromDTO(Event $event): self
 	{
-		$ageFrom = $event->getPropagation()->getMinimumAge();
+		$ageFrom = $event->propagation->minimumAge;
 		$ageFromListed = $ageFrom !== null;
-		$ageUntil = $event->getPropagation()->getMaximumAge();
+		$ageUntil = $event->propagation->maximumAge;
 		$ageUntilListed = $ageUntil !== null;
 
 		return new self(

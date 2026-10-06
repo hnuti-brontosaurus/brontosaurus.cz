@@ -20,7 +20,7 @@ try {
     $units = array_filter(
         $units,
         static fn(AdministrationUnit $unit): bool
-            => $unit->getCategory() === Category::BASIC_SECTION || $unit->getCategory() === Category::CLUB
+            => $unit->category === Category::BASIC_SECTION || $unit->category === Category::CLUB
     );
 
     // transfer DTOs to theme objects

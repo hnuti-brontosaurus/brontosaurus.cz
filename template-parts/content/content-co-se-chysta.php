@@ -52,7 +52,7 @@ try {
     $lastMonth = null;
 
     foreach ($events as $event) {
-        $monthNumber = $event->getStartDate()->getMonth();
+        $monthNumber = (int) $event->startDate->format('n');
         if ($lastMonth === null || $lastMonth !== $monthNumber) {
             if ($currentMonth !== null) {
                 $months[] = $currentMonth;

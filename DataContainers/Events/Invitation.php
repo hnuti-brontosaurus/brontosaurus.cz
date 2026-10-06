@@ -32,11 +32,11 @@ final readonly class Invitation
 
 	public static function fromDTO(Event $event): self
 	{
-		$accommodation = $event->getPropagation()->getAccommodation();
-		$food = $event->getPropagation()->getDiets();
-		$workDescription = $event->getPropagation()->getInvitationTextWorkDescription();
-		$workDays = $event->getPropagation()->getWorkingDays();
-		$workHoursPerDay = $event->getPropagation()->getWorkingHours();
+		$accommodation = $event->propagation->accommodation;
+		$food = $event->propagation->diets;
+		$workDescription = $event->propagation->invitationTextWorkDescription;
+		$workDays = $event->propagation->workingDays;
+		$workHoursPerDay = $event->propagation->workingHours;
 
 		$foodLabels = [
 			Diet::MEAT->value => 'ne-vegetariánská',
@@ -44,13 +44,13 @@ final readonly class Invitation
 			Diet::VEGAN->value => 'veganská',
 		];
 
-		$text = $event->getPropagation()->getInvitationTextAboutUs();
-		$photos = $event->getPropagation()->getImages();
+		$text = $event->propagation->invitationTextAboutUs;
+		$photos = $event->propagation->images;
 		$hasPresentation = $text !== null || \count($photos) > 0;
 
 		return new self(
-			hb_handleNonBreakingSpaces($event->getPropagation()->getInvitationTextIntroduction()),
-			hb_handleNonBreakingSpaces($event->getPropagation()->getInvitationTextPracticalInformation()),
+			hb_handleNonBreakingSpaces($event->propagation->invitationTextIntroduction),
+			hb_handleNonBreakingSpaces($event->propagation->invitationTextPracticalInformation),
 
 			$accommodation !== null,
 			$accommodation !== null ? hb_handleNonBreakingSpaces($accommodation) : null,

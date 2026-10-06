@@ -2,7 +2,7 @@
 	"name": "hnuti-brontosaurus/wp-theme",
 	"description": "WP theme for Hnutí Brontosaurus",
 	"require": {
-		"hnuti-brontosaurus/php-bis-api-client": "^5.0.0",
+		"hnuti-brontosaurus/php-bis-api-client": "^6.0.0-beta",
 		"nette/neon": "^3.2",
 		"nette/utils": "^4.0",
 		"tracy/tracy": "^2.8"

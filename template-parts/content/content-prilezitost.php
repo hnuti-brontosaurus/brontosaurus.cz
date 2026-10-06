@@ -30,7 +30,7 @@ try {
 	// add event name to title tag (source https://stackoverflow.com/a/62410632/3668474)
     add_filter(
         'document_title_parts',
-        fn(array $title) => array_merge($title, ['title' => $opportunity->getName()]),
+        fn(array $title) => array_merge($title, ['title' => $opportunity->name]),
     );
 
 } catch (OpportunityNotFound) {
@@ -53,80 +53,80 @@ try {
 			</div>
 		<?php else: ?>
 			<h1>
-				<span class="hb-mie-3"><?php echo $opportunity->getName(); ?></span>
+				<span class="hb-mie-3"><?php echo $opportunity->name; ?></span>
 
 				<span class="prilezitost__labels hb-eventLabels">
 					<span class="prilezitost__label hb-eventLabels__item">
-						<?php echo hb_opportunityCategoryToString($opportunity->getCategory()); ?>
+						<?php echo hb_opportunityCategoryToString($opportunity->category); ?>
 					</span>
 				</span>
 			</h1>
 
 			<div class="prilezitost__top">
-				<a class="prilezitost__image" href="<?php echo $opportunity->getImage()->getMediumSizePath(); ?>">
-					<img src="<?php echo $opportunity->getImage()->getMediumSizePath(); ?>" alt="">
+				<a class="prilezitost__image" href="<?php echo $opportunity->image->mediumSizePath; ?>">
+					<img src="<?php echo $opportunity->image->mediumSizePath; ?>" alt="">
 				</a>
 
 				<dl class="prilezitost__basic">
 					<dt>Datum</dt>
 					<dd>
-						<time datetime="<?php echo $opportunity->getStartDate()->toNativeDateTimeImmutable()->format($hb_dateFormatForRobot); ?>">
-							<?php echo hb_dateSpan($opportunity->getStartDate()->toNativeDateTimeImmutable(), $opportunity->getEndDate()->toNativeDateTimeImmutable(), $hb_dateFormatForHuman); ?>
+						<time datetime="<?php echo DateTimeImmutable::createFromInterface($opportunity->startDate)->format($hb_dateFormatForRobot); ?>">
+							<?php echo hb_dateSpan(DateTimeImmutable::createFromInterface($opportunity->startDate), DateTimeImmutable::createFromInterface($opportunity->endDate), $hb_dateFormatForHuman); ?>
 						</time>
 					</dd>
 
 					<dt>Místo</dt>
 					<dd>
-						<?php $location = $opportunity->getLocation(); ?>
-						<?php $coordinates = $location->getCoordinates(); ?>
+						<?php $location = $opportunity->location; ?>
+						<?php $coordinates = $location->coordinates; ?>
 						<?php if ($coordinates !== null): ?>
 							<a href="https://mapy.cz/zakladni?q=<?php echo $coordinates; ?>" rel="noopener noreferrer" target="_blank">
-								<?php echo $location->getName(); ?>
+								<?php echo $location->name; ?>
 							</a>
 						<?php else: ?>
-							<?php echo $location->getName(); ?>
+							<?php echo $location->name; ?>
 						<?php endif; ?>
 					</dd>
 
 					<dt>Kontakt</dt>
 					<dd>
-						<?php echo $opportunity->getContactPerson()->getName(); ?><br>
-						<?php if ($opportunity->getContactPerson()->getPhoneNumber() !== ''): ?>
-						<a class="detail__basicInformation-contact" href="tel:<?php echo $opportunity->getContactPerson()->getPhoneNumber(); ?>" rel="noopener noreferrer" target="_blank"><?php echo $opportunity->getContactPerson()->getPhoneNumber(); ?></a><br>
+						<?php echo $opportunity->contactPerson->name; ?><br>
+						<?php if ($opportunity->contactPerson->phoneNumber !== null && $opportunity->contactPerson->phoneNumber !== ''): ?>
+						<a class="detail__basicInformation-contact" href="tel:<?php echo $opportunity->contactPerson->phoneNumber; ?>" rel="noopener noreferrer" target="_blank"><?php echo $opportunity->contactPerson->phoneNumber; ?></a><br>
 						<?php endif; ?>
-						<a class="detail__basicInformation-contact" href="mailto:<?php echo $opportunity->getContactPerson()->getEmailAddress(); ?>" rel="noopener noreferrer" target="_blank"><?php echo $opportunity->getContactPerson()->getEmailAddress(); ?></a>
+						<a class="detail__basicInformation-contact" href="mailto:<?php echo $opportunity->contactPerson->emailAddress; ?>" rel="noopener noreferrer" target="_blank"><?php echo $opportunity->contactPerson->emailAddress; ?></a>
 					</dd>
 				</dl>
 			</div>
 
 			<section>
-				<?php echo $opportunity->getIntroduction(); ?>
+				<?php echo $opportunity->introduction; ?>
 			</section>
 
 			<!--section 2-->
 			<section>
 				<h2>Popis činnosti</h2>
-				<?php echo $opportunity->getDescription(); ?>
+				<?php echo $opportunity->description; ?>
 			</section>
 
 			<!--section 3-->
-			<?php if ($opportunity->getLocationBenefits() !== null): ?>
+			<?php if ($opportunity->locationBenefits !== null): ?>
 			<section>
 				<h2>Přínos pro lokalitu</h2>
-				<?php echo $opportunity->getLocationBenefits(); ?>
+				<?php echo $opportunity->locationBenefits; ?>
 			</section>
 			<?php endif; ?>
 
 			<!--section 4-->
 			<section>
 				<h2>Přínos ze spolupráce</h2>
-				<?php echo $opportunity->getPersonalBenefits(); ?>
+				<?php echo $opportunity->personalBenefits; ?>
 			</section>
 
 			<!--section 5-->
 			<section>
 				<h2>Požadavky</h2>
-				<?php echo $opportunity->getRequirements(); ?>
+				<?php echo $opportunity->requirements; ?>
 			</section>
 
 			<!--section 6-->
@@ -135,12 +135,12 @@ try {
 				<address class="hb-fst-n">
 					<dl class="prilezitost__contact">
 						<dt>Kontaktní osoba:</dt>
-						<dd><?php echo $opportunity->getContactPerson()->getName(); ?></dd>
+						<dd><?php echo $opportunity->contactPerson->name; ?></dd>
 						<dt>E-mail:</dt>
-						<dd><a class="prilezitost__email" href="mailto:<?php echo $opportunity->getContactPerson()->getEmailAddress(); ?>" rel="noopener noreferrer" target="_blank"><?php echo $opportunity->getContactPerson()->getEmailAddress(); ?></a></dd>
-						<?php if ($opportunity->getContactPerson()->getPhoneNumber() !== ''): ?>
+						<dd><a class="prilezitost__email" href="mailto:<?php echo $opportunity->contactPerson->emailAddress; ?>" rel="noopener noreferrer" target="_blank"><?php echo $opportunity->contactPerson->emailAddress; ?></a></dd>
+						<?php if ($opportunity->contactPerson->phoneNumber !== null && $opportunity->contactPerson->phoneNumber !== ''): ?>
 						<dt>Telefon:</dt>
-						<dd><a class="prilezitost__phone" href="tel:<?php echo $opportunity->getContactPerson()->getPhoneNumber(); ?>" rel="noopener noreferrer" target="_blank"><?php echo $opportunity->getContactPerson()->getPhoneNumber(); ?></a></dd>
+						<dd><a class="prilezitost__phone" href="tel:<?php echo $opportunity->contactPerson->phoneNumber; ?>" rel="noopener noreferrer" target="_blank"><?php echo $opportunity->contactPerson->phoneNumber; ?></a></dd>
 						<?php endif; ?>
 					</dl>
 				</address>

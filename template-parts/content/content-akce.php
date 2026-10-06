@@ -82,7 +82,7 @@ try {
     // add event name to title tag (source https://stackoverflow.com/a/62410632/3668474)
     add_filter(
         'document_title_parts',
-        fn(array $title) => array_merge($title, ['title' => $event->getName()]),
+        fn(array $title) => array_merge($title, ['title' => $event->name]),
     );
 
 } catch (EventNotFound) {

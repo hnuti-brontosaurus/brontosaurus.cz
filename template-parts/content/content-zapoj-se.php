@@ -55,39 +55,39 @@ $numberOfOpportunitiesToDisplayOnLoad = 6;
 ?>
 
 <?php function hb_opportunity(Opportunity $opportunity, string $dateFormatForHuman, string $dateFormatForRobot) { ?>
-	<a class="hb-event" href="prilezitost/<?php echo $opportunity->getId(); //todo: using rather WP routing somehow ?>">
+	<a class="hb-event" href="prilezitost/<?php echo $opportunity->id; //todo: using rather WP routing somehow ?>">
 		<div class="hb-event__imageWrapper">
-			<img alt="" class="hb-event__image" data-src="<?php echo $opportunity->getImage()->getMediumSizePath(); ?>">
+			<img alt="" class="hb-event__image" data-src="<?php echo $opportunity->image->mediumSizePath; ?>">
 			<noscript><?php // for search engines ?>
-				<img alt="" class="hb-event__image" src="<?php echo $opportunity->getImage()->getMediumSizePath(); ?>">
+				<img alt="" class="hb-event__image" src="<?php echo $opportunity->image->mediumSizePath; ?>">
 			</noscript>
 
 			<div class="hb-event__labels hb-eventLabels">
 				<div class="hb-eventLabels__item">
-					<?php echo hb_opportunityCategoryToString($opportunity->getCategory()); ?>
+					<?php echo hb_opportunityCategoryToString($opportunity->category); ?>
 				</div>
 			</div>
 		</div>
 
 		<header class="hb-event__header">
 			<h4 class="hb-event__heading">
-				<?php echo $opportunity->getName(); ?>
+				<?php echo $opportunity->name; ?>
 			</h4>
 
 			<div class="hb-event__meta">
-				<time class="hb-event__date" datetime="<?php echo $opportunity->getStartDate()->toNativeDateTimeImmutable()->format($dateFormatForRobot) ?>">
-					<?php echo hb_dateSpan($opportunity->getStartDate()->toNativeDateTimeImmutable(), $opportunity->getEndDate()->toNativeDateTimeImmutable(), $dateFormatForHuman); ?>
+				<time class="hb-event__date" datetime="<?php echo DateTimeImmutable::createFromInterface($opportunity->startDate)->format($dateFormatForRobot) ?>">
+					<?php echo hb_dateSpan(DateTimeImmutable::createFromInterface($opportunity->startDate), DateTimeImmutable::createFromInterface($opportunity->endDate), $dateFormatForHuman); ?>
 				</time>
 
 				<span class="hb-event__place" title="Místo konání">
-					<?php echo $opportunity->getLocation()->getName(); ?>
+					<?php echo $opportunity->location->name; ?>
 				</span>
 			</div>
 		</header>
 
 		<div class="hb-event__excerpt">
 			<?php
-				$text = (string) $opportunity->getIntroduction();
+				$text = (string) $opportunity->introduction;
 				$text = hb_strip_tags($text);
 				$text = Strings::truncate($text, 200);
 				$text = nl2br($text);
