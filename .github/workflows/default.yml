@@ -15,6 +15,7 @@ jobs:
                     zip -r brontosaurus-theme.zip . \
                         -i "parts/*" \
                         -i "templates/*" \
+                        -i "scripts/*" \
                         -i "functions.php" \
                         -i "index.php" \
                         -i "style.css" \
