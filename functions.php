@@ -14,7 +14,7 @@ add_action( 'enqueue_block_editor_assets', function() {
     wp_enqueue_script(
         'brontosaurus-editor',
         get_theme_file_uri( 'scripts/editor.js' ),
-        [ 'wp-blocks', 'wp-hooks', 'wp-data' ],
+        [ 'wp-blocks', 'wp-hooks', 'wp-element', 'wp-block-editor', 'wp-components' ],
         filemtime( get_theme_file_path( 'scripts/editor.js' ) ),
         true,
     );
