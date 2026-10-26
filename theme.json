@@ -49,7 +49,7 @@
       "customSpacingSize": false,
       "customMargin": true,
       "customPadding": true,
-      "customUnits": [ "rem" ],
+      "units": [ "rem" ],
       "spacingSizes": [
         { "slug": "x-small", "size": "0.325rem", "name": "Velmi malé" },
         { "slug": "small", "size": "0.65rem", "name": "Malé" },
