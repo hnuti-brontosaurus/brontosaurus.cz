@@ -122,6 +122,10 @@
           "fontWeight": "700"
         },
         "spacing": {
+          "margin": {
+            "top": "0",
+            "bottom": "0"
+          },
           "padding": {
             "left": "var(--wp--preset--spacing--normal)",
             "right": "var(--wp--preset--spacing--normal)"
