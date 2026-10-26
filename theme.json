@@ -47,6 +47,7 @@
     },
     "spacing": {
       "customSpacingSize": false,
+      "customMargin": true,
       "customPadding": true,
       "customUnits": [ "rem" ],
       "spacingSizes": [
@@ -103,6 +104,10 @@
       },
       "core/heading": {
         "spacing": {
+          "margin": {
+            "top": "var(--wp--preset--spacing--normal)",
+            "bottom": "0"
+          },
           "padding": {
             "left": "var(--wp--preset--spacing--normal)",
             "right": "var(--wp--preset--spacing--normal)"
