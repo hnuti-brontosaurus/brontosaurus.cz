@@ -105,7 +105,7 @@
       "core/heading": {
         "spacing": {
           "margin": {
-            "top": "var(--wp--preset--spacing--normal)",
+            "top": "var(--wp--preset--spacing--large)",
             "bottom": "0"
           },
           "padding": {
@@ -128,7 +128,7 @@
         },
         "spacing": {
           "margin": {
-            "top": "0",
+            "top": "var(--wp--preset--spacing--x-large)",
             "bottom": "0"
           },
           "padding": {
