@@ -10,16 +10,14 @@ Requires PHP: 7.4
 Text Domain: brontosaurus-theme
 */
 
-h2 {
-  text-align: left;
-}
-
+/* theme.json sets the default h2 alignment, but does not support media queries for responsive overrides. */
 @media (min-width: 60rem) {
   h2 {
     text-align: center;
   }
 }
 
+/* theme.json has no per-block max-inline-size setting to cap and center this image. */
 .wp-block-post-featured-image {
   max-inline-size: 90rem;
   margin-inline: auto;
