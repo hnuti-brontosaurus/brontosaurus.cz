@@ -2,3 +2,8 @@
 .editor-push-changes-to-global-styles-control {
   display: none !important;
 }
+
+/* Hide the empty Advanced panel after its block settings have been disabled. */
+.block-editor-block-inspector__advanced {
+  display: none !important;
+}
