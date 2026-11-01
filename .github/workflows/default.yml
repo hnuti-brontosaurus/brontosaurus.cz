@@ -16,6 +16,7 @@ jobs:
                         -i "parts/*" \
                         -i "templates/*" \
                         -i "scripts/*" \
+                        -i "images/*" \
                         -i "functions.php" \
                         -i "index.php" \
                         -i "style.css" \
