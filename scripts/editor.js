@@ -36,11 +36,13 @@
 
 	wp.hooks.addFilter(
 		'blocks.registerBlockType',
-		'brontosaurus/disable-core-typography-controls',
+		'brontosaurus/disable-core-advanced-and-typography-controls',
 		function( settings, name ) {
-			if ( name.startsWith( 'core/' ) && settings.supports && settings.supports.typography ) {
+			if ( name.startsWith( 'core/' ) && settings.supports ) {
 				settings.supports = {
 					...settings.supports,
+					anchor: false,
+					className: false,
 					typography: false,
 				};
 			}
