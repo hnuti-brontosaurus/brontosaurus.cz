@@ -1,14 +1,13 @@
 ( function( wp ) {
 	const spacerHeight = 'var(--wp--preset--spacing--normal)';
-	const spacerSizes = Array.from( { length: 11 }, function( _, size ) {
+	const spacerSizes = Array.from( { length: 10 }, function( _, index ) {
+		const size = index + 1;
+
 		return {
 			label: String( size ),
-			value:
-				size === 0
-					? '0'
-					: size === 1
-						? spacerHeight
-						: 'calc(var(--wp--preset--spacing--normal) * ' + size + ')',
+			value: size === 1
+				? spacerHeight
+				: 'calc(var(--wp--preset--spacing--normal) * ' + size + ')',
 		};
 	} );
 
@@ -46,7 +45,7 @@
 					const selectedSize = spacerSizes.findIndex( function( size ) {
 						return size.value === value;
 					} );
-					const rangeValue = selectedSize === -1 ? 1 : selectedSize;
+					const rangeValue = selectedSize === -1 ? 0 : selectedSize;
 					const isFlexible =
 						layout.selfStretch === 'fill' ||
 						layout.selfStretch === 'fit';
