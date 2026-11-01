@@ -20,9 +20,11 @@
 			];
 			settings.supports = {
 				...settings.supports,
+				background: false,
 				color: false,
 				dimensions: false,
 				border: false,
+				__experimentalBorder: false,
 				shadow: false,
 				spacing: false,
 				typography: false,

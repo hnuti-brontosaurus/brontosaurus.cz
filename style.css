@@ -23,7 +23,8 @@ Text Domain: brontosaurus-theme
   margin-inline: auto;
 }
 
+/* theme.json sets the primary button background by default; this gives secondary buttons the darker background. */
 .wp-block-button.is-style-secondary .wp-block-button__link {
   background-color: var(--wp--preset--color--bg-darker);
-  color: #fff;
+  color: var(--wp--preset--color--primary);
 }
