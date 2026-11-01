@@ -1,12 +1,16 @@
 ( function( wp ) {
 	const spacerHeight = 'var(--wp--preset--spacing--normal)';
-	const spacerSizes = [
-		{ label: '1x', value: spacerHeight },
-		{ label: '2x', value: 'calc(var(--wp--preset--spacing--normal) * 2)' },
-		{ label: '3x', value: 'calc(var(--wp--preset--spacing--normal) * 3)' },
-		{ label: '4x', value: 'calc(var(--wp--preset--spacing--normal) * 4)' },
-		{ label: '5x', value: 'calc(var(--wp--preset--spacing--normal) * 5)' },
-	];
+	const spacerSizes = Array.from( { length: 11 }, function( _, size ) {
+		return {
+			label: String( size ),
+			value:
+				size === 0
+					? '0'
+					: size === 1
+						? spacerHeight
+						: 'calc(var(--wp--preset--spacing--normal) * ' + size + ')',
+		};
+	} );
 
 	wp.hooks.addFilter(
 		'blocks.registerBlockType',
@@ -42,7 +46,7 @@
 					const selectedSize = spacerSizes.findIndex( function( size ) {
 						return size.value === value;
 					} );
-					const rangeValue = selectedSize === -1 ? 2 : selectedSize;
+					const rangeValue = selectedSize === -1 ? 1 : selectedSize;
 					const isFlexible =
 						layout.selfStretch === 'fill' ||
 						layout.selfStretch === 'fit';
@@ -92,7 +96,7 @@
 										if ( index !== undefined ) {
 											if ( isFlexLayout ) {
 												props.setAttributes( {
-													[ sizeAttribute ]: '0px',
+													[ sizeAttribute ]: '0',
 													style: {
 														...blockStyle,
 														layout: {
