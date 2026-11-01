@@ -1,4 +1,37 @@
 ( function( wp ) {
+	wp.hooks.addFilter(
+		'blocks.registerBlockType',
+		'brontosaurus/button-customizations',
+		function( settings, name ) {
+			if ( name !== 'core/button' ) {
+				return settings;
+			}
+
+			settings.styles = [
+				{
+					name: 'primary',
+					label: 'Hlavní',
+					isDefault: true,
+				},
+				{
+					name: 'secondary',
+					label: 'Vedlejší',
+				},
+			];
+			settings.supports = {
+				...settings.supports,
+				color: false,
+				dimensions: false,
+				border: false,
+				shadow: false,
+				spacing: false,
+				typography: false,
+			};
+
+			return settings;
+		}
+	);
+
 	const spacerHeight = 'var(--wp--preset--spacing--normal)';
 	const spacerSizes = Array.from( { length: 10 }, function( _, index ) {
 		const size = index + 1;

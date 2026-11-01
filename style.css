@@ -22,3 +22,8 @@ Text Domain: brontosaurus-theme
   max-inline-size: 90rem;
   margin-inline: auto;
 }
+
+.wp-block-button.is-style-secondary .wp-block-button__link {
+  background-color: var(--wp--preset--color--bg-darker);
+  color: #fff;
+}
