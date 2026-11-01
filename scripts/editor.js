@@ -41,12 +41,7 @@
 		tagName: 'a',
 		className: 'hb-link--paw',
 		edit: function( props ) {
-			const activeFormats = props.value.activeFormats || [];
-			const isLink = activeFormats.some( function( format ) {
-				return format.type === 'core/link';
-			} );
-
-			if ( ! isLink ) {
+			if ( ! wp.richText.getActiveFormat( props.value, 'core/link' ) ) {
 				return null;
 			}
 
