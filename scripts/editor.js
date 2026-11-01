@@ -34,6 +34,53 @@
 		}
 	);
 
+	const linkFormatName = 'brontosaurus/link-style';
+
+	wp.richText.registerFormatType( linkFormatName, {
+		title: 'Vzhled odkazu',
+		tagName: 'a',
+		className: 'hb-link--paw',
+		edit: function( props ) {
+			const activeFormats = props.value.activeFormats || [];
+			const isLink = activeFormats.some( function( format ) {
+				return format.type === 'core/link';
+			} );
+
+			if ( ! isLink ) {
+				return null;
+			}
+
+			const isPaw = props.isActive;
+
+			return wp.element.createElement( wp.components.ToolbarDropdownMenu, {
+				icon: isPaw ? 'admin-links' : 'editor-link',
+				label: 'Vzhled odkazu',
+				controls: [
+					{
+						title: 'Normální',
+						isActive: ! isPaw,
+						onClick: function() {
+							props.onChange(
+								wp.richText.removeFormat( props.value, linkFormatName )
+							);
+						},
+					},
+					{
+						title: 'S tlapou',
+						isActive: isPaw,
+						onClick: function() {
+							props.onChange(
+								wp.richText.toggleFormat( props.value, {
+									type: linkFormatName,
+								} )
+							);
+						},
+					},
+				],
+			} );
+		},
+	} );
+
 	const spacerHeight = 'var(--wp--preset--spacing--normal)';
 	const spacerSizes = Array.from( { length: 10 }, function( _, index ) {
 		const size = index + 1;

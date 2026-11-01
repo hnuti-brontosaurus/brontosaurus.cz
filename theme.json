@@ -4,7 +4,11 @@
   "settings": {
     "color": {
       "custom": true,
-      "customGradient": true,
+      "customGradient": false,
+      "defaultGradients": false,
+      "background": false,
+      "link": false,
+      "text": false,
       "palette": [
         { "slug": "primary", "color": "#00a651", "name": "Primární" },
         { "slug": "bg-darker", "color": "#f0f3f2", "name": "Pozadí tmavší" },
@@ -12,7 +16,8 @@
       ]
     },
     "typography": {
-      "customFontSize": true,
+      "customFontSize": false,
+      "defaultFontSizes": false,
       "fontFamilies": [
         {
           "slug": "delm",

@@ -28,3 +28,15 @@ Text Domain: brontosaurus-theme
   background-color: var(--wp--preset--color--bg-darker);
   color: var(--wp--preset--color--primary);
 }
+
+/* The editor's “S tlapou” link format displays the legacy paw icon before the link text. */
+a.hb-link--paw::before {
+  content: "";
+  display: inline-block;
+  inline-size: 0.8em;
+  block-size: 0.8em;
+  margin-inline-end: 0.3em;
+  background-color: currentColor;
+  mask: url("./images/icon-paw.svg") center / contain no-repeat;
+  vertical-align: -0.05em;
+}
