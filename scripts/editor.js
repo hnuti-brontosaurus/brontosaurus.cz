@@ -42,7 +42,8 @@
 				settings.supports = {
 					...settings.supports,
 					anchor: false,
-					className: false,
+					customClassName: false,
+					customCSS: false,
 					typography: false,
 				};
 			}

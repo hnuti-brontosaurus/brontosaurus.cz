@@ -12,6 +12,13 @@ add_action( 'wp_enqueue_scripts', function() {
 } );
 
 add_action( 'enqueue_block_editor_assets', function() {
+    wp_enqueue_style(
+        'brontosaurus-editor',
+        get_theme_file_uri( 'editor.css' ),
+        [],
+        filemtime( get_theme_file_path( 'editor.css' ) ),
+    );
+
     wp_enqueue_script(
         'brontosaurus-editor',
         get_theme_file_uri( 'scripts/editor.js' ),

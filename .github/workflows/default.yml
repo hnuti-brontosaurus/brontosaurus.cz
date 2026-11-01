@@ -19,6 +19,7 @@ jobs:
                         -i "images/*" \
                         -i "functions.php" \
                         -i "index.php" \
+                        -i "editor.css" \
                         -i "style.css" \
                         -i "theme.json"
 
