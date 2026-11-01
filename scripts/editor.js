@@ -1,11 +1,11 @@
 ( function( wp ) {
 	const spacerHeight = 'var(--wp--preset--spacing--normal)';
 	const spacerSizes = [
-		{ label: 'XS', value: 'var(--wp--preset--spacing--x-small)' },
-		{ label: 'S', value: 'var(--wp--preset--spacing--small)' },
-		{ label: 'M', value: spacerHeight },
-		{ label: 'L', value: 'var(--wp--preset--spacing--large)' },
-		{ label: 'XL', value: 'var(--wp--preset--spacing--x-large)' },
+		{ label: '1x', value: spacerHeight },
+		{ label: '2x', value: 'calc(var(--wp--preset--spacing--normal) * 2)' },
+		{ label: '3x', value: 'calc(var(--wp--preset--spacing--normal) * 3)' },
+		{ label: '4x', value: 'calc(var(--wp--preset--spacing--normal) * 4)' },
+		{ label: '5x', value: 'calc(var(--wp--preset--spacing--normal) * 5)' },
 	];
 
 	wp.hooks.addFilter(
