@@ -7,7 +7,8 @@
       "customGradient": true,
       "palette": [
         { "slug": "primary", "color": "#00a651", "name": "Primární" },
-        { "slug": "secondary", "color": "#f0f3f2", "name": "Pozadí" }
+        { "slug": "bg-darker", "color": "#f0f3f2", "name": "Pozadí tmavší" },
+        { "slug": "bg-lighter", "color": "#f9faf9", "name": "Pozadí světlejší" }
       ]
     },
     "typography": {
