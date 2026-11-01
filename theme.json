@@ -89,6 +89,16 @@
         "typography": {
           "textAlign": "left"
         }
+      },
+      "link": {
+        "color": {
+          "text": "inherit"
+        },
+        ":hover": {
+          "color": {
+            "text": "var(--wp--preset--color--primary)"
+          }
+        }
       }
     },
     "blocks": {
