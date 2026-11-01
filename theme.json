@@ -18,6 +18,7 @@
     "typography": {
       "customFontSize": false,
       "defaultFontSizes": false,
+      "dropCap": false,
       "fontFamily": false,
       "fontStyle": false,
       "fontWeight": false,

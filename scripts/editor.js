@@ -34,6 +34,21 @@
 		}
 	);
 
+	wp.hooks.addFilter(
+		'blocks.registerBlockType',
+		'brontosaurus/disable-core-typography-controls',
+		function( settings, name ) {
+			if ( name.startsWith( 'core/' ) && settings.supports && settings.supports.typography ) {
+				settings.supports = {
+					...settings.supports,
+					typography: false,
+				};
+			}
+
+			return settings;
+		}
+	);
+
 	const linkFormatName = 'brontosaurus/link-style';
 
 	wp.richText.registerFormatType( linkFormatName, {
