@@ -64,6 +64,9 @@
     }
   },
   "styles": {
+    "spacing": {
+      "blockGap": "0"
+    },
     "typography": {
       "fontFamily": "\"Delm Light\", sans-serif",
       "fontSize": "var(--wp--preset--font-size--normal)",
