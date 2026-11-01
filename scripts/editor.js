@@ -45,7 +45,7 @@
 					const selectedSize = spacerSizes.findIndex( function( size ) {
 						return size.value === value;
 					} );
-					const rangeValue = selectedSize === -1 ? 0 : selectedSize;
+					const rangeValue = selectedSize === -1 ? 1 : selectedSize + 1;
 					const isFlexible =
 						layout.selfStretch === 'fill' ||
 						layout.selfStretch === 'fit';
@@ -79,20 +79,22 @@
 								wp.element.createElement( wp.components.RangeControl, {
 									label: 'Size',
 									value: rangeValue,
-									min: 0,
-									max: spacerSizes.length - 1,
+									min: 1,
+									max: spacerSizes.length,
 									step: 1,
 									marks: spacerSizes.map(
 										function( size, index ) {
 											return {
-												value: index,
+												value: index + 1,
 												label: size.label,
 											};
 										}
 									),
 									withInputField: false,
-									onChange: function( index ) {
-										if ( index !== undefined ) {
+									onChange: function( size ) {
+										if ( size !== undefined ) {
+											const index = size - 1;
+
 											if ( isFlexLayout ) {
 												props.setAttributes( {
 													[ sizeAttribute ]: '0',
