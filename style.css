@@ -10,26 +10,26 @@ Requires PHP: 8.5
 Text Domain: brontosaurus-theme
 */
 
-/* theme.json sets the default h2 alignment, but does not support media queries for responsive overrides. */
+/* theme.json nastavuje výchozí zarovnání h2, ale nepodporuje responzivní přepsání pomocí media queries. */
 @media (min-width: 60rem) {
   h2 {
     text-align: center;
   }
 }
 
-/* theme.json has no per-block max-inline-size setting to cap and center this image. */
+/* theme.json nemá nastavení max-inline-size pro jednotlivé bloky, kterým by šel omezit a vycentrovat tento obrázek. */
 .wp-block-post-featured-image {
   max-inline-size: 90rem;
   margin-inline: auto;
 }
 
-/* theme.json sets the primary button background by default; this gives secondary buttons the darker background. */
+/* theme.json nastavuje výchozí pozadí hlavního tlačítka; vedlejší tlačítka mají díky tomu tmavší pozadí. */
 .wp-block-button.is-style-secondary .wp-block-button__link {
   background-color: var(--wp--preset--color--bg-darker);
   color: var(--wp--preset--color--primary);
 }
 
-/* The editor's “S tlapou” link format displays the legacy paw icon before the link text. */
+/* Formát odkazu „S tlapou“ v editoru zobrazuje před textem odkazu starší ikonu tlapy. */
 a.hb-link--paw::before {
   content: "";
   display: inline-block;

@@ -1,9 +1,9 @@
-/* Hide the core editor's "Apply globally" block styles control. */
+/* Skrýt ovládací prvek „Použít globálně“ pro styly bloků v editoru. */
 .editor-push-changes-to-global-styles-control {
   display: none !important;
 }
 
-/* Hide the empty Advanced panel after its block settings have been disabled. */
+/* Skrýt prázdný panel Pokročilé po vypnutí jeho nastavení bloků. */
 .block-editor-block-inspector__advanced {
   display: none !important;
 }

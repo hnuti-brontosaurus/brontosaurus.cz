@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/devcontainers/php:4-8.5-bookworm
 
-# Remove the broken Yarn repo that has an expired GPG key
+# Odstranit nefunkční repozitář Yarn s prošlým klíčem GPG.
 RUN rm -f /etc/apt/sources.list.d/yarn.list
 
 RUN apt-get update && apt-get install -y default-mysql-client && rm -rf /var/lib/apt/lists/*
@@ -9,7 +9,7 @@ RUN docker-php-ext-install mysqli pdo_mysql
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs
 
-# wp cli
+# WP-CLI
 RUN curl -fsSL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /usr/local/bin/wp-cli.phar \
     && chmod +x /usr/local/bin/wp-cli.phar \
     && printf '%s\n' '#!/bin/sh' 'exec php -d display_errors=stderr /usr/local/bin/wp-cli.phar "$@"' > /usr/local/bin/wp \

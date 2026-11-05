@@ -1,25 +1,25 @@
-# Brontosaurus FSE Theme Skeleton
+# Základ šablony Brontosaurus FSE
 
-This folder contains a minimal WordPress Full Site Editing theme skeleton.
+Tato složka obsahuje základní šablonu WordPressu pro úpravy celého webu (Full Site Editing).
 
-## Contents
+## Obsah
 
-- `style.css` — theme metadata and header.
-- `functions.php` — theme setup and block support.
-- `theme.json` — FSE theme configuration.
-- `index.php` — required fallback file.
-- `templates/index.html` — front page template.
-- `templates/single.html` — single post template.
-- `parts/header.html` — header template part.
-- `parts/footer.html` — footer template part.
+- `style.css` — metadata šablony a styly.
+- `functions.php` — nastavení šablony a podpora bloků.
+- `theme.json` — konfigurace šablony pro FSE.
+- `index.php` — povinná záložní šablona.
+- `templates/index.html` — šablona úvodní stránky.
+- `templates/single.html` — šablona příspěvku.
+- `parts/header.html` — část šablony pro záhlaví.
+- `parts/footer.html` — část šablony pro zápatí.
 
-## BIS events block
+## Blok akcí z BIS
 
-The **Akce z BIS** block lists upcoming events from the Brontosaurus information system.
-In the block settings, choose an optional tag and display between 1 and 12 events.
-The event list is rendered on the server and cached for five minutes.
+Blok **Akce z BIS** zobrazuje nadcházející akce z Brontosauřího informačního systému.
+V nastavení bloku lze vybrat štítek a počet zobrazovaných akcí od 1 do 12.
+Seznam akcí se vykresluje na serveru a ukládá do mezipaměti na pět minut.
 
-Install the PHP dependency before activating the theme:
+Před aktivací šablony nainstalujte závislosti PHP:
 
 ```bash
 composer install

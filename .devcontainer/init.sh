@@ -5,7 +5,7 @@ echo "Starting WordPress initialization..."
 
 IS_CODESPACES=0
 
-# Determine the site URL
+# Určit URL webu.
 if [ -n "$CODESPACES" ] && [ -n "$CODESPACE_NAME" ] && [ -n "$GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN" ]; then
     SITE_URL="https://${CODESPACE_NAME}-8080.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
     echo "Codespaces detected! Site URL: $SITE_URL"
@@ -15,7 +15,7 @@ else
     echo "Local environment. Site URL: $SITE_URL"
 fi
 
-# Create wp-config.php if it doesn't exist
+# Vytvořit wp-config.php, pokud ještě neexistuje.
 if [ ! -f "/var/www/html/wp-config.php" ]; then
     echo "Creating wp-config.php..."
     sudo -u www-data wp config create \
@@ -30,7 +30,7 @@ else
     echo "wp-config.php already exists"
 fi
 
-# --- Codespaces URL handler setup ---
+# --- Nastavení obsluhy URL pro Codespaces ---
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 echo "Copying codespaces-urls.php from $SCRIPT_DIR..."
 sudo cp "$SCRIPT_DIR/codespaces-urls.php" /var/www/html/codespaces-urls.php
@@ -47,9 +47,9 @@ fi
 
 echo "wp-config.php first 3 lines:"
 head -3 /var/www/html/wp-config.php
-# --- End Codespaces URL handler setup ---
+# --- Konec nastavení obsluhy URL pro Codespaces ---
 
-# Wait for database
+# Počkat na databázi.
 echo "Waiting for database connection..."
 until sudo -u www-data wp db check --path=/var/www/html 2>/dev/null; do
     echo "Database not ready, waiting..."
@@ -57,7 +57,7 @@ until sudo -u www-data wp db check --path=/var/www/html 2>/dev/null; do
 done
 echo "Database is ready!"
 
-# Install or update WordPress
+# Nainstalovat nebo aktualizovat WordPress.
 if ! sudo -u www-data wp core is-installed --path=/var/www/html 2>/dev/null; then
     echo "Installing WordPress..."
     sudo -u www-data wp core install \
@@ -76,8 +76,8 @@ else
     sudo -u www-data wp option update siteurl "$SITE_URL" --path=/var/www/html
 fi
 
-# Helper: create a page only if it doesn't exist (matched by slug)
-# Usage: PAGE_ID=$(create_or_get_page "Title" "slug")
+# Pomocná funkce: vytvořit stránku, jen pokud ještě neexistuje (podle slugu).
+# Použití: PAGE_ID=$(create_or_get_page "Název" "slug")
 create_or_get_page() {
     local title="$1"
     local slug="$2"
@@ -102,7 +102,7 @@ create_or_get_page() {
     fi
 }
 
-# Create pages and store their IDs in an associative array
+# Vytvořit stránky a uložit jejich ID do asociativního pole.
 declare -A PAGE_IDS
 
 declare -a POSTS=(
@@ -134,18 +134,18 @@ for post in "${POSTS[@]}"; do
     echo "Page '$title' (slug: $slug) → ID: $id"
 done
 
-# Now you can reference any page by slug, e.g.:
-# PAGE_IDS["hlavni-stranka"], PAGE_IDS["kontakty"], etc.
+# Nyní lze na stránky odkazovat podle slugu, například:
+# PAGE_IDS["hlavni-stranka"], PAGE_IDS["kontakty"] atd.
 
-# Set homepage as the front page
+# Nastavit úvodní stránku jako titulní stránku webu.
 sudo -u www-data wp option update show_on_front page --path=/var/www/html
 sudo -u www-data wp option update page_on_front "${PAGE_IDS["hlavni-stranka"]}" --path=/var/www/html
 echo "Front page set to: ${PAGE_IDS["hlavni-stranka"]}"
 
-# Set permalinks
+# Nastavit trvalé odkazy.
 sudo -u www-data wp rewrite structure '/%postname%/' --path=/var/www/html
 sudo -u www-data wp rewrite flush --path=/var/www/html
-# After the rewrite flush lines, add:
+# Za příkazy pro obnovení pravidel přepisování přidat:
 sudo tee /var/www/html/.htaccess > /dev/null <<'EOF'
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
@@ -160,7 +160,7 @@ RewriteRule . /index.php [L]
 EOF
 sudo chown www-data:www-data /var/www/html/.htaccess
 
-# Symlink the theme from the workspace root so WordPress can use it.
+# Vytvořit symbolický odkaz na šablonu z kořenové složky pracovního prostoru, aby ji WordPress mohl používat.
 THEME_SOURCE="/workspaces/brontosaurus.cz"
 THEME_SLUG="brontosaurus-theme"
 THEME_TARGET="/var/www/html/wp-content/themes/$THEME_SLUG"
@@ -177,18 +177,18 @@ else
     echo "Theme already exists at $THEME_TARGET"
 fi
 
-# Activate the theme by default.
+# Ve výchozím nastavení aktivovat šablonu.
 echo "Activating theme..."
 sudo -u www-data wp theme activate "$THEME_SLUG" --path=/var/www/html
 echo "Theme activated!"
 
-# Create WordPress menus
+# Vytvořit nabídky WordPressu.
 echo "Creating WordPress menus..."
 
-# Temporarily disable set -e for menu operations to continue on errors
+# Dočasně vypnout set -e, aby operace s nabídkami pokračovaly i při chybě.
 set +e
 
-# Helper function to create menu and assign to location
+# Pomocná funkce pro vytvoření nabídky a její přiřazení k umístění.
 create_and_assign_menu() {
     local menu_name="$1"
     local location="$2"
@@ -222,11 +222,11 @@ create_and_assign_menu() {
         sudo -u www-data wp menu location assign "$menu_id" "$location" --path=/var/www/html 2>/dev/null >&2 || true
     fi
     
-    # Only this line goes to stdout — the actual return value
+    # Na standardní výstup poslat pouze tento řádek — skutečnou návratovou hodnotu.
     echo "$menu_id"
 }
 
-# Helper function to add pages to menu
+# Pomocná funkce pro přidání stránek do nabídky.
 add_pages_to_menu() {
     local menu_id="$1"
     local menu_name="$2"
@@ -240,12 +240,12 @@ add_pages_to_menu() {
     
     echo "Adding pages to menu '$menu_name' (ID: $menu_id)..."
 
-    # Cache existing menu item object IDs for idempotency
+    # Uložit ID objektů stávajících položek nabídky pro idempotentní běh.
     local existing_item_ids
     existing_item_ids=$(sudo -u www-data wp menu item list "$menu_id" --fields=object_id --format=csv --path=/var/www/html 2>/dev/null | tail -n +2)
 
     for slug in "${page_slugs[@]}"; do
-        # Look up page ID by slug directly from database
+        # Vyhledat ID stránky podle slugu přímo v databázi.
         local page_id
         page_id=$(sudo -u www-data wp post list --post_type=page --name="$slug" --field=ID --path=/var/www/html 2>/dev/null | grep -v '^$' | head -1)
 
@@ -268,7 +268,7 @@ add_pages_to_menu() {
     done
 }
 
-# Define page slugs for each menu
+# Definovat slugy stránek pro jednotlivé nabídky.
 declare -a HEADER_MENU_PAGES=(
     "dobrovolnicke-akce"
     "kurzy-a-prednasky"
@@ -304,23 +304,23 @@ declare -a FOOTER_RIGHT_MENU_PAGES=(
     "english"
 )
 
-# Create all four menus and get their IDs
+# Vytvořit všechny čtyři nabídky a získat jejich ID.
 HEADER_MENU_ID=$(create_and_assign_menu "Hlavní navigace" "header" || echo "")
 FOOTER_LEFT_MENU_ID=$(create_and_assign_menu "Patička – vlevo" "footer-left" || echo "")
 FOOTER_CENTER_MENU_ID=$(create_and_assign_menu "Patička – uprostřed" "footer-center" || echo "")
 FOOTER_RIGHT_MENU_ID=$(create_and_assign_menu "Patička – vpravo" "footer-right" || echo "")
 
-# Debug: Show what menu IDs we got
+# Ladění: zobrazit získaná ID nabídek.
 echo "Menu IDs: Header=$HEADER_MENU_ID, Footer-Left=$FOOTER_LEFT_MENU_ID, Footer-Center=$FOOTER_CENTER_MENU_ID, Footer-Right=$FOOTER_RIGHT_MENU_ID"
 
-# Verify we have valid menu IDs before proceeding
+# Před pokračováním ověřit, že máme platná ID nabídek.
 if [ -z "$HEADER_MENU_ID" ] || [ -z "$FOOTER_LEFT_MENU_ID" ] || [ -z "$FOOTER_CENTER_MENU_ID" ] || [ -z "$FOOTER_RIGHT_MENU_ID" ]; then
     echo "WARNING: Some menus failed to create. Attempting recovery..."
-    # List all menus to see current state
+    # Vypsat všechny nabídky a zkontrolovat jejich aktuální stav.
     sudo -u www-data wp menu list --format=table --path=/var/www/html 2>/dev/null || true
 fi
 
-# Assign pages to menus
+# Přiřadit stránky do nabídek.
 add_pages_to_menu "$HEADER_MENU_ID" "Hlavní navigace" "${HEADER_MENU_PAGES[@]}"
 add_pages_to_menu "$FOOTER_LEFT_MENU_ID" "Patička – vlevo" "${FOOTER_LEFT_MENU_PAGES[@]}"
 add_pages_to_menu "$FOOTER_CENTER_MENU_ID" "Patička – uprostřed" "${FOOTER_CENTER_MENU_PAGES[@]}"
@@ -328,9 +328,9 @@ add_pages_to_menu "$FOOTER_RIGHT_MENU_ID" "Patička – vpravo" "${FOOTER_RIGHT_
 
 echo "WordPress menus created, assigned to locations, and populated with pages!"
 
-# Re-enable set -e for remaining operations
+# Znovu zapnout set -e pro zbývající operace.
 set -e
 
-# Start Apache
+# Spustit Apache.
 echo "Starting Apache..."
 sudo apache2ctl -D FOREGROUND

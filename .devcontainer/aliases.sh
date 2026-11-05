@@ -1,8 +1,8 @@
-# Configure bash aliases for git commands
+# Nastavit aliasy bash pro příkazy Gitu.
 echo "Configuring bash aliases..."
 cat >> ~/.bashrc << 'ALIASES_EOF'
 
-# Git aliases
+# Aliasy Gitu
 alias ggs='git status'
 alias ggd='git diff'
 alias ggds='git diff --staged'

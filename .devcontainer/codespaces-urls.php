@@ -1,10 +1,10 @@
 <?php
 /**
- * Codespaces URL Handler
+ * Obsluha URL pro Codespaces
  *
- * This file is require'd at the very top of wp-config.php so it runs
- * BEFORE WordPress reads any DB options or does any redirects.
- * That's why this can't be a mu-plugin — mu-plugins load too late.
+ * Tento soubor se vkládá na úplný začátek wp-config.php, aby se spustil
+ * PŘED načtením nastavení databáze nebo přesměrováním ve WordPressu.
+ * Proto jej nelze použít jako mu-plugin — ty se načítají příliš pozdě.
  */
 
 $is_codespaces = boolval(getenv('CODESPACES'));
@@ -14,19 +14,19 @@ $codespace_domain = getenv('GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN');
 if ($is_codespaces && $codespace_name && $codespace_domain) {
     $site_domain = $codespace_name . '-8080.' . $codespace_domain;
 
-    // Override the WordPress home and site URL constants
+    // Přepsat konstanty URL domovské stránky a webu ve WordPressu.
     define('WP_HOME', 'https://' . $site_domain);
     define('WP_SITEURL', 'https://' . $site_domain);
 
-    // Tell WordPress we're behind an HTTPS reverse proxy
+    // Oznámit WordPressu, že je za reverzní proxy HTTPS.
     $_SERVER['HTTPS'] = 'on';
 
-    // This is the critical piece: WordPress uses HTTP_HOST to generate
-    // ALL URLs — permalinks, asset URLs, admin redirects, everything.
-    // Without this, WP still thinks it's on localhost:80 and generates
-    // wrong URLs even with the constants set above.
+    // Tohle je klíčové: WordPress používá HTTP_HOST pro generování VŠECH
+    // URL — trvalých odkazů, adres souborů i přesměrování administrace.
+    // Bez toho si stále myslí, že běží na localhost:80, a generuje
+    // nesprávné URL i při nastavení výše uvedených konstant.
     $_SERVER['HTTP_HOST'] = $site_domain;
 
-    // Prevent WordPress from thinking it needs to redirect to port 80/443
+    // Zabránit WordPressu v domněnce, že má přesměrovat na port 80/443.
     $_SERVER['SERVER_PORT'] = '443';
 }
