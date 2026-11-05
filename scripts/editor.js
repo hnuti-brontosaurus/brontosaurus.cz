@@ -441,7 +441,7 @@
 						),
 						wp.element.createElement(
 							wp.components.PanelBody,
-							{ title: 'vše' },
+							{ title: 'vše', initialOpen: false },
 							renderFilterControls(
 								props.attributes,
 								function( updates ) {
