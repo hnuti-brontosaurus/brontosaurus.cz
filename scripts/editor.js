@@ -238,6 +238,7 @@
 		},
 		edit: function( props ) {
 			const blockProps = wp.blockEditor.useBlockProps();
+			const [ expandedFilterIndex, setExpandedFilterIndex ] = wp.element.useState( null );
 			const filters = [
 				{
 					attribute: 'group',
@@ -368,6 +369,22 @@
 				filters.forEach( function( filter ) {
 					newFilter[ filter.attribute ] = [];
 				} );
+				setExpandedFilterIndex( customFilters.length );
+				props.setAttributes( {
+					filters: customFilters.concat( [ newFilter ] ),
+				} );
+			};
+			const duplicateFilter = function( source, name ) {
+				const newFilter = { name: name + ' (kopie)' };
+				filters.forEach( function( filter ) {
+					const currentValue = source[ filter.attribute ];
+					newFilter[ filter.attribute ] = Array.isArray( currentValue )
+						? currentValue.slice()
+						: typeof currentValue === 'string'
+							? currentValue.split( ',' ).filter( Boolean )
+							: [];
+				} );
+				setExpandedFilterIndex( customFilters.length );
 				props.setAttributes( {
 					filters: customFilters.concat( [ newFilter ] ),
 				} );
@@ -378,6 +395,7 @@
 						return filterIndex !== index;
 					} ),
 				} );
+				setExpandedFilterIndex( null );
 			};
 
 			return wp.element.createElement(
@@ -401,19 +419,6 @@
 					wp.element.createElement(
 						wp.components.PanelBody,
 						{ title: 'Výpis akcí' },
-						wp.element.createElement(
-							'p',
-							null,
-							'U každého filtru lze vybrat více možností. Bez výběru se filtr nepoužije.'
-						),
-						renderFilterControls(
-							props.attributes,
-							function( updates ) {
-								props.setAttributes( updates );
-							},
-							'base-',
-							false
-						),
 						wp.element.createElement( wp.components.RangeControl, {
 							label: 'Počet akcí',
 							value: props.attributes.limit,
@@ -429,6 +434,33 @@
 					wp.element.createElement(
 						wp.components.PanelBody,
 						{ title: 'Nastavení filtrů', initialOpen: false },
+						wp.element.createElement(
+							'p',
+							null,
+							'U každého filtru lze vybrat více možností. Bez výběru se filtr nepoužije.'
+						),
+						wp.element.createElement(
+							wp.components.PanelBody,
+							{ title: 'Vše', initialOpen: true },
+							wp.element.createElement(
+								wp.components.Button,
+								{
+									variant: 'secondary',
+									onClick: function() {
+										duplicateFilter( props.attributes, 'Vše' );
+									},
+								},
+								'Duplikovat'
+							),
+							renderFilterControls(
+								props.attributes,
+								function( updates ) {
+									props.setAttributes( updates );
+								},
+								'all-',
+								false
+							)
+						),
 						customFilters.map( function( filter, index ) {
 							const filterName = typeof filter.name === 'string' && filter.name
 								? filter.name
@@ -439,7 +471,7 @@
 								{
 									key: 'filter-' + index,
 									title: filterName,
-									initialOpen: false,
+									initialOpen: expandedFilterIndex === index,
 								},
 								wp.element.createElement( wp.components.TextControl, {
 									label: 'Název filtru',
@@ -466,6 +498,16 @@
 										},
 									},
 									'Odebrat filtr'
+								),
+								wp.element.createElement(
+									wp.components.Button,
+									{
+										variant: 'secondary',
+										onClick: function() {
+											duplicateFilter( filter, filterName );
+										},
+									},
+									'Duplikovat'
 								)
 							);
 						} ),
