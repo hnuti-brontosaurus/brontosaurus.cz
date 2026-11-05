@@ -44,6 +44,10 @@ function brontosaurus_register_bis_akce_block(): void
 				'type' => 'string',
 				'default' => '',
 			],
+			'filters' => [
+				'type' => 'array',
+				'default' => [],
+			],
 		],
 		'render_callback' => 'brontosaurus_render_bis_akce_block',
 	]);
@@ -56,6 +60,52 @@ function brontosaurus_render_bis_akce_block(array $attributes): string
 		? min(15, max(3, (int) $attributes['limit']))
 		: 9;
 
+	$views = [
+		[
+			'label' => 'Vše',
+			'filters' => $attributes,
+		],
+	];
+	$customFilters = isset($attributes['filters']) && is_array($attributes['filters'])
+		? $attributes['filters']
+		: [];
+	foreach ($customFilters as $filter) {
+		if (!is_array($filter)) {
+			continue;
+		}
+
+		$views[] = [
+			'label' => isset($filter['name']) && is_string($filter['name']) && $filter['name'] !== ''
+				? $filter['name']
+				: 'Filtr',
+			'filters' => $filter,
+		];
+	}
+
+	$markup = '<div class="bis-akce"><div class="bis-akce__tabs" role="group" aria-label="Přepnout výpis akcí">';
+	$panels = '';
+	foreach ($views as $index => $view) {
+		$panelId = wp_unique_id('bis-akce-view-');
+		$markup .= sprintf(
+			'<button class="bis-akce__tab" type="button" aria-controls="%s" aria-pressed="%s" data-bis-akce-view="%s">%s</button>',
+			esc_attr($panelId),
+			$index === 0 ? 'true' : 'false',
+			esc_attr($panelId),
+			esc_html($view['label']),
+		);
+		$panels .= sprintf(
+			'<div class="bis-akce__view" id="%s" data-bis-akce-panel%s>%s</div>',
+			esc_attr($panelId),
+			$index === 0 ? '' : ' hidden',
+			brontosaurus_bis_events_markup($view['filters'], $limit),
+		);
+	}
+
+	return $markup . '</div><div class="bis-akce__views">' . $panels . '</div></div>';
+}
+
+function brontosaurus_bis_events_markup(array $attributes, int $limit): string
+{
 	$tags = array_values(array_filter(array_map(
 		static fn(string $value): ?Tag => Tag::tryFrom($value),
 		brontosaurus_bis_selected_values($attributes, 'tag'),
@@ -165,7 +215,7 @@ function brontosaurus_render_bis_akce_block(array $attributes): string
 		$items .= '</div></li>';
 	}
 
-	$markup = '<ul class="bis-akce">' . $items . '</ul>';
+	$markup = '<ul class="bis-akce__list">' . $items . '</ul>';
 	set_transient($cacheKey, $markup, 5 * MINUTE_IN_SECONDS);
 
 	return $markup;
@@ -173,9 +223,13 @@ function brontosaurus_render_bis_akce_block(array $attributes): string
 
 function brontosaurus_bis_selected_values(array $attributes, string $name): array
 {
-	$value = isset($attributes[$name]) && is_string($attributes[$name])
-		? $attributes[$name]
-		: '';
+	$value = $attributes[$name] ?? '';
+	if (is_array($value)) {
+		return array_values(array_filter($value, 'is_string'));
+	}
+	if (!is_string($value)) {
+		return [];
+	}
 
 	return array_values(array_filter(explode(',', $value), static fn(string $item): bool => $item !== ''));
 }

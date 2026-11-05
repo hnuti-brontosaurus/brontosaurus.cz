@@ -234,6 +234,7 @@
 			category: { type: 'string', default: '' },
 			group: { type: 'string', default: '' },
 			region: { type: 'string', default: '' },
+			filters: { type: 'array', default: [] },
 		},
 		edit: function( props ) {
 			const blockProps = wp.blockEditor.useBlockProps();
@@ -317,6 +318,67 @@
 				},
 			];
 
+			const renderFilterControls = function( values, onChange, prefix, storeAsArray ) {
+				return filters.map( function( filter ) {
+					const currentValue = values[ filter.attribute ];
+					const selectedValues = Array.isArray( currentValue )
+						? currentValue
+						: typeof currentValue === 'string'
+							? currentValue.split( ',' ).filter( Boolean )
+							: [];
+
+					return wp.element.createElement( wp.components.SelectControl, {
+						key: prefix + filter.attribute,
+						label: filter.label,
+						value: selectedValues,
+						options: filter.options,
+						multiple: true,
+						onChange: function( value ) {
+							const selected = Array.isArray( value )
+								? value
+								: value
+									? [ value ]
+									: [];
+							onChange( {
+								[ filter.attribute ]: storeAsArray
+									? selected
+									: selected.join( ',' ),
+							} );
+						},
+					} );
+				} );
+			};
+			const customFilters = Array.isArray( props.attributes.filters )
+				? props.attributes.filters.filter( function( filter ) {
+					return filter && typeof filter === 'object' && ! Array.isArray( filter );
+				} )
+				: [];
+			const updateFilter = function( index, updates ) {
+				props.setAttributes( {
+					filters: customFilters.map( function( filter, filterIndex ) {
+						return filterIndex === index
+							? Object.assign( {}, filter, updates )
+							: filter;
+					} ),
+				} );
+			};
+			const addFilter = function() {
+				const newFilter = { name: 'Nový filtr' };
+				filters.forEach( function( filter ) {
+					newFilter[ filter.attribute ] = [];
+				} );
+				props.setAttributes( {
+					filters: customFilters.concat( [ newFilter ] ),
+				} );
+			};
+			const removeFilter = function( index ) {
+				props.setAttributes( {
+					filters: customFilters.filter( function( filter, filterIndex ) {
+						return filterIndex !== index;
+					} ),
+				} );
+			};
+
 			return wp.element.createElement(
 				wp.element.Fragment,
 				null,
@@ -337,28 +399,20 @@
 					null,
 					wp.element.createElement(
 						wp.components.PanelBody,
-						{ title: 'Nastavení akcí' },
+						{ title: 'Výpis akcí' },
 						wp.element.createElement(
 							'p',
 							null,
 							'U každého filtru lze vybrat více možností. Bez výběru se filtr nepoužije.'
 						),
-						filters.map( function( filter ) {
-							return wp.element.createElement( wp.components.SelectControl, {
-								key: filter.attribute,
-								label: filter.label,
-								value: ( props.attributes[ filter.attribute ] || '' )
-									.split( ',' )
-									.filter( Boolean ),
-								options: filter.options,
-								multiple: true,
-								onChange: function( value ) {
-									props.setAttributes( {
-										[ filter.attribute ]: value.join( ',' ),
-									} );
-								},
-							} );
-						} ),
+						renderFilterControls(
+							props.attributes,
+							function( updates ) {
+								props.setAttributes( updates );
+							},
+							'base-',
+							false
+						),
 						wp.element.createElement( wp.components.RangeControl, {
 							label: 'Počet akcí',
 							value: props.attributes.limit,
@@ -370,6 +424,58 @@
 								}
 							},
 						} )
+					),
+					wp.element.createElement(
+						wp.components.PanelBody,
+						{ title: 'Nastavení filtrů', initialOpen: false },
+						customFilters.map( function( filter, index ) {
+							const filterName = typeof filter.name === 'string' && filter.name
+								? filter.name
+								: 'Nový filtr';
+
+							return wp.element.createElement(
+								wp.components.PanelBody,
+								{
+									key: 'filter-' + index,
+									title: filterName,
+									initialOpen: false,
+								},
+								wp.element.createElement( wp.components.TextControl, {
+									label: 'Název filtru',
+									value: typeof filter.name === 'string' ? filter.name : '',
+									onChange: function( name ) {
+										updateFilter( index, { name: name } );
+									},
+								} ),
+								renderFilterControls(
+									filter,
+									function( updates ) {
+										updateFilter( index, updates );
+									},
+									'custom-' + index + '-',
+									true
+								),
+								wp.element.createElement(
+									wp.components.Button,
+									{
+										variant: 'secondary',
+										isDestructive: true,
+										onClick: function() {
+											removeFilter( index );
+										},
+									},
+									'Odebrat filtr'
+								)
+							);
+						} ),
+						wp.element.createElement(
+							wp.components.Button,
+							{
+								variant: 'secondary',
+								onClick: addFilter,
+							},
+							'Přidat filtr'
+						)
 					)
 				)
 			);

@@ -12,6 +12,13 @@ add_action( 'after_setup_theme', function() {
 
 add_action( 'wp_enqueue_scripts', function() {
     wp_enqueue_style( 'brontosaurus-style', get_stylesheet_uri() );
+    wp_enqueue_script(
+        'brontosaurus-bis-akce',
+        get_theme_file_uri( 'scripts/bis-akce.js' ),
+        [],
+        filemtime( get_theme_file_path( 'scripts/bis-akce.js' ) ),
+        true,
+    );
 } );
 
 add_action( 'enqueue_block_editor_assets', function() {
@@ -27,6 +34,14 @@ add_action( 'enqueue_block_editor_assets', function() {
         get_theme_file_uri( 'scripts/editor.js' ),
         [ 'wp-blocks', 'wp-hooks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-rich-text', 'wp-server-side-render' ],
         filemtime( get_theme_file_path( 'scripts/editor.js' ) ),
+        true,
+    );
+
+    wp_enqueue_script(
+        'brontosaurus-bis-akce',
+        get_theme_file_uri( 'scripts/bis-akce.js' ),
+        [],
+        filemtime( get_theme_file_path( 'scripts/bis-akce.js' ) ),
         true,
     );
 } );
