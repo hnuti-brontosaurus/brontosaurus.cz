@@ -441,17 +441,7 @@
 						),
 						wp.element.createElement(
 							wp.components.PanelBody,
-							{ title: 'Vše', initialOpen: true },
-							wp.element.createElement(
-								wp.components.Button,
-								{
-									variant: 'secondary',
-									onClick: function() {
-										duplicateFilter( props.attributes, 'Vše' );
-									},
-								},
-								'Duplikovat'
-							),
+							{ title: 'vše' },
 							renderFilterControls(
 								props.attributes,
 								function( updates ) {
@@ -459,6 +449,16 @@
 								},
 								'all-',
 								false
+							),
+							wp.element.createElement(
+								wp.components.Button,
+								{
+									variant: 'secondary',
+									onClick: function() {
+										duplicateFilter( props.attributes, 'vše' );
+									},
+								},
+								'Duplikovat'
 							)
 						),
 						customFilters.map( function( filter, index ) {
