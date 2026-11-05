@@ -240,28 +240,12 @@
 			const blockProps = wp.blockEditor.useBlockProps();
 			const filters = [
 				{
-					attribute: 'program',
-					label: 'Program',
+					attribute: 'group',
+					label: 'Typ akce',
 					options: [
-						{ label: 'Bez programu', value: 'none' },
-						{ label: 'Příroda', value: 'nature' },
-						{ label: 'Památky', value: 'monuments' },
-						{ label: 'Děti', value: 'kids' },
-						{ label: 'Ekostan', value: 'eco_tent' },
-						{ label: 'Prázdniny s Brontosaurem', value: 'holidays_with_brontosaurus' },
-						{ label: 'Vzdělávání', value: 'education' },
-						{ label: 'Mezinárodní', value: 'international' },
-					],
-				},
-				{
-					attribute: 'intendedFor',
-					label: 'Cílová skupina',
-					options: [
-						{ label: 'Pro všechny', value: 'for_all' },
-						{ label: 'Mládež a dospělí', value: 'for_young_and_adult' },
-						{ label: 'Děti', value: 'for_kids' },
-						{ label: 'Rodiče s dětmi', value: 'for_parents_with_kids' },
-						{ label: 'Účastníci poprvé', value: 'for_first_time_participant' },
+						{ label: 'Tábor', value: 'camp' },
+						{ label: 'Víkendová akce', value: 'weekend_event' },
+						{ label: 'Ostatní', value: 'other' },
 					],
 				},
 				{
@@ -280,17 +264,41 @@
 					],
 				},
 				{
-					attribute: 'group',
-					label: 'Typ akce',
+					attribute: 'intendedFor',
+					label: 'Cílová skupina',
 					options: [
-						{ label: 'Tábor', value: 'camp' },
-						{ label: 'Víkendová akce', value: 'weekend_event' },
-						{ label: 'Ostatní', value: 'other' },
+						{ label: 'Pro všechny', value: 'for_all' },
+						{ label: 'Mládež a dospělí', value: 'for_young_and_adult' },
+						{ label: 'Děti', value: 'for_kids' },
+						{ label: 'Rodiče s dětmi', value: 'for_parents_with_kids' },
+						{ label: 'Účastníci poprvé', value: 'for_first_time_participant' },
+					],
+				},
+				{
+					attribute: 'program',
+					label: 'Program',
+					options: [
+						{ label: 'Bez programu', value: 'none' },
+						{ label: 'Příroda', value: 'nature' },
+						{ label: 'Památky', value: 'monuments' },
+						{ label: 'Děti', value: 'kids' },
+						{ label: 'Ekostan', value: 'eco_tent' },
+						{ label: 'Prázdniny s Brontosaurem', value: 'holidays_with_brontosaurus' },
+						{ label: 'Vzdělávání', value: 'education' },
+						{ label: 'Mezinárodní', value: 'international' },
+					],
+				},
+				{
+					attribute: 'tag',
+					label: 'Štítek',
+					options: [
+						{ label: 'Retro akce', value: 'retro_event' },
+						{ label: 'Regionální akce', value: 'region_event' },
 					],
 				},
 				{
 					attribute: 'region',
-					label: 'Kraj',
+					label: 'Kraj konání',
 					options: [
 						{ label: 'Praha', value: '1' },
 						{ label: 'Středočeský kraj', value: '2' },
@@ -308,14 +316,6 @@
 						{ label: 'Zlínský kraj', value: '14' },
 					],
 				},
-				{
-					attribute: 'tag',
-					label: 'Štítek',
-					options: [
-						{ label: 'Retro akce', value: 'retro_event' },
-						{ label: 'Regionální akce', value: 'region_event' },
-					],
-				},
 			];
 
 			const renderFilterControls = function( values, onChange, prefix, storeAsArray ) {
@@ -329,6 +329,7 @@
 
 					return wp.element.createElement( wp.components.SelectControl, {
 						key: prefix + filter.attribute,
+						className: 'bis-akce-filter-select',
 						label: filter.label,
 						value: selectedValues,
 						options: filter.options,

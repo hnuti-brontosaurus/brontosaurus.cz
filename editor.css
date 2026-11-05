@@ -7,3 +7,10 @@
 .block-editor-block-inspector__advanced {
   display: none !important;
 }
+
+.bis-akce-filter-select select {
+  height: 10rem;
+  min-height: 5rem;
+  resize: vertical;
+  overflow: auto;
+}
