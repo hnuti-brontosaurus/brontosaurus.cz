@@ -4,9 +4,9 @@ Theme URI: https://brontosaurus.cz/
 Author: Hnutí Brontosaurus
 Author URI: https://brontosaurus.cz/
 Version: 1.0.0
-Requires at least: 6.1
+Requires at least: 6.3
 Tested up to: 6.5
-Requires PHP: 7.4
+Requires PHP: 8.5
 Text Domain: brontosaurus-theme
 */
 
@@ -39,4 +39,52 @@ a.hb-link--paw::before {
   background-color: currentColor;
   mask: url("./images/icon-paw.svg") center / contain no-repeat;
   vertical-align: -0.05em;
+}
+
+.bis-events {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: var(--wp--preset--spacing--normal);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bis-events__item {
+  overflow: hidden;
+  border-radius: 1.5rem;
+  background: var(--wp--preset--color--bg-lighter);
+}
+
+.bis-events__image-link {
+  display: block;
+}
+
+.bis-events__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.bis-events__content {
+  padding: var(--wp--preset--spacing--normal);
+}
+
+.bis-events__title {
+  margin: 0 0 var(--wp--preset--spacing--small);
+  font-size: var(--wp--preset--font-size--normal);
+}
+
+.bis-events__date,
+.bis-events__location {
+  margin: 0;
+}
+
+.bis-events__location {
+  color: #555;
+}
+
+.bis-events__message {
+  text-align: center;
 }

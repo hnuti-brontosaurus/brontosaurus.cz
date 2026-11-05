@@ -1,0 +1,23 @@
+{
+  "name": "hnuti-brontosaurus/brontosaurus-theme",
+  "description": "WordPress theme for Hnutí Brontosaurus",
+  "require": {
+    "hnuti-brontosaurus/php-bis-api-client": "^6.0.0-beta"
+  },
+  "config": {
+    "platform": {
+      "php": "8.5.0"
+    },
+    "github-protocols": [
+      "https"
+    ],
+    "sort-packages": true
+  },
+  "repositories": [
+    {
+      "url": "https://github.com/hnuti-brontosaurus/php-bis-api-client.git",
+      "type": "vcs",
+      "no-api": true
+    }
+  ]
+}

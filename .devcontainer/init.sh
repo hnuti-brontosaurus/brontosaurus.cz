@@ -165,6 +165,9 @@ THEME_SOURCE="/workspaces/brontosaurus.cz"
 THEME_SLUG="brontosaurus-theme"
 THEME_TARGET="/var/www/html/wp-content/themes/$THEME_SLUG"
 
+echo "Installing theme dependencies..."
+composer install --working-dir="$THEME_SOURCE" --no-interaction
+
 if [ ! -e "$THEME_TARGET" ] && [ ! -L "$THEME_TARGET" ]; then
     echo "Symlinking theme as $THEME_SLUG..."
     sudo ln -s "$THEME_SOURCE" "$THEME_TARGET"

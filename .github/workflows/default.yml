@@ -10,13 +10,23 @@ jobs:
         steps:
             -   uses: actions/checkout@v4
 
+            -   name: Set up PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: '8.5'
+
+            -   name: Install PHP dependencies
+                run: composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader
+
             -   name: Pack files for release
                 run: |
                     zip -r brontosaurus-theme.zip . \
                         -i "parts/*" \
                         -i "templates/*" \
                         -i "scripts/*" \
+                        -i "blocks/*" \
                         -i "images/*" \
+                        -i "vendor/*" \
                         -i "functions.php" \
                         -i "index.php" \
                         -i "editor.css" \

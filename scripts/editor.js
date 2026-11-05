@@ -219,4 +219,71 @@
 			return settings;
 		}
 	);
+
+	wp.blocks.registerBlockType( 'brontosaurus/bis-events', {
+		apiVersion: 3,
+		title: 'Akce z BIS',
+		description: 'Zobrazí nadcházející akce z Brontosauřího informačního systému.',
+		icon: 'calendar-alt',
+		category: 'widgets',
+		attributes: {
+			limit: { type: 'number', default: 6 },
+			tag: { type: 'string', default: '' },
+		},
+		edit: function( props ) {
+			const blockProps = wp.blockEditor.useBlockProps();
+			const tagOptions = [
+				{ label: 'Všechny akce', value: '' },
+				{ label: 'Retro akce', value: 'retro_event' },
+				{ label: 'Regionální akce', value: 'region_event' },
+			];
+
+			return wp.element.createElement(
+				wp.element.Fragment,
+				null,
+				wp.element.createElement(
+					'div',
+					blockProps,
+					wp.element.createElement(
+						wp.components.Disabled,
+						null,
+						wp.element.createElement( wp.serverSideRender, {
+							block: 'brontosaurus/bis-events',
+							attributes: props.attributes,
+						} )
+					)
+				),
+				wp.element.createElement(
+					wp.blockEditor.InspectorControls,
+					null,
+					wp.element.createElement(
+						wp.components.PanelBody,
+						{ title: 'Nastavení akcí' },
+						wp.element.createElement( wp.components.SelectControl, {
+							label: 'Štítek',
+							value: props.attributes.tag,
+							options: tagOptions,
+							onChange: function( tag ) {
+								props.setAttributes( { tag: tag } );
+							},
+						} ),
+						wp.element.createElement( wp.components.RangeControl, {
+							label: 'Počet akcí',
+							value: props.attributes.limit,
+							min: 1,
+							max: 12,
+							onChange: function( limit ) {
+								if ( limit !== undefined ) {
+									props.setAttributes( { limit: limit } );
+								}
+							},
+						} )
+					)
+				)
+			);
+		},
+		save: function() {
+			return null;
+		},
+	} );
 } )( window.wp );

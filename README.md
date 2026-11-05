@@ -13,7 +13,14 @@ This folder contains a minimal WordPress Full Site Editing theme skeleton.
 - `parts/header.html` — header template part.
 - `parts/footer.html` — footer template part.
 
-## Notes
+## BIS events block
 
-This skeleton is intentionally minimal and does not reuse any existing plugin code.
-Use it as the foundation for a WordPress block-based theme with full site editor support.
+The **Akce z BIS** block lists upcoming events from the Brontosaurus information system.
+In the block settings, choose an optional tag and display between 1 and 12 events.
+The event list is rendered on the server and cached for five minutes.
+
+Install the PHP dependency before activating the theme:
+
+```bash
+composer install
+```
