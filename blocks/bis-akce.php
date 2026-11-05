@@ -11,7 +11,7 @@ use HnutiBrontosaurus\BisClient\Event\Request\Period;
 use HnutiBrontosaurus\BisClient\Event\Request\Region;
 use HnutiBrontosaurus\BisClient\Event\Tag;
 
-function brontosaurus_register_bis_events_block(): void
+function brontosaurus_register_bis_akce_block(): void
 {
 	register_block_type('brontosaurus/bis-akce', [
 		'api_version' => 3,
@@ -45,34 +45,52 @@ function brontosaurus_register_bis_events_block(): void
 				'default' => '',
 			],
 		],
-		'render_callback' => 'brontosaurus_render_bis_events_block',
+		'render_callback' => 'brontosaurus_render_bis_akce_block',
 	]);
 }
-add_action('init', 'brontosaurus_register_bis_events_block');
+add_action('init', 'brontosaurus_register_bis_akce_block');
 
-function brontosaurus_render_bis_events_block(array $attributes): string
+function brontosaurus_render_bis_akce_block(array $attributes): string
 {
 	$limit = isset($attributes['limit']) && is_numeric($attributes['limit'])
 		? min(15, max(3, (int) $attributes['limit']))
 		: 9;
 
-	$tag = Tag::tryFrom(brontosaurus_bis_string_attribute($attributes, 'tag'));
-	$program = Program::tryFrom(brontosaurus_bis_string_attribute($attributes, 'program'));
-	$intendedFor = IntendedFor::tryFrom(brontosaurus_bis_string_attribute($attributes, 'intendedFor'));
-	$category = Category::tryFrom(brontosaurus_bis_string_attribute($attributes, 'category'));
-	$group = Group::tryFrom(brontosaurus_bis_string_attribute($attributes, 'group'));
-	$regionValue = brontosaurus_bis_string_attribute($attributes, 'region');
-	$region = ctype_digit($regionValue) ? Region::tryFrom((int) $regionValue) : null;
+	$tags = array_values(array_filter(array_map(
+		static fn(string $value): ?Tag => Tag::tryFrom($value),
+		brontosaurus_bis_selected_values($attributes, 'tag'),
+	)));
+	$programs = array_values(array_filter(array_map(
+		static fn(string $value): ?Program => Program::tryFrom($value),
+		brontosaurus_bis_selected_values($attributes, 'program'),
+	)));
+	$intendedForValues = array_values(array_filter(array_map(
+		static fn(string $value): ?IntendedFor => IntendedFor::tryFrom($value),
+		brontosaurus_bis_selected_values($attributes, 'intendedFor'),
+	)));
+	$categories = array_values(array_filter(array_map(
+		static fn(string $value): ?Category => Category::tryFrom($value),
+		brontosaurus_bis_selected_values($attributes, 'category'),
+	)));
+	$groups = array_values(array_filter(array_map(
+		static fn(string $value): ?Group => Group::tryFrom($value),
+		brontosaurus_bis_selected_values($attributes, 'group'),
+	)));
+	$regions = array_values(array_filter(array_map(
+		static fn(string $value): ?Region => ctype_digit($value) ? Region::tryFrom((int) $value) : null,
+		brontosaurus_bis_selected_values($attributes, 'region'),
+	)));
 
-	$cacheKey = 'brontosaurus_bis_akce_' . md5(implode(':', [
-		$tag?->value ?? '',
-		$program?->value ?? '',
-		$intendedFor?->value ?? '',
-		$category?->value ?? '',
-		$group?->value ?? '',
-		$region?->value ?? '',
-		(string) $limit,
-	]));
+	$cacheFilters = array_map(
+		static function (array $values): string {
+			$values = array_map(static fn(BackedEnum $value): string => (string) $value->value, $values);
+			sort($values);
+			return implode(',', $values);
+		},
+		[$tags, $programs, $intendedForValues, $categories, $groups, $regions],
+	);
+
+	$cacheKey = 'brontosaurus_bis_akce_' . md5(implode(':', [...$cacheFilters, (string) $limit]));
 	$cachedMarkup = get_transient($cacheKey);
 	if (is_string($cachedMarkup)) {
 		return $cachedMarkup;
@@ -83,23 +101,23 @@ function brontosaurus_render_bis_events_block(array $attributes): string
 		->setLimit($limit)
 		->orderByStartDate();
 
-	if ($tag !== null) {
-		$parameters->setTag($tag);
+	if ($tags !== []) {
+		$parameters->setTags($tags);
 	}
-	if ($program !== null) {
-		$parameters->setProgram($program);
+	if ($programs !== []) {
+		$parameters->setPrograms($programs);
 	}
-	if ($intendedFor !== null) {
-		$parameters->setIntendedFor($intendedFor);
+	if ($intendedForValues !== []) {
+		$parameters->setMultipleIntendedFor($intendedForValues);
 	}
-	if ($category !== null) {
-		$parameters->setCategory($category);
+	if ($categories !== []) {
+		$parameters->setCategories($categories);
 	}
-	if ($group !== null) {
-		$parameters->setGroup($group);
+	if ($groups !== []) {
+		$parameters->setGroups($groups);
 	}
-	if ($region !== null) {
-		$parameters->setRegion($region);
+	if ($regions !== []) {
+		$parameters->setRegions($regions);
 	}
 
 	try {
@@ -153,11 +171,13 @@ function brontosaurus_render_bis_events_block(array $attributes): string
 	return $markup;
 }
 
-function brontosaurus_bis_string_attribute(array $attributes, string $name): string
+function brontosaurus_bis_selected_values(array $attributes, string $name): array
 {
-	return isset($attributes[$name]) && is_string($attributes[$name])
+	$value = isset($attributes[$name]) && is_string($attributes[$name])
 		? $attributes[$name]
 		: '';
+
+	return array_values(array_filter(explode(',', $value), static fn(string $item): bool => $item !== ''));
 }
 
 function brontosaurus_format_bis_event_date(DateTimeInterface $startDate, DateTimeInterface $endDate): string

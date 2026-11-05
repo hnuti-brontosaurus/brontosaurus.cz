@@ -242,7 +242,6 @@
 					attribute: 'program',
 					label: 'Program',
 					options: [
-						{ label: 'Všechny programy', value: '' },
 						{ label: 'Bez programu', value: 'none' },
 						{ label: 'Příroda', value: 'nature' },
 						{ label: 'Památky', value: 'monuments' },
@@ -257,7 +256,6 @@
 					attribute: 'intendedFor',
 					label: 'Cílová skupina',
 					options: [
-						{ label: 'Všechny cílové skupiny', value: '' },
 						{ label: 'Pro všechny', value: 'for_all' },
 						{ label: 'Mládež a dospělí', value: 'for_young_and_adult' },
 						{ label: 'Děti', value: 'for_kids' },
@@ -269,7 +267,6 @@
 					attribute: 'category',
 					label: 'Kategorie akce',
 					options: [
-						{ label: 'Všechny kategorie', value: '' },
 						{ label: 'Výukový program (EVP)', value: 'evp' },
 						{ label: 'Zážitková akce', value: 'experiential' },
 						{ label: 'Interní akce', value: 'internal' },
@@ -285,7 +282,6 @@
 					attribute: 'group',
 					label: 'Typ akce',
 					options: [
-						{ label: 'Všechny typy', value: '' },
 						{ label: 'Tábor', value: 'camp' },
 						{ label: 'Víkendová akce', value: 'weekend_event' },
 						{ label: 'Ostatní', value: 'other' },
@@ -295,7 +291,6 @@
 					attribute: 'region',
 					label: 'Kraj',
 					options: [
-						{ label: 'Všechny kraje', value: '' },
 						{ label: 'Praha', value: '1' },
 						{ label: 'Středočeský kraj', value: '2' },
 						{ label: 'Jihočeský kraj', value: '3' },
@@ -316,7 +311,6 @@
 					attribute: 'tag',
 					label: 'Štítek',
 					options: [
-						{ label: 'Všechny štítky', value: '' },
 						{ label: 'Retro akce', value: 'retro_event' },
 						{ label: 'Regionální akce', value: 'region_event' },
 					],
@@ -344,14 +338,24 @@
 					wp.element.createElement(
 						wp.components.PanelBody,
 						{ title: 'Nastavení akcí' },
+						wp.element.createElement(
+							'p',
+							null,
+							'U každého filtru lze vybrat více možností. Bez výběru se filtr nepoužije.'
+						),
 						filters.map( function( filter ) {
 							return wp.element.createElement( wp.components.SelectControl, {
 								key: filter.attribute,
 								label: filter.label,
-								value: props.attributes[ filter.attribute ],
+								value: ( props.attributes[ filter.attribute ] || '' )
+									.split( ',' )
+									.filter( Boolean ),
 								options: filter.options,
+								multiple: true,
 								onChange: function( value ) {
-									props.setAttributes( { [ filter.attribute ]: value } );
+									props.setAttributes( {
+										[ filter.attribute ]: value.join( ',' ),
+									} );
 								},
 							} );
 						} ),
