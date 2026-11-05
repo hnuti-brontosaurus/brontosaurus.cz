@@ -437,7 +437,7 @@
 						wp.element.createElement(
 							'p',
 							null,
-							'U každého filtru lze vybrat více možností. Bez výběru se filtr nepoužije.'
+							'U každé možnosti lze vybrat více položek. Bez výběru se možnost nepoužije.'
 						),
 						wp.element.createElement(
 							wp.components.PanelBody,

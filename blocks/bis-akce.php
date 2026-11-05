@@ -62,7 +62,7 @@ function brontosaurus_render_bis_akce_block(array $attributes): string
 
 	$views = [
 		[
-			'label' => 'Vše',
+			'label' => 'vše',
 			'filters' => $attributes,
 		],
 	];
