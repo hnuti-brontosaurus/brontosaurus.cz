@@ -220,22 +220,107 @@
 		}
 	);
 
-	wp.blocks.registerBlockType( 'brontosaurus/bis-events', {
+	wp.blocks.registerBlockType( 'brontosaurus/bis-akce', {
 		apiVersion: 3,
-		title: 'Akce z BIS',
-		description: 'Zobrazí nadcházející akce z Brontosauřího informačního systému.',
+		title: 'BIS akce',
+		description: 'Zobrazí akce z Brontosauřího informačního systému.',
 		icon: 'calendar-alt',
 		category: 'widgets',
 		attributes: {
-			limit: { type: 'number', default: 6 },
+			limit: { type: 'number', default: 9 },
 			tag: { type: 'string', default: '' },
+			program: { type: 'string', default: '' },
+			intendedFor: { type: 'string', default: '' },
+			category: { type: 'string', default: '' },
+			group: { type: 'string', default: '' },
+			region: { type: 'string', default: '' },
 		},
 		edit: function( props ) {
 			const blockProps = wp.blockEditor.useBlockProps();
-			const tagOptions = [
-				{ label: 'Všechny akce', value: '' },
-				{ label: 'Retro akce', value: 'retro_event' },
-				{ label: 'Regionální akce', value: 'region_event' },
+			const filters = [
+				{
+					attribute: 'program',
+					label: 'Program',
+					options: [
+						{ label: 'Všechny programy', value: '' },
+						{ label: 'Bez programu', value: 'none' },
+						{ label: 'Příroda', value: 'nature' },
+						{ label: 'Památky', value: 'monuments' },
+						{ label: 'Děti', value: 'kids' },
+						{ label: 'Ekostan', value: 'eco_tent' },
+						{ label: 'Prázdniny s Brontosaurem', value: 'holidays_with_brontosaurus' },
+						{ label: 'Vzdělávání', value: 'education' },
+						{ label: 'Mezinárodní', value: 'international' },
+					],
+				},
+				{
+					attribute: 'intendedFor',
+					label: 'Cílová skupina',
+					options: [
+						{ label: 'Všechny cílové skupiny', value: '' },
+						{ label: 'Pro všechny', value: 'for_all' },
+						{ label: 'Mládež a dospělí', value: 'for_young_and_adult' },
+						{ label: 'Děti', value: 'for_kids' },
+						{ label: 'Rodiče s dětmi', value: 'for_parents_with_kids' },
+						{ label: 'Účastníci poprvé', value: 'for_first_time_participant' },
+					],
+				},
+				{
+					attribute: 'category',
+					label: 'Kategorie akce',
+					options: [
+						{ label: 'Všechny kategorie', value: '' },
+						{ label: 'Výukový program (EVP)', value: 'evp' },
+						{ label: 'Zážitková akce', value: 'experiential' },
+						{ label: 'Interní akce', value: 'internal' },
+						{ label: 'Organizátorské vzdělávání', value: 'internal_educational' },
+						{ label: 'OHB a Cestičky', value: 'internal_educational_full' },
+						{ label: 'Prezentační akce', value: 'presentation' },
+						{ label: 'Odborné vzdělávání', value: 'public_educational' },
+						{ label: 'Oddílová schůzka', value: 'section_meeting' },
+						{ label: 'Dobrovolnická akce', value: 'volunteering' },
+					],
+				},
+				{
+					attribute: 'group',
+					label: 'Typ akce',
+					options: [
+						{ label: 'Všechny typy', value: '' },
+						{ label: 'Tábor', value: 'camp' },
+						{ label: 'Víkendová akce', value: 'weekend_event' },
+						{ label: 'Ostatní', value: 'other' },
+					],
+				},
+				{
+					attribute: 'region',
+					label: 'Kraj',
+					options: [
+						{ label: 'Všechny kraje', value: '' },
+						{ label: 'Praha', value: '1' },
+						{ label: 'Středočeský kraj', value: '2' },
+						{ label: 'Jihočeský kraj', value: '3' },
+						{ label: 'Plzeňský kraj', value: '4' },
+						{ label: 'Karlovarský kraj', value: '5' },
+						{ label: 'Ústecký kraj', value: '6' },
+						{ label: 'Liberecký kraj', value: '7' },
+						{ label: 'Královéhradecký kraj', value: '8' },
+						{ label: 'Pardubický kraj', value: '9' },
+						{ label: 'Kraj Vysočina', value: '10' },
+						{ label: 'Jihomoravský kraj', value: '11' },
+						{ label: 'Olomoucký kraj', value: '12' },
+						{ label: 'Moravskoslezský kraj', value: '13' },
+						{ label: 'Zlínský kraj', value: '14' },
+					],
+				},
+				{
+					attribute: 'tag',
+					label: 'Štítek',
+					options: [
+						{ label: 'Všechny štítky', value: '' },
+						{ label: 'Retro akce', value: 'retro_event' },
+						{ label: 'Regionální akce', value: 'region_event' },
+					],
+				},
 			];
 
 			return wp.element.createElement(
@@ -248,7 +333,7 @@
 						wp.components.Disabled,
 						null,
 						wp.element.createElement( wp.serverSideRender, {
-							block: 'brontosaurus/bis-events',
+							block: 'brontosaurus/bis-akce',
 							attributes: props.attributes,
 						} )
 					)
@@ -259,19 +344,22 @@
 					wp.element.createElement(
 						wp.components.PanelBody,
 						{ title: 'Nastavení akcí' },
-						wp.element.createElement( wp.components.SelectControl, {
-							label: 'Štítek',
-							value: props.attributes.tag,
-							options: tagOptions,
-							onChange: function( tag ) {
-								props.setAttributes( { tag: tag } );
-							},
+						filters.map( function( filter ) {
+							return wp.element.createElement( wp.components.SelectControl, {
+								key: filter.attribute,
+								label: filter.label,
+								value: props.attributes[ filter.attribute ],
+								options: filter.options,
+								onChange: function( value ) {
+									props.setAttributes( { [ filter.attribute ]: value } );
+								},
+							} );
 						} ),
 						wp.element.createElement( wp.components.RangeControl, {
 							label: 'Počet akcí',
 							value: props.attributes.limit,
-							min: 1,
-							max: 12,
+							min: 3,
+							max: 15,
 							onChange: function( limit ) {
 								if ( limit !== undefined ) {
 									props.setAttributes( { limit: limit } );

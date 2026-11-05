@@ -41,50 +41,62 @@ a.hb-link--paw::before {
   vertical-align: -0.05em;
 }
 
-.bis-events {
+.bis-akce {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--wp--preset--spacing--normal);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.bis-events__item {
+@media (max-width: 48rem) {
+  .bis-akce {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 32rem) {
+  .bis-akce {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bis-akce__item {
   overflow: hidden;
   border-radius: 1.5rem;
   background: var(--wp--preset--color--bg-lighter);
 }
 
-.bis-events__image-link {
+.bis-akce__image-link {
   display: block;
 }
 
-.bis-events__image {
+.bis-akce__image {
   display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
 }
 
-.bis-events__content {
+.bis-akce__content {
   padding: var(--wp--preset--spacing--normal);
 }
 
-.bis-events__title {
+.bis-akce__title {
   margin: 0 0 var(--wp--preset--spacing--small);
   font-size: var(--wp--preset--font-size--normal);
 }
 
-.bis-events__date,
-.bis-events__location {
+.bis-akce__date,
+.bis-akce__location {
   margin: 0;
 }
 
-.bis-events__location {
+.bis-akce__location {
   color: #555;
 }
 
-.bis-events__message {
+.bis-akce__message {
   text-align: center;
 }

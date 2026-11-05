@@ -15,8 +15,10 @@ Tato složka obsahuje základní šablonu WordPressu pro úpravy celého webu (F
 
 ## Blok akcí z BIS
 
-Blok **Akce z BIS** zobrazuje nadcházející akce z Brontosauřího informačního systému.
-V nastavení bloku lze vybrat štítek a počet zobrazovaných akcí od 1 do 12.
+Blok **BIS akce** zobrazuje nadcházející akce z Brontosauřího informačního systému.
+V nastavení bloku lze filtrovat podle programu, cílové skupiny, kategorie, typu akce,
+kraje a štítku. Výchozí počet je 9 akcí; lze nastavit 3 až 15.
+Na širších obrazovkách se akce zobrazují ve třech sloupcích.
 Seznam akcí se vykresluje na serveru a ukládá do mezipaměti na pět minut.
 
 Před aktivací šablony nainstalujte závislosti PHP:
