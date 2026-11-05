@@ -494,7 +494,9 @@
 										variant: 'secondary',
 										isDestructive: true,
 										onClick: function() {
-											removeFilter( index );
+											if ( window.confirm( 'Opravdu chcete odebrat filtr „' + filterName + '“?' ) ) {
+												removeFilter( index );
+											}
 										},
 									},
 									'Odebrat filtr'
