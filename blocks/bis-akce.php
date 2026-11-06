@@ -267,26 +267,58 @@ function brontosaurus_bis_events_markup(array $attributes, int $limit): string
 		$location = $event->location->name;
 		$coverPhotoPath = $event->coverPhotoPath?->mediumSizePath;
 		$eventUrl = sprintf('https://bis.brontosaurus.cz/akce/%d/', $event->id);
+		$isFull = $event->registration->isEventFull;
+		$introduction = wp_html_excerpt(
+			wp_strip_all_tags($event->propagation->invitationTextIntroduction),
+			200,
+			'…',
+		);
 
 		$items .= '<li class="bis-akce__item">';
-		if ($coverPhotoPath !== null) {
-			$items .= sprintf(
-				'<a class="bis-akce__image-link" href="%s"><img class="bis-akce__image" src="%s" alt="" loading="lazy"></a>',
-				esc_url($eventUrl),
-				esc_url($coverPhotoPath),
-			);
-		}
-		$items .= '<div class="bis-akce__content">';
 		$items .= sprintf(
-			'<h3 class="bis-akce__title"><a href="%s">%s</a></h3>',
+			'<a class="hb-event%s" href="%s">',
+			$isFull ? ' hb-event--full' : '',
 			esc_url($eventUrl),
+		);
+		$items .= '<div class="hb-event__imageWrapper">';
+		$items .= sprintf(
+			'<img class="hb-event__image%s" src="%s" alt="" loading="lazy">',
+			$coverPhotoPath === null ? ' hb-event__image--noThumbnail' : '',
+			esc_url($coverPhotoPath ?? 'https://brontosaurus.cz/wp-content/uploads/2024/12/logo-hb-brontosaurus.svg'),
+		);
+		$items .= '</div>';
+		if ($isFull) {
+			$items .= '<span class="hb-event__full">plně obsazeno</span>';
+		}
+		$items .= '<header class="hb-event__header">';
+		$items .= sprintf(
+			'<h3 class="hb-event__heading">%s</h3>',
 			esc_html($event->name),
 		);
-		$items .= sprintf('<p class="bis-akce__date">%s</p>', esc_html($date));
-		if ($location !== '') {
-			$items .= sprintf('<p class="bis-akce__location">%s</p>', esc_html($location));
+		if ($event->tags !== []) {
+			$items .= '<div class="hb-event__tags">';
+			foreach ($event->tags as $tag) {
+				$items .= sprintf('<span class="hb-event__tag">%s</span>', esc_html($tag->name));
+			}
+			$items .= '</div>';
 		}
-		$items .= '</div></li>';
+		$items .= '<div class="hb-event__meta">';
+		$items .= sprintf(
+			'<time class="hb-event__date" datetime="%s">%s</time>',
+			esc_attr($startDate->format('Y-m-d')),
+			esc_html($date),
+		);
+		if ($location !== '') {
+			$items .= sprintf(
+				'<span class="hb-event__place" title="Místo konání">%s</span>',
+				esc_html($location),
+			);
+		}
+		$items .= '</div></header>';
+		if ($introduction !== '') {
+			$items .= sprintf('<p class="hb-event__excerpt">%s</p>', esc_html($introduction));
+		}
+		$items .= '</a></li>';
 	}
 
 	$markup = '<ul class="bis-akce__list">' . $items . '</ul>';
