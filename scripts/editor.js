@@ -545,10 +545,6 @@
 						wp.element.createElement(
 							'div',
 							{ className: 'bis-akce-filter-item bis-akce-filter-item--all' },
-							wp.element.createElement( 'span', {
-								className: 'bis-akce-filter-spacer',
-								'aria-hidden': 'true',
-							} ),
 							wp.element.createElement(
 								wp.components.PanelBody,
 								{ title: 'vše', initialOpen: false },
@@ -628,6 +624,7 @@
 										{
 											title: filterName,
 											initialOpen: expandedFilterIndex === index,
+											className: 'bis-akce-filter-panel',
 										},
 										wp.element.createElement( wp.components.TextControl, {
 											label: 'Název filtru',
@@ -645,27 +642,31 @@
 											true
 										),
 										wp.element.createElement(
-											wp.components.Button,
-											{
-												variant: 'secondary',
-												isDestructive: true,
-												onClick: function() {
-													if ( window.confirm( 'Opravdu chcete odebrat filtr „' + filterName + '“?' ) ) {
-														removeFilter( index );
-													}
+											'div',
+											{ className: 'bis-akce-filter-buttons' },
+											wp.element.createElement(
+												wp.components.Button,
+												{
+													variant: 'secondary',
+													isDestructive: true,
+													onClick: function() {
+														if ( window.confirm( 'Opravdu chcete odebrat filtr „' + filterName + '“?' ) ) {
+															removeFilter( index );
+														}
+													},
 												},
-											},
-											'Odebrat filtr'
-										),
-										wp.element.createElement(
-											wp.components.Button,
-											{
-												variant: 'secondary',
-												onClick: function() {
-													duplicateFilter( filter, filterName );
+												'Odebrat filtr'
+											),
+											wp.element.createElement(
+												wp.components.Button,
+												{
+													variant: 'secondary',
+													onClick: function() {
+														duplicateFilter( filter, filterName );
+													},
 												},
-											},
-											'Duplikovat'
+												'Duplikovat'
+											)
 										)
 									)
 								)
@@ -676,6 +677,7 @@
 							wp.components.Button,
 							{
 								variant: 'secondary',
+								className: 'bis-akce-filter-add-button',
 								onClick: addFilter,
 							},
 							'Přidat filtr'
