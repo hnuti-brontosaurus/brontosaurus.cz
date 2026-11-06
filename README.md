@@ -25,7 +25,8 @@ filtr také při načtení stránky a přepnutí filtru URL aktualizuje bez obno
 Pořadí vlastních filtrů lze měnit přetažením nebo tlačítky; filtr „vše“ zůstává první.
 Výchozí počet je 9 akcí; lze nastavit 3 až 15.
 Na širších obrazovkách se akce zobrazují ve třech sloupcích.
-Seznam akcí se vykresluje na serveru a ukládá do mezipaměti na pět minut.
+Při prvním načtení se načte pouze aktivní filtr; při každém přepnutí se požádá
+server o akce podle zvoleného filtru. Výsledky BIS se ukládají do mezipaměti na pět minut.
 
 Před aktivací šablony nainstalujte závislosti PHP:
 

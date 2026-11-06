@@ -122,3 +122,32 @@ a.hb-link--paw::before {
 .bis-akce__message {
   text-align: center;
 }
+
+.bis-akce__loading {
+  display: flex;
+  align-items: center !important;
+  justify-content: center;
+  gap: var(--wp--preset--spacing--small);
+}
+
+.bis-akce__spinner {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  flex: 0 0 1.25rem;
+  border: 2px solid currentColor;
+  border-inline-end-color: transparent;
+  border-radius: 50%;
+  animation: bis-akce-spin 0.75s linear infinite;
+}
+
+@keyframes bis-akce-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bis-akce__spinner {
+    animation-duration: 2s;
+  }
+}
