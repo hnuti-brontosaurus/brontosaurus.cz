@@ -72,6 +72,22 @@ a.hb-link--paw::before {
   list-style: none;
 }
 
+.bis-akce__more {
+  display: block;
+  margin: var(--wp--preset--spacing--normal) auto 0;
+  padding: 0.5em 1em;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.bis-akce__more:disabled {
+  cursor: wait;
+}
+
 @media (max-width: 48rem) {
   .bis-akce__list {
     grid-template-columns: repeat(2, minmax(0, 1fr));

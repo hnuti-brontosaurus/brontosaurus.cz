@@ -51,6 +51,96 @@ function loadBisAkcePanel( block, button, panel ) {
 	return request;
 }
 
+function loadMoreBisAkce( button ) {
+	const block = button.closest( '.bis-akce' );
+	const panel = button.closest( '.bis-akce__view' );
+	const list = panel && panel.querySelector( '.bis-akce__list' );
+	if ( ! block || ! panel || ! list || button.disabled ) {
+		return;
+	}
+
+	const offset = Number( button.dataset.offset );
+	const selectedTab = block.querySelector( '.bis-akce__tab[aria-pressed="true"]' );
+	if ( ! Number.isInteger( offset ) || offset < 0 || ! selectedTab ) {
+		console.error( 'Invalid BIS pagination state.' );
+		return;
+	}
+
+	button.disabled = true;
+	button.setAttribute( 'aria-busy', 'true' );
+	button.textContent = 'Načítání…';
+	const previousError = button.parentElement.querySelector( '.bis-akce__message[role="alert"]' );
+	if ( previousError ) {
+		previousError.remove();
+	}
+	let filters;
+	try {
+		filters = JSON.parse( selectedTab.dataset.bisAkceFilters || '{}' );
+	} catch ( error ) {
+		button.disabled = false;
+		button.removeAttribute( 'aria-busy' );
+		button.textContent = 'Zobrazit další';
+		console.error( 'Invalid BIS filter data.', error );
+		return;
+	}
+
+	fetch( block.dataset.bisAkceEndpoint, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify( {
+			filters: filters,
+			limit: block.dataset.bisAkceLimit,
+			offset: offset,
+		} ),
+	} )
+		.then( function( response ) {
+			if ( ! response.ok ) {
+				throw new Error( 'BIS events request failed with status ' + response.status );
+			}
+			return response.json();
+		} )
+		.then( function( response ) {
+			if ( typeof response.markup !== 'string' ) {
+				throw new Error( 'BIS events response did not contain markup.' );
+			}
+
+			const template = document.createElement( 'template' );
+			template.innerHTML = response.markup;
+			const nextList = template.content.querySelector( '.bis-akce__list' );
+			if ( ! nextList && template.content.querySelector( '.bis-akce__message' ) ) {
+				throw new Error( 'BIS events could not be loaded.' );
+			}
+			if ( nextList ) {
+				list.append( ...nextList.children );
+			} else if ( response.markup ) {
+				list.insertAdjacentHTML( 'afterend', response.markup );
+			}
+			const previousError = panel.querySelector( '.bis-akce__message[role="alert"]' );
+			if ( previousError ) {
+				previousError.remove();
+			}
+
+			const nextButton = template.content.querySelector( '[data-bis-akce-more]' );
+			if ( nextButton ) {
+				button.replaceWith( nextButton );
+			} else {
+				button.remove();
+			}
+		} )
+		.catch( function( error ) {
+			button.disabled = false;
+			button.removeAttribute( 'aria-busy' );
+			button.textContent = 'Zobrazit další';
+			button.insertAdjacentHTML(
+				'afterend',
+				'<p class="bis-akce__message" role="alert">Další akce se nepodařilo načíst. Zkuste to prosím znovu.</p>'
+			);
+			console.error( 'Unable to load more BIS events.', error );
+		} );
+}
+
 function setBisAkceFilter( filter ) {
 	document.querySelectorAll( '.bis-akce' ).forEach( function( block ) {
 		const tabs = Array.from( block.querySelectorAll( '.bis-akce__tab' ) );
@@ -82,6 +172,12 @@ function setBisAkceFilter( filter ) {
 
 document.addEventListener( 'click', function( event ) {
 	if ( !( event.target instanceof Element ) ) {
+		return;
+	}
+
+	const moreButton = event.target.closest( '[data-bis-akce-more]' );
+	if ( moreButton ) {
+		loadMoreBisAkce( moreButton );
 		return;
 	}
 

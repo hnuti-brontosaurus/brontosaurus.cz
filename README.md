@@ -26,7 +26,9 @@ Pořadí vlastních filtrů lze měnit přetažením nebo tlačítky; filtr „v
 Výchozí počet je 9 akcí; lze nastavit 3 až 15.
 Na širších obrazovkách se akce zobrazují ve třech sloupcích.
 Při prvním načtení se načte pouze aktivní filtr; při každém přepnutí se požádá
-server o akce podle zvoleného filtru. Výsledky BIS se ukládají do mezipaměti na pět minut.
+server o akce podle zvoleného filtru. Tlačítko **Zobrazit další** přidává další dávku
+akcí podle nastaveného počtu bez nahrazení stávajících. Výsledky BIS se ukládají
+do mezipaměti na pět minut.
 
 Před aktivací šablony nainstalujte závislosti PHP:
 

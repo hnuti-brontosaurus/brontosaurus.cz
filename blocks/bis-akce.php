@@ -86,9 +86,13 @@ function brontosaurus_load_bis_events(WP_REST_Request $request): WP_REST_Respons
 	$limit = is_numeric($providedLimit)
 		? min(15, max(3, (int) $providedLimit))
 		: 9;
+	$providedOffset = $request->get_param('offset');
+	$offset = is_numeric($providedOffset)
+		? max(0, (int) $providedOffset)
+		: 0;
 
 	return new WP_REST_Response([
-		'markup' => brontosaurus_bis_events_markup($filters, $limit),
+		'markup' => brontosaurus_bis_events_markup($filters, $limit, $offset),
 	]);
 }
 
@@ -178,7 +182,7 @@ function brontosaurus_render_bis_akce_block(array $attributes): string
 	return $markup . '</div><div class="bis-akce__views">' . $panels . '</div></div>';
 }
 
-function brontosaurus_bis_events_markup(array $attributes, int $limit): string
+function brontosaurus_bis_events_markup(array $attributes, int $limit, int $offset = 0): string
 {
 	$tags = array_values(array_filter(array_map(
 		static fn(string $value): ?Tag => Tag::tryFrom($value),
@@ -214,7 +218,11 @@ function brontosaurus_bis_events_markup(array $attributes, int $limit): string
 		[$tags, $programs, $intendedForValues, $categories, $groups, $regions],
 	);
 
-	$cacheKey = 'brontosaurus_bis_akce_' . md5(implode(':', [...$cacheFilters, (string) $limit]));
+	$cacheKey = 'brontosaurus_bis_akce_' . md5(implode(':', [
+		...$cacheFilters,
+		(string) $limit,
+		(string) $offset,
+	]));
 	$cachedMarkup = get_transient($cacheKey);
 	if (is_string($cachedMarkup)) {
 		return $cachedMarkup;
@@ -222,7 +230,7 @@ function brontosaurus_bis_events_markup(array $attributes, int $limit): string
 
 	$parameters = (new EventParameters())
 		->setPeriod(Period::FUTURE_ONLY)
-		->setLimit($limit)
+		->setLimit($offset + $limit + 1)
 		->orderByStartDate();
 
 	if ($tags !== []) {
@@ -253,12 +261,18 @@ function brontosaurus_bis_events_markup(array $attributes, int $limit): string
 		return '<p class="bis-akce__message">Omlouváme se, akce se teď nepodařilo načíst. Zkuste to prosím později.</p>';
 	}
 
-	if ($events === null || $events === []) {
+	if ($events === []) {
+		if ($offset > 0) {
+			return '';
+		}
+
 		$markup = '<p class="bis-akce__message">Momentálně nejsou vypsané žádné akce.</p>';
 		set_transient($cacheKey, $markup, 5 * MINUTE_IN_SECONDS);
 		return $markup;
 	}
 
+	$hasMore = count($events) > $offset + $limit;
+	$events = array_slice($events, $offset, $limit);
 	$items = '';
 	foreach ($events as $event) {
 		$startDate = $event->startDate;
@@ -322,6 +336,12 @@ function brontosaurus_bis_events_markup(array $attributes, int $limit): string
 	}
 
 	$markup = '<ul class="bis-akce__list">' . $items . '</ul>';
+	if ($hasMore) {
+		$markup .= sprintf(
+			'<button class="bis-akce__more" type="button" data-bis-akce-more data-offset="%d">Zobrazit další</button>',
+			$offset + count($events),
+		);
+	}
 	set_transient($cacheKey, $markup, 5 * MINUTE_IN_SECONDS);
 
 	return $markup;
