@@ -519,53 +519,23 @@
 									},
 								},
 								wp.element.createElement(
-									'div',
-									{ className: 'bis-akce-filter-actions' },
-									wp.element.createElement(
-										'button',
-										{
-											type: 'button',
-											className: 'bis-akce-filter-drag-handle',
-											draggable: true,
-											'aria-label': 'Přetáhnout filtr „' + filterName + '“',
-											title: 'Přetáhnout pro změnu pořadí',
-											onDragStart: function( event ) {
-												setDraggedFilterIndex( index );
-												event.dataTransfer.effectAllowed = 'move';
-												event.dataTransfer.setData( 'text/plain', String( index ) );
-											},
-											onDragEnd: function() {
-												setDraggedFilterIndex( null );
-											},
+									'button',
+									{
+										type: 'button',
+										className: 'bis-akce-filter-drag-handle',
+										draggable: true,
+										'aria-label': 'Přetáhnout filtr „' + filterName + '“',
+										title: 'Přetáhnout pro změnu pořadí',
+										onDragStart: function( event ) {
+											setDraggedFilterIndex( index );
+											event.dataTransfer.effectAllowed = 'move';
+											event.dataTransfer.setData( 'text/plain', String( index ) );
 										},
-										'↕'
-									),
-									wp.element.createElement(
-										'button',
-										{
-											type: 'button',
-											className: 'bis-akce-filter-move-button',
-											'aria-label': 'Posunout filtr „' + filterName + '“ výš',
-											disabled: index === 0,
-											onClick: function() {
-												moveFilter( index, index - 1 );
-											},
+										onDragEnd: function() {
+											setDraggedFilterIndex( null );
 										},
-										'↑'
-									),
-									wp.element.createElement(
-										'button',
-										{
-											type: 'button',
-											className: 'bis-akce-filter-move-button',
-											'aria-label': 'Posunout filtr „' + filterName + '“ níž',
-											disabled: index === customFilters.length - 1,
-											onClick: function() {
-												moveFilter( index, index + 1 );
-											}
-										},
-										'↓'
-									)
+									},
+									'⋮'
 								),
 								wp.element.createElement(
 									wp.components.PanelBody,

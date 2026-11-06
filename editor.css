@@ -18,7 +18,7 @@
 .bis-akce-filter-item {
   display: flex;
   align-items: flex-start;
-  gap: 0.5rem;
+  gap: 0.25rem;
 }
 
 .bis-akce-filter-item .components-panel__body {
@@ -26,38 +26,23 @@
   min-width: 0;
 }
 
-.bis-akce-filter-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  padding-top: 0.25rem;
-}
-
-.bis-akce-filter-drag-handle,
-.bis-akce-filter-move-button {
-  width: 2rem;
-  height: 2rem;
+.bis-akce-filter-drag-handle {
+  flex: 0 0 1.5rem;
+  align-self: flex-start;
+  width: 1.5rem;
+  min-height: 3rem;
   padding: 0;
-  border: 1px solid #949494;
-  border-radius: 2px;
-  background: #fff;
-  color: #1e1e1e;
-  font-size: 1rem;
+  border: 0;
+  background: transparent;
+  color: #757575;
+  font-size: 1.5rem;
   line-height: 1;
   cursor: pointer;
-}
-
-.bis-akce-filter-drag-handle {
   cursor: grab;
 }
 
 .bis-akce-filter-drag-handle:active {
   cursor: grabbing;
-}
-
-.bis-akce-filter-move-button:disabled {
-  opacity: 0.4;
-  cursor: default;
 }
 
 .bis-akce-filter-item.is-drop-target .components-panel__body {
