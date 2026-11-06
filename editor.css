@@ -26,6 +26,10 @@
   min-width: 0;
 }
 
+.bis-akce-filter-spacer {
+  flex: 0 0 1.5rem;
+}
+
 .bis-akce-filter-drag-handle {
   flex: 0 0 1.5rem;
   align-self: flex-start;
@@ -37,15 +41,22 @@
   color: #757575;
   font-size: 1.5rem;
   line-height: 1;
-  cursor: pointer;
   cursor: grab;
+  touch-action: none;
 }
 
 .bis-akce-filter-drag-handle:active {
   cursor: grabbing;
 }
 
-.bis-akce-filter-item.is-drop-target .components-panel__body {
-  outline: 2px dashed #3858e9;
-  outline-offset: 2px;
+.bis-akce-filter-item.is-dragging {
+  box-shadow: 0 4px 12px rgb(0 0 0 / 20%);
+  background: #fff;
+}
+
+.bis-akce-filter-drop-slot {
+  box-sizing: border-box;
+  border: 1px dashed #949494;
+  border-radius: 2px;
+  background: #f0f0f0;
 }

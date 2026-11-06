@@ -5,7 +5,7 @@
 		function( settings, name ) {
 			if ( name !== 'core/button' ) {
 				return settings;
-			}
+				}
 
 			settings.styles = [
 				{
@@ -239,7 +239,8 @@
 		edit: function( props ) {
 			const blockProps = wp.blockEditor.useBlockProps();
 			const [ expandedFilterIndex, setExpandedFilterIndex ] = wp.element.useState( null );
-			const [ draggedFilterIndex, setDraggedFilterIndex ] = wp.element.useState( null );
+			const [ dragState, setDragState ] = wp.element.useState( null );
+			const filterListRef = wp.element.useRef( null );
 			const filters = [
 				{
 					attribute: 'group',
@@ -424,6 +425,81 @@
 					}
 				}
 			};
+			const filterEntries = customFilters.map( function( filter, index ) {
+				return { filter: filter, index: index };
+			} );
+			const orderedFilterEntries = filterEntries.slice();
+			if ( dragState ) {
+				const draggedEntry = orderedFilterEntries.splice( dragState.sourceIndex, 1 )[ 0 ];
+				orderedFilterEntries.splice( dragState.destinationIndex, 0, draggedEntry );
+			}
+			const startFilterDrag = function( event, index ) {
+				if ( event.button !== 0 ) {
+					return;
+				}
+				const item = event.currentTarget.closest( '.bis-akce-filter-item' );
+				if ( ! item ) {
+					return;
+				}
+
+				event.preventDefault();
+				const bounds = item.getBoundingClientRect();
+				setDragState( {
+					sourceIndex: index,
+					destinationIndex: index,
+					pointerY: event.clientY,
+					offsetY: event.clientY - bounds.top,
+					left: bounds.left,
+					width: bounds.width,
+					height: bounds.height,
+				} );
+			};
+			const updateFilterDrag = function( event ) {
+				if ( ! dragState ) {
+					return;
+				}
+
+				let destinationIndex = 0;
+				if ( filterListRef.current ) {
+					const remainingItems = filterListRef.current.querySelectorAll(
+						'.bis-akce-filter-item[data-filter-index]:not(.is-dragging)'
+					);
+					remainingItems.forEach( function( item ) {
+						const bounds = item.getBoundingClientRect();
+						if ( event.clientY > bounds.top + bounds.height / 2 ) {
+							destinationIndex++;
+						}
+					} );
+					}
+
+				setDragState( Object.assign( {}, dragState, {
+					destinationIndex: destinationIndex,
+					pointerY: event.clientY,
+				} ) );
+			};
+			const finishFilterDrag = function() {
+				if ( dragState ) {
+					moveFilter( dragState.sourceIndex, dragState.destinationIndex );
+					setDragState( null );
+				}
+			};
+			const cancelFilterDrag = function() {
+				setDragState( null );
+			};
+			wp.element.useEffect( function() {
+				if ( ! dragState ) {
+					return undefined;
+				}
+
+				document.addEventListener( 'pointermove', updateFilterDrag, true );
+				document.addEventListener( 'pointerup', finishFilterDrag, true );
+				document.addEventListener( 'pointercancel', cancelFilterDrag, true );
+				return function() {
+					document.removeEventListener( 'pointermove', updateFilterDrag, true );
+					document.removeEventListener( 'pointerup', finishFilterDrag, true );
+					document.removeEventListener( 'pointercancel', cancelFilterDrag, true );
+				};
+			}, [ dragState ] );
 
 			return wp.element.createElement(
 				wp.element.Fragment,
@@ -467,123 +543,135 @@
 							'U každé možnosti lze vybrat více položek. Bez výběru se možnost nepoužije.'
 						),
 						wp.element.createElement(
-							wp.components.PanelBody,
-							{ title: 'vše', initialOpen: false },
-							renderFilterControls(
-								props.attributes,
-								function( updates ) {
-									props.setAttributes( updates );
-								},
-								'all-',
-								false
-							),
+							'div',
+							{ className: 'bis-akce-filter-item bis-akce-filter-item--all' },
+							wp.element.createElement( 'span', {
+								className: 'bis-akce-filter-spacer',
+								'aria-hidden': 'true',
+							} ),
 							wp.element.createElement(
-								wp.components.Button,
-								{
-									variant: 'secondary',
-									onClick: function() {
-										duplicateFilter( props.attributes, 'vše' );
+								wp.components.PanelBody,
+								{ title: 'vše', initialOpen: false },
+								renderFilterControls(
+									props.attributes,
+									function( updates ) {
+										props.setAttributes( updates );
 									},
-								},
-								'Duplikovat'
-							)
+									'all-',
+									false
+								),
+								wp.element.createElement(
+									wp.components.Button,
+									{
+										variant: 'secondary',
+										onClick: function() {
+											duplicateFilter( props.attributes, 'vše' );
+										},
+									},
+									'Duplikovat'
+								)
+							),
 						),
-						customFilters.map( function( filter, index ) {
+						wp.element.createElement(
+							'div',
+							{ className: 'bis-akce-filter-list', ref: filterListRef },
+							orderedFilterEntries.map( function( entry ) {
+							const filter = entry.filter;
+							const index = entry.index;
 							const filterName = typeof filter.name === 'string' && filter.name
 								? filter.name
 								: 'Nový filtr';
+							const isDragging = dragState && dragState.sourceIndex === index;
 
 							return wp.element.createElement(
-								'div',
-								{
-									key: 'filter-' + index,
-									className: 'bis-akce-filter-item' + (
-										draggedFilterIndex !== null && draggedFilterIndex !== index
-											? ' is-drop-target'
-											: ''
-									),
-									onDragOver: function( event ) {
-										event.preventDefault();
-										event.dataTransfer.dropEffect = 'move';
-									},
-									onDrop: function( event ) {
-										event.preventDefault();
-										const draggedIndex = event.dataTransfer.getData( 'text/plain' );
-										if ( draggedIndex !== '' ) {
-											const sourceIndex = Number( draggedIndex );
-											if ( Number.isInteger( sourceIndex ) ) {
-												moveFilter( sourceIndex, index );
+								wp.element.Fragment,
+								{ key: 'filter-' + index },
+								isDragging && wp.element.createElement( 'div', {
+									className: 'bis-akce-filter-item bis-akce-filter-drop-slot',
+									style: { height: dragState.height + 'px' },
+									'aria-hidden': 'true',
+								} ),
+								wp.element.createElement(
+									'div',
+									{
+										'data-filter-index': index,
+										className: 'bis-akce-filter-item' + (
+											isDragging ? ' is-dragging' : ''
+										),
+										style: isDragging
+											? {
+												position: 'fixed',
+												top: ( dragState.pointerY - dragState.offsetY ) + 'px',
+												left: dragState.left + 'px',
+												width: dragState.width + 'px',
+												height: dragState.height + 'px',
+												zIndex: 100000,
+												pointerEvents: 'none',
 											}
-										}
-										setDraggedFilterIndex( null );
+											: undefined,
 									},
-								},
-								wp.element.createElement(
-									'button',
-									{
-										type: 'button',
-										className: 'bis-akce-filter-drag-handle',
-										draggable: true,
-										'aria-label': 'Přetáhnout filtr „' + filterName + '“',
-										title: 'Přetáhnout pro změnu pořadí',
-										onDragStart: function( event ) {
-											setDraggedFilterIndex( index );
-											event.dataTransfer.effectAllowed = 'move';
-											event.dataTransfer.setData( 'text/plain', String( index ) );
-										},
-										onDragEnd: function() {
-											setDraggedFilterIndex( null );
-										},
-									},
-									'⋮'
-								),
-								wp.element.createElement(
-									wp.components.PanelBody,
-									{
-										title: filterName,
-										initialOpen: expandedFilterIndex === index,
-									},
-									wp.element.createElement( wp.components.TextControl, {
-										label: 'Název filtru',
-										value: typeof filter.name === 'string' ? filter.name : '',
-										onChange: function( name ) {
-											updateFilter( index, { name: name } );
-										},
-									} ),
-									renderFilterControls(
-										filter,
-										function( updates ) {
-											updateFilter( index, updates );
-										},
-										'custom-' + index + '-',
-										true
-									),
 									wp.element.createElement(
-										wp.components.Button,
+										'button',
 										{
-											variant: 'secondary',
-											isDestructive: true,
-											onClick: function() {
-												if ( window.confirm( 'Opravdu chcete odebrat filtr „' + filterName + '“?' ) ) {
-													removeFilter( index );
-												}
+											type: 'button',
+											className: 'bis-akce-filter-drag-handle',
+											'aria-label': 'Přetáhnout filtr „' + filterName + '“',
+											title: 'Přetáhnout pro změnu pořadí',
+											onPointerDown: function( event ) {
+												startFilterDrag( event, index );
 											},
 										},
-										'Odebrat filtr'
+										'⋮'
 									),
 									wp.element.createElement(
-										wp.components.Button,
+										wp.components.PanelBody,
 										{
-											variant: 'secondary',
-											onClick: function() {
-												duplicateFilter( filter, filterName );
-											},
+											title: filterName,
+											initialOpen: expandedFilterIndex === index,
 										},
-										'Duplikovat'
+										wp.element.createElement( wp.components.TextControl, {
+											label: 'Název filtru',
+											value: typeof filter.name === 'string' ? filter.name : '',
+											onChange: function( name ) {
+												updateFilter( index, { name: name } );
+											},
+										} ),
+										renderFilterControls(
+											filter,
+											function( updates ) {
+												updateFilter( index, updates );
+											},
+											'custom-' + index + '-',
+											true
+										),
+										wp.element.createElement(
+											wp.components.Button,
+											{
+												variant: 'secondary',
+												isDestructive: true,
+												onClick: function() {
+													if ( window.confirm( 'Opravdu chcete odebrat filtr „' + filterName + '“?' ) ) {
+														removeFilter( index );
+													}
+												},
+											},
+											'Odebrat filtr'
+										),
+										wp.element.createElement(
+											wp.components.Button,
+											{
+												variant: 'secondary',
+												onClick: function() {
+													duplicateFilter( filter, filterName );
+												},
+											},
+											'Duplikovat'
+										)
 									)
 								)
 							);
-						} ),
+							} )
+						),
 						wp.element.createElement(
 							wp.components.Button,
 							{
