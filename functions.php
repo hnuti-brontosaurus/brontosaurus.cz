@@ -11,7 +11,12 @@ add_action( 'after_setup_theme', function() {
 } );
 
 add_action( 'wp_enqueue_scripts', function() {
-    wp_enqueue_style( 'brontosaurus-style', get_stylesheet_uri() );
+    wp_enqueue_style(
+        'brontosaurus-style',
+        get_stylesheet_uri(),
+        [],
+        filemtime( get_stylesheet_directory() . '/style.css' ),
+    );
     wp_enqueue_script(
         'brontosaurus-bis-akce',
         get_theme_file_uri( 'scripts/bis-akce.js' ),
