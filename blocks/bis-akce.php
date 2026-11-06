@@ -63,9 +63,11 @@ function brontosaurus_render_bis_akce_block(array $attributes): string
 	$views = [
 		[
 			'label' => 'vše',
+			'query' => '',
 			'filters' => $attributes,
 		],
 	];
+	$usedFilterSlugs = [];
 	$customFilters = isset($attributes['filters']) && is_array($attributes['filters'])
 		? $attributes['filters']
 		: [];
@@ -74,29 +76,58 @@ function brontosaurus_render_bis_akce_block(array $attributes): string
 			continue;
 		}
 
+		$label = isset($filter['name']) && is_string($filter['name']) && $filter['name'] !== ''
+			? $filter['name']
+			: 'Filtr';
+		$slug = sanitize_title($label);
+		if ($slug === '') {
+			$slug = 'filtr';
+		}
+		$baseSlug = $slug;
+		$suffix = 2;
+		while (isset($usedFilterSlugs[$slug])) {
+			$slug = $baseSlug . '-' . $suffix;
+			$suffix++;
+		}
+		$usedFilterSlugs[$slug] = true;
+
 		$views[] = [
-			'label' => isset($filter['name']) && is_string($filter['name']) && $filter['name'] !== ''
-				? $filter['name']
-				: 'Filtr',
+			'label' => $label,
+			'query' => $slug,
 			'filters' => $filter,
 		];
+	}
+
+	$selectedFilter = isset($_GET['jen']) && is_string($_GET['jen'])
+		? sanitize_title(wp_unslash($_GET['jen']))
+		: '';
+	$activeViewIndex = 0;
+	if ($selectedFilter !== '') {
+		foreach ($views as $index => $view) {
+			if ($view['query'] === $selectedFilter) {
+				$activeViewIndex = $index;
+				break;
+			}
+		}
 	}
 
 	$markup = '<div class="bis-akce"><div class="bis-akce__tabs" role="group" aria-label="Přepnout výpis akcí">';
 	$panels = '';
 	foreach ($views as $index => $view) {
 		$panelId = wp_unique_id('bis-akce-view-');
+		$isActive = $index === $activeViewIndex;
 		$markup .= sprintf(
-			'<button class="bis-akce__tab" type="button" aria-controls="%s" aria-pressed="%s" data-bis-akce-view="%s">%s</button>',
+			'<button class="bis-akce__tab" type="button" aria-controls="%s" aria-pressed="%s" data-bis-akce-view="%s" data-bis-akce-filter="%s">%s</button>',
 			esc_attr($panelId),
-			$index === 0 ? 'true' : 'false',
+			$isActive ? 'true' : 'false',
 			esc_attr($panelId),
+			esc_attr($view['query']),
 			esc_html($view['label']),
 		);
 		$panels .= sprintf(
 			'<div class="bis-akce__view" id="%s" data-bis-akce-panel%s>%s</div>',
 			esc_attr($panelId),
-			$index === 0 ? '' : ' hidden',
+			$isActive ? '' : ' hidden',
 			brontosaurus_bis_events_markup($view['filters'], $limit),
 		);
 	}
