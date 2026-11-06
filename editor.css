@@ -14,3 +14,53 @@
   resize: vertical;
   overflow: auto;
 }
+
+.bis-akce-filter-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.bis-akce-filter-item .components-panel__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.bis-akce-filter-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-top: 0.25rem;
+}
+
+.bis-akce-filter-drag-handle,
+.bis-akce-filter-move-button {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid #949494;
+  border-radius: 2px;
+  background: #fff;
+  color: #1e1e1e;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.bis-akce-filter-drag-handle {
+  cursor: grab;
+}
+
+.bis-akce-filter-drag-handle:active {
+  cursor: grabbing;
+}
+
+.bis-akce-filter-move-button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.bis-akce-filter-item.is-drop-target .components-panel__body {
+  outline: 2px dashed #3858e9;
+  outline-offset: 2px;
+}

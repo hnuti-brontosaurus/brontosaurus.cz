@@ -20,6 +20,7 @@ V sekci **Výpis akcí** lze nastavit výchozí výpis podle programu, cílové 
 kategorie, typu akce, kraje a štítku. V sekci **Nastavení filtrů** lze vytvářet
 pojmenované sady filtrů, mezi kterými návštěvníci přepínají nad výpisem akcí.
 V každém filtru lze vybrat více možností; bez výběru se daný filtr nepoužije.
+Pořadí vlastních filtrů lze měnit přetažením nebo tlačítky; filtr „vše“ zůstává první.
 Výchozí počet je 9 akcí; lze nastavit 3 až 15.
 Na širších obrazovkách se akce zobrazují ve třech sloupcích.
 Seznam akcí se vykresluje na serveru a ukládá do mezipaměti na pět minut.
