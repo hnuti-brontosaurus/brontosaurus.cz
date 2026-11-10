@@ -124,9 +124,11 @@ function loadMoreBisAkce( button ) {
 
 			const nextButton = template.content.querySelector( '[data-bis-akce-more]' );
 			if ( nextButton ) {
-				button.replaceWith( nextButton );
+				button.closest( '.wp-block-button' ).replaceWith(
+					nextButton.closest( '.wp-block-button' )
+				);
 			} else {
-				button.remove();
+				button.closest( '.wp-block-button' ).remove();
 			}
 		} )
 		.catch( function( error ) {
@@ -157,8 +159,9 @@ function setBisAkceFilter( filter ) {
 		tabs.forEach( function( tab ) {
 			const isSelected = tab === selectedTab;
 			tab.setAttribute( 'aria-pressed', String( isSelected ) );
-			tab.classList.toggle( 'is-style-primary', isSelected );
-			tab.classList.toggle( 'is-style-secondary', ! isSelected );
+			const buttonBlock = tab.closest( '.wp-block-button' );
+			buttonBlock.classList.toggle( 'is-style-primary', isSelected );
+			buttonBlock.classList.toggle( 'is-style-secondary', ! isSelected );
 			const panel = document.getElementById( tab.dataset.bisAkceView );
 			if ( panel ) {
 				panel.hidden = ! isSelected;

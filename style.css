@@ -25,15 +25,40 @@ Text Domain: brontosaurus-theme
 
 /* Vedlejší styl používá tmavší pozadí a výchozí barvu textu. */
 .wp-block-button.is-style-secondary .wp-block-button__link,
-.bis-akce__tab.is-style-secondary,
-.bis-akce__more.is-style-secondary {
+.bis-akce .wp-block-button.is-style-secondary .wp-block-button__link {
   background-color: var(--wp--preset--color--bg-darker);
   color: inherit;
 }
 
-.bis-akce__tab.is-style-primary {
+/* Dynamicky vykreslená tlačítka BIS Akce sama nespustí načtení stylů bloku core/button. */
+.bis-akce .wp-block-button {
+  display: inline-block;
+  margin: 0;
+}
+
+.bis-akce .wp-block-button__link {
+  border: 0;
+  border-radius: 9999px;
+  box-shadow: none;
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 1em;
+  line-height: inherit;
+  padding: var(--wp--preset--spacing--small) var(--wp--preset--spacing--normal);
+  text-align: center;
+  text-decoration: none;
+  overflow-wrap: break-word;
+}
+
+.bis-akce .wp-block-button.is-style-primary > .wp-block-button__link {
   background-color: var(--wp--preset--color--primary);
   color: #fff;
+}
+
+.bis-akce .wp-block-button.is-style-secondary > .wp-block-button__link {
+  background-color: var(--wp--preset--color--bg-darker);
+  color: inherit;
 }
 
 /* Formát odkazu „S tlapou“ v editoru zobrazuje před textem odkazu starší ikonu tlapy. */
@@ -55,15 +80,6 @@ a.hb-link--paw::before {
   margin-block-end: var(--wp--preset--spacing--normal);
 }
 
-.bis-akce__tab {
-  padding: 0.5em 1em;
-  border: 1px solid currentColor;
-  border-radius: 999px;
-  color: inherit;
-  font: inherit;
-  cursor: pointer;
-}
-
 .bis-akce__list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -76,15 +92,10 @@ a.hb-link--paw::before {
 .bis-akce__more {
   display: block;
   margin: var(--wp--preset--spacing--normal) auto 0;
-  padding: 0.5em 1em;
-  border: 1px solid currentColor;
-  border-radius: 999px;
-  color: inherit;
-  font: inherit;
-  cursor: pointer;
+  text-align: center;
 }
 
-.bis-akce__more:disabled {
+.bis-akce__more button:disabled {
   cursor: wait;
 }
 
