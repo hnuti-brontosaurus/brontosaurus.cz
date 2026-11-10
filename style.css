@@ -95,21 +95,25 @@ a.hb-link--paw::before {
   background-color: currentColor;
 }
 
+.bis-akce {
+  --bis-akce-content-width: min(
+    calc(var(--wp--style--global--content-size) + 40rem),
+    calc(100vw - var(--wp--preset--spacing--normal) - var(--wp--preset--spacing--normal))
+  );
+}
+
+.bis-akce__tabs,
+.bis-akce__views {
+  width: var(--bis-akce-content-width);
+  margin-inline: calc((100% - var(--bis-akce-content-width)) / 2);
+}
+
 .bis-akce__tabs {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--wp--preset--spacing--small);
   margin-block-end: var(--wp--preset--spacing--normal);
-}
-
-.bis-akce__views {
-  --bis-akce-views-width: min(
-    calc(var(--wp--style--global--content-size) + 40rem),
-    calc(100vw - var(--wp--preset--spacing--normal) - var(--wp--preset--spacing--normal))
-  );
-  width: var(--bis-akce-views-width);
-  margin-inline: calc((100% - var(--bis-akce-views-width)) / 2);
 }
 
 .bis-akce__list {
