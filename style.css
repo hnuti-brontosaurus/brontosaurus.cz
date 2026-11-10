@@ -61,16 +61,38 @@ Text Domain: brontosaurus-theme
   color: inherit;
 }
 
-/* Formát odkazu „S tlapou“ v editoru zobrazuje před textem odkazu starší ikonu tlapy. */
+.wp-block-button.is-style-paw > .wp-block-button__link {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: inherit;
+  transition: color 200ms ease-in-out;
+  text-decoration: underline;
+}
+
+.wp-block-button.is-style-paw > .wp-block-button__link:hover {
+  color: var(--wp--preset--color--primary);
+}
+
+.wp-block-button.is-style-paw > .wp-block-button__link::before,
 a.hb-link--paw::before {
   content: "";
   display: inline-block;
   inline-size: 0.8em;
   block-size: 0.8em;
   margin-inline-end: 0.3em;
-  background-color: currentColor;
   mask: url("./images/icon-paw.svg") center / contain no-repeat;
-  vertical-align: -0.05em;
+  vertical-align: middle;
+}
+
+.wp-block-button.is-style-paw > .wp-block-button__link::before {
+  background-color: var(--wp--preset--color--primary);
+}
+
+a.hb-link--paw::before {
+  background-color: currentColor;
 }
 
 .bis-akce__tabs {

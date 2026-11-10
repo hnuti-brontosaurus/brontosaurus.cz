@@ -17,6 +17,10 @@
 					name: 'secondary',
 					label: 'Vedlejší',
 				},
+				{
+					name: 'paw',
+					label: 'S tlapou',
+				},
 			];
 			settings.supports = {
 				...settings.supports,
@@ -51,48 +55,6 @@
 			return settings;
 		}
 	);
-
-	const linkFormatName = 'brontosaurus/link-style';
-
-	wp.richText.registerFormatType( linkFormatName, {
-		title: 'Vzhled odkazu',
-		tagName: 'a',
-		className: 'hb-link--paw',
-		edit: function( props ) {
-			if ( ! wp.richText.getActiveFormat( props.value, 'core/link' ) ) {
-				return null;
-			}
-
-			const isPaw = props.isActive;
-
-			return wp.element.createElement( wp.components.ToolbarDropdownMenu, {
-				icon: isPaw ? 'admin-links' : 'editor-link',
-				label: 'Vzhled odkazu',
-				controls: [
-					{
-						title: 'Normální',
-						isActive: ! isPaw,
-						onClick: function() {
-							props.onChange(
-								wp.richText.removeFormat( props.value, linkFormatName )
-							);
-						},
-					},
-					{
-						title: 'S tlapou',
-						isActive: isPaw,
-						onClick: function() {
-							props.onChange(
-								wp.richText.toggleFormat( props.value, {
-									type: linkFormatName,
-								} )
-							);
-						},
-					},
-				],
-			} );
-		},
-	} );
 
 	const spacerHeight = 'var(--wp--preset--spacing--normal)';
 	const spacerSizes = Array.from( { length: 10 }, function( _, index ) {
