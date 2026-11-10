@@ -157,6 +157,8 @@ function setBisAkceFilter( filter ) {
 		tabs.forEach( function( tab ) {
 			const isSelected = tab === selectedTab;
 			tab.setAttribute( 'aria-pressed', String( isSelected ) );
+			tab.classList.toggle( 'is-style-primary', isSelected );
+			tab.classList.toggle( 'is-style-secondary', ! isSelected );
 			const panel = document.getElementById( tab.dataset.bisAkceView );
 			if ( panel ) {
 				panel.hidden = ! isSelected;

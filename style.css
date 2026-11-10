@@ -23,10 +23,17 @@ Text Domain: brontosaurus-theme
   margin-inline: auto;
 }
 
-/* theme.json nastavuje výchozí pozadí hlavního tlačítka; vedlejší tlačítka mají tmavší pozadí a výchozí barvu textu. */
-.wp-block-button.is-style-secondary .wp-block-button__link {
+/* Vedlejší styl používá tmavší pozadí a výchozí barvu textu. */
+.wp-block-button.is-style-secondary .wp-block-button__link,
+.bis-akce__tab.is-style-secondary,
+.bis-akce__more.is-style-secondary {
   background-color: var(--wp--preset--color--bg-darker);
   color: inherit;
+}
+
+.bis-akce__tab.is-style-primary {
+  background-color: var(--wp--preset--color--primary);
+  color: #fff;
 }
 
 /* Formát odkazu „S tlapou“ v editoru zobrazuje před textem odkazu starší ikonu tlapy. */
@@ -52,15 +59,9 @@ a.hb-link--paw::before {
   padding: 0.5em 1em;
   border: 1px solid currentColor;
   border-radius: 999px;
-  background: transparent;
   color: inherit;
   font: inherit;
   cursor: pointer;
-}
-
-.bis-akce__tab[aria-pressed="true"] {
-  background: currentColor;
-  color: var(--wp--preset--color--bg-lighter);
 }
 
 .bis-akce__list {
@@ -78,7 +79,6 @@ a.hb-link--paw::before {
   padding: 0.5em 1em;
   border: 1px solid currentColor;
   border-radius: 999px;
-  background: transparent;
   color: inherit;
   font: inherit;
   cursor: pointer;

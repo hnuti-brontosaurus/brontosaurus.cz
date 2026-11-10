@@ -163,7 +163,8 @@ function brontosaurus_render_bis_akce_block(array $attributes): string
 		$panelId = wp_unique_id('bis-akce-view-');
 		$isActive = $index === $activeViewIndex;
 		$markup .= sprintf(
-			'<button class="bis-akce__tab" type="button" aria-controls="%s" aria-pressed="%s" data-bis-akce-view="%s" data-bis-akce-filter="%s" data-bis-akce-filters="%s">%s</button>',
+			'<button class="bis-akce__tab is-style-%s" type="button" aria-controls="%s" aria-pressed="%s" data-bis-akce-view="%s" data-bis-akce-filter="%s" data-bis-akce-filters="%s">%s</button>',
+			$isActive ? 'primary' : 'secondary',
 			esc_attr($panelId),
 			$isActive ? 'true' : 'false',
 			esc_attr($panelId),
@@ -338,7 +339,7 @@ function brontosaurus_bis_events_markup(array $attributes, int $limit, int $offs
 	$markup = '<ul class="bis-akce__list">' . $items . '</ul>';
 	if ($hasMore) {
 		$markup .= sprintf(
-			'<button class="bis-akce__more" type="button" data-bis-akce-more data-offset="%d">Zobrazit další</button>',
+			'<button class="bis-akce__more is-style-secondary" type="button" data-bis-akce-more data-offset="%d">Zobrazit další</button>',
 			$offset + count($events),
 		);
 	}
