@@ -42,7 +42,7 @@
 				settings.supports = {
 					...settings.supports,
 					anchor: false,
-					customClassName: false,
+					customClassName: name === 'core/button',
 					customCSS: false,
 					typography: false,
 				};
