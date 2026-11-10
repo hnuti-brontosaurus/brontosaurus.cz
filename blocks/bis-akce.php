@@ -288,6 +288,27 @@ function brontosaurus_bis_events_markup(array $attributes, int $limit, int $offs
 			200,
 			'…',
 		);
+		$labels = [];
+		if ($event->program === Program::NATURE) {
+			$labels[] = ['name' => 'akce příroda', 'modifier' => 'nature'];
+		}
+		if ($event->program === Program::MONUMENTS) {
+			$labels[] = ['name' => 'akce památky', 'modifier' => 'sights'];
+		}
+		if ($event->program === Program::HOLIDAYS_WITH_BRONTOSAURUS) {
+			if ($event->category === Category::VOLUNTEERING) {
+				$labels[] = ['name' => 'dobrovolnická'];
+			} elseif ($event->category === Category::EXPERIENTAL) {
+				$labels[] = ['name' => 'zážitková'];
+			}
+			$labels[] = ['name' => 'prázdninová'];
+		} elseif ($event->duration === 1) {
+			$labels[] = ['name' => 'jednodenní'];
+		} elseif ($event->group === Group::WEEKEND_EVENT) {
+			$labels[] = ['name' => 'víkendovka'];
+		} elseif ($event->group === Group::OTHER) {
+			$labels[] = ['name' => 'dlouhodobá'];
+		}
 
 		$items .= '<li class="bis-akce__item">';
 		$items .= sprintf(
@@ -301,6 +322,20 @@ function brontosaurus_bis_events_markup(array $attributes, int $limit, int $offs
 			$coverPhotoPath === null ? ' hb-event__image--noThumbnail' : '',
 			esc_url($coverPhotoPath ?? 'https://brontosaurus.cz/wp-content/uploads/2024/12/logo-hb-brontosaurus.svg'),
 		);
+		if ($labels !== []) {
+			$items .= '<div class="hb-event__labels"><div class="hb-eventLabels">';
+			foreach ($labels as $label) {
+				$modifierClass = isset($label['modifier'])
+					? ' hb-eventLabels__item--type hb-eventLabels__item--' . esc_attr($label['modifier'])
+					: '';
+				$items .= sprintf(
+					'<div class="hb-eventLabels__item%s">%s</div>',
+					$modifierClass,
+					esc_html($label['name']),
+				);
+			}
+			$items .= '</div></div>';
+		}
 		$items .= '</div>';
 		if ($isFull) {
 			$items .= '<span class="hb-event__full">plně obsazeno</span>';

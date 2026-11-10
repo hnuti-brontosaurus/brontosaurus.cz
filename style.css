@@ -148,6 +148,45 @@ a.hb-link--paw::before {
   text-align: center;
 }
 
+.hb-event__labels {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  padding: 0 var(--wp--preset--spacing--small) var(--wp--preset--spacing--small);
+  border-block-end: 2px solid var(--wp--preset--color--primary);
+}
+
+.hb-eventLabels {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--wp--preset--spacing--x-small);
+  font-size: 0.9em;
+}
+
+.hb-eventLabels__item {
+  padding: var(--wp--preset--spacing--x-small) var(--wp--preset--spacing--normal);
+  border-radius: 2em;
+  background-color: rgb(255 255 255 / 90%);
+}
+
+.hb-eventLabels__item--type {
+  padding-inline-start: calc(var(--wp--preset--spacing--normal) + 1.25em);
+  background-position: var(--wp--preset--spacing--normal) center;
+  background-repeat: no-repeat;
+  background-size: auto 1em;
+}
+
+.hb-eventLabels__item--nature {
+  background-image: url("./images/icons/icon-nature.svg");
+}
+
+.hb-eventLabels__item--sights {
+  background-image: url("./images/icons/icon-castle.svg");
+  background-position-x: calc(var(--wp--preset--spacing--normal) + 0.1em);
+}
+
 .hb-event--full .hb-event__imageWrapper {
   opacity: 0.5;
 }
@@ -163,7 +202,7 @@ a.hb-link--paw::before {
 .hb-event__image {
   display: block;
   width: 100%;
-  height: 13rem;
+  height: 18rem;
   border-radius: 15px 15px 0 0;
   background-color: var(--wp--preset--color--bg-darker);
   object-fit: cover;
@@ -239,6 +278,7 @@ a.hb-link--paw::before {
 
 .hb-event__excerpt {
   margin: 0;
+  margin-block-start: var(--wp--preset--spacing--small);
   padding-inline: var(--wp--preset--spacing--normal);
   font-size: 0.9em;
 }
