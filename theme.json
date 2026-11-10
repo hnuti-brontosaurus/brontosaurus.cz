@@ -36,6 +36,9 @@
               "fontFamily": "\"Delm\"",
               "fontWeight": "700",
               "fontStyle": "normal",
+              "ascentOverride": "70%",
+              "descentOverride": "30%",
+              "lineGapOverride": "0%",
               "src": [ "file:./webfonts/webfont-Delm.woff2" ]
             }
           ]
@@ -49,6 +52,9 @@
               "fontFamily": "\"Delm Light\"",
               "fontWeight": "300",
               "fontStyle": "normal",
+              "ascentOverride": "70%",
+              "descentOverride": "30%",
+              "lineGapOverride": "0%",
               "src": [ "file:./webfonts/webfont-DelmLight.woff2" ]
             }
           ]
