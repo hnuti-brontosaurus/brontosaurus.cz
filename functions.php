@@ -10,6 +10,13 @@ add_action( 'after_setup_theme', function() {
 	add_editor_style( 'style.css' );
 } );
 
+add_action( 'init', function() {
+	register_block_style( 'core/button', [
+		'name'  => 'secondary',
+		'label' => 'Vedlejší',
+	] );
+} );
+
 add_action( 'wp_enqueue_scripts', function() {
     wp_enqueue_style(
         'brontosaurus-style',
