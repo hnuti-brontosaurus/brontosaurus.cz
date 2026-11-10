@@ -99,7 +99,7 @@ a.hb-link--paw::before {
   list-style: none;
 }
 
-.bis-akce__more {
+.bis-akce .wp-block-button.bis-akce__more {
   display: block;
   margin: var(--wp--preset--spacing--normal) auto 0;
   text-align: center;
