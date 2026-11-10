@@ -23,10 +23,10 @@ Text Domain: brontosaurus-theme
   margin-inline: auto;
 }
 
-/* theme.json nastavuje výchozí pozadí hlavního tlačítka; vedlejší tlačítka mají díky tomu tmavší pozadí. */
+/* theme.json nastavuje výchozí pozadí hlavního tlačítka; vedlejší tlačítka mají tmavší pozadí a výchozí barvu textu. */
 .wp-block-button.is-style-secondary .wp-block-button__link {
   background-color: var(--wp--preset--color--bg-darker);
-  color: var(--wp--preset--color--primary);
+  color: inherit;
 }
 
 /* Formát odkazu „S tlapou“ v editoru zobrazuje před textem odkazu starší ikonu tlapy. */
