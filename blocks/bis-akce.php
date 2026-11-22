@@ -154,24 +154,29 @@ function brontosaurus_render_bis_akce_block(array $attributes): string
 	}
 
 	$markup = sprintf(
-		'<div class="bis-akce" data-bis-akce-endpoint="%s" data-bis-akce-limit="%d"><div class="bis-akce__tabs" role="group" aria-label="Přepnout výpis akcí">',
+		'<div class="bis-akce" data-bis-akce-endpoint="%s" data-bis-akce-limit="%d">',
 		esc_url(rest_url('brontosaurus/v1/events')),
 		$limit,
 	);
+	if (count($views) > 1) {
+		$markup .= '<div class="bis-akce__tabs" role="group" aria-label="Přepnout výpis akcí">';
+	}
 	$panels = '';
 	foreach ($views as $index => $view) {
 		$panelId = wp_unique_id('bis-akce-view-');
 		$isActive = $index === $activeViewIndex;
-		$markup .= sprintf(
-			'<div class="wp-block-button is-style-%s"><button class="wp-block-button__link wp-element-button bis-akce__tab" type="button" aria-controls="%s" aria-pressed="%s" data-bis-akce-view="%s" data-bis-akce-filter="%s" data-bis-akce-filters="%s">%s</button></div>',
-			$isActive ? 'primary' : 'secondary',
-			esc_attr($panelId),
-			$isActive ? 'true' : 'false',
-			esc_attr($panelId),
-			esc_attr($view['query']),
-			esc_attr(wp_json_encode($view['filters'], JSON_UNESCAPED_UNICODE)),
-			esc_html($view['label']),
-		);
+		if (count($views) > 1) {
+			$markup .= sprintf(
+				'<div class="wp-block-button is-style-%s"><button class="wp-block-button__link wp-element-button bis-akce__tab" type="button" aria-controls="%s" aria-pressed="%s" data-bis-akce-view="%s" data-bis-akce-filter="%s" data-bis-akce-filters="%s">%s</button></div>',
+				$isActive ? 'primary' : 'secondary',
+				esc_attr($panelId),
+				$isActive ? 'true' : 'false',
+				esc_attr($panelId),
+				esc_attr($view['query']),
+				esc_attr(wp_json_encode($view['filters'], JSON_UNESCAPED_UNICODE)),
+				esc_html($view['label']),
+			);
+		}
 		$panels .= sprintf(
 			'<div class="bis-akce__view" id="%s" data-bis-akce-panel%s>%s</div>',
 			esc_attr($panelId),
@@ -180,7 +185,10 @@ function brontosaurus_render_bis_akce_block(array $attributes): string
 		);
 	}
 
-	return $markup . '</div><div class="bis-akce__views">' . $panels . '</div></div>';
+	if (count($views) > 1) {
+		$markup .= '</div>';
+	}
+	return $markup . '<div class="bis-akce__views">' . $panels . '</div></div>';
 }
 
 function brontosaurus_bis_events_markup(array $attributes, int $limit, int $offset = 0): string
