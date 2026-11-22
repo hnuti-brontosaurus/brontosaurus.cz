@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/blocks/bis-akce.php';
+require_once __DIR__ . '/blocks/bis-event-detail.php';
 
 add_action( 'after_setup_theme', function() {
 	add_theme_support( 'title-tag' );

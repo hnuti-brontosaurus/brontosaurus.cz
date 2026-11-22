@@ -289,7 +289,7 @@ function brontosaurus_bis_events_markup(array $attributes, int $limit, int $offs
 		$date = brontosaurus_format_bis_event_date($startDate, $endDate);
 		$location = $event->location->name;
 		$coverPhotoPath = $event->coverPhotoPath?->mediumSizePath;
-		$eventUrl = sprintf('https://bis.brontosaurus.cz/akce/%d/', $event->id);
+		$eventUrl = sprintf('/akce/%d/', $event->id);
 		$isFull = $event->registration->isEventFull;
 		$introduction = wp_html_excerpt(
 			wp_strip_all_tags($event->propagation->invitationTextIntroduction),

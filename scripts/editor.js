@@ -652,4 +652,136 @@
 			return null;
 		},
 	} );
+
+	const bisEventFieldBlocks = [
+		[ 'bis-event-name', 'Název akce', 'heading' ],
+		[ 'bis-event-cover', 'Fotka akce', 'format-image' ],
+		[ 'bis-event-date-location', 'Datum a místo', 'calendar-alt' ],
+		[ 'bis-event-introduction', 'Úvod akce', 'excerpt-view' ],
+		[ 'bis-event-practical', 'Praktické informace', 'info-outline' ],
+		[ 'bis-event-work', 'Popis práce', 'clipboard' ],
+		[ 'bis-event-about', 'O nás', 'groups' ],
+		[ 'bis-event-details', 'Další údaje', 'list-view' ],
+		[ 'bis-event-organizers', 'Organizátor', 'businessman' ],
+		[ 'bis-event-contact', 'Kontaktní osoba', 'email' ],
+		[ 'bis-event-registration', 'Registrace', 'tickets-alt' ],
+	];
+
+	wp.blocks.registerBlockType( 'brontosaurus/bis-event-detail', {
+		apiVersion: 3,
+		title: 'Detail akce BIS',
+		description: 'Zobrazí detail akce z BISu na adrese /akce/{id}/.',
+		icon: 'calendar',
+		category: 'widgets',
+		attributes: {
+			previewId: { type: 'string', default: '' },
+		},
+		providesContext: {
+			'brontosaurus/bis-event-preview-id': 'previewId',
+		},
+		supports: {
+			html: false,
+		},
+		edit: function( props ) {
+			const blockProps = wp.blockEditor.useBlockProps( {
+				className: 'bis-event-detail',
+			} );
+			const allowedBlocks = bisEventFieldBlocks.map( function( field ) {
+				return 'brontosaurus/' + field[ 0 ];
+			} );
+			const template = bisEventFieldBlocks.map( function( field ) {
+				return [ 'brontosaurus/' + field[ 0 ] ];
+			} );
+
+			return wp.element.createElement(
+				'div',
+				blockProps,
+				wp.element.createElement(
+					wp.blockEditor.InspectorControls,
+					null,
+					wp.element.createElement(
+						wp.components.PanelBody,
+						{ title: 'Náhled akce', initialOpen: true },
+						wp.element.createElement( wp.components.TextControl, {
+							label: 'ID akce v BISu',
+							help: 'Použije se pouze pro náhled v administraci. Veřejná stránka používá ID z adresy /akce/{id}/.',
+							value: props.attributes.previewId || '',
+							type: 'number',
+							min: 1,
+							onChange: function( value ) {
+								props.setAttributes( { previewId: value } );
+							},
+						} )
+					)
+				),
+				wp.element.createElement(
+					'div',
+					{ className: 'bis-event-detail__editor-note' },
+					'Každý podblok zobrazuje příslušnou část akce. Jejich pořadí změníte přetažením.'
+				),
+				wp.element.createElement( wp.blockEditor.InnerBlocks, {
+					allowedBlocks: allowedBlocks,
+					template: template,
+					templateInsertUpdatesSelection: true,
+				} ),
+			);
+		},
+		save: function() {
+			return wp.element.createElement( wp.blockEditor.InnerBlocks.Content );
+		},
+	} );
+
+	bisEventFieldBlocks.forEach( function( field ) {
+		const name = field[ 0 ];
+		const title = field[ 1 ];
+		const icon = field[ 2 ];
+
+		wp.blocks.registerBlockType( 'brontosaurus/' + name, {
+			apiVersion: 3,
+			title: title,
+			description: 'Pole detailu akce načtené z BISu.',
+			icon: icon,
+			category: 'widgets',
+			parent: [ 'brontosaurus/bis-event-detail' ],
+			usesContext: [ 'brontosaurus/bis-event-preview-id' ],
+			attributes: {
+				field: { type: 'string', default: name },
+				previewId: { type: 'string', default: '' },
+			},
+			supports: {
+				html: false,
+			},
+			edit: function( props ) {
+				const blockProps = wp.blockEditor.useBlockProps( {
+					className: 'bis-event-detail-field',
+				} );
+				const previewId = ( props.context || {} )[ 'brontosaurus/bis-event-preview-id' ] || '';
+				return wp.element.createElement(
+					'div',
+					blockProps,
+					previewId
+						? wp.element.createElement( wp.serverSideRender, {
+							block: 'brontosaurus/' + name,
+							attributes: {
+								field: name,
+								previewId: previewId,
+							},
+						} )
+						: wp.element.createElement(
+							wp.element.Fragment,
+							null,
+							wp.element.createElement( 'strong', null, title ),
+							wp.element.createElement(
+								'span',
+								{ className: 'bis-event-detail-field__source' },
+								' – nastavte ID akce v nastavení nadřazeného bloku'
+							)
+						)
+				);
+			},
+			save: function() {
+				return null;
+			},
+		} );
+	} );
 } )( window.wp );

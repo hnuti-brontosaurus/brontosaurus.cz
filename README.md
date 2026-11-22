@@ -35,3 +35,16 @@ Před aktivací šablony nainstalujte závislosti PHP:
 ```bash
 composer install
 ```
+
+## Detail akce z BIS
+
+Po aktivaci šablony se automaticky vytvoří administrativní stránka
+**Detail akce** s URI `/akce-detail/`. Na této stránce lze složit detail akce
+z podbloků, například Název akce, Fotka akce, Datum a místo, Úvod, Praktické
+informace nebo Registrace. Pořadí podbloků lze měnit přetažením. V nastavení
+bloku lze zadat ID akce, podle které se vykreslí náhled v administraci; toto ID
+neovlivňuje veřejnou stránku.
+
+Skutečné adresy detailů mají tvar `/akce/{id}/`, například `/akce/12345/`.
+Číslo `id` se předává do BIS klienta a data akce se načtou při vykreslení stránky.
+Akce z výpisu automaticky odkazují na tuto adresu.
