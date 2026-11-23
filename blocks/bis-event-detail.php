@@ -350,7 +350,7 @@ function brontosaurus_render_bis_event_field_value(string $field, Event $event, 
 
 		case 'cost':
 			return brontosaurus_render_bis_event_detail_panel_rows([
-				['Cena', $propagation->cost !== '' ? $propagation->cost : 'bez poplatku'],
+				['Cena', brontosaurus_bis_event_cost_display($propagation->cost)],
 			]);
 
 		case 'date-location':
@@ -411,13 +411,13 @@ function brontosaurus_render_bis_event_field_value(string $field, Event $event, 
 				if ($event->startTime !== null) {
 					$items[] = ['Začátek akce', $event->startTime];
 				}
-				$items[] = ['Cena', $propagation->cost !== '' ? $propagation->cost : 'bez poplatku'];
+				$items[] = ['Cena', brontosaurus_bis_event_cost_display($propagation->cost)];
 				return brontosaurus_render_bis_event_detail_panel_rows($items);
 			}
 
 			$items = [];
 			if ($propagation->cost !== '') {
-				$items[] = ['Poplatek', $propagation->cost];
+				$items[] = ['Poplatek', brontosaurus_bis_event_cost_display($propagation->cost)];
 			}
 			if ($propagation->accommodation !== null) {
 				$items[] = ['Ubytování', $propagation->accommodation];
@@ -552,6 +552,15 @@ function brontosaurus_bis_event_age_range(?int $minimum, ?int $maximum): string
 		return 'do ' . $maximum . ' let';
 	}
 	return '';
+}
+
+function brontosaurus_bis_event_cost_display(string $cost): string
+{
+	if (trim($cost) === '' || preg_match('/^0+(?:[,.](?:0+|-))?(?:\s*(?:Kč|CZK))?$/iu', trim($cost)) === 1) {
+		return '<em>bez poplatku</em>';
+	}
+
+	return $cost;
 }
 
 function brontosaurus_set_bis_event_detail_title(array $title): array
