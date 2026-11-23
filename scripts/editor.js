@@ -703,7 +703,6 @@
 					[ 'brontosaurus/bis-event-date-location' ],
 					[ 'brontosaurus/bis-event-details' ],
 					[ 'brontosaurus/bis-event-contact' ],
-					[ 'brontosaurus/bis-event-registration' ],
 				] ],
 				[ 'brontosaurus/bis-event-introduction' ],
 				[ 'brontosaurus/bis-event-practical' ],
@@ -774,7 +773,6 @@
 						[ 'brontosaurus/bis-event-date-location' ],
 						[ 'brontosaurus/bis-event-details' ],
 						[ 'brontosaurus/bis-event-contact' ],
-						[ 'brontosaurus/bis-event-registration' ],
 					],
 					templateInsertUpdatesSelection: true,
 				} )

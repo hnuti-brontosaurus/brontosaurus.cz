@@ -361,6 +361,7 @@ a.hb-link--paw::before {
 }
 
 .bis-event-detail__date-location,
+.bis-event-detail__panel-data,
 .bis-event-detail section dl {
   display: grid;
   gap: var(--wp--preset--spacing--small);
@@ -371,6 +372,11 @@ a.hb-link--paw::before {
   padding: var(--wp--preset--spacing--normal);
   border-radius: 2em;
   background-color: var(--wp--preset--color--bg-darker);
+}
+
+.bis-event-detail__panel-data {
+  margin: 0;
+  gap: var(--wp--preset--spacing--x-small);
 }
 
 .bis-event-detail__panel {
@@ -402,6 +408,7 @@ a.hb-link--paw::before {
 }
 
 .bis-event-detail__date-location div,
+.bis-event-detail__panel-data div,
 .bis-event-detail section dl div {
   display: grid;
   grid-template-columns: minmax(8rem, 12rem) 1fr;
@@ -411,6 +418,10 @@ a.hb-link--paw::before {
 .bis-event-detail dt {
   font-family: "Delm", sans-serif;
   font-weight: 700;
+}
+
+.bis-event-detail__panel-data dt {
+  text-align: right;
 }
 
 .bis-event-detail dd {
