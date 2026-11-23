@@ -314,10 +314,17 @@ a.hb-link--paw::before {
 }
 
 .bis-event-detail {
-  width: var(--wp--style--global--wide-size, 70rem);
-  max-width: 100%;
+  width: 100%;
+  max-width: 25em;
+  box-sizing: border-box;
   margin-inline: auto;
   padding-inline: var(--wp--preset--spacing--normal);
+}
+
+@media (min-width: 50rem) {
+  .bis-event-detail {
+    max-width: 40em;
+  }
 }
 
 .bis-event-detail__editor-note {
@@ -345,9 +352,11 @@ a.hb-link--paw::before {
 }
 
 .bis-event-detail__cover {
+  display: block;
   width: 100%;
-  max-height: 32rem;
-  border-radius: 2.8rem;
+  max-height: 15em;
+  border-radius: 2em 2em 0 0;
+  background-color: var(--wp--preset--color--bg-darker);
   object-fit: cover;
 }
 
@@ -355,6 +364,41 @@ a.hb-link--paw::before {
 .bis-event-detail section dl {
   display: grid;
   gap: var(--wp--preset--spacing--small);
+}
+
+.bis-event-detail__date-location {
+  margin: 0;
+  padding: var(--wp--preset--spacing--normal);
+  border-radius: 2em;
+  background-color: var(--wp--preset--color--bg-darker);
+}
+
+.bis-event-detail__panel {
+  display: grid;
+  align-content: center;
+  gap: var(--wp--preset--spacing--small);
+  min-width: 0;
+  padding: var(--wp--preset--spacing--normal);
+  border-radius: 2em;
+  background-color: var(--wp--preset--color--bg-darker);
+}
+
+.bis-event-detail:has(> .bis-event-detail__cover) > .bis-event-detail__date-location {
+  border-radius: 0 0 2em 2em;
+}
+
+.bis-event-detail:has(> .bis-event-detail__cover) > .bis-event-detail__panel {
+  border-radius: 0 0 2em 2em;
+}
+
+.bis-event-detail:has(> .bis-event-detail__cover):not(:has(> .bis-event-detail__date-location)):not(:has(> .bis-event-detail__panel)) > .bis-event-detail__cover {
+  border-radius: 2em;
+}
+
+.bis-event-detail__panel > .bis-event-detail__date-location {
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .bis-event-detail__date-location div,
@@ -379,9 +423,64 @@ a.hb-link--paw::before {
   margin-block-start: var(--wp--preset--spacing--large);
 }
 
+.bis-event-detail section {
+  max-width: 55ch;
+  margin-inline: auto;
+}
+
+.bis-event-detail__panel > section {
+  margin-block-start: 0;
+  margin-inline: 0;
+}
+
+.bis-event-detail__panel > section h2 {
+  margin-block-start: 0;
+}
+
+.bis-event-detail__panel > .bis-event-detail__registration,
+.bis-event-detail__panel > .bis-event-detail__full {
+  margin-block-start: 0;
+}
+
+.bis-event-detail__registration {
+  display: table;
+  margin-inline: auto;
+}
+
 .bis-event-detail__full {
   color: #b00020;
   font-weight: 700;
+  text-align: center;
+}
+
+@media (min-width: 50rem) {
+  .bis-event-detail:has(> .bis-event-detail__cover):has(> :is(.bis-event-detail__panel, .bis-event-detail__date-location)) {
+    display: grid;
+    grid-template-columns: minmax(0, 40fr) minmax(0, 60fr);
+  }
+
+  .bis-event-detail:has(> .bis-event-detail__cover):has(> :is(.bis-event-detail__panel, .bis-event-detail__date-location)) > .bis-event-detail__name,
+  .bis-event-detail:has(> .bis-event-detail__cover):has(> :is(.bis-event-detail__panel, .bis-event-detail__date-location)) > :not(.bis-event-detail__name):not(.bis-event-detail__cover):not(.bis-event-detail__panel):not(.bis-event-detail__date-location) {
+    grid-column: 1 / -1;
+  }
+
+  .bis-event-detail:has(> .bis-event-detail__cover):has(> :is(.bis-event-detail__panel, .bis-event-detail__date-location)) > .bis-event-detail__cover {
+    grid-column: 1;
+    height: 100%;
+    max-height: 18em;
+    min-height: 18em;
+    border-radius: 2em 0 0 2em;
+  }
+
+  .bis-event-detail:has(> .bis-event-detail__cover):has(> :is(.bis-event-detail__panel, .bis-event-detail__date-location)) > :is(.bis-event-detail__panel, .bis-event-detail__date-location) {
+    grid-column: 2;
+    align-content: center;
+    border-radius: 0 2em 2em 0;
+  }
+
+  .bis-event-detail:has(> .bis-event-detail__cover) > .bis-event-detail__panel > .bis-event-detail__date-location {
+    border-radius: 0;
+  }
 }
 
 .bis-akce__loading {

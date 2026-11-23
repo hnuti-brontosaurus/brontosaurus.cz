@@ -666,6 +666,13 @@
 		[ 'bis-event-contact', 'Kontaktní osoba', 'email' ],
 		[ 'bis-event-registration', 'Registrace', 'tickets-alt' ],
 	];
+	const bisEventPanelBlocks = bisEventFieldBlocks
+		.filter( function( field ) {
+			return field[ 0 ] !== 'bis-event-name' && field[ 0 ] !== 'bis-event-cover';
+		} )
+		.map( function( field ) {
+			return 'brontosaurus/' + field[ 0 ];
+		} );
 
 	wp.blocks.registerBlockType( 'brontosaurus/bis-event-detail', {
 		apiVersion: 3,
@@ -686,12 +693,24 @@
 			const blockProps = wp.blockEditor.useBlockProps( {
 				className: 'bis-event-detail',
 			} );
-			const allowedBlocks = bisEventFieldBlocks.map( function( field ) {
+			const allowedBlocks = [ 'brontosaurus/bis-event-panel' ].concat( bisEventFieldBlocks.map( function( field ) {
 				return 'brontosaurus/' + field[ 0 ];
-			} );
-			const template = bisEventFieldBlocks.map( function( field ) {
-				return [ 'brontosaurus/' + field[ 0 ] ];
-			} );
+			} ) );
+			const template = [
+				[ 'brontosaurus/bis-event-name' ],
+				[ 'brontosaurus/bis-event-cover' ],
+				[ 'brontosaurus/bis-event-panel', {}, [
+					[ 'brontosaurus/bis-event-date-location' ],
+					[ 'brontosaurus/bis-event-details' ],
+					[ 'brontosaurus/bis-event-contact' ],
+					[ 'brontosaurus/bis-event-registration' ],
+				] ],
+				[ 'brontosaurus/bis-event-introduction' ],
+				[ 'brontosaurus/bis-event-practical' ],
+				[ 'brontosaurus/bis-event-work' ],
+				[ 'brontosaurus/bis-event-about' ],
+				[ 'brontosaurus/bis-event-organizers' ],
+			];
 
 			return wp.element.createElement(
 				'div',
@@ -717,13 +736,48 @@
 				wp.element.createElement(
 					'div',
 					{ className: 'bis-event-detail__editor-note' },
-					'Každý podblok zobrazuje příslušnou část akce. Jejich pořadí změníte přetažením.'
+					'Každý podblok zobrazuje příslušnou část akce. Podbloky v informačním panelu se zobrazí v pravém sloupci; můžete je přidávat, odebírat a řadit.'
 				),
 				wp.element.createElement( wp.blockEditor.InnerBlocks, {
 					allowedBlocks: allowedBlocks,
 					template: template,
 					templateInsertUpdatesSelection: true,
 				} ),
+			);
+		},
+		save: function() {
+			return wp.element.createElement( wp.blockEditor.InnerBlocks.Content );
+		},
+	} );
+
+	wp.blocks.registerBlockType( 'brontosaurus/bis-event-panel', {
+		apiVersion: 3,
+		title: 'Informační panel',
+		description: 'Obsah pravého sloupce detailu akce.',
+		icon: 'info-outline',
+		category: 'widgets',
+		parent: [ 'brontosaurus/bis-event-detail' ],
+		supports: {
+			html: false,
+		},
+		edit: function() {
+			const blockProps = wp.blockEditor.useBlockProps( {
+				className: 'bis-event-detail__panel',
+			} );
+
+			return wp.element.createElement(
+				'div',
+				blockProps,
+				wp.element.createElement( wp.blockEditor.InnerBlocks, {
+					allowedBlocks: bisEventPanelBlocks,
+					template: [
+						[ 'brontosaurus/bis-event-date-location' ],
+						[ 'brontosaurus/bis-event-details' ],
+						[ 'brontosaurus/bis-event-contact' ],
+						[ 'brontosaurus/bis-event-registration' ],
+					],
+					templateInsertUpdatesSelection: true,
+				} )
 			);
 		},
 		save: function() {
@@ -742,7 +796,9 @@
 			description: 'Pole detailu akce načtené z BISu.',
 			icon: icon,
 			category: 'widgets',
-			parent: [ 'brontosaurus/bis-event-detail' ],
+			parent: name === 'bis-event-name' || name === 'bis-event-cover'
+				? [ 'brontosaurus/bis-event-detail' ]
+				: [ 'brontosaurus/bis-event-detail', 'brontosaurus/bis-event-panel' ],
 			usesContext: [ 'brontosaurus/bis-event-preview-id' ],
 			attributes: {
 				field: { type: 'string', default: name },
