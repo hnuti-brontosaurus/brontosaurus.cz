@@ -40,8 +40,9 @@ composer install
 
 Po aktivaci šablony se automaticky vytvoří administrativní stránka
 **Detail akce** s URI `/akce-detail/`. Na této stránce lze složit detail akce
-z podbloků, například Název akce, Fotka akce, Datum a místo, Úvod, Praktické
-informace nebo Registrace. Pořadí podbloků lze měnit přetažením. V nastavení
+z podbloků, například Název akce, Fotka akce, Datum, Místo, Úvod, Praktické
+informace nebo Registrace. Datum, místo, věk, začátek akce a cena mají každý
+vlastní podblok. Pořadí podbloků lze měnit přetažením. V nastavení
 bloku lze zadat ID akce, podle které se vykreslí náhled v administraci; toto ID
 neovlivňuje veřejnou stránku.
 

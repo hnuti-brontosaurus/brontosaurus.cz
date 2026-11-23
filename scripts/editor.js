@@ -656,12 +656,17 @@
 	const bisEventFieldBlocks = [
 		[ 'bis-event-name', 'Název akce', 'heading' ],
 		[ 'bis-event-cover', 'Fotka akce', 'format-image' ],
-		[ 'bis-event-date-location', 'Datum a místo', 'calendar-alt' ],
+		[ 'bis-event-date', 'Datum', 'calendar-alt' ],
+		[ 'bis-event-location', 'Místo', 'location' ],
+		[ 'bis-event-age', 'Věk', 'groups' ],
+		[ 'bis-event-start-time', 'Začátek akce', 'clock' ],
+		[ 'bis-event-cost', 'Cena', 'money-alt' ],
+		[ 'bis-event-date-location', 'Datum a místo (starší blok)', 'calendar-alt' ],
 		[ 'bis-event-introduction', 'Úvod akce', 'excerpt-view' ],
 		[ 'bis-event-practical', 'Praktické informace', 'info-outline' ],
 		[ 'bis-event-work', 'Popis práce', 'clipboard' ],
 		[ 'bis-event-about', 'O nás', 'groups' ],
-		[ 'bis-event-details', 'Další údaje', 'list-view' ],
+		[ 'bis-event-details', 'Další údaje (starší blok)', 'list-view' ],
 		[ 'bis-event-organizers', 'Organizátor', 'businessman' ],
 		[ 'bis-event-contact', 'Kontaktní osoba', 'email' ],
 		[ 'bis-event-registration', 'Registrace', 'tickets-alt' ],
@@ -700,8 +705,11 @@
 				[ 'brontosaurus/bis-event-name' ],
 				[ 'brontosaurus/bis-event-cover' ],
 				[ 'brontosaurus/bis-event-panel', {}, [
-					[ 'brontosaurus/bis-event-date-location' ],
-					[ 'brontosaurus/bis-event-details' ],
+					[ 'brontosaurus/bis-event-date' ],
+					[ 'brontosaurus/bis-event-location' ],
+					[ 'brontosaurus/bis-event-age' ],
+					[ 'brontosaurus/bis-event-start-time' ],
+					[ 'brontosaurus/bis-event-cost' ],
 					[ 'brontosaurus/bis-event-contact' ],
 				] ],
 				[ 'brontosaurus/bis-event-introduction' ],
@@ -756,6 +764,12 @@
 		icon: 'info-outline',
 		category: 'widgets',
 		parent: [ 'brontosaurus/bis-event-detail' ],
+		attributes: {
+			isPanel: { type: 'boolean', default: true },
+		},
+		providesContext: {
+			'brontosaurus/bis-event-panel': 'isPanel',
+		},
 		supports: {
 			html: false,
 		},
@@ -797,10 +811,11 @@
 			parent: name === 'bis-event-name' || name === 'bis-event-cover'
 				? [ 'brontosaurus/bis-event-detail' ]
 				: [ 'brontosaurus/bis-event-detail', 'brontosaurus/bis-event-panel' ],
-			usesContext: [ 'brontosaurus/bis-event-preview-id' ],
+			usesContext: [ 'brontosaurus/bis-event-preview-id', 'brontosaurus/bis-event-panel' ],
 			attributes: {
 				field: { type: 'string', default: name },
 				previewId: { type: 'string', default: '' },
+				isPanel: { type: 'boolean', default: false },
 			},
 			supports: {
 				html: false,
@@ -819,6 +834,7 @@
 							attributes: {
 								field: name,
 								previewId: previewId,
+								isPanel: !!( props.context || {} )[ 'brontosaurus/bis-event-panel' ],
 							},
 						} )
 						: wp.element.createElement(

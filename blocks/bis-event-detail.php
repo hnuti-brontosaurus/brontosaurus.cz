@@ -10,6 +10,11 @@ function brontosaurus_bis_event_detail_fields(): array
 	return [
 		'bis-event-name' => 'Název akce',
 		'bis-event-cover' => 'Fotka akce',
+		'bis-event-date' => 'Datum',
+		'bis-event-location' => 'Místo',
+		'bis-event-age' => 'Věk',
+		'bis-event-start-time' => 'Začátek akce',
+		'bis-event-cost' => 'Cena',
 		'bis-event-date-location' => 'Datum a místo',
 		'bis-event-introduction' => 'Úvod akce',
 		'bis-event-practical' => 'Praktické informace',
@@ -27,6 +32,11 @@ function brontosaurus_bis_event_detail_field_name(string $blockName): ?string
 	$fieldNames = [
 		'brontosaurus/bis-event-name' => 'name',
 		'brontosaurus/bis-event-cover' => 'cover',
+		'brontosaurus/bis-event-date' => 'date',
+		'brontosaurus/bis-event-location' => 'location',
+		'brontosaurus/bis-event-age' => 'age',
+		'brontosaurus/bis-event-start-time' => 'start-time',
+		'brontosaurus/bis-event-cost' => 'cost',
 		'brontosaurus/bis-event-date-location' => 'date-location',
 		'brontosaurus/bis-event-introduction' => 'introduction',
 		'brontosaurus/bis-event-practical' => 'practical',
@@ -39,30 +49,6 @@ function brontosaurus_bis_event_detail_field_name(string $blockName): ?string
 	];
 
 	return $fieldNames[$blockName] ?? null;
-}
-
-/**
- * @param iterable<WP_Block> $blocks
- */
-function brontosaurus_render_bis_event_detail_fields(iterable $blocks, Event $event, bool $isPanel = false): string
-{
-	$markup = '';
-	foreach ($blocks as $block) {
-		if ($block->name === 'brontosaurus/bis-event-panel') {
-			$panelMarkup = brontosaurus_render_bis_event_detail_fields($block->inner_blocks, $event, true);
-			if ($panelMarkup !== '') {
-				$markup .= '<div class="bis-event-detail__panel">' . $panelMarkup . '</div>';
-			}
-			continue;
-		}
-
-		$field = brontosaurus_bis_event_detail_field_name($block->name);
-		if ($field !== null) {
-			$markup .= brontosaurus_render_bis_event_field_value($field, $event, $isPanel);
-		}
-	}
-
-	return $markup;
 }
 
 function brontosaurus_register_bis_event_detail_blocks(): void
@@ -87,6 +73,15 @@ function brontosaurus_register_bis_event_detail_blocks(): void
 	register_block_type('brontosaurus/bis-event-panel', [
 		'api_version' => 3,
 		'render_callback' => 'brontosaurus_render_bis_event_panel',
+		'provides_context' => [
+			'brontosaurus/bis-event-panel' => 'isPanel',
+		],
+		'attributes' => [
+			'isPanel' => [
+				'type' => 'boolean',
+				'default' => true,
+			],
+		],
 		'supports' => [
 			'html' => false,
 		],
@@ -98,6 +93,7 @@ function brontosaurus_register_bis_event_detail_blocks(): void
 			'render_callback' => 'brontosaurus_render_bis_event_field',
 			'uses_context' => [
 				'brontosaurus/bis-event-preview-id',
+				'brontosaurus/bis-event-panel',
 			],
 			'attributes' => [
 				'field' => [
@@ -107,6 +103,10 @@ function brontosaurus_register_bis_event_detail_blocks(): void
 				'previewId' => [
 					'type' => 'string',
 					'default' => '',
+				],
+				'isPanel' => [
+					'type' => 'boolean',
+					'default' => false,
 				],
 			],
 			'supports' => [
@@ -151,8 +151,11 @@ function brontosaurus_get_bis_event_detail_page_id(): int
 <div class="wp-block-brontosaurus-bis-event-detail bis-event-detail"><!-- wp:brontosaurus/bis-event-name /-->
 <!-- wp:brontosaurus/bis-event-cover /-->
 <!-- wp:brontosaurus/bis-event-panel -->
-<!-- wp:brontosaurus/bis-event-date-location /-->
-<!-- wp:brontosaurus/bis-event-details /-->
+<!-- wp:brontosaurus/bis-event-date /-->
+<!-- wp:brontosaurus/bis-event-location /-->
+<!-- wp:brontosaurus/bis-event-age /-->
+<!-- wp:brontosaurus/bis-event-start-time /-->
+<!-- wp:brontosaurus/bis-event-cost /-->
 <!-- wp:brontosaurus/bis-event-contact /-->
 <!-- /wp:brontosaurus/bis-event-panel -->
 <!-- wp:brontosaurus/bis-event-introduction /-->
@@ -272,10 +275,6 @@ function brontosaurus_render_bis_event_detail(array $attributes, string $content
 		return '<p class="bis-event-detail__message" role="alert">Omlouváme se, detail akce se teď nepodařilo načíst. Zkuste to prosím později.</p>';
 	}
 
-	if (count($block->inner_blocks) > 0) {
-		$content = brontosaurus_render_bis_event_detail_fields($block->inner_blocks, $loaded['event']);
-	}
-
 	return '<div class="bis-event-detail">' . $content . '</div>';
 }
 
@@ -304,7 +303,9 @@ function brontosaurus_render_bis_event_field(array $attributes, string $content,
 		return '';
 	}
 
-	return brontosaurus_render_bis_event_field_value($field, $loaded['event']);
+	$isPanel = !empty($attributes['isPanel'])
+		|| !empty($block->context['brontosaurus/bis-event-panel']);
+	return brontosaurus_render_bis_event_field_value($field, $loaded['event'], $isPanel);
 }
 
 function brontosaurus_render_bis_event_field_value(string $field, Event $event, bool $isPanel = false): string
@@ -324,6 +325,33 @@ function brontosaurus_render_bis_event_field_value(string $field, Event $event, 
 				'<img class="bis-event-detail__cover" src="%s" alt="" loading="eager">',
 				esc_url($image->largeSizePath),
 			);
+
+		case 'date':
+			return brontosaurus_render_bis_event_detail_panel_rows([[
+				'Datum',
+				brontosaurus_format_bis_event_date($event->startDate, $event->endDate),
+			]]);
+
+		case 'location':
+			return $event->location->name !== ''
+				? brontosaurus_render_bis_event_detail_panel_rows([['Místo', $event->location->name]])
+				: '';
+
+		case 'age':
+			$age = brontosaurus_bis_event_age_range($propagation->minimumAge, $propagation->maximumAge);
+			return $age !== ''
+				? brontosaurus_render_bis_event_detail_panel_rows([['Věk', $age]])
+				: '';
+
+		case 'start-time':
+			return $event->startTime !== null
+				? brontosaurus_render_bis_event_detail_panel_rows([['Začátek akce', $event->startTime]])
+				: '';
+
+		case 'cost':
+			return brontosaurus_render_bis_event_detail_panel_rows([
+				['Cena', $propagation->cost !== '' ? $propagation->cost : 'bez poplatku'],
+			]);
 
 		case 'date-location':
 			$date = brontosaurus_format_bis_event_date($event->startDate, $event->endDate);
